@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
+	<children />
+	<folders>
+		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="" />
+		<folder caption="2. Test Suites" description="A logical folder that is used to organize project items and elements." moniker="" />
+		<folder caption="3. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="" />
+		<folder caption="4. Test Steps" description="A logical folder that is used to organize project items and elements." moniker="" />
+	</folders>
+</Root>

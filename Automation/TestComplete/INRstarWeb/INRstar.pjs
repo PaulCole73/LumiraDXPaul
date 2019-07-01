@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Root signature="{24B6FA0B-0143-461A-9758-AEB9E9A9428B}" version="12.0" key="{E8B258E6-2FAC-45D2-B9D3-3E65DFF226C4}">
+	<children>
+		<child name="INRstar" key="{2D3354F4-BAFF-41EC-B1CB-E7E7F8D07EAB}" type="Project" typeId="{362A8EE5-675E-43A9-869D-06ECE80B0CB4}" pluginName="">
+			<data path="INRstar.mds" />
+		</child>
+	</children>
+	<folders />
+	<testItems key="{C6259F79-72F8-4826-A6F0-F5381DC3B441}">
+		<children>
+			<testItem key="{2D3354F4-BAFF-41EC-B1CB-E7E7F8D07EAB}" enabled="True" timeout="0" stopOnError="True" description="" />
+		</children>
+	</testItems>
+	<variables key="{958D4813-F78F-4DDD-8750-B8EF076D0847}">
+		<data Version="3" />
+	</variables>
+	<analysis key="{61DD8ECF-65F8-4CD0-932C-63C6810E52B3}" />
+	<scc key="{F0D60D49-B342-4271-94E0-3E8C61A0E7D6}" name="Team Foundation Version Control Plugin">
+		<data />
+	</scc>
+	<extender key="{1A3FC97E-9A66-4716-B166-35D10B4146E0}" />
+</Root>

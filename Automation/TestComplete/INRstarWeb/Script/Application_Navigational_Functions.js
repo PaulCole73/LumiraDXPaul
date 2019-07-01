@@ -1,0 +1,9 @@
+﻿function openClient() {
+
+
+
+}
+
+function enterText() {
+  
+} 
