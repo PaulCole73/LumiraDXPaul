@@ -328,3 +328,13 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# TestComplete
+syntax: glob
+*.js.bak
+*.js.tcVis
+*/Log/*
+*.sj.bak
+*.tcLS
+*.tcCfgExtender
+*.tcLogs
