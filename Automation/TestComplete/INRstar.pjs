@@ -15,7 +15,7 @@
 		<data Version="3" />
 	</variables>
 	<analysis key="{61DD8ECF-65F8-4CD0-932C-63C6810E52B3}" />
-	<scc key="{F0D60D49-B342-4271-94E0-3E8C61A0E7D6}" name="Team Foundation Version Control Plugin">
+	<scc key="{C900492B-D218-429C-9AA0-264B7D78CA88}" name="Git Plugin">
 		<data />
 	</scc>
 	<extender key="{1A3FC97E-9A66-4716-B166-35D10B4146E0}" />
