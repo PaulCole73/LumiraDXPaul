@@ -71,7 +71,8 @@ function add_pending_induction_slow_treatment(inr,TestStepMode)
      var pre_treatment_info = pre_treatment_info_induction_path()
      
      var ws_INR = FloatToString(inr);
-     pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);    
+     pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);
+     WaitSeconds(2);    
      pre_treatment_info.Panel(2).Select("TestingMethod").ClickItem('PoCT');
      
      // PoCT special handling due to all the things this can be set to and a bug
@@ -82,10 +83,10 @@ function add_pending_induction_slow_treatment(inr,TestStepMode)
      
      process_confirm_INR();
      
-     handle_no_poct('induct');
-     handle_poct_expired();
+     //handle_no_poct('induct');
+     //handle_poct_expired();
       
-     process_confirm_INR();
+     //process_confirm_INR();
     }
 }
 //--------------------------------------------------------------------------------
@@ -94,6 +95,7 @@ function add_pending_manual_treatment(inr,tm,dose,review)
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
   var inr_test_info_path = treatment_inr_test_info_path();
+  var new_inr_test_info_path = new_inr_test_details();
 
    // Select the passed-in INR value
    var ws_INR = FloatToString(inr);
@@ -439,16 +441,23 @@ function handle_PoCT(main_path)
    //Check if the batch field is on screen
    var poct_batch_field = main_path.contentText;
    
-   if(poct_batch_field.includes('Enter pre treatment INR test information'))
+   if(poct_batch_field.includes('Enter pre-treatment INR test information'))
    {
      // Check PoCT
      if(poct_batch_field.includes('PoCT Batch'))
      {
-           var field_enabled = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").Enabled;
-           var batch = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").wText;
-           if(batch=='~Select PoCT Batch' && field_enabled == true)
+           //var field_enabled = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").Enabled;
+           var field_enabled = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").Enabled;
+           //var batch = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").wText;
+           
+           //Added for Instrument changes and the PoCT selector not being disabled when selecting 'Lab' as testing method           
+           var testing_method = inr_test_info_path.Panel(2).Select("TestingMethod").wText;
+           
+           var batch = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").wText;
+           if(batch=='~Select PoCT Batch' && field_enabled == true && testing_method == 'PoCT')
            {
-             inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").ClickItem(1);
+             //inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").ClickItem(1);
+             inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);
            }  
             else          
             {
@@ -463,11 +472,16 @@ function handle_PoCT(main_path)
      if(poct_batch_field.includes('PoCT Batch'))
      {
            var field_enabled = inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").Enabled;
+           
+           //Added for Instrument changes and the PoCT selector not being disabled when selecting 'Lab' as testing method           
+           var testing_method = inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel(2).Select("TestingMethod").wText;
+           
            var batch = inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").wText;
            
-           if(batch=='~Select PoCT Batch' && field_enabled == true)
+           if(batch=='~Select PoCT Batch' && field_enabled == true && testing_method == 'PoCT')
            {
              inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);
+             //inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);
            }  
             else          
             {

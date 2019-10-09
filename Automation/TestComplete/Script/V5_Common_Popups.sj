@@ -128,7 +128,6 @@ function process_OK(INRstarV5, w_hdg)
         Aliases.iexplore1.pageInrstar.panelUiDialogUiWidgetUiWidgetCon.Panel(1).Panel(0).Button(0).Click();
     }
   }     
-
 } 
  //-------------------------------------------------------------------------------
 // Click a button on the pop-up

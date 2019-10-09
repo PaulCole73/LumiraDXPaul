@@ -219,7 +219,8 @@ function Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan()
     panelPR.Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
    
     var panelPMTC = panelPR.Panel("PatientMainTabContent");
-     
+    WaitSeconds(2);
+    
     // Click on Clinical Details Sub Tab
     panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientTreatmentPlanTab").Click();
     
@@ -287,6 +288,7 @@ function Goto_Patient_TreatmentPlan_Edit(INRstarV5)
   // Click on Clinical Details Sub Tab ---------------------------------------------------------
   var panelPMTC = panelPR.Panel("PatientMainTabContent");
   var panelPTPTSM = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
+  WaitSeconds(2);
   panelPTPTSM.Link("PatientTreatmentPlanTab").Click();
     
   WaitSeconds(1,"Clicking 'Edit Plan Details'");
@@ -367,7 +369,7 @@ function Goto_Patient_Treatment()
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
 function Goto_Add_Historical()
 {
-     var INRstarV5 = INRstar_base();
+      var INRstarV5 = INRstar_base();
 
       Goto_Patient_Treatment();
       

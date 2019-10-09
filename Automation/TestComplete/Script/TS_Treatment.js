@@ -5,8 +5,8 @@
 //--------------------------------------------------------------------------------
 function ts_staging_regression_treatment()
 {
-tc_treatment_add_a_historic_treatment();
-tc_treatment_add_a_manual_INR();
+//tc_treatment_add_a_historic_treatment();
+//tc_treatment_add_a_manual_INR();
 tc_treatment_manual_dosing_permissions();
 tc_treatment_induction_dosing_permissions();
 tc_treatment_add_a_treatment_comment();
