@@ -22,5 +22,13 @@ tc_treatment_out_of_range_maintenance_permissions();
 tc_treatment_delete_the_last_treatment();
 tc_treatment_refer_a_treatment();
 tc_treatment_authorise_a_referral();
+
+tc_treatment_create_maintenance_use_alternate_schedules();
+tc_treatment_maintenance_starting_algorithm_for_unstable_patient();
+tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent();
+tc_treatment_maintenance_overriding_dose_and_review_period();
+tc_treatment_maintenance_save_override_treatment();
+tc_treatment_drag_and_drop_schedule_days();
+tc_treatment_maintenance_INR_more_then_max_review_period();
 }
 //-------------------------------------------------------------------------------- 

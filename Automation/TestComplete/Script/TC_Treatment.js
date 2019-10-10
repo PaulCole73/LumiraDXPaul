@@ -907,6 +907,7 @@ function tc_treatment_dosing_under_12_years_old()
 
 //test to check that a new dosing schedule can be selected, checks the original does not match the new schedule
 //C1248478
+//Test Change Schedule
 function tc_treatment_create_maintenance_use_alternate_schedules()
 {
 	try
@@ -980,7 +981,32 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 		
 		//get the message from the new INR page banner
 		var error_banner_path = treatment_banner_error_message();
-		var error_message_text = error_banner_path.TextNode(0).innerText;
+    
+    var counter = 0;
+    do
+    {
+      var isValid = true;  
+    
+      var error_message_text;
+      if (error_banner_path.TextNode(counter).Exists == true)
+      {
+        error_message_text = error_banner_path.TextNode(counter).innerText;
+        
+        if (error_message_text == expected_error)
+        {
+          isValid = false;
+        }
+        else
+        {
+          counter++;
+        }
+      }
+      else
+      {
+        isValid = false;
+      }
+    }
+    while (isValid == true);
   
 		var suggest_dose_button = treatment_buttons_pre_schedule().SubmitButton("CalculateWarfarinDose").enabled;
 		
@@ -1107,7 +1133,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 
 //--------------------------------------------------------------------------------
 
-//checks that dose and review periods can be overwritten and saved
+//checks that dose and review periods can be overwritten
 //C1248497
 function tc_treatment_maintenance_overriding_dose_and_review_period()
 {
@@ -1176,6 +1202,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 //--------------------------------------------------------------------------------
 //testing schedules can be re-order via drag/drop dosing values between days, checks schedules change after action
 //C1248479
+//Test Change Schedule
 function tc_treatment_drag_and_drop_schedule_days()
 {
   try
@@ -1183,7 +1210,7 @@ function tc_treatment_drag_and_drop_schedule_days()
     //setup a treatment
     var test_title = 'Treatment - Drag and Drop Schedule Days';
     login('cl3@regression','INRstar_5','Shared');
-	  add_patient('Regression', 'Dose_And_Review_Override', 'M', 'Shared');
+	  add_patient('Regression', 'Drag_Drop', 'M', 'Shared');
 	  add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
 		                                                        "2.8", "2.9", "0", "11", "2.4");
@@ -1230,6 +1257,233 @@ function tc_treatment_drag_and_drop_schedule_days()
 }
 
 //--------------------------------------------------------------------------------
+
+//checks a pending treatment can be overwritten, saved, overwrite maintained, strikethrough values display
+//C1248498
+function tc_treatment_maintenance_save_override_treatment()
+{
+	try
+	{
+		var test_title = 'Treatment - Overriding Dose and Review Period and Save';
+		login('cl3@regression','INRstar_5','Shared');
+		add_patient('Regression', 'DoseReview_OverrideSave', 'M', 'Shared');
+		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
+																"2.8", "2.9", "0", "11", "2.4");
+		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
+		
+		//setup values to be altered/checked
+		var new_dose = "3.0";
+		var new_review_days = "13";
+		var result_set = new Array();
+		var expected_values = new Array();
+		var override_values = new Array();
+    
+    var pending_dose = pending_treatment_table().Cell(0, 2).innerText;
+    var pending_review = pending_treatment_table().Cell(0, 5).innerText;
+    var pending_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
+		
+		//add all expected values to array
+		expected_values.push(pending_dose, pending_review, pending_next_test_date);
+		
+		//update the dose, get the new value
+		override_dose(new_dose);
+		
+		//update the review days, get new value, get new next test date
+		override_review(new_review_days);
+    
+    var save_inr_path = save_inr_button();
+    save_inr_path.Click();
+    
+    var overwritten_dose = treatment_table().Cell(1, 2).innerText;
+    var overwritten_review = treatment_table().Cell(1, 5).innerText;
+    var overwritten_next_test_date = treatment_table().Cell(1, 7).innerText;
+    
+    var strikethrough = treatment_table().Cell(1, 3).Panel(0).style.textdecoration;
+    var result_set_2 = test_data(strikethrough, "line-through", test_title);
+    var strikethrough_1 = treatment_table().Cell(1, 6).Panel(0).style.textdecoration;
+    result_set_2 = test_data(strikethrough, "line-through", test_title);
+    
+		//add all to array of changed values
+		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
+		
+		//check arrays are same length but values do not match
+		var result_set_1 = validateArrays(expected_values, override_values, test_title);
+		result_set.push(result_set_1);
+		
+		//Validate the results sets are false
+		var results = results_checker_are_false(result_set);
+		Log.Message(results);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+    
+		Log_Off();
+	}
+	catch(e)
+	{
+		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+	}
+}
+
+//--------------------------------------------------------------------------------
+//testing for warning message when patient's last INR test exceeds max review period
+//C1248475
+function tc_treatment_maintenance_INR_more_then_max_review_period()
+{
+  try
+  {
+    var test_title = 'Treatment - INR More Than Max Review Period';
+		login('cl3@regression','INRstar_5','Shared');
+    
+    var options_button = home_page_options_tab().Click();
+    var dosing_tab = dosing_settings_tab().Click();
+    var inr_stage_six = location_dosing_settings().Link(12).Click();
+    
+    var max_review_period_str = location_dosing_settings().Panel(12).Panel("Review_Period_").Panel(0).Label("In_Range_INR_Stage_6_Review_Period_Value").innerText;
+    var max_review_period_int = aqConvert.StrToInt(max_review_period_str);
+    var max_review_increment = max_review_period_int+1;
+    
+    add_patient('Regression', 'MoreThan_MaxReview', 'M', 'Shared');
+    add_treatment_plan('W', 'Coventry', '', 'Shared', '');
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-(max_review_increment)))), 
+                                                                                  "2.8", "2.9", "0", "11", "2.4");
+    Goto_Patient_New_INR();
+    
+    var expected_message = "The patient's last treatment was more than " + max_review_period_str + " days ago, please ensure that the dose and review period are still current and accurate";
+    //get the message from the new INR page banner
+		var warning_banner_path = treatment_banner_warning_message();
+    
+    var warning_message_text = warning_banner_path.contentText;
+    if (aqString.Contains(warning_message_text, expected_message) != -1)
+    {
+      warning_message_text = expected_message;
+    }
+
+    //check the values match
+		var result_set = test_data(warning_message_text, expected_message, test_title);
+    
+    var cancel_button = treatment_buttons_pre_schedule().Button("CancelNewINR");
+    cancel_button.Click();
+    
+    delete_treatment();
+    
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-(max_review_period_int)))), 
+                                                                                  "2.8", "2.9", "0", "11", "2.4");
+    
+    Goto_Patient_New_INR();
+    
+    var isTextAbsent = false;
+    warning_message_text = warning_banner_path.contentText;
+    if (aqString.Contains(warning_message_text, expected_message) == -1)
+    {
+      isTextAbsent = true;
+    }
+    
+    //Pass in the result
+		results_checker(isTextAbsent, test_title);
+    
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+  }
+}
+
+//--------------------------------------------------------------------------------
+//
+//C1248473
+function tc_treatment_manual_mutliple_historic_summary_check()
+{
+  try
+  {
+    var test_title = 'Treatment - Multiple Historic INRs, Summary Check';
+		login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'MoreThan_MaxReview', 'M', 'Shared');
+    add_treatment_plan('W', 'Manual', '', 'Shared', '');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-20))), 
+                                                              "2.0", "2.0", "0", "11", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-12))), 
+                                                              "2.2", "2.3", "0", "11", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
+                                                              "2.4", "2.6", "0", "11", "2.5");
+    
+    add_pending_manual_treatment('2.6','PoCT','2.9','7 Days');
+    
+    var treatment_values = new Array();
+    var summary_values = new Array();
+    var isArraysEqual = new Array();
+    var result_set = new Array();
+    var smry_dosing_schedule = new Array();
+    var dosing_schedule = return_pending_suggested_treatment_schedule(0);
+    
+    var save_inr_path = save_inr_button();
+    save_inr_path.Click();
+    
+    var test_date = treatment_comment().Cell(3,0).innerText;
+    var inr = treatment_comment().Cell(3,1).innerText;
+    var dose = treatment_comment().Cell(3,2).innerText;
+    var review_days = treatment_comment().Cell(3,5).innerText;
+    var next_test_date = aqConvert.DateTimeToStr(treatment_comment().Cell(3,7).innerText);
+    
+    treatment_values.push(test_date, inr, dose + " mg/day", review_days + " Days", next_test_date);
+    
+    var summary_button = summary_tab_path();
+    summary_button.Click();
+    
+    var smry_test_date = patient_current_summary().Panel(0).Label("CurrentTreatment_LatestINRTestDate_DetachedLabel").innerText;
+    var smry_inr = patient_current_summary().Panel(1).Label("CurrentTreatment_LatestINR_DetachedLabel").innerText;
+    var smry_dose = patient_current_summary().Panel(2).Label("CurrentTreatment_LatestDose_DetachedLabel").innerText;
+    var smry_review_date = patient_current_summary().Panel(3).Label("CurrentTreatment_LatestReview_DetachedLabel").innerText;
+    var smry_next_test = aqConvert.DateTimeToStr(patient_current_summary().Panel(4).Label("CurrentTreatment_NextINRTestDate_DetachedLabel").innerText);
+    
+    summary_values.push(smry_test_date, smry_inr, smry_dose, smry_review_date, smry_next_test);
+    
+    var smry_schedule_day;
+    var smry_schedule_dose;
+    for(var i = 1; i <= 7; i++)
+    {
+      smry_schedule_dose = patient_summary_schedule_table().Cell(i, 1).innerText;
+      smry_dosing_schedule.push(smry_schedule_dose);
+    }
+    
+    for(var i = 0; i < dosing_schedule.length; i++)
+    {
+      if (aqString.Contains(dosing_schedule[i], smry_dosing_schedule[i]) != -1)
+      {
+        isArraysEqual.push(true);
+      }
+      else
+      {
+        isArraysEqual.push(false);
+      }
+    }
+    
+    Log.Message(dosing_schedule);
+    
+    //Check the arrays are the same size + values match
+		var result_set_1 = checkArrays(treatment_values, summary_values, test_title);
+		result_set.push(result_set_1);
+		
+		//Validate the results sets are true
+		var results = results_checker_are_true(result_set);
+		Log.Message(results);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+    
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+  }
+}
+
 
 //*** NOT READY TO USE YET ***
 
