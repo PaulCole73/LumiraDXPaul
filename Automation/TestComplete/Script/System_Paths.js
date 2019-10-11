@@ -573,7 +573,15 @@ function override_button()
   var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
   
   return override_button_path;
-}  
+} 
+//------------------------------------------------------------------------
+function cancel_button()
+{
+  var pending_treatment_buttons_path = pending_treatment_buttons();
+  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("CancelPendingTreatment");
+  
+  return cancel_button_path;
+} 
 //------------------------------------------------------------------------
 function sugg_war_dose_button()
 {
@@ -780,6 +788,15 @@ function summary_tab_path()
    return panelPST;
 }
 //------------------------------------------------------------------------
+function patient_management_tab_path()
+{
+   var INRstarV5 = INRstar_base();
+   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+   var panelPST = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientManagementTab");
+   
+   return panelPST;
+}
+//------------------------------------------------------------------------
 function patient_current_summary()
 {
   var INRstarV5 = INRstar_base();
@@ -799,6 +816,15 @@ function patient_summary_schedule_table()
   var table_path = panelSCT.Panel("MoreScheduleGrid").Table("DoseScheduleTable");
   
   return table_path;
+}
+//------------------------------------------------------------------------
+function patient_summary_result_chart()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMTC = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord").Panel("PatientMainTabContent");
+  var panelPSR = panelMTC.Panel("PatientSummaryWrapper").Panel("PatientSummaryINRResults");
+  
+  return panelPSR;
 }
 //------------------------------------------------------------------------
 ////////////////////////  Self Care tab  /////////////////////////////////

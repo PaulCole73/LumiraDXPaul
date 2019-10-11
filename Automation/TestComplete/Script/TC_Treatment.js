@@ -8,6 +8,7 @@
 //USEUNIT Generic_Functions
 //USEUNIT Navigation
 //USEUNIT Test_Audit
+//USEUNIT Create_Clinics
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
 {
@@ -1402,7 +1403,7 @@ function tc_treatment_manual_mutliple_historic_summary_check()
   {
     var test_title = 'Treatment - Multiple Historic INRs, Summary Check';
 		login('cl3@regression','INRstar_5','Shared');
-    add_patient('Regression', 'MoreThan_MaxReview', 'M', 'Shared');
+    add_patient('Regression', 'Mutliple_Historic', 'M', 'Shared');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-20))), 
                                                               "2.0", "2.0", "0", "11", "2.5");
@@ -1446,23 +1447,16 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     var smry_schedule_dose;
     for(var i = 1; i <= 7; i++)
     {
-      smry_schedule_dose = patient_summary_schedule_table().Cell(i, 1).innerText;
+      smry_schedule_day = aqString.SubString(patient_summary_schedule_table().Cell(i, 0).innerText, 0, 3);
+      smry_schedule_dose = smry_schedule_day + " " + patient_summary_schedule_table().Cell(i, 1).innerText;
       smry_dosing_schedule.push(smry_schedule_dose);
     }
     
-    for(var i = 0; i < dosing_schedule.length; i++)
+    var results_chart = patient_summary_result_chart().Child(0).Name;
+    if (aqString.Contains(results_chart, "treatmentPlanId",) != -1)
     {
-      if (aqString.Contains(dosing_schedule[i], smry_dosing_schedule[i]) != -1)
-      {
-        isArraysEqual.push(true);
-      }
-      else
-      {
-        isArraysEqual.push(false);
-      }
+      results_checker(true, test_title);
     }
-    
-    Log.Message(dosing_schedule);
     
     //Check the arrays are the same size + values match
 		var result_set_1 = checkArrays(treatment_values, summary_values, test_title);
@@ -1475,6 +1469,20 @@ function tc_treatment_manual_mutliple_historic_summary_check()
 		//Pass in the result
 		results_checker(results, test_title);
     
+    result_set.length = 0;
+    result_set_1.length = 0;
+    
+    //Check the arrays are the same size + values match
+    result_set_1 = checkArrays(dosing_schedule, smry_dosing_schedule, test_title);
+    result_set.push(result_set_1);
+    
+    //Validate the results sets are true
+    results = results_checker_are_true(result_set);
+    Log.Message(results);
+    
+    //Pass in the result
+		results_checker(results, test_title);
+    
     Log_Off();
   }
   catch(e)
@@ -1484,7 +1492,223 @@ function tc_treatment_manual_mutliple_historic_summary_check()
   }
 }
 
+//--------------------------------------------------------------------------------
+//
+//C1248489
+function tc_treatment_maintenance_override_privilege()
+{
+  try
+  {
+    var test_title = 'Treatment - Override Privilege, in-range INR';
+		login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Override_Privilege', 'M', 'Shared');
+    add_treatment_plan('W', 'Coventry', '', 'Shared', '');
+    
+    var patient_nhs_number = patient_banner_blue_bar().panel(3).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
+    
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
+                                                              "2.4", "2.6", "0", "11", "2.5");
+    add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
+    
+    var result_set = new Array();
+    var override_inr_button_path = override_button();
+    var button = check_button(override_inr_button_path);
+  
+    var result_set_1 = button_checker(button,'enabled','Testing cl3 level user can click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_1);
+    
+    Log_Off();
+    
+    login('readonly@regression', 'INRstar_5', 'Shared');
+    patient_search(patient_nhs_number);
+  
+    var override_inr_button_path = override_button();
+    var button = check_button(override_inr_button_path);
+  
+    var result_set_2 = button_checker(button,'disabled','Testing read-only level user cannot click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_2);
+  
+    Log_Off();
+    
+    login('cl1@regression', 'INRstar_5', 'Shared');
+    patient_search(patient_nhs_number);
+  
+    var override_inr_button_path = override_button();
+    var button = check_button(override_inr_button_path);
+  
+    var result_set_3 = button_checker(button,'disabled','Testing cl1 level user cannot click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_3);
+  
+    Log_Off();
 
+    login('cl2@regression', 'INRstar_5', 'Shared');
+    patient_search(patient_nhs_number);
+  
+    var override_inr_button_path = override_button();
+    var button = check_button(override_inr_button_path);
+  
+    var result_set_4 = button_checker(button,'disabled','Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_4);
+  
+    Log_Off();
+    
+    login('clead@regression', 'INRstar_5', 'Shared');
+    patient_search(patient_nhs_number);
+  
+    var override_inr_button_path = override_button();
+    var button = check_button(override_inr_button_path);
+  
+    var result_set_4 = button_checker(button,'enabled','Testing clead level user can click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_4);
+    
+    var save_inr_button_path = save_inr_button();
+    save_inr_button_path.Click();
+  
+    Log_Off();
+    
+    //Validate all the results sets are true
+    Log.Message(result_set);
+    var results = results_checker_are_true(result_set); 
+    Log.Message(results);
+    
+    //Pass in the result
+    results_checker(results,test_title);
+    
+    Log_Off();          
+  }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+  }
+}
+
+//--------------------------------------------------------------------------------
+//
+//C1368479
+function tc_treatment_maintenance_cancel_pending()
+{
+  try
+  {
+    var test_title = 'Treatment - Cancel Pending Treatment';
+		login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Cancel_Pending', 'M', 'Shared');
+    add_treatment_plan('W', 'Coventry', '', 'Shared', '');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
+                                                              "2.4", "2.6", "0", "11", "2.5");
+    
+    var result_set = new Array();                                                                                                                    
+    var treatment_values = new Array();
+    var treatment_values_1 = new Array();                                                           
+    for(var i = 0; i <= 7; i++)
+    {
+      var treatment = treatment_table().Cell(0, i).innerText;
+      treatment_values.push(treatment);
+    }
+                                                              
+    add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
+    
+    var cancel_btn = cancel_button()
+    cancel_btn.Click();
+    
+    process_cancel_sub("", "Confirmation Required");
+    
+    cancel_btn.Click();
+    
+    process_confirm_sub("", "Confirmation Required");
+    
+    for(var i = 0; i <= 7; i++)
+    {
+      var treatment = treatment_table().Cell(0, i).innerText;
+      treatment_values_1.push(treatment);
+    }
+    
+    //Check the arrays are the same size + values match
+    var result_set_1 = checkArrays(treatment_values, treatment_values_1, test_title);
+    result_set.push(result_set_1);
+    
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    
+    //Pass in the result
+		results_checker(results, test_title);
+    
+    Log_Off();          
+  }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+  }
+}
+//--------------------------------------------------------------------------------
+//
+//C1368479
+function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
+{
+  try
+  {
+    var test_title = 'Treatment - Add Pending Treatment to Patient with Pending Transfer Acceptance';
+		login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'PendingTreatment_PendingTransfer', 'M', 'Shared');
+    
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var messagename = (patSurname + ", " + patFirstname);
+    WaitSeconds(2);
+    
+    add_treatment_plan('W', 'Coventry', '', 'Shared', '');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
+                                                              "2.4", "2.6", "0", "11", "2.5");
+                                                              
+    result_set = new Array();
+    
+    var practice_name = "Deans Regression Testing Location 2";
+    change_test_practice(practice_name);
+    
+    add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
+    
+    Log_Off();
+     
+    login('cl3@regression2','INRstar_5','Shared');
+    
+    var isButtonEnabled;
+    
+    Goto_Home();
+   
+    var home_page_messages_path = home_page_messages();
+    home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
+    WaitSeconds(2);
+    
+    var transfer_list_table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
+    var row_count = transfer_list_table.rowcount;
+    
+    for(i=1; i<row_count; i++) 
+    {
+      var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
+      if(transfer_list_pat == messagename)
+      { 
+        while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
+        {
+          transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
+        }
+        transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+      }
+    }
+    
+    var pending_transfer_error = home_page_messages().Panel("TransferredPatients").Panel("AddTransferPatientValidation").Panel("Errors").innerText;
+    
+    Log.Message(pending_transfer_error);
+  
+    Log_Off();          
+  }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+  }
+}
 //*** NOT READY TO USE YET ***
 
 //function tc_treatment_cancel_pending_treatment() 

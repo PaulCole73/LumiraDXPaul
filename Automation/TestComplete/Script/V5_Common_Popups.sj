@@ -983,6 +983,13 @@ function close_comments_window(INRstarV5)
 function process_cancel_sub(INRstarV5, w_hdg)
 {
   // Find the Panel
+  if(INRstarV5=='')
+  {
+  var INRstarV5 = INRstar_base();
+  }
+  
+  WaitSeconds(2);
+  // Find the Panel
   var w_popup = INRstarV5.NativeWebObject.Find("innerText", w_hdg);
   if (w_popup.Exists == false)
   {
