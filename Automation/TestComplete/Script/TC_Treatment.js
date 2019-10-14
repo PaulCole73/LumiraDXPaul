@@ -1074,26 +1074,10 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		override_finish_buttons.Button("OverrideAccept").Click();
 		
 	  //find the pop up window in the screen
-    //---------------------------------------------------------------------------//
-    //This should be in a function, couldn't find one that fit this gap
-		WaitSeconds(2,"");
-  
-		var INRstarV5 = INRstar_base();
-		var w_hdg = "Please Confirm";
-  
-		// Find the Panel
-		var wbx = INRstarV5.NativeWebObject.Find("innerText", w_hdg);
-		if (wbx.Exists == false || wbx.VisibleOnScreen == false)
-		{  
-			Log.Message("'" + w_hdg + "' box not displayed");
-		}
-		else
-		{
-			output_message = INRstarV5.Panel(3).Panel("modalDialogBox").innerText;
-			// Just click the correct button...
-			INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).Click();    
-		}
-    //---------------------------------------------------------------------------//
+    output_message = return_message_please_confirm();
+    
+    var save_inr_path = save_inr_button();
+    save_inr_path.Click();
     
     var overwritten_dose = pending_treatment_table().Cell(0, 2).innerText;
     var overwritten_review = pending_treatment_table().Cell(0, 5).innerText;
@@ -1167,6 +1151,9 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 		
 		//update the review days, get new value, get new next test date
 		override_review(new_review_days);
+    
+    var save_inr_path = save_inr_button();
+    save_inr_path.Click();
     
     var overwritten_dose = pending_treatment_table().Cell(0, 2).innerText;
     var overwritten_review = pending_treatment_table().Cell(0, 5).innerText;
@@ -1563,8 +1550,6 @@ function tc_treatment_maintenance_override_privilege()
     
     var save_inr_button_path = save_inr_button();
     save_inr_button_path.Click();
-  
-    Log_Off();
     
     //Validate all the results sets are true
     Log.Message(result_set);
@@ -1663,6 +1648,8 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
                                                               "2.4", "2.6", "0", "11", "2.5");
                                                               
     result_set = new Array();
+    var expected_message = "This patient transfer cannot be accepted because they have a pending treatment. Please contact their current testing location."
+
     
     var practice_name = "Deans Regression Testing Location 2";
     change_test_practice(practice_name);
@@ -1673,33 +1660,20 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
      
     login('cl3@regression2','INRstar_5','Shared');
     
-    var isButtonEnabled;
+    var is_in_table = accept_transfer(messagename);
     
-    Goto_Home();
-   
-    var home_page_messages_path = home_page_messages();
-    home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    WaitSeconds(2);
-    
-    var transfer_list_table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
-    var row_count = transfer_list_table.rowcount;
-    
-    for(i=1; i<row_count; i++) 
+    if (is_in_table == true)
     {
-      var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
-      if(transfer_list_pat == messagename)
-      { 
-        while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-        {
-          transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-        }
-        transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-      }
+      var pending_transfer_error = home_page_messages().Panel("TransferredPatients").Panel("AddTransferPatientValidation").Panel("Errors").innerText;
+    }
+    else
+    {
+      Log.Message("Patient not found.")
     }
     
-    var pending_transfer_error = home_page_messages().Panel("TransferredPatients").Panel("AddTransferPatientValidation").Panel("Errors").innerText;
-    
     Log.Message(pending_transfer_error);
+    
+    result_set = test_data(expected_message, pending_transfer_error, test_title);
   
     Log_Off();          
   }
