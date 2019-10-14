@@ -1622,7 +1622,6 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
     var patFirstname = get_patient_first_name();
     var patSurname = get_patient_surname();
     var messagename = (patSurname + ", " + patFirstname);
-    WaitSeconds(2);
     
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
@@ -1651,8 +1650,6 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
     {
       Log.Message("Patient not found.")
     }
-    
-    Log.Message(pending_transfer_error);
     
     result_set = test_data(expected_message, pending_transfer_error, test_title);
   
