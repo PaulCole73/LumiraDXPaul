@@ -1491,7 +1491,7 @@ function tc_treatment_maintenance_override_privilege()
     add_patient('Regression', 'Override_Privilege', 'M', 'Shared');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     
-    var patient_nhs_number = patient_banner_blue_bar().panel(3).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
+    var patient_nhs_number = get_patient_nhs();
     
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
                                                               "2.4", "2.6", "0", "11", "2.5");
