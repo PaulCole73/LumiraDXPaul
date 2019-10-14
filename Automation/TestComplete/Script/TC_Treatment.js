@@ -1532,15 +1532,15 @@ function tc_treatment_maintenance_override_privilege()
     var save_inr_button_path = save_inr_button();
     save_inr_button_path.Click();
     
+    Log_Off(); 
+    
     //Validate all the results sets are true
     Log.Message(result_set);
     var results = results_checker_are_true(result_set); 
     Log.Message(results);
     
     //Pass in the result
-    results_checker(results,test_title);
-    
-    Log_Off();          
+    results_checker(results,test_title);         
   }
   catch(e)
   {
