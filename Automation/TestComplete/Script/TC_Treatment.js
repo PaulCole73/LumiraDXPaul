@@ -983,32 +983,13 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 		//get the message from the new INR page banner
 		var error_banner_path = treatment_banner_error_message();
     
-    var counter = 0;
-    do
-    {
-      var isValid = true;  
+    var error_message_text = error_banner_path.contentText;
     
-      var error_message_text;
-      if (error_banner_path.TextNode(counter).Exists == true)
-      {
-        error_message_text = error_banner_path.TextNode(counter).innerText;
-        
-        if (error_message_text == expected_error)
-        {
-          isValid = false;
-        }
-        else
-        {
-          counter++;
-        }
-      }
-      else
-      {
-        isValid = false;
-      }
+    if(aqString.Contains(error_message_text, expected_error) != -1)
+    {
+      error_message_text = expected_error;
     }
-    while (isValid == true);
-  
+    
 		var suggest_dose_button = treatment_buttons_pre_schedule().SubmitButton("CalculateWarfarinDose").enabled;
 		
 		//check the values match
@@ -1257,7 +1238,7 @@ function tc_treatment_maintenance_save_override_treatment()
 		add_patient('Regression', 'DoseReview_OverrideSave', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
-																"2.8", "2.9", "0", "11", "2.4");
+		                                                          "2.8", "2.9", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
 		
 		//setup values to be altered/checked
