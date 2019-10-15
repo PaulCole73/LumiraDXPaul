@@ -436,7 +436,29 @@ function process_Please_confirm(INRstarV5)
                             wbt_Confirm.Click();
      } 
   }   
-}  
+}
+//-------------------------------------------------------------------------------
+function return_message_please_confirm()
+{
+		WaitSeconds(2,"");
+  
+		var INRstarV5 = INRstar_base();
+		var w_hdg = "Please Confirm";
+  
+		// Find the Panel
+		var wbx = INRstarV5.NativeWebObject.Find("innerText", w_hdg);
+		if (wbx.Exists == false || wbx.VisibleOnScreen == false)
+		{  
+			Log.Message("'" + w_hdg + "' box not displayed");
+		}
+		else
+		{
+			output_message = INRstarV5.Panel(3).Panel("modalDialogBox").innerText;
+			// Just click the correct button...
+			INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).Click();
+      return output_message;    
+		} 
+} 
 //-------------------------------------------------------------------------------
 // Process Confirm change Target INR window
 function process_confirm_change_INR(INRstarV5)
@@ -982,6 +1004,13 @@ function close_comments_window(INRstarV5)
 //----------------------------------------------------------------------------------------------
 function process_cancel_sub(INRstarV5, w_hdg)
 {
+  // Find the Panel
+  if(INRstarV5=='')
+  {
+  var INRstarV5 = INRstar_base();
+  }
+  
+  WaitSeconds(2);
   // Find the Panel
   var w_popup = INRstarV5.NativeWebObject.Find("innerText", w_hdg);
   if (w_popup.Exists == false)
