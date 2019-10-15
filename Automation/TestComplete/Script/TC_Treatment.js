@@ -1384,7 +1384,6 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     
     var treatment_values = new Array();
     var summary_values = new Array();
-    var isArraysEqual = new Array();
     var result_set = new Array();
     var smry_dosing_schedule = new Array();
     var dosing_schedule = return_pending_suggested_treatment_schedule(0);
