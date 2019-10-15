@@ -31,7 +31,7 @@ tc_treatment_maintenance_save_override_treatment();
 tc_treatment_drag_and_drop_schedule_days();
 tc_treatment_maintenance_INR_more_then_max_review_period();
 tc_treatment_manual_mutliple_historic_summary_check();
-tc_treatment_maintenance_override_privilege(); //unfinished
+tc_treatment_maintenance_override_privilege();
 tc_treatment_maintenance_cancel_pending();
 tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
 }

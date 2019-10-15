@@ -917,8 +917,7 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 		login('cl3@regression','INRstar_5','Shared');
 		add_patient('Regression', 'Use_Alternate', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
-																"2.3", "1.2", "0", "11", "2.5");
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "11", "2.5");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
 		
 		var result_set = new Array();
@@ -930,7 +929,8 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 		
 		//get path to "More Schedules" button, click button
 		var schedule_table = pending_treatment_buttons();
-		var more_schedule_button_path = schedule_table.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent").Fieldset(0).Panel(0).Button("MoreSchedulesLink");
+    var dosing_schedule_content = schedule_table.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent");
+		var more_schedule_button_path = dosing_schedule_content.Fieldset(0).Panel(0).Button("MoreSchedulesLink");
 		var more_schedule_button = more_schedule_button_path.Click();
 		
 		//get path to "Use" button, click button
@@ -943,6 +943,7 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 		
 		//Check the arrays are the same size, but values don't match
 		var result_set_1 = validateArrays(dosing_schedule, dosing_schedule_1, test_title);
+    Log.Message(dosing_schedule + dosing_schedule_1);
 		result_set.push(result_set_1);
 		
 		//Validate the results sets are false
@@ -973,28 +974,21 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 		login('cl3@regression','INRstar_5','Shared');
 		add_patient('Regression', 'Unstable_Patient', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-4))), 
-																                              "2.3", "1.2", "0", "6", "2.5");
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-4))), "2.3", "1.2", "0", "4", "2.5");
 		
 		Goto_Patient_New_INR();
 		
-		var expected_error = "To use this algorithm safely patients should be established on warfarin and have an interval between the last 2 INR tests of at least 7 days. This patient does not currently meet this criterion."
+		var expected_error = "To use this algorithm safely patients should be established on warfarin and have an interval between " +
+                                  "the last 2 INR tests of at least 7 days. This patient does not currently meet this criterion."
 		
 		//get the message from the new INR page banner
 		var error_banner_path = treatment_banner_error_message();
-    
-    var error_message_text = error_banner_path.contentText;
-    
-    if(aqString.Contains(error_message_text, expected_error) != -1)
-    {
-      error_message_text = expected_error;
-    }
-    
+    var error_message_text = error_banner_path.TextNode(0).innerText;   
+
 		var suggest_dose_button = treatment_buttons_pre_schedule().SubmitButton("CalculateWarfarinDose").enabled;
 		
 		//check the values match
 		var result_set = test_data(error_message_text, expected_error, test_title);
-    
 		var results = results_checker_are_false(suggest_dose_button);
 		results_checker(results, test_title);
 	    
@@ -1019,8 +1013,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		login('cl3@regression','INRstar_5','Shared');
 		add_patient('Regression', 'Overriding_Twenty', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
-																"2.8", "1.3", "0", "11", "2.4");
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "1.3", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
 		
 		var new_dose = "3.0";
@@ -1065,28 +1058,24 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
     var overwritten_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
-    var result_set_2 = test_data(strikethrough, "line-through", test_title);
-    var strikethrough_1 = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
-    result_set_2 = test_data(strikethrough, "line-through", test_title);
+    var result_set_1 = test_data(strikethrough, "line-through", test_title);
+    strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
+    result_set_1 = test_data(strikethrough, "line-through", test_title);
     
     //add new values to array
 		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
     
     //compare original values, with changed values
-		var result_set_1 = validateArrays(expected_values, override_values, test_title);
+		result_set_1 = validateArrays(expected_values, override_values, test_title);
+    result_set_1 =results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
-		
-		//Validate the results sets are true
-		var results = results_checker_are_false(result_set);
-		Log.Message(results);
+    
+    result_set_1 = test_data(expected_message, output_message, test_title);
+    result_set.push(result_set_1);
 		
 		//Pass in the result
+    results = results_checker_are_true(result_set)
 		results_checker(results, test_title);
-    
-    result_set.length = 0;
-    
-		//check popup message matches the expected message
-		result_set = test_data(expected_message, output_message, test_title);
 		
 		Log_Off();
 	}
@@ -1109,8 +1098,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 		login('cl3@regression','INRstar_5','Shared');
 		add_patient('Regression', 'Dose_And_Review_Override', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
-																"2.8", "2.9", "0", "11", "2.4");
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.9", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
 		
 		//setup values to be altered/checked
@@ -1141,15 +1129,15 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
     var overwritten_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
-    var result_set_2 = test_data(strikethrough, "line-through", test_title);
-    var strikethrough_1 = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
-    result_set_2 = test_data(strikethrough, "line-through", test_title);
+    var result_set_1 = test_data(strikethrough, "line-through", test_title);
+    strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
+    result_set_1 = test_data(strikethrough, "line-through", test_title);
     
 		//add all to array of changed values
 		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
 		
 		//check arrays are same length but values do not match
-		var result_set_1 = validateArrays(expected_values, override_values, test_title);
+		result_set_1 = validateArrays(expected_values, override_values, test_title);
 		result_set.push(result_set_1);
 		
 		//Validate the results sets are false
@@ -1181,8 +1169,7 @@ function tc_treatment_drag_and_drop_schedule_days()
     login('cl3@regression','INRstar_5','Shared');
 	  add_patient('Regression', 'Drag_Drop', 'M', 'Shared');
 	  add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
-		                                                        "2.8", "2.9", "0", "11", "2.4");
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.9", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
     
     //set up arrays for result outputs
@@ -1237,8 +1224,7 @@ function tc_treatment_maintenance_save_override_treatment()
 		login('cl3@regression','INRstar_5','Shared');
 		add_patient('Regression', 'DoseReview_OverrideSave', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), 
-		                                                          "2.8", "2.9", "0", "11", "2.4");
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.9", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
 		
 		//setup values to be altered/checked
@@ -1269,15 +1255,15 @@ function tc_treatment_maintenance_save_override_treatment()
     var overwritten_next_test_date = treatment_table().Cell(1, 7).innerText;
     
     var strikethrough = treatment_table().Cell(1, 3).Panel(0).style.textdecoration;
-    var result_set_2 = test_data(strikethrough, "line-through", test_title);
-    var strikethrough_1 = treatment_table().Cell(1, 6).Panel(0).style.textdecoration;
-    result_set_2 = test_data(strikethrough, "line-through", test_title);
+    var result_set_1 = test_data(strikethrough, "line-through", test_title);
+    strikethrough = treatment_table().Cell(1, 6).Panel(0).style.textdecoration;
+    result_set_1 = test_data(strikethrough, "line-through", test_title);
     
 		//add all to array of changed values
 		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
 		
 		//check arrays are same length but values do not match
-		var result_set_1 = validateArrays(expected_values, override_values, test_title);
+		result_set_1 = validateArrays(expected_values, override_values, test_title);
 		result_set.push(result_set_1);
 		
 		//Validate the results sets are false
@@ -1310,28 +1296,29 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     var dosing_tab = dosing_settings_tab().Click();
     var inr_stage_six = location_dosing_settings().Link(12).Click();
     
-    var max_review_period_str = location_dosing_settings().Panel(12).Panel("Review_Period_").Panel(0).Label("In_Range_INR_Stage_6_Review_Period_Value").innerText;
-    var max_review_period_int = aqConvert.StrToInt(max_review_period_str);
+    var max_review_period_str = location_dosing_settings().Panel(12).Panel("Review_Period_");
+    var max_review_period_str_txt = max_review_period_str.Panel(0).Label("In_Range_INR_Stage_6_Review_Period_Value").innerText;
+    var max_review_period_int = aqConvert.StrToInt(max_review_period_str_txt);
     var max_review_increment = max_review_period_int+1;
     
     add_patient('Regression', 'MoreThan_MaxReview', 'M', 'Shared');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-(max_review_increment)))), 
                                                                                   "2.8", "2.9", "0", "11", "2.4");
+                                                                                  
     Goto_Patient_New_INR();
     
-    var expected_message = "The patient's last treatment was more than " + max_review_period_str + " days ago, please ensure that the dose and review period are still current and accurate";
+    var expected_message = "The patient's last treatment was more than " + max_review_period_str_txt + 
+                            " days ago, please ensure that the dose and review period are still current and accurate";
     //get the message from the new INR page banner
 		var warning_banner_path = treatment_banner_warning_message();
-    
-    var warning_message_text = warning_banner_path.contentText;
-    if (aqString.Contains(warning_message_text, expected_message) != -1)
-    {
-      warning_message_text = expected_message;
-    }
+
+    var warning_message_text = warning_banner_path.TextNode(1).innerText;
 
     //check the values match
-		var result_set = test_data(warning_message_text, expected_message, test_title);
+    var result_set = new Array();
+		var result_set_1 = test_data(warning_message_text, expected_message, test_title);
+    result_set.push(result_set_1);
     
     var cancel_button = treatment_buttons_pre_schedule().Button("CancelNewINR");
     cancel_button.Click();
@@ -1340,18 +1327,20 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-(max_review_period_int)))), 
                                                                                   "2.8", "2.9", "0", "11", "2.4");
-    
+                                                                                  
     Goto_Patient_New_INR();
     
-    var isTextAbsent = false;
+    result_set_1 = false;
     warning_message_text = warning_banner_path.contentText;
     if (aqString.Contains(warning_message_text, expected_message) == -1)
     {
-      isTextAbsent = true;
+      result_set_1 = true;
+      result_set.push(result_set_1);
     }
     
+    var results = results_checker_are_true(result_set);
     //Pass in the result
-		results_checker(isTextAbsent, test_title);
+		results_checker(results, test_title);
     
     Log_Off();
   }
@@ -1373,18 +1362,16 @@ function tc_treatment_manual_mutliple_historic_summary_check()
 		login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'Mutliple_Historic', 'M', 'Shared');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-20))), 
-                                                              "2.0", "2.0", "0", "11", "2.5");
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-12))), 
-                                                              "2.2", "2.3", "0", "11", "2.5");
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
-                                                              "2.4", "2.6", "0", "11", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-20))), "2.0", "2.0", "0", "11", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-12))), "2.2", "2.3", "0", "11", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
     add_pending_manual_treatment('2.6','PoCT','2.9','7 Days');
     
     var treatment_values = new Array();
     var summary_values = new Array();
     var result_set = new Array();
+    var result_set_1;
     var smry_dosing_schedule = new Array();
     var dosing_schedule = return_pending_suggested_treatment_schedule(0);
     
@@ -1406,9 +1393,10 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     var smry_inr = patient_current_summary().Panel(1).Label("CurrentTreatment_LatestINR_DetachedLabel").innerText;
     var smry_dose = patient_current_summary().Panel(2).Label("CurrentTreatment_LatestDose_DetachedLabel").innerText;
     var smry_review_date = patient_current_summary().Panel(3).Label("CurrentTreatment_LatestReview_DetachedLabel").innerText;
-    var smry_next_test = aqConvert.DateTimeToStr(patient_current_summary().Panel(4).Label("CurrentTreatment_NextINRTestDate_DetachedLabel").innerText);
+    var smry_next_test = patient_current_summary().Panel(4).Label("CurrentTreatment_NextINRTestDate_DetachedLabel");
+    var smry_nt_txt = aqConvert.DateTimeToStr(smry_next_test.innerText);
     
-    summary_values.push(smry_test_date, smry_inr, smry_dose, smry_review_date, smry_next_test);
+    summary_values.push(smry_test_date, smry_inr, smry_dose, smry_review_date, smry_nt_txt);
     
     var smry_schedule_day;
     var smry_schedule_dose;
@@ -1422,32 +1410,23 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     var results_chart = patient_summary_result_chart().Child(0).Name;
     if (aqString.Contains(results_chart, "treatmentPlanId",) != -1)
     {
-      results_checker(true, test_title);
+      result_set_1 = true;
+      result_set.push(result_set_1);
     }
     
     //Check the arrays are the same size + values match
-		var result_set_1 = checkArrays(treatment_values, summary_values, test_title);
+		result_set_1 = checkArrays(treatment_values, summary_values, test_title);
 		result_set.push(result_set_1);
+    
+    //Check the arrays are the same size + values match
+    result_set_1 = checkArrays(dosing_schedule, smry_dosing_schedule, test_title);
+    result_set.push(result_set_1);
 		
 		//Validate the results sets are true
 		var results = results_checker_are_true(result_set);
 		Log.Message(results);
 		
 		//Pass in the result
-		results_checker(results, test_title);
-    
-    result_set.length = 0;
-    result_set_1.length = 0;
-    
-    //Check the arrays are the same size + values match
-    result_set_1 = checkArrays(dosing_schedule, smry_dosing_schedule, test_title);
-    result_set.push(result_set_1);
-    
-    //Validate the results sets are true
-    results = results_checker_are_true(result_set);
-    Log.Message(results);
-    
-    //Pass in the result
 		results_checker(results, test_title);
     
     Log_Off();
@@ -1492,8 +1471,9 @@ function tc_treatment_maintenance_override_privilege()
     var override_inr_button_path = override_button();
     var button = check_button(override_inr_button_path);
   
-    var result_set_2 = button_checker(button,'disabled','Testing read-only level user cannot click save inr on pending treatment for manual dosing');
-    result_set.push(result_set_2);
+    result_set_1 = button_checker(button,'disabled','Testing read-only level user cannot click ' + 
+                                                    'save inr on pending treatment for manual dosing');
+    result_set.push(result_set_1);
   
     Log_Off();
     
@@ -1503,8 +1483,8 @@ function tc_treatment_maintenance_override_privilege()
     var override_inr_button_path = override_button();
     var button = check_button(override_inr_button_path);
   
-    var result_set_3 = button_checker(button,'disabled','Testing cl1 level user cannot click save inr on pending treatment for manual dosing');
-    result_set.push(result_set_3);
+    result_set_1 = button_checker(button,'disabled','Testing cl1 level user cannot click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_1);
   
     Log_Off();
 
@@ -1514,8 +1494,8 @@ function tc_treatment_maintenance_override_privilege()
     var override_inr_button_path = override_button();
     var button = check_button(override_inr_button_path);
   
-    var result_set_4 = button_checker(button,'disabled','Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
-    result_set.push(result_set_4);
+    result_set_1 = button_checker(button,'disabled','Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_1);
   
     Log_Off();
     
@@ -1525,8 +1505,8 @@ function tc_treatment_maintenance_override_privilege()
     var override_inr_button_path = override_button();
     var button = check_button(override_inr_button_path);
   
-    var result_set_4 = button_checker(button,'enabled','Testing clead level user can click save inr on pending treatment for manual dosing');
-    result_set.push(result_set_4);
+    result_set_1 = button_checker(button,'enabled','Testing clead level user can click save inr on pending treatment for manual dosing');
+    result_set.push(result_set_1);
     
     var save_inr_button_path = save_inr_button();
     save_inr_button_path.Click();
@@ -1534,7 +1514,6 @@ function tc_treatment_maintenance_override_privilege()
     Log_Off(); 
     
     //Validate all the results sets are true
-    Log.Message(result_set);
     var results = results_checker_are_true(result_set); 
     Log.Message(results);
     
@@ -1559,8 +1538,7 @@ function tc_treatment_maintenance_cancel_pending()
 		login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'Cancel_Pending', 'M', 'Shared');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
-                                                              "2.4", "2.6", "0", "11", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
     var result_set = new Array();                                                                                                                    
     var treatment_values = new Array();
@@ -1573,7 +1551,7 @@ function tc_treatment_maintenance_cancel_pending()
                                                               
     add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
     
-    var cancel_btn = cancel_button()
+    var cancel_btn = cancel_pending_treat_button()
     cancel_btn.Click();
     
     process_cancel_sub("", "Confirmation Required");
@@ -1609,7 +1587,7 @@ function tc_treatment_maintenance_cancel_pending()
 }
 //--------------------------------------------------------------------------------
 //
-//C1368479
+//C1248491
 function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
 {
   try
@@ -1623,12 +1601,11 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
     var messagename = (patSurname + ", " + patFirstname);
     
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
-                                                              "2.4", "2.6", "0", "11", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
                                                               
     result_set = new Array();
-    var expected_message = "This patient transfer cannot be accepted because they have a pending treatment. Please contact their current testing location."
-
+    var expected_message = "This patient transfer cannot be accepted because they have a " + 
+                            "pending treatment. Please contact their current testing location."
     
     var practice_name = "Deans Regression Testing Location 2";
     change_test_practice(practice_name);
@@ -1643,14 +1620,15 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
     
     if (is_in_table == true)
     {
-      var pending_transfer_error = home_page_messages().Panel("TransferredPatients").Panel("AddTransferPatientValidation").Panel("Errors").innerText;
+      var pending_transfer_error = home_page_messages().Panel("TransferredPatients").Panel("AddTransferPatientValidation").Panel("Errors");
+      var pending_transfer_errot_txt = pending_transfer_error.innerText;
     }
     else
     {
       Log.Message("Patient not found.")
     }
     
-    result_set = test_data(expected_message, pending_transfer_error, test_title);
+    result_set = test_data(expected_message, pending_transfer_errot_txt, test_title);
   
     Log_Off();          
   }
