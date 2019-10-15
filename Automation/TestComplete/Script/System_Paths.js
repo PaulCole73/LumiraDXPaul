@@ -4,78 +4,78 @@ function INRstar_base()
   var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
   INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
     
- return INRstar;
+  return INRstar;
 } 
 //------------------------------------------------------------------------
 // Main page at login  area
 function set_system_login_page_coruscant()
 {
-   var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
-   var INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/Security/Authentication/*");
+  var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
+  var INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/Security/Authentication/*");
 
-   return INRstar;
+  return INRstar;
 } 
 //------------------------------------------------------------------------
 // Main page at login  area
 function set_system_login_page_inrstar_base()
 {
-   var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
-   var INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
+  var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
+  var INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
 
-   return INRstar;
+  return INRstar;
 } 
 //------------------------------------------------------------------------
 // Main page once logged in
 function set_system_coruscant()
 {
-   var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
-   INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/");
+  var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
+  INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/");
     
-   return INRstar;
+  return INRstar;
 } 
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Tests Due  /////////////////////////
 //------------------------------------------------------------------------
 function tests_due_table()
 {
- var INRstarV5 = INRstar_base();
- var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
- var panelTDR = panelMCP.Panel("PatientContent").Panel("TestsDueResults");
- var tests_due_table_path = panelTDR.Panel(0).Panel("TestDueResultsContainer").Table("TestDueTable");
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelTDR = panelMCP.Panel("PatientContent").Panel("TestsDueResults");
+  var tests_due_table_path = panelTDR.Panel(0).Panel("TestDueResultsContainer").Table("TestDueTable");
  
- return tests_due_table_path;
+  return tests_due_table_path;
 }
 //------------------------------------------------------------------------
 //////////////////////////  Home Page  ///////////////////////////////////
 //------------------------------------------------------------------------
 function home_page_messages()
 {
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
    
-   return list;
+  return list;
 } 
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Demographics  /////////////////////////
 //------------------------------------------------------------------------
- function patient_banner_blue_bar()
- {
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   var blue_header_bar = panelMCP.Panel("PatientRecord").Panel("PatientBannerContainer").Panel("patientZone1");
+function patient_banner_blue_bar()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var blue_header_bar = panelMCP.Panel("PatientRecord").Panel("PatientBannerContainer").Panel("patientZone1");
    
-   return blue_header_bar; 
- } 
+  return blue_header_bar; 
+} 
  //------------------------------------------------------------------------
- function patient_banner_yellow_bar()
- {
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   var yellow_header_bar = panelMCP.Panel("PatientRecord").Panel("PatientBannerContainer").Panel("PatientMessages");
+function patient_banner_yellow_bar()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var yellow_header_bar = panelMCP.Panel("PatientRecord").Panel("PatientBannerContainer").Panel("PatientMessages");
    
-   return yellow_header_bar; 
- } 
+  return yellow_header_bar; 
+} 
 //------------------------------------------------------------------------
 function patient_search_screen()
 {
@@ -96,33 +96,32 @@ function patient_search_screen_results_table()
 } 
 //------------------------------------------------------------------------
 function add_patient_demographics_system_path()
-
 {
-    var INRstarV5 = INRstar_base();
-    var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientContent").Fieldset("PatientDetailsAddFieldset");
-    var patient_demographics = panelPDAF.Form("PatientAddDetailsForm").Fieldset(0).Panel("PatientDetailsWrapper");
+  var INRstarV5 = INRstar_base();
+  var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientContent").Fieldset("PatientDetailsAddFieldset");
+  var patient_demographics = panelPDAF.Form("PatientAddDetailsForm").Fieldset(0).Panel("PatientDetailsWrapper");
 
-    return patient_demographics;
+  return patient_demographics;
 }
 //------------------------------------------------------------------------
 function patient_demographics_tab_demographics()
 {
-    var INRstarV5 = INRstar_base();
-    var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
-    var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent").Panel("PatientDetailsWrapper")
-    var patient_demographics = panelPDW.Panel("PatientDetails");
+  var INRstarV5 = INRstar_base();
+  var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
+  var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent").Panel("PatientDetailsWrapper")
+  var patient_demographics = panelPDW.Panel("PatientDetails");
 
-    return patient_demographics;
+  return patient_demographics;
 } 
 //------------------------------------------------------------------------
 function patient_demographics_tab_contact_address()
 {
-    var INRstarV5 = INRstar_base();
-    var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
-    var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent").Panel("PatientDetailsWrapper")
-    var patient_contact = panelPDW.Panel("PatientContactDetails").Panel("ContactDetails");
+  var INRstarV5 = INRstar_base();
+  var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
+  var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent").Panel("PatientDetailsWrapper")
+  var patient_contact = panelPDW.Panel("PatientContactDetails").Panel("ContactDetails");
 
-    return patient_contact;
+  return patient_contact;
 } 
 //------------------------------------------------------------------------
 function add_patient_demographics_buttons_system_path()
@@ -136,34 +135,34 @@ function add_patient_demographics_buttons_system_path()
 //------------------------------------------------------------------------
 function patient_edit_demographics_form_pat_details()
 {
-    var INRstarV5 = INRstar_base();
-    var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-    var panelPDW = panelPDW.Form("PatientEditDetailsForm").Panel("PatientDetailsWrapper");
-    var edit_pat_details = panelPDW.Panel("EditPatientDetails")
+  var INRstarV5 = INRstar_base();
+  var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPDW = panelPDW.Form("PatientEditDetailsForm").Panel("PatientDetailsWrapper");
+  var edit_pat_details = panelPDW.Panel("EditPatientDetails")
 
-    return edit_pat_details;
+  return edit_pat_details;
 } 
 //------------------------------------------------------------------------
 function patient_edit_demographics_form_contact_details()
 {
-    var INRstarV5 = INRstar_base();
-    var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-    var panelPDW = panelPDW.Form("PatientEditDetailsForm").Panel("PatientDetailsWrapper");
-    var edit_contact_details = panelPDW.Panel("EditPatientContactDetails");
+  var INRstarV5 = INRstar_base();
+  var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPDW = panelPDW.Form("PatientEditDetailsForm").Panel("PatientDetailsWrapper");
+  var edit_contact_details = panelPDW.Panel("EditPatientContactDetails");
 
-    return edit_contact_details;
+  return edit_contact_details;
 } 
 //------------------------------------------------------------------------
 function patient_edit_demographics_form_buttons()
 {
-    var INRstarV5 = INRstar_base();
-    var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-    var edit_demographics_buttons = panelPDW.Form("PatientEditDetailsForm").Panel(0);
+  var INRstarV5 = INRstar_base();
+  var panelPDAF = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPDW = panelPDAF.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var edit_demographics_buttons = panelPDW.Form("PatientEditDetailsForm").Panel(0);
 
-    return edit_demographics_buttons;
+  return edit_demographics_buttons;
 } 
 //------------------------------------------------------------------------
 function patient_clinical_tab()
@@ -376,48 +375,48 @@ function edit_treatment_plan_button_path()
   var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
   var panelPCD = panelPTC.Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails");
   var treatment_plan_button = panelPCD.Form("PatientEditTreatmentPlanForm").Panel(0);
-
+  
   return treatment_plan_button;
-}
+} 
 //------------------------------------------------------------------------
 //////////////////////////  Treatment  ///////////////////////////////////
 //------------------------------------------------------------------------
 function fast_induction_risk_factors_path()
-{
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   var panelPTC = panelMCP.panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-   var panelPTW = panelPTC.Panel("TreatmentPlanWrapper").panel("PatientTreatmentWrapper")
-   var panelPPTIW = panelPTW.Panel("PatientPendingTreatment").Panel("PatientPreTreatmentINRWrapper");
-   var risk_factors = panelPPTIW.Form("PreTreatmentINRForm").Panel(0).Table(0);
+{ 
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPTW = panelPTC.Panel("TreatmentPlanWrapper").panel("PatientTreatmentWrapper")
+  var panelPPTIW = panelPTW.Panel("PatientPendingTreatment").Panel("PatientPreTreatmentINRWrapper");
+  var risk_factors = panelPPTIW.Form("PreTreatmentINRForm").Panel(0).Table(0);
    
-   return risk_factors;
+  return risk_factors;
 } 
 //------------------------------------------------------------------------
 function pre_treatment_induction_path()
 {
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   var panelPTC = panelMCP.panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-   var panelPTW = panelPTC.Panel("TreatmentPlanWrapper").panel("PatientTreatmentWrapper")
-   var panelPPTIW = panelPTW.Panel("PatientPendingTreatment").Panel("PatientPreTreatmentINRWrapper");
-   var panelPPTIC = panelPPTIW.Form("PreTreatmentINRForm").Panel("PatientPreTreatmentINRQuestionsWrapper").Panel("PatientPreTreatmentINRConfirm");
-   var pre_treatment_info = panelPPTIC.Panel("PatientPreTreatmentINRTestDetails").Panel("testDetails").Panel("poctDetails");
-
-   return pre_treatment_info;
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPTW = panelPTC.Panel("TreatmentPlanWrapper").panel("PatientTreatmentWrapper")
+  var panelPPTIW = panelPTW.Panel("PatientPendingTreatment").Panel("PatientPreTreatmentINRWrapper");
+  var panelPPTIC = panelPPTIW.Form("PreTreatmentINRForm").Panel("PatientPreTreatmentINRQuestionsWrapper").Panel("PatientPreTreatmentINRConfirm");
+  var pre_treatment_info = panelPPTIC.Panel("PatientPreTreatmentINRTestDetails").Panel("testDetails").Panel("poctDetails");
+  
+  return pre_treatment_info;
 } 
 //------------------------------------------------------------------------
 function pre_treatment_info_induction_path()
 {
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   var panelPTC = panelMCP.panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-   var panelPTW = panelPTC.Panel("TreatmentPlanWrapper").panel("PatientTreatmentWrapper")
-   var panelPPTIW = panelPTW.Panel("PatientPendingTreatment").Panel("PatientPreTreatmentINRWrapper");
-   var panelPPTIC = panelPPTIW.Form("PreTreatmentINRForm").Panel("PatientPreTreatmentINRQuestionsWrapper").Panel("PatientPreTreatmentINRConfirm");
-   var pre_treatment_info = panelPPTIC.Panel("PatientPreTreatmentINRTestDetails");
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPTW = panelPTC.Panel("TreatmentPlanWrapper").panel("PatientTreatmentWrapper")
+  var panelPPTIW = panelPTW.Panel("PatientPendingTreatment").Panel("PatientPreTreatmentINRWrapper");
+  var panelPPTIC = panelPPTIW.Form("PreTreatmentINRForm").Panel("PatientPreTreatmentINRQuestionsWrapper").Panel("PatientPreTreatmentINRConfirm");
+  var pre_treatment_info = panelPPTIC.Panel("PatientPreTreatmentINRTestDetails");
 
-   return pre_treatment_info;
+  return pre_treatment_info;
 } 
 //------------------------------------------------------------------------
 function pre_treatment_non_induct_path()
@@ -561,7 +560,15 @@ function override_button()
   var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
   
   return override_button_path;
-}  
+} 
+//------------------------------------------------------------------------
+function cancel_pending_treat_button()
+{
+  var pending_treatment_buttons_path = pending_treatment_buttons();
+  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("CancelPendingTreatment");
+  
+  return cancel_button_path;
+} 
 //------------------------------------------------------------------------
 function sugg_war_dose_button()
 {
@@ -740,12 +747,74 @@ function treatment_banner_error_message()
    return error_text_path;
 } 
 //------------------------------------------------------------------------
+function treatment_banner_warning_message()
+{
+   var INRstarV5 = INRstar_base();
+   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+   var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent")
+   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment")
+   var warning_text_path = panelPPT.Panel("PatientTreatmentNewINRWrapper").Panel("NewINRMessages");
+
+   return warning_text_path;
+}
+//------------------------------------------------------------------------
 function dosing_engine_warning_popup()
 {
    var INRstarV5 = INRstar_base();
    var warning_popup = INRstarV5.Panel(4).Panel("modalDialogBoxSecondary").Panel("DosingEngineWarnings");
 
    return warning_popup;
+}
+//------------------------------------------------------------------------
+//////////////////////////  Summary  ///////////////////////////////////
+//------------------------------------------------------------------------
+function summary_tab_path()
+{
+   var INRstarV5 = INRstar_base();
+   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+   var panelPST = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientSummaryTab");
+   
+   return panelPST;
+}
+function patient_current_summary()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMTC = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord").Panel("PatientMainTabContent");
+  var panelCTW = panelMTC.Panel("PatientSummaryWrapper").Panel("PatientSummaryCurrentTreatmentWrapper");
+  var panelSCT = panelCTW.Panel("PatientSummaryCurrentTreatment");
+  
+  return panelSCT;
+}
+//------------------------------------------------------------------------
+function patient_summary_schedule_table()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMTC = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord").Panel("PatientMainTabContent");
+  var panelCTW = panelMTC.Panel("PatientSummaryWrapper").Panel("PatientSummaryCurrentTreatmentWrapper");
+  var panelSCT = panelCTW.Panel("PatientSummaryCurrentSchedule");
+  var table_path = panelSCT.Panel("MoreScheduleGrid").Table("DoseScheduleTable");
+  
+  return table_path;
+}
+//------------------------------------------------------------------------
+function patient_summary_result_chart()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMTC = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord").Panel("PatientMainTabContent");
+  var panelPSR = panelMTC.Panel("PatientSummaryWrapper").Panel("PatientSummaryINRResults");
+  
+  return panelPSR;
+}
+//------------------------------------------------------------------------
+//////////////////////////  Patient Management  ///////////////////////////////////
+//------------------------------------------------------------------------
+function patient_management_tab_path()
+{
+   var INRstarV5 = INRstar_base();
+   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+   var panelPST = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientManagementTab");
+   
+   return panelPST;
 }
 //------------------------------------------------------------------------
 ////////////////////////  Self Care tab  /////////////////////////////////
@@ -1358,6 +1427,39 @@ function warning_pop_up()
   return pop_up_buttons;
 }
 //------------------------------------------------------------------------
+
+//------------------------------------------------------------------------
+////////////////////////////  Options Tab  ////////////////////////
+//------------------------------------------------------------------------
+function home_page_options_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var panelM = INRstarV5.Panel("MainPage");
+  var panelOL = panelM.Panel("header").Link("OptionsLink")
+  
+  return panelOL;
+}
+//------------------------------------------------------------------------
+function dosing_settings_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var panelCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelLink = panelCP.Panel(0).Link("SectionSettingsTab")
+  
+  return panelLink;
+}
+//------------------------------------------------------------------------
+function location_dosing_settings() 
+{
+  var INRstarV5 = INRstar_base();
+  var panelCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelLS = panelCP.Panel("AdminContent").Panel("LocationSettings").Panel(0);
+  
+  return panelLS;
+}
+
+//------------------------------------------------------------------------
+
 
 //------------------------------------------------------------------------
 

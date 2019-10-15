@@ -311,7 +311,6 @@ function data_checker(data_1,data_2)
 //Generic method for checking a buttons status when you pass in the path for the button
 function check_button(path)
 {
-
     if (path.className == "Button disabled" || path.className == "disabled")
       {
        Log.Message("Button is disabled")
@@ -349,13 +348,15 @@ function check_button_enabled(path)
 function button_checker(actual_state,expected_state,test_mess)
 {
   if(actual_state==expected_state)
-   {
-   Log.Message("Button state matches expected state " + test_mess)
-   return true;
-   }
-     else
-       Log.Message("Button states dont match for " + test_mess + " Actual state was " + actual_state)
-       return false;
+  {
+    Log.Message("Button state matches expected state " + test_mess)
+    return true;
+  }
+  else
+  {
+    Log.Message("Button states dont match for " + test_mess + " Actual state was " + actual_state)
+    return false;
+  }
 }
 //-----------------------------------------------------------------------------------
 function checkArrays( arrA, arrB, mess )
@@ -370,8 +371,8 @@ function checkArrays( arrA, arrB, mess )
     {
      if(arrA[i]!=arrB[i])
      { 
-      Log.Warning("This is actual //" + "  " + arrA[i] + " //This is the expected //" + arrB[i])
-      return false;
+        Log.Warning("This is actual //" + "  " + arrA[i] + " //This is the expected //" + "  " + arrB[i])
+        return false;
      }   
     }
   return true;
@@ -452,11 +453,11 @@ function check_banner_confirmation_adverse_event()
     Log.Message('Confirmation box displayed')
     return true;
   } 
-   else
-       {
-        Log.Warning("Adverse Event - Add a new adverse event - TEST_FAIL" + " The confirmation box was not displayed");
-        return false;
-       } 
+  else
+  {
+    Log.Warning("Adverse Event - Add a new adverse event - TEST_FAIL" + " The confirmation box was not displayed");
+    return false;
+  } 
 }
 //-----------------------------------------------------------------------------------
 //Checking top audit on the patient tab

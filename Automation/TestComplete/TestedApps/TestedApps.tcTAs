@@ -10,7 +10,7 @@
 					<param name="RunAs" parameters="" workFolder="" userName="" password="" domain="" />
 					<param name="Profile" parameters="" workFolder="" useProject="False" projectFileName="" overrideProfiler="False" profilerName="" profileRunMode="Silent" AQtimeVersion="0" forceRunMode="False" />
 					<param name="Debug" parameters="" workFolder="" />
-					<param name="Simple" fileName="INRstarWindows.exe" filePath="C:\Users\tara.morgan\AppData\Local\Apps\2.0\YQN70VCA.EJO\X27TXCZQ.Z6K\inrs..tion_d9cbcb92fb10a8c2_0003.000f_9dd550ce7d0107a3\" parameters="" workFolder="" />
+					<param name="Simple" fileName="INRstarWindows.exe" filePath="C:\Users\tara.morgan\AppData\Local\Apps\2.0\PAG8Z32P.BJY\A9KEE5VQ.NNZ\inrs..tion_d9cbcb92fb10a8c2_0003.000f_9dd550ce7d0107a3\" parameters="" workFolder="" />
 				</runModeParams>
 			</config>
 			<testData />

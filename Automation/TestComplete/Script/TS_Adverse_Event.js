@@ -10,5 +10,4 @@ function ts_staging_regression_adverse_event()
   tc_add_a_new_adverse_event();
   tc_delete_adverse_event();
 } 
-//testd
 //--------------------------------------------------------------------------------
