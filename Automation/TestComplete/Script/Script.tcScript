@@ -832,6 +832,9 @@
 		<child name="TC_Users" key="{45094750-9994-4D70-BEC9-B0B3B2900063}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TC_Users.js" />
 		</child>
+		<child name="TSA_Users" key="{DE4F7FDD-AFD8-40EE-A489-3080D6D9FB84}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_Users.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1122,6 +1125,7 @@
 				<ref key="{C791CB0B-D21D-4242-A782-9E6D446853BF}" />
 				<ref key="{CC20DCBB-5949-4AB2-AA87-AE711DB1F516}" />
 				<ref key="{C7EC64E2-5DEB-4562-949E-710E2C959B16}" />
+				<ref key="{DE4F7FDD-AFD8-40EE-A489-3080D6D9FB84}" />
 			</references>
 		</folder>
 		<folder caption="41. Test Step Verification" description="A logical folder that is used to organize project items and elements." moniker="">
