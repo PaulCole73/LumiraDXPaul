@@ -24,8 +24,8 @@ function tc_treatment_plan_add_first_manual_treatment_plan()
   result_set.push(result_set_1);
   
   //Check the audit for adding the tp
-  var result_set_2 = display_top_patient_audit('Add Treatment Plan Details');
-  result_set.push(result_set_2);
+  result_set_1 = display_top_patient_audit('Add Treatment Plan Details');
+  result_set.push(result_set_1);
   
   //Validate all the results sets are true
   var results = results_checker_are_true(result_set); 

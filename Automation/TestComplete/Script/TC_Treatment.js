@@ -365,8 +365,8 @@ try
    
   var sugg_war_dose_button_path = sugg_war_dose_button();
   var button = check_button_enabled(sugg_war_dose_button_path);
-  var result_set_2 = button_checker(button,'disabled','Treatment - No treatment can be added to a patient on no protocol');
-  result_set.push(result_set_2);
+  result_set_1 = button_checker(button,'disabled','Treatment - No treatment can be added to a patient on no protocol');
+  result_set.push(result_set_1);
   
   //Validate all the results sets are true
   var results = results_checker_are_true(result_set); 
@@ -986,10 +986,13 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
     var error_message_text = error_banner_path.TextNode(0).innerText;   
 
 		var suggest_dose_button = treatment_buttons_pre_schedule().SubmitButton("CalculateWarfarinDose").enabled;
+    var result_set = new Array();
+    result_set.push(suggest_dose_button);
 		
 		//check the values match
-		var result_set = test_data(error_message_text, expected_error, test_title);
-		var results = results_checker_are_false(suggest_dose_button);
+		var result_set_1 = compare_values(error_message_text, expected_error, test_title);
+    result_set.push(result_set_1);
+		var results = results_checker_are_false(result_set);
 		results_checker(results, test_title);
 	    
 		Log_Off();
@@ -1058,19 +1061,21 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
     var overwritten_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
-    var result_set_1 = test_data(strikethrough, "line-through", test_title);
+    var result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    result_set.push(result_set_1);
     strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
-    result_set_1 = test_data(strikethrough, "line-through", test_title);
+    result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    result_set.push(result_set_1);
     
     //add new values to array
 		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
     
     //compare original values, with changed values
 		result_set_1 = validateArrays(expected_values, override_values, test_title);
-    result_set_1 =results_checker_are_false(result_set_1);
+    result_set_1 = results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
     
-    result_set_1 = test_data(expected_message, output_message, test_title);
+    result_set_1 = compare_values(expected_message, output_message, test_title);
     result_set.push(result_set_1);
 		
 		//Pass in the result
@@ -1129,9 +1134,11 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
     var overwritten_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
-    var result_set_1 = test_data(strikethrough, "line-through", test_title);
+    var result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    result_set.push(result_set_1);
     strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
-    result_set_1 = test_data(strikethrough, "line-through", test_title);
+    result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    result_set.push(result_set_1);
     
 		//add all to array of changed values
 		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
@@ -1255,9 +1262,11 @@ function tc_treatment_maintenance_save_override_treatment()
     var overwritten_next_test_date = treatment_table().Cell(1, 7).innerText;
     
     var strikethrough = treatment_table().Cell(1, 3).Panel(0).style.textdecoration;
-    var result_set_1 = test_data(strikethrough, "line-through", test_title);
+    var result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    result_set.push(result_set_1);
     strikethrough = treatment_table().Cell(1, 6).Panel(0).style.textdecoration;
-    result_set_1 = test_data(strikethrough, "line-through", test_title);
+    result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    result_set.push(result_set_1);
     
 		//add all to array of changed values
 		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
@@ -1317,7 +1326,7 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
 
     //check the values match
     var result_set = new Array();
-		var result_set_1 = test_data(warning_message_text, expected_message, test_title);
+		var result_set_1 = compare_values(warning_message_text, expected_message, test_title);
     result_set.push(result_set_1);
     
     var cancel_button = treatment_buttons_pre_schedule().Button("CancelNewINR");
@@ -1366,6 +1375,8 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-12))), "2.2", "2.3", "0", "11", "2.5");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
+    var patient_nhs = get_patient_nhs();
+    
     add_pending_manual_treatment('2.6','PoCT','2.9','7 Days');
     
     var treatment_values = new Array();
@@ -1386,17 +1397,7 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     
     treatment_values.push(test_date, inr, dose + " mg/day", review_days + " Days", next_test_date);
     
-    var summary_button = summary_tab_path();
-    summary_button.Click();
-    
-    var smry_test_date = patient_current_summary().Panel(0).Label("CurrentTreatment_LatestINRTestDate_DetachedLabel").innerText;
-    var smry_inr = patient_current_summary().Panel(1).Label("CurrentTreatment_LatestINR_DetachedLabel").innerText;
-    var smry_dose = patient_current_summary().Panel(2).Label("CurrentTreatment_LatestDose_DetachedLabel").innerText;
-    var smry_review_date = patient_current_summary().Panel(3).Label("CurrentTreatment_LatestReview_DetachedLabel").innerText;
-    var smry_next_test = patient_current_summary().Panel(4).Label("CurrentTreatment_NextINRTestDate_DetachedLabel");
-    var smry_nt_txt = aqConvert.DateTimeToStr(smry_next_test.innerText);
-    
-    summary_values.push(smry_test_date, smry_inr, smry_dose, smry_review_date, smry_nt_txt);
+    summary_values = get_patient_summary_labels(patient_nhs);
     
     var smry_schedule_day;
     var smry_schedule_dose;
@@ -1407,12 +1408,8 @@ function tc_treatment_manual_mutliple_historic_summary_check()
       smry_dosing_schedule.push(smry_schedule_dose);
     }
     
-    var results_chart = patient_summary_result_chart().Child(0).Name;
-    if (aqString.Contains(results_chart, "treatmentPlanId",) != -1)
-    {
-      result_set_1 = true;
-      result_set.push(result_set_1);
-    }
+    result_set_1 = check_summary_tab_image(patient_nhs);
+    result_set.push(result_set_1);
     
     //Check the arrays are the same size + values match
 		result_set_1 = checkArrays(treatment_values, summary_values, test_title);
@@ -1542,12 +1539,11 @@ function tc_treatment_maintenance_cancel_pending()
     
     var result_set = new Array();                                                                                                                    
     var treatment_values = new Array();
-    var treatment_values_1 = new Array();                                                           
-    for(var i = 0; i <= 7; i++)
-    {
-      var treatment = treatment_table().Cell(0, i).innerText;
-      treatment_values.push(treatment);
-    }
+    var treatment_values_1 = new Array();
+    
+    treatment_values = get_treatment_row(0);
+    var child_count = treatment_table().ChildCount;
+    Log.Message(child_count);
                                                               
     add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
     
@@ -1560,11 +1556,12 @@ function tc_treatment_maintenance_cancel_pending()
     
     process_confirm_sub("", "Confirmation Required");
     
-    for(var i = 0; i <= 7; i++)
-    {
-      var treatment = treatment_table().Cell(0, i).innerText;
-      treatment_values_1.push(treatment);
-    }
+    treatment_values_1 = get_treatment_row(0);
+    var child_count_1 = treatment_table().ChildCount;
+    Log.Message(child_count);
+    
+    result_set_1 = compare_values(child_count, child_count_1, "Compare Child Counts");
+    result_set.push(result_set_1);
     
     //Check the arrays are the same size + values match
     var result_set_1 = checkArrays(treatment_values, treatment_values_1, test_title);
@@ -1603,7 +1600,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
                                                               
-    result_set = new Array();
+    var result_set = new Array();
     var expected_message = "This patient transfer cannot be accepted because they have a " + 
                             "pending treatment. Please contact their current testing location."
     
@@ -1628,7 +1625,15 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
       Log.Message("Patient not found.")
     }
     
-    result_set = test_data(expected_message, pending_transfer_errot_txt, test_title);
+    var result_set_1 = compare_values(expected_message, pending_transfer_errot_txt, test_title);
+    result_set.push(result_set_1);
+    
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    
+    //Pass in the result
+		results_checker(results, test_title);
   
     Log_Off();          
   }

@@ -185,11 +185,66 @@ function banner_checker_includes(exp_err_mess)
         }
 } 
 //--------------------------------------------------------------------------------
-
+//this return an array of key labels from the patient summary tab
+function get_patient_summary_labels(patient_nhs) 
+{
+  try
+  {
+    var func_title = "Get Key Summary Labels";
+    var smry_labels = new Array();
+    
+    patient_search(patient_nhs);
+   
+    var summary_button = summary_tab_path();
+    summary_button.Click();
+    
+    var smry_test_date = patient_current_summary().Panel(0).Label("CurrentTreatment_LatestINRTestDate_DetachedLabel").innerText;
+    var smry_inr = patient_current_summary().Panel(1).Label("CurrentTreatment_LatestINR_DetachedLabel").innerText;
+    var smry_dose = patient_current_summary().Panel(2).Label("CurrentTreatment_LatestDose_DetachedLabel").innerText;
+    var smry_review_date = patient_current_summary().Panel(3).Label("CurrentTreatment_LatestReview_DetachedLabel").innerText;
+    var smry_next_test = aqConvert.DateTimeToStr(patient_current_summary().Panel(4).Label("CurrentTreatment_NextINRTestDate_DetachedLabel").innerText);
+    
+    smry_labels.push(smry_test_date, smry_inr, smry_dose, smry_review_date, smry_next_test);
+    
+    return smry_labels;
+  }
+  catch(e)
+  {
+    Log.Warning('Function "' + func_title + '" Failed Exception Occured = ' + e);
+  }
+}
 //--------------------------------------------------------------------------------
-
+//checks for populated summary tab image, returns false if image doesn't exist or is blank
+function check_summary_tab_image(patient_nhs) 
+{
+  try
+  {
+    var func_title = "Check Image";
+    var is_image_there = false;
+    
+    patient_search(patient_nhs);
+   
+    var summary_button = summary_tab_path();
+    summary_button.Click();
+    
+    var results_chart = patient_summary_result_chart();
+    
+    if(results_chart.Child(0).Exists)
+    {
+      results_chart = results_chart.Child(0).Name;
+      if (aqString.Contains(results_chart, "treatmentPlanId") != -1)
+      {
+        is_image_there = true;
+      }
+    }
+    return is_image_there;
+  }
+  catch(e)
+  {
+    Log.Warning('Function "' + func_title + '" Failed Exception Occured = ' + e);
+  }
+}
 //--------------------------------------------------------------------------------
-
 //--------------------------------------------------------------------------------
 
 

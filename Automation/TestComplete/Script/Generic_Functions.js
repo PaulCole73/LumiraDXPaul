@@ -235,22 +235,23 @@ function test_data_individual_step(data_1,data_2,test_mess)
    return false;
 }
 //-----------------------------------------------------------------------------------
-function test_data(data_1,data_2,test_mess)
+function compare_values(data_1,data_2,test_mess)
 {
- if (data_1 == null)
-      {
-        Log.Warning("Data 1 not found");
-        return false;
-      } 
- 
-  if (data_1 == data_2)
+  if(data_1 == null)
   {
-  Log.Checkpoint(test_mess);
-  return true;
+    Log.Warning("Data 1 not found");
+    return false;
+  } 
+  if(data_1 == data_2)
+  {
+    //Log.Checkpoint(test_mess);
+    return true;
   }
-   else 
-   Log.Warning("Data doesn't match test failed - " + test_mess + " //" + data_1 + "//" + data_2 + "//");
-   return false;
+  else
+  { 
+    Log.Warning("Data doesn't match test failed - " + test_mess + " //" + data_1 + "//" + data_2 + "//");
+    return false;
+  }
 }
 //-----------------------------------------------------------------------------------
 function test_data_contains(data_1,data_2,test_mess)
@@ -621,14 +622,11 @@ function get_treatment_row(row_num)
   
   var treatment_row_array = new Array()
   
-  var inr_date = treatment_table_path.Cell(row_num, 0).contentText;
-  var inr = treatment_table_path.Cell(row_num, 1).contentText;
-  var dose = treatment_table_path.Cell(row_num, 2).contentText;
-  var omits = treatment_table_path.Cell(row_num, 4).contentText;
-  var review = treatment_table_path.Cell(row_num, 5).contentText;
-  var ntd = treatment_table_path.Cell(row_num, 7).contentText;
-  
-  treatment_row_array.push(inr_date,inr,dose,omits,review,ntd); 
+  for(var i = 0; i < 11; i++)
+  {
+    var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
+    treatment_row_array.push(treatment_value);
+  }
   
   return treatment_row_array;  
 } 
