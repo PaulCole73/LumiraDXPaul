@@ -517,7 +517,7 @@ function historic_treatment_path()
   return historic_treatment_form;
 }
 //------------------------------------------------------------------------
-function treatment_comment()
+function treatment_comment() //this is a duplicate, use treatment_table() as it is clearer, they have the same path
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");

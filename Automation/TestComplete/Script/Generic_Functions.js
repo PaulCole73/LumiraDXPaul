@@ -629,7 +629,42 @@ function get_treatment_row(row_num)
   }
   
   return treatment_row_array;  
-} 
+}
+//-----------------------------------------------------------------------------------
+function get_treatment_row_key_values(row_num) //returns test date, inr, dose, review days, next test date
+{
+  Goto_Patient_Treatment();
+  var treatment_table_path = treatment_table();
+  var treatment_row_array = new Array()
+  
+  for(var i = 0; i < 11; i++)
+  {
+    if(i == 0 || i == 1 || i == 2 || i == 5 || i == 7)
+    {
+      var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
+      treatment_row_array.push(treatment_value);
+    }
+  }
+  
+  return treatment_row_array;  
+}
+//-----------------------------------------------------------------------------------
+function get_pending_treatment_row_key_values(row_num) //returns test date, inr, dose, review days, next test date
+{
+  var treatment_table_path = pending_treatment_table();
+  var treatment_row_array = new Array()
+  
+  for(var i = 0; i < 11; i++)
+  {
+    if(i == 0 || i == 1 || i == 2 || i == 5 || i == 7)
+    {
+      var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
+      treatment_row_array.push(treatment_value);
+    }
+  }
+  
+  return treatment_row_array;  
+}  
 //-----------------------------------------------------------------------------------
 function edit_demographics_error_checker(exp_err_mess)
 {

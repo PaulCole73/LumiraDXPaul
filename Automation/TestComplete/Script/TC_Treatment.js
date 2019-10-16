@@ -978,6 +978,7 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 		
 		Goto_Patient_New_INR();
 		
+    var result_set = new Array();
 		var expected_error = "To use this algorithm safely patients should be established on warfarin and have an interval between " +
                                   "the last 2 INR tests of at least 7 days. This patient does not currently meet this criterion."
 		
@@ -986,13 +987,13 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
     var error_message_text = error_banner_path.TextNode(0).innerText;   
 
 		var suggest_dose_button = treatment_buttons_pre_schedule().SubmitButton("CalculateWarfarinDose").enabled;
-    var result_set = new Array();
-    result_set.push(suggest_dose_button);
+    var result_set_1 = results_checker_are_false(suggest_dose_button);
+    result_set.push(result_set_1);
 		
 		//check the values match
-		var result_set_1 = compare_values(error_message_text, expected_error, test_title);
+		result_set_1 = compare_values(error_message_text, expected_error, test_title);
     result_set.push(result_set_1);
-		var results = results_checker_are_false(result_set);
+		var results = results_checker_are_true(result_set);
 		results_checker(results, test_title);
 	    
 		Log_Off();
@@ -1024,10 +1025,9 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		var result_set = new Array();
 		var expected_values = new Array();
 		var override_values = new Array();
-    
-    var pending_dose = pending_treatment_table().Cell(0, 2).innerText;
-    var pending_review = pending_treatment_table().Cell(0, 5).innerText;
-    var pending_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
+   
+    //add current values to array to check
+		expected_values = get_pending_treatment_row_key_values(0);
 		
     //setup for test part 2
 		var expected_message = "Dose change from 1.3mg/day to 3.0mg/day is greater than 20%. Please confirm that the new dose is appropriate."
@@ -1036,9 +1036,6 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		//click the override button
 		var override_button_path = override_button();
 		override_button_path.Click();
-		
-    //add current values to array to check
-		expected_values.push(pending_dose, pending_review, pending_next_test_date);
 		
 		//update dose drop down value, save new dose drop down value
 		var override_dose_path = treatment_override_field_container().Cell(1, 1).Select("Treatment_Dose").ClickItem(new_dose);
@@ -1056,9 +1053,8 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
     
-    var overwritten_dose = pending_treatment_table().Cell(0, 2).innerText;
-    var overwritten_review = pending_treatment_table().Cell(0, 5).innerText;
-    var overwritten_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
+    //add new values to array
+		override_values = get_pending_treatment_row_key_values(0);
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
     var result_set_1 = compare_values(strikethrough, "line-through", test_title);
@@ -1066,9 +1062,6 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
     strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
     result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
-    
-    //add new values to array
-		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
     
     //compare original values, with changed values
 		result_set_1 = validateArrays(expected_values, override_values, test_title);
@@ -1113,12 +1106,8 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 		var expected_values = new Array();
 		var override_values = new Array();
     
-    var pending_dose = pending_treatment_table().Cell(0, 2).innerText;
-    var pending_review = pending_treatment_table().Cell(0, 5).innerText;
-    var pending_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
-		
 		//add all expected values to array
-		expected_values.push(pending_dose, pending_review, pending_next_test_date);
+		expected_values = get_pending_treatment_row_key_values(0);
 		
 		//update the dose, get the new value
 		override_dose(new_dose);
@@ -1129,9 +1118,8 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
     
-    var overwritten_dose = pending_treatment_table().Cell(0, 2).innerText;
-    var overwritten_review = pending_treatment_table().Cell(0, 5).innerText;
-    var overwritten_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
+    //add all to array of changed values
+    override_values = get_pending_treatment_row_key_values(0);
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
     var result_set_1 = compare_values(strikethrough, "line-through", test_title);
@@ -1139,16 +1127,14 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
     strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
     result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
-    
-		//add all to array of changed values
-		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
 		
 		//check arrays are same length but values do not match
 		result_set_1 = validateArrays(expected_values, override_values, test_title);
+    result_set_1 = results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
 		
 		//Validate the results sets are false
-		var results = results_checker_are_false(result_set);
+		results = results_checker_are_true(result_set);
 		Log.Message(results);
 		
 		//Pass in the result
@@ -1240,13 +1226,9 @@ function tc_treatment_maintenance_save_override_treatment()
 		var result_set = new Array();
 		var expected_values = new Array();
 		var override_values = new Array();
-    
-    var pending_dose = pending_treatment_table().Cell(0, 2).innerText;
-    var pending_review = pending_treatment_table().Cell(0, 5).innerText;
-    var pending_next_test_date = pending_treatment_table().Cell(0, 7).innerText;
 		
 		//add all expected values to array
-		expected_values.push(pending_dose, pending_review, pending_next_test_date);
+		expected_values = get_pending_treatment_row_key_values(0);
 		
 		//update the dose, get the new value
 		override_dose(new_dose);
@@ -1257,10 +1239,6 @@ function tc_treatment_maintenance_save_override_treatment()
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
     
-    var overwritten_dose = treatment_table().Cell(1, 2).innerText;
-    var overwritten_review = treatment_table().Cell(1, 5).innerText;
-    var overwritten_next_test_date = treatment_table().Cell(1, 7).innerText;
-    
     var strikethrough = treatment_table().Cell(1, 3).Panel(0).style.textdecoration;
     var result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
@@ -1268,15 +1246,16 @@ function tc_treatment_maintenance_save_override_treatment()
     result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
     
-		//add all to array of changed values
-		override_values.push(overwritten_dose, overwritten_review, overwritten_next_test_date);
+    //add all to array of changed values
+		override_values = get_treatment_row_key_values(1);
 		
 		//check arrays are same length but values do not match
 		result_set_1 = validateArrays(expected_values, override_values, test_title);
+    result_set_1 = results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
 		
 		//Validate the results sets are false
-		var results = results_checker_are_false(result_set);
+		results = results_checker_are_true(result_set);
 		Log.Message(results);
 		
 		//Pass in the result
@@ -1341,6 +1320,7 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     
     result_set_1 = false;
     warning_message_text = warning_banner_path.contentText;
+    //check any warning banner paths, expected message should no longer be present
     if (aqString.Contains(warning_message_text, expected_message) == -1)
     {
       result_set_1 = true;
@@ -1389,13 +1369,10 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
     
-    var test_date = treatment_comment().Cell(3,0).innerText;
-    var inr = treatment_comment().Cell(3,1).innerText;
-    var dose = treatment_comment().Cell(3,2).innerText;
-    var review_days = treatment_comment().Cell(3,5).innerText;
-    var next_test_date = aqConvert.DateTimeToStr(treatment_comment().Cell(3,7).innerText);
-    
-    treatment_values.push(test_date, inr, dose + " mg/day", review_days + " Days", next_test_date);
+    treatment_values = get_treatment_row_key_values(3);
+    treatment_values[2] = treatment_values[2] + " mg/day";
+    treatment_values[3] = treatment_values[3] + " Days";
+    treatment_values[4] = aqConvert.DateTimeToStr(treatment_values[4]);
     
     summary_values = get_patient_summary_labels(patient_nhs);
     
@@ -1446,9 +1423,7 @@ function tc_treatment_maintenance_override_privilege()
 		login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'Override_Privilege', 'M', 'Shared');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-    
     var patient_nhs_number = get_patient_nhs();
-    
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
                                                               "2.4", "2.6", "0", "11", "2.5");
     add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
@@ -1456,7 +1431,6 @@ function tc_treatment_maintenance_override_privilege()
     var result_set = new Array();
     var override_inr_button_path = override_button();
     var button = check_button(override_inr_button_path);
-  
     var result_set_1 = button_checker(button,'enabled','Testing cl3 level user can click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
     
@@ -1465,9 +1439,8 @@ function tc_treatment_maintenance_override_privilege()
     login('readonly@regression', 'INRstar_5', 'Shared');
     patient_search(patient_nhs_number);
   
-    var override_inr_button_path = override_button();
-    var button = check_button(override_inr_button_path);
-  
+    override_inr_button_path = override_button();
+    button = check_button(override_inr_button_path);
     result_set_1 = button_checker(button,'disabled','Testing read-only level user cannot click ' + 
                                                     'save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
@@ -1477,9 +1450,8 @@ function tc_treatment_maintenance_override_privilege()
     login('cl1@regression', 'INRstar_5', 'Shared');
     patient_search(patient_nhs_number);
   
-    var override_inr_button_path = override_button();
-    var button = check_button(override_inr_button_path);
-  
+    override_inr_button_path = override_button();
+    button = check_button(override_inr_button_path);
     result_set_1 = button_checker(button,'disabled','Testing cl1 level user cannot click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
   
@@ -1487,10 +1459,9 @@ function tc_treatment_maintenance_override_privilege()
 
     login('cl2@regression', 'INRstar_5', 'Shared');
     patient_search(patient_nhs_number);
-  
-    var override_inr_button_path = override_button();
-    var button = check_button(override_inr_button_path);
-  
+    
+    override_inr_button_path = override_button();
+    button = check_button(override_inr_button_path);
     result_set_1 = button_checker(button,'disabled','Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
   
@@ -1499,9 +1470,8 @@ function tc_treatment_maintenance_override_privilege()
     login('clead@regression', 'INRstar_5', 'Shared');
     patient_search(patient_nhs_number);
   
-    var override_inr_button_path = override_button();
-    var button = check_button(override_inr_button_path);
-  
+    override_inr_button_path = override_button();
+    button = check_button(override_inr_button_path);
     result_set_1 = button_checker(button,'enabled','Testing clead level user can click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
     
