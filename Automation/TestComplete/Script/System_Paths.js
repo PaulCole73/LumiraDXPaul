@@ -41,7 +41,16 @@ function log_on_form()
   var form_path = base.Panel("LogonPage").Panel("LogonFormWrapper").Form("Logon");
     
   return form_path;
-} 
+}
+//------------------------------------------------------------------------
+// Password Expired Form 
+function password_expired_form()
+{
+  var base = INRstar_base().Panel("MainPage").Panel("main");
+  var form_path = base.Panel("passwordExpiredPage").Panel("passwordExpiredWrapper").Form("PasswordExpired");
+  
+  return form_path;
+}
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Tests Due  /////////////////////////
 //------------------------------------------------------------------------

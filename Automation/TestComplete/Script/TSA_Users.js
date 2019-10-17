@@ -82,23 +82,32 @@ function manage_user_permissions(username, p_level)
   
   switch(p_level)
   {
-    case 'clerical 1': p_level = 1;
+    case 'clerical 1': 
+    p_level = 1;
     break;
-    case 'clerical 2': p_level = 2;
+    case 'clerical 2': 
+    p_level = 2;
     break;
-    case 'clerical 3': p_level = 3;
+    case 'clerical 3': 
+    p_level = 3;
     break;
-    case 'clinical 1': p_level = 4;
+    case 'clinical 1': 
+    p_level = 4;
     break;
-    case 'clinical 2': p_level = 5;
+    case 'clinical 2': 
+    p_level = 5;
     break;
-    case 'clinical 3': p_level = 6;
+    case 'clinical 3': 
+    p_level = 6;
     break;
-    case 'administrator': p_level = 7;
+    case 'administrator':
+    p_level = 7;
     break;
-    case 'clinical lead': p_level = 8;
+    case 'clinical lead': 
+    p_level = 8;
     break;
-    case 'read only': p_level = 9;
+    case 'read only': 
+    p_level = 9;
     break;
   }
   

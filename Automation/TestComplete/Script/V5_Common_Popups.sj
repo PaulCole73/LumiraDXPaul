@@ -267,12 +267,12 @@ function process_popup(header, button)
 
   if (wb_Ok.Exists == false)
   {
-    Log.Warning("'" + header + "' OK button not found");
+    Log.Warning("'" + header + "' "+ button +" button not found");
   }
   else
   {
     var text = INRstarV5.Panel(3).Panel("modalDialogBox").innerText;
-    Log.Message("Clicking '" + header + "' OK button ") 
+    Log.Message("Clicking '" + header + "' "+ button +" button "); 
     WaitSeconds(3);
     Sys.HighlightObject(wb_Ok, 3);
     wb_Ok.Click();
