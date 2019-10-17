@@ -826,6 +826,9 @@
 		<child name="TS_Home_Page" key="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TS_Home_Page.js" />
 		</child>
+		<child name="TC_Home_Page" key="{7D09DE4A-79E5-4B9D-A6FE-F899AADCB585}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Home_Page.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -869,6 +872,7 @@
 				<ref key="{6D48BD34-7831-40AA-BD59-B823A6076529}" />
 				<ref key="{21867276-A980-478B-AD7F-AC23FBF04FDF}" />
 				<ref key="{FA1CC1B2-05A5-4BC6-833A-2DBC751D028E}" />
+				<ref key="{7D09DE4A-79E5-4B9D-A6FE-F899AADCB585}" />
 			</references>
 		</folder>
 		<folder caption="5. Utlilities" description="A logical folder that is used to organize project items and elements." moniker="">
