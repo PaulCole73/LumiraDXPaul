@@ -32,6 +32,15 @@ function set_system_coruscant()
   INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/");
     
   return INRstar;
+}
+//------------------------------------------------------------------------
+// Logon Form
+function log_on_form()
+{
+  var base = INRstar_base().Panel("MainPage").Panel("main");
+  var form_path = base.Panel("LogonPage").Panel("LogonFormWrapper").Form("Logon");
+    
+  return form_path;
 } 
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Tests Due  /////////////////////////
@@ -1040,6 +1049,14 @@ function location_management_roles_and_permissions()
   var panelPL = panelAW.Panel("UserPermissions").Form("RolesForm").Panel("Permissions").Panel("permissionList");
   
   return panelPL;
+}
+
+function location_management_user_details_tab()
+{
+  var base = location_management_main_container();
+  var tab = base.Panel("UserContent").Panel("UserAccountContent").Panel("UserDetailsTab");
+  
+  return tab;
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------

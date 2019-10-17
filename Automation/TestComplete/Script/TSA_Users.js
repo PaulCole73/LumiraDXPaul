@@ -2,6 +2,19 @@
 //USEUNIT Navigation
 //USEUNIT V5_Common_Batch
 //--------------------------------------------------------------------------------
+function manage_user(username)
+{
+  Goto_Options_Location_Management();
+  var users_tab = location_management_users_button();
+  users_tab.Click();
+    
+  var content_panel = location_management_main_container();
+  var select_user_dropdown = content_panel.Panel(0).Select("Users").ClickItem(username);
+
+  var button = content_panel.Panel(1).Button("ManageUser");
+  button.Click();  
+}
+//--------------------------------------------------------------------------------
 function add_new_user(u_firstname, u_surname, u_username, u_password)
 {
   Goto_Options_Location_Management();
@@ -61,16 +74,9 @@ function add_new_user(u_firstname, u_surname, u_username, u_password)
 //--------------------------------------------------------------------------------
 function manage_user_permissions(username, p_level)
 {
-  Goto_Options_Location_Management();
-  var users_tab = location_management_users_button();
-  users_tab.Click();
-    
-  var content_panel = location_management_main_container();
-  var select_user_dropdown = content_panel.Panel(0).Select("Users").ClickItem(username);
-
-  var button = content_panel.Panel(1).Button("ManageUser");
-  button.Click();
+  manage_user(username);
   
+  var content_panel = location_management_main_container();
   var permission_tab = content_panel.Panel("UserContent").Panel("UserAdmin").Link("UserAuthorisationLink");
   permission_tab.Click();
   
@@ -108,16 +114,9 @@ function manage_user_permissions(username, p_level)
 //--------------------------------------------------------------------------------
 function reset_user_permissions_to_readonly(username)
 {
-  Goto_Options_Location_Management();
-  var users_tab = location_management_users_button();
-  users_tab.Click();
-    
-  var content_panel = location_management_main_container();
-  var select_user_dropdown = content_panel.Panel(0).Select("Users").ClickItem(username);
-
-  var button = content_panel.Panel(1).Button("ManageUser");
-  button.Click();
+  manage_user(username);
   
+  var content_panel = location_management_main_container();
   var permission_tab = content_panel.Panel("UserContent").Panel("UserAdmin").Link("UserAuthorisationLink");
   permission_tab.Click();
   
@@ -140,4 +139,46 @@ function reset_user_permissions_to_readonly(username)
   
   var permission_update_button = permissions_panel.Panel(0).SubmitButton("Update");
   permission_update_button.Click();
+}
+//--------------------------------------------------------------------------------
+function reset_user_password(username)
+{
+  manage_user(username);
+  
+  var details_path = location_management_user_details_tab();
+  var full_name = details_path.Panel("Fullname").Label("Fullname_DetachedLabel").innerText;
+  
+  var reset_pass_button = details_path.Panel(0).Button("ResetPasswordLink");
+  reset_pass_button.Click();
+  
+  var password_text = process_popup("Reset Password", "OK");
+  
+  var user_data = new Array();
+  user_data.push(full_name, password_text);
+  
+  return user_data;
+}
+//--------------------------------------------------------------------------------
+function disable_user_account(username)
+{
+  manage_user(username);
+  
+  var details_path = location_management_user_details_tab();
+  var disable_user_button = details_path.Panel(0).Button("DisableUserAccountLink");
+  disable_user_button.Click();
+  
+  var popup_text = process_popup("Confirmation Required", "Confirm");
+  
+  return popup_text;
+}
+//--------------------------------------------------------------------------------
+function enable_user_account(username)
+{
+  var disabled_user = username + " (disabled)";
+
+  manage_user(disabled_user);
+  
+  var details_path = location_management_user_details_tab();
+  var enable_user_button = details_path.Panel(0).Button("EnableUserAccountLink");
+  enable_user_button.Click();
 }
