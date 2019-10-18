@@ -1027,7 +1027,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		var override_values = new Array();
    
     //add current values to array to check
-		expected_values = get_pending_treatment_row_key_values(0);
+		expected_values = get_treatment_row_key_values(0, "pending");
 		
     //setup for test part 2
 		var expected_message = "Dose change from 1.3mg/day to 3.0mg/day is greater than 20%. Please confirm that the new dose is appropriate."
@@ -1054,7 +1054,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
     save_inr_path.Click();
     
     //add new values to array
-		override_values = get_pending_treatment_row_key_values(0);
+		override_values = get_treatment_row_key_values(0, "pending");
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
     var result_set_1 = compare_values(strikethrough, "line-through", test_title);
@@ -1107,7 +1107,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 		var override_values = new Array();
     
 		//add all expected values to array
-		expected_values = get_pending_treatment_row_key_values(0);
+		expected_values = get_treatment_row_key_values(0, "pending");
 		
 		//update the dose, get the new value
 		override_dose(new_dose);
@@ -1119,7 +1119,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
     save_inr_path.Click();
     
     //add all to array of changed values
-    override_values = get_pending_treatment_row_key_values(0);
+    override_values = get_treatment_row_key_values(0, "pending");
     
     var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
     var result_set_1 = compare_values(strikethrough, "line-through", test_title);
@@ -1228,7 +1228,7 @@ function tc_treatment_maintenance_save_override_treatment()
 		var override_values = new Array();
 		
 		//add all expected values to array
-		expected_values = get_pending_treatment_row_key_values(0);
+		expected_values = get_treatment_row_key_values(0, "pending");
 		
 		//update the dose, get the new value
 		override_dose(new_dose);
@@ -1563,9 +1563,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
 		login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'PendingTreatment_PendingTransfer', 'M', 'Shared');
     
-    var patFirstname = get_patient_first_name();
-    var patSurname = get_patient_surname();
-    var messagename = (patSurname + ", " + patFirstname);
+    var messagename = get_patient_fullname();
     
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");

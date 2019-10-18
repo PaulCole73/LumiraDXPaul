@@ -618,7 +618,19 @@ function treatment_table()
   var treatment_table_path = panelVPHTW.Table("PatientTreatmentHistoryTable")
   
   return treatment_table_path;
-} 
+}
+//------------------------------------------------------------------------
+function treatment_table_from_previous_plan()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPTH = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientTreatmentHistory")
+  var panelVPHTW = panelPTH.Panel("TreatmentsFromPreviousPlanWrapper").Panel("PatientTreatmentINRHistory").Panel("ViewPatientHistoricalTreatmentsWrapper")
+  var treatment_table_path = panelVPHTW.Table("PatientTreatmentHistoryTable");
+  
+  return treatment_table_path;
+}
 //------------------------------------------------------------------------
 function pending_treatment_table()
 {

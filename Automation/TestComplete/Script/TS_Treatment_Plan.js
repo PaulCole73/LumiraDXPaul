@@ -18,5 +18,6 @@ function ts_staging_regression_treatment_plan()
  tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algorithm();
  tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_detail_with_existing_treatment();
  tc_edit_treatment_plan_change_diagnosis();
+ tc_treatment_plan_add_second_treatment_using_previous();
 } 
 //--------------------------------------------------------------------------------
