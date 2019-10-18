@@ -15,13 +15,14 @@ function Goto_Home()
     Log.Message("Navigating to Home");
     var panelM = INRstarV5.Panel("MainPage");
     panelM.Panel("header").Link("HomeLink").Click();
-    WaitSeconds(2,"Waiting for Home Page")
+    WaitSeconds(4,"Waiting for Home Page")
     }
 //-------------------------------------------------------------------------------
 // Navigate to Overdue Report
-function Goto_Report_Overdue(INRstarV5)
+function Goto_Report_Overdue()
 {
-    Goto_Home(INRstarV5);
+    Goto_Home();
+    var INRstarV5 = INRstar_base();
     
     WaitSeconds(3,"Waiting for Home Page");
     
