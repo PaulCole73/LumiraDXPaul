@@ -17,7 +17,17 @@ function tc_find_a_patient()
   var banner_path = patient_banner_blue_bar();
   var banner_nhs = banner_path.Panel(3).Panel(0).Label("NHSNumber_DetachedLabel").contentText;
   
-  test_data(pat_nhs,banner_nhs,test_title);
+  var result_set = new Array();
+  var result_set_1 = compare_values(pat_nhs,banner_nhs,test_title);
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title); 
+  
   Log_Off();
  }
   catch (e)

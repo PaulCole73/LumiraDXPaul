@@ -389,6 +389,36 @@ function suspend_patient()
   suspend_pat_form_path.Panel(3).SubmitButton("Confirm").Click(); 
 } 
 //--------------------------------------------------------------------------------
+function suspend_patient_days(num_of_days_from_today)
+{
+  Goto_Patient_Management();
+  var INRstarV5 = INRstar_base(); 
+  
+  var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
+  pat_managment_tab_status_buttons_path.Button("SuspendPatientButton").Click();
+  
+  var suspend_pat_form_path = suspend_pat_form();
+  
+  //Suspended Until
+  suspend_pat_form_path.Panel(0).Image("calendar_png").Click();     
+  datepicker = INRstarV5.Panel("ui_datepicker_div");
+  
+  var expiry_date = (aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (num_of_days_from_today)))); 
+    
+  var w_yr = aqString.SubString(expiry_date,6,4);
+  var w_mth = aqConvert.StrToInt(aqString.SubString(expiry_date,3,2));
+  var w_day = aqString.SubString(expiry_date,0,2);
+           
+  datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+  datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+  select_day(w_day, datepicker);
+      
+  //Suspension Reason
+  suspend_pat_form_path.Panel(1).Select("SuspensionReasonId").ClickItem(2);
+  
+  suspend_pat_form_path.Panel(3).SubmitButton("Confirm").Click(); 
+} 
+//--------------------------------------------------------------------------------
 function unsuspend_patient(nhs_num)
 {
   Goto_Patient_Management();
