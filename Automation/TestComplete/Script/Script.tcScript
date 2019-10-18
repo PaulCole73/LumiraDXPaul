@@ -838,6 +838,9 @@
 		<child name="INRstar_Navigation" key="{C4ECD5A2-3F26-4559-86EB-D693C4C411DD}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="INRstar_Navigation.js" />
 		</child>
+		<child name="TC_Home_Page" key="{3338B598-1CB6-40F3-8D14-F6D3C269FD7B}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Home_Page.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -883,6 +886,7 @@
 				<ref key="{21867276-A980-478B-AD7F-AC23FBF04FDF}" />
 				<ref key="{FA1CC1B2-05A5-4BC6-833A-2DBC751D028E}" />
 				<ref key="{45094750-9994-4D70-BEC9-B0B3B2900063}" />
+				<ref key="{3338B598-1CB6-40F3-8D14-F6D3C269FD7B}" />
 			</references>
 		</folder>
 		<folder caption="5. Utlilities" description="A logical folder that is used to organize project items and elements." moniker="">
