@@ -1,19 +1,13 @@
 ﻿//USEUNIT Tested_Apps
-
+//USEUNIT TC_Home_Page
 //--------------------------------------------------------------------------------
-//Picking what suites you want to run within the main suite
-//--------------------------------------------------------------------------------
-//function ts_notes()
+function ts_staging_regression_home_page()
 {
-// open_application("INRstarWindows");
-// ts_staging_regression_home_page();
-// Close Application needed here ?
+//tc_home_page_view_overdue_inr_test_message();
+//tc_home_page_view_exceeded_suspension_period_message();
+//tc_home_page_unsuspend_patient_through_message();
+//tc_home_page_view_patient_transfer_request();
+tc_home_page_accept_patient_transfer_request();
+tc_home_page_decline_datient_transfer_request();
 } 
-//--------------------------------------------------------------------------------
-//Test cases within each suite for Notes
-//--------------------------------------------------------------------------------
-//function ts_staging_regression_home_page()
-//{
-//  tc();
-//} 
 //--------------------------------------------------------------------------------

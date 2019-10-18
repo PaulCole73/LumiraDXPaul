@@ -3,9 +3,20 @@
 //--------------------------------------------------------------------------------
 function check_patient_on_refer_list(pat_name)
 {
-  var home_page_messages_path = home_page_messages(); 
-  home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
+  var home_page_messages_path = home_page_messages();
+  var INRstarV5 = INRstar_base();
+  WaitSeconds(2);
+  var link = INRstarV5.NativeWebObject.Find("idStr", "ReferredPatientHeaderLink");
   
+  //Check message exists
+  if(link.Exists != true)
+    {
+       Log.Message('Home page message not displayed');
+       return false;
+    }
+  
+  WaitSeconds(2);
+  home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
   var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
   
   for (i=0; i<table.rowcount; i++)
@@ -14,7 +25,7 @@ function check_patient_on_refer_list(pat_name)
         {     
           return true;
         }
-   } 
+    } 
     Log.Message("Patient not found " + pat_name)
     return false; 
 }
@@ -32,7 +43,7 @@ function check_patient_not_on_refer_list(pat_name)
      return true;
   } 
   
-  WaitSeconds(2)
+  WaitSeconds(2);
   home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
   var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
   
@@ -53,7 +64,19 @@ function check_patient_not_on_refer_list(pat_name)
 function check_patient_on_overdue_INR_list(pat_name)
 {
   Goto_Home();
-  var home_page_messages_path = home_page_messages(); 
+  var home_page_messages_path = home_page_messages();
+  var INRstarV5 = INRstar_base();
+  WaitSeconds(2);
+  var link = INRstarV5.NativeWebObject.Find("idStr", "OverduePatientHeaderLink");
+  
+  //In case the patient in question was the only one on the list
+  if(link.Exists != true)
+  {
+     Log.Message('Home page message not displayed');
+     return false;
+  }
+  
+  WaitSeconds(2); 
   home_page_messages_path.Link("OverduePatientHeaderLink").Click();
   
   var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
@@ -71,7 +94,21 @@ function check_patient_on_overdue_INR_list(pat_name)
 //--------------------------------------------------------------------------------
 function check_patient_on_exceed_suspension_period_list(pat_name)
 {
-  var home_page_messages_path = home_page_messages(); 
+  Goto_Home();
+  WaitSeconds(2);
+  var home_page_messages_path = home_page_messages();
+  var INRstarV5 = INRstar_base();
+  WaitSeconds(2);
+  var link = INRstarV5.NativeWebObject.Find("idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink");
+  
+  //In case the patient in question was the only one on the list
+  if(link.Exists != true)
+  {
+     Log.Message('Home page message not displayed');
+     return false;
+  }
+  
+  WaitSeconds(2); 
   home_page_messages_path.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink").Click();
   
   var table = home_page_messages_path.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable");
@@ -91,6 +128,17 @@ function unsuspend_patient_on_exceed_suspension_period_list(pat_name)
 {
   Goto_Home();
   var home_page_messages_path = home_page_messages();
+  var INRstarV5 = INRstar_base();
+  WaitSeconds(2);
+  var link = INRstarV5.NativeWebObject.Find("idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink");
+  
+  //In case the patient in question was the only one on the list
+  if(link.Exists != true)
+  {
+     Log.Message('Home page message not displayed');
+     return false;
+  }
+  
   home_page_messages_path.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink").Click();
   
   var table = home_page_messages_path.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable");
@@ -115,10 +163,20 @@ function check_patient_in_transfer_request_message(pat_name)
   Goto_Home();
   try
   {
-    WaitSeconds(2);
     var home_page_messages_path = home_page_messages();
+    var INRstarV5 = INRstar_base();
+    WaitSeconds(2);
+    var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
+  
+  //In case the patient in question was the only one on the list
+    if(link.Exists != true)
+      {
+       Log.Message('Home page message not displayed');
+       return false;
+      }
+  
+    WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    WaitSeconds(3);
     
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
 
@@ -144,10 +202,20 @@ function check_patient_not_in_transfer_request_message(pat_name)
   Goto_Home();
   try
   {
-    WaitSeconds(2);
     var home_page_messages_path = home_page_messages();
+    var INRstarV5 = INRstar_base();
+    WaitSeconds(2);
+    var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPateintHeaderLink");
+  
+    //In case the patient in question was the only one on the list
+    if(link.Exists != true)
+    {
+     Log.Message('Home page message not displayed');
+     return true;
+    }
+    
+    WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    WaitSeconds(3);
     
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
 
@@ -160,6 +228,7 @@ function check_patient_not_in_transfer_request_message(pat_name)
           }
       }
     Log.Message('Patient was on the transfer request list')
+    return false;
   }
   catch (e)
       {
@@ -173,10 +242,20 @@ function accept_patient_in_transfer_request_message(pat_name)
   Goto_Home();
   try
   {
-    WaitSeconds(2);
     var home_page_messages_path = home_page_messages();
+    var INRstarV5 = INRstar_base();
+    WaitSeconds(2);
+    var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
+  
+    //In case the patient in question was the only one on the list
+    if(link.Exists != true)
+    {
+     Log.Message('Home page message not displayed');
+     return false;
+    }
+    
+    WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    WaitSeconds(3);
     
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
     for (i=0; i<table.rowcount; i++)
@@ -190,6 +269,7 @@ function accept_patient_in_transfer_request_message(pat_name)
           }
       }
     Log.Message('Patient was not found on the list')
+    return false;
   }
   catch (e)
       {
@@ -203,10 +283,20 @@ function decline_patient_in_transfer_request_message(pat_name)
   Goto_Home();
   try
   {
-    WaitSeconds(2);
     var home_page_messages_path = home_page_messages();
+    var INRstarV5 = INRstar_base();
+    WaitSeconds(2);
+    var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
+  
+    //In case the patient in question was the only one on the list
+    if(link.Exists != true)
+    {
+     Log.Message('Home page message not displayed');
+     return false;
+    }
+    
+    WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    WaitSeconds(3);
     
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
     for (i=0; i<table.rowcount; i++)
@@ -219,6 +309,7 @@ function decline_patient_in_transfer_request_message(pat_name)
           }
       }
     Log.Message('Patient was not found on the list')
+    return false;
   }
   catch (e)
       {
@@ -232,10 +323,21 @@ function acknowledge_declined_patient_in_message(pat_name)
   Goto_Home();
   try
   {
-    WaitSeconds(2);
     var home_page_messages_path = home_page_messages();
+    WaitSeconds(2);
+    var INRstarV5 = INRstar_base();
+    WaitSeconds(2);
+    var link = INRstarV5.NativeWebObject.Find("idStr", "DeclinedPatientHeaderLink");
+  
+    //In case the patient in question was the only one on the list
+    if(link.Exists != true)
+    {
+     Log.Message('Home page message not displayed');
+     return false;
+    }
+  
+    WaitSeconds(2);
     home_page_messages_path.Link("DeclinedPatientHeaderLink").Click();
-    WaitSeconds(3);
     
     var table = home_page_messages_path.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
     for (i=0; i<table.rowcount; i++)
@@ -248,6 +350,7 @@ function acknowledge_declined_patient_in_message(pat_name)
           }
       }
     Log.Message('Patient was not found on the list')
+    return false;
   }
   catch (e)
       {
@@ -261,26 +364,37 @@ function check_patient_not_in_decline_patient_transfer_request_message(pat_name)
   Goto_Home();
   try
   {
-    WaitSeconds(2);
     var home_page_messages_path = home_page_messages();
+    var INRstarV5 = INRstar_base();
+    WaitSeconds(2);
+    var link = INRstarV5.NativeWebObject.Find("idStr", "DeclinedPatientHeaderLink");
+  
+    //In case the patient in question was the only one on the list
+    if(link.Exists != true)
+    {
+     Log.Message('Home page message not displayed');
+     return true;
+    }
+  
+    WaitSeconds(2);
     home_page_messages_path.Link("DeclinedPatientHeaderLink").Click();
-    WaitSeconds(3);
-    
     var table = home_page_messages_path.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
 
     for (i=0; i<table.rowcount; i++)
       {
          if(table.Cell(i, 0).contentText!=pat_name)
           { 
-            //Click checkbox against patient and then Unsuspend button    
+            //Click checkbox against patient and then Unsuspend button
+            Log.Message("Patient not in List")    
             return true;
           }
       }
     Log.Message('Patient was on the decline transfer list')
+    return false;
   }
   catch (e)
       {
-       Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+       Log.Warning('Test - Decline_Patient_Transfer_Request - FAILED Exception Occured = ' + e);
        Log_Off(); 
       }
 } 
