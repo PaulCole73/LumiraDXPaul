@@ -244,6 +244,7 @@ function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_sugges
 //--------------------------------------------------------------------------------
 function tc_Patient_on_Induction_Fast_Fennerty_Gedge_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
+  var test_title = 'SORB - Gets error when using SORB suggest button'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'fast_induct_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Fast','','Shared','');
@@ -252,8 +253,18 @@ function tc_Patient_on_Induction_Fast_Fennerty_Gedge_dosing_gets_an_error_when_t
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient on an induction protocol.");      
-  test_data(actual_err_mess,expected_err_mess,'Patient on Induction Fast Fennerty Gedge dosing gets an error when trying to use the SorB button')
-         
+  
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'Patient on Induction Fast Fennerty Gedge dosing gets an error when trying to use the SorB button');
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title); 
+       
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
   Log_Off();
@@ -261,6 +272,7 @@ function tc_Patient_on_Induction_Fast_Fennerty_Gedge_dosing_gets_an_error_when_t
 //-----------------------------
 function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
+  var test_title = 'SORB - Slow Oates Error'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'oates_induct_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Oates','','Shared','');
@@ -269,7 +281,17 @@ function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient on an induction protocol.");      
-  test_data(actual_err_mess,expected_err_mess,'Patient on Induction Slow Oates dosing gets an error when trying to use the SorB button')  
+  
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'Patient on Induction Slow Oates dosing gets an error when trying to use the SorB button');
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title);
   
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -278,6 +300,7 @@ function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_
 //-----------------------------
 function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
+  var test_title = 'SORB - Slow Tait Error'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'tait_induct_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Tait','','Shared','');
@@ -286,7 +309,17 @@ function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_u
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient on an induction protocol.");      
-  test_data(actual_err_mess,expected_err_mess, 'Patient on Induction Slow Tait dosing gets an error when trying to use the SorB button');    
+  
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess, 'Patient on Induction Slow Tait dosing gets an error when trying to use the SorB button');
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title);       
   
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -295,6 +328,7 @@ function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_u
 //-----------------------------
 function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
+  var test_title = 'SORB - Manual Error'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'manual_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
@@ -304,7 +338,17 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient who is on manual dosing.");      
-  test_data(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Manual dosing gets an error when trying to use the SorB button suggested tab')  
+  
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Manual dosing gets an error when trying to use the SorB button suggested tab')
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title);   
   
   var INRstar = INRstar_base();
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -313,6 +357,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
 //-----------------------------
 function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_coventry()
 {
+  var test_title = 'SORB - Manual Error, prev Coventry'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -325,8 +370,18 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
   click_sorb_button("current"); 
   
   var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient who is on manual dosing.");      
-  test_data(actual_err_mess,expected_err_mess,'Patient on Manual dosing gets an error when trying to use the SorB button in current schedule where prev treatment is coventry')  
+  var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient who is on manual dosing.");        
+  
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'Patient on Manual dosing gets an error when trying to use the SorB button in current schedule where prev treatment is coventry');
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title);   
   
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -335,6 +390,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
 //-----------------------------
 function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_hillingdon()
 {
+  var test_title = 'SORB - Manual Error, prev Hillingdon'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Hillingdon','','Shared','');
@@ -347,8 +403,18 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
   click_sorb_button("current"); 
   
   var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient who is on manual dosing.");      
-  test_data(actual_err_mess,expected_err_mess,'Patient on Manual dosing gets an error when trying to use the SorB button in current schedule where prev treatment is hillingdon')  
+  var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient who is on manual dosing.");       
+  
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'Patient on Manual dosing gets an error when trying to use the SorB button in current schedule where prev treatment is hillingdon'); 
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title); 
   
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -357,6 +423,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
 //-----------------------------
 function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual()
 {
+  var test_title = 'SORB - Coventry Error, prev Manual'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
@@ -369,7 +436,17 @@ function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary skip or boost schedule for a patient when the current schedule was based on a manual dosing treatment.");      
-  test_data(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Coventry dosing gets an error when trying to use the SorB button in current schedule where prev treatment is manual')  
+    
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Coventry dosing gets an error when trying to use the SorB button in current schedule where prev treatment is manual');
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title)  
   
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -378,6 +455,7 @@ function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB
 //-----------------------------
 function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual()
 {
+  var test_title = 'SORB - Hillingdon Error, prev Manual'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
@@ -390,7 +468,17 @@ function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_So
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary skip or boost schedule for a patient when the current schedule was based on a manual dosing treatment.");      
-  test_data(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Hillingdon dosing gets an error when trying to use the SorB button in current schedule where prev treatment is manual induction')  
+    
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Hillingdon dosing gets an error when trying to use the SorB button in current schedule where prev treatment is manual induction')
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title)
   
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -399,6 +487,7 @@ function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_So
 //-----------------------------
 function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exists_on_all_dosing_algorithms()
 {
+  var test_title = 'SORB - Disabled When No Previous Treatments'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB', 'no_current_treatment', 'M', 'Shared'); 
    
@@ -488,6 +577,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
 //-----------------------------
 function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_Maintenance_current_schedule_on_old_plan_is_Manual_on_current_tab()
 {
+  var test_title = 'SORB - Long Title'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
@@ -501,7 +591,17 @@ function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_M
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary skip or boost schedule for a patient when the current schedule was based on a manual dosing treatment.");      
-  test_data(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Hillingdon dosing gets an error when trying to use the SorB button in current schedule where prev treatment is manual induction')  
+    
+  var result_set = new Array();
+  var result_set_1 = compare_values(actual_err_mess,expected_err_mess,'SORB Button Validation - Patient on Hillingdon dosing gets an error when trying to use the SorB button in current schedule where prev treatment is manual induction');
+  result_set.push(result_set_1);
+  
+  //Validate all the results sets are true
+  var results = results_checker_are_true(result_set); 
+  Log.Message(results);
+    
+  //Pass in the result
+  results_checker(results,test_title);  
   
   var INRstar = INRstar_base()
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
@@ -527,6 +627,7 @@ function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_M
 //--------------------------------------------------------------------------------
 function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab()
 {
+  var test_title = 'SORB - Coventry Maintenance Testing Review Period Boundaries'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -537,8 +638,8 @@ function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab(
   var sorb_button = sorb_button_suggested_path();
   var button = check_button(sorb_button);
    
-   if(button=="enabled")
-   {
+  if(button=="enabled")
+  {
     Log.Message("button in correct state")  
      
     click_sorb_button("suggested");  
@@ -546,27 +647,29 @@ function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab(
     var sorb_page_heading_path = get_sorb_heading_path();
     var heading = sorb_page_heading_path.contentText;
     
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Message("SORB page exists on > 7 day review before override")
-      } 
-        else Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
-    
+    if(heading=="Skip or Boost\n(based on Suggested schedule)")
+    {
+      Log.Message("SORB page exists on > 7 day review before override")
+    } 
+    else 
+    {
+      Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
+    }
     //Cancel and go to next review period check
     cancel_pending_sorb_treatment();
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries")
-      } 
+  } 
+  if(button=="disabled")
+  {
+    Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries")
+  } 
 //---------------override for 7 day review period
   override_review(7);
   
   var sorb_button = sorb_button_suggested_path();
   var button = check_button(sorb_button);
    
-   if(button=="enabled")
-   {
+  if(button=="enabled")
+  {
     Log.Message("button in correct state")  
      
     click_sorb_button("suggested");  
@@ -575,19 +678,21 @@ function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab(
     var heading = sorb_page_heading_path.contentText;
     Log.Message(heading)
     
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Message("SORB page exists on 7 day review")
-      } 
-        else Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
-    
+    if(heading=="Skip or Boost\n(based on Suggested schedule)")
+    {
+      Log.Message("SORB page exists on 7 day review")
+    } 
+    else
+    { 
+      Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
+    }
     //Cancel and go to next review period check
     cancel_pending_sorb_treatment();
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries")
-      } 
+  } 
+  if(button=="disabled")
+  {
+    Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries")
+  } 
 //---------------override for invalid 6-1 day review periods
   var result_set = new Array();
 
@@ -595,43 +700,42 @@ function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab(
   {
     override_review(i);
     if(button=="enabled")
-   {
-    Log.Message("button in correct state")  
+    {
+      Log.Message("button in correct state")  
      
-    click_sorb_button("suggested"); 
+      click_sorb_button("suggested"); 
   
-    var actual_err_mess = get_sorb_button_error_message();
-    var expected_err_mess = ("The review period must be 7 days or greater to create Skip or Boost schedules.");      
-    var results = test_data_individual_step(actual_err_mess,expected_err_mess,"Coventry maintenance testing review period boundaries checking " + i + " day review"); 
+      var actual_err_mess = get_sorb_button_error_message();
+      var expected_err_mess = ("The review period must be 7 days or greater to create Skip or Boost schedules.");      
+      var result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Coventry maintenance testing review period boundaries checking " + i + " day review"); 
     
-    WaitSeconds(1);
-    result_set.push(results)
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries")
-      } 
-      
+      WaitSeconds(1);
+      result_set.push(result_set_1)
+    } 
+    if(button=="disabled")
+    {
+      Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries")
+    } 
     var INRstar = INRstar_base()
     INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
    
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries, button was not enabled")
-      }
+    if(button=="disabled")
+    {
+      Log.Warning("Test Failed - SORB Button Validation - Coventry maintenance testing review period boundaries, button was not enabled")
+    }
   } 
-  
   //Validate all the result sets are true
   var results = results_checker_are_true(result_set); 
   
   //Pass in the final result
   results_checker(results,'SORB Button Validation - Coventry maintenance testing review period boundaries');
     
-   Log_Off();
+  Log_Off();
 }
 //--------------------------------------------------------------------------------
 function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_tab()
 {
+  var test_title = 'SORB - Hillingdon Review Period Boundaries'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Hillingdon', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Hillingdon','','Shared','');
@@ -642,8 +746,8 @@ function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_ta
   var sorb_button = sorb_button_suggested_path();
   var button = check_button(sorb_button);
    
-   if(button=="enabled")
-   {
+  if(button=="enabled")
+  {
     Log.Message("button in correct state")  
      
     click_sorb_button("suggested");  
@@ -651,27 +755,29 @@ function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_ta
     var sorb_page_heading_path = get_sorb_heading_path();
     var heading = sorb_page_heading_path.contentText;
     
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Message("SORB page exists on > 7 day review before override")
-      } 
-        else Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
-    
+    if(heading=="Skip or Boost\n(based on Suggested schedule)")
+    {
+      Log.Message("SORB page exists on > 7 day review before override")
+    } 
+    else 
+    {
+      Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
+    }
     //Cancel and go to next review period check
     cancel_pending_sorb_treatment();
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries")
-      } 
+  } 
+  if(button=="disabled")
+  {
+    Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries")
+  } 
 //---------------override for 7 day review period
   override_review(7);
   
   var sorb_button = sorb_button_suggested_path();
   var button = check_button(sorb_button);
    
-   if(button=="enabled")
-   {
+  if(button=="enabled")
+  {
     Log.Message("button in correct state")  
      
     click_sorb_button("suggested");  
@@ -680,19 +786,21 @@ function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_ta
     var heading = sorb_page_heading_path.contentText;
     Log.Message(heading)
     
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Message("SORB page exists on 7 day review")
-      } 
-        else Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
-    
+    if(heading=="Skip or Boost\n(based on Suggested schedule)")
+    {
+      Log.Message("SORB page exists on 7 day review")
+    } 
+    else 
+    {
+      Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries" + " - SORB page was not displayed after clicking button" )
+    }
     //Cancel and go to next review period check
     cancel_pending_sorb_treatment();
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries")
-      } 
+  } 
+  if(button=="disabled")
+  {
+    Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries")
+  } 
 //---------------override for invalid 6-1 day review periods
   var result_set = new Array();
 
@@ -700,43 +808,41 @@ function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_ta
   {
     override_review(i);
     if(button=="enabled")
-   {
-    Log.Message("button in correct state")  
+    {
+      Log.Message("button in correct state")  
      
-    click_sorb_button("suggested"); 
+      click_sorb_button("suggested"); 
   
-    var actual_err_mess = get_sorb_button_error_message();
-    var expected_err_mess = ("The review period must be 7 days or greater to create Skip or Boost schedules.");      
-    var results = test_data_individual_step(actual_err_mess,expected_err_mess,"Hillingdon maintenance testing review period boundaries checking " + i + " day review")  
-    result_set.push(results);
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries")
-      } 
-      
+      var actual_err_mess = get_sorb_button_error_message();
+      var expected_err_mess = ("The review period must be 7 days or greater to create Skip or Boost schedules.");      
+      var result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Hillingdon maintenance testing review period boundaries checking " + i + " day review")  
+      result_set.push(result_set_1);
+    } 
+    if(button=="disabled")
+    {
+      Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries")
+    }   
     var INRstar = INRstar_base()
     INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
    
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries, button was not enabled")
-      }
-      
-        Log.Message(results + " This is the override result set"); 
+    if(button=="disabled")
+    {
+      Log.Warning("Test Failed - SORB Button Validation - Hillingdon maintenance testing review period boundaries, button was not enabled")
+    }     
+    Log.Message(results + " This is the override result set"); 
   } 
-  
-      //Validate all the result sets are true
+  //Validate all the result sets are true
   var results = results_checker_are_true(result_set); 
   
   //Pass in the final result
   results_checker(results,'SORB Button Validation - Hillingdon maintenance testing review period boundaries');
     
-   Log_Off();
+  Log_Off();
 }
 //--------------------------------------------------------------------------------
 function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_valid()
 {
+  var test_title = 'SORB - No SORB Current Schedule if Suggested Review Period Invalid'  
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Maintenance', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -749,8 +855,8 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
    
-   if(button=="enabled")
-   {
+  if(button=="enabled")
+  {
     Log.Message("button in correct state")  
      
     click_sorb_button("current");  
@@ -758,20 +864,22 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
     var sorb_page_heading_path = get_sorb_heading_path();
     var heading = sorb_page_heading_path.contentText;
     
-     if(heading=="Skip or Boost\n(based on Current schedule)")
-      {
-       Log.Message("SORB page exists on > 7 day review before override")
-      } 
-        else Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid" 
-        + " - SORB page was not displayed after clicking button" )
-    
+    if(heading=="Skip or Boost\n(based on Current schedule)")
+    {
+      Log.Message("SORB page exists on > 7 day review before override")
+    } 
+    else 
+    {
+      Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid" 
+                  + " - SORB page was not displayed after clicking button" )
+    }
     //Cancel and go to next review period check
     cancel_pending_sorb_treatment();
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid")
-      } 
+  } 
+  if(button=="disabled")
+  {
+    Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid")
+  } 
 //---------------override for 7 day review period
   override_review(7);
   
@@ -779,7 +887,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
   var button = check_button(sorb_button);
    
   if(button=="enabled")
-   {
+  {
     Log.Message("button in correct state")  
      
     click_sorb_button("current");  
@@ -787,20 +895,22 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
     var sorb_page_heading_path = get_sorb_heading_path();
     var heading = sorb_page_heading_path.contentText;
     
-     if(heading=="Skip or Boost\n(based on Current schedule)")
-      {
-       Log.Message("SORB page exists on > 7 day review before override")
-      } 
-        else Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid" 
-        + " - SORB page was not displayed after clicking button" )
-    
+    if(heading=="Skip or Boost\n(based on Current schedule)")
+    {
+      Log.Message("SORB page exists on > 7 day review before override")
+    } 
+    else 
+    {
+      Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid" 
+                  + " - SORB page was not displayed after clicking button" )
+    }
     //Cancel and go to next review period check
     cancel_pending_sorb_treatment();
-   } 
-      if(button=="disabled")
-      {
-        Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid")
-      } 
+  } 
+  if(button=="disabled")
+  {
+    Log.Warning("Test Failed - SORB button validation - Can't skip or boost current schedule if suggested review period is invalid and current review period is valid")
+  } 
 //---------------override for invalid 6-1 day review periods
   var result_set = new Array();
 
@@ -829,11 +939,12 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
   //Pass in the final result
   results_checker(results,'SORB button validation - Can\'t skip or boost current schedule if suggested review period is invalid and current review period is valid');
     
-   Log_Off();
+  Log_Off();
 }
 //--------------------------------------------------------------------------------
 function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_valid_and_current_review_is_invalid()
 {
+  var test_title = 'SORB - No SORB Current Schedule if Suggested Review Period is Valid but Current is Invalid'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Maintenance', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -879,11 +990,12 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_va
 //--------------------------------------------------------------------------------
 function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_invalid()
 {
+  var test_title = 'SORB - No SORB is Suggested/Current Review Period is Invalid'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Maintenance', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
 
-//  Adding the treatments
+  //Adding the treatments
   add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
   add_override_treatment('2.0', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'6');
@@ -895,20 +1007,21 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
   var button = check_button(sorb_button);
         
   if(button=="disabled")
-       {
-        Log.Checkpoint("Test Passed - SORB button validation - Cant' skip or boost current schedule if suggested review period is invalid and current review is invalid");    
-       } 
-    if(button=="enabled")
-    {
-      Log.Message("Test Failed - SORB button validation - Cant' skip or boost current schedule if suggested review period is invalid and current review is invalid");
-    } 
- Log_Off();
+  {
+    Log.Checkpoint("Test Passed - SORB button validation - Cant' skip or boost current schedule if suggested review period is invalid and current review is invalid");    
+  } 
+  if(button=="enabled")
+  {
+    Log.Message("Test Failed - SORB button validation - Cant' skip or boost current schedule if suggested review period is invalid and current review is invalid");
+  } 
+  Log_Off();
 } 
 //--------------------------------------------------------------------------------
 //Tests for self care programme validation on sorb button 
 //--------------------------------------------------------------------------------
 function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_function_with_self_tester_unticked_suggested_and_current_tab()
 {
+  var test_title = 'SORB - Long Title'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'engage_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -922,33 +1035,30 @@ function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_functio
   
   for (i=1; i<4; i++)
   {
+    warfarin_self_care(i);
   
-  warfarin_self_care(i);
+    // Add new pending treatment
+    add_pending_maintenance_treatment('2.2', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))))
+    click_sorb_button("suggested");
   
-  // Add new pending treatment
-  add_pending_maintenance_treatment('2.2', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))))
-  click_sorb_button("suggested");
+    var actual_err_mess = get_sorb_button_error_message();
+    var expected_err_mess = ("The patient is currently enrolled in the warfarin patient self testing programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
+    var result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Self Testing enrollment stage " + i + " - suggested tab")  
+    result_set.push(result_set_1);
   
-  var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("The patient is currently enrolled in the warfarin patient self testing programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
-  var result_suggested = test_data_individual_step(actual_err_mess,expected_err_mess,"Self Testing enrollment stage " + i + " - suggested tab")  
-  
-  result_set.push(result_suggested);
-  
-  INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
+    INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
 
-  click_sorb_button("current");
+    click_sorb_button("current");
   
-  var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("The patient is currently enrolled in the warfarin patient self testing programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
-  var result_current = test_data_individual_step(actual_err_mess,expected_err_mess,"Self Testing enrollment stage " + i + " - current tab")  
+    actual_err_mess = get_sorb_button_error_message();
+    expected_err_mess = ("The patient is currently enrolled in the warfarin patient self testing programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
+    result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Self Testing enrollment stage " + i + " - current tab")  
+    result_set.push(result_set_1);
   
-  result_set.push(result_current);
+    INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
   
-  INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
-  
-  //Cancel and go to next stage check
-  cancel_pending_sorb_treatment();
+    //Cancel and go to next stage check
+    cancel_pending_sorb_treatment();
   }
   Log.Message(results);
   
@@ -963,6 +1073,7 @@ function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_functio
 //--------------------------------------------------------------------------------
 function tc_Patient_removed_from_Warfarin_self_testing_can_action_skip_or_boost_function_suggested_and_current_tab()
 {
+  var test_title = 'SORB - Long Title'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'engage_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -978,27 +1089,34 @@ function tc_Patient_removed_from_Warfarin_self_testing_can_action_skip_or_boost_
   var sorb_page_heading_path = get_sorb_heading_path();
   var heading = sorb_page_heading_path.contentText;
     
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Checkpoint("Test Passed - Patient removed from Warfarin self testing program can action skip or boost function suggested tab")
-      } 
-        else Log.Warning("Test Failed - Patient removed from Warfarin self testing program can action skip or boost function suggested tab" + " - SORB page was not displayed after clicking button" )
-        
+  if(heading=="Skip or Boost\n(based on Suggested schedule)")
+  {
+    Log.Checkpoint("Test Passed - Patient removed from Warfarin self testing program can action skip or boost function suggested tab")
+  } 
+  else
+  { 
+    Log.Warning("Test Failed - Patient removed from Warfarin self testing program can action skip or boost function suggested tab" + " - SORB page was not displayed after clicking button" )
+  }      
+  
   cancel_pending_sorb_treatment();
   
   click_sorb_button("current");
    
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Checkpoint("Test Passed - Patient removed from Warfarin self testing program can action skip or boost function current tab")
-      }
-        else Log.Warning("Test Failed - Patient removed from Warfarin self testing program can action skip or boost function current tab" + " - SORB page was not displayed after clicking button" )      
-     
+  if(heading=="Skip or Boost\n(based on Suggested schedule)")
+  {
+    Log.Checkpoint("Test Passed - Patient removed from Warfarin self testing program can action skip or boost function current tab")
+  }
+  else 
+  {
+    Log.Warning("Test Failed - Patient removed from Warfarin self testing program can action skip or boost function current tab" + " - SORB page was not displayed after clicking button" )      
+  }
+  
   Log_Off();
 } 
 //--------------------------------------------------------------------------------
 function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_current_tab()
 {
+  var test_title = 'SORB - Patient on Warfarin Self Testing Untick on Treatment Suggested/Current Tab'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'engage_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -1015,19 +1133,19 @@ function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_c
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("The patient is currently enrolled in the warfarin patient self testing programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
-  var result_suggested = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on Warfarin self testing program cannot action skip or boost function with self tester unticked suggested tab")  
+  var result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on Warfarin self testing program cannot action skip or boost function with self tester unticked suggested tab")  
   
-  result_set.push(result_suggested);
+  result_set.push(result_set_1);
   
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
 
   click_sorb_button("current");
   
-  var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("The patient is currently enrolled in the warfarin patient self testing programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
-  var result_current = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on Warfarin self testing program cannot action skip or boost function with self tester unticked current tab")  
+  actual_err_mess = get_sorb_button_error_message();
+  expected_err_mess = ("The patient is currently enrolled in the warfarin patient self testing programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
+  result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on Warfarin self testing program cannot action skip or boost function with self tester unticked current tab")  
   
-  result_set.push(result_current);
+  result_set.push(result_set_1);
   
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
   
@@ -1044,6 +1162,7 @@ function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_c
 //--------------------------------------------------------------------------------
 function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab()
 {
+  var test_title = 'SORB - Patient_on_DDD_program_gets_error_message_suggested_and_current_tab'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Hillingdon', 'DDD_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Hillingdon','','Shared','');
@@ -1060,19 +1179,19 @@ function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab(
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("The patient is currently enrolled in the digital dosing diary programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
-  var result_suggested = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - suggested tab")  
+  var result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - suggested tab")  
   
-  result_set.push(result_suggested);
+  result_set.push(result_set_1);
   
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
 
   click_sorb_button("current");
   
-  var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("The patient is currently enrolled in the digital dosing diary programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
-  var result_current = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - current tab")  
+  actual_err_mess = get_sorb_button_error_message();
+  expected_err_mess = ("The patient is currently enrolled in the digital dosing diary programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
+  result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - current tab")  
   
-  result_set.push(result_current);
+  result_set.push(result_set_1);
   
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
   
@@ -1087,6 +1206,7 @@ function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab(
 //--------------------------------------------------------------------------------
 function tc_Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_function()
 {
+  var test_title = 'SORB - Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_function'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'ddd_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -1102,27 +1222,33 @@ function tc_Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_
   var sorb_page_heading_path = get_sorb_heading_path();
   var heading = sorb_page_heading_path.contentText;
     
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Checkpoint("Test Passed - Patient removed from DDD self care program can action skip or boost function suggested tab")
-      } 
-        else Log.Warning("Test Failed - Patient removed from DDD self care program can action skip or boost function suggested tab" + " - SORB page was not displayed after clicking button" )
-        
+  if(heading=="Skip or Boost\n(based on Suggested schedule)")
+  {
+    Log.Checkpoint("Test Passed - Patient removed from DDD self care program can action skip or boost function suggested tab")
+  } 
+  else 
+  {
+    Log.Warning("Test Failed - Patient removed from DDD self care program can action skip or boost function suggested tab" + " - SORB page was not displayed after clicking button" )
+  }     
   cancel_pending_sorb_treatment();
   
   click_sorb_button("current");
    
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Checkpoint("Test Passed - Patient removed from DDD self care program can action skip or boost function current tab")
-      }
-        else Log.Warning("Test Failed - Patient removed from DDD self care program can action skip or boost function" + " - SORB page was not displayed after clicking button" )      
-     
+  if(heading=="Skip or Boost\n(based on Suggested schedule)")
+  {
+    Log.Checkpoint("Test Passed - Patient removed from DDD self care program can action skip or boost function current tab")
+  }
+  else 
+  {
+    Log.Warning("Test Failed - Patient removed from DDD self care program can action skip or boost function" + " - SORB page was not displayed after clicking button" )      
+  }
+   
   Log_Off();
 } 
 //--------------------------------------------------------------------------------
 function tc_Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_function_in_suggested_and_current_schedule()
 {
+  var test_title = 'SORB - Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_function_in_suggested_and_current_schedule'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'manual_self_test_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -1138,23 +1264,26 @@ function tc_Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_
   var sorb_page_heading_path = get_sorb_heading_path();
   var heading = sorb_page_heading_path.contentText;
     
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Message("Test Passed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule")
-      } 
-        else 
-        Log.Warning("Test Failed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule" + " - SORB page was not displayed after clicking button" )
-        
+  if(heading=="Skip or Boost\n(based on Suggested schedule)")
+  {
+    Log.Message("Test Passed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule")
+  } 
+  else 
+  {
+    Log.Warning("Test Failed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule" + " - SORB page was not displayed after clicking button" )
+  }      
   cancel_pending_sorb_treatment();
   
   click_sorb_button("current");
    
-     if(heading=="Skip or Boost\n(based on Suggested schedule)")
-      {
-       Log.Checkpoint("Test Passed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule")
-      }
-        else 
-        Log.Warning("Test Failed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule" + " - SORB page was not displayed after clicking button" )      
+  if(heading=="Skip or Boost\n(based on Suggested schedule)")
+  {
+    Log.Checkpoint("Test Passed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule")
+  }
+  else 
+  {      
+    Log.Warning("Test Failed - Patient marked as a manual INR self tester can action skip or boost function in suggested and current schedule" + " - SORB page was not displayed after clicking button" )      
+  }
      
   Log_Off();
 }
@@ -1165,47 +1294,47 @@ function tc_Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_
 function tc_suggested_and_current_tab_with_an_omit_day_in_suggested_schedule_gets_an_error()
 {
   try
- {
-  var test_title = 'SORB Button Validation - Suggested and current tab with an omit day in Suggested schedule gets an error'
-  var INRstarV5 = INRstar_base();
-  login('cl3@regression','INRstar_5','Shared');
-  add_patient('SORB_Coventry', 'omits', 'M', 'Shared'); 
-  add_treatment_plan('W','Coventry','','Shared','');
-  add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-  add_inr_backdated("2.2", aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))));
-  add_pending_maintenance_treatment('2.2', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))))
-  override_omits('1 Day');
+  {
+    var test_title = 'SORB Button Validation - Suggested and current tab with an omit day in Suggested schedule gets an error'
+    var INRstarV5 = INRstar_base();
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('SORB_Coventry', 'omits', 'M', 'Shared'); 
+    add_treatment_plan('W','Coventry','','Shared','');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
+    add_inr_backdated("2.2", aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))));
+    add_pending_maintenance_treatment('2.2', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))))
+    override_omits('1 Day');
 
-  result_set = new Array();
+    result_set = new Array();
   
-  click_sorb_button("suggested");
+    click_sorb_button("suggested");
   
-  var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("This dose schedule contains dose omission(s). If you wish to alter it you will need to use the ‘Override’ button.");      
-  var result_suggested = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - suggested tab")  
+    var actual_err_mess = get_sorb_button_error_message();
+    var expected_err_mess = ("This dose schedule contains dose omission(s). If you wish to alter it you will need to use the ‘Override’ button.");      
+    var result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - suggested tab")  
   
-  result_set.push(result_suggested);
+    result_set.push(result_set_1);
   
-  INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
+    INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
 
-  click_sorb_button("current");
+    click_sorb_button("current");
   
-  var actual_err_mess = get_sorb_button_error_message();
-  var expected_err_mess = ("This dose schedule contains dose omission(s). If you wish to alter it you will need to use the ‘Override’ button.");      
-  var result_current = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - current tab")  
+    actual_err_mess = get_sorb_button_error_message();
+    expected_err_mess = ("This dose schedule contains dose omission(s). If you wish to alter it you will need to use the ‘Override’ button.");      
+    result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - current tab")  
   
-  result_set.push(result_current);
+    result_set.push(result_set_1);
   
-  INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
+    INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
   
-  //Validate all the results sets are true
-  var results = results_checker_are_true(result_set); 
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
   
-  //Pass in the final result
-  results_checker(results,test_title);
+    //Pass in the final result
+    results_checker(results,test_title);
   
-Log_Off();
- }
+    Log_Off();
+  }
   catch (e)
   {
    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
@@ -1282,6 +1411,7 @@ function tc_suggested_and_current_tab_check_do_not_take_days_do_not_block_sorb()
 //--------------------------------------------------------------------------------
 function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_suggested_schedule_on_suggested_and_current_tab()
 {
+  var test_title = 'SORB - Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_suggested_schedule_on_suggested_and_current_tab'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'disabling_buttons', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -1349,11 +1479,12 @@ function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_aft
   results_checker(results_1,'Ensure relevant treatment buttons are disabled after clicking ok on SORB screen using a suggested schedule suggested tab');
   results_checker(results_2,'Ensure relevant treatment buttons are disabled after clicking ok on SORB screen using a suggested schedule current tab');
    
-    Log_Off()
+  Log_Off()
 } 
 //--------------------------------------------------------------------------------
 function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_current_schedule_on_suggested_and_current_tab()
 {
+  var test_title = 'SORB - Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_current_schedule_on_suggested_and_current_tab'
   login('cl3@regression','INRstar_5','Shared');
   add_patient('SORB_Coventry', 'disabling_buttons', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -1422,6 +1553,6 @@ function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_aft
   results_checker(results_1,'Ensure relevant treatment buttons are disabled after clicking ok on SORB screen using a current schedule suggested tab');
   results_checker(results_2,'Ensure relevant treatment buttons are disabled after clicking ok on SORB screen using a current schedule current tab');   
 
-    Log_Off()
+  Log_Off()
 } 
 //--------------------------------------------------------------------------------

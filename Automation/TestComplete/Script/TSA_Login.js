@@ -1,6 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
-
+//V5_Common_Popups
 //--------------------------------------------------------------------------------
 function login(User,Password,TestStepMode)  
 {
@@ -61,7 +61,25 @@ function login(User,Password,TestStepMode)
     }
 }
 //--------------------------------------------------------------------------------
-
+function log_in_new_user(username, current_pass, new_pass)
+{
+  login(username, current_pass, 'Shared');
+    
+  var panelMCP = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement").Click();
+    
+  password_expired_form().Panel(0).PasswordBox("currentPassword").Text = current_pass;
+  password_expired_form().Panel(1).PasswordBox("newPassword").Text = new_pass;
+  password_expired_form().Panel(2).PasswordBox("confirmPassword").Text = new_pass;
+  password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
+    
+  //process_popup("Important Information", "Do Not Show Again");
+  INRstar_base().Panel(3).Panel(1).Panel(0).Button(0).Click();
+    
+  WaitSeconds(2);
+    
+  process_popup("Email Address", "Cancel");
+}
 
 
 
