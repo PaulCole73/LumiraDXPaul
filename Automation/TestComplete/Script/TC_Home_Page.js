@@ -25,10 +25,9 @@ function tc_View_Overdue_INR_Test_Message()
     var message_name = (patSurname + ", " + patFirstname);
     Log.Message(message_name);
     
-    var INRstarV5 = INRstar_base(); 
-    Goto_Report_Overdue(INRstarV5);
+    Goto_Report_Overdue();
   
-    result_set = new Array(); 
+    var result_set = new Array(); 
   
     //Check patient on the overdue INR test list
     var result_set_1 = check_patient_on_overdue_INR_list(message_name)
@@ -66,26 +65,18 @@ function tc_View_Exceeded_Suspension_Period_Message()
     var message_name = (patSurname + ", " + patFirstname);
     Log.Message(message_name);
     
-    var num_of_days_from_today = 0;
-    suspend_patient_days(num_of_days_from_today);
+    suspend_patient_days(0);
     
-    var INRstarV5 = INRstar_base();
-    Goto_Home(INRstarV5);
-  
     result_set = new Array(); 
   
     //Check patient on the exceed suspension period list
     var result_set_1 = check_patient_on_exceed_suspension_period_list(message_name)
-    Log.Message(result_set_1);
     result_set.push(result_set_1);
     
     patient_search(pat_nhs);
     
     //Check the audit
-    WaitSeconds(1);
-    Goto_Patient_Audit();
     var result_set_2 = display_top_patient_audit("Suspend Patient");
-    Log.Message(result_set_2);
     result_set.push(result_set_2);
 		
 		//Validate the results sets is True
@@ -120,16 +111,11 @@ function tc_Unsuspend_Patient_Through_Message()
     var message_name = (patSurname + ", " + patFirstname);
     Log.Message(message_name);
     
-    var num_of_days_from_today = 0;
-    suspend_patient_days(num_of_days_from_today);
-    
-    var INRstarV5 = INRstar_base();
-    Goto_Home(INRstarV5);  
+    suspend_patient_days(0);
     result_set = new Array(); 
   
     //Unsuspend the patient in the list
     var result_set_1 = unsuspend_patient_on_exceed_suspension_period_list(message_name);
-    Log.Message(result_set_1);
     result_set.push(result_set_1);
     
     //Warning dialogue confirmation
@@ -142,13 +128,11 @@ function tc_Unsuspend_Patient_Through_Message()
     var warning_message_1_path = INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0).TextNode(0);
     var error_message_text_1 = warning_message_1_path.innertext;
     var result_set_2 = test_data(error_message_text_1, expected_message_1, test_title);
-    Log.Message(result_set_2);
     result_set.push(result_set_2);
     
     var warning_message_2_path = INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0).TextNode(1)
     var error_message_text_2 = warning_message_2_path.innertext;
     var result_set_3 = test_data(error_message_text_2, expected_message_2, test_title);
-    Log.Message(result_set_3);
     result_set.push(result_set_3);
     
     //Click OK button on warning message
@@ -158,15 +142,11 @@ function tc_Unsuspend_Patient_Through_Message()
     patient_search(pat_nhs);
     
     //Check the audit
-    WaitSeconds(1);
-    Goto_Patient_Audit();
     var result_set_4 = display_top_patient_audit("Unsuspend Patient");
-    Log.Message(result_set_4);
     result_set.push(result_set_4);
 		
 		//Validate the results sets is True
 		var results = results_checker_are_true(result_set);
-		Log.Message(results);
 		
 		//Pass in the result
 		results_checker(results, test_title);
@@ -196,8 +176,7 @@ function tc_View_Patient_Transfer_Request()
     Log.Message(message_name);
     
     //Transfer the testing location
-    var test_prac = 'Deans Regression Testing Location 2'
-    change_test_practice(test_prac);
+    change_test_practice('Deans Regression Testing Location 2');
     WaitSeconds(2);
     Log_Off();
     
@@ -208,7 +187,6 @@ function tc_View_Patient_Transfer_Request()
     
     //Check the patient transfer shows on the home page message
     var result_set_1 = check_patient_in_transfer_request_message(message_name)
-    Log.Message(result_set_1);
     result_set.push(result_set_1);
     Log_Off();
     
@@ -220,11 +198,140 @@ function tc_View_Patient_Transfer_Request()
     process_popup('Please Confirm', 'Confirm');
     
     //Check the audit
-    WaitSeconds(1);
-    Goto_Patient_Audit();
     var result_set_2 = display_top_patient_audit("Requested change of patient's testing practice");
+    result_set.push(result_set_2);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_Accept_Patient_Transfer_Request()
+{
+  try 
+  {
+    var test_title = 'Home Page - View the \'Accept patient transfer requests\''
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Accept_transfer_request', 'M', 'Shared');
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    //Transfer the testing location
+    var test_prac = 'Deans Regression Testing Location 2'
+    change_test_practice(test_prac);
+    WaitSeconds(2);
+    Log_Off();
+    
+    //Login to transfered testing location
+    login('cl3@regression2','INRstar_5','Shared');
+
+    result_set = new Array();
+    
+    //Check the patient transfer shows on the home page message
+    var result_set_1 = accept_patient_in_transfer_request_message(message_name)
+    Log.Message(result_set_1);
+    result_set.push(result_set_1);
+    
+    //Patient Management Testing Location check
+    Goto_Patient_Management();
+    var care_team_path = patient_management_care_team();
+    var pat_testing_location = care_team_path.Panel(0).Label("TestingSectionId_DetachedLabel").innerText;
+    var result_set_2 = test_data(pat_testing_location, test_prac, test_title);
     Log.Message(result_set_2);
     result_set.push(result_set_2);
+    
+    //Check the audit
+    WaitSeconds(1);
+    Goto_Patient_Audit();
+    var result_set_3 = display_top_patient_audit("Transfer patient testing location accepted");
+    Log.Message(result_set_3);
+    result_set.push(result_set_3);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		Log.Message(results);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_Decline_Patient_Transfer_Request()
+{
+  try 
+  {
+    var test_title = 'Home Page - View the \'Decline patient transfer\''
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Decline_transfer_request', 'M', 'Shared');
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    //Transfer the testing location
+    var test_prac = 'Deans Regression Testing Location 2'
+    change_test_practice(test_prac);
+    WaitSeconds(2);
+    Log_Off();
+    
+    //Login to transfered testing location
+    login('cl3@regression2','INRstar_5','Shared');
+
+    result_set = new Array();
+    
+    //Decline the patient transfer on the home page message
+    var result_set_1 = decline_patient_in_transfer_request_message(message_name)
+    Log.Message(result_set_1);
+    result_set.push(result_set_1);
+    
+    //Check the patient transfer removed on the home page message
+    var result_set_2 = check_patient_not_in_transfer_request_message(message_name)
+    Log.Message(result_set_2);
+    result_set.push(result_set_2);
+    Log_Off();
+    
+    //Login to Sending location to Acknowledge declined transfer
+    login('cl3@regression','INRstar_5','Shared');
+    var result_set_3 = acknowledge_declined_patient_in_message(message_name)
+    Log.Message(result_set_3);
+    result_set.push(result_set_3);
+    
+    var result_set_4 = check_patient_not_in_decline_patient_transfer_request_message(message_name)
+    Log.Message(result_set_4);
+    result_set.push(result_set_4);
+    
+    //Check the audit
+    patient_search(pat_nhs);
+    WaitSeconds(1);
+    Goto_Patient_Audit();
+    var result_set_5 = display_top_patient_audit("Transfer patient testing location declined Acknowledged");
+    Log.Message(result_set_5);
+    result_set.push(result_set_5);
 		
 		//Validate the results sets is True
 		var results = results_checker_are_true(result_set);
