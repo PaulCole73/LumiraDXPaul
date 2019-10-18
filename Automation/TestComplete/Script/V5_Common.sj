@@ -460,6 +460,24 @@ function more_info_top_treatment_audit(w_data)
        return false;
        }
 }
+function more_info_top_system_audit(w_data)
+{  
+  Goto_System_Audit()
+  var wt_audit = system_audit();
+  var wt_row = wt_audit.Cell(1, 3).innerText;
+
+  //if (aqString.Contains(wt_row,w_data)) this dont work 
+  if(wt_row.includes(w_data))
+  {
+    Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
+    return true;
+  }
+  else 
+  {
+    Log.Warning("Audit data not found " + wt_row + " - " + wt_audit.Cell(1,3).innerText);
+    return false;
+  }
+}
 //-----------------------------------------------------------------------------------------------
 // Write the Audit details to a file
 function write_patient_audit(w_data, p_outfile)

@@ -7,6 +7,9 @@
 		<child name="Files" key="{1048C936-B76D-4C44-8CE2-A1FA86A31A15}" type="Files" typeId="{AA2F3067-5C9B-4CCF-89D4-1F93CE1C510F}" pluginName="Stores">
 			<data path="Files.tcFiles" />
 		</child>
+		<child name="Objects" key="{CF927AAA-6CB5-4977-A418-7EE544CC09FA}" type="Objects" typeId="{30501691-969F-4007-923F-BA4459E51E6A}" pluginName="Stores">
+			<data path="Objects.tcObjects" />
+		</child>
 	</children>
 	<folders />
 </Root>

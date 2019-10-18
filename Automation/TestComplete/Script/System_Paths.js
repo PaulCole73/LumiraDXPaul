@@ -32,7 +32,25 @@ function set_system_coruscant()
   INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/");
     
   return INRstar;
-} 
+}
+//------------------------------------------------------------------------
+// Logon Form
+function log_on_form()
+{
+  var base = INRstar_base().Panel("MainPage").Panel("main");
+  var form_path = base.Panel("LogonPage").Panel("LogonFormWrapper").Form("Logon");
+    
+  return form_path;
+}
+//------------------------------------------------------------------------
+// Password Expired Form 
+function password_expired_form()
+{
+  var base = INRstar_base().Panel("MainPage").Panel("main");
+  var form_path = base.Panel("passwordExpiredPage").Panel("passwordExpiredWrapper").Form("PasswordExpired");
+  
+  return form_path;
+}
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Tests Due  /////////////////////////
 //------------------------------------------------------------------------
@@ -517,7 +535,7 @@ function historic_treatment_path()
   return historic_treatment_form;
 }
 //------------------------------------------------------------------------
-function treatment_comment()
+function treatment_comment() //this is a duplicate, use treatment_table() as it is clearer, they have the same path
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
@@ -1008,6 +1026,47 @@ function patient_recently_viewed_table()
 //------------------------------------------------------------------------
 ////////////////////////////  Options  ///////////////////////////////////
 //------------------------------------------------------------------------
+function location_management_main_container()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelLC = panelMCP.Panel("AdminContent").Panel("LocationContent");
+  var main_container_path = panelLC.Panel(0).Panel("LocationTabContent");
+  
+  return main_container_path;
+}
+function location_management_users_button()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelLC = panelMCP.Panel("AdminContent").Panel("LocationContent");
+  var users_button_path = panelLC.Panel(0).Panel("LocationTab").Link("LocationUsersLink");
+  
+  return users_button_path;
+}
+function location_management_create_user_form()
+{
+  var base = location_management_main_container();
+  var path = base.Panel("CreateUserWrapper").Form("CreateUserForm");
+  
+  return path;
+}
+function location_management_roles_and_permissions()
+{
+  var base = location_management_main_container();
+  var panelAW = base.Panel("UserContent").Panel("UserAccountContent").Panel("AuthorisationWrapper");
+  var panelPL = panelAW.Panel("UserPermissions").Form("RolesForm").Panel("Permissions").Panel("permissionList");
+  
+  return panelPL;
+}
+
+function location_management_user_details_tab()
+{
+  var base = location_management_main_container();
+  var tab = base.Panel("UserContent").Panel("UserAccountContent").Panel("UserDetailsTab");
+  
+  return tab;
+}
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //////////////////////////  Options/IQC  /////////////////////////////////
