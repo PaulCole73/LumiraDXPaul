@@ -261,7 +261,7 @@ function tc_home_page_accept_patient_transfer_request()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_decline_datient_transfer_request()
+function tc_home_page_decline_patient_transfer_request()
 {
   try 
   {
@@ -549,9 +549,19 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
     add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
     add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite');
     
-    //Click cancel on the new review
+    //Click cancel on the new review and set future date for next review
     var add_review_form_path = add_review_form();
     add_review_form_path.Panel(0).Panel("AnnualReviewAddActions").Button("CancelWarfarinReviewLink").click();
+    Goto_Patient_TreatmentPlan_Review();
+    edit_next_review_date(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 7)));
+    
+    result_set = new Array();
+    
+    //Check warning message displayed on change of review date
+    var expected_message = "The patient's next review details have been successfully updated."
+    var warning_message = get_next_review_date_warning();
+    var result_set_1 = compare_values(warning_message, expected_message, test_title);
+    result_set.push(result_set_1);
     
     //Get the patient details
     var pat_nhs = get_patient_nhs();
@@ -559,16 +569,14 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
     var patSurname = get_patient_surname();
     var message_name = (patSurname + ", " + patFirstname);
     Log.Message(message_name);
-    
-    result_set = new Array();
-    
+        
     //Check the patient does not shows on the home page message for Overdue non-warfarin review 
     var result_set_1 = check_patient_not_on_overdue_non_warfarin_review_message(message_name)
     result_set.push(result_set_1);
     
     patient_search(pat_nhs);
     //Check the audit
-    var result_set_1 = display_top_patient_audit("Add Treatment Plan Details");
+    var result_set_1 = display_top_patient_audit("Changed Next Review Date - Face-to-face.");
     result_set.push(result_set_1);
 		
 		//Validate the results sets is True
