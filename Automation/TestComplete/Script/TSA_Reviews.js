@@ -32,9 +32,9 @@ function add_non_warfarin_review(new_tp,data_req,rev_date,weight,creatinine)
       add_review_form_path.Panel(0).Panel("ReviewDate").Image("calendar_png").Click();
       datepicker = INRstarV5.Panel("ui_datepicker_div");
               
-      var w_yr = aqString.SubString(start_date,6,4);
-      var w_mth = aqConvert.StrToInt(aqString.SubString(start_date,3,2));
-      var w_day = aqString.SubString(start_date,0,2);
+      var w_yr = aqString.SubString(rev_date,6,4);
+      var w_mth = aqConvert.StrToInt(aqString.SubString(rev_date,3,2));
+      var w_day = aqString.SubString(rev_date,0,2);
            
       datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
       datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));

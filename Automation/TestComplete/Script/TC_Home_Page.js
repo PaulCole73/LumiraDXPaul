@@ -321,3 +321,268 @@ function tc_home_page_decline_datient_transfer_request()
    Log_Off(); 
   }
 }
+//--------------------------------------------------------------------------------
+function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
+{
+  try 
+  {
+    var test_title = "Home Page - View the 'Patient transfer requests not accepted'"
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Not_accepted_transfer', 'M', 'Shared');
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    //Transfer the testing location
+    change_test_practice('Deans Regression Testing Location 2');
+    
+    result_set = new Array();
+    
+    //Check the patient transfer shows on the home page message
+    var result_set_1 = check_patient_in_transfer_request_not_accepted_message(message_name)
+    result_set.push(result_set_1);
+    
+    patient_search(pat_nhs);
+    
+    process_popup('Please Confirm', 'Confirm');
+    
+    //Check the audit
+    var result_set_1 = display_top_patient_audit("Requested change of patient's testing practice");
+    result_set.push(result_set_1);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_home_page_view_patient_with_incomplete_treatment()
+{
+  try 
+  {
+    var test_title = "Home Page - View the 'Patient with incomplete treatment'"
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Incomplete_treatment', 'M', 'Shared');
+    add_treatment_plan('W','Hillingdon','','Shared','');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "7", "2.5");
+		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    result_set = new Array();
+    
+    //Check the patient incomplete treatment shows on the home page message
+    var result_set_1 = check_patient_with_incomplete_treatment_message(message_name)
+    result_set.push(result_set_1);
+    
+    patient_search(pat_nhs);
+    
+    //Check the audit
+    var result_set_1 = display_top_patient_audit("Add New INR");
+    result_set.push(result_set_1);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_home_page_view_patient_with_no_diagnosis_or_tp()
+{
+  try 
+  {
+    var test_title = "Home Page - View the 'Patient with no diagnosis or TP'"
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'No_diagnosis', 'M', 'Shared');
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    result_set = new Array();
+    
+    //Check the patient shows on the home page message for No Diagnosis
+    var result_set_1 = check_patient_with_no_diagnosis_or_tp_message(message_name)
+    result_set.push(result_set_1);
+    
+    patient_search(pat_nhs);
+    //Check the audit
+    var result_set_1 = display_top_patient_audit("Add Patient");
+    result_set.push(result_set_1);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
+{
+  try 
+  {
+    var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP but no DOAC review"
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Overdue_non_warf_review', 'M', 'Shared');
+    add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -7)),'Shared','','Indefinite');
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    result_set = new Array();
+    
+    //Check the patient shows on the home page message for Overdue non-warfarin review
+    var result_set_1 = check_overdue_non_warfarin_review_message(message_name)
+    result_set.push(result_set_1);
+    
+    patient_search(pat_nhs);
+    //Check the audit
+    var result_set_1 = display_top_patient_audit("Add Treatment Plan Details");
+    result_set.push(result_set_1);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_overdue()
+{
+  try 
+  {
+    var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP and review, not overdue"
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
+    add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -150)),'Shared','','Indefinite');
+    add_non_warfarin_review('','Y',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -1)),'65','100');
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    result_set = new Array();
+    
+    //Check the patient does not shows on the home page message for Overdue non-warfarin review 
+    var result_set_1 = check_patient_not_on_overdue_non_warfarin_review_message(message_name)
+    result_set.push(result_set_1);
+    
+    patient_search(pat_nhs);
+    //Check the audit
+    var result_set_1 = display_top_patient_audit("New review created");
+    result_set.push(result_set_1);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
+{
+  try 
+  {
+    var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP and review, not overdue"
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
+    add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite');
+    
+    //Click cancel on the new review
+    var add_review_form_path = add_review_form();
+    add_review_form_path.Panel(0).Panel("AnnualReviewAddActions").Button("CancelWarfarinReviewLink").click();
+    
+    //Get the patient details
+    var pat_nhs = get_patient_nhs();
+    var patFirstname = get_patient_first_name();
+    var patSurname = get_patient_surname();
+    var message_name = (patSurname + ", " + patFirstname);
+    Log.Message(message_name);
+    
+    result_set = new Array();
+    
+    //Check the patient does not shows on the home page message for Overdue non-warfarin review 
+    var result_set_1 = check_patient_not_on_overdue_non_warfarin_review_message(message_name)
+    result_set.push(result_set_1);
+    
+    patient_search(pat_nhs);
+    //Check the audit
+    var result_set_1 = display_top_patient_audit("Add Treatment Plan Details");
+    result_set.push(result_set_1);
+		
+		//Validate the results sets is True
+		var results = results_checker_are_true(result_set);
+		
+		//Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch (e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+   Log_Off(); 
+  }
+}
+//--------------------------------------------------------------------------------
