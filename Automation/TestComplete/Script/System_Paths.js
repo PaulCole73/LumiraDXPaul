@@ -1036,7 +1036,7 @@ function patient_recently_viewed_table()
 } 
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-////////////////////////////  Options  ///////////////////////////////////
+/////////////////////  Options/Location Management  //////////////////////
 //------------------------------------------------------------------------
 function location_management_main_container()
 {
@@ -1128,6 +1128,27 @@ function options_iqc_table()
   var iqc_table = panelIQCW.Table("LocationsIQCTable");
   
   return iqc_table;
+}
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//////////////////////////  Options/EQC  /////////////////////////////////
+//------------------------------------------------------------------------
+function options_eqc_form_buttons()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelEQC = panelMCP.Panel("AdminContent").Panel("EQCWrapper");
+  
+  return (panelEQC);
+}
+//------------------------------------------------------------------------
+function options_eqc_edit_form_buttons()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var eqc_form_edit_buttons = panelMCP.Panel("AdminContent").Form("EditEQCResultForm");
+  
+  return eqc_form_edit_buttons;
 } 
 //------------------------------------------------------------------------
 /////////////////////////  Options/PoCT  /////////////////////////////////
@@ -1169,14 +1190,22 @@ function options_poct_edit_buttons()
   return poct_edit_buttons;
 } 
 //------------------------------------------------------------------------
-function options_poct_buttons()
+function options_poct_buttons() //this path only leads to the edit button
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var poct_buttons = panelMCP.Panel("AdminContent").Panel(0).Panel(0);
   
   return poct_buttons;
-} 
+}
+function options_poct_buttonss() //this path leads to both
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var poct_buttons = panelMCP.Panel("AdminContent").Panel(0);
+  
+  return poct_buttons;
+}  
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 ////////////////////////////  Reviews  ///////////////////////////////////

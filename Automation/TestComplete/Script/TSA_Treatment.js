@@ -716,4 +716,5 @@ function get_treatment_icon_state()
 
 
 
+
                                            

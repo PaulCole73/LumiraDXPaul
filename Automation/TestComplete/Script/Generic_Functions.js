@@ -745,11 +745,61 @@ function test_field(p_field,p_field_name, exp_object_type)
   }
 }
 //-----------------------------------------------------------------------------------
- 
 //-----------------------------------------------------------------------------------
- 
+function get_eqc_table_row(row_num)
+{
+  Goto_Options_EQC();
+
+  var table_data = options_eqc_form_buttons().Table("LocationsEQCTable");
+  var row_data = new Array();
+  
+  for(var i = 0; i < 7; i++)
+  {
+    var temp = table_data.Cell(row_num, i).contentText;
+    row_data.push(temp);
+  }
+  
+  return (row_data);
+}
 //-----------------------------------------------------------------------------------
- 
 //-----------------------------------------------------------------------------------
- 
+function get_poct_batch_numbers()
+{
+  Goto_Options_PoCT()
+    
+  var INRstarV5 = INRstar_base();
+  var poct_table = options_poct_table();
+  
+  var poct_batch_nos = new Array();
+  
+  var counter = 1;
+
+  do
+  {
+    var batch_exists = true;
+    
+    var table_cell = INRstarV5.NativeWebObject.Find("ColumnIndex", 0);
+    
+    if(table_cell.Exists == true)
+    {
+      var table_cell_1 = INRstarV5.NativeWebObject.Find("RowIndex", counter);
+      if(table_cell_1.Exists == true)
+      {
+        var temp = poct_table.Cell(counter, 0).contentText;
+        poct_batch_nos.push(temp);
+        Log.Message(temp);
+      }
+      else
+      {
+        batch_exists = false;
+      }
+    }
+    counter++;
+  }
+  while(batch_exists == true);
+  
+  return(poct_batch_nos);
+}
+//-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
