@@ -32,9 +32,9 @@ function add_non_warfarin_review(new_tp,data_req,rev_date,weight,creatinine)
       add_review_form_path.Panel(0).Panel("ReviewDate").Image("calendar_png").Click();
       datepicker = INRstarV5.Panel("ui_datepicker_div");
               
-      var w_yr = aqString.SubString(start_date,6,4);
-      var w_mth = aqConvert.StrToInt(aqString.SubString(start_date,3,2));
-      var w_day = aqString.SubString(start_date,0,2);
+      var w_yr = aqString.SubString(rev_date,6,4);
+      var w_mth = aqConvert.StrToInt(aqString.SubString(rev_date,3,2));
+      var w_day = aqString.SubString(rev_date,0,2);
            
       datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
       datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
@@ -109,3 +109,31 @@ function get_review_tab_data()
   return rev_data;
 } 
 //--------------------------------------------------------------------------------
+function edit_next_review_date(next_rev_date)
+{
+  var review_next_date_data_path = review_tab_edit_next_date_data();
+  var INRstarV5 = INRstar_base();
+  
+  review_next_date_data_path.Button("EditNextReviewDate").Click();
+  INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0).Form("AnnualReviewWrapper").Image("calendar_png").click();
+  datepicker = INRstarV5.Panel("ui_datepicker_div");
+              
+  var w_yr = aqString.SubString(next_rev_date,6,4);
+  var w_mth = aqConvert.StrToInt(aqString.SubString(next_rev_date,3,2));
+  var w_day = aqString.SubString(next_rev_date,0,2);
+           
+  datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+  datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+  select_day(w_day, datepicker);
+  
+  INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).click();  
+}
+//--------------------------------------------------------------------------------
+function get_next_review_date_warning()
+{
+  var review_next_date_data_path = review_tab_data();
+  
+  var review_next_date_message = review_next_date_data_path.Panel("PatientNextReviewDateWarning").Fieldset(0).Panel("Messages").TextNode(0).contentText;
+  
+  return review_next_date_message;
+}

@@ -1215,6 +1215,26 @@ function review_history_tab_data()
 } 
 
 //------------------------------------------------------------------------
+function review_tab_edit_next_date_data()
+{
+  var INRstarV5 = INRstar_base(); 
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var summary_table = panelPTC.Panel("AnnualReviewWrapper").Panel("ReviewDateSummary").Fieldset("NextDateSummary");
+  
+  return summary_table;
+} 
+//------------------------------------------------------------------------
+function review_tab_data()
+{
+  var INRstarV5 = INRstar_base(); 
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var review_tab = panelPTC.Panel("AnnualReviewWrapper");
+  
+  return review_tab;
+} 
+
 //------------------------------------------------------------------------
 function error_pane_demographics()
 {
