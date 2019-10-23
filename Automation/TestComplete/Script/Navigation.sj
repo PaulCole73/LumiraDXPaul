@@ -21,21 +21,21 @@ function Goto_Home()
 // Navigate to Overdue Report
 function Goto_Report_Overdue()
 {
-    Goto_Home();
-    var INRstarV5 = INRstar_base();
+  Goto_Home();
+  var INRstarV5 = INRstar_base();
     
-    WaitSeconds(3,"Waiting for Home Page");
+  WaitSeconds(3,"Waiting for Home Page");
     
-//    WaitSeconds(8,"Waiting for Overdue Report");
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelUCR = panelMCP.panel("UserTabContent"). panel("UserMessages").panel("UserClinicalReports");
+  //WaitSeconds(8,"Waiting for Overdue Report");
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelUCR = panelMCP.panel("UserTabContent"). panel("UserMessages").panel("UserClinicalReports");
    
-   // Open the overdue report list
-   panelUCR.Link("OverduePatientHeaderLink").Click();
-    WaitSeconds(2,"Opening Overdue Report");
+  //Open the overdue report list
+  panelUCR.Link("OverduePatientHeaderLink").Click();
+  WaitSeconds(2,"Opening Overdue Report");
     
   var w_stem = panelUCR.Panel("OverduePatients");
-
+  
   return w_stem; 
 }
 //-------------------------------------------------------------------------------
