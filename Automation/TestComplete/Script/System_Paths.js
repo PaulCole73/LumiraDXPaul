@@ -1693,7 +1693,28 @@ function clinic_appointment_block_container()
   var panelMCT = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("ManageClinicsTabContent").Table("scheduler");
   var tableSCC = panelMCT.Cell(4, 0).Panel("scheduler_containerBlock_innerContent").Table("scheduler_containerBlock_content");
   var panelSCV = tableSCC.Cell(1, 0).Panel("scheduler_containerBlock_verticalScrollContainer").Panel("scheduler_containerBlock_verticalContainer");
-  var panelSCA = panelSCV.Panel("appointmentLayer").Panel("scheduler_commonControlsBlock_aptAdornerDiv");
+  var panelSCA = panelSCV.Panel("appointmentLayer");
   
   return panelSCA;
 }
+//------------------------------------------------------------------------
+function clinic_select_this_clinic_button()
+{
+  var INRstarV5 = INRstar_base();
+  var panelSch = INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0).Table("scheduler").Cell(4, 0);
+  var panelSAS = panelSch.Panel("scheduler_aptMenuBlock_innerContent").Panel("scheduler_aptMenuBlock_SMAPT");
+  var button = panelSAS.Table("scheduler_aptMenuBlock_SMAPT_DXMST_").Cell(0, 0).Table(0).Cell(0, 2).TextNode(0);
+  
+  return button;
+}
+//------------------------------------------------------------------------
+function clinic_make_appointment_button()
+{
+  var INRstarV5 = INRstar_base();
+  var panelSch = INRstarV5.Panel(3).Panel("modalDialogBox").Panel(1).Table("appointmentsScheduler").Cell(4, 0);
+  var panelSAS = panelSch.Panel("appointmentsScheduler_viewMenuBlock_innerContent").Panel("appointmentsScheduler_viewMenuBlock_SMVIEW");
+  var button = panelSAS.Table("appointmentsScheduler_viewMenuBlock_SMVIEW_DXMST_").Cell(0, 0).Table(0).Cell(0, 2).TextNode(0);
+  
+  return button;
+}
+//------------------------------------------------------------------------

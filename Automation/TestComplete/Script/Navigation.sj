@@ -542,8 +542,8 @@ function Goto_Manage_Location_User_Permissions(p_location, p_user)
 // Navigate to Clinics
 function Goto_Clinics(INRstarV5)
 {
-    panel = INRstarV5.Panel("MainPage");
-    panel.Panel("header").Link("ClinicsLink").Click();
+    var panel = INRstar_base().Panel("MainPage");
+    var button = panel.Panel("header").Link("ClinicsLink").Click();
 
 }
 //-------------------------------------------------------------------------------

@@ -4,12 +4,10 @@
 //USEUNIT Generic_Functions
 //USEUNIT V5_Common_Popups
 //--------------------------------------------------------------------------------
-function tsa_add_a_clinic(day_no, add_no_months, add_no_years, is_recurring, is_end_by)
+function tsa_add_a_clinic(name, day_no, add_no_months, add_no_years, is_recurring, is_end_by)
 {
   var INRstarV5 = INRstar_base();
   Goto_Add_Clinic(INRstarV5);
-  
-  var recurring = is_recurring;
   
   var f_name = add_clinic_form().Table(0).Cell(0, 1).Table("Name_ET").Cell(0, 0).Table("Name").Cell(0, 0).Textbox("Name_I");
   var f_start = add_clinic_form().Table(0).Cell(2, 1).Table("StartTime_ET").Cell(0, 0).Table("StartTime").Cell(0, 0).Textbox("StartTime_I");
@@ -37,7 +35,7 @@ function tsa_add_a_clinic(day_no, add_no_months, add_no_years, is_recurring, is_
   }
   WaitSeconds(1);
   
-  f_name.Text = "Automation: " + day_no;
+  f_name.Text = name;
   f_start.Text = "06:00";
   f_end.Text = "10:00";
    
@@ -194,3 +192,69 @@ function get_days_in_month(month_no, year_no)
   return no_of_days;
 }
 //--------------------------------------------------------------------------------
+function goto_patient_clinic_tab_appointment_name(name)
+{ 
+  WaitSeconds(1);
+  treatment_appointment_buttons().Button("MakeAppointment").Click();
+
+  var clinic_names = clinic_appointments_container();
+  
+  for(var i = 0; i < clinic_names.ChildCount; i++)
+  {
+    var child = clinic_names.Child(i).Panel("appointmentDiv").Table(0).Cell(0, 1).Table(0).Cell(0, 1).Table(0).Cell(2, 0).TextNode("lblDescription");
+    if(child.contentText == name)
+    {
+      child.ClickR();
+      break;
+    }
+  }
+}
+//--------------------------------------------------------------------------------
+function tsa_clinic_confirm_default_ntd()
+{
+  treatment_appointment_buttons().Button("MakeAppointment").Click();
+    
+  var panel = clinic_schedule_container();
+  var tab_name = new Array();
+  tab_name = panel.QuerySelectorAll("div.NextTestDate");
+  var format_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a, %d-%b");
+    
+  var result_set_1 = false;
+  for(var i = 0; i < tab_name.length; i++)
+  {
+    if(tab_name[i].contentText == format_date)
+    {
+      result_set_1 = true;
+      break;
+    }
+  }
+  
+  var close = INRstar_base().Panel(3).Panel(1).Panel(0).Button(0).TextNode(0);
+  close.Click();
+  
+  return result_set_1;
+}
+//--------------------------------------------------------------------------------
+function tsa_clinic_make_appointment(clinic_name)
+{
+  goto_patient_clinic_tab_appointment_name(clinic_name);
+  
+  var close = INRstar_base().Panel(3).Panel(1).Panel(0).Button(0).TextNode(0);
+
+  var popup_button = INRstar_base().NativeWebObject.Find("innerHTML", "Select This Clinic");
+  if(popup_button.Exists == true && popup_button.VisibleOnScreen == true)
+  {
+    popup_button.Click();
+    
+    clinic_make_appointment_container().Cell(1, 1).Click();
+    clinic_make_appointment_container().Cell(0, 2).ClickR(700, 20);
+    
+    popup_button = INRstar_base().NativeWebObject.Find("innerHTML", "Make Appointment");
+    if(popup_button.Exists == true && popup_button.VisibleOnScreen == true)
+    {
+      popup_button.Click();
+    }
+  }
+  
+  close.Click();
+}
