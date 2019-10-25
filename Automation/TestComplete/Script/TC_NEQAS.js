@@ -19,12 +19,13 @@ function tc_neqas_add_new_from_eqc()
     var row_data_1 = new Array();
     var result_set = new Array();
     
-    tsa_neqas_check_valid_poct_batches(1);
+    tsa_neqas_delete_entries();
+    tsa_neqas_setup_poct_batches(1);
     batch_numbers = get_poct_batch_numbers(); 
     
     var batch_reference = tsa_neqas_add_eqc_result(batch_numbers[0], "2.5", "~Select INR");
     
-    row_data = get_eqc_table_row(1);
+    row_data = get_eqc_table_row(batch_reference);
     row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, 
                                                 "NEQAS", batch_numbers[0], "2.5", "", "No Value");
     
@@ -36,8 +37,6 @@ function tc_neqas_add_new_from_eqc()
     
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    
-    tsa_neqas_delete_entry(1);
     
     Log_Off(); 
   } 
@@ -60,14 +59,15 @@ function tc_neqas_add_new_from_eqc_with_multiple_active_batches()
     var row_data_1 = new Array();
     var result_set = new Array();
     
-    tsa_neqas_check_valid_poct_batches(2);
-    batch_numbers = get_poct_batch_numbers(); 
+    tsa_neqas_delete_entries();
+    tsa_neqas_setup_poct_batches(2);
+    batch_numbers = get_poct_batch_numbers();
     
     for(var i = 0; i < 2; i++)
     {
       var batch_reference = tsa_neqas_add_eqc_result(batch_numbers[i], "2.5", "~Select INR");
         
-      row_data = get_eqc_table_row(1);
+      row_data = get_eqc_table_row(batch_reference);
       row_data_1.length = 0;
       row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, 
                                                   "NEQAS", batch_numbers[i], "2.5", "", "No Value");
@@ -81,9 +81,6 @@ function tc_neqas_add_new_from_eqc_with_multiple_active_batches()
     
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    
-    tsa_neqas_delete_entry(1);
-    tsa_neqas_delete_entry(1);
     
     Log_Off(); 
   } 
@@ -106,12 +103,13 @@ function tc_neqas_edit_existing_add_external_inr()
     var row_data_1 = new Array();
     var result_set = new Array();
     
-    tsa_neqas_check_valid_poct_batches(1);
+    tsa_neqas_delete_entries();
+    tsa_neqas_setup_poct_batches(1);
     batch_numbers = get_poct_batch_numbers(); 
     
     var batch_reference = tsa_neqas_add_eqc_result(batch_numbers[0], "2.5", "~Select INR");
         
-    row_data = get_eqc_table_row(1);
+    row_data = get_eqc_table_row(batch_reference);
     row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, 
                                                 "NEQAS", batch_numbers[0], "2.5", "", "No Value");
                                                 
@@ -123,7 +121,7 @@ function tc_neqas_edit_existing_add_external_inr()
     var percent_error = (1 - (2.5/3)) * 100;
     percent_error = percent_error.toFixed(2);                              
     
-    row_data = get_eqc_table_row(1);
+    row_data = get_eqc_table_row(batch_reference);
     result_set_1 = validateArrays(row_data, row_data_1);
     result_set_1 = results_checker_are_false(result_set_1);
     result_set.push(result_set_1);
@@ -140,8 +138,6 @@ function tc_neqas_edit_existing_add_external_inr()
     
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    
-    tsa_neqas_delete_entry(1);
     
     Log_Off(); 
   } 
@@ -164,19 +160,18 @@ function tc_neqas_delete_ecq_entry()
     var row_data_1 = new Array();
     var result_set = new Array();
     
-    tsa_neqas_check_valid_poct_batches(1);
+    tsa_neqas_delete_entries();
+    tsa_neqas_setup_poct_batches(1);
     batch_numbers = get_poct_batch_numbers(); 
     
     var batch_reference = tsa_neqas_add_eqc_result(batch_numbers[0], "2.5", "~Select INR");
+    row_data = get_eqc_table_row(batch_reference);
+    tsa_neqas_delete_entries();
     
-    row_data = get_eqc_table_row(1);
-    
-    tsa_neqas_delete_entry(1);
-    
-    var row = INRstar_base().NativeWebObject.Find("RowIndex", 1);
-    if(row.Exists == true)
+    var table_data = options_eqc_form_buttons().Table("LocationsEQCTable");
+    if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
     {
-      row_data_1 = get_eqc_table_row(1);
+      row_data_1 = get_eqc_table_row(batch_reference);
       var result_set_1 = validateArrays(row_data, row_data_1);
       result_set_1 = results_checker_are_false(result_set_1);
       result_set.push(result_set_1);
@@ -209,12 +204,13 @@ function tc_neqas_add_complete_ecq_entry()
     var row_data_1 = new Array();
     var result_set = new Array();
     
-    tsa_neqas_check_valid_poct_batches(1);
+    tsa_neqas_delete_entries();
+    tsa_neqas_setup_poct_batches(1);
     batch_numbers = get_poct_batch_numbers(); 
     
     var batch_reference = tsa_neqas_add_eqc_result(batch_numbers[0], "2.5", "3.0");
     
-    row_data = get_eqc_table_row(1);
+    row_data = get_eqc_table_row(batch_reference);
     row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, 
                                                 "NEQAS", batch_numbers[0], "2.5", "3.0", "16.67%");
     
@@ -226,8 +222,6 @@ function tc_neqas_add_complete_ecq_entry()
     
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    
-    tsa_neqas_delete_entry(1);
     
     Log_Off(); 
   } 

@@ -553,7 +553,10 @@ function Goto_Add_Clinic(INRstarV5)
    Goto_Clinics(INRstarV5);
           
     var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelMCTC = panelMCP.Panel("ManageClinicsTabContent")
+    var panelMCTC = panelMCP.Panel("ManageClinicsTabContent");
+    
+    WaitSeconds(2,"Waiting because clinics...");
+    
     panelMCTC.Panel(0).Button("btnAddAppointment").Click();
     
     WaitSeconds(6,"Waiting for new clinic form");

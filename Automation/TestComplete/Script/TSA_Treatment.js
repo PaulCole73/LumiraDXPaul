@@ -403,6 +403,12 @@ function add_manual_treatment(date,inr,dose,review)
   //Confirm the values
   var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
   wbt_Confirm.Click();
+  
+  var popup = INRstar_base().NativeWebObject.Find("contentText", "Insert Confirmation");
+  if(popup.Exists == true)
+  {
+    process_popup("Insert Confirmation", "Confirm");
+  }
    
   WaitSeconds(2,"Saving the Treatment");  
   

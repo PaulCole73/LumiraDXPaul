@@ -617,7 +617,7 @@ function get_patient_fullname()
 //-----------------------------------------------------------------------------------
 function get_treatment_row(row_num, table_type)
 {
-  if(table_type == "current" || table_type == "")
+  if(table_type == "current" || table_type == null)
   {
     Goto_Patient_Treatment();
     var treatment_table_path = treatment_table();
@@ -644,7 +644,7 @@ function get_treatment_row(row_num, table_type)
 //-----------------------------------------------------------------------------------
 function get_treatment_row_key_values(row_num, table_type) //returns test date, inr, dose, review days, next test date
 {
-  if(table_type == "current" || table_type == "")
+  if(table_type == "current" || table_type == null)
   {
     Goto_Patient_Treatment();
     var treatment_table_path = treatment_table();
@@ -746,17 +746,32 @@ function test_field(p_field,p_field_name, exp_object_type)
 }
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-function get_eqc_table_row(row_num)
+function get_eqc_table_row(batch_ref)
 {
   Goto_Options_EQC();
 
   var table_data = options_eqc_form_buttons().Table("LocationsEQCTable");
   var row_data = new Array();
+  var row_num;
   
-  for(var i = 0; i < 7; i++)
+  if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
   {
-    var temp = table_data.Cell(row_num, i).contentText;
-    row_data.push(temp);
+    for(var i = 1; i < table_data.RowCount; i++)
+    {
+      for(var j = 0; j < 7; j++)
+      {
+        if(table_data.Cell(i, j).contentText == batch_ref)
+        {
+          row_num = i;
+          break;
+        }
+      }
+    }
+    for(var i = 0; i < 7; i++)
+    {
+      var temp = table_data.Cell(row_num, i).contentText;
+      row_data.push(temp);
+    }
   }
   
   return (row_data);
@@ -769,34 +784,13 @@ function get_poct_batch_numbers()
     
   var INRstarV5 = INRstar_base();
   var poct_table = options_poct_table();
-  
   var poct_batch_nos = new Array();
   
-  var counter = 1;
-
-  do
+  for(var i = 1; i < poct_table.RowCount; i++)
   {
-    var batch_exists = true;
-    
-    var table_cell = INRstarV5.NativeWebObject.Find("ColumnIndex", 0);
-    
-    if(table_cell.Exists == true)
-    {
-      var table_cell_1 = INRstarV5.NativeWebObject.Find("RowIndex", counter);
-      if(table_cell_1.Exists == true)
-      {
-        var temp = poct_table.Cell(counter, 0).contentText;
-        poct_batch_nos.push(temp);
-        Log.Message(temp);
-      }
-      else
-      {
-        batch_exists = false;
-      }
-    }
-    counter++;
+    var temp = poct_table.Cell(i, 0).contentText;
+    poct_batch_nos.push(temp);
   }
-  while(batch_exists == true);
   
   return(poct_batch_nos);
 }

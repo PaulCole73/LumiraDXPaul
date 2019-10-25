@@ -6,59 +6,46 @@
 //USEUNIT V5_Common_Popups
 //USEUNIT System_Paths
 //--------------------------------------------------------------------------------
-function tsa_neqas_check_valid_poct_batches(number_of_batches)
+function tsa_neqas_setup_poct_batches(number_of_batches)
 {
   Goto_Options_PoCT()
     
   var INRstarV5 = INRstar_base();
-  var poct_table = options_poct_table();
-    
+  var poct_table = options_poct_table(); 
   var batch_dates = new Array();
-  var batch_statuses = new Array();
   var batch_numbers = new Array();
   
   do
   {
     var is_poct_valid = false;  
-    
     for(var i = 1; i <= number_of_batches; i++)
-    {
-      var table_cell = INRstarV5.NativeWebObject.Find("ColumnIndex", i);  
-      if(table_cell.Exists == true)
+    { 
+      batch_numbers = get_poct_batch_numbers();
+      
+      if(poct_table.RowCount > 1)
       {
         for(var j = 1; j <= number_of_batches; j++)
         {
-          var table_cell_1 = INRstarV5.NativeWebObject.Find("RowIndex", i);
-          if (table_cell_1.Exists == true)
+          batch_dates[i-1] = aqConvert.StrToDate(poct_table.Cell(j, 1).contentText);
+          if(aqDateTime.Compare(batch_dates[i-1], aqDateTime.Today()) == -1)
           {
-            if (i == 1)
-            {
-              batch_dates[i-1] = aqConvert.StrToDate(poct_table.Cell(j, i).contentText);
-              if(aqDateTime.Compare(batch_dates[i-1], aqDateTime.Today()) != 0 && aqDateTime.Compare(batch_dates[i-1], aqDateTime.Today()) != 1)
-              {
-                var batches_to_add = number_of_batches - (j-1);
-                
-                batch_numbers = get_poct_batch_numbers();
-                tc_neqas_create_poct_batch(batch_numbers, batches_to_add);
-                break;
-              }
-              else
-              {
-                is_poct_valid = true;
-              }
-            }
-            else
-            {
-              batch_statuses[i-1] = poct_table.Cell(j, i).Checkbox("isActive").checked;
-              if(batch_statuses[i-1] != true)
-              {
-                tc_neqas_set_poct_active_batches(number_of_batches);
-              }
-            }
+            var batches_to_add = number_of_batches - (j-1);
+            tsa_neqas_create_poct_batch(batch_numbers, batches_to_add);
+            break;
           }
+          else
+          {
+            is_poct_valid = true;
+          }    
         }
       }
+      else
+      {
+        tsa_neqas_create_poct_batch(batch_numbers, number_of_batches);
+        break;
+      }
     }
+    tsa_neqas_set_poct_active_batches(number_of_batches);
   }while (is_poct_valid == false);
 }
 //--------------------------------------------------------------------------------
@@ -107,7 +94,11 @@ function tsa_neqas_set_poct_active_batches(no_batches_to_set)
   var edit_button = options_poct_buttonss().Panel(0).Button("EditPoCTBatch").Click();
     
   var edit_table = options_edit_poct_table()
-      
+  
+  for(var i = 1; i < edit_table.RowCount; i++)
+  {
+    edit_table.Cell(i, 2).Checkbox("activeBatches").checked = false;
+  }
   for(var i = 1; i <= no_batches_to_set; i++)
   {
     edit_table.Cell(i, 2).Checkbox("activeBatches").checked = true; 
@@ -154,10 +145,25 @@ function tsa_neqas_edit_eqc_result(row_num, poct_batch, int_inr, ext_inr)
   options_eqc_edit_form_buttons().Panel(7).SubmitButton("UpdateEQCResult").Click();
 }
 //--------------------------------------------------------------------------------
-function tsa_neqas_delete_entry(row_num)
+function tsa_neqas_delete_entries()
 {
   Goto_Options_EQC();
-  var button = options_eqc_form_buttons().Table("LocationsEQCTable").Cell(row_num, 7).Button("DeleteIQC").Click();
+  var table_data = options_eqc_form_buttons().Table("LocationsEQCTable");
+  var row_count = table_data.RowCount;
   
-  process_popup("Confirmation Required", "Confirm");
+  do
+  {
+    if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
+    {
+      var button = options_eqc_form_buttons().Table("LocationsEQCTable").Cell(row_count - 1, 7).Button("DeleteIQC").Click();
+      process_popup("Confirmation Required", "Confirm");
+      
+      row_count -= 1;
+    }
+    else
+    {
+      break;
+    }
+  }
+  while(row_count > 1);
 }
