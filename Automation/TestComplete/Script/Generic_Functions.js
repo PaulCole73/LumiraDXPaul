@@ -482,7 +482,7 @@ function validate_top_patient_audit(test_case_title,w_data)
 }
 //-----------------------------------------------------------------------------------
 //Checking specific audit on the patient tab
-function validate_specific_patient_audit(item_no, data, title)
+function validate_specific_entry_patient_audit(item_no, data, title)
 {  
   Goto_Patient_Audit();
   var patient_audit_path = patient_audit()
