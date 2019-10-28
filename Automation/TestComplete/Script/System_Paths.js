@@ -410,6 +410,17 @@ function treatment_appointment_buttons()
   return panelField;
 }
 //------------------------------------------------------------------------
+function treatment_dna_buttons()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
+  var panelField = panelPPT.Panel("TreatmentButtonsContainer").Fieldset("DNAButtons");
+  
+  return panelField;
+}
+//------------------------------------------------------------------------
 function fast_induction_risk_factors_path()
 { 
   var INRstarV5 = INRstar_base();

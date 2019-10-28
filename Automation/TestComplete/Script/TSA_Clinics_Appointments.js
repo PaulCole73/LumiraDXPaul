@@ -8,9 +8,11 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
 {
   var date_split = new Array();
   date_split = tsa_clinic_split_date(date);
-  
   var INRstarV5 = INRstar_base();
   Goto_Add_Clinic(INRstarV5);
+  
+  var class_name = "dxeCalendarDay_INRstarTheme";
+  var class_name_1 = "dxeCalendarDay_INRstarTheme dxeCalendarToday_INRstarTheme dxeCalendarSelected_INRstarTheme";
   
   var f_name = add_clinic_form().Table(0).Cell(0, 1).Table("Name_ET").Cell(0, 0).Table("Name").Cell(0, 0).Textbox("Name_I");
   var f_start = add_clinic_form().Table(0).Cell(2, 1).Table("StartTime_ET").Cell(0, 0).Table("StartTime").Cell(0, 0).Textbox("StartTime_I");
@@ -30,7 +32,7 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
   for(var i = day_picker_container.ChildCount - 1; i > 0; i--)
   {
     var child = day_picker_container.Child(i);
-    if(child.contentText == aqConvert.IntToStr(date_split[0]) && child.columnIndex != 0)
+    if(child.contentText == aqConvert.IntToStr(date_split[0]) && (child.className == class_name || child.className == class_name_1))
     {
       child.Click();
       break;
@@ -378,7 +380,10 @@ function tc_clinics_weeks_to_progress(clinic_date)
   if(clinic_date != null)
   {
     var t_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(aqDateTime.Today()));
-    var difference = aqDateTime.TimeInterval(aqConvert.StrToDate(t_date), aqConvert.StrToDate(clinic_date));
+    var day_of_week = aqDateTime.GetDayOfWeek(t_date);
+    var days_to_monday = 2 - day_of_week;
+    var m_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), days_to_monday)));
+    var difference = aqDateTime.TimeInterval(aqConvert.StrToDate(m_date), aqConvert.StrToDate(clinic_date));
     var difference_in_days = aqConvert.TimeIntervalToStr(difference).split(":")[0]
     weeks_ahead = aqConvert.VarToInt(difference_in_days / 7);
   }

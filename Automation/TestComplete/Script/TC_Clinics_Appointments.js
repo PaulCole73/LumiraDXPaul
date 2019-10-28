@@ -127,11 +127,11 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_clinics_move_ntd()
+function tc_clinics_move_seven_days_beyond_ntd()
 {
   try
   {
-    var test_title = "Clinics/Appointments - Add INR for Patient with Appointment Today";
+    var test_title = "Clinics/Appointments - Move NTD Beyond 7 Day Threshold";
     login('clead@regression','INRstar_5','Shared');
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
@@ -142,12 +142,12 @@ function tc_clinics_move_ntd()
     var date_1 = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 2));
     tsa_add_a_clinic(clinic_name_1, aqConvert.DateTimeToFormatStr(date_1, "%d/%m/%Y"), false, false);
     
-    add_patient('Regression', 'make_appointment', 'M', 'Shared');
+    add_patient('Regression', 'beyond_seven', 'M', 'Shared');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6))), "2.0", "2.0", "0", "7", "2.5");
     
     var p_nhs = get_patient_nhs();
-    WaitSeconds(4);
+    WaitSeconds(2);
     
     Log_Off();
     login('cl1@regression','INRstar_5','Shared');
@@ -155,14 +155,14 @@ function tc_clinics_move_ntd()
     patient_search(p_nhs);
     
     var msg = tsa_clinic_make_appointment(clinic_name, aqConvert.DateTimeToFormatStr(date, "%d/%m/%Y"));
-    WaitSeconds(2);
+    WaitSeconds(1);
     treatment_appointment_buttons().Button("CancelAppointment").Click();
-    WaitSeconds(2);
+    WaitSeconds(1);
     var text = process_popup("Confirmation Required", "Confirm Authorisation");
-    WaitSeconds(2);
+    WaitSeconds(1);
     Goto_Patient_Treatment();
     var msg = tsa_clinic_make_appointment(clinic_name_1, aqConvert.DateTimeToFormatStr(date_1, "%d/%m/%Y"));
-    WaitSeconds(2);
+    WaitSeconds(1);
     
     var result_set = new Array();
     var result_set_1 = compare_values(msg, "Making this appointment will change the patients review period from 7 days to 8 days." +
@@ -172,9 +172,113 @@ function tc_clinics_move_ntd()
     result_set_1 = validate_top_patient_audit(test_title, "Created Appointment");
     result_set.push(result_set_1);
     
+    result_set_1 = validate_specific_patient_audit(2, "User confirmed adding appointment was authorised", test_title);
+    result_set.push(result_set_1);
+    
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
     
+    Log_Off();
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    Log_Off();
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_clinics_cancel_future_appointment()
+{
+  try
+  {
+    var test_title = "Clinics/Appointments - Cancel Appointment In The Future";
+    login('clead@regression','INRstar_5','Shared');
+    
+    var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
+    var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 1));
+    tsa_add_a_clinic(clinic_name, aqConvert.DateTimeToFormatStr(date, "%d/%m/%Y"), false, false);
+    
+    add_patient('Regression', 'cancel_appointment', 'M', 'Shared');
+    add_treatment_plan('W', 'Manual', '', 'Shared', '');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6))), "2.0", "2.0", "0", "7", "2.5");
+    
+    var msg = tsa_clinic_make_appointment(clinic_name, aqConvert.DateTimeToFormatStr(date, "%d/%m/%Y"));
+    WaitSeconds(1);
+    treatment_appointment_buttons().Button("CancelAppointment").Click();
+    WaitSeconds(1);
+    var text = process_popup("Confirmation Required", "Confirm");
+    WaitSeconds(1);
+    
+    var result_set = new Array();
+    var result_set_1 = compare_values(text, "Are you sure you wish to cancel this patient's next appointment? Please confirm that either " + 
+            "this patient does not need another test, or that you have made other suitable arrangements for them to be tested.", test_title);
+    result_set.push(result_set_1);
+    
+    result_set_1 = validate_top_patient_audit(test_title, "Appointment Cancelled");
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+    
+    Log_Off();
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    Log_Off();
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_clinics_mark_unmark_dna()
+{
+  try
+  {
+    var test_title = "Clinics/Appointments - Move NTD Beyond 7 Day Threshold";
+    login('clead@regression','INRstar_5','Shared');
+    
+    var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
+    var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
+    tsa_add_a_clinic(clinic_name, clinic_date, false, false);
+    
+    var clinic_name_1 = aqConvert.DateTimeToStr(aqDateTime.Now());
+    tsa_add_a_clinic(clinic_name_1, clinic_date, false, false);
+    
+    add_patient('Regression', 'beyond_seven', 'M', 'Shared');
+    add_treatment_plan('W', 'Manual', '', 'Shared', '');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6))), "2.0", "2.0", "0", "7", "2.5");
+    
+    var msg = tsa_clinic_make_appointment(clinic_name, clinic_date);
+    WaitSeconds(1);
+    
+    treatment_dna_buttons().Button("SetLatestTestDateAsDNA").Click(); 
+    
+    var treatment_row = new Array();
+    treatment_row = get_treatment_row(0, "current");
+    
+    var result_set = new Array();
+    var result_set_1 = compare_values("1", treatment_row[8], "Comparing DNA Counter");
+    result_set.push(result_set_1);
+    
+    treatment_dna_buttons().Button("SetLatestTestDateAsNotDNA").Click(); 
+    
+    treatment_row = get_treatment_row(0, "current");
+    result_set_1 = compare_values("-", treatment_row[8], "Comparing DNA Counter");
+    result_set.push(result_set_1);
+    
+    treatment_dna_buttons().Button("SetLatestTestDateAsDNA").Click(); 
+    
+    var msg = tsa_clinic_make_appointment(clinic_name_1, clinic_date);
+    WaitSeconds(1);
+    
+    treatment_dna_buttons().Button("SetLatestTestDateAsDNA").Click(); 
+    
+    treatment_row = get_treatment_row(0, "current");
+    result_set_1 = compare_values("2", treatment_row[8], "Comparing DNA Counter");
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);  
+  
     Log_Off();
   } 
   catch(e)

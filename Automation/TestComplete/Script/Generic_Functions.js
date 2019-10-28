@@ -481,6 +481,26 @@ function validate_top_patient_audit(test_case_title,w_data)
        }
 }
 //-----------------------------------------------------------------------------------
+//Checking specific audit on the patient tab
+function validate_specific_patient_audit(item_no, data, title)
+{  
+  Goto_Patient_Audit();
+  var patient_audit_path = patient_audit()
+  var audit_data = patient_audit_path.Cell(item_no, 1).innerText;
+
+  if (audit_data == data)
+  {
+    Log.Message(title + " - Audit was written");
+    return true;
+  }
+  else 
+  {
+    Log.Message(title + " Test Failed - Patient audit record not found." + " This is the actual audit: // " 
+                                      + audit_data + " // This is the expected audit: // " + data + " //");
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
 //Checking top audit on the system audit
 function validate_top_system_audit(test_case_title,w_data)
 {  
