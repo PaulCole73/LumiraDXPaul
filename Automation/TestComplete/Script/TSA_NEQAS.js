@@ -53,7 +53,7 @@ function tsa_neqas_create_poct_batch(batch_numbers, batches_to_add)
 {
   for(var i = 1; i <= batches_to_add; i++)
   {
-    var add_poct_button = options_poct_buttonss().Panel(1).Button("AddPoCTBatch").Click();
+    var add_poct_button = options_poct_buttons().Panel(1).Button("AddPoCTBatch").Click();
     var batch_no_textbox = options_poct_form().Panel(0).Textbox("BatchNumber");
   
     do
@@ -91,7 +91,7 @@ function tsa_neqas_create_poct_batch(batch_numbers, batches_to_add)
 //--------------------------------------------------------------------------------
 function tsa_neqas_set_poct_active_batches(no_batches_to_set)
 {
-  var edit_button = options_poct_buttonss().Panel(0).Button("EditPoCTBatch").Click();
+  var edit_button = options_poct_buttons().Panel(0).Button("EditPoCTBatch").Click();
     
   var edit_table = options_edit_poct_table()
   

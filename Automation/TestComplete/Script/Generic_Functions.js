@@ -485,6 +485,7 @@ function validate_top_patient_audit(test_case_title,w_data)
 function validate_specific_entry_patient_audit(item_no, data, title)
 {  
   Goto_Patient_Audit();
+  WaitSeconds(2);
   var patient_audit_path = patient_audit()
   var audit_data = patient_audit_path.Cell(item_no, 1).innerText;
 
@@ -497,6 +498,26 @@ function validate_specific_entry_patient_audit(item_no, data, title)
   {
     Log.Message(title + " Test Failed - Patient audit record not found." + " This is the actual audit: // " 
                                       + audit_data + " // This is the expected audit: // " + data + " //");
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
+//Checking specific audit on the patient tab
+function validate_more_info_specific_entry_patient_audit(item_no, data, title)
+{  
+  Goto_Patient_Audit();
+  WaitSeconds(2);
+  var patient_audit_path = patient_audit()
+  var audit_data = patient_audit_path.Cell(item_no, 3).innerText;
+  
+  if(audit_data.includes(data))
+  {
+    Log.Message("This is the row data: // " + audit_data + " // - This is what I am looking for: // " + data + " //");
+    return true;
+  }
+  else 
+  {
+    Log.Warning("Audit data not found " + audit_data + " - " + audit_data);
     return false;
   }
 }

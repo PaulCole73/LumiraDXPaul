@@ -416,7 +416,7 @@ function treatment_dna_buttons()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
-  var panelField = panelPPT.Panel("TreatmentButtonsContainer").Fieldset("DNAButtons");
+  var panelField = panelPPT.Panel("TreatmentButtonsContainer").Fieldset("AppointmentButtons");
   
   return panelField;
 }
@@ -1212,15 +1212,7 @@ function options_poct_edit_buttons()
   return poct_edit_buttons;
 } 
 //------------------------------------------------------------------------
-function options_poct_buttons() //this path only leads to the edit button
-{
-  var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var poct_buttons = panelMCP.Panel("AdminContent").Panel(0).Panel(0);
-  
-  return poct_buttons;
-}
-function options_poct_buttonss() //this path leads to both
+function options_poct_buttons()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
