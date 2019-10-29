@@ -30,7 +30,7 @@ function tc_treatment_add_a_historic_treatment()
   
   var ntd = aqConvert.StrToDate(aqDateTime.Today()); 
   var formatted_ntd = format_date(ntd);
-  treatment_data.push(formatted_inr_date,"2.0", "2.0", "0", "7",formatted_ntd); 
+  treatment_data.push(formatted_inr_date, "2.0", "2.0", "", "0", "7", "", formatted_ntd, "-"); 
   
   Log.Message(treatment_data + ' This is data passed in for adding treatment');
   
@@ -80,7 +80,7 @@ function tc_treatment_add_a_manual_INR()
   
   var ntd = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(),(+4))); 
   var formatted_ntd = format_date(ntd);
-  treatment_data.push(formatted_inr_date,"2.0", "2.5", "0", "7",formatted_ntd); 
+  treatment_data.push(formatted_inr_date, "2.0", "2.5", "", "0", "7", "", formatted_ntd, "-"); 
   
   Log.Message(treatment_data + ' This is data passed in for adding treatment');
   
@@ -271,7 +271,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   //Create my expected data for comparison against the treatment row
   var ntd = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(),(+14))); 
   var formatted_ntd = format_date(ntd);
-  treatment_data.push(formatted_inr_date,"2.5", "2.0", "0", "14",formatted_ntd); 
+  treatment_data.push(formatted_inr_date, "2.5", "2.0", "", "0", "14", "", formatted_ntd, "-"); 
   
   Log.Message(treatment_data + ' This is data passed in for adding treatment');
   
@@ -830,78 +830,92 @@ function tc_treatment_edit_a_treatment_comment()
 function tc_treatment_add_multiple_historic_treatments()
 {
   try
-{
-  var test_title = 'Treatment - Maintenance - Historical treatments all dated the same'
-  login('cl3@regression','INRstar_5','Shared');
-  add_patient('Regression', 'multiple_historical', 'M', 'Shared'); 
-  add_treatment_plan('W','Coventry','','Shared','');
-  
-  var treatment_data = new Array();
-  result_set = new Array();
-  
-  add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-  add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "3.0", "1.5", "0", "7", "2.5");
-  add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "4.0", "1.0", "0", "7", "2.5");
-  
-  //Setup
-  treatment_data.push(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-  treatment_data.push(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "3.0", "1.5", "0", "7", "2.5"); 
-  treatment_data.push(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "4.0", "1.0", "0", "7", "2.5"); 
-
-  for(var i = 0 ; i < 2 ; i++)
   {
-    var treatment_row = get_treatment_row(i);
-    result_set.push(treatment_row);
-  }
-    
-  //Assert  
-  var results = results_checker_are_true(checkArrays(treatment_data,treatment_row,test_title));
+    var test_title = 'Treatment - Maintenance - Historical treatments all dated the same'
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'multiple_historical', 'M', 'Shared'); 
+    add_treatment_plan('W','Coventry','','Shared','');
   
-  //Pass in the result
-  results_checker(results, test_title); 
+    var result_set = new Array(); 
+    var treatment_data = new Array();
+    var treatment_row = new Array();
+    var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7)));
+    var format_date = aqConvert.DateTimeToFormatStr(date, "%d-%b-%Y");
+    var format_date_1 = aqConvert.DateTimeToFormatStr(aqConvert.StrToDate(aqDateTime.Today()), "%d-%b-%Y");
+  
+    add_historic_treatment(date, "2.4", "1.9", "1", "7", "2.5");
+    add_historic_treatment(date, "2.2", "2.2", "0", "7", "2.5");
+    add_historic_treatment(date, "2.5", "2.0", "1", "7", "2.5");
 
- Log_Off(); 
+    treatment_data.push(format_date, "2.4", "1.9", "", "1", "7", "", format_date_1, "-");
+    treatment_row = get_treatment_row(0);
+    var result_set_1 = checkArrays(treatment_row, treatment_data, "checking historic entry 1");
+    result_set.push(result_set_1);
+    treatment_data.length = 0;
+    
+    treatment_data.push(format_date, "2.2", "2.2", "", "0", "7", "", format_date_1, "-"); 
+    treatment_row = get_treatment_row(1);
+    result_set_1 = checkArrays(treatment_row, treatment_data, "checking historic entry 2");
+    result_set.push(result_set_1);
+    treatment_data.length = 0;
+    
+    treatment_data.push(format_date, "2.5", "2.0", "", "1", "7", "", format_date_1, "-"); 
+    treatment_row = get_treatment_row(2);
+    result_set_1 = checkArrays(treatment_row, treatment_data, "checking historic entry 3");
+    result_set.push(result_set_1);
+    treatment_data.length = 0;
+    
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title); 
+
+    Log_Off(); 
   } 
-   catch(e)
-   {
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     Log_Off();
-   }
+  }
 }
 //--------------------------------------------------------------------------------
 
 function tc_treatment_dosing_under_12_years_old()
 {
   try
-{
-  var test_title = 'Treatment - Maintenance/Manual - Dosing under 12 years old'
-  login('cl3@regression','INRstar_5','Shared');
+  {
+    var test_title = 'Treatment - Maintenance/Manual - Dosing under 12 years old'
+    login('cl3@regression','INRstar_5','Shared');
+    var w_yr = aqString.SubString(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-800))), 6, 4);
   
-  var w_yr = aqString.SubString(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-800))), 6, 4);
-  
-  add_patient_extended('Regression', 'under_12', 'M', 'Shared', null, w_yr); 
-  add_treatment_plan('W','Manual','','Shared','');
-  add_manual_treatment(aqConvert.StrToDate(aqDateTime.Today()), "2.4", "1.0", "7");
-  
-  edit_treatment_plan('Coventry');
-  var INRstarV5 = set_system(); 
+    add_patient_extended('Regression', 'under_12', 'M', 'Shared', null, w_yr); 
+    add_treatment_plan('W','Manual','','Shared','');
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.Today()), "2.4", "1.0", "7");
+    edit_treatment_plan('Coventry');
+    
+    var result_set = new Array();
+    
+    var INRstarV5 = set_system(); 
  
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-  var panelPCD = panelPTC.Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails");
-  var form = panelPCD.Form("PatientEditTreatmentPlanForm");
+    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+    var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+    var panelPCD = panelPTC.Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails");
+    var form = panelPCD.Form("PatientEditTreatmentPlanForm");
   
-   //Check the Error panel for the text
-   var w_err_text = form.Panel("TreatmentPlanValidation").innerText;
-   test_message(INRstarV5, w_err_text, "The patient is less than 12 years old; this patient can only be manually dosed", true);
+    //Check the Error panel for the text
+    var w_err_text = form.Panel("TreatmentPlanValidation").innerText;
+    var result_set_1 = compare_values(w_err_text, "The patient is less than 12 years old; this patient can only be manually dosed");
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    
+    results_checker(results, test_title);
   
-   Log_Off(); 
+    Log_Off(); 
   } 
-   catch(e)
-   {
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-   Log_Off();
-   }
+    Log_Off();
+  }
 }
 
 //--------------------------------------------------------------------------------
@@ -1301,7 +1315,8 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     //get the message from the new INR page banner
 		var warning_banner_path = treatment_banner_warning_message();
 
-    var warning_message_text = warning_banner_path.TextNode(1).innerText;
+    var warning_message_text = warning_banner_path.TextNode(2).innerText;
+    Log.Message(warning_message_text);
 
     //check the values match
     var result_set = new Array();
@@ -1320,6 +1335,7 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     
     result_set_1 = false;
     warning_message_text = warning_banner_path.contentText;
+    Log.Message(warning_message_text);
     //check any warning banner paths, expected message should no longer be present
     if (aqString.Contains(warning_message_text, expected_message) == -1)
     {

@@ -51,10 +51,18 @@ function tsa_neqas_setup_poct_batches(number_of_batches)
 //--------------------------------------------------------------------------------
 function tsa_neqas_create_poct_batch(batch_numbers, batches_to_add)
 {
+  var poct_details = new Array(); 
+
+  if(batches_to_add == null)
+  {
+    batches_to_add = 1;
+  }
+
   for(var i = 1; i <= batches_to_add; i++)
   {
     var add_poct_button = options_poct_buttons().Panel(1).Button("AddPoCTBatch").Click();
     var batch_no_textbox = options_poct_form().Panel(0).Textbox("BatchNumber");
+    var options_poct_form_path = options_poct_form(); 
   
     do
     {
@@ -85,7 +93,14 @@ function tsa_neqas_create_poct_batch(batch_numbers, batches_to_add)
     w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
     select_day(w_day, w_datepicker);
     
+    var expiry_date = options_poct_form_path.Panel(1).Textbox("ExpiryDate").Text;
+    var active = true;
+    
+    poct_details.push(batch_text, expiry_date, active);
+    
     options_poct_form().Panel(3).SubmitButton("SubmitNewPoCTBatchDetails").Click();
+    
+    return poct_details;
   }
 }
 //--------------------------------------------------------------------------------

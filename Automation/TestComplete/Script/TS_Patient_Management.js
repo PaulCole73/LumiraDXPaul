@@ -12,7 +12,7 @@ tc_patient_reactivate_a_patient();
 tc_patient_amend_a_patient_to_be_a_manual_self_tester();
 tc_patient_suspend_a_patient();
 tc_patient_unsuspend_a_patient();
-//tc_transfer_a_patient_who_has_a_pending_treatment();PROBLEM LOOK AT AGAIN
+tc_transfer_a_patient_who_has_a_pending_treatment(); //PROBLEM LOOK AT AGAIN
 tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_existing_inactive_patient_at_the_destination_location();
 tc_transfer_a_patient_who_is_on_an_induction_protocol();
 tc_reactivate_a_potential_duplicate_patient();

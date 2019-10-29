@@ -14,8 +14,9 @@ function tc_clinics_add_a_recurring_clinic()
   {
     var test_title = "Clinics/Appointments - Add a Recurring Clinic";
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
+    var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
     login('clead@regression','INRstar_5','Shared');
-    tsa_add_a_clinic(clinic_name, "24/10/2019", true, false);
+    tsa_add_a_clinic(clinic_name, clinic_date, true, false);
     
     var result_set = new Array();
     

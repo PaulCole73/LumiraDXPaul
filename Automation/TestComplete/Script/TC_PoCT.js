@@ -3,6 +3,7 @@
 //USEUNIT TSA_Login
 //USEUNIT Generic_Functions
 //USEUNIT Navigation
+//USEUNIT TSA_NEQAS
 //--------------------------------------------------------------------------------
 function tc_add_a_new_poct()
 {
@@ -10,8 +11,10 @@ try
  {
   var test_title = 'Options/PoCT - Add a new PoCT batch'
   login('cl3@regression','INRstar_5','Shared');
-
-  var data_added_array = add_poct('');
+  
+  var batch_numbers = new Array();
+  batch_numbers = get_poct_batch_numbers();
+  var data_added_array = tsa_neqas_create_poct_batch(batch_numbers); //add_poct('');
   var data_saved_array = get_top_poct_data();
   
   result_set_1 = validateArrays(data_added_array, data_saved_array,'Options/PoCT - Add a new PoCT batch');
@@ -47,22 +50,23 @@ try
   login('cl3@regression','INRstar_5','Shared');
   var result_set = new Array();
   
-  var batch_num = new_num_20();
-  add_poct(batch_num);
+  var batch_numbers = new Array();
+  batch_numbers = get_poct_batch_numbers();
+  var poct_data = tsa_neqas_create_poct_batch(batch_numbers);
   
   //Edit the batch to be inactive
-  edit_poct_make_inactive(batch_num);
+  edit_poct_make_inactive(poct_data[0]);
   
 //  //Check flag is at the right status
-  var result_set_flag_data = get_active_flag(batch_num);
+  var result_set_flag_data = get_active_flag(poct_data[0]);
   var result_set_1 = results_checker_are_false(result_set_flag_data);
   result_set.push(result_set_1);
 
   //Edit the batch to be active
-  edit_poct_make_active(batch_num);
+  edit_poct_make_active(poct_data[0]);
   
   //Check flag is now active_again
-  var result_set_2 = get_active_flag(batch_num);
+  var result_set_2 = get_active_flag(poct_data[0]);
   result_set.push(result_set_2);
 
   //Validate all the results sets are true

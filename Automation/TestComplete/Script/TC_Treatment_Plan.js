@@ -509,8 +509,9 @@ function tc_treatment_plan_add_second_treatment_using_previous()
     var current_values = new Array();
     var previous_values = new Array();
     current_values = get_treatment_row_key_values(0, "current");
+    var date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
     
-    add_treatment_plan('W', 'Manual', '18/10/2019', 'Shared', '2');
+    add_treatment_plan('W', 'Manual', date, 'Shared', '2');
     
     var previous_treatments_check = INRstar_base().NativeWebObject.Find("contentText", "Treatments from previous plan");   
     if(previous_treatments_check.Exists == true)

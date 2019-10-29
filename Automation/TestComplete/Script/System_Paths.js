@@ -416,7 +416,7 @@ function treatment_dna_buttons()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
-  var panelField = panelPPT.Panel("TreatmentButtonsContainer").Fieldset("AppointmentButtons");
+  var panelField = panelPPT.Panel("TreatmentButtonsContainer").Fieldset("DNAButtons");
   
   return panelField;
 }

@@ -55,9 +55,9 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
     var recur_check = recur_form.Table(0).Cell(0, 0).Table("appointmentRecurrenceForm_ChkRecurrence");
     var recur_button = recur_check.Cell(0, 0).Click();
     
-    if(aqDateTime.Compare(aqConvert.StrToDate(date), aqConvert.StrToDate(end_by_date)) == -1)
+    if(is_end_by == true && end_by_date != null)
     {
-      if(is_end_by == true)
+      if(aqDateTime.Compare(aqConvert.StrToDate(date), aqConvert.StrToDate(end_by_date)) == -1)
       {
         tsa_add_end_by_date(end_by_date);
       }
