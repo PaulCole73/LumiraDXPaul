@@ -385,7 +385,8 @@ function tc_clinics_weeks_to_progress(clinic_date)
     var m_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), days_to_monday)));
     var difference = aqDateTime.TimeInterval(aqConvert.StrToDate(m_date), aqConvert.StrToDate(clinic_date));
     var difference_in_days = aqConvert.TimeIntervalToStr(difference).split(":")[0]
-    weeks_ahead = aqConvert.VarToInt(difference_in_days / 7);
+    weeks_ahead = aqConvert.VarToFloat(difference_in_days / 7);
+    weeks_ahead = Math.trunc(weeks_ahead);
   }
   return weeks_ahead;
 }
