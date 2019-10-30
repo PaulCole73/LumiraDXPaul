@@ -21,21 +21,21 @@ function Goto_Home()
 // Navigate to Overdue Report
 function Goto_Report_Overdue()
 {
-    Goto_Home();
-    var INRstarV5 = INRstar_base();
+  Goto_Home();
+  var INRstarV5 = INRstar_base();
     
-    WaitSeconds(3,"Waiting for Home Page");
+  WaitSeconds(3,"Waiting for Home Page");
     
-//    WaitSeconds(8,"Waiting for Overdue Report");
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelUCR = panelMCP.panel("UserTabContent"). panel("UserMessages").panel("UserClinicalReports");
+  //WaitSeconds(8,"Waiting for Overdue Report");
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelUCR = panelMCP.panel("UserTabContent"). panel("UserMessages").panel("UserClinicalReports");
    
-   // Open the overdue report list
-   panelUCR.Link("OverduePatientHeaderLink").Click();
-    WaitSeconds(2,"Opening Overdue Report");
+  //Open the overdue report list
+  panelUCR.Link("OverduePatientHeaderLink").Click();
+  WaitSeconds(2,"Opening Overdue Report");
     
   var w_stem = panelUCR.Panel("OverduePatients");
-
+  
   return w_stem; 
 }
 //-------------------------------------------------------------------------------
@@ -542,8 +542,8 @@ function Goto_Manage_Location_User_Permissions(p_location, p_user)
 // Navigate to Clinics
 function Goto_Clinics(INRstarV5)
 {
-    panel = INRstarV5.Panel("MainPage");
-    panel.Panel("header").Link("ClinicsLink").Click();
+    var panel = INRstar_base().Panel("MainPage");
+    var button = panel.Panel("header").Link("ClinicsLink").Click();
 
 }
 //-------------------------------------------------------------------------------
@@ -553,7 +553,10 @@ function Goto_Add_Clinic(INRstarV5)
    Goto_Clinics(INRstarV5);
           
     var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelMCTC = panelMCP.Panel("ManageClinicsTabContent")
+    var panelMCTC = panelMCP.Panel("ManageClinicsTabContent");
+    
+    WaitSeconds(2,"Waiting because clinics...");
+    
     panelMCTC.Panel(0).Button("btnAddAppointment").Click();
     
     WaitSeconds(6,"Waiting for new clinic form");

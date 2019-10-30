@@ -841,6 +841,24 @@
 		<child name="TC_Home_Page" key="{3338B598-1CB6-40F3-8D14-F6D3C269FD7B}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TC_Home_Page.js" />
 		</child>
+		<child name="TS_NEQAS" key="{2B9248E3-2DCD-4275-9AE2-208AC0331962}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_NEQAS.js" />
+		</child>
+		<child name="TC_NEQAS" key="{B6B70278-FAA5-4AE4-ACA2-4083FAD516FC}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_NEQAS.js" />
+		</child>
+		<child name="TSA_NEQAS" key="{9511E1FD-9419-40E0-8225-3BEC90F87C64}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_NEQAS.js" />
+		</child>
+		<child name="TS_Clinics_Appointments" key="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_Clinics_Appointments.js" />
+		</child>
+		<child name="TC_Clinics_Appointments" key="{10392BEF-2987-4248-8A93-12B6F844C958}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Clinics_Appointments.js" />
+		</child>
+		<child name="TSA_Clinics_Appointments" key="{0091B06C-F4B1-447D-8077-2357A390B764}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_Clinics_Appointments.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -866,6 +884,8 @@
 				<ref key="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}" />
 				<ref key="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}" />
 				<ref key="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}" />
+				<ref key="{2B9248E3-2DCD-4275-9AE2-208AC0331962}" />
+				<ref key="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}" />
 			</references>
 		</folder>
 		<folder caption="3. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -887,6 +907,8 @@
 				<ref key="{FA1CC1B2-05A5-4BC6-833A-2DBC751D028E}" />
 				<ref key="{45094750-9994-4D70-BEC9-B0B3B2900063}" />
 				<ref key="{3338B598-1CB6-40F3-8D14-F6D3C269FD7B}" />
+				<ref key="{B6B70278-FAA5-4AE4-ACA2-4083FAD516FC}" />
+				<ref key="{10392BEF-2987-4248-8A93-12B6F844C958}" />
 			</references>
 		</folder>
 		<folder caption="5. Utlilities" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1134,6 +1156,8 @@
 				<ref key="{CC20DCBB-5949-4AB2-AA87-AE711DB1F516}" />
 				<ref key="{C7EC64E2-5DEB-4562-949E-710E2C959B16}" />
 				<ref key="{DE4F7FDD-AFD8-40EE-A489-3080D6D9FB84}" />
+				<ref key="{9511E1FD-9419-40E0-8225-3BEC90F87C64}" />
+				<ref key="{0091B06C-F4B1-447D-8077-2357A390B764}" />
 			</references>
 		</folder>
 		<folder caption="41. Test Step Verification" description="A logical folder that is used to organize project items and elements." moniker="">

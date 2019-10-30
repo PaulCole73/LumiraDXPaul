@@ -533,13 +533,14 @@ try
   add_treatment_plan('W','Manual',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))),'Shared','');
   var patFirstname = get_patient_first_name();
   var patSurname = get_patient_surname();
+  var patNHS = get_patient_nhs();
   var messagename = (patSurname + ", " + patFirstname);
   
   //Check the patient is displayed on the overdue report
   result_set = new Array();
   var result_set_1 = find_patient_overdue_list(messagename);
   
-  patient_search(patSurname);
+  patient_search(patNHS);
   suspend_patient();
   
   //Check the patient is now not on the overdue list
