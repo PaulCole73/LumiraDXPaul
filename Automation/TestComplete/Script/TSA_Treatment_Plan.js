@@ -18,7 +18,6 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     }
     if(tp_start_mode=='2')
     {
-      Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan(); 
       if(drug == "W")
       {
         Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan();
@@ -63,7 +62,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       
       if (drug == 'W')
       { 
-        WaitSeconds(2)
+        WaitSeconds(1)
         treatment_plan_area.Panel(2).Select("DrugId").ClickItem("Warfarin");
           
         //proces the pop-ups
@@ -115,7 +114,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
         treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
       }
       buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();     
-      WaitSeconds(2);       
+      WaitSeconds(1);       
     }  
   } 
   catch(e)
@@ -155,7 +154,7 @@ function edit_treatment_plan(dm)
 //--------------------------------------------------------------------------------
 function edit_treatment_plan_non_warfarin_drug(drug)
 {
-  Goto_Patient_TreatmentPlan_Edit_Existing_Plan_Non_Warfarin();
+  goto_patient_treatmentplan_edit_existing_plan_non_warfarin();
   
   var treatment_plan_details = edit_treatment_plan_path();
   
@@ -322,13 +321,11 @@ function add_treatment_plan_drug_warning_checker(drug,exp_warn_mess)
   var treatment_plan_area = add_treatment_plan_main_section_path();
         
   treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
-  WaitSeconds(2);
+  WaitSeconds(1);
   treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);     
   
   var pop_up_warning_message_path = pop_up_warning_message();
-  WaitSeconds(1);
   var actual_warn_mess = pop_up_warning_message_path.contentText; 
-  WaitSeconds(2);
   
   Log.Message(actual_warn_mess)
    
@@ -422,8 +419,7 @@ function tp_banner_warning_checker(exp_warn_mess)
  {
    var INRstarV5 = INRstar_base();
    var tp_banner_path = tp_banner();
-   var actual_warn_mess = tp_banner_path.contentText; 
-   WaitSeconds(2);
+   var actual_warn_mess = tp_banner_path.contentText;
   
   Log.Message(actual_warn_mess)
    
@@ -444,7 +440,6 @@ function tp_popup_checker(exp_warn_mess)
    var INRstarV5 = INRstar_base();
    var pop_up_warning_message_path = pop_up_warning_message();
    var actual_warn_mess = pop_up_warning_message_path.contentText; 
-   WaitSeconds(2);
   
   Log.Message(actual_warn_mess)
    

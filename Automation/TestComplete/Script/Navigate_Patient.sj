@@ -11,14 +11,14 @@
 // Navigate to Patient Search
 function Goto_Patient_Search()
 {
-    WaitSeconds(2,"Pause - Waiting for Patient Search");
+    WaitSeconds(1,"Pause - Waiting for Patient Search");
     
     var INRstarV5 = INRstar_base();
 
     panel = INRstarV5.Panel("MainPage");
     panel.Panel("header").Link("MainPatientLink").Click();
 
-    WaitSeconds(2,"Pause - Waiting at Patient Search");
+    WaitSeconds(1,"Pause - Waiting at Patient Search");
 }
 //-------------------------------------------------------------------------------
 // Uncheck Active Patients Only
@@ -194,7 +194,7 @@ function Goto_Patient_TreatmentPlan_Add()
     WaitSeconds(1,"About to go to Treatment Plan Tab");
     Goto_Patient_TreatmentPlan()
     
-    WaitSeconds(1);
+    //WaitSeconds(1);
     
     var INRstarV5 = INRstar_base();
     var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
@@ -207,7 +207,7 @@ function Goto_Patient_TreatmentPlan_Add()
 // Navigate to Patient Treatment Plan Add - If a treatment plan exists
 function Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan()
 {
-    WaitSeconds(2,"About to go to Treatment Plan Tab");
+    WaitSeconds(1,"About to go to Treatment Plan Tab");
 
     var INRstarV5 = INRstar_base();
 
@@ -218,7 +218,7 @@ function Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan()
     panelPR.Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
    
     var panelPMTC = panelPR.Panel("PatientMainTabContent");
-    WaitSeconds(2);
+    WaitSeconds(1);
     
     // Click on Clinical Details Sub Tab
     panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientTreatmentPlanTab").Click();
@@ -228,14 +228,14 @@ function Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan()
     
     //Confirming add new treatment plan pop up
     process_button(INRstarV5, "Confirmation Required", "Confirm") ;
-    WaitSeconds(2,"Going to Patient Treatment Plan Add");
+    WaitSeconds(1,"Going to Patient Treatment Plan Add");
 }
 
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan Add for nonwarfarin plan - If a treatment plan exists
 function goto_patient_treatmentplan_add_more_1_treatmentplan_nonwarfarin()
 {
-  WaitSeconds(2,"About to go to Treatment Plan Tab");
+  WaitSeconds(1,"About to go to Treatment Plan Tab");
 
   var INRstarV5 = INRstar_base();
 
@@ -246,7 +246,7 @@ function goto_patient_treatmentplan_add_more_1_treatmentplan_nonwarfarin()
   panelPR.Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
    
   var panelPMTC = panelPR.Panel("PatientMainTabContent");
-  WaitSeconds(2);
+  WaitSeconds(1);
     
   // Click on Clinical Details Sub Tab
   panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientTreatmentPlanTab").Click();
@@ -256,7 +256,7 @@ function goto_patient_treatmentplan_add_more_1_treatmentplan_nonwarfarin()
     
   //Confirming add new treatment plan pop up
   process_button(INRstarV5, "Confirmation Required", "Confirm") ;
-  WaitSeconds(2,"Going to Patient Treatment Plan Add");
+  WaitSeconds(1,"Going to Patient Treatment Plan Add");
 }
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
@@ -291,7 +291,7 @@ function goto_patient_treatmentplan_edit_existing_plan_non_warfarin()
 // Navigate to Patient Treatment Plan Add - If a pop up exists prior to adding tp details
 function Goto_Patient_TreatmentPlan_pop_up()
 {
-    WaitSeconds(2,"About to go to Treatment Plan Tab");
+    WaitSeconds(1,"About to go to Treatment Plan Tab");
     var INRstarV5 = INRstar_base();
 
     var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
@@ -305,7 +305,7 @@ function Goto_Patient_TreatmentPlan_pop_up()
     
     //Confirming pop up's
     process_button(INRstarV5, "Confirmation Required", "Confirm") ;
-    WaitSeconds(2,"Going to Patient Treatment Plan Add");
+    WaitSeconds(1,"Going to Patient Treatment Plan Add");
     
      var ok_error_pop_up_buttons_path = ok_error_pop_up_buttons();
      ok_error_pop_up_buttons_path.Button(1).TextNode(0).Click();

@@ -209,9 +209,9 @@ function Get_New_Number_V5()
   var btnName = "button1";
   var edtName = "textBox1";
 
-  WaitSeconds(2)
+  WaitSeconds(1)
   TestedApps.NHSNumberGenerator.Run(1, true);
-  WaitSeconds(2)
+  WaitSeconds(1)
 
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
   form.WinFormsObject("button1").ClickButton();

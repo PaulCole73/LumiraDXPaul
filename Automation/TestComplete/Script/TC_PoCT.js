@@ -14,7 +14,7 @@ try
   
   var batch_numbers = new Array();
   batch_numbers = get_poct_batch_numbers();
-  var data_added_array = tsa_neqas_create_poct_batch(batch_numbers); //add_poct('');
+  var data_added_array = tsa_poct_create_poct_batch(batch_numbers); //add_poct('');
   var data_saved_array = get_top_poct_data();
   
   result_set_1 = validateArrays(data_added_array, data_saved_array,'Options/PoCT - Add a new PoCT batch');
@@ -52,7 +52,7 @@ try
   
   var batch_numbers = new Array();
   batch_numbers = get_poct_batch_numbers();
-  var poct_data = tsa_neqas_create_poct_batch(batch_numbers);
+  var poct_data = tsa_poct_create_poct_batch(batch_numbers);
   
   //Edit the batch to be inactive
   edit_poct_make_inactive(poct_data[0]);

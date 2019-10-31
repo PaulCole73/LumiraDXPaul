@@ -1220,7 +1220,6 @@ function tc_treatment_drag_and_drop_schedule_days()
 }
 
 //--------------------------------------------------------------------------------
-
 //checks a pending treatment can be overwritten, saved, overwrite maintained, strikethrough values display
 //C1248498
 function tc_treatment_maintenance_save_override_treatment()
@@ -1315,7 +1314,7 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     //get the message from the new INR page banner
 		var warning_banner_path = treatment_banner_warning_message();
 
-    var warning_message_text = warning_banner_path.TextNode(2).innerText;
+    var warning_message_text = warning_banner_path.TextNode(1).innerText;
     Log.Message(warning_message_text);
 
     //check the values match
@@ -1468,7 +1467,7 @@ function tc_treatment_maintenance_override_privilege()
   
     override_inr_button_path = override_button();
     button = check_button(override_inr_button_path);
-    result_set_1 = button_checker(button,'disabled','Testing cl1 level user cannot click save inr on pending treatment for manual dosing');
+    result_set_1 = button_checker(button,'disabled', 'Testing cl1 level user cannot click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
   
     Log_Off();
@@ -1478,7 +1477,7 @@ function tc_treatment_maintenance_override_privilege()
     
     override_inr_button_path = override_button();
     button = check_button(override_inr_button_path);
-    result_set_1 = button_checker(button,'disabled','Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
+    result_set_1 = button_checker(button,'disabled', 'Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
   
     Log_Off();
@@ -1488,7 +1487,7 @@ function tc_treatment_maintenance_override_privilege()
   
     override_inr_button_path = override_button();
     button = check_button(override_inr_button_path);
-    result_set_1 = button_checker(button,'enabled','Testing clead level user can click save inr on pending treatment for manual dosing');
+    result_set_1 = button_checker(button,'enabled', 'Testing clead level user can click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
     
     var save_inr_button_path = save_inr_button();
@@ -1666,3 +1665,91 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
 //  }
 //}
 //--------------------------------------------------------------------------------
+function cacuk432_bug_fix_sequence()
+{
+  try
+  {
+    var test_title = "CACUK-432 - Bug Fix";
+    var drug_array = new Array();
+    drug_array.push("Apixaban", "Dabigatran", "Edoxaban", "Rivaroxaban", "Dalteparin (LMWH)", "Enoxaparin (LMWH)", "Acenocoumarol");
+    login('cl3@regression','INRstar_5','Shared');
+    
+    for(var i = 0; i < drug_array.length; i++)
+    {
+      var drug_1 = drug_array[i];
+      for(var j = 0; j < drug_array.length; j++)
+      {
+        var drug_2 = drug_array[j];
+        if(drug_1 != drug_2)
+        {
+          add_patient('Regression', 'Bug_Fix', 'M', 'Shared');
+          add_treatment_plan(drug_1, "", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "", "52 Weeks");
+          add_review_form().Panel(0).Panel("AnnualReviewAddActions").Button("CancelWarfarinReviewLink").Click();
+          edit_treatment_plan_non_warfarin_drug(drug_2);
+          add_review(drug_2);
+          add_treatment_plan(drug_1, "", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2", "52 Weeks");
+          //Explicit Wait, current bug can cause extended wait
+          WaitSeconds(6);
+          
+          var result_set = new Array();
+          var result_set_1 = false;
+          
+          var is_treatment_add_success = INRstar_base().NativeWebObject.Find("idStr", "SaveWarfarinReviewLink");
+          if(is_treatment_add_success.Exists == true)
+          {
+            result_set_1 = true;
+          }
+          
+          result_set.push(result_set_1);
+          var results = results_checker_are_true(result_set);
+          results_checker(results, test_title);
+        }
+      }
+    }
+    Log_Off();          
+  }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+  }
+}
+//--------------------------------------------------------------------------------
+function cacuk432_bug_fix()
+{
+  try
+  {
+    var test_title = "CACUK-432 - Bug Fix";
+    login('cl3@regression','INRstar_5','Shared');
+    
+    add_patient('Regression', 'Bug_Fix', 'M', 'Shared');
+    add_treatment_plan("Acenocoumarol", "", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "", "52 Weeks");
+    add_review_form().Panel(0).Panel("AnnualReviewAddActions").Button("CancelWarfarinReviewLink").Click();
+    edit_treatment_plan_non_warfarin_drug("Apixaban");
+          
+    add_basic_review_doac("2.5 mg - Twice daily");
+          
+    add_treatment_plan("Acenocoumarol", "", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2", "52 Weeks");
+    WaitSeconds(5);
+          
+    var result_set = new Array();
+    var result_set_1 = false;
+          
+    var is_treatment_add_success = INRstar_base().NativeWebObject.Find("idStr", "SaveWarfarinReviewLink");
+    if(is_treatment_add_success.Exists == true)
+    {
+      result_set_1 = true;
+    }
+          
+    result_set.push(result_set_1);
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+  
+    Log_Off();          
+  }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+		Log_Off();
+  }
+}

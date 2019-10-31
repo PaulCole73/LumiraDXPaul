@@ -5,6 +5,7 @@
 //USEUNIT Test_Audit
 //USEUNIT V5_Common_Popups
 //USEUNIT System_Paths
+//USEUNIT TSA_PoCT
 //--------------------------------------------------------------------------------
 function tsa_neqas_setup_poct_batches(number_of_batches)
 {
@@ -30,7 +31,7 @@ function tsa_neqas_setup_poct_batches(number_of_batches)
           if(aqDateTime.Compare(batch_dates[i-1], aqDateTime.Today()) == -1)
           {
             var batches_to_add = number_of_batches - (j-1);
-            tsa_neqas_create_poct_batch(batch_numbers, batches_to_add);
+            tsa_poct_create_poct_batch(batch_numbers, batches_to_add);
             break;
           }
           else
@@ -41,67 +42,12 @@ function tsa_neqas_setup_poct_batches(number_of_batches)
       }
       else
       {
-        tsa_neqas_create_poct_batch(batch_numbers, number_of_batches);
+        tsa_poct_create_poct_batch(batch_numbers, number_of_batches);
         break;
       }
     }
     tsa_neqas_set_poct_active_batches(number_of_batches);
   }while (is_poct_valid == false);
-}
-//--------------------------------------------------------------------------------
-function tsa_neqas_create_poct_batch(batch_numbers, batches_to_add)
-{
-  var poct_details = new Array(); 
-
-  if(batches_to_add == null)
-  {
-    batches_to_add = 1;
-  }
-
-  for(var i = 1; i <= batches_to_add; i++)
-  {
-    var add_poct_button = options_poct_buttons().Panel(1).Button("AddPoCTBatch").Click();
-    var batch_no_textbox = options_poct_form().Panel(0).Textbox("BatchNumber");
-    var options_poct_form_path = options_poct_form(); 
-  
-    do
-    {
-      var is_batch_unique = false;
-      var batch_text = aqConvert.DateTimeToStr(aqDateTime.Today()) + "_" + i + "_" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
-      
-      for(var j = 0; j < batch_numbers.length; j++)
-      {
-        if(batch_text != batch_numbers[j])
-        { 
-          is_batch_unique = true;
-        }
-      }
-    }while (is_batch_unique == false);
-    
-    batch_no_textbox.Text = batch_text;
-    
-    var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (+90)));
-    
-    var w_day = aqString.SubString(date,0,2);
-    var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
-    var w_yr = aqString.SubString(date,6,4);
-      
-    options_poct_form().Panel(1).Image("calendar_png").Click();
-      
-    w_datepicker = INRstar_base().Panel("ui_datepicker_div");
-    w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
-    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
-    select_day(w_day, w_datepicker);
-    
-    var expiry_date = options_poct_form_path.Panel(1).Textbox("ExpiryDate").Text;
-    var active = true;
-    
-    poct_details.push(batch_text, expiry_date, active);
-    
-    options_poct_form().Panel(3).SubmitButton("SubmitNewPoCTBatchDetails").Click();
-    
-    return poct_details;
-  }
 }
 //--------------------------------------------------------------------------------
 function tsa_neqas_set_poct_active_batches(no_batches_to_set)

@@ -41,10 +41,10 @@ function login(User,Password,TestStepMode)
 
     // Find out if the important info is on the screen maybe take this out into it's own method !
 
-    WaitSeconds(4); 
+    WaitSeconds(2); 
     var important_info = INRstarV5.NativeWebObject.Find("innertext", "Do Not Show Again");
   
-    WaitSeconds(2); 
+    WaitSeconds(1); 
     if (important_info.Exists) 
     {
        var important_info_path = warning_pop_up();
@@ -52,7 +52,7 @@ function login(User,Password,TestStepMode)
     } 
 
     var email_address_confirm = INRstarV5.NativeWebObject.Find("innertext", "Confirm");
-    WaitSeconds(2); 
+    WaitSeconds(1); 
       
     if (email_address_confirm.Exists) 
     {

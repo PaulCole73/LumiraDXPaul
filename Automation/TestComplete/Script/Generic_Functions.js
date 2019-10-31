@@ -443,7 +443,6 @@ function get_patient_surname()
 }
 //-----------------------------------------------------------------------------------
 //Checking confirm banner deleting an adverse event
-
 function check_banner_confirmation_adverse_event()
 {
   var adverse_event_tab_confirm_box_path = adverse_event_tab_confirm_box();  
@@ -464,21 +463,21 @@ function check_banner_confirmation_adverse_event()
 //Checking top audit on the patient tab
 function validate_top_patient_audit(test_case_title,w_data)
 {  
-   Goto_Patient_Audit();
-   var patient_audit_path = patient_audit()
-   var audit_data = patient_audit_path.Cell(1, 1).innerText;
+  Goto_Patient_Audit();
+  var patient_audit_path = patient_audit()
+  var audit_data = patient_audit_path.Cell(1, 1).innerText;
 
-    if (audit_data == w_data)
-    {
-       Log.Message(test_case_title + '- Audit was written');
-       return true;
-    }
-      else 
-      {
-       Log.Message(test_case_title + ' Test Failed - Patient audit record not found ' + ' This is the actual audit // ' + audit_data + ' // This is the expected audit // '
-        + w_data + ' //');
-       return false;
-       }
+  if(audit_data == w_data)
+  {
+    Log.Message(test_case_title + '- Audit was written');
+    return true;
+  }
+  else 
+  {
+    Log.Message(test_case_title + ' Test Failed - Patient audit record not found ' + ' This is the actual audit // ' 
+                                + audit_data + ' // This is the expected audit // ' + w_data + ' //');
+    return false;
+  }
 }
 //-----------------------------------------------------------------------------------
 //Checking specific audit on the patient tab
@@ -525,20 +524,20 @@ function validate_more_info_specific_entry_patient_audit(item_no, data, title)
 //Checking top audit on the system audit
 function validate_top_system_audit(test_case_title,w_data)
 {  
-   Goto_System_Audit();
-   var system_audit_path = system_audit()
-   var audit_data = system_audit_path.Cell(1, 1).innerText;
+  Goto_System_Audit();
+  var system_audit_path = system_audit()
+  var audit_data = system_audit_path.Cell(1, 1).innerText;
 
-    if (audit_data == w_data)
-    {
-       Log.Checkpoint(test_case_title);
-       return true;
-    }
-      else 
-      {
-       Log.Warning(test_case_title + "Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
-       return false;
-       }
+  if (audit_data == w_data)
+  {
+    Log.Message(test_case_title + " - Correct Top Audit");
+    return true;
+  }
+  else 
+  {
+    Log.Message(test_case_title + "Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
+    return false;
+  }
 }
 //-----------------------------------------------------------------------------------
 function patient_banner_error_message()

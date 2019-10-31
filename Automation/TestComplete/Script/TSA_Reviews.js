@@ -55,7 +55,7 @@ function add_non_warfarin_review(new_tp,data_req,rev_date,weight,creatinine)
   {
    add_review_form_test_results_path.Panel("Question_TR_Creatinine").Textbox("TR_Creatinine").Text = creatinine;
   } 
-  WaitSeconds(2);
+  WaitSeconds(1);
   
   //Test Results - Creatinine clearance 
   if (creatinine && weight !='')
@@ -204,3 +204,36 @@ function add_basic_review_aceno(itemText)
   var add_review_form_buttons_path = add_review_form_buttons();
   add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
 }
+//--------------------------------------------------------------------------------
+function add_review(drug)
+{
+  if(drug == "Apixaban")
+  {
+    add_basic_review_doac("2.5 mg - Twice daily");
+  }
+  else if(drug == "Dabigatran")
+  {
+    add_basic_review_doac("110 mg - Twice daily");
+  }
+  else if(drug == "Edoxaban")
+  {
+    add_basic_review_doac("15 mg - Daily");
+  }
+  else if(drug == "Rivaroxaban")
+  {
+    add_basic_review_doac("2.5 mg - Twice daily");
+  }
+  else if(drug == "Dalteparin (LMWH)")
+  {
+    add_basic_review_heparin("5,000 IU - Daily");
+  }
+  else if(drug == "Enoxaparin (LMWH)")
+  {
+    add_basic_review_heparin("20mg once daily");
+  }
+  else if(drug == "Acenocoumarol")
+  {
+    add_basic_review_aceno("5");
+  }
+}
+//--------------------------------------------------------------------------------
