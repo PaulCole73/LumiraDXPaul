@@ -271,7 +271,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   //Create my expected data for comparison against the treatment row
   var ntd = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(),(+14))); 
   var formatted_ntd = format_date(ntd);
-  treatment_data.push(formatted_inr_date, "2.5", "2.0", "", "0", "14", "", formatted_ntd, "-"); 
+  treatment_data.push(formatted_inr_date, "2.5", "2.0", "2.0", "0", "14", "14", formatted_ntd, "-");
   
   Log.Message(treatment_data + ' This is data passed in for adding treatment');
   

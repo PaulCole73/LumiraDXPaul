@@ -137,3 +137,70 @@ function get_next_review_date_warning()
   
   return review_next_date_message;
 }
+//--------------------------------------------------------------------------------
+function add_basic_review_doac(itemText)
+{
+  Goto_Patient_TreatmentPlan_Review_New();
+    
+  var add_review_form_dose_path = add_review_form_dose();
+  add_review_form_dose_path.Select("reviewAnswers_9_value").ClickItem(itemText);
+    
+  var add_review_form_buttons_path = add_review_form_buttons();
+  add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
+}
+//--------------------------------------------------------------------------------
+function add_basic_review_heparin(itemText)
+{
+  Goto_Patient_TreatmentPlan_Review_New();
+    
+  var add_review_form_dose_path = add_review_form_dose();
+  add_review_form_dose_path.Select("reviewAnswers_11_value").ClickItem(itemText);
+  
+  date = aqConvert.StrToDate(aqDateTime.Today());
+  
+  var INRstarV5 = INRstar_base();
+  var add_review_form_path = add_review_form();
+  add_review_form_path.Panel(0).Panel("WarfarinNextReviewDatePanel").Panel("NextReviewDate").Panel(0).Image("calendar_png").Click();
+  datepicker = INRstarV5.Panel("ui_datepicker_div");
+              
+  var w_yr = aqString.SubString(date,6,4);
+  var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
+  var w_day = aqString.SubString(date,0,2);
+           
+  datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+  datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+  select_day(w_day, datepicker);
+    
+  var add_review_form_buttons_path = add_review_form_buttons();
+  add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
+}
+//--------------------------------------------------------------------------------
+function add_basic_review_aceno(itemText)
+{
+  Goto_Patient_TreatmentPlan_Review_New();
+    
+  var add_review_form_dose_path = add_review_form_dose();
+  var review_form = add_review_form();
+  var inr_textbox = review_form.Panel(0).Panel(3).Panel("WarfarinTestResultsPanel").Panel("Question_TR_InrResult").Textbox("TR_InrResult");
+  
+  inr_textbox.Text = "2.5";
+  add_review_form_dose_path.Select("optionSelect1").ClickItem(itemText);
+  
+  date = aqConvert.StrToDate(aqDateTime.Today());
+  
+  var INRstarV5 = INRstar_base();
+  var add_review_form_path = add_review_form();
+  add_review_form_path.Panel(0).Panel("WarfarinNextReviewDatePanel").Panel("NextReviewDate").Panel(0).Image("calendar_png").Click();
+  datepicker = INRstarV5.Panel("ui_datepicker_div");
+              
+  var w_yr = aqString.SubString(date,6,4);
+  var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
+  var w_day = aqString.SubString(date,0,2);
+           
+  datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+  datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+  select_day(w_day, datepicker);
+    
+  var add_review_form_buttons_path = add_review_form_buttons();
+  add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
+}

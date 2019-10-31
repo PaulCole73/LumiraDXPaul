@@ -19,6 +19,14 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     if(tp_start_mode=='2')
     {
       Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan(); 
+      if(drug == "W")
+      {
+        Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan();
+      }
+      else
+      {
+        goto_patient_treatmentplan_add_more_1_treatmentplan_nonwarfarin();
+      }
       var treatment_plan_area = add_treatment_plan_main_section_path();
     } 
     if(tp_start_mode=='3')
@@ -100,6 +108,10 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       if (drug != 'W')
       {   
         treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
+        if(tp_start_mode == 2)
+        {
+          process_popup("Drug Confirmation Changed", "OK");
+        }
         treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
       }
       buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();     
@@ -139,6 +151,22 @@ function edit_treatment_plan(dm)
   buttons.Button("UpdatePatientTreatmentPlan").Click();
   
   return more_info;  
+}
+//--------------------------------------------------------------------------------
+function edit_treatment_plan_non_warfarin_drug(drug)
+{
+  Goto_Patient_TreatmentPlan_Edit_Existing_Plan_Non_Warfarin();
+  
+  var treatment_plan_details = edit_treatment_plan_path();
+  
+  treatment_plan_details.Panel(2).Select("DrugId").ClickItem(drug);
+  
+  process_popup("Drug Confirmation Changed", "OK");
+  
+  treatment_plan_details.Panel(3).Select("TreatmentDuration").ClickItem("52 Weeks");
+  
+  var buttons = edit_treatment_plan_button_path();       
+  buttons.Button("UpdatePatientTreatmentPlan").Click();
 } 
 //--------------------------------------------------------------------------------
 function edit_treatment_plan_diagnosis()

@@ -256,6 +256,16 @@ function new_treatment_plan_button_path()
   return new_treatment_plan_button;
 } 
 //------------------------------------------------------------------------
+function change_treatment_plan_buttons()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var treat_buttons = panelPTC.Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails");
+  
+  return treat_buttons;
+}
+//------------------------------------------------------------------------
 function add_treatment_plan_main_section_path()
 {      
   var INRstarV5 = INRstar_base();

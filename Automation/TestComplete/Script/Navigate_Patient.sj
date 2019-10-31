@@ -205,7 +205,6 @@ function Goto_Patient_TreatmentPlan_Add()
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan Add - If a treatment plan exists
-
 function Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan()
 {
     WaitSeconds(2,"About to go to Treatment Plan Tab");
@@ -231,9 +230,65 @@ function Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan()
     process_button(INRstarV5, "Confirmation Required", "Confirm") ;
     WaitSeconds(2,"Going to Patient Treatment Plan Add");
 }
-//-------------------------------------------------------------------------------
-// Navigate to Patient Treatment Plan Add - If a pop up exists prior to adding tp details
 
+//-------------------------------------------------------------------------------
+// Navigate to Patient Treatment Plan Add for nonwarfarin plan - If a treatment plan exists
+function goto_patient_treatmentplan_add_more_1_treatmentplan_nonwarfarin()
+{
+  WaitSeconds(2,"About to go to Treatment Plan Tab");
+
+  var INRstarV5 = INRstar_base();
+
+  // Log.Message("Navigating to Patient, Treatment Plan, Add");
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPR = panelMCP.Panel("PatientRecord");
+  // Click on Patient Treatment Tab
+  panelPR.Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
+   
+  var panelPMTC = panelPR.Panel("PatientMainTabContent");
+  WaitSeconds(2);
+    
+  // Click on Clinical Details Sub Tab
+  panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientTreatmentPlanTab").Click();
+    
+  // Go to Add Details
+  panelPMTC.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(0).Button("AddPatientTreatmentPlanLink").Click();
+    
+  //Confirming add new treatment plan pop up
+  process_button(INRstarV5, "Confirmation Required", "Confirm") ;
+  WaitSeconds(2,"Going to Patient Treatment Plan Add");
+}
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+// Navigate to Patient Treatment Plan Edit with existing treatment plan
+function goto_patient_treatmentplan_edit_existing_plan_non_warfarin()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPR = panelMCP.Panel("PatientRecord");
+    
+  WaitSeconds(2,"About to go to Treatment Plan Details Tab");
+
+  // Click on Patient Treatment Tab -----------------------------------------------------------
+  panelPR.Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
+     
+  WaitSeconds(2,"About to go to Treatment Plan Details Tab");
+
+  // Click on Clinical Details Sub Tab ---------------------------------------------------------
+  var panelPMTC = panelPR.Panel("PatientMainTabContent");
+  var panelPTPTSM = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
+  panelPTPTSM.Link("PatientTreatmentPlanTab").Click();
+   
+  WaitSeconds(1,"Clicking 'Edit Plan Details'");
+       
+  // Click on Edit Button --------------------------------------------------------------------------
+  var panelPCW = panelPMTC.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper")
+  var panelPCD = panelPCW.Panel("PatientTreatmentPlanDetails");
+  panelPCD.Panel(0).Button("EditPatientTreatmentPlanLink").Click();
+}
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+// Navigate to Patient Treatment Plan Add - If a pop up exists prior to adding tp details
 function Goto_Patient_TreatmentPlan_pop_up()
 {
     WaitSeconds(2,"About to go to Treatment Plan Tab");
