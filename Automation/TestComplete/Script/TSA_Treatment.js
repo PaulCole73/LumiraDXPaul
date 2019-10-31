@@ -349,7 +349,14 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 1).Select("INR").ClickItem(inr);
     historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 2).Select("Dose").ClickItem(dose);
     historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 3).Select("Omits").ClickItem(omits + " Days");
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " Days");
+    if (review != "1")
+    {
+      historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " Days");
+    }
+    else
+    {
+      historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " Day");
+    }
     historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(aqConvert.FloatToStr(target));
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
         
@@ -378,7 +385,14 @@ function add_manual_treatment(date,inr,dose,review)
   select_day(w_day, w_datepicker);
 
   test_info_path.Panel(0).Select("Dose").ClickItem(dose);
-  test_info_path.Panel(2).Select("Review").ClickItem(review + " Days");
+  if(review != "1")
+  {
+    test_info_path.Panel(2).Select("Review").ClickItem(review + " Days");
+  }
+  else
+  {
+    test_info_path.Panel(2).Select("Review").ClickItem(review + " Day");
+  }
   test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem("Lab");
    
@@ -389,6 +403,12 @@ function add_manual_treatment(date,inr,dose,review)
   //Confirm the values
   var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
   wbt_Confirm.Click();
+  
+  var popup = INRstar_base().NativeWebObject.Find("contentText", "Insert Confirmation");
+  if(popup.Exists == true)
+  {
+    process_popup("Insert Confirmation", "Confirm");
+  }
    
   WaitSeconds(2,"Saving the Treatment");  
   
@@ -691,6 +711,7 @@ function get_treatment_icon_state()
         Log.Message('Could not find the treatment row icon');  
 } 
 //--------------------------------------------------------------------------------
+
 
 
 

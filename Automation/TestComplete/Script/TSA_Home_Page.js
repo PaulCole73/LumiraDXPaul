@@ -603,3 +603,26 @@ function check_patient_not_on_overdue_non_warfarin_review_message(pat_name)
       }
 } 
 //--------------------------------------------------------------------------------
+function get_overdue_patient(patient_name)
+{
+  Goto_Home();
+  var home_page_messages_path = home_page_messages();
+  var INRstarV5 = INRstar_base();
+  
+  var link = INRstarV5.NativeWebObject.Find("idStr", "OverduePatientHeaderLink");
+  
+  if(link.Exists == true)
+  {
+    home_page_messages_path.Link("OverduePatientHeaderLink").Click();
+    var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
+    
+    for(var i = 1; i < table.rowCount; i++)
+    {
+      if(table.Cell(i, 0).contentText == patient_name)
+      {
+        table.Cell(i, 0).Click();
+        break;
+      }
+    }
+  }
+}

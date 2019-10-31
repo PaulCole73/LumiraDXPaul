@@ -494,7 +494,52 @@ try
    }
 } 
 //----------------------------------------
-
+//C1248183
+function tc_treatment_plan_add_second_treatment_using_previous()
+{
+  try
+  {
+    var test_title = 'Treatment Plan - Add a New Treatment Using Previous Plan Details';
+		login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Use_Previous', 'M', 'Shared');
+    add_treatment_plan('W', 'Manual', '', 'Shared', '');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "7", "2.5");
+    
+    var result_set = new Array();
+    var current_values = new Array();
+    var previous_values = new Array();
+    current_values = get_treatment_row_key_values(0, "current");
+    var date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
+    
+    add_treatment_plan('W', 'Manual', date, 'Shared', '2');
+    
+    var previous_treatments_check = INRstar_base().NativeWebObject.Find("contentText", "Treatments from previous plan");   
+    if(previous_treatments_check.Exists == true)
+    {
+      previous_values = get_treatment_row_key_values(0, "previous");
+    }
+    
+    var result_set_1 = checkArrays(current_values, previous_values, "Compare Treatment Rows");
+    result_set.push(result_set_1);
+    result_set_1 = display_top_patient_audit("New Treatment Plan");
+    result_set.push(result_set_1);
+    result_set_1 = more_info_top_patient_audit("Is Treatment Plan In Use? set to [True]");
+    result_set.push(result_set_1);
+    result_set_1 = more_info_top_patient_audit("Are Previous Treatment Plan's Treatments Relevant? set to [1]");                                           
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    
+    results_checker(results, test_title);
+    
+    Log_Off(); 
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    Log_Off();
+  }
+}
 //----------------------------------------
 
 //----------------------------------------

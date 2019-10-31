@@ -481,6 +481,47 @@ function validate_top_patient_audit(test_case_title,w_data)
        }
 }
 //-----------------------------------------------------------------------------------
+//Checking specific audit on the patient tab
+function validate_specific_entry_patient_audit(item_no, data, title)
+{  
+  Goto_Patient_Audit();
+  WaitSeconds(2);
+  var patient_audit_path = patient_audit()
+  var audit_data = patient_audit_path.Cell(item_no, 1).innerText;
+
+  if (audit_data == data)
+  {
+    Log.Message(title + " - Audit was written");
+    return true;
+  }
+  else 
+  {
+    Log.Message(title + " Test Failed - Patient audit record not found." + " This is the actual audit: // " 
+                                      + audit_data + " // This is the expected audit: // " + data + " //");
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
+//Checking specific audit on the patient tab
+function validate_more_info_specific_entry_patient_audit(item_no, data, title)
+{  
+  Goto_Patient_Audit();
+  WaitSeconds(2);
+  var patient_audit_path = patient_audit()
+  var audit_data = patient_audit_path.Cell(item_no, 3).innerText;
+  
+  if(audit_data.includes(data))
+  {
+    Log.Message("This is the row data: // " + audit_data + " // - This is what I am looking for: // " + data + " //");
+    return true;
+  }
+  else 
+  {
+    Log.Warning("Audit data not found " + audit_data + " - " + audit_data);
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
 //Checking top audit on the system audit
 function validate_top_system_audit(test_case_title,w_data)
 {  
@@ -615,14 +656,25 @@ function get_patient_fullname()
   return patient_fullname;  
 } 
 //-----------------------------------------------------------------------------------
-function get_treatment_row(row_num)
+function get_treatment_row(row_num, table_type)
 {
-  Goto_Patient_Treatment();
-  var treatment_table_path = treatment_table();
-  
+  if(table_type == "current" || table_type == null)
+  {
+    Goto_Patient_Treatment();
+    var treatment_table_path = treatment_table();
+  }
+  else if(table_type == "pending")
+  {
+    var treatment_table_path = pending_treatment_table();
+  }
+  else if(table_type == "previous")
+  {
+    Goto_Patient_Treatment();
+    var treatment_table_path = treatment_table_from_previous_plan();
+  }
   var treatment_row_array = new Array()
   
-  for(var i = 0; i < 11; i++)
+  for(var i = 0; i < 9; i++)
   {
     var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
     treatment_row_array.push(treatment_value);
@@ -631,10 +683,22 @@ function get_treatment_row(row_num)
   return treatment_row_array;  
 }
 //-----------------------------------------------------------------------------------
-function get_treatment_row_key_values(row_num) //returns test date, inr, dose, review days, next test date
+function get_treatment_row_key_values(row_num, table_type) //returns test date, inr, dose, review days, next test date
 {
-  Goto_Patient_Treatment();
-  var treatment_table_path = treatment_table();
+  if(table_type == "current" || table_type == null)
+  {
+    Goto_Patient_Treatment();
+    var treatment_table_path = treatment_table();
+  }
+  else if(table_type == "pending")
+  {
+    var treatment_table_path = pending_treatment_table();
+  }
+  else if(table_type == "previous")
+  {
+    Goto_Patient_Treatment();
+    var treatment_table_path = treatment_table_from_previous_plan();
+  }
   var treatment_row_array = new Array()
   
   for(var i = 0; i < 11; i++)
@@ -648,23 +712,6 @@ function get_treatment_row_key_values(row_num) //returns test date, inr, dose, r
   
   return treatment_row_array;  
 }
-//-----------------------------------------------------------------------------------
-function get_pending_treatment_row_key_values(row_num) //returns test date, inr, dose, review days, next test date
-{
-  var treatment_table_path = pending_treatment_table();
-  var treatment_row_array = new Array()
-  
-  for(var i = 0; i < 11; i++)
-  {
-    if(i == 0 || i == 1 || i == 2 || i == 5 || i == 7)
-    {
-      var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
-      treatment_row_array.push(treatment_value);
-    }
-  }
-  
-  return treatment_row_array;  
-}  
 //-----------------------------------------------------------------------------------
 function edit_demographics_error_checker(exp_err_mess)
 {
@@ -739,11 +786,55 @@ function test_field(p_field,p_field_name, exp_object_type)
   }
 }
 //-----------------------------------------------------------------------------------
- 
 //-----------------------------------------------------------------------------------
- 
+function get_eqc_table_row(batch_ref)
+{
+  Goto_Options_EQC();
+
+  var table_data = options_eqc_form_buttons().Table("LocationsEQCTable");
+  var row_data = new Array();
+  var row_num;
+  
+  if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
+  {
+    for(var i = 1; i < table_data.RowCount; i++)
+    {
+      for(var j = 0; j < 7; j++)
+      {
+        if(table_data.Cell(i, j).contentText == batch_ref)
+        {
+          row_num = i;
+          break;
+        }
+      }
+    }
+    for(var i = 0; i < 7; i++)
+    {
+      var temp = table_data.Cell(row_num, i).contentText;
+      row_data.push(temp);
+    }
+  }
+  
+  return (row_data);
+}
 //-----------------------------------------------------------------------------------
- 
 //-----------------------------------------------------------------------------------
- 
+function get_poct_batch_numbers()
+{
+  Goto_Options_PoCT()
+    
+  var INRstarV5 = INRstar_base();
+  var poct_table = options_poct_table();
+  var poct_batch_nos = new Array();
+  
+  for(var i = 1; i < poct_table.RowCount; i++)
+  {
+    var temp = poct_table.Cell(i, 0).contentText;
+    poct_batch_nos.push(temp);
+  }
+  
+  return(poct_batch_nos);
+}
+//-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------

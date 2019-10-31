@@ -42,7 +42,7 @@ function create_clinics(pa_days)
 }
 function add_clinic(INRstarV5, i, w_days_to_next_Monday)
 {
-         var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+        var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
         var panelSFBIC = panelMCP.Panel("ManageClinicsTabContent").Table("scheduler").Cell(4, 0).Panel("scheduler_formBlock_innerContent");
         var tableSFB = panelSFBIC.Panel("scheduler_formBlock_AptFrmContainer_PW_1").Table("scheduler_formBlock_AptFrmContainer_PWST_1");
         var tableSFB2 = tableSFB.Cell(0, 0).Table("scheduler_formBlock_AptFrmContainer_CLW_1");
