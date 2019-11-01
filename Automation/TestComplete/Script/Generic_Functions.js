@@ -592,14 +592,14 @@ function results_checker_are_false(result_set)
 //This is to test the data given only contains true as an answer
 function results_checker_are_true(result_set)
 {
-    for(var i=0;i<result_set.length;i++)
-    {
-     if(result_set[i]==false)
-     { 
-      Log.Warning('found a false')
+  for(var i=0;i<result_set.length;i++)
+  {
+    if(result_set[i]==false)
+    { 
+      Log.Message("Found a false");
       return false;
-     }  
-    }
+    }  
+  }
   return true;
 }   
 //-----------------------------------------------------------------------------------

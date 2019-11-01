@@ -235,5 +235,9 @@ function add_review(drug)
   {
     add_basic_review_aceno("5");
   }
+  else if(drug == "W" || drug == "Warfarin")
+  {
+    add_warfarin_review_new_review_button();
+  }
 }
 //--------------------------------------------------------------------------------

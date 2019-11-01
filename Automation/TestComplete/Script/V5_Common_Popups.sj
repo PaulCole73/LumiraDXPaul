@@ -255,25 +255,26 @@ function process_popup(header, button)
   if (wbx.Exists == false)
   {  
     Log.Message("'" + header + "' box not displayed");
-  }
-  else
-  {
-    Log.Message("'" + header + "' box displayed");
-  }
-  
-  var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", button, "BUTTON");
-  if (wb_Ok.Exists == false)
-  {
-    Log.Message("'" + header + "' "+ button +" button not found");
     return "";
   }
   else
   {
-    var text = INRstarV5.Panel(3).Panel("modalDialogBox").innerText;
-    Log.Message("Clicking '" + header + "' "+ button +" button ");
-    Sys.HighlightObject(wb_Ok, 2);
-    wb_Ok.Click();
-    return text;
+    Log.Message("'" + header + "' box displayed");
+    
+    var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", button, "BUTTON");
+    if (wb_Ok.Exists == false)
+    {
+      Log.Message("'" + header + "' "+ button +" button not found");
+      return "";
+    }
+    else
+    {
+      var text = INRstarV5.Panel(3).Panel("modalDialogBox").innerText;
+      Log.Message("Clicking '" + header + "' "+ button +" button ");
+      Sys.HighlightObject(wb_Ok, 2);
+      wb_Ok.Click();
+      return text;
+    }
   } 
 }
 //-------------------------------------------------------------------------------

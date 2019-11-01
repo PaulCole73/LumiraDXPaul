@@ -18,14 +18,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     }
     if(tp_start_mode=='2')
     {
-      if(drug == "W")
-      {
-        Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan();
-      }
-      else
-      {
-        goto_patient_treatmentplan_add_more_1_treatmentplan_nonwarfarin();
-      }
+      Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan();
       var treatment_plan_area = add_treatment_plan_main_section_path();
     } 
     if(tp_start_mode=='3')
@@ -60,10 +53,12 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       
       var buttons_path = add_treatment_plan_button();
       
-      if (drug == 'W')
+      if (drug == 'W' || drug == "Warfarin")
       { 
         WaitSeconds(1)
         treatment_plan_area.Panel(2).Select("DrugId").ClickItem("Warfarin");
+        
+        process_popup("Drug Confirmation Change", "OK");
           
         //proces the pop-ups
         //process_button(INRstarV5, "Is this patient currently taking Warfarin?", "No");
@@ -104,16 +99,20 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
           tablet_selection_path.Panel(5).Checkbox("Tablets_UseSplit").ClickChecked(true);
         }
       }
-      if (drug != 'W')
+      if (drug != 'W' && drug != "Warfarin")
       {   
         treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
         if(tp_start_mode == 2)
         {
-          process_popup("Drug Confirmation Changed", "OK");
+          process_popup("Drug Confirmation Change", "OK");
         }
         treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
       }
-      buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();     
+      buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
+      if (drug == 'W' || drug == "Warfarin")
+      {
+        process_popup("You will need to add an historical treatment", "OK");
+      }     
       WaitSeconds(1);       
     }  
   } 
@@ -152,21 +151,46 @@ function edit_treatment_plan(dm)
   return more_info;  
 }
 //--------------------------------------------------------------------------------
-function edit_treatment_plan_non_warfarin_drug(drug)
+function edit_treatment_plan_all(drug, dm) //need to update function name
 {
-  goto_patient_treatmentplan_edit_existing_plan_non_warfarin();
+  Goto_Patient_TreatmentPlan();
+  var current_drug = clinical_tp_details().Panel(3).Label("DrugName_DetachedLabel").innerText;
+
+  if(current_drug != "Warfarin")
+  {
+    goto_patient_treatmentplan_edit_existing_plan_non_warfarin();
+  }
+  else
+  {
+    Goto_Patient_TreatmentPlan_Edit_Existing_Plan();
+  }
   
-  var treatment_plan_details = edit_treatment_plan_path();
+  if(drug != "Warfarin")
+  {
+    var treatment_plan_details = edit_treatment_plan_path();
+    treatment_plan_details.Panel(2).Select("DrugId").ClickItem(drug);
+    process_popup("Drug Confirmation Change", "OK");
+    treatment_plan_details.Panel(3).Select("TreatmentDuration").ClickItem("52 Weeks");
   
-  treatment_plan_details.Panel(2).Select("DrugId").ClickItem(drug);
+    var buttons = edit_treatment_plan_button_path();       
+    buttons.Button("UpdatePatientTreatmentPlan").Click();
+  }
+  else
+  {
+    var treatment_plan_details = edit_treatment_plan_path();
+    treatment_plan_details.Panel(2).Select("DrugId").ClickItem("Warfarin");
+    process_popup("Drug Confirmation Change", "OK");
   
-  process_popup("Drug Confirmation Changed", "OK");
-  
-  treatment_plan_details.Panel(3).Select("TreatmentDuration").ClickItem("52 Weeks");
-  
-  var buttons = edit_treatment_plan_button_path();       
-  buttons.Button("UpdatePatientTreatmentPlan").Click();
+    edit_treatment_plan_warfarin_details_path().Panel(0).Select("DosingMethod").ClickItem(dm);
+    process_popup("More information - " + dm, "OK");
+    edit_treatment_plan_warfarin_details_path().Panel(1).Select("TestingMethod").ClickItem("Lab");
+    edit_treatment_plan_tab_select().Panel(0).Checkbox("NPSA").Click();
+    
+    var buttons = edit_treatment_plan_button_path();       
+    buttons.Button("UpdatePatientTreatmentPlan").Click();
+  }
 } 
+//--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 function edit_treatment_plan_diagnosis()
 {

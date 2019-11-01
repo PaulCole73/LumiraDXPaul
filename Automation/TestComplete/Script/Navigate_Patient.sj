@@ -224,7 +224,15 @@ function Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan()
     panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientTreatmentPlanTab").Click();
     
     // Go to Add Details
-    panelPMTC.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(1).Button("AddPatientTreatmentPlanLink").Click();
+    var current_drug = clinical_tp_details().Panel(3).Label("DrugName_DetachedLabel").innerText;
+    if(current_drug != "Warfarin")
+    {
+      panelPMTC.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(0).Button("AddPatientTreatmentPlanLink").Click();
+    }
+    else
+    {
+      panelPMTC.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(1).Button("AddPatientTreatmentPlanLink").Click();
+    }
     
     //Confirming add new treatment plan pop up
     process_button(INRstarV5, "Confirmation Required", "Confirm") ;
