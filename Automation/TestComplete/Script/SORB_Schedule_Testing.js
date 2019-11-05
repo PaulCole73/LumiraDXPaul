@@ -1,6 +1,6 @@
 ﻿//USEUNIT Add_INR_Backdated
 //USEUNIT Common
-//USEUNIT Generic_Functions
+//USEUNIT SORB_Functions
 //USEUNIT loggin
 //USEUNIT Navigate_Patient
 //USEUNIT Navigation
@@ -12,7 +12,7 @@
 //USEUNIT V5_Common_Presets
 //USEUNIT V5_SQL
 //USEUNIT TSA_Treatment
-//USEUNIT Generic_Functions
+//USEUNIT SORB_Functions
 //-----------------------------------------------------------------------------------
 function SORB_schedule_testing_test_cases()
 {
