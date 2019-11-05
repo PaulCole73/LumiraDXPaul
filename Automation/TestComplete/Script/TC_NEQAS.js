@@ -1,11 +1,11 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
 //USEUNIT TSA_NEQAS
-//USEUNIT Generic_Functions
 //USEUNIT Navigation
 //USEUNIT Test_Audit
 //USEUNIT V5_Common_Popups
 //USEUNIT System_Paths
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_neqas_add_new_from_eqc()
 {
@@ -122,7 +122,7 @@ function tc_neqas_edit_existing_add_external_inr()
     percent_error = percent_error.toFixed(2);                              
     
     row_data = get_eqc_table_row(batch_reference);
-    result_set_1 = validateArrays(row_data, row_data_1);
+    result_set_1 = checkArrays(row_data, row_data_1);
     result_set_1 = results_checker_are_false(result_set_1);
     result_set.push(result_set_1);
     
@@ -172,7 +172,7 @@ function tc_neqas_delete_ecq_entry()
     if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
     {
       row_data_1 = get_eqc_table_row(batch_reference);
-      var result_set_1 = validateArrays(row_data, row_data_1);
+      var result_set_1 = checkArrays(row_data, row_data_1);
       result_set_1 = results_checker_are_false(result_set_1);
       result_set.push(result_set_1);
     }

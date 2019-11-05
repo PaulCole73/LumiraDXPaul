@@ -1,7 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
 //USEUNIT V5_Common_Batch
-//USEUNIT Generic_Functions
 //USEUNIT V5_Common_Popups
 //--------------------------------------------------------------------------------
 function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
@@ -41,9 +40,9 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
   WaitSeconds(1);
   f_name.Text = name;
   WaitSeconds(1);
-  f_start.Text = "06:00";
+  f_start.Text = "12:00";
   WaitSeconds(1);
-  f_end.Text = "10:00";
+  f_end.Text = "16:00";
   WaitSeconds(1);
    
   add_clinic_form().Table(0).Cell(4, 1).Table("SlotLength_ET").Cell(0, 0).Table("SlotLength").Cell(0, 2).Click();
@@ -211,10 +210,11 @@ function goto_patient_clinic_tab_appointment_name(name, weeks_ahead)
   var clinic_names = clinic_patients_appointments_container();
   for(var i = 0; i < clinic_names.ChildCount; i++)
   {
+    WaitSeconds(1);
     var child = clinic_names.Child(i).Panel("appointmentDiv").Table(0).Cell(0, 1).Table(0).Cell(0, 1).Table(0).Cell(2, 0).TextNode("lblDescription");
     if(child.contentText == name)
     {
-     //child.Parent.Parent.Parent.Parent.Parent.Parent.Parent;
+      //child.Parent.Parent.Parent.Parent.Parent.Parent.Parent;
       for(var j = 0; j <= 24; j++)
       {
         var box = clinic_patients_appointments_container().FindChild("contentText", "Appts:" + j + "/24" + "\n" + name);

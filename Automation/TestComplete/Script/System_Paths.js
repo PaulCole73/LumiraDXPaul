@@ -542,6 +542,17 @@ function more_schedule_table()
   var schedule_table = grid.Table("ScheduleSelectorTable");
   
   return schedule_table;
+}
+//------------------------------------------------------------------------
+function dosing_schedule_table()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
+  var grid = panelPPT.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent");
+  
+  return grid;
 } 
 //------------------------------------------------------------------------
 function treatment_buttons_pre_schedule()
@@ -1046,7 +1057,16 @@ function system_audit()
   var audit_table = panelLATW.Table("AuditTrailTable");
    
   return audit_table;
-} 
+}
+//------------------------------------------------------------------------
+function treatment_audit()
+{
+  var INRstarV5 = INRstar_base();
+  var panelTATW = INRstarV5.Panel(2).Panel("DialogContent").Panel("TreatmentAuditTrailWrapper");
+  var audit_table = panelTATW.Table("AuditTrailTable");
+   
+  return audit_table;
+}  
 //------------------------------------------------------------------------
 function add_patient_error_banner()
 {

@@ -226,113 +226,52 @@ function Get_New_Number_V5()
 // Select correct day from calendar
 function select_day(p_day, p_datepicker)
 {
-// remove any leading '0' from p_day
+  // remove any leading '0' from p_day
+  p_day = aqConvert.IntToStr(aqConvert.StrToInt(p_day));
+  var day_to_click;
 
-p_day = aqConvert.IntToStr(aqConvert.StrToInt(p_day));
-
- // Check what day is in row 2, col 0, to work out where to start the testing from
- var w_classname = p_datepicker.Table(0).Cell(2,0).classname;
- var wi_innerText;
- if (aqString.Find(w_classname, "ui-state-disabled") > 0)
-    wi_innerText = p_datepicker.Table(0).Cell(2,0).TextNode(0).innerText;
- else
-    wi_innerText = p_datepicker.Table(0).Cell(2,0).Link(0).innerText;
-    
- var w_start_col = 8 - wi_innerText;
- var w_col = 0;
- var w_row = 0;
-  
-//  Log.Message("Start Column = " + w_start_col + " :  p_day " + p_day);
- if (w_start_col < 0)
- {
-    Log.Error("Start Column Error");
- }
- else
- {
-
-   for (r=1; r<7; r++)
-   {
-       for (c=w_start_col; c<7; c++)
-       {
-            // Reset start column to 0;
-            w_start_col = 0;
-          
-            if (p_datepicker.Table(0).Cell(r, c).innerText != "")
-            {
-                if (p_datepicker.Table(0).Cell(r, c).InnerText == p_day)
-                {
-                   w_col = c;
-                   w_row = r;
-                   c = 10;  // to end loop
-                   r = 10;  // to end loop
-                }
-            }
-       }
-   }
- }  
-// Log.Message("Row: " + w_row + "    Col: "+ w_col);
- // Click date
- p_datepicker.Table(0).Cell(w_row, w_col).Link(0).Click();
- 
- //Log.Message(" Cell is " + w_row + ", " + w_col + " : " + p_datepicker.Table(0).Cell(w_row, w_col).Link(0).InnerText); 
-}
-//------------------------------------------------------------------------
-//Select correct day from calendar
-function select_day_status(p_day, p_datepicker,status)
-{
-// remove any leading '0' from p_day
-p_day = aqConvert.IntToStr(aqConvert.StrToInt(p_day));
-
- // Check what day is in row 2, col 0, to work out where to start the testing from
- var w_classname = p_datepicker.Table(0).Cell(2,0).classname;
- var wi_innerText;
- if (aqString.Find(w_classname, "ui-state-disabled") > 0)
-    wi_innerText = p_datepicker.Table(0).Cell(2,0).TextNode(0).innerText;
- else
-    wi_innerText = p_datepicker.Table(0).Cell(2,0).Link(0).innerText;
-    
- var w_start_col = 8 - wi_innerText;
- var w_col = 0;
- var w_row = 0;
-  
- if (w_start_col < 0)
- {
-    Log.Error("Start Column Error");
- }
- else
- {
-   for (r=1; r<7; r++)
-   {
-       for (c=w_start_col; c<7; c++)
-       {
-            // Reset start column to 0;
-            w_start_col = 0;
-          
-            if (p_datepicker.Table(0).Cell(r, c).innerText != "")
-            {
-                if (p_datepicker.Table(0).Cell(r, c).InnerText == p_day)
-                {
-                   w_col = c;
-                   w_row = r;
-                   c = 10;  // to end loop
-                   r = 10;  // to end loop
-                }
-            }
-       }
-   }
- }  
-
- // Get state of cell/day
- if(status=='1')
- {
- var state = p_datepicker.Table(0).Cell(w_row, w_col).Link(0).Name;
- }
-  else if (status=='0')
+  var w_classname = p_datepicker.Table(0).Cell(2,0).classname;
+  var wi_innerText;
+  if (aqString.Find(w_classname, "ui-state-disabled") > 0)
   {
-  var state = p_datepicker.Table(0).Cell(w_row, w_col).TextNode(0).Name;
+    wi_innerText = p_datepicker.Table(0).Cell(2,0).TextNode(0).innerText;
   }
+  else
+  {
+    wi_innerText = p_datepicker.Table(0).Cell(2,0).Link(0).innerText;
+  }
+    
+  var w_start_col = 8 - wi_innerText;
+  var w_col = 0;
+  var w_row = 0;
   
- return state;
+  if (w_start_col < 0)
+  {
+    Log.Error("Start Column Error");
+  }
+  else
+  {
+    for (r=1; r<7; r++)
+    {
+      for (c=w_start_col; c<7; c++)
+      {
+        w_start_col = 0;
+        if (p_datepicker.Table(0).Cell(r, c).innerText != "")
+        {
+          if (p_datepicker.Table(0).Cell(r, c).InnerText == p_day)
+          {
+            day_to_click = p_datepicker.Table(0).Cell(r, c).Child(0);
+            w_col = c;
+            w_row = r;
+            r = 10; //to end loop 1
+            break;
+          }
+        }
+      }
+    }
+  }
+  day_to_click.Click();
+  return day_to_click.Name;
 }
 //------------------------------------------------------------------------
 // Find day
@@ -380,93 +319,49 @@ function display_values(INRstarV5, w_current_INR)
 // Display the results in the Log
 function display_patient_audit(w_data)
 {  
-   var INRstarV5 = set_system();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
-   var panelPMTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent");
-   var wt_audit = panelPMTC.Panel("PatientAuditTrailWrapper").Table("AuditTrailTable");
-   var w_row = wt_audit.Rowcount - 1;
+  var INRstarV5 = set_system();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
+  var panelPMTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent");
+  var wt_audit = panelPMTC.Panel("PatientAuditTrailWrapper").Table("AuditTrailTable");
+  var w_row = wt_audit.Rowcount - 1;
 
-   for (w_row = wt_audit.Rowcount - 1; w_row > 0; w_row--)
-   {
+  for (w_row = wt_audit.Rowcount - 1; w_row > 0; w_row--)
+  {
     if (wt_audit.Cell(w_row,1).innerText == w_data)
-       Log.Message(wt_audit.Cell(w_row,1).innerText + " - " + wt_audit.Cell(w_row,2).innerText);
-       
-   }
+    {
+      Log.Message(wt_audit.Cell(w_row,1).innerText + " - " + wt_audit.Cell(w_row,2).innerText);
+    }   
+  }
 }
 //----------------------------------------------------------------------------------------------
 // Display the top audit record
 function display_top_patient_audit(w_data)
 {  
-   Goto_Patient_Audit();
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
-   var panelPMTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent");
-   var wt_audit = panelPMTC.Panel("PatientAuditTrailWrapper").Table("AuditTrailTable");
-   var wt_row = wt_audit.Cell(1, 1).innerText;
+  Goto_Patient_Audit();
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
+  var panelPMTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent");
+  var wt_audit = panelPMTC.Panel("PatientAuditTrailWrapper").Table("AuditTrailTable");
+  var wt_row = wt_audit.Cell(1, 1).innerText;
 
-    if (wt_row == w_data)
-    {
-       Log.Message(wt_row + " - " + wt_audit.Cell(1,1).innerText);
-       return true;
-    }
-      else 
-        {
-       Log.Warning("Patient audit record not found " + wt_row + " - " + wt_audit.Cell(1,1).innerText);
-       return false;
-         }
+  if (wt_row == w_data)
+  {
+    Log.Message(wt_row + " - " + wt_audit.Cell(1,1).innerText);
+    return true;
+  }
+  else 
+  {
+    Log.Warning("Patient audit record not found " + wt_row + " - " + wt_audit.Cell(1,1).innerText);
+    return false;
+  }
 }
 //----------------------------------------------------------------------------------------------
-// Get the top audit record more information
+// Get the top patient audit record more information
 function more_info_top_patient_audit(w_data)
 {  
-   Goto_Patient_Audit();
-   var INRstarV5 = INRstar_base();
-   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
-   var panelPMTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent");
-   var wt_audit = panelPMTC.Panel("PatientAuditTrailWrapper").Table("AuditTrailTable");
-   var wt_row = wt_audit.Cell(1, 3).innerText;
+  Goto_Patient_Audit();
+  var wt_row = patient_audit().Cell(1, 3).innerText;
 
-    //if (aqString.Contains(wt_row,w_data)) this dont work 
-    if(wt_row.includes(w_data))
-    {
-       Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
-       return true;
-    }
-      else 
-        {
-       Log.Warning("Audit data not found " + wt_row + " - " + wt_audit.Cell(1,3).innerText);
-       return false;
-       }
-}
-
-//----------------------------------------------------------------------------------------------
-// Get the top audit record more information
-function more_info_top_treatment_audit(w_data)
-{  
-   Goto_Patient_Treatment_Audit();
-   var INRstar = INRstar_base();
-   var wt_audit = INRstar.Panel(2).Panel("DialogContent").Panel("TreatmentAuditTrailWrapper").Table("AuditTrailTable");
-   var wt_row = wt_audit.Cell(1, 3).innerText;
-
-    //if (aqString.Contains(wt_row,w_data)) this dont work 
-    if(wt_row.includes(w_data))
-    {
-       Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
-       return true;
-    }
-      else 
-        {
-       Log.Warning("Audit data not found " + wt_row + " - " + wt_audit.Cell(1,3).innerText);
-       return false;
-       }
-}
-function more_info_top_system_audit(w_data)
-{  
-  Goto_System_Audit()
-  var wt_audit = system_audit();
-  var wt_row = wt_audit.Cell(1, 3).innerText;
-
-  //if (aqString.Contains(wt_row,w_data)) this dont work 
   if(wt_row.includes(w_data))
   {
     Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
@@ -474,7 +369,44 @@ function more_info_top_system_audit(w_data)
   }
   else 
   {
-    Log.Warning("Audit data not found " + wt_row + " - " + wt_audit.Cell(1,3).innerText);
+    Log.Message("Audit data not found " + wt_row + "\r\n\r\n" + "This is what I am looking for // " + w_data);
+    return false;
+  }
+}
+//----------------------------------------------------------------------------------------------
+// Get the top treatment audit record more information
+function more_info_top_treatment_audit(w_data)
+{  
+  Goto_Patient_Treatment_Audit();
+  var wt_row = treatment_audit().Cell(1, 3).innerText;
+
+  if(wt_row.includes(w_data))
+  {
+    Log.Message("This is the row data // " + wt_row + " // - This is what I am looking for // " + w_data + " //");
+    return true;
+  }
+  else 
+  {
+    Log.Message("Audit data not found: " + wt_row + "\r\n\r\n" + "This is what I am looking for // " + w_data);
+    return false;
+  }
+}
+//----------------------------------------------------------------------------------------------
+// Get the top system audit record more information
+function more_info_top_system_audit(w_data)
+{  
+  Goto_System_Audit()
+  var wt_audit = system_audit();
+  var wt_row = wt_audit.Cell(1, 3).innerText;
+
+  if(wt_row.includes(w_data))
+  {
+    Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
+    return true;
+  }
+  else 
+  {
+    Log.Message("Audit data not found " + wt_row + "\r\n\r\n" + "This is what I am looking for // " + w_data);
     return false;
   }
 }

@@ -9,7 +9,7 @@ function ts_staging_regression_treatment_plan()
   tc_treatment_plan_add_first_manual_treatment_plan();
   tc_treatment_plan_add_first_maintenance_treatment_plan(); 
   tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_been_added();
-  tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_plan_if_no_treatments_have_been_added();
+  //tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_plan_if_no_treatments_have_been_added(); //needs looking at
   tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unless_requested_specifically();
   tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yellow_banner_is_displayed();
   //tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_added_induction_patient(); //Come back to failing worked manually

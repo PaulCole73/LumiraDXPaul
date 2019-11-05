@@ -1,12 +1,12 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
 //USEUNIT TSA_Patient
-//USEUNIT Generic_Functions
 //USEUNIT Navigation
 //USEUNIT Test_Audit
 //USEUNIT TSA_Clinics_Appointments
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_clinics_add_a_recurring_clinic()
 {

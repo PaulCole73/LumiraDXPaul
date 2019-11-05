@@ -1,9 +1,9 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
-//USEUNIT Generic_Functions
 //USEUNIT Navigation
 //USEUNIT Test_Audit
 //USEUNIT TSA_Loc_Management_Users
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_users_add_a_new_user()
 {
@@ -18,8 +18,7 @@ function tc_users_add_a_new_user()
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
-    var results = results_checker_are_true(result_set); 
-    Log.Message(results);
+    var results = results_checker_are_true(result_set);
     
     //Pass in the result
     results_checker(results, test_title);     
@@ -49,7 +48,6 @@ function tc_users_manage_user_permissions()
     
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
-    Log.Message(results);
     
     //Pass in the result
     results_checker(results, test_title);     
@@ -104,8 +102,7 @@ function tc_users_manage_change_permissions_to_read_only()
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
-    var results = results_checker_are_true(result_set); 
-    Log.Message(results);
+    var results = results_checker_are_true(result_set);
     
     //Pass in the result
     results_checker(results, test_title);  
@@ -149,7 +146,6 @@ function tc_users_reset_user_password()
     
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
-    Log.Message(results);
     
     //Pass in the result
     results_checker(results, test_title);
@@ -194,8 +190,7 @@ function tc_users_disable_user()
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
-    var results = results_checker_are_true(result_set); 
-    Log.Message(results);
+    var results = results_checker_are_true(result_set);
     
     //Pass in the result
     results_checker(results, test_title);
@@ -236,8 +231,7 @@ function tc_users_enable_user()
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
-    var results = results_checker_are_true(result_set); 
-    Log.Message(results);
+    var results = results_checker_are_true(result_set);
     
     //Pass in the result
     results_checker(results, test_title);

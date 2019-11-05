@@ -9,6 +9,8 @@
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT Add_INR_Backdated
+
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 //Tests for testing the SORB button for user permission validation 
 //--------------------------------------------------------------------------------

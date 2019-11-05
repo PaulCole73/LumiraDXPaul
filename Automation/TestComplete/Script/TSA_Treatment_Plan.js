@@ -2,11 +2,17 @@
 //USEUNIT Navigation
 //USEUNIT V5_Common_Batch
 //--------------------------------------------------------------------------------
-function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, td)
+function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, td, using_prev_plan)
 {
  try
  {
-    var INRstarV5 = INRstar_base();    
+    var INRstarV5 = INRstar_base();
+    
+    var prev_plan_action = "No";
+    if(using_prev_plan == true)
+    {
+      prev_plan_action = "Yes"
+    }
   
     //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp new tp, activate patient tp and not first tp
     //Also it may skip the got to if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
@@ -62,8 +68,8 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
           
         //proces the pop-ups
         //process_button(INRstarV5, "Is this patient currently taking Warfarin?", "No");
-        var is_reusing = process_popup("New Warfarin Treatment Plan", "Yes");
-        if (is_reusing != "")
+        var is_reusing = process_popup("New Warfarin Treatment Plan", prev_plan_action);
+        if (is_reusing != "" && prev_plan_action != "No")
         {
           buttons_path.SubmitButton("AddPatientTreatmentPlan").Click(); 
         }
@@ -112,8 +118,13 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       if (drug == 'W' || drug == "Warfarin")
       {
         process_popup("You will need to add an historical treatment", "OK");
+      }
+      if(tp_start_mode == "2")
+      {
+        var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");
       }     
-      WaitSeconds(1);       
+      WaitSeconds(1);
+      return popup_msg;       
     }  
   } 
   catch(e)

@@ -4,50 +4,13 @@
 //USEUNIT System_Paths
 
 //-----------------------------------------------------------------------------------
-//A place to put generic functions
+//SORB Functions
 //-----------------------------------------------------------------------------------
 
-
-//-----------------------------------------------------------------------------------
-//Function for testing if field passed in is a label or can be edited
-function test_field(p_field, p_field_name, exp_object_type)
-{
-  //get the object type based on expected and pass in
-  if(exp_object_type == "read_only")
-  {
-    if (p_field.ObjectType == "Label") 
-    {
-      Log.Message(p_field_name + " " + "Field is read only TEST PASS");
-      return true;
-    }
-    else
-    {
-      Log.Message(p_field_name + " " + "Field can be edited Field FAIL");
-      return false;
-    }
-  }
-  //Going to need to add in other type of fields here at the moment this method only handles drop down or label but other valid ones could be check box, text entry etc
-  if(exp_object_type == "editable_field")
-  {
-    if (p_field.ObjectType == "Label") 
-    {
-      Log.Message(p_field_name + " " + "Field is read only TEST FAIL");
-      return false;
-    }
-    else
-    {
-      Log.Message(p_field_name + " " + "Field can be edited Field PASS");
-      return true;
-    }
-  }
-}
-//----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-
-
-
+//-----------------------------------------------------------------------------------
 /////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// SORB ONLY FUNCTIONS //////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////

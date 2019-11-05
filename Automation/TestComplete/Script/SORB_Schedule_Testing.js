@@ -13,7 +13,6 @@
 //USEUNIT V5_SQL
 //USEUNIT TSA_Treatment
 //USEUNIT Generic_Functions
-
 //-----------------------------------------------------------------------------------
 function SORB_schedule_testing_test_cases()
 {
