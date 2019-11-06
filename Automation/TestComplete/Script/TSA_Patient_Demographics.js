@@ -1,6 +1,5 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
-//USEUNIT V5_Common_Batch
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function edit_all_patient_demographics(gender)
@@ -104,37 +103,37 @@ function edit_all_patient_demographics(gender)
 
   //Ethnicity
   data_before = patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").wText;
-  patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").ClickItem((Math.random()*18));
+  patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").ClickItem((Math.random()*17));
   data_after = patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").wText;
   
   //Check data is now different
   while (data_before == data_after)
   {
-    patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").ClickItem((Math.random()*18));
+    patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").ClickItem((Math.random()*17));
     data_after = patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").wText;
   } 
   
   //First Language
   data_before = patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").wText;
-  patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").ClickItem((Math.random()*58));
+  patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").ClickItem((Math.random()*188));
   data_after = patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").wText;
   
   //Check data is now different
   while (data_before == data_after)
   {
-    patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").ClickItem((Math.random()*58));
+    patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").ClickItem((Math.random()*188));
     data_after = patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").wText;
   } 
   
   //Marital Status
   data_before = patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").wText;
-  patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").ClickItem((Math.random()*2));
+  patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").ClickItem((Math.random()*8));
   data_after = patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").wText;
   
   //  Check data is now different
   while (data_before == data_after)
   {
-    patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").ClickItem((Math.random()*2));
+    patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").ClickItem((Math.random()*8));
     data_after = patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").wText;
   } 
   

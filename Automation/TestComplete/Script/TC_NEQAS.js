@@ -2,10 +2,9 @@
 //USEUNIT TSA_Login
 //USEUNIT TSA_NEQAS
 //USEUNIT Navigation
-//USEUNIT Test_Audit
-//USEUNIT V5_Common_Popups
 //USEUNIT System_Paths
 //USEUNIT Misc_Functions
+//USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
 function tc_neqas_add_new_from_eqc()
 {

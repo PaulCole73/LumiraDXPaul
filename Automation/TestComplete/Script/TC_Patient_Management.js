@@ -1,12 +1,10 @@
-﻿//USEUNIT Tested_Apps
-//USEUNIT TSA_Patient
+﻿//USEUNIT TSA_Patient
 //USEUNIT TSA_Patient_Demographics
 //USEUNIT TSA_Patient_Management
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Login
 //USEUNIT Navigation
-//USEUNIT V5_Common
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_patient_deactivate_a_patient()
@@ -123,7 +121,7 @@ function tc_patient_amend_a_patient_to_be_a_manual_self_tester()
     //Change to self tester
     add_manual_self_test_group();
   
-    result_set_1 = more_info_top_patient_audit('INR Self Tester set to [True');
+    result_set_1 = validate_more_info_top_patient_audit('INR Self Tester set to [True');
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -439,8 +437,9 @@ function tc_reactivate_a_potential_duplicate_patient()
   
     //Adding patient and making them inactive
     login('cl3@regression','INRstar_5','Shared');
-    add_patient('Regression', 'reactivate_dup_patient', 'M', 'Shared');
-    var patSurname_one = get_patient_surname();
+    var unique_val = get_unique_number();
+    add_patient('Regression', unique_val, 'M', 'Shared');
+    var patFirstname_one = get_patient_firstname();
     var nhs_num_one = get_patient_nhs();
     deactivate_patient();
     Log_Off();
@@ -450,6 +449,7 @@ function tc_reactivate_a_potential_duplicate_patient()
     add_patient('Regression', 'Trans_inactive_pat', 'M', 'Shared', nhs_num_one);
     var messagename = get_patient_fullname();
     var nhs_num = get_patient_nhs();
+    
     var test_prac = 'Deans Regression Testing Location'
     change_test_practice(test_prac);
     WaitSeconds(1);
@@ -458,13 +458,13 @@ function tc_reactivate_a_potential_duplicate_patient()
     //Log back in accept transfer then try to reactivate the patient
     login('cl3@regression','INRstar_5','Shared');
     accept_transfer_with_warning(messagename);
-    inactive_patient_search(patSurname_one);
+    inactive_patient_search(patFirstname_one);
     Goto_Patient_Management();
     var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
     pat_managment_tab_status_buttons_path.Button("ActivatePatientButton").Click(); 
 
     //Check the error is displayed
-    var result = activating_patient_error_checker('This patient may already exist at this location as ' + patSurname + ', ' + patFirstname + ' ['+ nhs_num + ']');
+    var result = activating_patient_error_checker('This patient may already exist at this location as ' + messagename + ' ['+ nhs_num + ']');
   
     //Validate the result set
     results_checker(result, test_title); 
@@ -514,8 +514,6 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
   }
 } 
 //--------------------------------------------------------------------------------
-
-
 //--------------------------------------------------------------------------------
 
 

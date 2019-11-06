@@ -219,9 +219,28 @@ function validate_top_system_audit(test_case_title, w_data)
     return false;
   }
 }
+//-----------------------------------------------------------------------------------
+function validate_top_treatment_audit(w_data)
+{  
+  var INRstarV5 = INRstar_base();
+  w_au_table = INRstarV5.Panel(2).Panel("DialogContent").Panel("TreatmentAuditTrailWrapper").Table("AuditTrailTable");
+  var wt_row = w_au_table.Cell(1, 1).innerText;
+
+  if (wt_row == w_data)
+  {
+    Log.Message(wt_row + " - " + w_au_table.Cell(1,2).innerText);
+    return true;
+  }
+  else
+  {
+    Log.Message("Treatment audit record not found : " + w_data);
+    return false;
+  }
+  INRstarV5.Panel(2).Panel(1).Panel(0).Button(0).Click();
+}
 //------------------------------------------------------------------------------------
 // Get the top patient audit record more information
-function more_info_top_patient_audit(w_data)
+function validate_more_info_top_patient_audit(w_data)
 {  
   Goto_Patient_Audit();
   var wt_row = patient_audit().Cell(1, 3).innerText;
@@ -239,7 +258,7 @@ function more_info_top_patient_audit(w_data)
 }
 //-----------------------------------------------------------------------------------
 // Get the top treatment audit record more information
-function more_info_top_treatment_audit(w_data)
+function validate_more_info_top_treatment_audit(w_data)
 {  
   Goto_Patient_Treatment_Audit();
   var wt_row = treatment_audit().Cell(1, 3).innerText;
@@ -257,7 +276,7 @@ function more_info_top_treatment_audit(w_data)
 }
 //-----------------------------------------------------------------------------------
 // Get the top system audit record more information
-function more_info_top_system_audit(w_data)
+function validate_more_info_top_system_audit(w_data)
 {  
   Goto_System_Audit()
   var wt_audit = system_audit();
@@ -585,6 +604,24 @@ function new_guid(char_count)
   return sGuid;       
 }
 //-----------------------------------------------------------------------------------
+function get_unique_number()
+{
+  var date_now = aqConvert.DateTimeToStr(aqDateTime.Now());
+  
+  var split_1 = date_now.split(" ");
+  var split_2 = split_1[0].split("/");
+  var split_3 = split_1[1].split(":");
+  
+  var temp = "";
+  temp = aqString.Concat(split_2[0], split_2[1]);
+  temp = aqString.Concat(temp, split_2[2]);
+  temp = aqString.Concat(temp, split_3[0]);
+  temp = aqString.Concat(temp, split_3[1]);
+  temp = aqString.Concat(temp, split_3[2]);
+  
+  return temp;
+}
+//-----------------------------------------------------------------------------------
 //Pass in the path of the date picker, the date you want to check
 function date_picker(path, date)
 {
@@ -614,12 +651,120 @@ function date_picker(path, date)
   }
   
   return status;
-} 
+}
 //-----------------------------------------------------------------------------------
+function select_day(p_day, p_datepicker)
+{
+  // remove any leading '0' from p_day
+  p_day = aqConvert.IntToStr(aqConvert.StrToInt(p_day));
+  var day_to_click;
+
+  var w_classname = p_datepicker.Table(0).Cell(2,0).classname;
+  var wi_innerText;
+  if (aqString.Find(w_classname, "ui-state-disabled") > 0)
+  {
+    wi_innerText = p_datepicker.Table(0).Cell(2,0).TextNode(0).innerText;
+  }
+  else
+  {
+    wi_innerText = p_datepicker.Table(0).Cell(2,0).Link(0).innerText;
+  }
+    
+  var w_start_col = 8 - wi_innerText;
+  var w_col = 0;
+  var w_row = 0;
+  
+  if (w_start_col < 0)
+  {
+    Log.Error("Start Column Error");
+  }
+  else
+  {
+    for (r=1; r<7; r++)
+    {
+      for (c=w_start_col; c<7; c++)
+      {
+        w_start_col = 0;
+        if (p_datepicker.Table(0).Cell(r, c).innerText != "")
+        {
+          if (p_datepicker.Table(0).Cell(r, c).InnerText == p_day)
+          {
+            day_to_click = p_datepicker.Table(0).Cell(r, c).Child(0);
+            w_col = c;
+            w_row = r;
+            r = 10; //to end loop 1
+            break;
+          }
+        }
+      }
+    }
+  }
+  day_to_click.Click();
+  return day_to_click.Name;
+}
+//-----------------------------------------------------------------------------------
+function set_month(p_m)
+{
+  //Note - input month must be in numeric format   
+  var wa_Mth = new Array(13);                   
+  wa_Mth[0] = "";
+  wa_Mth[1] = "Jan";
+  wa_Mth[2] = "Feb";
+  wa_Mth[3] = "Mar";
+  wa_Mth[4] = "Apr";
+  wa_Mth[5] = "May";
+  wa_Mth[6] = "Jun";
+  wa_Mth[7] = "Jul";
+  wa_Mth[8] = "Aug";
+  wa_Mth[9] = "Sep";
+  wa_Mth[10] = "Oct";
+  wa_Mth[11] = "Nov";
+  wa_Mth[12] = "Dec";
+  
+  var w_Month = wa_Mth[p_m];
+  
+  return w_Month;
+}
+//-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
+//                                External Apps                                    //
+//---------------------------------------------------------------------------------//
+function Get_New_Number_V5()
+{
+  var wnd;
+
+  WaitSeconds(1)
+  TestedApps.NHSNumberGenerator.Run(1, true);
+  WaitSeconds(1)
+
+  form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
+  form.WinFormsObject("button1").ClickButton();
+
+  wnd = form.WinFormsObject("textBox1").wText;
+
+  form.Close();
+  return wnd;
+}
 
 
 
 
+//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
+//                                Wait Functions                                   //
+//---------------------------------------------------------------------------------//
+function WaitSeconds(seconds,p_text)
+{
+  if (p_text == "")
+  {
+    BuiltIn.Delay(seconds * 1000,"Paused the testing");
+  } 
+  else
+  {
+    BuiltIn.Delay(seconds * 1000,p_text);
+  }  
+}
 
 
 

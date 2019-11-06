@@ -1,5 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function check_patient_on_refer_list(pat_name)
 {
@@ -10,24 +11,23 @@ function check_patient_on_refer_list(pat_name)
   
   //Check message exists
   if(link.Exists != true)
-    {
-       Log.Message('Home page message not displayed');
-       return false;
-    }
-  
+  {
+    Log.Message('Home page message not displayed');
+    return false;
+  }
   WaitSeconds(2);
   home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
   var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
   
   for (i=0; i<table.rowcount; i++)
-    {
-       if(table.Cell(i, 0).contentText==pat_name)
-        {     
-          return true;
-        }
-    } 
-    Log.Message("Patient not found " + pat_name)
-    return false; 
+  {
+    if(table.Cell(i, 0).contentText==pat_name)
+    {     
+      return true;
+    }
+  } 
+  Log.Message("Patient not found " + pat_name)
+  return false; 
 }
 //--------------------------------------------------------------------------------
 function check_patient_not_on_refer_list(pat_name)
@@ -402,42 +402,48 @@ function check_patient_not_in_decline_patient_transfer_request_message(pat_name)
 //--------------------------------------------------------------------------------
 function check_patient_in_transfer_request_not_accepted_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
-    WaitSeconds(2);
+    WaitSeconds(1);
     var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
+    var link_2 = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink_2");
   
-  //In case the patient in question was the only one on the list
+    //In case the patient in question was the only one on the list
     if(link.Exists != true)
-      {
-       Log.Message('Home page message not displayed');
-       return false;
-      }
-  
-    WaitSeconds(2);
-    home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
+    {
+      Log.Message('Home page message not displayed');
+      return false;
+    }
+    
+    WaitSeconds(1);
+    if(link_2.Exists == true)
+    {
+      home_page_messages_path.Link("TransferredPatientHeaderLink_2").Click();
+    }
+    else
+    {
+      home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
+    }
     
     var table = home_page_messages_path.Panel("TransferRequestPatients").Table("TransferRequestTable");
-
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            //Click checkbox against patient and then Unsuspend button    
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+        //Click checkbox against patient and then Unsuspend button    
+        return true;
       }
-    Log.Message('Patient was not found on the list')
+    }
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test patient_in_transfer_request_not_accepted FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning('Test patient_in_transfer_request_not_accepted FAILED Exception Occured = ' + e);
+    Log_Off(); 
+  }
 } 
 //--------------------------------------------------------------------------------
 function check_patient_with_incomplete_treatment_message(pat_name)

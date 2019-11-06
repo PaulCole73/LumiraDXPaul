@@ -862,6 +862,9 @@
 		<child name="Misc_Functions" key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="Misc_Functions.js" />
 		</child>
+		<child name="Popup_Handlers" key="{5AB1C72D-FAF0-43FB-9A9F-41EEB745D98A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Popup_Handlers.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -919,6 +922,8 @@
 				<ref key="{3E644774-5830-45ED-B233-AEDA357E7355}" />
 				<ref key="{C4ECD5A2-3F26-4559-86EB-D693C4C411DD}" />
 				<ref key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" />
+				<ref key="{5AB1C72D-FAF0-43FB-9A9F-41EEB745D98A}" />
+				<ref key="{1B4F6338-5744-4A40-B50A-A7A6B61D1033}" />
 			</references>
 		</folder>
 		<folder caption="Old Scripts" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1175,7 +1180,6 @@
 				<ref key="{068FEA8D-DDD8-4941-B16D-D66F4DEDC2CF}" />
 				<ref key="{A062A984-B899-446E-905F-F59F706FA0AE}" />
 				<ref key="{F92EBF44-824A-4584-9072-5793CA60775D}" />
-				<ref key="{1B4F6338-5744-4A40-B50A-A7A6B61D1033}" />
 				<ref key="{29630EA1-319D-468C-9FCE-12E3F97E3DEB}" />
 			</references>
 		</folder>

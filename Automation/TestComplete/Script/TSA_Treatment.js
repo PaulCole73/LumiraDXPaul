@@ -1,34 +1,32 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
-//USEUNIT V5_Common_Batch
-//USEUNIT Add_INR_Simple
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function add_pending_fast_induction_treatment(inr,TestStepMode)
 {
-   var INRstarV5 = INRstar_base();    
+  var INRstarV5 = INRstar_base();    
  
-   if(TestStepMode == 'Shared')
-    {
-     Goto_Patient_New_INR();  // Pre_Treatment INR
+  if(TestStepMode == 'Shared')
+  {
+    Goto_Patient_New_INR(); //Pre_Treatment INR
     
-     var risk_factors = fast_induction_risk_factors_path(); 
-     risk_factors.Cell(0, 0).Panel(0).Checkbox("NoRiskFactors").ClickChecked(true);
-     var pre_treatment_info = pre_treatment_induction_path()
+    var risk_factors = fast_induction_risk_factors_path(); 
+    risk_factors.Cell(0, 0).Panel(0).Checkbox("NoRiskFactors").ClickChecked(true);
+    var pre_treatment_info = pre_treatment_induction_path()
+    
+    pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);
      
-     var ws_INR = FloatToString(inr);
-     pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);
+    pre_treatment_info.Panel(2).Select("TestingMethod").ClickItem('PoCT');
      
-     pre_treatment_info.Panel(2).Select("TestingMethod").ClickItem('PoCT');
+    // PoCT special handling due to all the things this can be set to and a bug
+    handle_PoCT(pre_treatment_info);
      
-     // PoCT special handling due to all the things this can be set to and a bug
-     handle_PoCT(pre_treatment_info);
+    var buttons = pre_treatment_induction_buttons_path();
+    buttons.SubmitButton("CalculateWarfarinDose").Click();
+    handle_poct_expired();
      
-     var buttons = pre_treatment_induction_buttons_path();
-     buttons.SubmitButton("CalculateWarfarinDose").Click();
-     handle_poct_expired();
-     
-     process_confirm_INR(INRstarV5);
-    }
+    process_confirm_INR(INRstarV5);
+  }
 }
 //--------------------------------------------------------------------------------
 function add_fast_induction_treatment(inr)
@@ -42,7 +40,6 @@ function add_fast_induction_treatment(inr)
   WaitSeconds(2);
   var pre_treatment_info = pre_treatment_info_induction_path();
      
-  var ws_INR = FloatToString(inr);
   pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);
      
   pre_treatment_info.Panel(2).Select("TestingMethod").ClickItem('PoCT');
@@ -64,33 +61,32 @@ function add_pending_induction_slow_treatment(inr,TestStepMode)
 {
   var INRstarV5 = INRstar_base();    
  
-   if(TestStepMode == 'Shared')
-    {
-     Goto_Patient_New_INR();  // Pre_Treatment INR
+  if(TestStepMode == 'Shared')
+  {
+    Goto_Patient_New_INR();  // Pre_Treatment INR
     
-     var pre_treatment_info = pre_treatment_info_induction_path()
+    var pre_treatment_info = pre_treatment_info_induction_path()
      
-     var ws_INR = FloatToString(inr);
-     pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);
-     WaitSeconds(2);    
-     pre_treatment_info.Panel(2).Select("TestingMethod").ClickItem('PoCT');
+    pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);
+    WaitSeconds(2);    
+    pre_treatment_info.Panel(2).Select("TestingMethod").ClickItem('PoCT');
      
-     // PoCT special handling due to all the things this can be set to and a bug
-     handle_PoCT(pre_treatment_info);
+    // PoCT special handling due to all the things this can be set to and a bug
+    handle_PoCT(pre_treatment_info);
      
-     var buttons = pre_treatment_induction_buttons_path();
-     buttons.SubmitButton("CalculateWarfarinDose").Click();
+    var buttons = pre_treatment_induction_buttons_path();
+    buttons.SubmitButton("CalculateWarfarinDose").Click();
      
-     process_confirm_INR();
+    process_confirm_INR();
      
-     //handle_no_poct('induct');
-     //handle_poct_expired();
+    //handle_no_poct('induct');
+    //handle_poct_expired();
       
-     //process_confirm_INR();
-    }
+    //process_confirm_INR();
+  }
 }
 //--------------------------------------------------------------------------------
-function add_pending_manual_treatment(inr,tm,dose,review)
+function add_pending_manual_treatment(inr, tm, dose, review)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
@@ -98,8 +94,7 @@ function add_pending_manual_treatment(inr,tm,dose,review)
   var new_inr_test_info_path = new_inr_test_details();
 
    // Select the passed-in INR value
-   var ws_INR = FloatToString(inr);
-   inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
+   inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
 
    // Testing Method
    inr_test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
@@ -109,7 +104,8 @@ function add_pending_manual_treatment(inr,tm,dose,review)
    handle_PoCT(new_inr_test_details_path);
       
    // Dose
-   inr_test_info_path.Panel(0).Select("Dose").ClickItem(FloatToString(dose));
+   var select_dose = aqConvert.FloatToStr(dose)
+   inr_test_info_path.Panel(0).Select("Dose").ClickItem(select_dose);
        
    // Review
    inr_test_info_path.Panel(2).Select("Review").ClickItem(review);
@@ -120,10 +116,9 @@ function add_pending_manual_treatment(inr,tm,dose,review)
        
    process_confirm_INR(INRstarV5);
    WaitSeconds(2);
-
 }
 //--------------------------------------------------------------------------------
-function add_pending_maintenance_treatment(inr,date,selftest)
+function add_pending_maintenance_treatment(inr, date, selftest)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
@@ -144,9 +139,7 @@ function add_pending_maintenance_treatment(inr,date,selftest)
   select_day(w_day, w_datepicker);
       
   // Select the passed-in INR value
-  var ws_INR = FloatToString(inr);
-  Log.Message("INR is " + ws_INR);
-  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
+  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
   
   // PoCT special handling due to all the things this can be set to and a bug
   var new_inr_test_details_path = new_inr_test_details();
@@ -154,7 +147,7 @@ function add_pending_maintenance_treatment(inr,date,selftest)
   
   if(selftest=='N')
   {
-  treatment_inr_test_options_path.Panel(1).Checkbox("SelfTested").ClickChecked(false);
+    treatment_inr_test_options_path.Panel(1).Checkbox("SelfTested").ClickChecked(false);
   }
   
   var save_button_pre_schedule = treatment_buttons_pre_schedule();
@@ -173,7 +166,7 @@ function add_pending_maintenance_treatment(inr,date,selftest)
   process_Please_acknowledge_warnings();
 }
 //--------------------------------------------------------------------------------
-function add_pending_maintenance_treatment_pop_up_checker(inr,date,selftest)
+function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
@@ -194,9 +187,7 @@ function add_pending_maintenance_treatment_pop_up_checker(inr,date,selftest)
   select_day(w_day, w_datepicker);
       
   // Select the passed-in INR value
-  var ws_INR = FloatToString(inr);
-  Log.Message("INR is " + ws_INR);
-  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
+  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
   
   // PoCT special handling due to all the things this can be set to and a bug
   var new_inr_test_details_path = new_inr_test_details();
@@ -240,7 +231,7 @@ function add_maintenance_treatment(inr,date)
   select_day(w_day, w_datepicker);
       
   // Select the passed-in INR value
-  var ws_INR = FloatToString(inr);
+  var ws_INR = aqConvert.FloatToStr(inr);
   Log.Message("INR is " + ws_INR);
   test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
   
@@ -266,7 +257,6 @@ function add_override_treatment(inr,date,p_review)
   var test_info_pre_schedule_path = new_inr_test_details();
   var treatment_options = test_info_pre_schedule_path.Fieldset("Options");
   var treatment_buttons = pending_treatment_buttons();
-    
 
   // Set the Treatment Date
   var w_day = aqString.SubString(date,0,2);
@@ -281,9 +271,7 @@ function add_override_treatment(inr,date,p_review)
   select_day(w_day, w_datepicker);
       
   // Select the passed-in INR value
-  var ws_INR = FloatToString(inr);
-  Log.Message("INR is " + ws_INR);
-  test_info_pre_schedule_path.Panel("testDetails").Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
+  test_info_pre_schedule_path.Panel("testDetails").Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
   
   //Check if the batch field is on screen
    var poct_batch_field = test_info_pre_schedule_path.contentText;
@@ -305,14 +293,14 @@ function add_override_treatment(inr,date,p_review)
   //Set Review period
   var w_vselect = override_buttons.Cell(1, 3).Select("Treatment_Review");
   
-  if (p_review>1)
+  if (p_review > 1)
   {
   w_vselect.ClickItem(p_review + " Days");
   } 
-    else if (p_review==1)
-     {
-     w_vselect.ClickItem(p_review + " Day");
-     }
+    else if (p_review == 1)
+  {
+    w_vselect.ClickItem(p_review + " Day");
+  }
   
   //Click 'ok'
   var final_override_buttons = override_finish_buttons_path();

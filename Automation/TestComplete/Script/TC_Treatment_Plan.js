@@ -4,8 +4,8 @@
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Patient_Management
-//USEUNIT Navigation
 //USEUNIT TSA_Clinics_Appointments
+//USEUNIT Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_treatment_plan_add_first_manual_treatment_plan()
@@ -502,11 +502,11 @@ function tc_treatment_plan_add_second_treatment_using_previous()
     
     var result_set_1 = checkArrays(current_values, previous_values, "Compare Treatment Rows");
     result_set.push(result_set_1);
-    result_set_1 = validate_top_patient_audit("New Treatment Plan");
+    result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
     result_set.push(result_set_1);
-    result_set_1 = more_info_top_patient_audit("Is Treatment Plan In Use? set to [True]");
+    result_set_1 = validate_more_info_top_patient_audit("Is Treatment Plan In Use? set to [True]");
     result_set.push(result_set_1);
-    result_set_1 = more_info_top_patient_audit("Are Previous Treatment Plan's Treatments Relevant? set to [1]");                                           
+    result_set_1 = validate_more_info_top_patient_audit("Are Previous Treatment Plan's Treatments Relevant? set to [1]");                                           
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -555,7 +555,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_patient_audit("Appointment record [" + clinic_date 
+    result_set_1 = validate_more_info_top_patient_audit("Appointment record [" + clinic_date 
                                                 + "] was updated. Status changed from [Booked] to [Cancelled]");
     result_set.push(result_set_1);
     

@@ -1,8 +1,7 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
-//USEUNIT Navigation
-//USEUNIT Test_Audit
 //USEUNIT TSA_Loc_Management_Users
+//USEUNIT Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_users_add_a_new_user()
@@ -77,7 +76,7 @@ function tc_users_manage_change_permissions_to_read_only()
     var result_set_1 = validate_top_system_audit(test_title, "Edit user permissions");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_system_audit("Role changed from [Clerical 1] to deleted.");
+    result_set_1 = validate_more_info_top_system_audit("Role changed from [Clerical 1] to deleted.");
     result_set.push(result_set_1);
     
     Log_Off();
@@ -131,7 +130,7 @@ function tc_users_reset_user_password()
     var result_set_1 = validate_top_system_audit(test_title, "Reset Password");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_system_audit("User record ["+ user_data[0] +"] was updated.");
+    result_set_1 = validate_more_info_top_system_audit("User record ["+ user_data[0] +"] was updated.");
     result_set.push(result_set_1);
     
     Log_Off();
@@ -173,7 +172,7 @@ function tc_users_disable_user()
     var result_set_1 = validate_top_system_audit(test_title, "Disable User");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_system_audit("Account Enabled changed from [True] to [False].");
+    result_set_1 = validate_more_info_top_system_audit("Account Enabled changed from [True] to [False].");
     result_set.push(result_set_1);
     
     Log_Off();
@@ -217,7 +216,7 @@ function tc_users_enable_user()
     var result_set_1 = validate_top_system_audit(test_title, "Enable User");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_system_audit("Account Enabled changed from [False] to [True].");
+    result_set_1 = validate_more_info_top_system_audit("Account Enabled changed from [False] to [True].");
     result_set.push(result_set_1);
     
     Log_Off();

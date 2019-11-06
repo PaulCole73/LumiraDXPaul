@@ -6,8 +6,6 @@
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Patient_Management
 //USEUNIT Navigation
-//USEUNIT Test_Audit
-//USEUNIT Create_Clinics
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_home_page_view_overdue_inr_test_message()

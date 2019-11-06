@@ -2,7 +2,6 @@
 //USEUNIT TSA_Login
 //USEUNIT TSA_Patient
 //USEUNIT TSA_Treatment_Plan
-
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_add_a_new_adverse_event()

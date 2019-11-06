@@ -510,8 +510,7 @@ function create_password()
 //------------------------------------------------------------------------
 function set_month(p_m)
 {
-  // Note - input month must be in numeric format !!
-          
+  //Note - input month must be in numeric format   
   var wa_Mth = new Array(13);                   
   wa_Mth[0] = "";
   wa_Mth[1] = "Jan";
@@ -528,7 +527,6 @@ function set_month(p_m)
   wa_Mth[12] = "Dec";
   
   var w_Month = wa_Mth[p_m];
-//  Log.Message("p_m: " + p_m + " = " + w_Month);
   
   return w_Month;
 } 

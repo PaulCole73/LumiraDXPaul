@@ -1,6 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
-//USEUNIT V5_Common_Batch
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, td, using_prev_plan)
 {

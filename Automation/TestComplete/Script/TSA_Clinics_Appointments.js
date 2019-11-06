@@ -1,7 +1,7 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
-//USEUNIT V5_Common_Batch
-//USEUNIT V5_Common_Popups
+//USEUNIT Misc_Functions
+//USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
 function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
 {

@@ -6,7 +6,6 @@
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Patient_Management
 //USEUNIT Navigation
-//USEUNIT Test_Audit
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
@@ -199,7 +198,7 @@ function tc_treatment_add_a_treatment_comment()
   result_set = new Array(); 
   
   //Check the audit for adding the treatment
-  var result_set_1 = more_info_top_treatment_audit('Comments set to ['+ comment + ']');
+  var result_set_1 = validate_more_info_top_treatment_audit('Comments set to ['+ comment + ']');
   result_set.push(result_set_1);
   
    //Validate the results sets are true
@@ -488,7 +487,7 @@ try
     add_patient('Regression', 'mainteance_high', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
-    add_pending_maintenance_treatment_pop_up_checker('4.0',aqConvert.StrToDate(aqDateTime.Today()));
+    add_pending_maintenance_treatment_pop_up_checker("4.0",aqConvert.StrToDate(aqDateTime.Today()));
   
     result_set = new Array(); 
   
@@ -630,7 +629,7 @@ function tc_treatment_refer_a_treatment()
     patient_search(pat_nhs);
     //Check the audit
     Goto_suggested_treatment_audit();
-    result_set_1 = display_top_treatment_audit('Treatment Referred');
+    result_set_1 = validate_top_treatment_audit('Treatment Referred');
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -665,6 +664,7 @@ function tc_treatment_authorise_a_referral()
   
     //Refer
     var pending_treatment_buttons_path = pending_treatment_buttons();
+    WaitSeconds(2);
     var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment").Click();
  
     patient_search(pat_nhs);
@@ -689,7 +689,7 @@ function tc_treatment_authorise_a_referral()
   
     //Check the audit
     Goto_suggested_treatment_audit();
-    result_set_1 = display_top_treatment_audit('Treatment Authorised');
+    result_set_1 = validate_top_treatment_audit('Treatment Authorised');
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -726,7 +726,7 @@ function tc_treatment_edit_a_treatment_comment()
   add_treatment_comment(new_comment);
   
   //Check the audit for adding the treatment
-  var result_set_1 = more_info_top_treatment_audit('Comments changed from [' + old_comment + '] to [' + new_comment + ']');
+  var result_set_1 = validate_more_info_top_treatment_audit('Comments changed from [' + old_comment + '] to [' + new_comment + ']');
   result_set.push(result_set_1);
   
    //Validate the results sets are true
