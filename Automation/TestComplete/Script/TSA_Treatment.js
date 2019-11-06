@@ -104,8 +104,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    handle_PoCT(new_inr_test_details_path);
       
    // Dose
-   var select_dose = aqConvert.FloatToStr(dose)
-   inr_test_info_path.Panel(0).Select("Dose").ClickItem(select_dose);
+   inr_test_info_path.Panel(0).Select("Dose").ClickItem(dose);
        
    // Review
    inr_test_info_path.Panel(2).Select("Review").ClickItem(review);
