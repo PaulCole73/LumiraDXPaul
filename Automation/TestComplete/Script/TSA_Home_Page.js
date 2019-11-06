@@ -409,7 +409,7 @@ function check_patient_in_transfer_request_not_accepted_message(pat_name)
     var INRstarV5 = INRstar_base();
     WaitSeconds(1);
     var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
-    var link_2 = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink_2");
+    var link_2 = INRstarV5.NativeWebObject.Find("ObjectIdentifier", "TransferredPatientHeaderLink_2");
   
     //In case the patient in question was the only one on the list
     if(link.Exists != true)
