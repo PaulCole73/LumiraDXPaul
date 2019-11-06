@@ -616,6 +616,7 @@ function tc_treatment_refer_a_treatment()
     var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     Goto_Patient_Treatment();
+    WaitSeconds(3);
   
     //Refer
     var pending_treatment_buttons_path = pending_treatment_buttons();
