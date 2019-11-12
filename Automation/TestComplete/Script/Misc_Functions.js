@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -53,6 +53,10 @@ function button_checker(actual_state, expected_state, test_mess)
   else if(actual_state == false)
   {
     actual_state = "disabled";
+  }
+  else
+  {
+    actual_state = "undefined";
   }
 
   if(actual_state == expected_state)
@@ -606,7 +610,8 @@ function new_guid(char_count)
 //-----------------------------------------------------------------------------------
 function get_unique_number()
 {
-  var date_now = aqConvert.DateTimeToStr(aqDateTime.Now());
+  WaitSeconds(1);
+  var date_now = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%d/%m/%Y %H:%M%S");
   
   var split_1 = date_now.split(" ");
   var split_2 = split_1[0].split("/");
@@ -618,7 +623,6 @@ function get_unique_number()
   temp = aqString.Concat(temp, split_3[0]);
   temp = aqString.Concat(temp, split_3[1]);
   temp = aqString.Concat(temp, split_3[2]);
-  
   return temp;
 }
 //-----------------------------------------------------------------------------------
@@ -627,7 +631,6 @@ function date_picker(path, date)
 {
   var INRstarV5 = INRstar_base(); 
   
-  //Suspended Until
   path.Panel(0).Image("calendar_png").Click();     
   datepicker = INRstarV5.Panel("ui_datepicker_div");
   
@@ -725,6 +728,92 @@ function set_month(p_m)
   
   return w_Month;
 }
+//-----------------------------------------------------------------------------------
+function get_user_level(user_val)
+{
+  var user_level;
+  
+  switch(user_val)
+  {
+    case 0: 
+    user_level = "clerical1";
+    break;
+    case 1: 
+    user_level = "clerical2";
+    break;
+    case 2: 
+    user_level = "clerical3";
+    break;
+    case 3: 
+    user_level = "cl1";
+    break;
+    case 4: 
+    user_level = "cl2";
+    break;
+    case 5: 
+    user_level = "cl3";
+    break;
+    case 6: 
+    user_level = "locadmin";
+    break;
+    case 7: 
+    user_level = "clead";
+    break;
+    case 8: 
+    user_level = "readonly";
+    break;
+  }
+  
+  return user_level;
+}
+//-----------------------------------------------------------------------------------
+function get_dosing_method(dm)
+{
+  var dose_method;
+  
+  switch(dm)
+  {
+    case 0: 
+    dose_method = "Coventry";
+    break;
+    case 1: 
+    dose_method = "Hillingdon";
+    break;
+    case 2: 
+    dose_method = "Fast";
+    break;
+    case 3: 
+    dose_method = "Oates";
+    break;
+    case 4: 
+    dose_method = "Tait";
+    break;
+    case 5: 
+    dose_method = "Manual";
+    break;
+  }
+  
+  return dose_method;
+}
+//-----------------------------------------------------------------------------------
+function process_button_exists(button_id)
+{
+  var INRstarV5 = INRstar_base();
+  var button_to_find = INRstarV5.NativeWebObject.Find("idStr", button_id);
+  if (button_to_find.Exists == false)
+  {  
+    Log.Message("'" + button_id + "' not on screen.");
+  }
+  else
+  {
+    Log.Message("'" + button_id + "' on screen.");
+    Sys.HighlightObject(button_to_find, 2);
+    button_to_find.Click();
+  }
+}
+
+
+
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//

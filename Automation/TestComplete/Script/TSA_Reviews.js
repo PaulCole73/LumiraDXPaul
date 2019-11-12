@@ -7,11 +7,12 @@ function cancel_review()
 {
   var add_review_form_buttons_path = add_review_form_buttons();
   add_review_form_buttons_path.Button("CancelWarfarinReviewLink").Click();
+  WaitSeconds(2, "Waiting for Treatments page...");
 } 
 //--------------------------------------------------------------------------------
 function add_warfarin_review_new_review_button()
 {
-  Goto_Patient_TreatmentPlan_Review_New();
+  Goto_Patient_Treatment_Plan_Review_New();
   var add_review_form_buttons_path = add_review_form_buttons();
   add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
 } 
@@ -20,7 +21,7 @@ function add_non_warfarin_review(new_tp,data_req,rev_date,weight,creatinine)
 {
   if(new_tp=='')
   {
-  Goto_Patient_TreatmentPlan_Review_New();
+      Goto_Patient_Treatment_Plan_Review_New();
   }
   
   var INRstarV5 = INRstar_base(); 
@@ -140,7 +141,7 @@ function get_next_review_date_warning()
 //--------------------------------------------------------------------------------
 function add_basic_review_doac(itemText)
 {
-  Goto_Patient_TreatmentPlan_Review_New();
+  Goto_Patient_Treatment_Plan_Review_New();
     
   var add_review_form_dose_path = add_review_form_dose();
   add_review_form_dose_path.Select("reviewAnswers_9_value").ClickItem(itemText);
@@ -151,7 +152,7 @@ function add_basic_review_doac(itemText)
 //--------------------------------------------------------------------------------
 function add_basic_review_heparin(itemText)
 {
-  Goto_Patient_TreatmentPlan_Review_New();
+  Goto_Patient_Treatment_Plan_Review_New();
     
   var add_review_form_dose_path = add_review_form_dose();
   add_review_form_dose_path.Select("reviewAnswers_11_value").ClickItem(itemText);
@@ -177,7 +178,7 @@ function add_basic_review_heparin(itemText)
 //--------------------------------------------------------------------------------
 function add_basic_review_aceno(itemText)
 {
-  Goto_Patient_TreatmentPlan_Review_New();
+  Goto_Patient_Treatment_Plan_Review_New();
     
   var add_review_form_dose_path = add_review_form_dose();
   var review_form = add_review_form();

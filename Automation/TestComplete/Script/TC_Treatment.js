@@ -5,6 +5,7 @@
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Patient_Management
+//USEUNIT TSA_Patient_Demographics
 //USEUNIT Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
@@ -242,7 +243,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
     result_set.push(result_set_1);
   
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit("Add New INR");
+    result_set_1 = validate_top_patient_audit(test_title, "Add New INR");
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -610,13 +611,15 @@ function tc_treatment_refer_a_treatment()
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
+    
+    WaitSeconds(6);
+    
     add_pending_maintenance_treatment('2.0',(aqDateTime.Today()));
   
     //Get all the patient details
     var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     Goto_Patient_Treatment();
-    WaitSeconds(3);
   
     //Refer
     var pending_treatment_buttons_path = pending_treatment_buttons();
@@ -629,7 +632,7 @@ function tc_treatment_refer_a_treatment()
   
     patient_search(pat_nhs);
     //Check the audit
-    Goto_suggested_treatment_audit();
+    Goto_Suggested_Treatment_Audit();
     result_set_1 = validate_top_treatment_audit('Treatment Referred');
     result_set.push(result_set_1);
   
@@ -689,7 +692,7 @@ function tc_treatment_authorise_a_referral()
     result_set.push(result_set_1);
   
     //Check the audit
-    Goto_suggested_treatment_audit();
+    Goto_Suggested_Treatment_Audit();
     result_set_1 = validate_top_treatment_audit('Treatment Authorised');
     result_set.push(result_set_1);
   
@@ -1689,4 +1692,28 @@ function cacuk432_bug_fix_single()
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		Log_Off();
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function demo()
+{
+  login('cl3@regression', 'INRstar_5', 'Shared');
+  
+  add_patient("Test", "Demo", "M", "Shared");
+  
+  add_treatment_plan('W', 'Coventry', '', 'Shared', '');
+  
+  Log_Off();
 }
