@@ -509,7 +509,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
     //Click cancel on the new review and set future date for next review
     var add_review_form_path = add_review_form();
     add_review_form_path.Panel(0).Panel("AnnualReviewAddActions").Button("CancelWarfarinReviewLink").click();
-    Goto_Patient_TreatmentPlan_Review();
+    Goto_Patient_Treatment_Plan_Review();
     edit_next_review_date(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 7)));
     
     var result_set = new Array();

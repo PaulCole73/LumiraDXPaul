@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function add_patient(p_surname, p_firstname, p_gender, TestStepMode, nhs_num)  
@@ -81,6 +81,8 @@ function patient_search(data)
   
   var results_table = patient_search_screen_results_table();
   results_table.Cell(1, 0).Link("PatientLink").Click();
+  
+  WaitSeconds(1, "Wait after patient search...");
 } 
 //--------------------------------------------------------------------------------
 function inactive_patient_search(data)

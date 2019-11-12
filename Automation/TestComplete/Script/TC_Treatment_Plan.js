@@ -74,7 +74,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_b
     login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
-    Goto_Patient_TreatmentPlan();
+    Goto_Patient_Treatment_Plan();
   
     var button = new_treatment_plan_button_path().enabled;
   
@@ -265,7 +265,7 @@ function tc_edit_treatment_plan_after_a_review_has_been_added()
     //Testing the editable fields
     var result_set = new Array();
    
-    Goto_Patient_TreatmentPlan_Edit();
+    Goto_Patient_Treatment_Plan_Edit_Existing_Plan();
     var edit_treatment_plan = edit_treatment_plan_path();
       
     //Testing the start date

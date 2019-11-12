@@ -19,19 +19,20 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   
     if(tp_start_mode=='')
     {
-      Goto_Patient_TreatmentPlan_Add(); 
+      Goto_Patient_Treatment_Plan_Add(); 
       var treatment_plan_area = add_treatment_plan_main_section_path();
     }
     if(tp_start_mode=='2')
     {
-      Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan();
-      var treatment_plan_area = add_treatment_plan_main_section_path();
-    } 
-    if(tp_start_mode=='3')
-    {
-      Goto_Patient_TreatmentPlan_pop_up(); 
+      Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
       var treatment_plan_area = add_treatment_plan_main_section_path();
     }
+    /* 
+    if(tp_start_mode=='3')
+    {
+      Goto_Patient_Treatmentplan_Add();//_pop_up(); 
+      var treatment_plan_area = add_treatment_plan_main_section_path();
+    }*/
    
     if(TestStepMode == "Shared")
     {
@@ -105,6 +106,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
           tablet_selection_path.Panel(5).Checkbox("Tablets_UseSplit").ClickChecked(true);
         }
       }
+      
       if (drug != 'W' && drug != "Warfarin")
       {   
         treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
@@ -115,6 +117,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
         treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
       }
       buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
+      
       if (drug == 'W' || drug == "Warfarin")
       {
         process_popup("You will need to add an historical treatment", "OK");
@@ -136,7 +139,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
 function edit_treatment_plan(dm)
 {
   var INRstarV5 = INRstar_base(); 
-  Goto_Patient_TreatmentPlan_Edit_Existing_Plan();
+  Goto_Patient_Treatment_Plan_Edit_Existing_Plan();
   
   var treatment_plan_warfarin_details = edit_treatment_plan_warfarin_details_path();
           
@@ -164,16 +167,16 @@ function edit_treatment_plan(dm)
 //--------------------------------------------------------------------------------
 function edit_treatment_plan_all(drug, dm) //need to update function name
 {
-  Goto_Patient_TreatmentPlan();
+  Goto_Patient_Treatment_Plan();
   var current_drug = clinical_tp_details().Panel(3).Label("DrugName_DetachedLabel").innerText;
 
   if(current_drug != "Warfarin")
   {
-    goto_patient_treatmentplan_edit_existing_plan_non_warfarin();
+    Goto_Patient_Treatment_Plan_Edit_Existing_Plan_Non_Warfarin();
   }
   else
   {
-    Goto_Patient_TreatmentPlan_Edit_Existing_Plan();
+    Goto_Patient_Treatment_Plan_Edit_Existing_Plan();
   }
   
   if(drug != "Warfarin")
@@ -206,7 +209,7 @@ function edit_treatment_plan_all(drug, dm) //need to update function name
 function edit_treatment_plan_diagnosis()
 {
   var INRstarV5 = INRstar_base(); 
-  Goto_Patient_TreatmentPlan_Edit_Existing_Plan();
+  Goto_Patient_Treatment_Plan_Edit_Existing_Plan();
   var edit_treatment_plan = edit_treatment_plan_path();
   
   //Diagnosis
@@ -234,7 +237,8 @@ function edit_all_fields_treatment_plan_with_treatment()
 //This function will read in the existing field, amend the data and check the data is then different, if the data is the same after the edit then re-run the change until it is different
 
   var INRstarV5 = INRstar_base(); 
-  Goto_Patient_TreatmentPlan_Edit();
+  //Goto_Patient_TreatmentPlan_Edit();
+  Goto_Patient_Treatment_Plan_Edit_Existing_Plan();
   var edit_treatment_plan = edit_treatment_plan_path();
   var treatment_plan_warfarin_details = edit_treatment_plan_warfarin_details_path();
   var edit_treatment_plan_tab_select_path = edit_treatment_plan_tab_select();
@@ -330,7 +334,8 @@ function edit_all_fields_treatment_plan_with_treatment()
 //--------------------------------------------------------------------------------
 function is_tp_date_picker_active()
 {
-  Goto_Patient_TreatmentPlan_Edit();
+  //Goto_Patient_TreatmentPlan_Edit();
+  Goto_Patient_Treatmentplan_Edit_Existing_Plan();
   var edit_treatment_plan = edit_treatment_plan_path();
   var startDate = edit_treatment_plan.Panel(0).Textbox("Start");
     
@@ -352,7 +357,7 @@ function add_treatment_plan_drug_warning_checker(drug,exp_warn_mess)
  {
   var INRstarV5 = INRstar_base();    
   
-  Goto_Patient_TreatmentPlan_Add_more_1_treatmentPlan(); 
+  Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
   var treatment_plan_area = add_treatment_plan_main_section_path();
         
   treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
@@ -389,7 +394,7 @@ function add_treatment_plan_drug_warning_checker(drug,exp_warn_mess)
 function new_tp_popup_checker(exp_err_mess)
 {
   var INRstarV5 = INRstar_base();    
-  Goto_Patient_TreatmentPlan();
+  Goto_Patient_Treatment_Plan();
   var new_treatment_plan_button = new_treatment_plan_button_path();
   new_treatment_plan_button.Click();
   process_button(INRstarV5, "Confirmation Required", "Confirm");
@@ -402,7 +407,7 @@ function new_tp_popup_checker(exp_err_mess)
 //--------------------------------------------------------------------------------
 function get_treatment_plan_single_field(data)
 {
-  Goto_Patient_TreatmentPlan();
+  Goto_Patient_Treatment_Plan();
   var clinical_warfarin_details_path = clinical_warfarin_details();
   var clinical_tp_details_path = clinical_tp_details();
   
@@ -425,7 +430,7 @@ function get_patient_clinical_details()
 {
   //Setup at the moment to be a specific list for a test if we need to add more in then might need a new one here or slightly different approach
   
-  Goto_Patient_TreatmentPlan();
+  Goto_Patient_Treatment_Plan();
   var clinical_tp_details_path = clinical_tp_details();
   var clinical_warfarin_details_path = clinical_warfarin_details();
   var clinical_tablet_select_path = clinical_tablet_select();

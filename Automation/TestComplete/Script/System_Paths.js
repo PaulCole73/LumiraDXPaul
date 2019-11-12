@@ -196,6 +196,15 @@ function patient_clinical_tab()
 //------------------------------------------------------------------------
 /////////////////////  Patient / Treatment Plan  /////////////////////////
 //------------------------------------------------------------------------
+//General Path
+function main_patient_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent");
+  
+  return panelPR;
+}
 function tp_drop_down()
 {
   var INRstarV5 = INRstar_base();
@@ -839,6 +848,16 @@ function dosing_engine_warning_popup()
    return warning_popup;
 }
 //------------------------------------------------------------------------
+function patient_treatment_bridging_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var panelPR = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord");
+  var panelPTC = panelPR.Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var tab = panelPTC.Panel("BridgingTabContent");
+  
+  return tab;
+}
+//------------------------------------------------------------------------
 //////////////////////////  Summary  ///////////////////////////////////
 //------------------------------------------------------------------------
 function summary_tab_path()
@@ -928,7 +947,14 @@ function ddd_self_testing_self_testing_stage_one_path()
   
   return ddd_stage_one;
 }
-
+//------------------------------------------------------------------------
+function ddd_self_testing_self_testing_stage_three_path()
+{
+  var ddd_phase_path = ddd_self_testing_self_testing_phases_path();
+  var ddd_stage_three = ddd_phase_path.Panel("Program_Digital_dosing_diary_Phases_Stage_3").Panel("Program_Digital_dosing_diary_Phases_Stage_3_Content");
+  
+  return ddd_stage_three;
+}
 //------------------------------------------------------------------------
 function ddd_self_testing_self_testing_stage_four_path()
 {
@@ -1751,3 +1777,4 @@ function clinic_move_calendar_forward()
   
   return button;
 }
+
