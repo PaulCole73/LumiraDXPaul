@@ -1,12 +1,11 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
 //USEUNIT TSA_Patient
-//USEUNIT Generic_Functions
-//USEUNIT Navigation
-//USEUNIT Test_Audit
 //USEUNIT TSA_Clinics_Appointments
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
+//USEUNIT Navigation
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_clinics_add_a_recurring_clinic()
 {
@@ -23,7 +22,7 @@ function tc_clinics_add_a_recurring_clinic()
     var result_set_1 = validate_top_system_audit(test_title, "Created Clinic");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_system_audit("Recurring Clinic set to [True].");
+    result_set_1 = validate_more_info_top_system_audit("Recurring Clinic set to [True].");
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -114,7 +113,7 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
     var result_set_1 = validate_top_patient_audit(test_title, "Add Manual Treatment");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_patient_audit("Date set to [" + aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y") + "]")
+    result_set_1 = validate_more_info_top_patient_audit("Date set to [" + aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y") + "]")
     result_set.push(result_set_1);
     
     result_set_1 = validate_specific_entry_patient_audit(2, "Created Appointment", test_title);

@@ -1,7 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
-//USEUNIT V5_Common_Batch
-//USEUNIT Generic_Functions
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function add_patient(p_surname, p_firstname, p_gender, TestStepMode, nhs_num)  
 {
@@ -62,7 +61,7 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
       panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
       panelEPCD.Panel(7).Textbox("Mobile").Text = "07111 225588";
       
-      var guid = NewGuid();
+      var guid = new_guid();
       panelEPCD.Panel(8).Textbox("Email").Text = "test_user_+" + guid + "@gmail.com";
 
       var button_area = add_patient_demographics_buttons_system_path()
@@ -99,17 +98,17 @@ function inactive_patient_search(data)
 //--------------------------------------------------------------------------------
 function patient_recently_viewed_list()
 {
-   Goto_Recently_Viewed();
-   var patient_table = patient_recently_viewed_table();
-   var patient_list = new Array()
+  Goto_Recently_Viewed();
+  var patient_table = patient_recently_viewed_table();
+  var patient_list = new Array()
    
-   for(i=1; i < patient_table.rowcount; i++)
-   {
-   var patient = patient_table.Cell(i, 0).Link("PatientLink").contentText;
-   patient_list.push(patient) 
-   } 
+  for(i=1; i < patient_table.rowcount; i++)
+  {
+    var patient = patient_table.Cell(i, 0).Link("PatientLink").contentText;
+    patient_list.push(patient) 
+  } 
    
-   return patient_list;
+  return patient_list;
 } 
 //--------------------------------------------------------------------------------
 function popup_warning_checker(exp_err_mess)

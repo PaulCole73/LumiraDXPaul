@@ -1,10 +1,6 @@
-﻿//USEUNIT Common
-//USEUNIT V5_Common
-//USEUNIT V5_Common_Popups
-
+﻿//USEUNIT V5_Common_Popups
 //USEUNIT Navigate_Patient
-//USEUNIT Navigate_Admin_Dashboard
-
+//USEUNIT Misc_Functions
 //===============================================================================
 //-------------------------------------------------------------------------------
 // Navigate to Home 
@@ -16,7 +12,7 @@ function Goto_Home()
     var panelM = INRstarV5.Panel("MainPage");
     panelM.Panel("header").Link("HomeLink").Click();
     WaitSeconds(4,"Waiting for Home Page")
-    }
+}
 //-------------------------------------------------------------------------------
 // Navigate to Overdue Report
 function Goto_Report_Overdue()

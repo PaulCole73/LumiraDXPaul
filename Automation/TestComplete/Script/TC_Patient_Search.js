@@ -1,8 +1,7 @@
 ﻿//USEUNIT TSA_Login
 //USEUNIT TSA_Patient
-//USEUNIT Generic_Functions
 //USEUNIT Navigation
-
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_find_a_patient()
 { 
@@ -18,7 +17,7 @@ function tc_find_a_patient()
   var banner_nhs = banner_path.Panel(3).Panel(0).Label("NHSNumber_DetachedLabel").contentText;
   
   var result_set = new Array();
-  var result_set_1 = compare_values(pat_nhs,banner_nhs,test_title);
+  var result_set_1 = compare_values(pat_nhs, banner_nhs, test_title);
   result_set.push(result_set_1);
   
   //Validate all the results sets are true

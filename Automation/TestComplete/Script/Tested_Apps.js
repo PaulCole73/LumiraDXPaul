@@ -1,27 +1,23 @@
-﻿function open_application(app_name)
-
+﻿function open_application(app_name) //not in use, not functioning
 {
-
-var app = app_name
-//Log.Message(app)
-   if (app = 'INRstar')
+  var app = app_name
+  if (app == "INRstar")
+  {
+    p = TestedApps.Items(0).Run()
+    if( ! p.Exists)
     {
-      p = TestedApps.Items(0).Run()
-      if( ! p.Exists)
-  
       WaitSeconds(10)
-  
     }
+  }
 }
 //--------------------------------------------------------------------------------
 function RunIE()
 { 
   Browsers.Item(btIExplorer).Run("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1488299359&rver=6.4.6456.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f&lc=2057&id=292841&mkt=en-gb&cbcxt=out&fl=wld");
 }
-
+//--------------------------------------------------------------------------------
 function RunHotmail(username,password)
 {
-
   var user = username
   var pass = password
   Browsers.Item(btIExplorer).Run("http://www.hotmail.com");
@@ -39,7 +35,6 @@ function RunHotmail(username,password)
   passwordBox = panel.passwordboxI0118;
   passwordBox.SetText(password);
   passwordBox.Keys("[Enter]");
-
 }
 
 

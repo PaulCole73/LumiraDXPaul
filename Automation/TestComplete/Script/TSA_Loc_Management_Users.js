@@ -1,7 +1,7 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
 //USEUNIT INRstar_Navigation
-//USEUNIT V5_Common_Batch
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 function add_new_user(u_firstname, u_surname, u_username, u_password)

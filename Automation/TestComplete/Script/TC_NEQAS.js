@@ -1,11 +1,10 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
 //USEUNIT TSA_NEQAS
-//USEUNIT Generic_Functions
 //USEUNIT Navigation
-//USEUNIT Test_Audit
-//USEUNIT V5_Common_Popups
 //USEUNIT System_Paths
+//USEUNIT Misc_Functions
+//USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
 function tc_neqas_add_new_from_eqc()
 {
@@ -51,7 +50,7 @@ function tc_neqas_add_new_from_eqc_with_multiple_active_batches()
 {
   try
   {
-    var test_title = 'NEQAS - Add a NEQAS from the EQC tab'
+    var test_title = 'NEQAS - Add a NEQAS from the EQC tab with multiple batches'
     login('clead@regression','INRstar_5','Shared');
       
     var batch_numbers = new Array();
@@ -95,7 +94,7 @@ function tc_neqas_edit_existing_add_external_inr()
 {
   try
   {
-    var test_title = 'NEQAS - Add a NEQAS from the EQC tab'
+    var test_title = 'NEQAS - Edit Existing External INR'
     login('clead@regression','INRstar_5','Shared');
       
     var batch_numbers = new Array();
@@ -122,7 +121,7 @@ function tc_neqas_edit_existing_add_external_inr()
     percent_error = percent_error.toFixed(2);                              
     
     row_data = get_eqc_table_row(batch_reference);
-    result_set_1 = validateArrays(row_data, row_data_1);
+    result_set_1 = checkArrays(row_data, row_data_1);
     result_set_1 = results_checker_are_false(result_set_1);
     result_set.push(result_set_1);
     
@@ -152,7 +151,7 @@ function tc_neqas_delete_ecq_entry()
 {
   try
   {
-    var test_title = 'NEQAS - Add a NEQAS from the EQC tab'
+    var test_title = 'NEQAS - Delete ECQ Entry'
     login('clead@regression','INRstar_5','Shared');
       
     var batch_numbers = new Array();
@@ -172,7 +171,7 @@ function tc_neqas_delete_ecq_entry()
     if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
     {
       row_data_1 = get_eqc_table_row(batch_reference);
-      var result_set_1 = validateArrays(row_data, row_data_1);
+      var result_set_1 = checkArrays(row_data, row_data_1);
       result_set_1 = results_checker_are_false(result_set_1);
       result_set.push(result_set_1);
     }

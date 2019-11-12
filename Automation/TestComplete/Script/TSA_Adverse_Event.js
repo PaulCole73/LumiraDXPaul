@@ -32,13 +32,15 @@ function delete_adverse_event()
   // Find Delete Button
   var wbx_Button = INRstarV5.NativeWebObject.Find("idStr", "DeleteClinic");
       
-    if (wbx_Button.Exists == true)
-    {
-         Log.Message("Delete button found");
-         wbx_Button.Click();
-         process_confirm_delete_adverse_event();
-    }
-      else
-           Log.Message("Delete button not found");  
+  if (wbx_Button.Exists == true)
+  {
+    Log.Message("Delete button found");
+    wbx_Button.Click();
+    process_confirm_delete_adverse_event();
+  }
+  else
+  {
+    Log.Message("Delete button not found");  
+  }
 } 
 //--------------------------------------------------------------------------------

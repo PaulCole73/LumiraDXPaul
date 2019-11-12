@@ -1,9 +1,7 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT Navigation
-//USEUNIT V5_Common_Batch
-//USEUNIT Generic_Functions
+//USEUNIT Misc_Functions
 //USEUNIT TSA_Patient
-
 //--------------------------------------------------------------------------------
 function deactivate_patient()
 {
@@ -443,7 +441,7 @@ function change_reg_practice(prac_name)
  
  for(i=1; i<row_count; i++) 
   {
-     if(reg_practice_table_path.Cell(i, 0).contentText==prac_name)
+     if(reg_practice_table_path.Cell(i, 0).contentText == prac_name)
      {           
         reg_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
       i = row_count
