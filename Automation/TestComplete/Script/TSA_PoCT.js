@@ -1,53 +1,71 @@
-﻿//USEUNIT Generic_Functions
-//USEUNIT System_Paths
+﻿//USEUNIT System_Paths
 //USEUNIT Navigation
 //USEUNIT Navigate_Patient
-//USEUNIT V5_Common_Batch
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function add_poct(batch_num)
+//--------------------------------------------------------------------------------
+function tsa_poct_create_poct_batch(batch_numbers, batches_to_add)
 {
-  Goto_Options_add_PoCT()
-  var INRstarV5 = INRstar_base();
-  var options_poct_form_path = options_poct_form();
-  
-  var batch_num_to_use=batch_num;
+  var poct_details = new Array();
+  var batch_nos = new Array(); 
 
-  //Set the batch number if not provided 
-  if(batch_num_to_use=='')
+  if(batches_to_add == null)
   {
-  batch_num_to_use = new_num_20();
-  options_poct_form_path.Panel(0).Textbox("BatchNumber").Text = batch_num_to_use;
+    batches_to_add = 1;
   }
-   else if(batch_num_to_use!='')
-   {
-    batch_num_to_use = options_poct_form_path.Panel(0).Textbox("BatchNumber").Text = batch_num_to_use;
-   }
+  if(batch_numbers == null)
+  {
+    batch_nos = get_poct_batch_numbers();
+  }
+  else
+  {
+    batch_nos = batch_numbers;
+  }
+
+  for(var i = 1; i <= batches_to_add; i++)
+  {
+    var add_poct_button = options_poct_buttons().Panel(1).Button("AddPoCTBatch").Click();
+    var batch_no_textbox = options_poct_form().Panel(0).Textbox("BatchNumber");
+    var options_poct_form_path = options_poct_form(); 
   
-  //Set the expiry date
-  var exp_date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (+14)));
-  options_poct_form_path.Panel(1).Image("calendar_png").Click();
-  
-  var w_yr = aqString.SubString(exp_date,6,4);
-  var w_mth = aqConvert.StrToInt(aqString.SubString(exp_date,3,2));
-  var w_day = aqString.SubString(exp_date,0,2);
-   
-  datepicker = INRstarV5.Panel("ui_datepicker_div");
-  datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
-  datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
-  select_day(w_day, datepicker);
-  
-  //Get the data to pass back before saving
-  var poct_data = new Array();
-  var expiry_date = options_poct_form_path.Panel(1).Textbox("ExpiryDate").Text;
-  var active = true;
-  
-  //Add to array for validation
-  poct_data.push(batch_num_to_use,expiry_date,active);
-  
-  //Save the batch
-  options_poct_form_path.Panel(3).SubmitButton("SubmitNewPoCTBatchDetails").Click();
-  
-  return poct_data;
+    do
+    {
+      var is_batch_unique = false;
+      var batch_text = aqConvert.DateTimeToStr(aqDateTime.Today()) + "_" + i + "_" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
+      
+      for(var j = 0; j < batch_nos.length; j++)
+      {
+        if(batch_text != batch_nos[j])
+        { 
+          is_batch_unique = true;
+        }
+      }
+    }while (is_batch_unique == false);
+    
+    batch_no_textbox.Text = batch_text;
+    
+    var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (+90)));
+    
+    var w_day = aqString.SubString(date,0,2);
+    var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
+    var w_yr = aqString.SubString(date,6,4);
+      
+    options_poct_form().Panel(1).Image("calendar_png").Click();
+      
+    w_datepicker = INRstar_base().Panel("ui_datepicker_div");
+    w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+    select_day(w_day, w_datepicker);
+    
+    var expiry_date = options_poct_form_path.Panel(1).Textbox("ExpiryDate").Text;
+    var active = true;
+    
+    poct_details.push(batch_text, expiry_date, active);
+    
+    options_poct_form().Panel(3).SubmitButton("SubmitNewPoCTBatchDetails").Click();
+    
+    return poct_details;
+  }
 } 
 //--------------------------------------------------------------------------------
 function edit_poct_make_active(batch_num)

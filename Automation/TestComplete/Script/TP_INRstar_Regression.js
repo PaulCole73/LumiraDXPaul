@@ -35,9 +35,7 @@ function tp_inrstar_staging_regression()
   ts_staging_regression_neqas();
   ts_staging_regression_notes();
   ts_staging_regression_options_iqc();
-  ts_staging_regression_patient_add();
-  ts_staging_regression_patient_search();
-  ts_staging_regression_patient_recently_viewed();
+  ts_staging_regression_patient();
   ts_staging_regression_patient_management();
   ts_staging_regression_patient_tests_due();
   ts_staging_regression_poct();

@@ -1,5 +1,5 @@
 ﻿//USEUNIT Add_INR_Induction
-//USEUNIT Generic_Functions
+//USEUNIT SORB_Functions
 //USEUNIT System_Paths
 //USEUNIT Tested_Apps
 //USEUNIT TSA_Login
@@ -9,6 +9,8 @@
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT Add_INR_Backdated
+
+//USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 //Tests for testing the SORB button for user permission validation 
 //--------------------------------------------------------------------------------

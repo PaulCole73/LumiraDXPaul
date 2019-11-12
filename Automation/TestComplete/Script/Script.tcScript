@@ -691,8 +691,8 @@
 		<child name="SORB_Schedule_Testing" key="{F5F378C7-D8C5-483C-B882-E06250C72B66}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="SORB_Schedule_Testing.js" />
 		</child>
-		<child name="Generic_Functions" key="{72CBA893-86AA-4B27-8BBB-0921A30BE047}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
-			<data path="Generic_Functions.js" />
+		<child name="SORB_Functions" key="{72CBA893-86AA-4B27-8BBB-0921A30BE047}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="SORB_Functions.js" />
 		</child>
 		<child name="Quick_self_test_patient" key="{1A7A4301-339F-433A-84D2-83BA6BA259BF}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="Quick_self_test_patient.js" />
@@ -859,6 +859,12 @@
 		<child name="TSA_Clinics_Appointments" key="{0091B06C-F4B1-447D-8077-2357A390B764}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TSA_Clinics_Appointments.js" />
 		</child>
+		<child name="Misc_Functions" key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Misc_Functions.js" />
+		</child>
+		<child name="Popup_Handlers" key="{5AB1C72D-FAF0-43FB-9A9F-41EEB745D98A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Popup_Handlers.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -913,12 +919,11 @@
 		</folder>
 		<folder caption="5. Utlilities" description="A logical folder that is used to organize project items and elements." moniker="">
 			<references>
-				<ref key="{B00696F7-8B50-4052-9ADD-6AB2E56AC540}" />
-				<ref key="{3E58A93B-F40F-4994-9DB2-9FC35ADEF606}" />
 				<ref key="{3E644774-5830-45ED-B233-AEDA357E7355}" />
-				<ref key="{4A2FCABD-720F-44FE-8F09-F475677E9B9B}" />
-				<ref key="{72CBA893-86AA-4B27-8BBB-0921A30BE047}" />
 				<ref key="{C4ECD5A2-3F26-4559-86EB-D693C4C411DD}" />
+				<ref key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" />
+				<ref key="{5AB1C72D-FAF0-43FB-9A9F-41EEB745D98A}" />
+				<ref key="{1B4F6338-5744-4A40-B50A-A7A6B61D1033}" />
 			</references>
 		</folder>
 		<folder caption="Old Scripts" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1172,11 +1177,18 @@
 				<ref key="{B82DB86B-FA36-4324-8B4D-DA2FACDB3D2D}" />
 				<ref key="{F5F378C7-D8C5-483C-B882-E06250C72B66}" />
 				<ref key="{0B754F49-CA55-46FF-8231-223286F49234}" />
+				<ref key="{F92EBF44-824A-4584-9072-5793CA60775D}" />
+				<ref key="{29630EA1-319D-468C-9FCE-12E3F97E3DEB}" />
+			</references>
+		</folder>
+		<folder caption="6. Old Utilities" description="A logical folder that is used to organize project items and elements." moniker="">
+			<references>
+				<ref key="{4A2FCABD-720F-44FE-8F09-F475677E9B9B}" />
+				<ref key="{3E58A93B-F40F-4994-9DB2-9FC35ADEF606}" />
+				<ref key="{72CBA893-86AA-4B27-8BBB-0921A30BE047}" />
+				<ref key="{B00696F7-8B50-4052-9ADD-6AB2E56AC540}" />
 				<ref key="{068FEA8D-DDD8-4941-B16D-D66F4DEDC2CF}" />
 				<ref key="{A062A984-B899-446E-905F-F59F706FA0AE}" />
-				<ref key="{F92EBF44-824A-4584-9072-5793CA60775D}" />
-				<ref key="{1B4F6338-5744-4A40-B50A-A7A6B61D1033}" />
-				<ref key="{29630EA1-319D-468C-9FCE-12E3F97E3DEB}" />
 			</references>
 		</folder>
 	</folders>
