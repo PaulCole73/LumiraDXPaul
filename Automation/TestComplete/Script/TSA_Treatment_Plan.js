@@ -118,7 +118,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       }
       buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
       
-      if (drug == 'W' || drug == "Warfarin")
+      if (drug == 'W' || drug == "Warfarin") //this may be able to be reduced with changes to process_popup()
       {
         process_popup("You will need to add an historical treatment", "OK");
       }

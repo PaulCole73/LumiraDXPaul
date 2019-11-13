@@ -52,6 +52,8 @@ function login(User,Password,TestStepMode)
     important_info_path.Button(0).TextNode(0).Click();
   } 
 
+  process_popup("Email Address", "Cancel");
+  
   var email_address_confirm = INRstarV5.NativeWebObject.Find("innertext", "Confirm");
   WaitSeconds(1); 
       

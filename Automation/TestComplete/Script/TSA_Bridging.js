@@ -2,7 +2,7 @@
 //USEUNIT Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function tsa_bridging_check_button_state()
+function validate_new_bridging_record_button_state()
 {
   var state;
   var tab = INRstar_base().NativeWebObject.Find("idStr", "PatientBridgingTab");
@@ -22,4 +22,23 @@ function tsa_bridging_check_button_state()
   }
   
   return state;
+}
+//--------------------------------------------------------------------------------
+function validate_bridging_tab_exists()
+{
+  var tab = INRstar_base().NativeWebObject.Find("idStr", "PatientBridgingTab");
+  if(tab.Exists == true && drug == "Warfarin")
+  {
+    Log.Message("Drug is " + drug + ". Tab Exists.")
+    return true;
+  }
+  else if(tab.Exists != true && drug != "Warfarin")
+  {
+    Log.Message("Drug is " + drug + ". Tab Doesn't Exist.")
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }

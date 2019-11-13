@@ -754,7 +754,7 @@ function get_user_level(user_val)
     user_level = "cl3";
     break;
     case 6: 
-    user_level = "locadmin";
+    user_level = "ladmin";
     break;
     case 7: 
     user_level = "clead";
