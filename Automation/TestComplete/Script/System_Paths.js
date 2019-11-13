@@ -647,7 +647,15 @@ function sugg_war_dose_button()
   var sugg_war_dose_button_path = form.Panel(0).SubmitButton("CalculateWarfarinDose");
   
   return sugg_war_dose_button_path;
-}  
+} 
+function current_tab()
+{
+  var path = pending_treatment_buttons();
+  var panelPTI = path.Panel("PendingTreatmentInfo");
+  panelPTI.Panel("DosingSchedule").Link("CurrentTab");
+  
+  return panelPTI;
+}
 //------------------------------------------------------------------------
 function new_inr_button_path()
 {

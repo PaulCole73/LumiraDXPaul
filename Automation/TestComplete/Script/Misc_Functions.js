@@ -1,5 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
+//USEUNIT Get_Functions
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -14,9 +15,9 @@
 //Compares 2 values returns true if they match
 function compare_values(data_1, data_2, test_mess)
 {
-  if(data_1 == null)
+  if(data_1 == null || data_2 == null)
   {
-    Log.Message("Fail - Data 1 not found");
+    Log.Message("Fail - Data not found. Parameter value missing.");
     return false;
   } 
   if(data_1 == data_2)
@@ -32,7 +33,12 @@ function compare_values(data_1, data_2, test_mess)
 //-----------------------------------------------------------------------------------
 function table_contains_checker(actual_array, expected_data, test_mess)
 { 
-  if (actual_array.includes(expected_data))
+  if(actual_array == null || expected_data == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  if(actual_array.includes(expected_data))
   {
     return true;
   }
@@ -43,9 +49,33 @@ function table_contains_checker(actual_array, expected_data, test_mess)
   } 
 }
 //-----------------------------------------------------------------------------------
+function data_contains_checker(data_1, data_2, test_mess)
+{
+  if(data_1 == null || data_2 == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  if (aqString.Find(data_1, data_2) != -1)
+  {
+    return true;
+  }
+  else
+  {
+    Log.Message("Fail - Data " + data_2 + " was not contained in " + data_1);
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
 //Generic method for checking state of a button
 function button_checker(actual_state, expected_state, test_mess)
 {
+  if(actual_state == null || expected_state == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  
   if(actual_state == true)
   {
     actual_state = "enabled";
@@ -72,7 +102,13 @@ function button_checker(actual_state, expected_state, test_mess)
 }
 //-----------------------------------------------------------------------------------
 function checkArrays(arrA, arrB, mess)
-{  
+{
+  if(arrA == null || arrB == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  
   if(arrA.length !== arrB.length) 
   {
     Log.Warning(mess + "//" + arrA + "//" + arrB + "//");
@@ -91,6 +127,12 @@ function checkArrays(arrA, arrB, mess)
 //-----------------------------------------------------------------------------------
 function validate_arrays_dont_match(arrA, arrB, mess)
 {
+  if(arrA == null || arrB == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  
   for(var i=0;i<arrA.length;i++)
   {
     if(arrA[i] == arrB[i])
@@ -108,7 +150,7 @@ function results_checker_are_false(result_set)
 {
   for(var i=0;i<result_set.length;i++)
   {
-    if(result_set[i])
+    if(result_set[i] == true)
     { 
       Log.Message("Found a true")
       return false;
@@ -122,7 +164,7 @@ function results_checker_are_true(result_set)
 {
   for(var i=0;i<result_set.length;i++)
   {
-    if(result_set[i]==false)
+    if(result_set[i] == false)
     { 
       Log.Message("Found a false");
       return false;
@@ -134,13 +176,13 @@ function results_checker_are_true(result_set)
 //This is to test the result set of a test case and return pass or fail
 function results_checker(result_set, test_case)
 {
-  if(result_set==true)
+  if(result_set == true)
   {
     Log.Checkpoint(test_case);
   } 
   else
   {
-    Log.Warning(test_case);
+    Log.Warning("Fail - " + test_case);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -296,296 +338,6 @@ function validate_more_info_top_system_audit(w_data)
     Log.Message("Audit data not found " + wt_row + "\r\n\r\n" + "This is what I am looking for // " + w_data);
     return false;
   }
-}
-//-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
-/////////////////////////////////////////////////////////////////////////////////////
-//---------------------------------------------------------------------------------//
-//                            Get Functions                                        //
-//---------------------------------------------------------------------------------//
-//-----------------------------------------------------------------------------------
-//Returning an NHS of the current patient loaded
-function get_patient_nhs()
-{
-  var patient_blue_banner_path = patient_banner_blue_bar()
-  var nhs_num = patient_blue_banner_path.Panel(3).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
-          
-  return nhs_num;
-}
-//Returning firstname of the current patient loaded
-function get_patient_firstname()
-{
-  Goto_Patient_Demographics();
-  var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
-  var firstname =  patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
-          
-  return firstname;
-}
-//-----------------------------------------------------------------------------------
-//Returning surname of the current patient loaded
-function get_patient_surname()
-{
-  Goto_Patient_Demographics();
-  var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
-  var surname =  patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
-          
-  return surname;
-}
-//-----------------------------------------------------------------------------------
-//gets all of the patient demographics
-function get_patient_demographics()
-{
-  Goto_Patient_Demographics();
-  var patient_demographics_tab_path = patient_demographics_tab_demographics();
-  
-  var patient_data_array = new Array()
-  
-  //Demograhics Pane
-  var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
-  var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
-  var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
-  var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
-  var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
-  var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
-  var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
-  var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
-  var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
-  var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
-  var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
-  
-  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
-  
-  var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
-  var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
-  var line_3 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(1).Label("ThirdAddressLine_DetachedLabel").contentText;
-  var town = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(2).Label("FourthAddressLine_DetachedLabel").contentText;
-  var county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;
-  var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
-  var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
-  var mobile = patient_demographics_tab_contact_address_path.Panel(2).Label("Mobile_DetachedLabel").contentText;
-  var email = patient_demographics_tab_contact_address_path.Panel(3).Label("Email_DetachedLabel").contentText;
-  
-  patient_data_array.push(pat_num,nhs_num,title,surname,firstname,born,sex,gender,ethnicity,language,mar_status,line_1,line_2,line_3,town,county,post_code,tel,mobile,email); 
-  
-  //Log.Message(patient_data_array) 
-  return patient_data_array;  
-} 
-//-----------------------------------------------------------------------------------
-//gets the patients fullname
-function get_patient_fullname()
-{
-  Goto_Patient_Demographics();
-  var patient_demographics_tab_path = patient_demographics_tab_demographics();
-  
-  //Demograhics Pane
-  var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
-  var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
-  
-  patient_fullname = surname + ', ' + firstname
- 
-  return patient_fullname;  
-} 
-//-----------------------------------------------------------------------------------
-//gets all data from specified table
-function get_treatment_row(row_num, table_type)
-{
-  if(table_type == "current" || table_type == null)
-  {
-    Goto_Patient_Treatment();
-    var treatment_table_path = treatment_table();
-  }
-  else if(table_type == "pending")
-  {
-    var treatment_table_path = pending_treatment_table();
-  }
-  else if(table_type == "previous")
-  {
-    Goto_Patient_Treatment();
-    var treatment_table_path = treatment_table_from_previous_plan();
-  }
-  var treatment_row_array = new Array()
-  
-  for(var i = 0; i < 9; i++)
-  {
-    var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
-    treatment_row_array.push(treatment_value);
-  }
-  
-  return treatment_row_array;  
-}
-//-----------------------------------------------------------------------------------
-//gets the test date, inr, dose, review days, next test date from specified table
-function get_treatment_row_key_values(row_num, table_type) 
-{
-  if(table_type == "current" || table_type == null)
-  {
-    Goto_Patient_Treatment();
-    var treatment_table_path = treatment_table();
-  }
-  else if(table_type == "pending")
-  {
-    var treatment_table_path = pending_treatment_table();
-  }
-  else if(table_type == "previous")
-  {
-    Goto_Patient_Treatment();
-    var treatment_table_path = treatment_table_from_previous_plan();
-  }
-  var treatment_row_array = new Array()
-  
-  for(var i = 0; i < 11; i++)
-  {
-    if(i == 0 || i == 1 || i == 2 || i == 5 || i == 7)
-    {
-      var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
-      treatment_row_array.push(treatment_value);
-    }
-  }
-  
-  return treatment_row_array;  
-}
-//-----------------------------------------------------------------------------------
-//gets the data from the eqc table where the batch_ref matches
-function get_eqc_table_row(batch_ref)
-{
-  Goto_Options_EQC();
-
-  var table_data = options_eqc_form_buttons().Table("LocationsEQCTable");
-  var row_data = new Array();
-  var row_num;
-  
-  if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
-  {
-    for(var i = 1; i < table_data.RowCount; i++)
-    {
-      for(var j = 0; j < 7; j++)
-      {
-        if(table_data.Cell(i, j).contentText == batch_ref)
-        {
-          row_num = i;
-          break;
-        }
-      }
-    }
-    for(var i = 0; i < 7; i++)
-    {
-      var temp = table_data.Cell(row_num, i).contentText;
-      row_data.push(temp);
-    }
-  }
-  
-  return (row_data);
-}
-//-----------------------------------------------------------------------------------
-//gets the current batch numbers from all poct batches
-function get_poct_batch_numbers()
-{
-  Goto_Options_PoCT()
-    
-  var INRstarV5 = INRstar_base();
-  var poct_table = options_poct_table();
-  var poct_batch_nos = new Array();
-  
-  for(var i = 1; i < poct_table.RowCount; i++)
-  {
-    var temp = poct_table.Cell(i, 0).contentText;
-    poct_batch_nos.push(temp);
-  }
-  
-  return(poct_batch_nos);
-}
-//-----------------------------------------------------------------------------------
-function get_iqc_data()
-{
-  var iqc_table_path = options_iqc_table();
-  var data_saved = new Array();
-  
-  for(i=0; i<7; i++)
-  {
-    var data = iqc_table_path.Cell(1, i).contentText;
-    data_saved.push(data);
-  } 
-  Log.Message(data_saved + ' This is the data after it has been saved')
-  return data_saved;
-}
-//-----------------------------------------------------------------------------------
-function get_patient_banner_error_message()
-{
-  var add_patient_error_banner_path = add_patient_error_banner();
-  error_text = add_patient_error_banner_path.TextNode(0).contentText;
- 
-  return error_text;
-}
-//-----------------------------------------------------------------------------------
-function get_pending_suggested_treatment_schedule(days)
-{
-  var schedulegrid = dosing_schedule_table().Fieldset(0).Fieldset("ScheduleGrid");
-  
-  //return schedule;
-  var pending_schedule = new Array();
-  if(days == "0")
-  {
-    for(i=0; i<7; i++)
-    {
-      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
-      var day = aqString.SubString(data,0,3);
-      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
-      pending_schedule.push(day + " " + dose);
-    }
-  } 
-  else if(days == "1")
-  {
-    for(var i= 0; i < 7; i++)
-    {
-      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
-      var day = aqString.SubString(data,0,3);
-      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
-      pending_schedule.push(day + " " + dose);
-    }
-
-    for(var i = 0; i < 1; i++)
-    {
-      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
-      var day = aqString.SubString(data,0,3);
-      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
-      pending_schedule.push(day + " " + dose);
-    }
-  } 
-  else if(days == "2")
-  {
-    for(var i= 0; i < 7; i++)
-    {
-      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
-      var day = aqString.SubString(data,0,3);
-      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
-      pending_schedule.push(day + " " + dose);
-    }
-    for(var i= 0; i < 2; i++)
-    {
-      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
-      var day = aqString.SubString(data,0,3);
-      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
-      pending_schedule.push(day + " " + dose);
-    }
-  } 
-  else if(days == "3")
-  {
-    for(var i = 0; i < 7; i++)
-    {
-      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
-      var day = aqString.SubString(data,0,3);
-      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
-      pending_schedule.push(day + " " + dose);
-    }
-    for(var i = 0; i < 3; i++)
-    {
-      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
-      var day = aqString.SubString(data,0,3);
-      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
-      pending_schedule.push(day + " " + dose);
-    }
-  }    
-  return pending_schedule;
 }
 //-----------------------------------------------------------------------------------
 /////////////////////////////////////////////////////////////////////////////////////
@@ -819,7 +571,7 @@ function process_button_exists(button_id)
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//
-function Get_New_Number_V5()
+function get_new_number_v5()
 {
   var wnd;
 
@@ -835,6 +587,74 @@ function Get_New_Number_V5()
   form.Close();
   return wnd;
 }
+
+function send_email(mFrom, mTo, mSubject, mBody, mAttach)
+{
+  var schema, mConfig, mMessage;
+
+  try
+  {
+    schema = "http://schemas.microsoft.com/cdo/configuration/";
+    mConfig = getActiveXObject("CDO.Configuration");
+    mConfig.Fields.$set("Item", schema + "sendusing", 2); // cdoSendUsingPort
+    //mConfig.Fields.$set("Item", schema + "smtpserver", "ServerName"); // SMTP server
+    //mConfig.Fields.$set("Item", schema + "smtpserverport", 25); // Port number
+
+    // If you use Gmail --
+    mConfig.Fields.$set("Item", schema + "smtpserver", "smtp.gmail.com");
+    mConfig.Fields.$set("Item", schema + "smtpserverport", 25);
+    mConfig.Fields.$set("Item", schema + "smtpusessl", 1);
+
+    // If you use Outlook --
+    // mConfig.Fields.$set("Item", schema + "smtpserver", "smtp-mail.outlook.com");
+    // mConfig.Fields.$set("Item", schema + "smtpserverport", 25);
+
+    // If you use Office365 --
+    //mConfig.Fields.$set("Item", schema + "smtpserver", "smtp.office365.com");
+    //mConfig.Fields.$set("Item", schema + "smtpserverport", 587);
+    //mConfig.Fields.$set("Item", schema + "smtpusessl", 1);
+
+    mConfig.Fields.$set("Item", schema + "smtpauthenticate", 1); // Authentication mechanism
+    mConfig.Fields.$set("Item", schema + "sendusername", "AutomationLumira"); // User name (if needed)
+    mConfig.Fields.$set("Item", schema + "sendpassword", "INRstar_5"); // User password (if needed)
+    mConfig.Fields.Update();
+
+    mMessage = getActiveXObject("CDO.Message");
+    mMessage.Configuration = mConfig;
+    mMessage.From = mFrom;
+    mMessage.To = mTo;
+    mMessage.Subject = mSubject;
+    mMessage.HTMLBody = mBody;
+
+    aqString.ListSeparator = ",";
+    for(let i = 0; i < aqString.GetListLength(mAttach); i++)
+      mMessage.AddAttachment(aqString.GetListItem(mAttach, i));
+    mMessage.Send();
+  }
+  catch(exception)
+  {
+    Log.Error("Email cannot be sent", exception.message);
+    return false;
+  }
+  Log.Message("Message to <" + mTo + "> was successfully sent");
+  return true;
+}
+//-----------------------------------------------------------------------------------
+/*
+function validate_send_email()
+{
+  if(SendEmail("AutomationLumira@gmail.com", "testers@lumiradx.co.uk", "Automation", "Automation Test Results", "C:\\Users\\paul.dunstan\\source\\repos\\ldxcs-INRstarAutomation\\Automation\\TestComplete\\Log\\ExportedResults\\CompressedResults.zip") == true)
+  {
+    Log.Message("Mail was sent");
+  }
+  else
+  {
+    Log.Warning("Mail was not sent");
+  }
+}
+*/
+//-----------------------------------------------------------------------------------
+
 
 
 

@@ -21,7 +21,7 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     
       if(nhs_num == null)
       {
-      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = Get_New_Number_V5();
+      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
       }
        else 
        {

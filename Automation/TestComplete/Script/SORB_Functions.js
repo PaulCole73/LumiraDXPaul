@@ -75,13 +75,6 @@ function click_sorb_button(tab)
   }   
 }
 //-----------------------------------------------------------------------------------
-function click_current_tab()
-{
-  var path = pending_treatment_buttons();
-  panelPTI = path.Panel("PendingTreatmentInfo");
-  panelPTI.Panel("DosingSchedule").Link("CurrentTab").Click();
-}
-//-----------------------------------------------------------------------------------
 function get_sorb_button_error_message()
 {
   var error_box = sorb_button_error_message_path()
