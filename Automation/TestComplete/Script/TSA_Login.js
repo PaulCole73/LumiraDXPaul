@@ -39,29 +39,28 @@ function login(User,Password,TestStepMode)
     // Click the button 
     var reset_code_button = login_area_reset.Panel("ResetArea").Panel(1).SubmitButton("submitButton").Click();
   }
+  
+  process_popup("Important Information", "Do Not Show Again");
+  process_popup("Email Address", "Cancel");
 
   // Find out if the important info is on the screen maybe take this out into it's own method !
-
+  /*
   WaitSeconds(2); 
   var important_info = INRstarV5.NativeWebObject.Find("innertext", "Do Not Show Again");
-  
   WaitSeconds(1); 
   if (important_info.Exists) 
   {
     var important_info_path = warning_pop_up();
     important_info_path.Button(0).TextNode(0).Click();
   } 
-
-  process_popup("Email Address", "Cancel");
   
   var email_address_confirm = INRstarV5.NativeWebObject.Find("innertext", "Confirm");
   WaitSeconds(1); 
-      
   if (email_address_confirm.Exists) 
   {
     var email_address_pop_up = warning_pop_up();
     email_address_pop_up.Button(0).TextNode(0).Click();
-  }
+  }*/
 }
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, new_pass)
@@ -75,12 +74,8 @@ function log_in_new_user(username, current_pass, new_pass)
   password_expired_form().Panel(1).PasswordBox("newPassword").Text = new_pass;
   password_expired_form().Panel(2).PasswordBox("confirmPassword").Text = new_pass;
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
-    
-  //process_popup("Important Information", "Do Not Show Again");
-  INRstar_base().Panel(3).Panel(1).Panel(0).Button(0).Click();
-    
-  WaitSeconds(2);
-    
+  
+  process_popup("Important Information", "Do Not Show Again");
   process_popup("Email Address", "Cancel");
 }
 
