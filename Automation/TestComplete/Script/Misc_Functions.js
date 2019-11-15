@@ -118,7 +118,7 @@ function checkArrays(arrA, arrB, mess)
   {
     if(arrA[i]!=arrB[i])
     { 
-      Log.Message("This is actual //" + "  " + arrA[i] + " //This is the expected //" + "  " + arrB[i])
+      Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
       return false;
     }   
   }

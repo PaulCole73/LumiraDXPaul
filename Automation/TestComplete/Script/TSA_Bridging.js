@@ -2,40 +2,23 @@
 //USEUNIT Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function validate_new_bridging_record_button_state()
+function get_new_bridging_record_button_state()
 {
   var state;
-  var tab = INRstar_base().NativeWebObject.Find("idStr", "PatientBridgingTab");
-  if(tab.Exists == true)
-  {
-    WaitSeconds(1);
-    patient_clinical_tab().Link("PatientBridgingTab").Click();
-    WaitSeconds(1);
-    var button = INRstar_base().NativeWebObject.Find("idStr", "New_Bridging_Record");
-    if(button.Exists == true)
-    {
-      state = patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").enabled;
-    }
-  }
-  else
-  {
-    state = "undefined";
-  }
+  Goto_Bridging_Tab();
+  state = patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").enabled;
   
   return state;
 }
 //--------------------------------------------------------------------------------
 function validate_bridging_tab_exists(drug)
 {
-  if(drug == null || drug == "Warfarin")
+  if(drug == null)
   {
     drug = "Warfarin";
-    Goto_Patient_Treatment();
   }
-  else
-  {
-    Goto_Patient_Treatment_Plan_Review();
-  }
+  
+  Goto_Patient_Treatments_Tab();
   
   var tab = INRstar_base().NativeWebObject.Find("idStr", "PatientBridgingTab");
   if(tab.Exists == true && drug == "Warfarin")
@@ -105,7 +88,7 @@ function add_bridging_table_row(procedure_date)
   
   return row_data;
 }
-//--------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------- 
 function validate_bridging_table_dates(procedure_date, rows_to_check)
 {
   var expected_row_data = new Array();
@@ -114,20 +97,24 @@ function validate_bridging_table_dates(procedure_date, rows_to_check)
   var result_set = new Array();
   var table = bridging_schedule_preop_table();
   
-  for(var i = rows_to_check; i > 0; i--)
+  if(rows_to_check == (table.RowCount - 1))
   {
-    expected_row_data.length = 0;
+    for(var i = 1; i > table.RowCount; i++)
+    {
+      expected_row_data.length = 0;
   
-    var row_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(procedure_date, (- (table.RowCount - i))), "%d-%b-%Y");
-    expected_row_data.push(row_date, "-" + (table.RowCount - i), false, false, false, "", "");
+      var row_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(procedure_date, (- (table.RowCount - i))), "%d-%b-%Y");
+      expected_row_data.push(row_date, "-" + (table.RowCount - i), false, false, false, "", "");
     
-    row_data = get_bridging_schedule_table_row(i);
+      row_data = get_bridging_schedule_table_row(i);
     
-    result_set_1 = checkArrays(expected_row_data, row_data, "Compare Rows");
-    result_set.push(result_set_1);
+      result_set_1 = checkArrays(expected_row_data, row_data, "Compare Rows");
+      result_set.push(result_set_1);
+    }
+    return results_checker_are_true(result_set);
   }
-  
-  var results = results_checker_are_true(result_set);
-  
-  return results;
+  else
+  {
+    return false;
+  }
 }

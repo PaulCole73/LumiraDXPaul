@@ -167,6 +167,14 @@ function Goto_Patient_Search()
   WaitSeconds(1, "Waiting at Patient Tab...");
 }
 //-------------------------------------------------------------------------------
+// Navigate to Patient Search
+function Goto_External_Patient_Lookup()
+{
+  Goto_Patient_Search();
+  external_patient_lookup_tab().Click();
+  WaitSeconds(2, "Waiting to go to External Patient Lookup...");
+}
+//-------------------------------------------------------------------------------
 // Navigate to Add Patient
 function Goto_Add_Patient()
 {
@@ -254,6 +262,14 @@ function Goto_Recently_Viewed()
 // Treatment Plan Navigation
 //===============================================================================
 //===============================================================================
+function Goto_Patient_Treatments_Tab()
+{
+  WaitSeconds(3);
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
+  WaitSeconds(3, "Waiting to go to Treatment Plan...");
+}
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan
 function Goto_Patient_Treatment_Plan()
@@ -557,9 +573,15 @@ function Goto_Suggested_Treatment_Audit()
 // Bridging Navigation
 //===============================================================================
 //===============================================================================
+function Goto_Bridging_Tab()
+{
+  Goto_Patient_Treatments_Tab();
+  patient_clinical_tab().Link("PatientBridgingTab").Click();
+}
+//-------------------------------------------------------------------------------
 function Goto_Create_Bridging_Record()
 {
-  Goto_Patient_Treatment();
+  Goto_Patient_Treatments_Tab();
   WaitSeconds(1);
   patient_clinical_tab().Link("PatientBridgingTab").Click();
   bridging_schedule_buttons().Button("New_Bridging_Record").Click();

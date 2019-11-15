@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function add_pending_fast_induction_treatment(inr,TestStepMode)
@@ -353,11 +353,16 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     process_confirm_historical_treatment(INRstarV5);
 }
 //--------------------------------------------------------------------------------
-function add_manual_treatment(date,inr,dose,review)
+function add_manual_treatment(date, inr, dose, review, tm)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
   var test_info_path = treatment_inr_test_info_path()
+  
+  if(tm == null)
+  {
+    tm = "Lab";
+  }
 
   // Set the Treatment Date
   var w_day = aqString.SubString(date,0,2);
@@ -381,7 +386,7 @@ function add_manual_treatment(date,inr,dose,review)
     test_info_path.Panel(2).Select("Review").ClickItem(review + " Day");
   }
   test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
-  test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem("Lab");
+  test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
    
   var treatment_button_path = treatment_buttons_pre_schedule();
   treatment_button_path.SubmitButton("SubmitManualDose").Click();

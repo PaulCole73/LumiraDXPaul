@@ -3,7 +3,6 @@
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function add_a_new_note()
-
 {
   Goto_Patient_Notes();
   var notes_tab_path = notes_tab();
@@ -16,6 +15,14 @@ function add_a_new_note()
   notes_form_path.Panel(0).SubmitButton("AddNote").Click(); 
 } 
 //--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 //for testing blank note
 //      var INRstarV5 = set_system();
 //      var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");

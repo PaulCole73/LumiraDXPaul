@@ -5,17 +5,17 @@
 //--------------------------------------------------------------------------------
 function deactivate_patient()
 {
- WaitSeconds(1);
- Goto_Patient_Management();
- WaitSeconds(1);  
- var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
- pat_managment_tab_status_buttons_path.Button("De_activatePatientButton").Click();
- process_confirm_sub('','De-Activating a patient');
+  WaitSeconds(1);
+  Goto_Patient_Management();
+  WaitSeconds(1);  
+  var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
+  pat_managment_tab_status_buttons_path.Button("De_activatePatientButton").Click();
+  process_confirm_sub('','De-Activating a patient');
  
- var patient_management_deactivate_form_path = patient_management_deactivate_form();
- patient_management_deactivate_form_path.Panel("DeactivatingReason").Panel("DeactivatingReasonList").Select("InactiveReason").ClickItem(5);
+  var patient_management_deactivate_form_path = patient_management_deactivate_form();
+  patient_management_deactivate_form_path.Panel("DeactivatingReason").Panel("DeactivatingReasonList").Select("InactiveReason").ClickItem(5);
  
- patient_management_deactivate_form_path.Panel(1).SubmitButton("Confirm").Click();
+  patient_management_deactivate_form_path.Panel(1).SubmitButton("Confirm").Click();
 } 
 //--------------------------------------------------------------------------------
 function deactivating_patient_confirmation_checker(exp_err_mess)
@@ -549,15 +549,6 @@ function get_patient_reg_prac()
   var reg_prac = patient_management_care_team_path.Panel(1).Label("RegisteredSectionId_DetachedLabel").contentText;
   
   return reg_prac;
-} 
-//--------------------------------------------------------------------------------
-function get_patient_test_prac()
-{
-  Goto_Patient_Management()
-  var patient_management_care_team_path = patient_management_care_team();
-  var test_prac = patient_management_care_team_path.Panel(0).Label("TestingSectionId_DetachedLabel").contentText;
-  
-  return test_prac;
 } 
 //--------------------------------------------------------------------------------
 function check_transfer_test_location_errors()

@@ -91,9 +91,54 @@ function get_patient_fullname()
   var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
   
-  patient_fullname = surname + ', ' + firstname
+  var patient_fullname = surname + ', ' + firstname
  
   return patient_fullname;  
+}
+//-----------------------------------------------------------------------------------
+//gets the patients date of birth
+function get_patient_dob()
+{
+  Goto_Patient_Demographics();
+  var patient_demographics_tab_path = patient_demographics_tab_demographics();
+  
+  var dob =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
+ 
+  return dob; 
+}
+//-----------------------------------------------------------------------------------
+//gets the patients address
+function get_patient_address_line_one()
+{
+  Goto_Patient_Demographics();
+  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
+  
+  var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
+  var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
+  
+  var address = line_1 + " " + line_2;
+ 
+  return address;
+}
+//-----------------------------------------------------------------------------------
+//gets the patients postcode
+function get_patient_postcode()
+{
+  Goto_Patient_Demographics();
+  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
+  
+  var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
+ 
+  return post_code;
+}
+//--------------------------------------------------------------------------------
+function get_patient_test_prac()
+{
+  Goto_Patient_Management()
+  var patient_management_care_team_path = patient_management_care_team();
+  var test_prac = patient_management_care_team_path.Panel(0).Label("TestingSectionId_DetachedLabel").contentText;
+  
+  return test_prac;
 } 
 //-----------------------------------------------------------------------------------
 //gets all data from specified table
@@ -316,4 +361,28 @@ function get_bridging_schedule_table_row(row_num)
   }
   
   return row_data;
+}
+//-----------------------------------------------------------------------------------
+function get_external_patient_lookup_data()
+{
+  var patient_data = new Array();
+
+  var fullname = get_patient_fullname();
+  var dob = get_patient_dob();
+  var nhs = get_patient_nhs();
+  var addr_line_one = get_patient_address_line_one();
+  var post_code = get_patient_postcode();
+  var test_prac = get_patient_test_prac();
+  patient_data.push(fullname, dob, nhs, addr_line_one, post_code, test_prac);
+  
+  return patient_data;
+}
+//-----------------------------------------------------------------------------------
+function get_top_note_text()
+{
+  Goto_Patient_Notes();
+  var note_text_path = notes_tab().Table("PatientNotesTable").Cell(1, 0);
+  var text = aqString.Trim(note_text_path.innerText);
+  
+  return text;
 }
