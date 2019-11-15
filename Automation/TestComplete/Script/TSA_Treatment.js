@@ -630,7 +630,7 @@ function select_more_schedules(sched_required)
 //--------------------------------------------------------------------------------
 function add_treatment_comment(comment)
 {
-  Goto_add_treatment_comment();
+  Goto_Add_Treatment_Comment();
   var INRstarV5 = INRstar_base();
   var treatment_comment_box_path = treatment_comment_box();
   treatment_comment_box_path.innerText = comment;

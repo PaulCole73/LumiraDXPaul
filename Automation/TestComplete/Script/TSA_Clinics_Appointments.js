@@ -7,11 +7,11 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
 {
   var date_split = new Array();
   date_split = tsa_clinic_split_date(date);
-  var INRstarV5 = INRstar_base();
-  Goto_Add_Clinic(INRstarV5);
+  Goto_Add_Clinic();
   
   var class_name = "dxeCalendarDay_INRstarTheme";
   var class_name_1 = "dxeCalendarDay_INRstarTheme dxeCalendarToday_INRstarTheme dxeCalendarSelected_INRstarTheme";
+  var class_name_2 = "dxeCalendarDay_INRstarTheme dxeCalendarWeekend_INRstarTheme";
   
   var f_name = add_clinic_form().Table(0).Cell(0, 1).Table("Name_ET").Cell(0, 0).Table("Name").Cell(0, 0).Textbox("Name_I");
   var f_start = add_clinic_form().Table(0).Cell(2, 1).Table("StartTime_ET").Cell(0, 0).Table("StartTime").Cell(0, 0).Textbox("StartTime_I");
@@ -31,7 +31,7 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
   for(var i = day_picker_container.ChildCount - 1; i > 0; i--)
   {
     var child = day_picker_container.Child(i);
-    if(child.contentText == aqConvert.IntToStr(date_split[0]) && (child.className == class_name || child.className == class_name_1))
+    if(child.contentText == aqConvert.IntToStr(date_split[0]) && (child.className == class_name || child.className == class_name_1 || child.className == class_name_2))
     {
       child.Click();
       break;

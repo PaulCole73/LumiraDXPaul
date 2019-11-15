@@ -67,35 +67,42 @@ function self_care_DDD(stage)
   Goto_Self_Care();
   var INRstarV5 = INRstar_base();
   
-  if(stage=='1')
+  if(stage == "1")
   {
-  var enrol_ddd_button = ddd_initial_enrol_button_path()
-  enrol_ddd_button.Click();
+    var enrol_ddd_button = ddd_initial_enrol_button_path();
+    WaitSeconds(2);
+    enrol_ddd_button.Click();
+    WaitSeconds(2);
   
-  var stage_one_path = ddd_self_testing_self_testing_stage_one_path()
-  stage_one_path.Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
-  stage_one_path.Button("Program_Digital_dosing_diary_Phases_Stage_1_6_Content_Input").Click();
-  WaitSeconds(6,"Awaiting email confirmation box");
-  INRstarV5.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
+    var stage_one_path = ddd_self_testing_self_testing_stage_one_path();
+    stage_one_path.Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
+    stage_one_path.Button("Program_Digital_dosing_diary_Phases_Stage_1_6_Content_Input").Click();
+    WaitSeconds(6, "Waiting for the Email Confirmation box...");
+    process_popup("Email sent", "Ok");
   }
-    if(stage=='disenrolled')
+  else if(stage == "2")
   {
-  var enrol_ddd_button = ddd_initial_enrol_button_path()
-  enrol_ddd_button.Click();
+    checkbox = ddd_self_testing_self_testing_stage_three_path().Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_3_1_Content_Input");
+    checkbox.ClickChecked(true);
+  }
+  else if(stage == "disenrolled")
+  {
+    var enrol_ddd_button = ddd_initial_enrol_button_path();
+    enrol_ddd_button.Click();
   
-  var stage_one_path = ddd_self_testing_self_testing_stage_one_path()
-  stage_one_path.Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
-  stage_one_path.Button("Program_Digital_dosing_diary_Phases_Stage_1_6_Content_Input").Click();
-  WaitSeconds(6,"Awaiting email confirmation box");
+    var stage_one_path = ddd_self_testing_self_testing_stage_one_path();
+    stage_one_path.Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
+    stage_one_path.Button("Program_Digital_dosing_diary_Phases_Stage_1_6_Content_Input").Click();
+    WaitSeconds(6, "Waiting for the Email Confirmation box...");
   
-  INRstarV5.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
+    INRstarV5.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
   
-  var stage_four_path = ddd_self_testing_self_testing_stage_four_path();
-  stage_four_path.Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_4_1_Content_Input").ClickChecked(true); 
-  stage_four_path.Button("Program_Digital_dosing_diary_Phases_Stage_4_3_Content_Input").Click();
+    var stage_four_path = ddd_self_testing_self_testing_stage_four_path();
+    stage_four_path.Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_4_1_Content_Input").ClickChecked(true); 
+    stage_four_path.Button("Program_Digital_dosing_diary_Phases_Stage_4_3_Content_Input").Click();
   
-  INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
-  WaitSeconds(1);
+    INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
+    WaitSeconds(1);
   }
 } 
 //--------------------------------------------------------------------------------

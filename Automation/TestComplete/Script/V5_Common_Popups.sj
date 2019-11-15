@@ -132,6 +132,7 @@ function process_OK(INRstarV5, w_hdg)
 function process_button(INRstarV5, w_hdg, p_ans)
 {
    // Find the Panel
+  var INRstarV5 = INRstar_base();
   var w_popup = INRstarV5.NativeWebObject.Find("innerText", w_hdg);
   if (w_popup.Exists == false || w_popup.VisibleOnScreen == false)
   {
@@ -248,19 +249,20 @@ function process_confirm_INR_cancel()
 // Process Popup 
 function process_popup(header, button)
 {
+  WaitSeconds(1);
   var INRstarV5 = INRstar_base();
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
-  if (wbx.Exists == false)
-  {  
+  
+  if (wbx.Exists == false || wbx.Height == 0)
+  { 
     Log.Message("'" + header + "' box not displayed");
     return "";
   }
   else
-  {
+  { 
     Log.Message("'" + header + "' box displayed");
-    
     var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", button, "BUTTON");
-    if (wb_Ok.Exists == false)
+    if (wb_Ok.Exists == false || wb_Ok.Height == 0)
     {
       Log.Message("'" + header + "' "+ button +" button not found");
       return "";
@@ -273,7 +275,7 @@ function process_popup(header, button)
       wb_Ok.Click();
       return text;
     }
-  } 
+  }
 }
 //-------------------------------------------------------------------------------
 // Process Clinic Popup 
