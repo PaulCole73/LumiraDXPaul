@@ -647,7 +647,15 @@ function sugg_war_dose_button()
   var sugg_war_dose_button_path = form.Panel(0).SubmitButton("CalculateWarfarinDose");
   
   return sugg_war_dose_button_path;
-}  
+} 
+function current_tab()
+{
+  var path = pending_treatment_buttons();
+  var panelPTI = path.Panel("PendingTreatmentInfo");
+  panelPTI.Panel("DosingSchedule").Link("CurrentTab");
+  
+  return panelPTI;
+}
 //------------------------------------------------------------------------
 function new_inr_button_path()
 {
@@ -856,6 +864,30 @@ function patient_treatment_bridging_tab()
   var tab = panelPTC.Panel("BridgingTabContent");
   
   return tab;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_form()
+{
+  var tab = patient_treatment_bridging_tab();
+  var panel = tab.Panel("BridgingTabContent").Form("CreateBridgingSchedulesForm");
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_buttons()
+{
+  var tab = patient_treatment_bridging_tab();
+  var panel = tab.Panel(0);
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_preop_table()
+{
+  var tab = patient_treatment_bridging_tab();
+  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule").Panel(0).Table("BridgingPreOpSceduleTable");
+  
+  return table;
 }
 //------------------------------------------------------------------------
 //////////////////////////  Summary  ///////////////////////////////////

@@ -25,13 +25,13 @@ function edit_all_patient_demographics(gender)
   
   //NHS Number
   data_before = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text;
-  var w_nhs = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text = Get_New_Number_V5();
+  var w_nhs = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
   data_after = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text;
   
   //Check data is now different
   while (data_before == data_after)
   {
-    var w_nhs = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text = Get_New_Number_V5();
+    var w_nhs = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
     data_after = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text;
   } 
   

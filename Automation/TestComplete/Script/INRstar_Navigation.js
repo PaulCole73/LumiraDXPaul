@@ -237,6 +237,7 @@ function Goto_Self_Care()
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientSelfCaringTab").Click();
+  WaitSeconds(3, "Waiting to go to Self Care tab...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Recently Viewed Patient List
@@ -415,6 +416,11 @@ function Goto_Add_Treatment_Comment()
 // Navigate to Patient Treatment Plan Reviews
 function Goto_Patient_Treatment_Plan_Review()
 {
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
+  WaitSeconds(3, "Waiting to go to Treatment Plan...");
+  
   var panelPR = main_patient_tab();
   panelPR.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientReviewTab").Click();
 }
@@ -544,4 +550,18 @@ function Goto_Suggested_Treatment_Audit()
   pending_treatment_table_path.Cell(0,10).Link("TreatmentInformationActionLink").Click();
   
   INRstarV5.Panel(2).Panel(1).Panel(0).Button(1).Click();
+}
+
+//===============================================================================
+//===============================================================================
+// Bridging Navigation
+//===============================================================================
+//===============================================================================
+function Goto_Create_Bridging_Record()
+{
+  Goto_Patient_Treatment();
+  WaitSeconds(1);
+  patient_clinical_tab().Link("PatientBridgingTab").Click();
+  bridging_schedule_buttons().Button("New_Bridging_Record").Click();
+  WaitSeconds(1, "Waiting to go to bridging form...");
 }

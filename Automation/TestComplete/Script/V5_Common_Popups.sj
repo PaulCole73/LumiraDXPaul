@@ -249,11 +249,12 @@ function process_confirm_INR_cancel()
 // Process Popup 
 function process_popup(header, button)
 {
+  WaitSeconds(1);
   var INRstarV5 = INRstar_base();
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
   
   if (wbx.Exists == false || wbx.Height == 0)
-  {  
+  { 
     Log.Message("'" + header + "' box not displayed");
     return "";
   }
