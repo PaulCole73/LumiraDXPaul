@@ -27,7 +27,6 @@ function validate_new_bridging_record_button_state()
 //--------------------------------------------------------------------------------
 function validate_bridging_tab_exists(drug)
 {
-  Log.Message(drug);
   if(drug == null || drug == "Warfarin")
   {
     drug = "Warfarin";
