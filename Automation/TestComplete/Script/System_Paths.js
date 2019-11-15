@@ -866,6 +866,30 @@ function patient_treatment_bridging_tab()
   return tab;
 }
 //------------------------------------------------------------------------
+function bridging_schedule_form()
+{
+  var tab = patient_treatment_bridging_tab();
+  var panel = tab.Panel("BridgingTabContent").Form("CreateBridgingSchedulesForm");
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_buttons()
+{
+  var tab = patient_treatment_bridging_tab();
+  var panel = tab.Panel(0);
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_preop_table()
+{
+  var tab = patient_treatment_bridging_tab();
+  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule").Panel(0).Table("BridgingPreOpSceduleTable");
+  
+  return table;
+}
+//------------------------------------------------------------------------
 //////////////////////////  Summary  ///////////////////////////////////
 //------------------------------------------------------------------------
 function summary_tab_path()

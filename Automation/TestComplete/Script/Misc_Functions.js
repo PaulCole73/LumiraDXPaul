@@ -363,7 +363,7 @@ function new_guid(char_count)
 function get_unique_number()
 {
   WaitSeconds(1);
-  var date_now = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%d/%m/%Y %H:%M%S");
+  var date_now = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%d/%m/%Y %H:%M:%S");
   
   var split_1 = date_now.split(" ");
   var split_2 = split_1[0].split("/");
@@ -654,6 +654,50 @@ function validate_send_email()
 }
 */
 //-----------------------------------------------------------------------------------
+function email_and_archive(name)
+{
+  var master_path = Project.ConfigPath;
+  var file_name = pack_results(name);
+  var archive_dir = "Q:\\Development and Testing\\Testing\\Automation Archive\\";
+  send_email("AutomationLumira@gmail.com", "testers@lumiradx.co.uk", "Automation", "Automation Test Results", file_name + ".zip");
+  aqFileSystem.MoveFile(file_name + ".zip", archive_dir, true);
+  aqFileSystem.DeleteFile(file_name + ".mht");
+}
+//-----------------------------------------------------------------------------------
+function pack_results(name)
+{
+  var work_dir, file_name, file_list, archive_path, date;
+  
+  work_dir = Project.ConfigPath + "Log\\ExportedResults\\";
+  date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d_%m_%y")
+  zip_name = work_dir + name + "_" + date;
+  file_name = zip_name + ".mht";
+  
+  Log.SaveResultsAs(file_name, 2);
+  file_list = slPacker.GetFileListFromFolder(work_dir);
+  if (slPacker.Pack(file_list, work_dir, zip_name))
+  {
+    return zip_name;
+    Log.Message("Files compressed successfully."); 
+  }  
+}
+//-----------------------------------------------------------------------------------
+function reset_folder()
+{
+  var work_dir = Project.ConfigPath + "Log\\ExportedResults\\";
+  aqFileSystem.DeleteFolder(work_dir, true);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

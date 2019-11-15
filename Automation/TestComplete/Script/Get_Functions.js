@@ -297,3 +297,23 @@ function get_pending_suggested_treatment_schedule(days)
   }    
   return pending_schedule;
 }
+//-----------------------------------------------------------------------------------
+function get_bridging_schedule_table_row(row_num)
+{
+  var row_data = new Array();
+  var table = bridging_schedule_preop_table();
+  
+  for(var i = 0; i < 7; i++)
+  {
+    if(i == 2 || i == 3 || i == 4)
+    {
+      row_data.push(table.Cell(row_num, i).Child(0).Checked);
+    }
+    else
+    {
+      row_data.push(aqString.Trim(table.Cell(row_num, i).innerText));
+    }
+  }
+  
+  return row_data;
+}
