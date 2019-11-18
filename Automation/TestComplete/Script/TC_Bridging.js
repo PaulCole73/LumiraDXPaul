@@ -108,7 +108,9 @@ function tc_bridging_button_state_with_historic_warfarin_treatment()
       add_treatment_plan(drug_array[i], "Coventry", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2", "52 Weeks");
       cancel_review();
       
+      WaitSeconds(2);
       tp_drop_down().ClickItem(1);
+      WaitSeconds(2);
       
       state = get_new_bridging_record_button_state();
       result_set_1 = button_checker(state, "disabled", "Check Button State.");

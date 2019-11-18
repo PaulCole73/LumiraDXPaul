@@ -575,9 +575,9 @@ function get_new_number_v5()
 {
   var wnd;
 
-  WaitSeconds(1)
+  WaitSeconds(1);
   TestedApps.NHSNumberGenerator.Run(1, true);
-  WaitSeconds(1)
+  WaitSeconds(1);
 
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
   form.WinFormsObject("button1").ClickButton();
@@ -659,7 +659,7 @@ function email_and_archive(name)
   var master_path = Project.ConfigPath;
   var file_name = pack_results(name);
   var archive_dir = "Q:\\Development and Testing\\Testing\\Automation Archive\\";
-  send_email("AutomationLumira@gmail.com", "testers@lumiradx.co.uk", "Automation", "Automation Test Results", file_name + ".zip");
+  send_email("AutomationLumira@gmail.com", "automatedtesting@lumiradx.com", "Automation", "Automation Test Results", file_name + ".zip");
   aqFileSystem.MoveFile(file_name + ".zip", archive_dir, true);
   aqFileSystem.DeleteFile(file_name + ".mht");
 }

@@ -638,7 +638,15 @@ function cancel_pending_treat_button()
   var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("CancelPendingTreatment");
   
   return cancel_button_path;
-} 
+}
+//------------------------------------------------------------------------
+function refer_pending_treat_button()
+{
+  var pending_treatment_buttons_path = pending_treatment_buttons();
+  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
+  
+  return cancel_button_path;
+}
 //------------------------------------------------------------------------
 function sugg_war_dose_button()
 {
@@ -1124,7 +1132,15 @@ function notes_form()
   var notes_form = panelPMTCP.Panel("NotesContent").Panel("PatientNotesWrapper").Form("PatientNotesForm");
   
   return notes_form;
-} 
+}
+//------------------------------------------------------------------------
+function notes_archive_button()
+{
+  var form = notes_tab();
+  var button = form.Panel(0).SubmitButton("SaveNotes");
+  
+  return button;
+}
 //------------------------------------------------------------------------
 ////////////////////////////////  Audit  ///////////////////////////////
 //------------------------------------------------------------------------

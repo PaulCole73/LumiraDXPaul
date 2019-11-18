@@ -5,7 +5,7 @@
 function get_new_bridging_record_button_state()
 {
   var state;
-  Goto_Bridging_Tab();
+  patient_clinical_tab().Link("PatientBridgingTab").Click();
   state = patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").enabled;
   
   return state;

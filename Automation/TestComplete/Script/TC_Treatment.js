@@ -614,7 +614,7 @@ function tc_treatment_refer_a_treatment()
     
     WaitSeconds(6);
     
-    add_pending_maintenance_treatment('2.0',(aqDateTime.Today()));
+    add_pending_maintenance_treatment("2.0",(aqDateTime.Today()));
   
     //Get all the patient details
     var pat_nhs = get_patient_nhs();
@@ -622,8 +622,7 @@ function tc_treatment_refer_a_treatment()
     Goto_Patient_Treatment();
   
     //Refer
-    var pending_treatment_buttons_path = pending_treatment_buttons();
-    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment").Click();
+    var refer_button_path = refer_pending_treat_button().Click();
   
     var result_set = new Array(); 
     //Check patient on the referred list

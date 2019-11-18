@@ -287,8 +287,9 @@ function Goto_Patient_Treatment_Plan()
 function Goto_Patient_Treatment_Plan_Add()
 {
   Goto_Patient_Treatment_Plan();
-  var panelPR = main_patient_tab();
-  panelPR.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(0).Button("AddPatientTreatmentPlanLink").Click();
+  /*var panelPR = main_patient_tab();
+  panelPR.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails")*/
+  change_treatment_plan_buttons().Panel(0).Button("AddPatientTreatmentPlanLink").Click();
   
   process_popup("Confirmation Required", "Confirm");
   
@@ -320,9 +321,10 @@ function Goto_Patient_Treatment_Plan_Edit_Existing_Plan_Non_Warfarin()
   Goto_Patient_Treatment_Plan();
        
   // Click on Edit Button --------------------------------------------------------------------------
-  var panelPCW = main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper")
+  /*var panelPCW = main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper")
   var panelPCD = panelPCW.Panel("PatientTreatmentPlanDetails");
-  panelPCD.Panel(0).Button("EditPatientTreatmentPlanLink").Click();
+  panelPCD */
+  change_treatment_plan_buttons().Panel(0).Button("EditPatientTreatmentPlanLink").Click();
   WaitSeconds(1, "Waiting to go to Edit Treatment Plan...");
 }
 //-------------------------------------------------------------------------------
@@ -345,10 +347,11 @@ function Goto_Patient_Treatment_Plan_Edit_Existing_Plan_Non_Warfarin()
 function Goto_Patient_Treatment_Plan_Edit_Existing_Plan()
 {
   Goto_Patient_Treatment_Plan();
-  var panelPMTC = main_patient_tab();
+  /*var panelPMTC = main_patient_tab();
   var panelPCW = panelPMTC.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper")
   var panelPCD = panelPCW.Panel("PatientTreatmentPlanDetails");
-  panelPCD.Panel(1).Button("EditPatientTreatmentPlanLink").Click();
+  panelPCD.Panel(1)*/
+  change_treatment_plan_buttons().Panel(1).Button("EditPatientTreatmentPlanLink").Click();
   WaitSeconds(1, "Waiting for Edit Treatment Plan button...");
 }
 /*
@@ -385,7 +388,7 @@ function Goto_Patient_New_INR()
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
   panelPPT.Panel("TreatmentButtonsContainer").Fieldset("TreatmentButtons").Button("NewINR").Click();
   
-  //process_popup("Please Acknowledge", "Confirm");
+  //process_popup("Please Acknowledge", "Confirm");   //look at these popups
   process_Please_acknowledge_maintenance();
 }
 //-------------------------------------------------------------------------------
@@ -400,9 +403,10 @@ function Goto_Patient_Treatment()
 
   WaitSeconds(3, "Waiting at Treatment tab...");
   
-  var panelPMTC = main_patient_tab();
+  /*var panelPMTC = main_patient_tab();
   var panelPTPTSM = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
-  panelPTPTSM.Link("TreatmentItem").Click();
+  panelPTPTSM*/
+  patient_clinical_tab().Link("TreatmentItem").Click();
   WaitSeconds(3, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
