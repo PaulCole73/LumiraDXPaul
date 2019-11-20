@@ -36,7 +36,7 @@ function tc_add_a_new_poct()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //-------------------------------
@@ -78,7 +78,7 @@ function tc_edit_a_new_poct_batch()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //-------------------------------

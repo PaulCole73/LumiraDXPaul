@@ -563,7 +563,21 @@ function process_button_exists(button_id)
     button_to_find.Click();
   }
 }
-
+//-----------------------------------------------------------------------------------
+function process_object_exists(content_type, content_data)
+{
+  WaitSeconds(3, "Waiting for object...");
+  var object = INRstar_base().NativeWebObject.Find(content_type, content_data);
+  Log.Message(object.Exists);
+  if(object.Exists)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
 
 
 //-----------------------------------------------------------------------------------
@@ -587,7 +601,7 @@ function get_new_number_v5()
   form.Close();
   return wnd;
 }
-
+//-----------------------------------------------------------------------------------
 function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 {
   var schema, mConfig, mMessage;
@@ -640,20 +654,6 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
   return true;
 }
 //-----------------------------------------------------------------------------------
-/*
-function validate_send_email()
-{
-  if(SendEmail("AutomationLumira@gmail.com", "testers@lumiradx.co.uk", "Automation", "Automation Test Results", "C:\\Users\\paul.dunstan\\source\\repos\\ldxcs-INRstarAutomation\\Automation\\TestComplete\\Log\\ExportedResults\\CompressedResults.zip") == true)
-  {
-    Log.Message("Mail was sent");
-  }
-  else
-  {
-    Log.Warning("Mail was not sent");
-  }
-}
-*/
-//-----------------------------------------------------------------------------------
 function email_and_archive(name)
 {
   var master_path = Project.ConfigPath;
@@ -688,7 +688,7 @@ function reset_folder()
   aqFileSystem.DeleteFolder(work_dir, true);
 }
 //-----------------------------------------------------------------------------------
-function run_INRstar()
+function restart_INRstar()
 {
   var path = Sys.Process("INRstarWindows").Path;
   
@@ -696,15 +696,6 @@ function run_INRstar()
   
   Win32API.WinExec(path, SW_SHOWNORMAL);
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -768,5 +759,29 @@ function test_field(p_field, p_field_name, exp_object_type)
       Log.Message(p_field_name + " " + "Field can be edited Field PASS");
       return true;
     }
+  }
+}
+//-----------------------------------------------------------------------------------
+function delete_files() //intended to go into a wipe a log file, isn't functioning
+{
+  var oFolder, colFiles, temp;
+  var file_path = new Array();
+  var log_dir = Log.Path;
+  Log.Message(log_dir);
+  
+  oFolder = aqFileSystem.GetFolderInfo(log_dir);
+  colFiles = oFolder.Files;
+
+  while (colFiles.HasNext())
+  {
+    temp = colFiles.Next();
+    Log.Message(temp.Name);
+    
+    file_path.push(log_dir + temp.Name);
+  }
+  
+  for(var i = 0; i < file_path.length; i++)
+  {
+    aqFile.Delete(file_path[i]);
   }
 }

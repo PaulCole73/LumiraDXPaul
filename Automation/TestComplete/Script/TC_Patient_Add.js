@@ -21,7 +21,7 @@ function tc_add_a_new_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ function tc_add_a_new_patient_duplicate_nhs()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------

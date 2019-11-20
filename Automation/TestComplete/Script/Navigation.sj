@@ -770,7 +770,8 @@ function Log_On_User(p_user,p_pwrd)
     Log_On_Sub(login_page, p_user, p_pwrd);
 }
 //-------------------------------------------------------------------------------
-// Log Off
+// Log Off 
+/*
 function Log_Off()
 {
     WaitSeconds(1, "Waiting for Log Off button...");
@@ -779,6 +780,7 @@ function Log_Off()
     var panelLoginStatus = panelHeader.Panel("logindisplay").Panel("LoginStatus");
     panelLoginStatus.Link("LogoutLink").Click();     
 }
+*/
 //-------------------------------------------------------------------------------
 // Log on Process
 function Log_On_Sub(login_page, p_user, p_pwrd)

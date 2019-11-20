@@ -38,7 +38,7 @@ function tc_treatment_plan_add_first_manual_treatment_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //----------------------------------------
@@ -62,7 +62,7 @@ function tc_treatment_plan_add_first_maintenance_treatment_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }  
 }
 //----------------------------------------
@@ -88,71 +88,71 @@ function tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_b
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }  
 } 
 //----------------------------------------
 function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_added_induction_patient()
 {
- try
- {  
-  var test_title = 'Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient'
-  login('cl3@regression','INRstar_5','Shared');
-  add_patient('Regression', 'New_tp_induct_pat', 'M', 'Shared'); 
-  add_treatment_plan('W','Fast','','Shared','');
-  add_fast_induction_treatment('1.0');
+  try
+  {  
+    var test_title = 'Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient'
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'New_tp_induct_pat', 'M', 'Shared'); 
+    add_treatment_plan('W','Fast','','Shared','');
+    add_fast_induction_treatment('1.0');
   
-  result_set = new Array();
+    result_set = new Array();
 
-  result_set_1 = new_tp_popup_checker('This patient is currently on an Induction protocol. Creating a new treatment plan will invalidate the Induction protocol');
-  result_set.push(result_set_1);
+    result_set_1 = new_tp_popup_checker('This patient is currently on an Induction protocol. Creating a new treatment plan will invalidate the Induction protocol');
+    result_set.push(result_set_1);
   
-  //need to continue with adding tp here so either continue or add then run the new tp function
-  var ok_error_pop_up_buttons_path = ok_error_pop_up_buttons();
-  ok_error_pop_up_buttons_path.Button(1).TextNode(0).Click();
+    //need to continue with adding tp here so either continue or add then run the new tp function
+    var ok_error_pop_up_buttons_path = ok_error_pop_up_buttons();
+    ok_error_pop_up_buttons_path.Button(1).TextNode(0).Click();
 
-  add_treatment_plan('W','Manual',aqConvert.StrToDate(aqDateTime.Today()),'Shared','3');
+    add_treatment_plan('W','Manual',aqConvert.StrToDate(aqDateTime.Today()),'Shared','3');
 
-  result_set_2 = validate_top_patient_audit(test_title,'New Treatment Plan');
-  result_set.push(result_set_2);
+    result_set_2 = validate_top_patient_audit(test_title,'New Treatment Plan');
+    result_set.push(result_set_2);
   
-  //Validate all the results sets are true
-  var results = results_checker_are_true(result_set); 
-  Log.Message(results);
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    Log.Message(results);
 
-  //Pass in the result
-  results_checker(results,test_title); 
+    //Pass in the result
+    results_checker(results,test_title); 
   
- Log_Off(); 
+    Log_Off(); 
   } 
-   catch(e)
-   {
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
-   }
+    restart_INRstar();
+  }
 }
 //----------------------------------------
 function tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yellow_banner_is_displayed()
 {
- try
- {  
-  var test_title = 'Treatment Plan - Add a new treatment plan for an induction patient yellow banner is displayed'
-  login('cl3@regression','INRstar_5','Shared');
-  add_patient('Regression', 'New_tp_induct_pat', 'M', 'Shared'); 
-  add_treatment_plan('W','Oates','','Shared','');
+  try
+  {  
+    var test_title = 'Treatment Plan - Add a new treatment plan for an induction patient yellow banner is displayed'
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'New_tp_induct_pat', 'M', 'Shared'); 
+    add_treatment_plan('W','Oates','','Shared','');
   
-  result = banner_checker_includes('The patient\'s dosing method is currently set to : Induction');
+    result = banner_checker_includes('The patient\'s dosing method is currently set to : Induction');
   
-  //Pass in the result
-  results_checker(result,test_title); 
+    //Pass in the result
+    results_checker(result,test_title); 
   
-  Log_Off(); 
+    Log_Off(); 
   } 
-   catch(e)
-   {
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
-   }
+    restart_INRstar();
+  }
 } 
 //----------------------------------------
 function tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_plan_if_no_treatments_have_been_added()
@@ -208,7 +208,7 @@ function tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }   
 } 
 //----------------------------------------
@@ -248,7 +248,7 @@ function tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unl
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }  
 } 
 //----------------------------------------
@@ -289,7 +289,7 @@ function tc_edit_treatment_plan_after_a_review_has_been_added()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }   
 } 
 //----------------------------------------
@@ -359,7 +359,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_a_non_warfarin_drug_chec
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }  
 } 
 //----------------------------------------
@@ -395,7 +395,7 @@ function tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algo
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }  
 } 
 //----------------------------------------
@@ -433,7 +433,7 @@ function tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_de
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //----------------------------------------
@@ -471,7 +471,7 @@ function tc_edit_treatment_plan_change_diagnosis()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //----------------------------------------
@@ -489,13 +489,12 @@ function tc_treatment_plan_add_second_treatment_using_previous()
     var result_set = new Array();
     var current_values = new Array();
     var previous_values = new Array();
-    current_values = get_treatment_row_key_values(0, "current");
     var date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
     
+    current_values = get_treatment_row_key_values(0, "current");
     add_treatment_plan('W', 'Manual', date, 'Shared', '2', '', true);
     
-    var previous_treatments_check = INRstar_base().NativeWebObject.Find("contentText", "Treatments from previous plan");   
-    if(previous_treatments_check.Exists == true)
+    if(process_object_exists("contentText", "Treatments from previous plan"))
     {
       previous_values = get_treatment_row_key_values(0, "previous");
     }
@@ -518,7 +517,7 @@ function tc_treatment_plan_add_second_treatment_using_previous()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //----------------------------------------
@@ -567,7 +566,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //----------------------------------------

@@ -424,11 +424,11 @@ function delete_treatment()
 {
   Goto_Patient_Treatments_Tab();
   WaitSeconds(1);
-  var INRstarV5 = INRstar_base();
   var treatment_buttons_path = inr_treatment_buttons();
   treatment_buttons_path.Button("DeleteLatestTreatment").Click();
-  //process_confirm_delete_treatment(INRstarV5);
-  process_popup("Confirmation Required", "Confirm");
+  var msg = process_popup("Confirmation Required", "Confirm");
+  
+  return msg;
 } 
 //--------------------------------------------------------------------------------
 function delete_treatment_confim_checker(expected_message)

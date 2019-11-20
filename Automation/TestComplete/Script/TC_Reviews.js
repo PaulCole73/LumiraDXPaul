@@ -23,7 +23,7 @@ function tc_add_a_new_warfarin_review()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ function tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------

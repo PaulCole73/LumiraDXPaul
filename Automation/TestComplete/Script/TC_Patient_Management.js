@@ -52,7 +52,7 @@ function tc_patient_deactivate_a_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ function tc_patient_reactivate_a_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ function tc_patient_amend_a_patient_to_be_a_manual_self_tester()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 }
 //--------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ function tc_patient_suspend_a_patient()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 }
 //--------------------------------------------------------------------------------
@@ -218,7 +218,7 @@ function tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -253,9 +253,10 @@ function tc_patient_unsuspend_a_patient()
   
     Log_Off();
   }
-    catch(e){
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   } 
 }
 //--------------------------------------------------------------------------------
@@ -296,7 +297,7 @@ function tc_patient_change_the_patients_registered_practice()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -304,28 +305,28 @@ function tc_transfer_a_patient_who_has_a_pending_treatment()
 {
   try
   {
-  var test_title = 'Patient Management - Transfer a patient who has a pending treatment'
-  login('cl3@regression','INRstar_5','Shared');
-  add_patient('Regression', 'Transfer_pending', 'M', 'Shared'); 
-  add_treatment_plan('W','Manual','','Shared','');
-  add_pending_manual_treatment('2.5','Lab','2.0','7 Days');
+    var test_title = 'Patient Management - Transfer a patient who has a pending treatment'
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Transfer_pending', 'M', 'Shared'); 
+    add_treatment_plan('W','Manual','','Shared','');
+    add_pending_manual_treatment('2.5','Lab','2.0','7 Days');
   
-  //Check the error pop up is displayed
-  var result = check_transfer_test_location_errors();
+    //Check the error pop up is displayed
+    var result = check_transfer_test_location_errors();
   
-    //Pass in the result
-  results_checker(result,test_title); 
+      //Pass in the result
+    results_checker(result,test_title); 
   
-  var pop_up_buttons_path = ok_error_pop_up_buttons();
-  pop_up_buttons_path.Button(0).TextNode(0).Click();
+    var pop_up_buttons_path = ok_error_pop_up_buttons();
+    pop_up_buttons_path.Button(0).TextNode(0).Click();
   
-  Log_Off(); 
+    Log_Off(); 
   } 
-   catch(e)
-   {
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
-   }
+    restart_INRstar();
+  }
 }
 //--------------------------------------------------------------------------------
 function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_existing_inactive_patient_at_the_destination_location()
@@ -379,7 +380,7 @@ function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_exist
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -425,7 +426,7 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -474,7 +475,7 @@ function tc_reactivate_a_potential_duplicate_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -510,7 +511,7 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------

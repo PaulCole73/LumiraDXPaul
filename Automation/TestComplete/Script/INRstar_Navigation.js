@@ -162,15 +162,12 @@ function Goto_Manage_User(username)
 // Log Off
 function Log_Off()
 {
-  /*
   WaitSeconds(1, "Waiting for Log Off button...");
   var INRstarV5 = INRstar_base();
   var panelHeader = INRstarV5.Panel("MainPage").Panel("header");
   var panelLoginStatus = panelHeader.Panel("logindisplay").Panel("LoginStatus");
   panelLoginStatus.Link("LogoutLink").Click();    
   WaitSeconds(2);
-  */
-  run_INRstar();
 }
 
 

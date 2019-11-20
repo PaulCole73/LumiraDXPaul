@@ -19,6 +19,8 @@ function tc_add_a_new_adverse_event()
     var result_set = new Array()
     var result_set_1 = compare_values("The adverse event was successfully added", adverse_confirmation_banner, test_title);
     result_set.push(result_set_1);
+    
+    Goto_Home();
   
     result_set_1 = validate_top_patient_audit(test_title, "Add Adverse Event");
     result_set.push(result_set_1);
@@ -34,7 +36,7 @@ function tc_add_a_new_adverse_event()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar(); 
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -56,7 +58,7 @@ function tc_delete_adverse_event()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------

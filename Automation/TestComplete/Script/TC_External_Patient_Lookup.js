@@ -57,7 +57,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ function tc_external_patient_lookup_delete_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ function tc_external_patient_lookup_new_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -207,7 +207,7 @@ function tc_external_patient_lookup_same_day_maintenance_treatment()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -248,7 +248,7 @@ function tc_external_patient_lookup_add_historic_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -296,7 +296,7 @@ function tc_external_patient_lookup_delete_multiple_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -337,7 +337,7 @@ function tc_external_patient_lookup_add_adverse_event()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -377,7 +377,7 @@ function tc_external_patient_lookup_add_note()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -429,7 +429,7 @@ function tc_external_patient_lookup_archive_note()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -472,7 +472,7 @@ function tc_external_patient_lookup_edit_treatment_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -514,7 +514,7 @@ function tc_external_patient_lookup_add_treatment_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -562,7 +562,7 @@ function tc_external_patient_lookup_add_treatment_to_old_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -615,7 +615,7 @@ function tc_external_patient_lookup_treat_overdue_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -669,6 +669,6 @@ function tc_external_patient_lookup_refer_patient_treatment()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }

@@ -116,12 +116,14 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
         }
         treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
       }
+      
+      WaitSeconds(3, "Waiting for treatment details...");
       buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
       
-      if (drug == 'W' || drug == "Warfarin") //this may be able to be reduced with changes to process_popup()
-      {
-        process_popup("You will need to add an historical treatment", "OK");
-      }
+      //if (drug == 'W' || drug == "Warfarin") //this may be able to be reduced with changes to process_popup()
+      //{
+      process_popup("You will need to add an historical treatment", "OK");
+      //}
       if(tp_start_mode == "2")
       {
         var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");

@@ -38,7 +38,7 @@ function tc_bespoke_letters_create_new_letter()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //-----------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ function tc_bespoke_letters_edit_a_letter()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //-----------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ function tc_bespoke_letters_copy_a_letter()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //-----------------------------------------------------------------------------------
@@ -170,7 +170,7 @@ function tc_bespoke_letters_rename_a_letter()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //-----------------------------------------------------------------------------------
@@ -211,6 +211,6 @@ function tc_bespoke_letters_add_fields_to_a_letter() //not done - in progress
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
