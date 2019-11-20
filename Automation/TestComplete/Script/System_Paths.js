@@ -638,7 +638,15 @@ function cancel_pending_treat_button()
   var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("CancelPendingTreatment");
   
   return cancel_button_path;
-} 
+}
+//------------------------------------------------------------------------
+function refer_pending_treat_button()
+{
+  var pending_treatment_buttons_path = pending_treatment_buttons();
+  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
+  
+  return cancel_button_path;
+}
 //------------------------------------------------------------------------
 function sugg_war_dose_button()
 {
@@ -930,7 +938,38 @@ function patient_summary_result_chart()
   return panelPSR;
 }
 //------------------------------------------------------------------------
-//////////////////////////  Patient Management  ///////////////////////////////////
+////////////////////////  External Patient Lookup  ///////////////////////
+//------------------------------------------------------------------------
+function external_patient_lookup_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var external_lookup_link = panelMCP.Panel("ManagePatients").Panel("PatientTab").Link("ExternalPatientLookupTabLink");
+  
+  return external_lookup_link;
+}
+//------------------------------------------------------------------------
+function external_patient_lookup_reason_form()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var external_lookup_panel = panelMCP.Panel("PatientContent").Panel("AdvancedSearchTab");
+  var external_lookup_form = external_lookup_panel.Form("PatientAdvancedSearchForm").Panel("LocationSearchDiv").Panel("Reason");
+  
+  return external_lookup_form;
+}
+//------------------------------------------------------------------------
+function external_patient_lookup_form()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var external_lookup_panel = panelMCP.Panel("PatientContent").Panel("AdvancedSearchTab");
+  var external_lookup_form = external_lookup_panel.Form("PatientAdvancedSearchForm").Panel("AdvancedSearchCriteria");
+  
+  return external_lookup_form;
+}
+//------------------------------------------------------------------------
+//////////////////////////  Patient Management  //////////////////////////
 //------------------------------------------------------------------------
 function patient_management_tab_path()
 {
@@ -1093,7 +1132,15 @@ function notes_form()
   var notes_form = panelPMTCP.Panel("NotesContent").Panel("PatientNotesWrapper").Form("PatientNotesForm");
   
   return notes_form;
-} 
+}
+//------------------------------------------------------------------------
+function notes_archive_button()
+{
+  var form = notes_tab();
+  var button = form.Panel(0).SubmitButton("SaveNotes");
+  
+  return button;
+}
 //------------------------------------------------------------------------
 ////////////////////////////////  Audit  ///////////////////////////////
 //------------------------------------------------------------------------

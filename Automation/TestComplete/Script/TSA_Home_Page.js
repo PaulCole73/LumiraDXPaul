@@ -72,24 +72,25 @@ function check_patient_on_overdue_INR_list(pat_name)
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
   {
-     Log.Message('Home page message not displayed');
-     return false;
+    Log.Message('Home page message not displayed');
+    return false;
   }
+  else
+  {
+    WaitSeconds(2); 
+    home_page_messages_path.Link("OverduePatientHeaderLink").Click();
+    var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
   
-  WaitSeconds(2); 
-  home_page_messages_path.Link("OverduePatientHeaderLink").Click();
-  
-  var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
-  
-  for (i=0; i<table.rowcount; i++)
+    for (i=0; i<table.rowcount; i++)
     {
-       if(table.Cell(i, 0).contentText==pat_name)
-        {     
-          return true;
-        }
-   } 
+      if(table.Cell(i, 0).contentText == pat_name)
+      {     
+        return true;
+      }
+    } 
     Log.Message("Patient not found " + pat_name)
     return false; 
+  }
 }
 //--------------------------------------------------------------------------------
 function check_patient_on_exceed_suspension_period_list(pat_name)

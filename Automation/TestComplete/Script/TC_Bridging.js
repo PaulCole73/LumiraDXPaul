@@ -62,7 +62,7 @@ function tc_bridging_button_new_bridging_record_permissions()
     
       login(user + "@regression", "INRstar_5", "Shared");
       patient_search(pat_nhs);
-      state = validate_new_bridging_record_button_state();
+      state = get_new_bridging_record_button_state();
       
       if(user == "clead" || user == "cl3")
       {
@@ -108,13 +108,11 @@ function tc_bridging_button_state_with_historic_warfarin_treatment()
       add_treatment_plan(drug_array[i], "Coventry", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2", "52 Weeks");
       cancel_review();
       
-      state = validate_new_bridging_record_button_state();
-      result_set_1 = button_checker(state, "undefined", "Check Button State.");
-      result_set.push(result_set_1);
-      
+      WaitSeconds(2);
       tp_drop_down().ClickItem(1);
+      WaitSeconds(2);
       
-      state = validate_new_bridging_record_button_state();
+      state = get_new_bridging_record_button_state();
       result_set_1 = button_checker(state, "disabled", "Check Button State.");
       result_set.push(result_set_1);
       
@@ -153,7 +151,7 @@ function tc_bridging_button_state_on_ddd_all_permissions()
     
       login(user + "@regression", "INRstar_5", "Shared");
       patient_search(pat_nhs);
-      state = validate_new_bridging_record_button_state();
+      state = get_new_bridging_record_button_state();
       
       result_set_1 = button_checker(state, "disabled", "Check " + user + " Permissions");
       result_set.push(result_set_1);
@@ -229,7 +227,7 @@ function tc_bridging_button_state_on_ddd_stage_one()
     
     var result_set = new Array();
     Goto_Patient_Treatment();
-    var state = validate_new_bridging_record_button_state();
+    var state = get_new_bridging_record_button_state();
       
     result_set_1 = button_checker(state, "disabled", test_title);
     result_set.push(result_set_1);
@@ -267,7 +265,7 @@ function tc_bridging_button_state_on_warfarin_self_test_all_permissions()
     
       login(user + "@regression", "INRstar_5", "Shared");
       patient_search(pat_nhs);
-      state = validate_new_bridging_record_button_state();
+      state = get_new_bridging_record_button_state();
       
       result_set_1 = button_checker(state, "disabled", "Check " + user + " Permissions");
       result_set.push(result_set_1);
@@ -342,7 +340,7 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_one()
     
     var result_set = new Array();
     Goto_Patient_Treatment();
-    state = validate_new_bridging_record_button_state();
+    state = get_new_bridging_record_button_state();
       
     var result_set_1 = button_checker(state, "disabled", test_title);
     result_set.push(result_set_1);
@@ -372,7 +370,7 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_two()
     
     var result_set = new Array();
     Goto_Patient_Treatment();
-    state = validate_new_bridging_record_button_state();
+    state = get_new_bridging_record_button_state();
       
     var result_set_1 = button_checker(state, "disabled", test_title);
     result_set.push(result_set_1);
@@ -403,7 +401,7 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_three()
     
     var result_set = new Array();
     Goto_Patient_Treatment();
-    state = validate_new_bridging_record_button_state();
+    state = get_new_bridging_record_button_state();
       
     var result_set_1 = button_checker(state, "disabled", test_title);
     result_set.push(result_set_1);
@@ -449,7 +447,7 @@ function tc_bridging_create_schedule_add_six_days()
       var results = results_checker_are_true(result_set);
       results_checker(results, test_title);
     }*/
-    var rows_to_validate = 6;
+    var rows_to_validate = 3;
     
     var results = validate_bridging_table_dates(date, rows_to_validate);
     results_checker(results, test_title);
@@ -640,7 +638,7 @@ function tc_bridging_button_state_on_various_dms()
       add_patient("Regression", "Button_State_Check", "M", "Shared");
       add_treatment_plan("W", dose, "", "Shared", "");
       
-      var result_set_1 = validate_new_bridging_record_button_state();
+      var result_set_1 = get_new_bridging_record_button_state();
       result_set.push(result_set_1);    
       
       var results = results_checker_are_true(result_set);
