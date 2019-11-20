@@ -41,7 +41,7 @@
 		<data Version="3" />
 	</variables>
 	<settings key="{5F7B2CD5-3048-4A58-B14C-6E60A48FE68C}">
-		<settingsVersion value="12.31" />
+		<settingsVersion value="12.41" />
 		<setting name="JavaFXOpenApp_NodeByClassNameFilters" type="6" rowIndex="7" colIndex="2">
 			<columns>
 				<column type="1" enabled="True" />
@@ -108,7 +108,7 @@
 		<setting name="{A4D0B1B0-14DA-4AFA-8AFC-E82D0400E7E9}" type="1" value="True" />
 		<setting name="{542B9FA0-35EA-4C4D-BF0B-661005CB94E9}" type="2" value="60000" />
 		<setting name="CountProcessesOfAllUsers" type="1" value="True" />
-		<setting name="{949057FA-CBDC-4A23-BB7F-9A25DCAE8729}" type="6" rowIndex="1" colIndex="0">
+		<setting name="{949057FA-CBDC-4A23-BB7F-9A25DCAE8729}" type="6" rowIndex="0" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>
@@ -210,7 +210,7 @@
 				<row val0="Flat" />
 			</data>
 		</setting>
-		<setting name="{F7C29680-06BB-4F85-B0E3-C06AE2282A66}" type="1" value="True" />
+		<setting name="{F7C29680-06BB-4F85-B0E3-C06AE2282A66}" type="1" value="False" />
 		<setting name="{596CA0D0-27CB-40D3-BAA5-BC1CECFF25AC}" type="6" rowIndex="-1" colIndex="2">
 			<columns>
 				<column type="1" enabled="True" />
@@ -442,7 +442,7 @@
 		</setting>
 		<setting name="{D80391D4-892F-4CEC-865E-B7FACB3FAC84}" type="2" value="10" />
 		<setting name="MouseMovementDelay" type="2" value="0" />
-		<setting name="{A383BA1A-68CF-40AE-9FCD-B3E554E9ADD7}" type="6" rowIndex="1" colIndex="0">
+		<setting name="{A383BA1A-68CF-40AE-9FCD-B3E554E9ADD7}" type="6" rowIndex="0" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>

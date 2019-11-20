@@ -5,7 +5,8 @@
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Patient_Management
-//USEUNIT Navigation
+//USEUNIT TSA_Patient_Demographics
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
@@ -242,7 +243,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
     result_set.push(result_set_1);
   
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit("Add New INR");
+    result_set_1 = validate_top_patient_audit(test_title, "Add New INR");
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -610,17 +611,18 @@ function tc_treatment_refer_a_treatment()
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-    add_pending_maintenance_treatment('2.0',(aqDateTime.Today()));
+    
+    WaitSeconds(6);
+    
+    add_pending_maintenance_treatment("2.0",(aqDateTime.Today()));
   
     //Get all the patient details
     var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     Goto_Patient_Treatment();
-    WaitSeconds(3);
   
     //Refer
-    var pending_treatment_buttons_path = pending_treatment_buttons();
-    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment").Click();
+    var refer_button_path = refer_pending_treat_button().Click();
   
     var result_set = new Array(); 
     //Check patient on the referred list
@@ -629,7 +631,7 @@ function tc_treatment_refer_a_treatment()
   
     patient_search(pat_nhs);
     //Check the audit
-    Goto_suggested_treatment_audit();
+    Goto_Suggested_Treatment_Audit();
     result_set_1 = validate_top_treatment_audit('Treatment Referred');
     result_set.push(result_set_1);
   
@@ -689,7 +691,7 @@ function tc_treatment_authorise_a_referral()
     result_set.push(result_set_1);
   
     //Check the audit
-    Goto_suggested_treatment_audit();
+    Goto_Suggested_Treatment_Audit();
     result_set_1 = validate_top_treatment_audit('Treatment Authorised');
     result_set.push(result_set_1);
   
@@ -1439,7 +1441,6 @@ function tc_treatment_maintenance_cancel_pending()
     
     treatment_values = get_treatment_row(0);
     var child_count = treatment_table().ChildCount;
-    Log.Message(child_count);
                                                               
     add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
     
@@ -1454,7 +1455,6 @@ function tc_treatment_maintenance_cancel_pending()
     
     treatment_values_1 = get_treatment_row(0);
     var child_count_1 = treatment_table().ChildCount;
-    Log.Message(child_count);
     
     result_set_1 = compare_values(child_count, child_count_1, "Compare Child Counts");
     result_set.push(result_set_1);
@@ -1533,10 +1533,54 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
+    Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
 		Log_Off();
   }
 }
+//--------------------------------------------------------------------------------
+function tc_treatment_add_treatment_for_self_tester()
+{
+  try
+  {
+    var test_title = "Treatment - Add a treatment for a self-tester and check it within the database";
+		login("cl3@regression", "INRstar_5", "Shared");
+    add_patient("Regression", "Self_tester", "M", "Shared");
+    add_treatment_plan("W", "Manual", "", "Shared", "");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
+    add_manual_self_test_group();
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.Today()), "2.5", "2.5", "7", "PoCT");
+    
+    var result_set = new Array();
+    
+    var result_set_1 = validate_specific_entry_patient_audit(2, "Edit Patient Management Details", test_title);
+    result_set.push(result_set_1);
+    
+    result_set_1 = validate_more_info_specific_entry_patient_audit(2, "INR Self Tester set to [True].", test_title);
+    result_set.push(result_set_1);
+    
+    result_set_1 = validate_top_patient_audit(test_title, "Add Manual Treatment");
+    result_set.push(result_set_1);
+    
+    result_set_1 = validate_more_info_top_patient_audit("Self Tested set to [True].");
+    result_set.push(result_set_1);
+    
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set);
+    
+    //Pass in the result
+		results_checker(results, test_title);
+  
+    Log_Off();          
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
+		Log_Off();
+  }
+}
+//--------------------------------------------------------------------------------
+
+
 //*** NOT READY TO USE YET ***
 
 //function tc_treatment_cancel_pending_treatment() 
@@ -1575,6 +1619,10 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
 //   //Log_Off();
 //  }
 //}
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+//Current Function to track and test CACUK432 bug fix
 //--------------------------------------------------------------------------------
 function cacuk432_bug_fix_sequence()
 {

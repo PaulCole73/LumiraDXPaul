@@ -135,7 +135,7 @@ function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_sugges
   } 
   
   cancel_pending_sorb_treatment();
-  click_current_tab()
+  current_tab().Click();
   
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
@@ -202,7 +202,7 @@ function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_sugges
   } 
   
   cancel_pending_sorb_treatment();
-  click_current_tab()
+  current_tab().Click();
   
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
@@ -500,7 +500,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
   
-  click_current_tab()
+  current_tab().Click();
   
   //Create the array of results for the final check to ensure all dosing algorithms pass the test
   var result_set = new Array()
@@ -517,7 +517,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
   
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
-  click_current_tab();
+  current_tab().Click();
   
   var coventry_no_current = button_checker(button,'disabled','Testing coventry dosing treatment plan with no current treatment');
   result_set.push(coventry_no_current);
@@ -530,7 +530,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
   
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
-  click_current_tab();
+  current_tab().Click();
  
   var hillingdon_no_current = button_checker(button,'disabled','Testing hillingdon dosing treatment plan with no current treatment');
   result_set.push(hillingdon_no_current);
@@ -545,7 +545,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
   
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
-  click_current_tab();
+  current_tab().Click();
  
   var oates_no_current = button_checker(button,'disabled','Testing oates dosing treatment plan with no current treatment');
   result_set.push(oates_no_current);
@@ -559,7 +559,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
   
-  click_current_tab();
+  current_tab().Click();
  
   var oates_no_current = button_checker(button,'disabled','Testing tait dosing treatment plan with no current treatment');
   result_set.push(oates_no_current);
@@ -589,7 +589,7 @@ function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_M
   
   //edit to maint here
   
-  click_current_tab();
+  current_tab().Click();
   
   var actual_err_mess = get_sorb_button_error_message();
   var expected_err_mess = ("You cannot create a temporary skip or boost schedule for a patient when the current schedule was based on a manual dosing treatment.");      
@@ -919,7 +919,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
   for (i=6; i>0; i--)
   {
     override_review(i);
-    click_current_tab();
+    current_tab().Click(0);
     var sorb_button = sorb_button_current_path();
     var button = check_button(sorb_button);
     
@@ -963,7 +963,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_va
     add_pending_maintenance_treatment('2.0', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))));
     override_review('7');
     
-    click_current_tab();
+    current_tab().Click();
     var sorb_button = sorb_button_current_path();
     var button = check_button(sorb_button);
         
@@ -1004,7 +1004,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
   add_pending_maintenance_treatment('2.0', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))));
   override_review('6');  
   
-  click_current_tab();
+  current_tab().Click();
   var sorb_button = sorb_button_current_path();
   var button = check_button(sorb_button);
         
@@ -1454,7 +1454,7 @@ function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_aft
   var suggested_sorb = button_checker(suggested_sorb_button,'disabled','Testing sorb button on suggested tab');
   result_set_suggested.push(suggested_sorb); 
 
-  click_current_tab()
+  current_tab().Click();
   
   var result_set_current = new Array()
   
@@ -1528,7 +1528,7 @@ function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_aft
   var suggested_sorb = button_checker(suggested_sorb_button,'disabled','Testing sorb button on suggested tab');
   result_set_suggested.push(suggested_sorb); 
 
-  click_current_tab();
+  current_tab().Click;
   
   var result_set_current = new Array();
   

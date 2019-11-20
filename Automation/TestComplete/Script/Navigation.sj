@@ -1,9 +1,11 @@
 ﻿//USEUNIT V5_Common_Popups
 //USEUNIT Navigate_Patient
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Navigation
 //===============================================================================
 //-------------------------------------------------------------------------------
 // Navigate to Home 
+/*
 function Goto_Home()
 {
     // Go to Home Page
@@ -13,7 +15,216 @@ function Goto_Home()
     panelM.Panel("header").Link("HomeLink").Click();
     WaitSeconds(4,"Waiting for Home Page")
 }
+//===============================================================================
 //-------------------------------------------------------------------------------
+// Navigate to Admin 
+function Goto_Options()
+{
+  WaitSeconds(1, "Going to Options...");
+
+  var INRstarV5 = INRstar_base();
+  var panelM = INRstarV5.Panel("MainPage");
+  panelM.Panel("header").Link("OptionsLink").Click();
+}  
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+// Navigate to Admin / IQC 
+function Goto_Admin_IQC()
+{
+  try
+  {
+    Goto_Options()
+    
+    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+    panelMCP.Panel(0).Link("IQCTab").Click();
+    WaitSeconds(1,"");
+  }
+  catch(exception)
+  {
+    Log.Error("Exception", exception.description);
+  }
+}
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+// Navigate to Options / Location Management
+function Goto_Options_Location_Management()
+{
+  Goto_Options(); 
+  
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  panelMCP.Panel(0).Link("LocationManagementTab").Click();
+    
+  WaitSeconds(1, "Waiting for Location Management tab...");
+}
+//-------------------------------------------------------------------------------
+// Navigate to Options / EQC
+function Goto_Options_EQC()
+{
+  Goto_Options(); 
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  panelMCP.Panel(0).Link("EQCTab").Click();
+  WaitSeconds(1, "Waiting for EQC tab...");
+}
+//-------------------------------------------------------------------------------
+// Navigate to Options / PoCT
+function Goto_Options_PoCT()
+{
+  Goto_Options(); 
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  panelMCP.Panel(0).Link("PoCTTab").Click();
+  WaitSeconds(1, "Waiting for PoCT tab...");
+}
+//-------------------------------------------------------------------------------
+// Navigate to Options / PoCT / Edit
+function Goto_Options_Edit_PoCT()
+{
+  Goto_Options(); 
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  panelMCP.Panel(0).Link("PoCTTab").Click();
+  panelMCP.Panel("AdminContent").Panel(0).Panel(0).Button("EditPoCTBatch").Click();
+  WaitSeconds(1, "Waiting for edit PoCT button...");
+}
+//-------------------------------------------------------------------------------
+// Navigate to Options / IQC / Add
+function Goto_Options_Add_IQC()
+{
+  try
+  {
+    var INRstarV5 = INRstar_base();
+    var panelM = INRstarV5.Panel("MainPage");
+    panelM.Panel("header").Link("OptionsLink").Click();
+    
+    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+   
+    //Click IQC
+    panelMCP.Panel(0).Link("IQCTab").Click();
+    
+    // Go to Add IQC
+    panelMCP.Panel("AdminContent").Panel("IQCWrapper").Panel(0).Button("AddIQC").Click();
+
+    WaitSeconds(1,"");
+  }
+  catch(exception)
+  {
+    Log.Error("Exception", exception.description);
+  }
+}
+//-------------------------------------------------------------------------------
+// Navigate to Options / IQC / Add
+function Goto_Options_Edit_IQC()
+{
+  try
+  {
+    var INRstarV5 = INRstar_base();
+    var panelM = INRstarV5.Panel("MainPage");
+    panelM.Panel("header").Link("OptionsLink").Click();
+    
+    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+   
+    //Click IQC
+    panelMCP.Panel(0).Link("IQCTab").Click();
+    
+    // Go to Edit IQC
+    panelMCP.Panel("AdminContent").Panel("IQCWrapper").Table("LocationsIQCTable").Cell(1, 8).Button("EditIQC").Click();
+
+    WaitSeconds(1,"");
+  }
+  catch(exception)
+  {
+    Log.Error("Exception", exception.description);
+  }
+}
+//-------------------------------------------------------------------------------
+// Navigate to Clinics
+function Goto_Clinics()
+{
+  var panel = INRstar_base().Panel("MainPage");
+  var button = panel.Panel("header").Link("ClinicsLink").Click();
+}
+//-------------------------------------------------------------------------------
+// Navigate to Clinics
+function Goto_Add_Clinic()
+{
+  Goto_Clinics();
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelMCTC = panelMCP.Panel("ManageClinicsTabContent");
+    
+  WaitSeconds(2,"Waiting because clinics...");    
+  panelMCTC.Panel(0).Button("btnAddAppointment").Click();
+  WaitSeconds(3,"Waiting for new clinic form");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//===============================================================================
+//===============================================================================
+//                          Unused Nav                                         //
+//===============================================================================
+//===============================================================================
 // Navigate to Overdue Report
 function Goto_Report_Overdue()
 {
@@ -54,7 +265,6 @@ function Goto_Report_Overdue_NOAC_Review(INRstarV5)
 
   return w_stem; 
 }
-
 //-------------------------------------------------------------------------------
 // Navigate to No Diagnosis Report
 function Goto_Report_No_Diagnosis(INRstarV5)
@@ -80,33 +290,13 @@ function Goto_Report_No_Diagnosis(INRstarV5)
     Log.Error("Exception", exception.description);
   }
 }
-//===============================================================================
 //-------------------------------------------------------------------------------
 // Navigate to Reports
 function Goto_Reports()
 {
     var INRstarV5 = INRstar_base();
-    // Go to Home Page
-    Log.Message("Navigating to Reports");
     var panelM = INRstarV5.Panel("MainPage");
     panelM.Panel("header").Link("ReportLink").Click();
-    }
-//-------------------------------------------------------------------------------
-// Navigate to Admin 
-function Goto_Options()
-{
-  try
-  {
-    WaitSeconds(2,"");
-
-    var INRstarV5 = INRstar_base();
-    var panelM = INRstarV5.Panel("MainPage");
-    panelM.Panel("header").Link("OptionsLink").Click();
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
 }
 //-------------------------------------------------------------------------------
 // Navigate to Admin / Settings 
@@ -150,6 +340,7 @@ function Goto_Admin_Settings_Algorithm()
     Log.Error("Exception", exception.description);
   }
 }
+//-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
 // Navigate to Admin / Settings / Dose Rounding
 function Goto_Admin_Settings_Dose_Rounding()
@@ -235,27 +426,6 @@ function Goto_Admin_NPT_Batch()
   }
 }
 //-------------------------------------------------------------------------------
-// Navigate to Admin / IQC 
-function Goto_Admin_IQC()
-{
-  try
-  {
-    var INRstarV5 = INRstar_base();
-    var panelM = INRstarV5.Panel("MainPage");
-    panelM.Panel("header").Link("OptionsLink").Click();
-    
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   
-    //Click IQC
-    panelMCP.Panel(0).Link("IQCTab").Click();
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-//-------------------------------------------------------------------------------
 // Navigate to Admin / IQC / Add
 function Goto_Admin_IQC_Add()
 {
@@ -277,51 +447,6 @@ function Goto_Admin_IQC_Add()
     Log.Error("Exception", exception.description);
   }
 }
-
-//-------------------------------------------------------------------------------
-// Navigate to Options / Location Management
-function Goto_Options_Location_Management()
-{
-  try
-  {
-    Goto_Options(); 
-  
-    var INRstarV5 = INRstar_base();
-        
-    // Go to Admin Clinicians
-    Log.Message("Navigating to Options / Location Management");
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    panelMCP.Panel(0).Link("LocationManagementTab").Click();
-    
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-//-------------------------------------------------------------------------------
-// Navigate to Options / EQC
-function Goto_Options_EQC()
-{
-  try
-  {
-    Goto_Options(); 
-  
-    var INRstarV5 = INRstar_base();
-        
-    // Go to Admin EQC tab Page
-    Log.Message("Navigating to Admin, EQC");
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    panelMCP.Panel(0).Link("EQCTab").Click();
-
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
 //-------------------------------------------------------------------------------
 // Navigate to Options / PoCT
 function Goto_Options_add_PoCT()
@@ -334,96 +459,6 @@ function Goto_Options_add_PoCT()
     
     panelMCP.Panel(0).Link("PoCTTab").Click();
     panelMCP.Panel("AdminContent").Panel(0).Panel(1).Button("AddPoCTBatch").Click();
-
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-//-------------------------------------------------------------------------------
-// Navigate to Options / PoCT
-function Goto_Options_PoCT()
-{
-  try
-  {
-    Goto_Options(); 
-    var INRstarV5 = INRstar_base();
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    
-    panelMCP.Panel(0).Link("PoCTTab").Click();
-
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-//-------------------------------------------------------------------------------
-// Navigate to Options / PoCT / Edit
-function Goto_Options_Edit_PoCT()
-{
-  try
-  {
-    Goto_Options(); 
-    var INRstarV5 = INRstar_base();
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    
-    panelMCP.Panel(0).Link("PoCTTab").Click();
-    panelMCP.Panel("AdminContent").Panel(0).Panel(0).Button("EditPoCTBatch").Click();
-
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-//-------------------------------------------------------------------------------
-// Navigate to Options / IQC / Add
-function Goto_Options_Add_IQC()
-{
-  try
-  {
-    var INRstarV5 = INRstar_base();
-    var panelM = INRstarV5.Panel("MainPage");
-    panelM.Panel("header").Link("OptionsLink").Click();
-    
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   
-    //Click IQC
-    panelMCP.Panel(0).Link("IQCTab").Click();
-    
-    // Go to Add IQC
-    panelMCP.Panel("AdminContent").Panel("IQCWrapper").Panel(0).Button("AddIQC").Click();
-
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-
-//-------------------------------------------------------------------------------
-// Navigate to Options / IQC / Add
-function Goto_Options_Edit_IQC()
-{
-  try
-  {
-    var INRstarV5 = INRstar_base();
-    var panelM = INRstarV5.Panel("MainPage");
-    panelM.Panel("header").Link("OptionsLink").Click();
-    
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-   
-    //Click IQC
-    panelMCP.Panel(0).Link("IQCTab").Click();
-    
-    // Go to Edit IQC
-    panelMCP.Panel("AdminContent").Panel("IQCWrapper").Table("LocationsIQCTable").Cell(1, 8).Button("EditIQC").Click();
 
     WaitSeconds(1,"");
   }
@@ -476,7 +511,6 @@ function Goto_Options_Audit()
     Log.Error("Exception", exception.description);
   }
 }
-
 //===============================================================================
 //-------------------------------------------------------------------------------
 // Navigate to Options / Location Management / Manage Location
@@ -534,30 +568,6 @@ function Goto_Manage_Location_User_Permissions(p_location, p_user)
   }
 }
 //===============================================================================
-//-------------------------------------------------------------------------------
-// Navigate to Clinics
-function Goto_Clinics(INRstarV5)
-{
-    var panel = INRstar_base().Panel("MainPage");
-    var button = panel.Panel("header").Link("ClinicsLink").Click();
-
-}
-//-------------------------------------------------------------------------------
-// Navigate to Clinics
-function Goto_Add_Clinic(INRstarV5)
-{
-   Goto_Clinics(INRstarV5);
-          
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelMCTC = panelMCP.Panel("ManageClinicsTabContent");
-    
-    WaitSeconds(2,"Waiting because clinics...");
-    
-    panelMCTC.Panel(0).Button("btnAddAppointment").Click();
-    
-    WaitSeconds(6,"Waiting for new clinic form");
-    
-}
 //===============================================================================
 //-------------------------------------------------------------------------------
 // Navigate to Admin / Location Management / Users / Add User
@@ -577,36 +587,6 @@ function Goto_Add_User()
         
     // Click the Add User button
     panelLC.Panel("LocationTabContent").Panel(1).Button("AddNewUser").Click();
-    
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-//-------------------------------------------------------------------------------
-// Navigate to Admin / Location Management / Users / Manage User
-function Goto_Manage_User(p_user)
-{
-  try
-  {
-    Goto_Options_Location_Management(); 
-  
-    var INRstarV5 = INRstar_base();
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var panelLC = panelMCP.Panel("AdminContent").Panel("LocationContent").Panel(0);
-    
-    // Click on Users tab
-    Log.Message("Navigating to Users");
-    panelLC.Panel("LocationTab").Link("LocationUsersLink").Click();
-    
-    // Choose the User
-    var panelLTC = panelLC.Panel("LocationTabContent");
-    panelLTC.Panel(0).Select("Users").ClickItem(p_user);
-        
-    // Click the Manage User button
-    panelLTC.Panel(1).Button("ManageUser").Click();
     
     WaitSeconds(1,"");
   }
@@ -679,14 +659,12 @@ function Goto_Local_Add_Permission(p_location, p_user)
 // Log on
 function Log_On(p_ctr)
 {
-//  try
-//  {
     wa_users = new Array(12);
     wa_users[0] = "Sys.Admin_SCSL@INRstar.co.uk";
     wa_users[1] = "hugo.searle@maplestead.com";
     wa_users[2] = "dr_jones@studale";
     wa_users[3] = "doc@prison";
-      wa_users[4] = "dr_dawn@studale";
+    wa_users[4] = "dr_dawn@studale";
     wa_users[5] = "dr_extractv4@studale";
     wa_users[6] = "dr_tierney@studale";
     wa_users[7] = "dr_parry@studale";
@@ -733,12 +711,6 @@ function Log_On(p_ctr)
       var login_page = Aliases.INRstarWindows.wndINRstar.WindowsForms10Window8app033c0d9d.ShellEmbedding.ShellDocObjectView.browser.Page("http://inrstar5auto/Security/Authentication/LogOn?ReturnUrl=%2f");
 
     Log_On_Sub(login_page, wa_users[p_ctr], wa_pwrd[p_ctr]);
-    
-//  }
-//  catch(exception)
-//  {
-//    Log.Error("Exception", exception.description);
-//  }
 }
 //===============================================================================
 // Log on
@@ -801,9 +773,8 @@ function Log_On_User(p_user,p_pwrd)
 // Log Off
 function Log_Off()
 {
-    WaitSeconds(1,"Logging Off");
+    WaitSeconds(1, "Waiting for Log Off button...");
     var INRstarV5 = INRstar_base();
-        
     var panelHeader = INRstarV5.Panel("MainPage").Panel("header");
     var panelLoginStatus = panelHeader.Panel("logindisplay").Panel("LoginStatus");
     panelLoginStatus.Link("LogoutLink").Click();     
@@ -829,7 +800,6 @@ function Log_On_Sub(login_page, p_user, p_pwrd)
     formLogon.Panel("LoginArea").Panel(0).SubmitButton("LoginButton").Click();    
 
     WaitSeconds(2);
-    
 }
 //-------------------------------------------------------------------------------
 // Reset Password
@@ -856,5 +826,4 @@ function Select_Overdue_Patient(w_name)
   {
          w_pt_link.Click();
   }
-
 }
