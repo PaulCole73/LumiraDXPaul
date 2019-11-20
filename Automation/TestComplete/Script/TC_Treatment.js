@@ -483,6 +483,7 @@ function tc_treatment_add_a_new_maintenance_high_inr()
 {
 try
   {
+    //this test currently fails in hoth - because the dosing warning message has been changed
     var test_title = 'Treatment - Add a new maintenance high INR';
     login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'mainteance_high', 'M', 'Shared'); 
@@ -814,7 +815,7 @@ function tc_treatment_dosing_under_12_years_old()
     
     var result_set = new Array();
     
-    var INRstarV5 = set_system(); 
+    var INRstarV5 = INRstar_base();
  
     var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
     var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");

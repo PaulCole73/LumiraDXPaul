@@ -28,8 +28,12 @@ function ts_master_demographics()
 //--------------------------------------------------------------------------------
 function ts_staging_regression_demographics()
 {
+  reset_folder();  
+
   tc_edit_each_field_of_patient_demographics();  
-  tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a_DOAC(); 
+  tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a_DOAC();
+  
+  email_and_archive("ts_demographics_regression");
 }
 //--------------------------------------------------------------------------------
 

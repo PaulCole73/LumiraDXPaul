@@ -12,7 +12,7 @@ function ts_staging_regression_login_page()
   tc_log_off_inrstar();
  
   //email compressed zip folder on suite completion, archive folder
-  email_and_archive("ts_login_page");
+  email_and_archive("ts_login_regression");
 }
 //--------------------------------------------------------------------------------
   

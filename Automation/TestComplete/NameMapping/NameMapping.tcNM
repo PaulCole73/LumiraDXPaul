@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Root Signature="{5DCBAC3B-D39C-497C-9BE8-744CBADD37AA}" NameMappingVersion="5" SaveImages="0">
+<Root Signature="{5DCBAC3B-D39C-497C-9BE8-744CBADD37AA}" NameMappingVersion="5" SaveImages="1">
 	<Storages Current="0">
 		<Child Name="Default Configuration" />
 	</Storages>
@@ -20,7 +20,6 @@
 						</Properties>
 						<Children>
 							<Child Name="wndCabinetWClass" Key="{3B3E6AEF-AF65-4548-9952-19B8EF5DA185}" ParallelWalk="True">
-								<Image FileName="1563719339" Left="0" Top="0" Right="1440" Bottom="975" />
 								<Properties>
 									<Property Name="WndClass">
 										<Value PropertyType="0" Value="CabinetWClass" Type="5" />
@@ -31,7 +30,6 @@
 								</Properties>
 								<Children>
 									<Child Name="ShellTabWindowClass" Key="{3C517E71-C0B9-4918-ABFE-0E5FD2E18B7B}" ParallelWalk="True">
-										<Image FileName="1563719339" Left="8" Top="184" Right="1432" Bottom="967" />
 										<Properties>
 											<Property Name="WndClass">
 												<Value PropertyType="0" Value="ShellTabWindowClass" Type="5" />
@@ -42,7 +40,6 @@
 										</Properties>
 										<Children>
 											<Child Name="DUIViewWndClassName" Key="{C380B2D6-847A-42AE-8420-4CA80A03B000}" ParallelWalk="True">
-												<Image FileName="1563719339" Left="8" Top="184" Right="1432" Bottom="967" />
 												<Properties>
 													<Property Name="WndClass">
 														<Value PropertyType="0" Value="DUIViewWndClassName" Type="5" />
@@ -50,7 +47,6 @@
 												</Properties>
 												<Children>
 													<Child Name="Explorer_Pane" Key="{1BEC4D5D-CCD0-4DEE-A7DA-E7A002209BDF}" ParallelWalk="True">
-														<Image FileName="1563719339" Left="8" Top="184" Right="1432" Bottom="967" />
 														<Properties>
 															<Property Name="FrameworkId">
 																<Value PropertyType="0" Value="DirectUI" Type="5" />
@@ -70,7 +66,6 @@
 														</Properties>
 														<Children>
 															<Child Name="CtrlNotifySink" Key="{D09CE04C-E395-4087-8702-794F3B597E04}" ParallelWalk="True">
-																<Image FileName="1563719339" Left="257" Top="184" Right="1155" Bottom="944" />
 																<Properties>
 																	<Property Name="WndClass">
 																		<Value PropertyType="0" Value="CtrlNotifySink" Type="5" />
@@ -84,7 +79,6 @@
 																</Properties>
 																<Children>
 																	<Child Name="ShellView" Key="{7B4F0989-4179-4EBF-B8A8-0A5403918ED2}" ParallelWalk="True">
-																		<Image FileName="1563719339" Left="257" Top="184" Right="1155" Bottom="944" />
 																		<Properties>
 																			<Property Name="WndClass">
 																				<Value PropertyType="0" Value="SHELLDLL_DefView" Type="5" />
@@ -95,7 +89,6 @@
 																		</Properties>
 																		<Children>
 																			<Child Name="Items_View" Key="{D491ABC9-9954-44A6-A454-BDC29F0528F3}" ParallelWalk="True">
-																				<Image FileName="1563719339" Left="257" Top="184" Right="1155" Bottom="944" />
 																				<Properties>
 																					<Property Name="FrameworkId">
 																						<Value PropertyType="0" Value="DirectUI" Type="5" />
@@ -115,7 +108,6 @@
 																				</Properties>
 																				<Children>
 																					<Child Name="INRstarWindows_exe" Key="{7DAA229A-7C51-493D-9F7E-5EDC10B63795}" ParallelWalk="True">
-																						<Image FileName="1563719339" Left="271" Top="236" Right="845" Bottom="258" />
 																						<Properties>
 																							<Property Name="FrameworkId">
 																								<Value PropertyType="0" Value="DirectUI" Type="5" />
@@ -132,7 +124,6 @@
 																						</Properties>
 																						<Children>
 																							<Child Name="Name" Key="{C97EFEAD-5905-498F-9E68-8CF9D31B4DD3}" ParallelWalk="True">
-																								<Image FileName="1563719339" Left="293" Top="236" Right="529" Bottom="258" />
 																								<TypeInfo Item0="{5642BAC1-A1F2-4280-AB5C-07F313078528}" />
 																								<Properties>
 																									<Property Name="FrameworkId">
@@ -152,7 +143,6 @@
 																						</Children>
 																					</Child>
 																					<Child Name="ClinicalSystemEmisLV_dll" Key="{414DBD2D-6142-47B4-8786-94500F8409AE}" ParallelWalk="True">
-																						<Image FileName="1648222683" Left="271" Top="257" Right="845" Bottom="279" />
 																						<Properties>
 																							<Property Name="FrameworkId">
 																								<Value PropertyType="0" Value="DirectUI" Type="5" />
@@ -169,7 +159,6 @@
 																						</Properties>
 																						<Children>
 																							<Child Name="Name" Key="{B57B788F-4C57-4530-8556-6FBAD469D908}" ParallelWalk="True">
-																								<Image FileName="1648222683" Left="293" Top="257" Right="529" Bottom="279" />
 																								<TypeInfo Item0="{5642BAC1-A1F2-4280-AB5C-07F313078528}" />
 																								<Properties>
 																									<Property Name="FrameworkId">
@@ -212,7 +201,6 @@
 						</Properties>
 						<Children>
 							<Child Name="wndXLMAIN" Key="{834ABA22-B11B-4404-9457-E5B66962BDB8}" ParallelWalk="True">
-								<Image FileName="150825248" Left="0" Top="0" Right="949" Bottom="861" />
 								<Properties>
 									<Property Name="WndClass">
 										<Value PropertyType="0" Value="XLMAIN" Type="5" />
@@ -223,7 +211,6 @@
 								</Properties>
 								<Children>
 									<Child Name="XLDESK" Key="{274E239C-2915-4609-8319-BF42407C3C27}" ParallelWalk="True">
-										<Image FileName="150825248" Left="1" Top="205" Right="948" Bottom="838" />
 										<Properties>
 											<Property Name="WndClass">
 												<Value PropertyType="0" Value="XLDESK" Type="5" />
@@ -231,7 +218,6 @@
 										</Properties>
 										<Children>
 											<Child Name="EXCEL7" Key="{E9CFBA9E-2D71-4FE7-99DF-1AD18D81C01E}" ParallelWalk="True">
-												<Image FileName="150825248" Left="1" Top="205" Right="948" Bottom="838" />
 												<TypeInfo Item0="{59575A7A-1243-4EB5-A9E0-ED7B6018BEA8}" />
 												<Properties>
 													<Property Name="WndClass">
@@ -247,7 +233,6 @@
 								</Children>
 							</Child>
 							<Child Name="wndXLMAIN2" Key="{F9CE1DC9-575D-4CD9-91E4-1439274A289B}" ParallelWalk="True">
-								<Image FileName="-1117739250" Left="-8" Top="-8" Right="1928" Bottom="1048" />
 								<Properties>
 									<Property Name="WndClass">
 										<Value PropertyType="0" Value="XLMAIN" Type="5" />
@@ -258,7 +243,6 @@
 								</Properties>
 								<Children>
 									<Child Name="XLDESK" Key="{DF662EC8-7C48-4083-A01D-19467982791D}" ParallelWalk="True">
-										<Image FileName="-1117739250" Left="0" Top="204" Right="1920" Bottom="1018" />
 										<Properties>
 											<Property Name="WndClass">
 												<Value PropertyType="0" Value="XLDESK" Type="5" />
@@ -266,7 +250,6 @@
 										</Properties>
 										<Children>
 											<Child Name="EXCEL7" Key="{E2DF4E68-BA10-4436-AE2B-70707B2546D9}" ParallelWalk="True">
-												<Image FileName="-1117739250" Left="0" Top="204" Right="1920" Bottom="1018" />
 												<TypeInfo Item0="{59575A7A-1243-4EB5-A9E0-ED7B6018BEA8}" />
 												<Properties>
 													<Property Name="WndClass">
@@ -291,7 +274,6 @@
 						</Properties>
 						<Children>
 							<Child Name="BrowserWindow" Key="{C9F64FC8-71B7-4F56-96C2-C889F40684D9}" ParallelWalk="True">
-								<Image FileName="-20503533" Left="0" Top="0" Right="1641" Bottom="924" />
 								<TypeInfo Item0="{5D9E24CC-87E3-4D11-A395-80FE7A730B2B}" />
 								<Properties>
 									<Property Name="ObjectType">
@@ -312,7 +294,6 @@
 						</Properties>
 						<Children>
 							<Child Name="BrowserForm" Key="{1840CB94-39DC-40BA-AD74-B3384CBD5D25}" ParallelWalk="True">
-								<Image FileName="-1444561584" Left="0" Top="0" Right="1070" Bottom="1040" />
 								<Properties>
 									<Property Name="WinFormsControlName">
 										<Value PropertyType="0" Value="BrowserForm" Type="5" />
@@ -320,7 +301,6 @@
 								</Properties>
 								<Children>
 									<Child Name="INRstarBrowser" Key="{0A18C514-1141-45F8-9FCD-DDB133866905}" ParallelWalk="True">
-										<Image FileName="-1444561584" Left="8" Top="55" Right="1062" Bottom="1032" />
 										<TypeInfo Item0="{59575A7A-1243-4EB5-A9E0-ED7B6018BEA8}" />
 										<Properties>
 											<Property Name="WinFormsControlName">
@@ -329,7 +309,6 @@
 										</Properties>
 										<Children>
 											<Child Name="WebBrowserBaseNativeWindow" Key="{EA40D7D2-E777-4E80-859C-DE95692145F4}" ParallelWalk="True">
-												<Image FileName="-1964569487" Left="8" Top="55" Right="1062" Bottom="1032" />
 												<Properties>
 													<Property Name="WndClass">
 														<Value PropertyType="0" Value="Shell Embedding" Type="5" />
@@ -340,7 +319,6 @@
 												</Properties>
 												<Children>
 													<Child Name="ShellDocObjectView" Key="{422F0719-325B-476B-86B5-48F84222ADF7}" ParallelWalk="True">
-														<Image FileName="-1964569487" Left="8" Top="55" Right="1062" Bottom="1032" />
 														<Properties>
 															<Property Name="WndClass">
 																<Value PropertyType="0" Value="Shell DocObject View" Type="5" />
@@ -348,7 +326,6 @@
 														</Properties>
 														<Children>
 															<Child Name="browser" Key="{11BF943F-6F24-4A22-80F8-71CF69618A28}" ParallelWalk="True">
-																<Image FileName="-1964569487" Left="8" Top="55" Right="1062" Bottom="1032" />
 																<Properties>
 																	<Property Name="WndClass">
 																		<Value PropertyType="0" Value="Internet Explorer_Server" Type="5" />
@@ -356,7 +333,6 @@
 																</Properties>
 																<Children>
 																	<Child Name="pageInrstar" Key="{F46DA5B5-7E3E-4235-8212-E4B9C5EE6117}" ParallelWalk="True">
-																		<Image FileName="-1964569487" Left="8" Top="55" Right="1062" Bottom="1032" />
 																		<Properties>
 																			<Property Name="ObjectType">
 																				<Value PropertyType="0" Value="Page" Type="5" />
@@ -367,7 +343,6 @@
 																		</Properties>
 																		<Children>
 																			<Child Name="panelUserclinicalreports" Key="{CCE91272-AAA1-40C1-96EA-021FFCCF102A}" ExtendedFind="True" ParallelWalk="True">
-																				<Image FileName="-1964569487" Left="52" Top="188" Right="1002" Bottom="715" />
 																				<Properties>
 																					<Property Name="ObjectType">
 																						<Value PropertyType="0" Value="Panel" Type="5" />
@@ -378,7 +353,6 @@
 																				</Properties>
 																				<Children>
 																					<Child Name="panelTransferredpatients" Key="{0A5DF3A3-D6CF-497D-A90A-93F96BEB80BC}" ExtendedFind="True" ParallelWalk="True">
-																						<Image FileName="-1964569487" Left="52" Top="297" Right="1002" Bottom="658" />
 																						<Properties>
 																							<Property Name="ObjectType">
 																								<Value PropertyType="0" Value="Panel" Type="5" />
@@ -389,7 +363,6 @@
 																						</Properties>
 																						<Children>
 																							<Child Name="tableTransferredtable" Key="{4EB6BB30-9BC6-4C51-BB4F-F7290EA96635}" ExtendedFind="True" ParallelWalk="True">
-																								<Image FileName="-1964569487" Left="58" Top="302" Right="996" Bottom="1060" />
 																								<Properties>
 																									<Property Name="ObjectType">
 																										<Value PropertyType="0" Value="Table" Type="5" />
@@ -400,7 +373,6 @@
 																								</Properties>
 																								<Children>
 																									<Child Name="cell" Key="{45086018-5FC2-4A7B-95BA-BB697BA7D1B2}" ParallelWalk="True">
-																										<Image FileName="-1964569487" Left="661" Top="388" Right="817" Bottom="444" />
 																										<TypeInfo Item0="{54175DD2-3F44-4F68-B084-5B98052AAA1C}" />
 																										<Properties>
 																											<Property Name="ObjectType">

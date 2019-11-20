@@ -6,6 +6,8 @@
 //--------------------------------------------------------------------------------
 function ts_staging_regression_treatment_plan()
 {
+  reset_folder();
+  
   tc_treatment_plan_add_first_manual_treatment_plan();
   tc_treatment_plan_add_first_maintenance_treatment_plan(); 
   tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_been_added();
@@ -20,5 +22,7 @@ function ts_staging_regression_treatment_plan()
   tc_edit_treatment_plan_change_diagnosis();
   tc_treatment_plan_add_second_treatment_using_previous();
   tc_treatment_plan_add_treatment_patient_with_future_appointment();
+  
+  email_and_archive("ts_tp_regression");
 } 
 //--------------------------------------------------------------------------------

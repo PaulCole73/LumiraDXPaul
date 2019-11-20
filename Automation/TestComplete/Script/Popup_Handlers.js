@@ -109,10 +109,47 @@ function process_external_lookup_popup()
     else
     {
       var text = INRstarV5.Panel(3).Panel("modalDialogBox").innerText;
-      Log.Message("Clicking Professional Registration Credentials - Update button not found");
+      Log.Message("Clicking Professional Registration Credentials - Update button");
       Sys.HighlightObject(wb_Ok, 2);
       wb_Ok.Click();
       return text;
+    }
+  }
+}
+//-------------------------------------------------------------------------------
+//These need to be looked at and decided whether or not they should be consolidated
+//into 1 handling method
+//this would be do-able via passing an array which would hold all relevant path extensions
+//and an array with the matching data to modify
+function process_bespoke_letters_popup(header, button)
+{
+  WaitSeconds(1);
+  var INRstarV5 = INRstar_base();
+  
+  var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
+  if (wbx.Exists == false || wbx.Height == 0)
+  { 
+    Log.Message(header + " box not displayed");
+    return "";
+  }
+  else
+  { 
+    Log.Message(header + " box displayed");
+    var name_number = "Regression: " + get_unique_number();
+    INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0).Textbox("newName").innerText = name_number;
+    
+    var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", button, "BUTTON");
+    if (wb_Ok.Exists == false || wb_Ok.Height == 0)
+    {
+      Log.Message(header + " - " + button + " button not found");
+      return name_number;
+    }
+    else
+    {
+      Log.Message("Clicking " + header + " - " + button + " button");
+      Sys.HighlightObject(wb_Ok, 2);
+      wb_Ok.Click();
+      return name_number;
     }
   }
 }

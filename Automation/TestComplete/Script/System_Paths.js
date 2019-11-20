@@ -1354,8 +1354,89 @@ function options_poct_buttons()
   var poct_buttons = panelMCP.Panel("AdminContent").Panel(0);
   
   return poct_buttons;
-}  
+}
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//////////////////// Options/LetterManagement  ///////////////////////////
+//------------------------------------------------------------------------
+function options_letter_management()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var letter_management_tab = panelMCP.Panel(0).Link("LetterManagementTab");
+  
+  return letter_management_tab;
+}
+//------------------------------------------------------------------------
+function letter_management_template_buttons()
+{
+  var INRstarV5 = INRstar_base();
+  var admin_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("AdminContent");
+  var manage_panel = admin_content.Form("LetterManagementForm").Panel("LetterManagementPanel");
+  var template_buttons = manage_panel.Panel("LetterTemplatePanel").Panel("LetterTemplateButtons");
+  
+  return template_buttons;
+}
+//------------------------------------------------------------------------
+function letter_management_description_field()
+{
+  var INRstarV5 = INRstar_base();
+  var admin_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("AdminContent");
+  var manage_panel = admin_content.Form("LetterManagementForm").Panel("LetterManagementPanel");
+  var description = manage_panel.Panel("LetterEditorPanel").Panel("LetterTemplatePropertiesPanel").Panel(1).Textarea("Description");
+  
+  return description;
+}
+//------------------------------------------------------------------------
+function letter_management_content_field()
+{
+  var INRstarV5 = INRstar_base();
+  var admin_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("AdminContent");
+  var manage_panel = admin_content.Form("LetterManagementForm").Panel("LetterManagementPanel");
+  var body = manage_panel.Panel("LetterEditorPanel").Panel("ContentTextEditor").Panel(1).Panel(0);
+  
+  return body;
+}
+//------------------------------------------------------------------------
+function letter_management_permissions_field()
+{
+  var INRstarV5 = INRstar_base();
+  var admin_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("AdminContent");
+  var manage_panel = admin_content.Form("LetterManagementForm").Panel("LetterManagementPanel");
+  var permissions = manage_panel.Panel("LetterSettingsPanel").Panel("LetterPermissionsPanel");
+  
+  return permissions;
+}
+//------------------------------------------------------------------------
+function letter_management_editor_buttons()
+{
+  var INRstarV5 = INRstar_base();
+  var admin_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("AdminContent");
+  var manage_panel = admin_content.Form("LetterManagementForm").Panel("LetterManagementPanel");
+  var buttons = manage_panel.Panel("LetterEditorPanel").Panel("LetterEditorButtons");
+  
+  return buttons;
+}
+//------------------------------------------------------------------------
+function letter_management_list()
+{
+  var INRstarV5 = INRstar_base();
+  var admin_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("AdminContent");
+  var manage_panel = admin_content.Form("LetterManagementForm").Panel("LetterManagementPanel");
+  var list = manage_panel.Panel("LetterTemplatePanel").Panel("LetterTemplateListViewPanel").Panel("LetterTemplateListView");
+  
+  return list;
+}
+//------------------------------------------------------------------------
+function letter_editor_panel()
+{
+  var INRstarV5 = INRstar_base();
+  var admin_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("AdminContent");
+  var manage_panel = admin_content.Form("LetterManagementForm").Panel("LetterManagementPanel");
+  var main = manage_panel.Panel("LetterEditorPanel");
+  
+  return main;
+}
 //------------------------------------------------------------------------
 ////////////////////////////  Reviews  ///////////////////////////////////
 //------------------------------------------------------------------------

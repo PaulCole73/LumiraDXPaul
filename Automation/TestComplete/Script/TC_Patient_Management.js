@@ -259,7 +259,7 @@ function tc_patient_unsuspend_a_patient()
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_patient_change_the_patients_registered_practice() //Broken?
+function tc_patient_change_the_patients_registered_practice() 
 {
   try
   {
@@ -267,7 +267,7 @@ function tc_patient_change_the_patients_registered_practice() //Broken?
     login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'Registered_practice', 'M', 'Shared'); 
   
-    var reg_prac = 'Deans Regression Testing Location 2'
+    var reg_prac = "A01F0565" //"Deans Regression Testing Location 2" doesn't exist as a registered practice?
     change_reg_practice(reg_prac);
     WaitSeconds(1)
   

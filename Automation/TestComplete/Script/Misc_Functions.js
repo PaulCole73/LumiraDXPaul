@@ -687,7 +687,15 @@ function reset_folder()
   var work_dir = Project.ConfigPath + "Log\\ExportedResults\\";
   aqFileSystem.DeleteFolder(work_dir, true);
 }
-
+//-----------------------------------------------------------------------------------
+function run_INRstar()
+{
+  var path = Sys.Process("INRstarWindows").Path;
+  
+  Sys.Process("INRstarWindows").Close();
+  
+  Win32API.WinExec(path, SW_SHOWNORMAL);
+}
 
 
 

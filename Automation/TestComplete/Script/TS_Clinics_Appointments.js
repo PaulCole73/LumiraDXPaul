@@ -18,11 +18,15 @@ function ts_master_clinics_appointments()
 //--------------------------------------------------------------------------------
 function ts_staging_regression_clinics_appointments()
 {
+  reset_folder();
+  
   tc_clinics_add_a_recurring_clinic();
   tc_clinics_make_appointment_today_for_overdue_patient();
   tc_clinics_move_seven_days_beyond_ntd();
   tc_clinics_cancel_future_appointment();
   tc_clinics_mark_unmark_dna();
+  
+  email_and_archive("ts_clinics_regression");
 }
 //--------------------------------------------------------------------------------
 

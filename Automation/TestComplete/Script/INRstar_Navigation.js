@@ -26,10 +26,39 @@ function Goto_Options()
   WaitSeconds(1, "Going to Options...");
 }  
 //-------------------------------------------------------------------------------
+// Navigate to Letter Management 
+function Goto_Options_Letter_Management()
+{
+  Goto_Options();
+  options_letter_management().Click();
+  WaitSeconds(1, "Going to Letter Management...");
+}
+//-----------------------------------------------------------------------------------
+// Navigate to Specific Letter
+function Goto_Bespoke_Letter(letter_name)
+{
+  var list = letter_management_list();
+  
+  for(var i = 0; i < list.ChildCount; i++)
+  {
+    if(list.Child(i).innerText == letter_name)
+    {
+      list.Child(i).scrollIntoView();
+      list.Child(i).Click();
+      return true;
+      break;
+    }
+    else
+    {
+      return false;
+    }
+  }
+}
+//-------------------------------------------------------------------------------
 // Navigate to Admin / IQC 
 function Goto_Admin_IQC()
 {
-  Goto_Options()
+  Goto_Options();
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   panelMCP.Panel(0).Link("IQCTab").Click();
@@ -133,12 +162,15 @@ function Goto_Manage_User(username)
 // Log Off
 function Log_Off()
 {
+  /*
   WaitSeconds(1, "Waiting for Log Off button...");
   var INRstarV5 = INRstar_base();
   var panelHeader = INRstarV5.Panel("MainPage").Panel("header");
   var panelLoginStatus = panelHeader.Panel("logindisplay").Panel("LoginStatus");
   panelLoginStatus.Link("LogoutLink").Click();    
-  WaitSeconds(2); 
+  WaitSeconds(2);
+  */
+  run_INRstar();
 }
 
 

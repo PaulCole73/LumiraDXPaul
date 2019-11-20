@@ -274,22 +274,21 @@ function suspend_patient_confirmation_checker(exp_warn_mess)
 {
   var INRstarV5 = INRstar_base(); 
   var suspend_confirmation_message_path = pat_management_status_confirmation_message();
-  WaitSeconds(2);
+  WaitSeconds(1);
   var actual_warn_mess = suspend_confirmation_message_path.contentText; 
-  WaitSeconds(2);
-  
+  WaitSeconds(1);
   Log.Message(actual_warn_mess)
    
-     if (actual_warn_mess.includes(exp_warn_mess))
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
-        return false;
-        }
+  if (actual_warn_mess.includes(exp_warn_mess))
+  {
+    Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
+    return true; 
+  } 
+  else 
+  {
+    Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
+    return false;
+  }
 } 
 //--------------------------------------------------------------------------------
 function patient_confirmation_checker(exp_warn_mess)
@@ -297,19 +296,18 @@ function patient_confirmation_checker(exp_warn_mess)
   var INRstarV5 = INRstar_base(); 
   var reg_practice_confirmation_path = reg_practice_confirmation();
   var actual_warn_mess = reg_practice_confirmation_path.contentText; 
-  
   Log.Message(actual_warn_mess)
    
-     if (actual_warn_mess.includes(exp_warn_mess))
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
-        return false;
-        }
+  if (actual_warn_mess.includes(exp_warn_mess))
+  {
+    Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
+    return true; 
+  } 
+  else 
+  {
+    Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
+    return false;
+  }
 } 
 //--------------------------------------------------------------------------------
 function add_manual_self_test_group()
@@ -427,38 +425,37 @@ function unsuspend_patient(nhs_num)
 //--------------------------------------------------------------------------------
 function change_reg_practice(prac_name)
 {
- Goto_Change_Registered_Location();
+  Goto_Change_Registered_Location();
 
- var pat_management_reg_practice_path = pat_management_reg_practice();
+  var pat_management_reg_practice_path = pat_management_reg_practice();
  
- pat_management_reg_practice_path.Panel(0).Select("SearchType").ClickItem('Name');
- pat_management_reg_practice_path.Panel(1).Textbox("SearchCriteria").Text = prac_name
+  pat_management_reg_practice_path.Panel(0).Select("SearchType").ClickItem('Name');
+  pat_management_reg_practice_path.Panel(1).Textbox("SearchCriteria").Text = prac_name
  
- pat_management_reg_practice_path.Panel(1).SubmitButton("Search").Click()
+  pat_management_reg_practice_path.Panel(1).SubmitButton("Search").Click()
  
- var reg_practice_table_path = reg_practice_table();
- var row_count = reg_practice_table_path.rowcount;
+  var reg_practice_table_path = reg_practice_table();
+  var row_count = reg_practice_table_path.rowcount;
  
- for(i=1; i<row_count; i++) 
+  for(var i = 1; i < row_count; i++) 
   {
-     if(reg_practice_table_path.Cell(i, 0).contentText == prac_name)
-     {           
-        reg_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
-      i = row_count
-     }
-       else 
-       {
-         Log.Warning('Location was not found');
-       } 
+    if(reg_practice_table_path.Cell(i, 0).contentText == prac_name)
+    {           
+      reg_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click();
+      
+      var pat_management_change_loc_path = pat_management_change_loc();
+      pat_management_change_loc_path.SubmitButton("btnNext").Click();
+      var reg_practice_final_buttons_path = reg_practice_final_buttons();
+      reg_practice_final_buttons_path.SubmitButton("ConfirmChangeLocationDetails").Click();
+      process_confirm_change_location('');
+      
+      break;
+    }
+    else 
+    {
+      Log.Warning('Location was not found');
+    } 
   }
-  var pat_management_change_loc_path = pat_management_change_loc();
-  
-  pat_management_change_loc_path.SubmitButton("btnNext").Click();
-  
-  var reg_practice_final_buttons_path = reg_practice_final_buttons();
-  reg_practice_final_buttons_path.SubmitButton("ConfirmChangeLocationDetails").Click();
-  
-  process_confirm_change_location('');
 } 
 //--------------------------------------------------------------------------------
 function change_test_practice(prac_name)

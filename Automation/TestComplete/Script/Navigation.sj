@@ -469,7 +469,7 @@ function Goto_Options_add_PoCT()
 }
 //-------------------------------------------------------------------------------
 // Navigate to Options / Letter Management / New
-function Goto_Options_Letter_Management()
+/*function Goto_Options_Letter_Management()
 {
   try
   {
@@ -488,7 +488,7 @@ function Goto_Options_Letter_Management()
   {
     Log.Error("Exception", exception.description);
   }
-}
+}*/
 //-------------------------------------------------------------------------------
 // Navigate to Options / Audit Trail
 function Goto_Options_Audit()

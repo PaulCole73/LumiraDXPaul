@@ -886,6 +886,15 @@
 		<child name="TSA_External_Patient_Lookup" key="{52FC6D50-DA65-400F-9A72-EF5B013B28CB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TSA_External_Patient_Lookup.js" />
 		</child>
+		<child name="TS_Bespoke_Letters" key="{68F36A03-0E9D-437B-B300-853D2F934D7D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_Bespoke_Letters.js" />
+		</child>
+		<child name="TC_Bespoke_Letters" key="{4B9BF730-2EB0-4E61-9C8A-321A2429984F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bespoke_Letters.js" />
+		</child>
+		<child name="TSA_Bespoke_Letters" key="{FE9DD345-34FE-4416-8FD6-2A4C4D1349D7}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_Bespoke_Letters.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -915,6 +924,7 @@
 				<ref key="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}" />
 				<ref key="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}" />
 				<ref key="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}" />
+				<ref key="{68F36A03-0E9D-437B-B300-853D2F934D7D}" />
 			</references>
 		</folder>
 		<folder caption="3. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -940,6 +950,7 @@
 				<ref key="{10392BEF-2987-4248-8A93-12B6F844C958}" />
 				<ref key="{6950BF3A-E860-4208-A333-A72F00022E5C}" />
 				<ref key="{7CD8AF84-C220-4D5A-97E9-0BEFBD67C387}" />
+				<ref key="{4B9BF730-2EB0-4E61-9C8A-321A2429984F}" />
 			</references>
 		</folder>
 		<folder caption="5. Utlilities" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1191,6 +1202,7 @@
 				<ref key="{0091B06C-F4B1-447D-8077-2357A390B764}" />
 				<ref key="{6F990999-2A81-464A-982C-AF53C9C01C3A}" />
 				<ref key="{52FC6D50-DA65-400F-9A72-EF5B013B28CB}" />
+				<ref key="{FE9DD345-34FE-4416-8FD6-2A4C4D1349D7}" />
 			</references>
 		</folder>
 		<folder caption="4.1 Test Step Verification" description="A logical folder that is used to organize project items and elements." moniker="">

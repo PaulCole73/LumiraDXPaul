@@ -13,8 +13,12 @@
 //--------------------------------------------------------------------------------
 function ts_staging_regression_options_iqc()
 {
+  reset_folder();
+  
   tc_add_a_new_iqc_result();
   tc_edit_iqc_result();
   tc_delete_iqc_result();
+  
+  email_and_archive("ts_iqc_regression");
 } 
 //--------------------------------------------------------------------------------

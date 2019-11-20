@@ -124,4 +124,5 @@ function tsa_neqas_delete_entries()
     }
   }
   while(row_count > 1);
+  WaitSeconds(1, "Waiting for delete...");
 }

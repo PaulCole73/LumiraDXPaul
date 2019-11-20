@@ -5,6 +5,8 @@
 //--------------------------------------------------------------------------------
 function ts_staging_regression_treatment()
 {
+  reset_folder();
+  
   tc_treatment_add_a_historic_treatment();
   tc_treatment_add_a_manual_INR();
   tc_treatment_manual_dosing_permissions();
@@ -35,5 +37,7 @@ function ts_staging_regression_treatment()
   tc_treatment_maintenance_override_privilege();
   tc_treatment_maintenance_cancel_pending();
   tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
+  
+  email_and_archive("ts_treatment_regression");
 }
 //-------------------------------------------------------------------------------- 

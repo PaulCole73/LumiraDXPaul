@@ -158,6 +158,7 @@ function tc_neqas_delete_ecq_entry()
     var row_data = new Array();
     var row_data_1 = new Array();
     var result_set = new Array();
+    var result_set_1;
     
     tsa_neqas_delete_entries();
     tsa_neqas_setup_poct_batches(1);
@@ -168,13 +169,13 @@ function tc_neqas_delete_ecq_entry()
     tsa_neqas_delete_entries();
     
     var table_data = options_eqc_form_buttons().Table("LocationsEQCTable");
-    if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
+    if(table_data.Cell(1, 0).contentText != "There are no EQCs recorded")
     {
       row_data_1 = get_eqc_table_row(batch_reference);
-      var result_set_1 = checkArrays(row_data, row_data_1);
+      result_set_1 = checkArrays(row_data, row_data_1);
       result_set_1 = results_checker_are_false(result_set_1);
-      result_set.push(result_set_1);
     }
+    result_set.push(result_set_1);
     
     result_set_1 = validate_top_system_audit(test_title, "Delete EQC Result");
     result_set.push(result_set_1);
