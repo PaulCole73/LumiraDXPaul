@@ -432,9 +432,6 @@ function Goto_Patient_Treatment()
 
   WaitSeconds(3, "Waiting at Treatment tab...");
   
-  /*var panelPMTC = main_patient_tab();
-  var panelPTPTSM = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
-  panelPTPTSM*/
   patient_clinical_tab().Link("TreatmentItem").Click();
   WaitSeconds(3, "Waiting for Treatments...");
 }

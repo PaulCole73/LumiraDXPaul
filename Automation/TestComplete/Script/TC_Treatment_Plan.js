@@ -526,8 +526,8 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
 {
   try
   {
-    var test_title = 'Treatment Plan - Add a New Treatment Using Previous Plan Details';
-		login('clead@regression','INRstar_5','Shared');
+    var test_title = "Treatment Plan - Add Treatment With Future Appointment";
+		login("clead@regression", "INRstar_5", "Shared");
     var result_set = new Array();
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
@@ -565,7 +565,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     restart_INRstar();
   }
 }

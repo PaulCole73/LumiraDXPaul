@@ -359,9 +359,12 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
         
     historic_treatment_form.Panel(0).SubmitButton("Save").Click();
+    WaitSeconds(2, "Waiting to save...");
 
     // Click confirm panel
     process_confirm_historical_treatment(INRstarV5);
+    
+    WaitSeconds(8, "Waiting for Add Historic...");
 }
 //--------------------------------------------------------------------------------
 function add_manual_treatment(date, inr, dose, review, tm)
@@ -413,7 +416,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
     process_popup("Insert Confirmation", "Confirm");
   }
    
-  WaitSeconds(2,"Saving the Treatment");  
+  WaitSeconds(2, "Saving the Treatment");  
   
   //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();

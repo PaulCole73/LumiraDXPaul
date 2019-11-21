@@ -128,7 +128,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       {
         var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");
       }     
-      WaitSeconds(1);
+      WaitSeconds(5, "Waiting for treatment plan...");
       return popup_msg;       
     }  
   } 

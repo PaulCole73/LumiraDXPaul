@@ -208,13 +208,13 @@ function goto_patient_clinic_tab_appointment_name(name, weeks_ahead)
     clinic_move_calendar_forward().Click();
   }
   var clinic_names = clinic_patients_appointments_container();
+  WaitSeconds(2, "Waiting for clinics...");
   for(var i = 0; i < clinic_names.ChildCount; i++)
   {
-    WaitSeconds(1);
+    WaitSeconds(2, "Waiting for clinics...");
     var child = clinic_names.Child(i).Panel("appointmentDiv").Table(0).Cell(0, 1).Table(0).Cell(0, 1).Table(0).Cell(2, 0).TextNode("lblDescription");
     if(child.contentText == name)
     {
-      //child.Parent.Parent.Parent.Parent.Parent.Parent.Parent;
       for(var j = 0; j <= 24; j++)
       {
         var box = clinic_patients_appointments_container().FindChild("contentText", "Appts:" + j + "/24" + "\n" + name);

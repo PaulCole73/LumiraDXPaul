@@ -453,7 +453,7 @@ function change_reg_practice(prac_name)
     }
     else 
     {
-      Log.Warning('Location was not found');
+      Log.Error('Location was not found');
     } 
   }
 } 

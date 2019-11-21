@@ -696,9 +696,39 @@ function restart_INRstar()
   
   Win32API.WinExec(path, SW_SHOWNORMAL);
 }
+//-----------------------------------------------------------------------------------
+function change_environments(new_config_file_name) //Q:\Development and Testing\Testing\EnvironmentConfigs - config files can be found here
+{
+  var sys_path = Sys.Process("INRstarWindows").Path;
+  var config_path = sys_path + ".config";
+  var base_path = "Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\" + new_config_file_name;
+  
+  set_get_environment(new_config_file_name);
+  
+  aqFileSystem.DeleteFile(config_path);
+  aqFileSystem.CopyFile(base_path, config_path, false);
+  WaitSeconds(2);
+  
+  restart_INRstar();
+  WaitSeconds(10);
+}
+//-----------------------------------------------------------------------------------
+function open_file_in_notepad()
+{
+  var path = Sys.Process("INRstarWindows").Path;
+  Log.Message(path);
+  
+  string = path + ".config";
+  
+  TestedApps.notepad.Run();
+  
+  var notepad = Sys.Process("notepad");
+  var wndNotepad = notepad.Window("Notepad");
 
-
-
+  // Open a file in Notepad
+  wndNotepad.MainMenu.Click("File|Open...");
+  notepad.Window("#32770", "Open").OpenFile(string);
+}
 
 
 
@@ -783,5 +813,21 @@ function delete_files() //intended to go into a wipe a log file, isn't functioni
   for(var i = 0; i < file_path.length; i++)
   {
     aqFile.Delete(file_path[i]);
+  }
+}
+//-----------------------------------------------------------------------------------
+function set_get_environment(env)
+{
+  var environment;
+  
+  if(env == null)
+  {
+    //do nothing
+    return environment;
+  }
+  else
+  {
+    environment = env;
+    return environment;
   }
 }

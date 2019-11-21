@@ -232,6 +232,8 @@ function tc_external_patient_lookup_add_historic_inr()
     login("cl3@regression2", "INRstar_5", "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
+    WaitSeconds(2);
+    
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
   
     var result_set_1 = checkArrays(table_data, patient_data, test_title);
