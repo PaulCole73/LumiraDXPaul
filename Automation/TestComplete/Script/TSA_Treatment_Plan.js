@@ -355,42 +355,42 @@ function is_tp_date_picker_active()
 //--------------------------------------------------------------------------------
 function add_treatment_plan_drug_warning_checker(drug,exp_warn_mess)
 {
- try
- {
-  var INRstarV5 = INRstar_base();    
+  try
+  {
+    var INRstarV5 = INRstar_base();    
   
-  Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
-  var treatment_plan_area = add_treatment_plan_main_section_path();
+    Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
+    var treatment_plan_area = add_treatment_plan_main_section_path();
         
-  treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
-  WaitSeconds(1);
-  treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);     
+    treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
+    WaitSeconds(1);
+    treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);     
   
-  var pop_up_warning_message_path = pop_up_warning_message();
-  var actual_warn_mess = pop_up_warning_message_path.contentText; 
+    var pop_up_warning_message_path = pop_up_warning_message();
+    var actual_warn_mess = pop_up_warning_message_path.contentText; 
   
-  Log.Message(actual_warn_mess)
+    Log.Message(actual_warn_mess)
    
-     if (actual_warn_mess==exp_warn_mess)
-       {
-        WaitSeconds(1);
-        Log.Message('The warning text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        var pop_up_button_path = ok_error_pop_up_buttons();
-        pop_up_button_path.Click();
-        return true; 
-       } 
-        else 
-        {
-        Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess);
-        var pop_up_button_path = ok_error_pop_up_buttons();
-        pop_up_button_path.Click();
-        return false;
-        }
- }
-   catch(e)
-   {
-     Log.Warning('There was exception checking the drug warning pop up, exception was = ' + (e))
-   }  
+    if (actual_warn_mess==exp_warn_mess)
+    {
+      WaitSeconds(1);
+      Log.Message('The warning text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
+      var pop_up_button_path = ok_error_pop_up_buttons();
+      pop_up_button_path.Click();
+      return true; 
+    } 
+    else 
+    {
+      Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess);
+      var pop_up_button_path = ok_error_pop_up_buttons();
+      pop_up_button_path.Click();
+      return false;
+    }
+  }
+  catch(e)
+  {
+    Log.Warning('There was exception checking the drug warning pop up, exception was = ' + (e))
+  }  
 } 
 //--------------------------------------------------------------------------------
 function new_tp_popup_checker(exp_err_mess)
@@ -404,7 +404,6 @@ function new_tp_popup_checker(exp_err_mess)
   var pop_up_message = tp_popup_checker(exp_err_mess);
    
   return pop_up_message; 
-
 } 
 //--------------------------------------------------------------------------------
 function get_treatment_plan_single_field(data)

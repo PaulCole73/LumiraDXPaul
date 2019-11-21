@@ -44,7 +44,7 @@
 						<testParameters />
 						<children />
 					</testItem>
-					<testItem name="TS_Bespoke_Letters" key="{E2D09B58-5172-4B44-A7F2-0684C0490AA8}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_bespoke_letters_master" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="TS_Bespoke_Letters" key="{E2D09B58-5172-4B44-A7F2-0684C0490AA8}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_bespoke_letters_master" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
@@ -131,7 +131,7 @@
 						<testParameters />
 						<children />
 					</testItem>
-					<testItem name="TS_Bespoke_Letters" key="{A4A2011A-C616-488A-A692-4F3E6E57D456}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_bespoke_letters_master" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="TS_Bespoke_Letters" key="{A4A2011A-C616-488A-A692-4F3E6E57D456}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_bespoke_letters_master" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>

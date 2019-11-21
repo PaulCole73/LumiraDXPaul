@@ -70,38 +70,39 @@ function tsa_poct_create_poct_batch(batch_numbers, batches_to_add)
 //--------------------------------------------------------------------------------
 function edit_poct_make_active(batch_num)
 {
- try
- {
-   Goto_Options_Edit_PoCT()
+  try
+  {
+    Goto_Options_Edit_PoCT()
   
- //Find my batch and update the flag to be as per what is passed in
- var options_edit_poct_table_path = options_edit_poct_table();
- var options_poct_edit_buttons_path = options_poct_edit_buttons(); 
+    //Find my batch and update the flag to be as per what is passed in
+    var options_edit_poct_table_path = options_edit_poct_table();
+    var options_poct_edit_buttons_path = options_poct_edit_buttons(); 
  
- var row = options_edit_poct_table_path.rowcount;
- Log.Message(row)
+    var row = options_edit_poct_table_path.rowcount;
+    Log.Message(row)
  
-     for(i=1; i<row; i++) 
-     {
-         if(options_edit_poct_table_path.Cell(i, 0).contentText==batch_num)
-         {      
-            var status = options_edit_poct_table_path.Cell(i, 2).Checkbox("activeBatches").checked;
-            Log.Message(status + " This is before state");
+    for(i=1; i<row; i++) 
+    {
+      if(options_edit_poct_table_path.Cell(i, 0).contentText==batch_num)
+      {      
+        var status = options_edit_poct_table_path.Cell(i, 2).Checkbox("activeBatches").checked;
+        Log.Message(status + " This is before state");
       
-            var checkbox = options_edit_poct_table_path.Cell(i, 2).Checkbox("activeBatches");
-            checkbox.ClickChecked(true);
+        var checkbox = options_edit_poct_table_path.Cell(i, 2).Checkbox("activeBatches");
+        checkbox.ClickChecked(true);
       
-            var status = options_edit_poct_table_path.Cell(i, 2).Checkbox("activeBatches").checked;
-            Log.Message(status + " this is after state");
+        var status = options_edit_poct_table_path.Cell(i, 2).Checkbox("activeBatches").checked;
+        Log.Message(status + " this is after state");
       
-            options_poct_edit_buttons_path.SubmitButton("UpdatePoCTBatch").Click();  
-            return true;
-         }
-      } 
+        options_poct_edit_buttons_path.SubmitButton("UpdatePoCTBatch").Click();  
+        return true;
+      }
+    } 
   }
   catch(e)
   {
     Log.Error(e.message);
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -109,82 +110,82 @@ function edit_poct_make_inactive(batch_num)
 {
   Goto_Options_Edit_PoCT()
   
- //Find my batch and update the flag to be as per what is passed in
- var options_edit_poct_table_path = options_edit_poct_table();
- var options_poct_edit_buttons_path = options_poct_edit_buttons(); 
+  //Find my batch and update the flag to be as per what is passed in
+  var options_edit_poct_table_path = options_edit_poct_table();
+  var options_poct_edit_buttons_path = options_poct_edit_buttons(); 
  
- var row = options_edit_poct_table_path.rowcount;
+  var row = options_edit_poct_table_path.rowcount;
   
- for(i=1; i<row; i++) 
- {
-   if(options_edit_poct_table_path.Cell(i, 0).contentText==batch_num)
-   {
+  for(i=1; i<row; i++) 
+  {
+    if(options_edit_poct_table_path.Cell(i, 0).contentText==batch_num)
+    {
       options_edit_poct_table_path.Cell(i, 2).Checkbox("activeBatches").ClickChecked(false);
       options_poct_edit_buttons_path.SubmitButton("UpdatePoCTBatch").Click();
       return true;
-   }
- }  
+    }
+  }  
 } 
 //--------------------------------------------------------------------------------
 function get_active_flag(batch_num)
 {
- var options_poct_table_path = options_poct_table();
+  var options_poct_table_path = options_poct_table();
  
- for(i=1; i<options_poct_table_path.rowcount; i++) 
- {
-   if(options_poct_table_path.Cell(i, 0).contentText==batch_num)
-   {
+  for(i=1; i<options_poct_table_path.rowcount; i++) 
+  {
+    if(options_poct_table_path.Cell(i, 0).contentText==batch_num)
+    {
       var flag = options_poct_table_path.Cell(i, 2).Checkbox("isActive").checked;
       return flag; 
-   }
- }
+    }
+  }
 } 
 //--------------------------------------------------------------------------------
 function get_top_poct_data()
 {
- var poct_table_path = options_poct_table();
- var data_array = new Array();
+  var poct_table_path = options_poct_table();
+  var data_array = new Array();
  
- for(i=0;i<3;i++) 
- {
-  if(i==2)
+  for(var i = 0; i < 3; i++) 
   {
-   var data = poct_table_path.Cell(1, i).Checkbox("isActive").checked;
-  }
-  else 
+    if(i == 2)
     {
-    var data = poct_table_path.Cell(1, i).contentText;
+      var data = poct_table_path.Cell(1, i).Checkbox("isActive").checked;
+    }
+    else 
+    {
+      var data = poct_table_path.Cell(1, i).contentText;
     } 
-  data_array.push(data);
- }
- return data_array;
+    data_array.push(data);
+  }
+  return data_array;
 } 
 //-----------------------------------------------------------------------------------
 //Returns all the flags of the PoCT table minus the first row as this should be active
 function get_poct_flag_data_minus_top_active_row()
 {
- var poct_table_path = options_poct_table();
- var data_array = new Array();
+  var poct_table_path = options_poct_table();
+  var data_array = new Array();
  
- for(i=2; i<poct_table_path.rowcount; i++) 
- {
-  var data = poct_table_path.Cell(i, 2).Checkbox("isActive").checked;
-  data_array.push(data);
- } 
- return data_array;
+  for(var i = 2; i < poct_table_path.rowcount; i++) 
+  {
+    var data = poct_table_path.Cell(i, 2).Checkbox("isActive").checked;
+    data_array.push(data);
+  } 
+  return data_array;
 } 
 //--------------------------------------------------------------------------------
 //Returns all the flags of the PoCT table
 function get_all_poct_flag_data()
 {
- var poct_table_path = options_poct_table();
- var data_array = new Array();
+  var poct_table_path = options_poct_table();
+  var data_array = new Array();
  
- for(i=2; i<poct_table_path.rowcount; i++) 
- {
-  var data = poct_table_path.Cell(i, 2).Checkbox("isActive").checked;
-  data_array.push(data);
- } 
- return data_array;
+  for(var i = 2; i < poct_table_path.rowcount; i++) 
+  {
+    var data = poct_table_path.Cell(i, 2).Checkbox("isActive").checked;
+    data_array.push(data);
+  } 
+  return data_array;
 }
 //--------------------------------------------------------------------------------

@@ -710,16 +710,11 @@ function change_environments(new_config_file_name) //Q:\Development and Testing\
   WaitSeconds(2);
   
   restart_INRstar();
-  WaitSeconds(10);
+  WaitSeconds(20);
 }
 //-----------------------------------------------------------------------------------
-function open_file_in_notepad()
+function open_file_in_notepad(path)
 {
-  var path = Sys.Process("INRstarWindows").Path;
-  Log.Message(path);
-  
-  string = path + ".config";
-  
   TestedApps.notepad.Run();
   
   var notepad = Sys.Process("notepad");
@@ -727,7 +722,7 @@ function open_file_in_notepad()
 
   // Open a file in Notepad
   wndNotepad.MainMenu.Click("File|Open...");
-  notepad.Window("#32770", "Open").OpenFile(string);
+  notepad.Window("#32770", "Open").OpenFile(path);
 }
 
 
@@ -740,11 +735,11 @@ function WaitSeconds(seconds,p_text)
 {
   if (p_text == "")
   {
-    BuiltIn.Delay(seconds * 1000,"Paused the testing");
+    BuiltIn.Delay(seconds * 1000, "Paused the testing");
   } 
   else
   {
-    BuiltIn.Delay(seconds * 1000,p_text);
+    BuiltIn.Delay(seconds * 1000, p_text);
   }  
 }
 
