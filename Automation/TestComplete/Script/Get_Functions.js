@@ -421,3 +421,49 @@ function get_bespoke_letter_permissions(letter_name)
   
   return content;
 }
+//---------------------------------------------------------------------------------//
+//                                  Diagnosis                                      //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_diagnosis_details(name)
+{
+  Goto_Options_Diagnosis();
+  options_diagnosis_list().ClickItem(name);
+
+  var diagnosis_data = new Array();
+  
+  var temp = diagnosis_details().Panel(0).Label("Name_DetachedLabel").innerText;
+  diagnosis_data.push(temp);
+  temp = diagnosis_details().Panel(1).Label("TargetINR_DetachedLabel").innerText;
+  diagnosis_data.push(temp);
+  temp = diagnosis_details().Panel(2).Label("TreatmentDuration_DetachedLabel").innerText;
+  diagnosis_data.push(temp);
+  
+  return diagnosis_data;
+}
+//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
+//                              Dosing Settings                                    //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_dosing_settings_data(item_no)
+{
+  Goto_Options();
+  dosing_settings_tab().Click();
+  location_dosing_settings().Link(item_no).Click();
+  
+  var panel = location_dosing_settings().Panel(item_no);
+  var dosing_data = new Array();
+  var string_array = new Array();
+  
+  for(var i = 1; i < panel.ChildCount; i++)
+  {
+    var temp = panel.Child(i).innerText;
+    string_array = temp.split("[set at] "); 
+    dosing_data.push(aqString.Trim(string_array[1], 3));
+  }
+  
+  return dosing_data;
+}
+
+

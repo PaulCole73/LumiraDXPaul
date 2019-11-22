@@ -1,24 +1,26 @@
 ﻿//USEUNIT Tested_Apps
-//USEUNIT TC_Notes
+//USEUNIT TC_Diagnosis
+//--------------------------------------------------------------------------------
+//Suite of tests for Diagnosis staging regression
+//--------------------------------------------------------------------------------
 
+//Master Suites
 //--------------------------------------------------------------------------------
-//Picking what suites you want to run within the main suite
-//--------------------------------------------------------------------------------
-//function ts_notes()
+function ts_master_diagnosis()
 {
-// open_application("INRstarWindows");
-// ts_staging_regression_notes();
-// Close Application needed here ?
-} 
-//--------------------------------------------------------------------------------
-//Test cases within each suite for Notes
-//--------------------------------------------------------------------------------
-function ts_staging_regression_notes(send_mail)
-{
-  reset_folder();  
-
-  tc_add_a_new_note();
+  reset_folder();
   
-  email_and_archive(send_mail, "ts_note_regression");
-} 
+  email_and_archive("ts_master_diagnosis");
+}
+//--------------------------------------------------------------------------------
+function ts_staging_regression_diagnosis(send_mail)
+{
+  reset_folder();
+  
+  tc_diagnosis_add_new_diagnosis();
+  tc_diagnosis_edit_diagnosis();
+  tc_diagnosis_delete_diagnosis();
+  
+  email_and_archive(send_mail, "ts_diagnosis_regression");
+}
 //--------------------------------------------------------------------------------

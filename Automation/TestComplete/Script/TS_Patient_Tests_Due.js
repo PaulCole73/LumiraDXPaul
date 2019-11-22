@@ -5,12 +5,12 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for Patient Tests Due
 
-function ts_staging_regression_patient_tests_due()
+function ts_staging_regression_patient_tests_due(send_mail)
 {
   reset_folder();
   
   tc_check_tests_due_tab();
  
-  email_and_archive("ts_testdue_regression");
+  email_and_archive(send_mail, "ts_testdue_regression");
 }
 //-------------------------------------------------------------------------------

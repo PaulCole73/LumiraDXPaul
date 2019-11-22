@@ -24,7 +24,15 @@ function Goto_Options()
   var panelM = INRstarV5.Panel("MainPage");
   panelM.Panel("header").Link("OptionsLink").Click();
   WaitSeconds(1, "Going to Options...");
-}  
+}
+//-------------------------------------------------------------------------------
+// Navigate to Diagnosis
+function Goto_Options_Diagnosis()
+{
+  Goto_Options();
+  options_diagnosis_path().Click();
+  WaitSeconds(1, "Going to Add Diagnosis");
+} 
 //-------------------------------------------------------------------------------
 // Navigate to Letter Management 
 function Goto_Options_Letter_Management()

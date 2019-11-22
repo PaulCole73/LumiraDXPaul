@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for Users staging regression
 //--------------------------------------------------------------------------------
-function ts_staging_regression_location_management_users()
+function ts_staging_regression_location_management_users(send_mail)
 {
   reset_folder();
 
@@ -14,5 +14,5 @@ function ts_staging_regression_location_management_users()
   tc_users_disable_user();
   tc_users_enable_user();
   
-  email_and_archive("ts_users_regression");
+  email_and_archive(send_mail, "ts_users_regression");
 }

@@ -2,7 +2,7 @@
 //USEUNIT TC_Home_Page
 //USEUNIT TC_Treatment
 //--------------------------------------------------------------------------------
-function ts_staging_regression_home_page()
+function ts_staging_regression_home_page(send_mail)
 {
   reset_folder();
 
@@ -20,6 +20,6 @@ function ts_staging_regression_home_page()
   tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_overdue();
   tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue();
   
-  email_and_archive("ts_homepage_regression");
+  email_and_archive(send_mail, "ts_homepage_regression");
 } 
 //--------------------------------------------------------------------------------

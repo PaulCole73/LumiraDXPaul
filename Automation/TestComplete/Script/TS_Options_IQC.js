@@ -11,7 +11,7 @@
 //--------------------------------------------------------------------------------
 //Test cases within each suite for Notes
 //--------------------------------------------------------------------------------
-function ts_staging_regression_options_iqc()
+function ts_staging_regression_options_iqc(send_mail)
 {
   reset_folder();
   
@@ -19,6 +19,6 @@ function ts_staging_regression_options_iqc()
   tc_edit_iqc_result();
   tc_delete_iqc_result();
   
-  email_and_archive("ts_iqc_regression");
+  email_and_archive(send_mail, "ts_iqc_regression");
 } 
 //--------------------------------------------------------------------------------

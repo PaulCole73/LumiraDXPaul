@@ -472,15 +472,22 @@ function tc_bridging_create_schedule_add_days_procedure_today()
     
     var date = aqDateTime.Today();
     add_bridging_record(date);
+    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
     
     var result_set = new Array();
-    
-    var result_set_1 = false;
+    var result_set_1 = validate_bridging_table_dates(date, 3);
     result_set.push(result_set_1);
+    
+    for(var i = 1; i <= 3; i++)
+    {
+      add_bridging_table_rows(1);
+      result_set_1 = validate_bridging_table_dates(date, i+3);
+      result_set.push(result_set_1);
+    }
         
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    //Log_Off();
+    Log_Off();
   } 
   catch(e)
   {
@@ -498,17 +505,24 @@ function tc_bridging_create_schedule_add_days_procedure_tomorrow()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
-    var date = aqDateTime.Today();
+    var date = aqDateTime.AddDays(aqDateTime.Today(), 1);
     add_bridging_record(date);
+    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
     
     var result_set = new Array();
-    
-    var result_set_1 = false;
+    var result_set_1 = validate_bridging_table_dates(date, 3);
     result_set.push(result_set_1);
+    
+    for(var i = 1; i <= 3; i++)
+    {
+      add_bridging_table_rows(1);
+      result_set_1 = validate_bridging_table_dates(date, i+3);
+      result_set.push(result_set_1);
+    }
         
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    //Log_Off();
+    Log_Off();
   } 
   catch(e)
   {
@@ -526,17 +540,24 @@ function tc_bridging_create_schedule_add_days_procedure_yesterday()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
-    var date = aqDateTime.Today();
+    var date = aqDateTime.AddDays(aqDateTime.Today(), -1);
     add_bridging_record(date);
+    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
     
     var result_set = new Array();
-    
-    var result_set_1 = false;
+    var result_set_1 = validate_bridging_table_dates(date, 3);
     result_set.push(result_set_1);
+    
+    for(var i = 1; i <= 3; i++)
+    {
+      add_bridging_table_rows(1);
+      result_set_1 = validate_bridging_table_dates(date, i+3);
+      result_set.push(result_set_1);
+    }
         
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    //Log_Off();
+    Log_Off();
   } 
   catch(e)
   {
@@ -557,24 +578,21 @@ function tc_bridging_create_schedule_delete_six_days()
     var result_set = new Array();
     var date = aqDateTime.Today();
     add_bridging_record(date);
+    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
+    
+    var result_set_1 = validate_bridging_table_dates(date, 3);
+    result_set.push(result_set_1);
+    
     add_bridging_table_rows(3);
     
-    var row_data = new Array();
-    var expected_row_data = new Array();
-    var table;
+    result_set_1 = validate_bridging_table_dates(date, 6);
+    result_set.push(result_set_1);
     
-    for(var i = table.rowCount; i > 0; i++)
+    for(var i = 6; i > 0; i--)
     {
       remove_bridging_table_rows(1);
-      for(var i = 0; i < table.rowCount; i++)
-      {
-        var row_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(date, (-table.rowCount)), "%d-%b-%Y");
-        expected_row_data.push(row_data, "-" + table.rowCount, "", "", "", "", "+ Add comment");
-        row_data = get_bridging_schedule_table_row(i);
-      
-        var result_set_1 = checkArrays(row_data, expected_row_data, test_title);
-        result_set.push(result_set_1);
-      }
+      result_set_1 = validate_bridging_table_dates(date, i);
+      result_set.push(result_set_1);
     }
         
     var results = results_checker_are_true(result_set);
@@ -597,17 +615,26 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
-    var date = aqDateTime.Today();
+    var date = aqDateTime.AddDays(aqDateTime.Today(), 1);
     add_bridging_record(date);
+    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
     
     var result_set = new Array();
-    
-    var result_set_1 = false;
+    var result_set_1 = validate_bridging_table_dates(date, 3);
     result_set.push(result_set_1);
+    
+    add_bridging_table_rows(3);
+    
+    for(var i = 6; i > 3; i--)
+    {
+      remove_bridging_table_rows(1);
+      result_set_1 = validate_bridging_table_dates(date, i-1);
+      result_set.push(result_set_1);
+    }
         
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    //Log_Off();
+    Log_Off();
   } 
   catch(e)
   {

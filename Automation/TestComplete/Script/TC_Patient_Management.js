@@ -268,7 +268,7 @@ function tc_patient_change_the_patients_registered_practice()
     login('cl3@regression','INRstar_5','Shared');
     add_patient('Regression', 'Registered_practice', 'M', 'Shared'); 
   
-    var reg_prac = "A01F0565" //"Deans Regression Testing Location 2" doesn't exist as a registered practice?
+    var reg_prac = "Deans Regression Testing Location 2";//"A01F0565" //"Deans Regression Testing Location 2" doesn't exist as a registered practice?
     change_reg_practice(reg_prac);
     WaitSeconds(1)
   

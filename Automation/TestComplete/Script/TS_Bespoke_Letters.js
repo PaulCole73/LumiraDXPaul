@@ -13,16 +13,16 @@ function ts_bespoke_letters_master()
   email_and_archive("ts_bespoke_letters_master");
 }
 //--------------------------------------------------------------------------------
-function ts_staging_regression_bespoke_letters()
+function ts_staging_regression_bespoke_letters(send_mail)
 {
-  //reset_folder();
+  reset_folder();
   
   tc_bespoke_letters_create_new_letter();
   tc_bespoke_letters_edit_a_letter();
   tc_bespoke_letters_copy_a_letter();
   tc_bespoke_letters_rename_a_letter();
   
-  //email_and_archive("ts_bespoke_letters_regression");
+  email_and_archive(send_mail, "ts_bespoke_letters_regression");
 }
 //--------------------------------------------------------------------------------
 

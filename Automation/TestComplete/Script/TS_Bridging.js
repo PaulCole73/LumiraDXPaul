@@ -17,6 +17,17 @@ function ts_bridging_master()
   email_and_archive("ts_bridging_master");
 }
 //--------------------------------------------------------------------------------
+function ts_bridging_regression(send_mail)
+{
+  reset_folder();
+
+  ts_bridging_permissions();
+  ts_bridging_button();
+  ts_bridging_tab();
+  
+  email_and_archive(send_mail, "ts_bridging_regression");
+}
+//--------------------------------------------------------------------------------
 
 //General Suites
 //--------------------------------------------------------------------------------

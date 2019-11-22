@@ -52,41 +52,37 @@ function add_bridging_record(procedure_date)
 //--------------------------------------------------------------------------------
 function remove_bridging_table_rows(no_of_rows)
 {
+  WaitSeconds(2, "Click Now");
+  var table_size = bridging_schedule_preop_table().rowCount - 3;
+  var id_str = "removeButtonPre_op_" + table_size;
+  bridging_schedule_preop_table().Cell(2, 7).Panel(id_str).Click();
+  
+  /*
   INRstarV5 = INRstar_base();
-  var delete_button = INRstarV5.NativeWebObject.Find("idStr", "delete_button");
+  var delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
   
   if(delete_button.Exists == true)
   {
     for(var i = 0; i < no_of_rows; i++)
     {
-      delete_button = INRstarV5.NativeWebObject.Find("idStr", "delete_button");
+      table_size = bridging_schedule_preop_table().rowCount - 2;
+      id_str = "removeButtonPre-op-" + table_size;
+      delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
       if(delete_button.Exists == true && i != 0)
       {
-        //click delete button
+        delete_button.Click();
       }
     }
   }
+  */
 }
 //--------------------------------------------------------------------------------
 function add_bridging_table_rows(no_of_rows)
 {
   for(var i = 0; i < no_of_rows; i++)
   {
-    //click add button
+    bridging_schedule_add_button().Click();
   }
-}
-//--------------------------------------------------------------------------------
-function add_bridging_table_row(procedure_date)
-{
-  var row_data = new Array();
-  var table = bridging_schedule_preop_table();
-  
-  var row_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(procedure_date, (-table.RowCount)), "%d-%b-%Y");
-  row_data.push(row_date, "-" + table.RowCount, false, false, false, "", "");
-  
-  //click add button
-  
-  return row_data;
 }
 //-------------------------------------------------------------------------------- 
 function validate_bridging_table_dates(procedure_date, rows_to_check)
@@ -97,9 +93,9 @@ function validate_bridging_table_dates(procedure_date, rows_to_check)
   var result_set = new Array();
   var table = bridging_schedule_preop_table();
   
-  if(rows_to_check == (table.RowCount - 1))
+  if(rows_to_check == (table.RowCount - 2))
   {
-    for(var i = 1; i > table.RowCount; i++)
+    for(var i = 2; i > table.RowCount; i++)
     {
       expected_row_data.length = 0;
   
@@ -107,7 +103,7 @@ function validate_bridging_table_dates(procedure_date, rows_to_check)
       expected_row_data.push(row_date, "-" + (table.RowCount - i), false, false, false, "", "");
     
       row_data = get_bridging_schedule_table_row(i);
-    
+      
       result_set_1 = checkArrays(expected_row_data, row_data, "Compare Rows");
       result_set.push(result_set_1);
     }

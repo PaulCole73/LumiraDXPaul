@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for patient staging regression
 //--------------------------------------------------------------------------------
-function ts_staging_regression_patient()
+function ts_staging_regression_patient(send_mail)
 {
   reset_folder();
   
@@ -15,6 +15,6 @@ function ts_staging_regression_patient()
   tc_find_a_patient();
   tc_find_patient_recently_viewed();
   
-  email_and_archive("ts_patient_regression");
+  email_and_archive(send_mail, "ts_patient_regression");
 }
 //--------------------------------------------------------------------------------

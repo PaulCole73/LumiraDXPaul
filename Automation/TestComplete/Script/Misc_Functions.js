@@ -18,6 +18,7 @@ function compare_values(data_1, data_2, test_mess)
   if(data_1 == null || data_2 == null)
   {
     Log.Message("Fail - Data not found. Parameter value missing.");
+    Log.Message("Data 1: " + data_1 + "-------------- Data 2: " + data_2);
     return false;
   } 
   if(data_1 == data_2)
@@ -120,7 +121,7 @@ function checkArrays(arrA, arrB, mess)
     { 
       Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
       return false;
-    }   
+    }
   }
   return true;
 }
@@ -378,6 +379,19 @@ function get_unique_number()
   return temp;
 }
 //-----------------------------------------------------------------------------------
+function get_random_num_inrange(low, high)
+{
+  var num
+  
+  do
+  {
+    num =  Math.trunc(Math.random()*high);
+  }
+  while(num < low)
+  
+  return num;
+}
+//-----------------------------------------------------------------------------------
 //Pass in the path of the date picker, the date you want to check
 function date_picker(path, date)
 {
@@ -578,6 +592,7 @@ function process_object_exists(content_type, content_data)
     return false;
   }
 }
+//-----------------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------------
@@ -654,14 +669,27 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
   return true;
 }
 //-----------------------------------------------------------------------------------
-function email_and_archive(name)
+function email_and_archive(send_mail, name)
 {
-  var master_path = Project.ConfigPath;
-  var file_name = pack_results(name);
-  var archive_dir = "Q:\\Development and Testing\\Testing\\Automation Archive\\";
-  send_email("AutomationLumira@gmail.com", "automatedtesting@lumiradx.com", "Automation", "Automation Test Results", file_name + ".zip");
-  aqFileSystem.MoveFile(file_name + ".zip", archive_dir, true);
-  aqFileSystem.DeleteFile(file_name + ".mht");
+  var email;
+  if(send_mail == null)
+  {
+    email = true;
+  }
+  else
+  {
+    email = send_mail;
+  }
+  
+  if(email == true)
+  {
+    var master_path = Project.ConfigPath;
+    var file_name = pack_results(name);
+    var archive_dir = "Q:\\Development and Testing\\Testing\\Automation Archive\\";
+    send_email("AutomationLumira@gmail.com", "automatedtesting@lumiradx.com", "Automation", "Automation Test Results", file_name + ".zip");
+    aqFileSystem.MoveFile(file_name + ".zip", archive_dir, true);
+    aqFileSystem.DeleteFile(file_name + ".mht");
+  }
 }
 //-----------------------------------------------------------------------------------
 function pack_results(name)

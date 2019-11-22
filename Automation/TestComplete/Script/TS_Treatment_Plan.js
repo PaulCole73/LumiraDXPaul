@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for treatment plan staging regression
 //--------------------------------------------------------------------------------
-function ts_staging_regression_treatment_plan()
+function ts_staging_regression_treatment_plan(send_mail)
 {
   reset_folder();
   
@@ -23,6 +23,6 @@ function ts_staging_regression_treatment_plan()
   tc_treatment_plan_add_second_treatment_using_previous();
   tc_treatment_plan_add_treatment_patient_with_future_appointment();
   
-  email_and_archive("ts_tp_regression");
+  email_and_archive(send_mail, "ts_tp_regression");
 } 
 //--------------------------------------------------------------------------------

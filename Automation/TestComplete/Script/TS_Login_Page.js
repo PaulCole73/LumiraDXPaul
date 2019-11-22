@@ -2,7 +2,7 @@
 //USEUNIT Tested_Apps
 //--------------------------------------------------------------------------------
 //Suite of tests for login
-function ts_staging_regression_login_page()
+function ts_staging_regression_login_page(send_mail)
 {
   //empty output results folder at start of suite
   reset_folder();
@@ -12,7 +12,7 @@ function ts_staging_regression_login_page()
   tc_log_off_inrstar();
  
   //email compressed zip folder on suite completion, archive folder
-  email_and_archive("ts_login_regression");
+  email_and_archive(send_mail, "ts_login_regression");
 }
 //--------------------------------------------------------------------------------
   

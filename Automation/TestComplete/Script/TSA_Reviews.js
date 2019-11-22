@@ -15,6 +15,8 @@ function add_warfarin_review_new_review_button()
   Goto_Patient_Treatment_Plan_Review_New();
   var add_review_form_buttons_path = add_review_form_buttons();
   add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
+  
+  WaitSeconds(2, "Waiting for treatment plan tab...");
 } 
 //--------------------------------------------------------------------------------
 function add_non_warfarin_review(new_tp,data_req,rev_date,weight,creatinine)

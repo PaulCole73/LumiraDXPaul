@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for treatment staging regression
 //--------------------------------------------------------------------------------
-function ts_staging_regression_treatment()
+function ts_staging_regression_treatment(send_mail)
 {
   reset_folder();
   
@@ -38,6 +38,6 @@ function ts_staging_regression_treatment()
   tc_treatment_maintenance_cancel_pending();
   tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
   
-  email_and_archive("ts_treatment_regression");
+  email_and_archive(send_mail, "ts_treatment_regression");
 }
 //-------------------------------------------------------------------------------- 

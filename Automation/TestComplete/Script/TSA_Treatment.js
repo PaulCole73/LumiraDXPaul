@@ -364,7 +364,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     // Click confirm panel
     process_confirm_historical_treatment(INRstarV5);
     
-    WaitSeconds(8, "Waiting for Add Historic...");
+    WaitSeconds(5, "Waiting for Add Historic...");
 }
 //--------------------------------------------------------------------------------
 function add_manual_treatment(date, inr, dose, review, tm)

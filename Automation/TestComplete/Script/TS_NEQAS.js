@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for NEQAS staging regression
 //--------------------------------------------------------------------------------
-function ts_staging_regression_neqas()
+function ts_staging_regression_neqas(send_mail)
 {
   reset_folder();
   
@@ -13,5 +13,5 @@ function ts_staging_regression_neqas()
   tc_neqas_delete_ecq_entry();
   tc_neqas_add_complete_ecq_entry();
   
-  email_and_archive("ts_neqas_regression");
+  email_and_archive(send_mail, "ts_neqas_regression");
 }

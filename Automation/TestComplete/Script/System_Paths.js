@@ -864,6 +864,9 @@ function dosing_engine_warning_popup()
    return warning_popup;
 }
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+///////////////////////////  Bridging  ///////////////////////////////////
+//------------------------------------------------------------------------
 function patient_treatment_bridging_tab()
 {
   var INRstarV5 = INRstar_base();
@@ -893,9 +896,17 @@ function bridging_schedule_buttons()
 function bridging_schedule_preop_table()
 {
   var tab = patient_treatment_bridging_tab();
-  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule").Panel(0).Table("BridgingPreOpSceduleTable");
+  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule").Panel(0).Table("Pre_opTable");
   
   return table;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_add_button()
+{
+  var panel = bridging_schedule_preop_table();
+  var button = panel.Cell(1, 0).Link(0);
+  
+  return button;
 }
 //------------------------------------------------------------------------
 //////////////////////////  Summary  ///////////////////////////////////
@@ -1436,6 +1447,63 @@ function letter_editor_panel()
   var main = manage_panel.Panel("LetterEditorPanel");
   
   return main;
+}
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+////////////////////////// Options/Diagnosis /////////////////////////////
+//------------------------------------------------------------------------
+function options_diagnosis_path()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var diagnosis_tab = panelMCP.Panel(0).Link("SectionDiagnosisTab");
+  
+  return diagnosis_tab;
+}
+//------------------------------------------------------------------------
+function options_diagnosis_add_button()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var add_button = panelMCP.Panel("AdminContent").Panel(0).Panel(0).Button("AddDiagnosisButton");
+  
+  return add_button;
+}
+//------------------------------------------------------------------------
+function options_diagnosis_list()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var diagnosis_list = panelMCP.Panel("AdminContent").Panel(0).Panel("SectionDiagnoses").Panel(0).Select("ListOfDiagnoses");
+  
+  return diagnosis_list;
+}
+//------------------------------------------------------------------------
+function diagnosis_form()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var diagnosis_form = panelMCP.Panel("AdminContent").Form("AddDiagnosisForm");
+  
+  return diagnosis_form;
+}
+//------------------------------------------------------------------------
+function diagnosis_details()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var diagnosis_details = panelMCP.Panel("AdminContent").Panel(0).Panel("DiagnosisDetails");
+  
+  return diagnosis_details;
+}
+//------------------------------------------------------------------------
+function edit_diagnosis_details()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var diagnosis_details = panelMCP.Panel("AdminContent").Panel(0).Panel("DiagnosisDetails").Form("EditDiagnosisForm");
+  
+  return diagnosis_details;
 }
 //------------------------------------------------------------------------
 ////////////////////////////  Reviews  ///////////////////////////////////

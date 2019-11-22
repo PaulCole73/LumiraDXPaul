@@ -1,7 +1,7 @@
 ﻿//USEUNIT Tested_Apps
 //USEUNIT TC_Clinics_Appointments
 //--------------------------------------------------------------------------------
-//Suite of tests for Users staging regression
+//Suite of tests for Clinics staging regression
 //--------------------------------------------------------------------------------
 
 //Master Suites
@@ -16,7 +16,7 @@ function ts_master_clinics_appointments()
   email_and_archive("ts_master_clinics");
 }
 //--------------------------------------------------------------------------------
-function ts_staging_regression_clinics_appointments()
+function ts_staging_regression_clinics_appointments(send_mail)
 {
   reset_folder();
   
@@ -26,7 +26,7 @@ function ts_staging_regression_clinics_appointments()
   tc_clinics_cancel_future_appointment();
   tc_clinics_mark_unmark_dna();
   
-  email_and_archive("ts_clinics_regression");
+  email_and_archive(send_mail, "ts_clinics_regression");
 }
 //--------------------------------------------------------------------------------
 

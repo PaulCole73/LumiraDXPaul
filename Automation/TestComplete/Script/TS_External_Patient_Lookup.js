@@ -16,7 +16,7 @@ function ts_external_patient_lookup_master()
   email_and_archive("ts_ext_lookup_master");
 }
 //--------------------------------------------------------------------------------
-function ts_staging_regression_external_patient_lookup()
+function ts_staging_regression_external_patient_lookup(send_mail)
 {
   reset_folder();
   
@@ -36,7 +36,7 @@ function ts_staging_regression_external_patient_lookup()
   tc_external_patient_lookup_treat_overdue_patient();
   tc_external_patient_lookup_refer_patient_treatment();
   
-  email_and_archive("ts_ext_lookup_regression");
+  email_and_archive(send_mail, "ts_ext_lookup_regression");
 }
 //--------------------------------------------------------------------------------
 

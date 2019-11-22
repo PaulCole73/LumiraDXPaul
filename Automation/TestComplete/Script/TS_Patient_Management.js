@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for Patient Management
 
-function ts_staging_regression_patient_management()
+function ts_staging_regression_patient_management(send_mail)
 {
   reset_folder();
   
@@ -22,6 +22,6 @@ function ts_staging_regression_patient_management()
   tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report();
   tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in_the_future();
   
-  email_and_archive("ts_pat_manage_regression");
+  email_and_archive(send_mail, "ts_pat_manage_regression");
 }
 //--------------------------------------------------------------------------------

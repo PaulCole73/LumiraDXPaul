@@ -8,6 +8,7 @@
 //USEUNIT TSA_Patient_Demographics
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
 {
@@ -486,17 +487,19 @@ try
     //this test currently fails in hoth - because the dosing warning message has been changed
     var test_title = 'Treatment - Add a new maintenance high INR';
     login('cl3@regression','INRstar_5','Shared');
+    
+    var dosing_data = new Array();
+    dosing_data = get_dosing_settings_data(3);
+    
     add_patient('Regression', 'mainteance_high', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment_pop_up_checker("4.0",aqConvert.StrToDate(aqDateTime.Today()));
   
-    result_set = new Array(); 
-  
-    var actual_error_mess = get_dosing_engine_popup_text();
-    var expected_error_mess = "INR above target. Dose and review period adjusted. Check for signs of bruising or bleeding." + 
-                              " Check INR in 2/3 days to confirm INR reduction. See BNF section 2.8.2 or NICE guideline at " + 
-                              "http://tinyurl.com/NICEscenario3 for details.";      
+    var result_set = new Array();
+    
+    var actual_error_mess = process_alternate_popup("Please acknowledge", "Confirm");
+    var expected_error_mess = dosing_data[0];
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
     result_set.push(result_set_1);
   
