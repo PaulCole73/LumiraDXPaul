@@ -6,17 +6,20 @@
 
 //Master Suites
 //--------------------------------------------------------------------------------
-function ts_master_clinics_appointments()
+function ts_master_clinics_appointments(send_mail)
 {
   reset_folder();
 
-  ts_clinics_appointments_create_clinics();
-  ts_clinics_appointments_create_appointments();
+  tc_clinics_add_a_recurring_clinic();
+  tc_clinics_make_appointment_today_for_overdue_patient();
+  tc_clinics_move_seven_days_beyond_ntd();
+  tc_clinics_cancel_future_appointment();
+  tc_clinics_mark_unmark_dna();
   
-  email_and_archive("ts_master_clinics");
+  email_and_archive(send_mail, "ts_clinics_master");
 }
 //--------------------------------------------------------------------------------
-function ts_staging_regression_clinics_appointments(send_mail)
+function ts_staging_regression_clinics_appointments()
 {
   reset_folder();
   
@@ -26,9 +29,11 @@ function ts_staging_regression_clinics_appointments(send_mail)
   tc_clinics_cancel_future_appointment();
   tc_clinics_mark_unmark_dna();
   
-  email_and_archive(send_mail, "ts_clinics_regression");
+  email_and_archive(true, "ts_clinics_regression");
 }
 //--------------------------------------------------------------------------------
+
+
 
 //General Suites
 //--------------------------------------------------------------------------------

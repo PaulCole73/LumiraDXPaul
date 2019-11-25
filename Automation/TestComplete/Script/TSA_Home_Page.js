@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function check_patient_on_refer_list(pat_name)

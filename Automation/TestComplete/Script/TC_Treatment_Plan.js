@@ -5,7 +5,7 @@
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Patient_Management
 //USEUNIT TSA_Clinics_Appointments
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_treatment_plan_add_first_manual_treatment_plan()

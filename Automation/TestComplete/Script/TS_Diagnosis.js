@@ -1,19 +1,13 @@
 ﻿//USEUNIT Tested_Apps
 //USEUNIT TC_Diagnosis
 //--------------------------------------------------------------------------------
-//Suite of tests for Diagnosis staging regression
+//Suite of tests for Diagnosis TCs
 //--------------------------------------------------------------------------------
 
 //Master Suites
 //--------------------------------------------------------------------------------
-function ts_master_diagnosis()
-{
-  reset_folder();
-  
-  email_and_archive("ts_master_diagnosis");
-}
-//--------------------------------------------------------------------------------
-function ts_staging_regression_diagnosis(send_mail)
+//master suites are used for organised test groups
+function ts_master_diagnosis(send_mail)
 {
   reset_folder();
   
@@ -21,6 +15,18 @@ function ts_staging_regression_diagnosis(send_mail)
   tc_diagnosis_edit_diagnosis();
   tc_diagnosis_delete_diagnosis();
   
-  email_and_archive(send_mail, "ts_diagnosis_regression");
+  email_and_archive(send_mail, "ts_diagnosis_master");
+}
+//--------------------------------------------------------------------------------
+//regression suites are used for specific regression runs
+function ts_staging_regression_diagnosis()
+{
+  reset_folder();
+  
+  tc_diagnosis_add_new_diagnosis();
+  tc_diagnosis_edit_diagnosis();
+  tc_diagnosis_delete_diagnosis();
+  
+  email_and_archive(true, "ts_diagnosis_regression");
 }
 //--------------------------------------------------------------------------------

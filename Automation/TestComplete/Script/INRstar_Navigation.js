@@ -324,8 +324,6 @@ function Goto_Patient_Treatment_Plan()
 function Goto_Patient_Treatment_Plan_Add()
 {
   Goto_Patient_Treatment_Plan();
-  /*var panelPR = main_patient_tab();
-  panelPR.Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails")*/
   change_treatment_plan_buttons().Panel(0).Button("AddPatientTreatmentPlanLink").Click();
   
   process_popup("Confirmation Required", "Confirm");
@@ -347,7 +345,6 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
     main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(1).Button("AddPatientTreatmentPlanLink").Click();
   }
     
-  //process_button(INRstarV5, "Confirmation Required", "Confirm");
   process_popup("Confirmation Required", "Confirm");
   WaitSeconds(1, "Waiting to go to Add Treatment Plan...");
 }
@@ -470,10 +467,13 @@ function Goto_Add_Treatment_Comment()
 // Navigate to Patient Treatment Plan Reviews
 function Goto_Patient_Treatment_Plan_Review()
 {
+  /*
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
   WaitSeconds(3, "Waiting to go to Treatment Plan...");
+  */
+  Goto_Patient_Treatments_Tab();
   
   var panelPR = main_patient_tab();
   panelPR.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientReviewTab").Click();
@@ -482,13 +482,11 @@ function Goto_Patient_Treatment_Plan_Review()
 // Navigate to Patient Treatment Plan Reviews
 function Goto_Patient_Treatment_Plan_Review_New()
 {
-  var INRstarV5 = INRstar_base();
+  /*var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  panelPT.Link("PatientTreatmentPlanTab").Click();
-  WaitSeconds(1, "Waiting to go to Treatments...");
+  panelPT.Link("PatientTreatmentPlanTab").Click();*/
   Goto_Patient_Treatment_Plan_Review();
-
   var panelPTC = main_patient_tab().Panel("PatientTabContent");
   panelPTC.Panel("AnnualReviewWrapper").Panel("AnnualReviewActions").Fieldset("Fieldset1").Button("AddWarfarinReviewLink").Click();
   WaitSeconds(1, "Waiting to go to add Reviews...");

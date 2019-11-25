@@ -1,6 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
-//USEUNIT Navigate_Patient
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 ﻿//USEUNIT TSA_PoCT
 //USEUNIT TSA_Login
 //USEUNIT TSA_NEQAS
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_add_a_new_poct()

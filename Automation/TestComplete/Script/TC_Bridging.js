@@ -429,27 +429,25 @@ function tc_bridging_create_schedule_add_six_days()
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
     var result_set = new Array();
-    var expected_row_data;
-    var row_data;
     var date = aqDateTime.Today();
     
     add_bridging_record(date);
-    /*remove_bridging_table_rows(3);
+    remove_bridging_table_rows(3, "pre-op");
     
-    for(var i = 0; i < 6; i++)
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
+    
+    var data = new Array();
+  
+    for(var i = 1; i <= 6; i++)
     {
-      expected_row_data = add_bridging_table_row(date);
-      row_data = get_bridging_schedule_table_row(i+1);
-      
-      var result_set_1 = checkArrays(expected_row_data, row_data, test_title);
-      result_set.push(result_set_1);
-      
-      var results = results_checker_are_true(result_set);
-      results_checker(results, test_title);
-    }*/
-    var rows_to_validate = 3;
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      add_bridging_table_rows(1, "pre-op");
+      data = set_table_data(i, data, "pre-op");
+      result_set.push(validate_table(i, "pre-op", data));
+    }
     
-    var results = validate_bridging_table_dates(date, rows_to_validate);
+    var results = results_checker_are_true(validate_bridging_table_dates(date, rows_to_validate));
     results_checker(results, test_title);
     
     Log_Off();
@@ -472,17 +470,22 @@ function tc_bridging_create_schedule_add_days_procedure_today()
     
     var date = aqDateTime.Today();
     add_bridging_record(date);
-    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
     
     var result_set = new Array();
-    var result_set_1 = validate_bridging_table_dates(date, 3);
-    result_set.push(result_set_1);
+    var data = new Array();
+    
+    data.push(date, "0", false, false, false, "", "+ Add comment");
+    data = set_table_data(3, data, "pre-op");
+    result_set = validate_table(3, "pre-op", data);
     
     for(var i = 1; i <= 3; i++)
     {
-      add_bridging_table_rows(1);
-      result_set_1 = validate_bridging_table_dates(date, i+3);
-      result_set.push(result_set_1);
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      add_bridging_table_rows(1, "pre-op");
+      data = set_table_data((3 + i), data, "pre-op");
+      result_set.push(validate_table((3 + i), "pre-op", data));
     }
         
     var results = results_checker_are_true(result_set);
@@ -507,17 +510,22 @@ function tc_bridging_create_schedule_add_days_procedure_tomorrow()
     
     var date = aqDateTime.AddDays(aqDateTime.Today(), 1);
     add_bridging_record(date);
-    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
     
     var result_set = new Array();
-    var result_set_1 = validate_bridging_table_dates(date, 3);
-    result_set.push(result_set_1);
+    var data = new Array();
+    
+    data.push(date, "0", false, false, false, "", "+ Add comment");
+    data = set_table_data(3, data, "pre-op");
+    result_set = validate_table(3, "pre-op", data);
     
     for(var i = 1; i <= 3; i++)
     {
-      add_bridging_table_rows(1);
-      result_set_1 = validate_bridging_table_dates(date, i+3);
-      result_set.push(result_set_1);
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      add_bridging_table_rows(1, "pre-op");
+      data = set_table_data((3 + i), data, "pre-op");
+      result_set.push(validate_table((3 + i), "pre-op", data));
     }
         
     var results = results_checker_are_true(result_set);
@@ -542,17 +550,22 @@ function tc_bridging_create_schedule_add_days_procedure_yesterday()
     
     var date = aqDateTime.AddDays(aqDateTime.Today(), -1);
     add_bridging_record(date);
-    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
     
     var result_set = new Array();
-    var result_set_1 = validate_bridging_table_dates(date, 3);
-    result_set.push(result_set_1);
+    var data = new Array();
+    
+    data.push(date, "0", false, false, false, "", "+ Add comment");
+    data = set_table_data(3, data, "pre-op");
+    result_set = validate_table(3, "pre-op", data);
     
     for(var i = 1; i <= 3; i++)
     {
-      add_bridging_table_rows(1);
-      result_set_1 = validate_bridging_table_dates(date, i+3);
-      result_set.push(result_set_1);
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      add_bridging_table_rows(1, "pre-op");
+      data = set_table_data((3 + i), data, "pre-op");
+      result_set.push(validate_table((3 + i), "pre-op", data));
     }
         
     var results = results_checker_are_true(result_set);
@@ -576,23 +589,20 @@ function tc_bridging_create_schedule_delete_six_days()
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
     var result_set = new Array();
+    var data = new Array();
     var date = aqDateTime.Today();
     add_bridging_record(date);
-    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
     
-    var result_set_1 = validate_bridging_table_dates(date, 3);
-    result_set.push(result_set_1);
+    add_bridging_table_rows(3, "pre-op");
     
-    add_bridging_table_rows(3);
-    
-    result_set_1 = validate_bridging_table_dates(date, 6);
-    result_set.push(result_set_1);
-    
-    for(var i = 6; i > 0; i--)
+    for(var i = 0; i < 6; i++)
     {
-      remove_bridging_table_rows(1);
-      result_set_1 = validate_bridging_table_dates(date, i);
-      result_set.push(result_set_1);
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data = set_table_data((6-i), data, "pre-op");
+      result_set.push(validate_table((6-i), "pre-op", data));
+      remove_bridging_table_rows(1, "pre-op");
     }
         
     var results = results_checker_are_true(result_set);
@@ -615,21 +625,20 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
+    var result_set = new Array();
+    var data = new Array();
+    
     var date = aqDateTime.AddDays(aqDateTime.Today(), 1);
     add_bridging_record(date);
-    bridging_schedule_buttons().SubmitButton("Create_Bridging_Record").scrollIntoView();
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
     
-    var result_set = new Array();
-    var result_set_1 = validate_bridging_table_dates(date, 3);
-    result_set.push(result_set_1);
-    
-    add_bridging_table_rows(3);
-    
-    for(var i = 6; i > 3; i--)
+    for(var i = 0; i < 3; i++)
     {
-      remove_bridging_table_rows(1);
-      result_set_1 = validate_bridging_table_dates(date, i-1);
-      result_set.push(result_set_1);
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data = set_table_data((3-i), data, "pre-op");
+      result_set.push(validate_table((3-i), "pre-op", data));
+      remove_bridging_table_rows(1, "pre-op");
     }
         
     var results = results_checker_are_true(result_set);
@@ -642,10 +651,44 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
     restart_INRstar();
   }
 }
-
-
-
-
+//--------------------------------------------------------------------------------
+//Sprint 22
+function tc_bridging_procedure_schedule_add_days_today()
+{
+  try
+  {
+    var test_title = "Bridging - Pre-op Schedule +Add a day - Procedure is today.";
+    login("clead@regression", "INRstar_5", "Shared");
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+    
+    var result_set = new Array();
+    var data = new Array();
+    
+    var date = aqDateTime.Today();
+    add_bridging_record(date);
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
+    
+    for(var i = 0; i < 3; i++)
+    {
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data = set_table_data((3-i), data, "pre-op");
+      result_set.push(validate_table((3-i), "pre-op", data));
+      remove_bridging_table_rows(1, "pre-op");
+    }
+    
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+    
+    Log_Off();
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    restart_INRstar();
+  }
+}
 
 
 

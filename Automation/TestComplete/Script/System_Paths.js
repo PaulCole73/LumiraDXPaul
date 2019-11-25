@@ -901,10 +901,34 @@ function bridging_schedule_preop_table()
   return table;
 }
 //------------------------------------------------------------------------
+function bridging_schedule_procedure_table()
+{
+  var tab = patient_treatment_bridging_tab();
+  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule_2").Panel(0).Table("ProcedureTable");
+  
+  return table;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_post_discharge_table()
+{
+  var tab = patient_treatment_bridging_tab();
+  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule_3").Panel(0).Table("Post_dischargeTable");
+  
+  return table;
+}
+//------------------------------------------------------------------------
 function bridging_schedule_add_button()
 {
   var panel = bridging_schedule_preop_table();
-  var button = panel.Cell(1, 0).Link(0);
+  var button = panel.Cell(1, 0).Link("Pre_opAddButton");
+  
+  return button;
+}
+//------------------------------------------------------------------------
+function bridging_procedure_schedule_add_button()
+{
+  var panel = bridging_schedule_preop_table();
+  var button = panel.Cell(1, 0).Link("ProcedureAddButton");
   
   return button;
 }

@@ -969,7 +969,6 @@
 				<ref key="{3E644774-5830-45ED-B233-AEDA357E7355}" />
 				<ref key="{C4ECD5A2-3F26-4559-86EB-D693C4C411DD}" />
 				<ref key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" />
-				<ref key="{1B4F6338-5744-4A40-B50A-A7A6B61D1033}" />
 				<ref key="{5AB1C72D-FAF0-43FB-9A9F-41EEB745D98A}" />
 				<ref key="{53C017A4-89CB-4429-8289-B2F80476AA1C}" />
 			</references>
@@ -1241,6 +1240,7 @@
 				<ref key="{B00696F7-8B50-4052-9ADD-6AB2E56AC540}" />
 				<ref key="{068FEA8D-DDD8-4941-B16D-D66F4DEDC2CF}" />
 				<ref key="{A062A984-B899-446E-905F-F59F706FA0AE}" />
+				<ref key="{1B4F6338-5744-4A40-B50A-A7A6B61D1033}" />
 			</references>
 		</folder>
 	</folders>

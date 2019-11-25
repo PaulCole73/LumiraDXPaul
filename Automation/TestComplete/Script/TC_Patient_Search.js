@@ -1,6 +1,6 @@
 ﻿//USEUNIT TSA_Login
 //USEUNIT TSA_Patient
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_find_a_patient()
@@ -29,7 +29,7 @@ function tc_find_a_patient()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();

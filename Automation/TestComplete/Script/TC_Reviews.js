@@ -2,7 +2,7 @@
 //USEUNIT TSA_Patient
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Reviews
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_add_a_new_warfarin_review()

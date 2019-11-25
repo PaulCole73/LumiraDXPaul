@@ -1279,7 +1279,6 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
 }
 
 //--------------------------------------------------------------------------------
-//
 //C1248473
 function tc_treatment_manual_mutliple_historic_summary_check()
 {
@@ -1294,18 +1293,15 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
     var patient_nhs = get_patient_nhs();
-    
-    add_pending_manual_treatment('2.6','PoCT','2.9','7 Days');
+    add_pending_manual_treatment('2.6', 'PoCT', '2.9', '7 Days');
     
     var treatment_values = new Array();
     var summary_values = new Array();
     var result_set = new Array();
-    var result_set_1;
     var smry_dosing_schedule = new Array();
     var dosing_schedule = get_pending_suggested_treatment_schedule(0);
     
-    var save_inr_path = save_inr_button();
-    save_inr_path.Click();
+    save_inr_button().Click();
     
     treatment_values = get_treatment_row_key_values(3);
     treatment_values[2] = treatment_values[2] + " mg/day";
@@ -1314,16 +1310,9 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     
     summary_values = get_patient_summary_labels(patient_nhs);
     
-    var smry_schedule_day;
-    var smry_schedule_dose;
-    for(var i = 1; i <= 7; i++)
-    {
-      smry_schedule_day = aqString.SubString(patient_summary_schedule_table().Cell(i, 0).innerText, 0, 3);
-      smry_schedule_dose = smry_schedule_day + " " + patient_summary_schedule_table().Cell(i, 1).innerText;
-      smry_dosing_schedule.push(smry_schedule_dose);
-    }
+    smry_dosing_schedule = get_treatment_summary_table_schedule();
     
-    result_set_1 = check_summary_tab_image(patient_nhs);
+    var result_set_1 = check_summary_tab_image(patient_nhs);
     result_set.push(result_set_1);
     
     //Check the arrays are the same size + values match
@@ -1336,7 +1325,6 @@ function tc_treatment_manual_mutliple_historic_summary_check()
 		
 		//Validate the results sets are true
 		var results = results_checker_are_true(result_set);
-		Log.Message(results);
 		
 		//Pass in the result
 		results_checker(results, test_title);
@@ -1349,7 +1337,6 @@ function tc_treatment_manual_mutliple_historic_summary_check()
 		restart_INRstar();
   }
 }
-
 //--------------------------------------------------------------------------------
 //
 //C1248489

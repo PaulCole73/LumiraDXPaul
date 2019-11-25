@@ -200,6 +200,22 @@ function get_treatment_row_key_values(row_num, table_type)
   return treatment_row_array;  
 }
 //-----------------------------------------------------------------------------------
+function get_treatment_summary_table_schedule()
+{
+  //needs a goto statement here
+  var smry_dosing_schedule = new Array();
+  var smry_schedule_day;
+  var smry_schedule_dose;
+  for(var i = 1; i <= 7; i++)
+  {
+    smry_schedule_day = aqString.SubString(patient_summary_schedule_table().Cell(i, 0).innerText, 0, 3);
+    smry_schedule_dose = smry_schedule_day + " " + patient_summary_schedule_table().Cell(i, 1).innerText;
+    smry_dosing_schedule.push(smry_schedule_dose);
+  }
+  
+  return smry_dosing_schedule;
+}
+//-----------------------------------------------------------------------------------
 //gets the data from the eqc table where the batch_ref matches
 function get_eqc_table_row(batch_ref)
 {
@@ -343,10 +359,23 @@ function get_pending_suggested_treatment_schedule(days)
   return pending_schedule;
 }
 //-----------------------------------------------------------------------------------
-function get_bridging_schedule_table_row(row_num)
+function get_bridging_schedule_table_row(row_num, table_type)
 {
   var row_data = new Array();
-  var table = bridging_schedule_preop_table();
+  var table;
+  
+  if(table_type = "pre-op")
+  {
+    table = bridging_schedule_preop_table();
+  }
+  else if(table_type = "procedure")
+  {
+    table = bridging_schedule_procedure_table();
+  }
+  else if(table_type = "post-discharge")
+  {
+    table = bridging_schedule_post_discharge_table();
+  }
   
   for(var i = 0; i < 7; i++)
   {

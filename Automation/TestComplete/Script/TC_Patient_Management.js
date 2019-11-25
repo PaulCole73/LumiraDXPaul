@@ -4,7 +4,7 @@
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT TSA_Login
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_patient_deactivate_a_patient()

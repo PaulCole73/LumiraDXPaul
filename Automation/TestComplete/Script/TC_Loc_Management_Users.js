@@ -1,7 +1,7 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
 //USEUNIT TSA_Loc_Management_Users
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_users_add_a_new_user()

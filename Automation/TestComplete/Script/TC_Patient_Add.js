@@ -2,7 +2,7 @@
 //USEUNIT TSA_Patient
 //USEUNIT TSA_Patient_Management
 //USEUNIT TSA_Patient_Demographics
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_add_a_new_patient()
