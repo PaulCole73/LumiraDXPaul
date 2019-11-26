@@ -1,7 +1,7 @@
 ﻿//USEUNIT TSA_PoCT
 //USEUNIT TSA_Login
 //USEUNIT TSA_NEQAS
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_add_a_new_poct()
@@ -36,7 +36,7 @@ function tc_add_a_new_poct()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //-------------------------------
@@ -78,7 +78,7 @@ function tc_edit_a_new_poct_batch()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 } 
 //-------------------------------

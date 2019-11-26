@@ -22,7 +22,7 @@ function tc_find_patient_recently_viewed()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 ﻿//USEUNIT TSA_PoCT
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT V5_Common_Popups
 //USEUNIT System_Paths
 //USEUNIT Misc_Functions
@@ -124,4 +124,5 @@ function tsa_neqas_delete_entries()
     }
   }
   while(row_count > 1);
+  WaitSeconds(1, "Waiting for delete...");
 }

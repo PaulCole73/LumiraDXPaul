@@ -1,6 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
-//USEUNIT Navigate_Patient
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function cancel_review()
@@ -15,6 +14,8 @@ function add_warfarin_review_new_review_button()
   Goto_Patient_Treatment_Plan_Review_New();
   var add_review_form_buttons_path = add_review_form_buttons();
   add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
+  
+  WaitSeconds(2, "Waiting for treatment plan tab...");
 } 
 //--------------------------------------------------------------------------------
 function add_non_warfarin_review(new_tp,data_req,rev_date,weight,creatinine)
@@ -148,6 +149,8 @@ function add_basic_review_doac(itemText)
     
   var add_review_form_buttons_path = add_review_form_buttons();
   add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
+  
+  WaitSeconds(2, "Waiting for Review...");
 }
 //--------------------------------------------------------------------------------
 function add_basic_review_heparin(itemText)

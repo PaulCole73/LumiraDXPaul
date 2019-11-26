@@ -1,8 +1,9 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
-function add_pending_fast_induction_treatment(inr,TestStepMode)
+function add_pending_fast_induction_treatment(inr, TestStepMode)
 {
   var INRstarV5 = INRstar_base();    
  
@@ -112,8 +113,9 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    var save_button_pre_schedule = treatment_buttons_pre_schedule();
    save_button_pre_schedule.SubmitButton("SubmitManualDose").Click();
    handle_poct_expired();
-       
-   process_confirm_INR(INRstarV5);
+   
+   process_popup("Please confirm that the following is correct", "Confirm");
+   //process_confirm_INR(INRstarV5);
    WaitSeconds(2);
 }
 //--------------------------------------------------------------------------------
@@ -328,7 +330,8 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
 {
     var INRstarV5 = INRstar_base();
     Goto_Add_Historical();
-    process_confirm_sub('','Please Confirm');
+    process_popup("Please Confirm", "Confirm");
+    //process_confirm_sub('','Please Confirm');
     
     var historic_treatment_form = historic_treatment_path();
     
@@ -359,9 +362,13 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
         
     historic_treatment_form.Panel(0).SubmitButton("Save").Click();
+    WaitSeconds(2, "Waiting to save...");
 
     // Click confirm panel
-    process_confirm_historical_treatment(INRstarV5);
+    process_popup("Please confirm that the following is correct", "Confirm");
+    //process_confirm_historical_treatment(INRstarV5);
+    
+    WaitSeconds(5, "Waiting for Add Historic...");
 }
 //--------------------------------------------------------------------------------
 function add_manual_treatment(date, inr, dose, review, tm)
@@ -413,7 +420,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
     process_popup("Insert Confirmation", "Confirm");
   }
    
-  WaitSeconds(2,"Saving the Treatment");  
+  WaitSeconds(2, "Saving the Treatment");  
   
   //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();
@@ -424,11 +431,11 @@ function delete_treatment()
 {
   Goto_Patient_Treatments_Tab();
   WaitSeconds(1);
-  var INRstarV5 = INRstar_base();
   var treatment_buttons_path = inr_treatment_buttons();
   treatment_buttons_path.Button("DeleteLatestTreatment").Click();
-  //process_confirm_delete_treatment(INRstarV5);
-  process_popup("Confirmation Required", "Confirm");
+  var msg = process_popup("Confirmation Required", "Confirm");
+  
+  return msg;
 } 
 //--------------------------------------------------------------------------------
 function delete_treatment_confim_checker(expected_message)

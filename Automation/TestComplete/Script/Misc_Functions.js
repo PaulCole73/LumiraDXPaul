@@ -18,6 +18,7 @@ function compare_values(data_1, data_2, test_mess)
   if(data_1 == null || data_2 == null)
   {
     Log.Message("Fail - Data not found. Parameter value missing.");
+    Log.Message("Data 1: " + data_1 + "-------------- Data 2: " + data_2);
     return false;
   } 
   if(data_1 == data_2)
@@ -120,7 +121,7 @@ function checkArrays(arrA, arrB, mess)
     { 
       Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
       return false;
-    }   
+    }
   }
   return true;
 }
@@ -378,6 +379,19 @@ function get_unique_number()
   return temp;
 }
 //-----------------------------------------------------------------------------------
+function get_random_num_inrange(low, high)
+{
+  var num
+  
+  do
+  {
+    num =  Math.trunc(Math.random()*high);
+  }
+  while(num < low)
+  
+  return num;
+}
+//-----------------------------------------------------------------------------------
 //Pass in the path of the date picker, the date you want to check
 function date_picker(path, date)
 {
@@ -563,7 +577,22 @@ function process_button_exists(button_id)
     button_to_find.Click();
   }
 }
-
+//-----------------------------------------------------------------------------------
+function process_object_exists(content_type, content_data)
+{
+  WaitSeconds(3, "Waiting for object...");
+  var object = INRstar_base().NativeWebObject.Find(content_type, content_data);
+  Log.Message(object.Exists);
+  if(object.Exists)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------------
@@ -587,7 +616,7 @@ function get_new_number_v5()
   form.Close();
   return wnd;
 }
-
+//-----------------------------------------------------------------------------------
 function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 {
   var schema, mConfig, mMessage;
@@ -640,28 +669,27 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
   return true;
 }
 //-----------------------------------------------------------------------------------
-/*
-function validate_send_email()
+function email_and_archive(send_mail, name)
 {
-  if(SendEmail("AutomationLumira@gmail.com", "testers@lumiradx.co.uk", "Automation", "Automation Test Results", "C:\\Users\\paul.dunstan\\source\\repos\\ldxcs-INRstarAutomation\\Automation\\TestComplete\\Log\\ExportedResults\\CompressedResults.zip") == true)
+  var email;
+  if(send_mail == null)
   {
-    Log.Message("Mail was sent");
+    email = true;
   }
   else
   {
-    Log.Warning("Mail was not sent");
+    email = send_mail;
   }
-}
-*/
-//-----------------------------------------------------------------------------------
-function email_and_archive(name)
-{
-  var master_path = Project.ConfigPath;
-  var file_name = pack_results(name);
-  var archive_dir = "Q:\\Development and Testing\\Testing\\Automation Archive\\";
-  send_email("AutomationLumira@gmail.com", "automatedtesting@lumiradx.com", "Automation", "Automation Test Results", file_name + ".zip");
-  aqFileSystem.MoveFile(file_name + ".zip", archive_dir, true);
-  aqFileSystem.DeleteFile(file_name + ".mht");
+  
+  if(email == true)
+  {
+    var master_path = Project.ConfigPath;
+    var file_name = pack_results(name);
+    var archive_dir = "Q:\\Development and Testing\\Testing\\Automation Archive\\";
+    send_email("AutomationLumira@gmail.com", "automatedtesting@lumiradx.com", "Automation", "Automation Test Results", file_name + ".zip");
+    aqFileSystem.MoveFile(file_name + ".zip", archive_dir, true);
+    aqFileSystem.DeleteFile(file_name + ".mht");
+  }
 }
 //-----------------------------------------------------------------------------------
 function pack_results(name)
@@ -687,19 +715,43 @@ function reset_folder()
   var work_dir = Project.ConfigPath + "Log\\ExportedResults\\";
   aqFileSystem.DeleteFolder(work_dir, true);
 }
+//-----------------------------------------------------------------------------------
+function restart_INRstar()
+{
+  var path = Sys.Process("INRstarWindows").Path;
+  
+  Sys.Process("INRstarWindows").Close();
+  
+  Win32API.WinExec(path, SW_SHOWNORMAL);
+}
+//-----------------------------------------------------------------------------------
+function change_environments(new_config_file_name) //Q:\Development and Testing\Testing\EnvironmentConfigs - config files can be found here
+{
+  var sys_path = Sys.Process("INRstarWindows").Path;
+  var config_path = sys_path + ".config";
+  var base_path = "Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\" + new_config_file_name;
+  
+  set_get_environment(new_config_file_name);
+  
+  aqFileSystem.DeleteFile(config_path);
+  aqFileSystem.CopyFile(base_path, config_path, false);
+  WaitSeconds(2);
+  
+  restart_INRstar();
+  WaitSeconds(20);
+}
+//-----------------------------------------------------------------------------------
+function open_file_in_notepad(path)
+{
+  TestedApps.notepad.Run();
+  
+  var notepad = Sys.Process("notepad");
+  var wndNotepad = notepad.Window("Notepad");
 
-
-
-
-
-
-
-
-
-
-
-
-
+  // Open a file in Notepad
+  wndNotepad.MainMenu.Click("File|Open...");
+  notepad.Window("#32770", "Open").OpenFile(path);
+}
 
 
 
@@ -711,11 +763,11 @@ function WaitSeconds(seconds,p_text)
 {
   if (p_text == "")
   {
-    BuiltIn.Delay(seconds * 1000,"Paused the testing");
+    BuiltIn.Delay(seconds * 1000, "Paused the testing");
   } 
   else
   {
-    BuiltIn.Delay(seconds * 1000,p_text);
+    BuiltIn.Delay(seconds * 1000, p_text);
   }  
 }
 
@@ -760,5 +812,45 @@ function test_field(p_field, p_field_name, exp_object_type)
       Log.Message(p_field_name + " " + "Field can be edited Field PASS");
       return true;
     }
+  }
+}
+//-----------------------------------------------------------------------------------
+function delete_files() //intended to go into a wipe a log file, isn't functioning
+{
+  var oFolder, colFiles, temp;
+  var file_path = new Array();
+  var log_dir = Log.Path;
+  Log.Message(log_dir);
+  
+  oFolder = aqFileSystem.GetFolderInfo(log_dir);
+  colFiles = oFolder.Files;
+
+  while (colFiles.HasNext())
+  {
+    temp = colFiles.Next();
+    Log.Message(temp.Name);
+    
+    file_path.push(log_dir + temp.Name);
+  }
+  
+  for(var i = 0; i < file_path.length; i++)
+  {
+    aqFile.Delete(file_path[i]);
+  }
+}
+//-----------------------------------------------------------------------------------
+function set_get_environment(env)
+{
+  var environment;
+  
+  if(env == null)
+  {
+    //do nothing
+    return environment;
+  }
+  else
+  {
+    environment = env;
+    return environment;
   }
 }

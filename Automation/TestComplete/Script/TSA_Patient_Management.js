@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //USEUNIT TSA_Patient
 //--------------------------------------------------------------------------------
@@ -274,22 +274,21 @@ function suspend_patient_confirmation_checker(exp_warn_mess)
 {
   var INRstarV5 = INRstar_base(); 
   var suspend_confirmation_message_path = pat_management_status_confirmation_message();
-  WaitSeconds(2);
+  WaitSeconds(1);
   var actual_warn_mess = suspend_confirmation_message_path.contentText; 
-  WaitSeconds(2);
-  
+  WaitSeconds(1);
   Log.Message(actual_warn_mess)
    
-     if (actual_warn_mess.includes(exp_warn_mess))
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
-        return false;
-        }
+  if (actual_warn_mess.includes(exp_warn_mess))
+  {
+    Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
+    return true; 
+  } 
+  else 
+  {
+    Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
+    return false;
+  }
 } 
 //--------------------------------------------------------------------------------
 function patient_confirmation_checker(exp_warn_mess)
@@ -297,19 +296,18 @@ function patient_confirmation_checker(exp_warn_mess)
   var INRstarV5 = INRstar_base(); 
   var reg_practice_confirmation_path = reg_practice_confirmation();
   var actual_warn_mess = reg_practice_confirmation_path.contentText; 
-  
   Log.Message(actual_warn_mess)
    
-     if (actual_warn_mess.includes(exp_warn_mess))
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
-        return false;
-        }
+  if (actual_warn_mess.includes(exp_warn_mess))
+  {
+    Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
+    return true; 
+  } 
+  else 
+  {
+    Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
+    return false;
+  }
 } 
 //--------------------------------------------------------------------------------
 function add_manual_self_test_group()
@@ -427,38 +425,37 @@ function unsuspend_patient(nhs_num)
 //--------------------------------------------------------------------------------
 function change_reg_practice(prac_name)
 {
- Goto_Change_Registered_Location();
+  Goto_Change_Registered_Location();
 
- var pat_management_reg_practice_path = pat_management_reg_practice();
+  var pat_management_reg_practice_path = pat_management_reg_practice();
  
- pat_management_reg_practice_path.Panel(0).Select("SearchType").ClickItem('Name');
- pat_management_reg_practice_path.Panel(1).Textbox("SearchCriteria").Text = prac_name
+  pat_management_reg_practice_path.Panel(0).Select("SearchType").ClickItem('Name');
+  pat_management_reg_practice_path.Panel(1).Textbox("SearchCriteria").Text = prac_name
  
- pat_management_reg_practice_path.Panel(1).SubmitButton("Search").Click()
+  pat_management_reg_practice_path.Panel(1).SubmitButton("Search").Click()
  
- var reg_practice_table_path = reg_practice_table();
- var row_count = reg_practice_table_path.rowcount;
+  var reg_practice_table_path = reg_practice_table();
+  var row_count = reg_practice_table_path.rowcount;
  
- for(i=1; i<row_count; i++) 
+  for(var i = 1; i < row_count; i++) 
   {
-     if(reg_practice_table_path.Cell(i, 0).contentText == prac_name)
-     {           
-        reg_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
-      i = row_count
-     }
-       else 
-       {
-         Log.Warning('Location was not found');
-       } 
+    if(reg_practice_table_path.Cell(i, 0).contentText == prac_name)
+    {           
+      reg_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click();
+      
+      var pat_management_change_loc_path = pat_management_change_loc();
+      pat_management_change_loc_path.SubmitButton("btnNext").Click();
+      var reg_practice_final_buttons_path = reg_practice_final_buttons();
+      reg_practice_final_buttons_path.SubmitButton("ConfirmChangeLocationDetails").Click();
+      process_confirm_change_location('');
+      
+      break;
+    }
+    else 
+    {
+      Log.Error('Location was not found');
+    } 
   }
-  var pat_management_change_loc_path = pat_management_change_loc();
-  
-  pat_management_change_loc_path.SubmitButton("btnNext").Click();
-  
-  var reg_practice_final_buttons_path = reg_practice_final_buttons();
-  reg_practice_final_buttons_path.SubmitButton("ConfirmChangeLocationDetails").Click();
-  
-  process_confirm_change_location('');
 } 
 //--------------------------------------------------------------------------------
 function change_test_practice(prac_name)
@@ -574,11 +571,11 @@ function check_transfer_test_location_warning()
    return wording_check;
 }
 //--------------------------------------------------------------------------------
-function accept_transfer_with_warning(messagename)
+function accept_transfer_with_warning(messagename) 
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     WaitSeconds(2);
     var home_page_messages_path = home_page_messages();
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
@@ -589,34 +586,32 @@ function accept_transfer_with_warning(messagename)
     
     for(i=1; i<row_count; i++) 
     {
-       var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
-       if(transfer_list_pat==messagename)
-       { 
-         while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-         {
-         transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-//       home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable").Cell(1, 1).Click();
-//       Aliases.INRstarWindows.BrowserForm.INRstarBrowser.Keys("[Down]");
-         }       
-          transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-          process_confirm_change_location('');
-          return true;
-       }
+      var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
+      if(transfer_list_pat==messagename)
+      { 
+        while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
+        {
+          transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
+        }       
+        transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+        process_confirm_change_location('');
+        return true;
+      }
     }
     Log.Message('Patient was not found on the list')
   }
-  catch (e)
-      {
-       Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 function accept_transfer(messagename)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
     WaitSeconds(2);
@@ -626,34 +621,32 @@ function accept_transfer(messagename)
     
     for(i=1; i<row_count; i++) 
     {
-       var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
-       if(transfer_list_pat==messagename)
-       { 
-         while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-         {
-         transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-//       home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable").Cell(1, 1).Click();
-//       Aliases.INRstarWindows.BrowserForm.INRstarBrowser.Keys("[Down]");
-         }       
-          transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-          return true;
-       }
+      var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
+      if(transfer_list_pat==messagename)
+      { 
+        while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
+        {
+          transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
+        }       
+        transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+        return true;
+      }
     }
     Log.Message('Patient was not found on the list')
   }
-  catch (e)
-      {
-       Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Function - Accept Transfer - FAILED Exception Occured = " + e);
+    restart_INRstar();
+  }
 } 
 
 //--------------------------------------------------------------------------------
-function find_patient_overdue_list(messagename)
+function find_patient_overdue_list(messagename) //possibly duplication with home page
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     WaitSeconds(3);
     var test_title = 'Patient Management - Suspending an overdue patient removes them from the overdue report'
     var home_page_messages_path = home_page_messages();
@@ -665,32 +658,31 @@ function find_patient_overdue_list(messagename)
     
     for(i=1; i<row_count; i++) 
     {
-       var overdue_list_pat = overdue_list_table.Cell(i, 0).contentText;
-       if(overdue_list_pat==messagename)
-       { 
-         while(overdue_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-         {
-         overdue_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-         }       
-          return true;
-       }
+      var overdue_list_pat = overdue_list_table.Cell(i, 0).contentText;
+      if(overdue_list_pat == messagename)
+      { 
+        while(overdue_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
+        {
+          overdue_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
+        }       
+        return true;
+      }
     }
-    Log.Message('Patient was not found on the list');
+    Log.Message("Patient was not found on the list");
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    restart_INRstar(); 
+  }
 } 
 //--------------------------------------------------------------------------------
-function dont_find_patient_overdue_list(messagename)
+function dont_find_patient_overdue_list(messagename) //possibly duplication with home page
 {
-WaitSeconds(2);
-  Goto_Home();
   try
   {
+    Goto_Home();
     WaitSeconds(3);
     var test_title = 'Patient Management - Suspending an overdue patient removes them from the overdue report'
     var home_page_messages_path = home_page_messages();
@@ -702,24 +694,24 @@ WaitSeconds(2);
     
     for(i=1; i<row_count; i++) 
     {
-       var overdue_list_pat = overdue_list_table.Cell(i, 0).contentText;
-       if(overdue_list_pat==messagename)
-       { 
-         while(overdue_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-         {
-         overdue_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-         }       
-          return false;
-       }
+      var overdue_list_pat = overdue_list_table.Cell(i, 0).contentText;
+      if(overdue_list_pat==messagename)
+      { 
+        while(overdue_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
+        {
+          overdue_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
+        }       
+        return false;
+      }
     }
     Log.Message('Patient was not found on the list');
     return true;
   }
-  catch (e)
-      {
-       Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 

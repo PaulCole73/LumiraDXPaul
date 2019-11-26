@@ -20,7 +20,7 @@ function tc_add_a_new_iqc_result()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //------------------------------------------
@@ -43,7 +43,7 @@ function tc_edit_iqc_result()
   catch (e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //------------------------------------------
@@ -70,7 +70,7 @@ function tc_delete_iqc_result()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //------------------------------------------

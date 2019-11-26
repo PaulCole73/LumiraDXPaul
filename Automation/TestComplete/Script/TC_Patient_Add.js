@@ -2,7 +2,7 @@
 //USEUNIT TSA_Patient
 //USEUNIT TSA_Patient_Management
 //USEUNIT TSA_Patient_Demographics
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_add_a_new_patient()
@@ -21,7 +21,7 @@ function tc_add_a_new_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ function tc_add_a_new_patient_duplicate_nhs()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------

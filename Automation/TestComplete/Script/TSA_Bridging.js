@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function get_new_bridging_record_button_state()
@@ -50,71 +50,186 @@ function add_bridging_record(procedure_date)
   patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("CreateBridgingSchedulesForm").Panel(0).SubmitButton("CreateScheduleButton").Click();
 }
 //--------------------------------------------------------------------------------
-function remove_bridging_table_rows(no_of_rows)
+function remove_bridging_table_rows(no_of_rows, table_type)
 {
-  INRstarV5 = INRstar_base();
-  var delete_button = INRstarV5.NativeWebObject.Find("idStr", "delete_button");
+  var INRstarV5 = INRstar_base();
+  var id_str; 
   
+  if(table_type = "pre-op")
+  {
+    id_str = "placeholder"; 
+  }
+  else if(table_type = "procedure")
+  {
+    id_str = "placeholder"; 
+  }
+  else if(table_type = "post_discharge")
+  {
+    id_str = "placeholder"; 
+  }
+  
+  var delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
   if(delete_button.Exists == true)
   {
     for(var i = 0; i < no_of_rows; i++)
     {
-      delete_button = INRstarV5.NativeWebObject.Find("idStr", "delete_button");
-      if(delete_button.Exists == true && i != 0)
+      delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
+      if(delete_button.Exists == true)
       {
-        //click delete button
+        delete_button.Click();
       }
     }
   }
 }
 //--------------------------------------------------------------------------------
-function add_bridging_table_rows(no_of_rows)
+function add_bridging_table_rows(no_of_rows, table_type)
 {
   for(var i = 0; i < no_of_rows; i++)
   {
-    //click add button
+    if(table_type = "pre-op")
+    {
+      bridging_schedule_add_button().Click();
+    }
+    else if(table_type = "procedure")
+    {
+      //add_button.Click();
+    }
+    else if(table_type = "post-discharge")
+    {
+      //add_button.Click();
+    }
   }
 }
 //--------------------------------------------------------------------------------
-function add_bridging_table_row(procedure_date)
+function validate_table(rows_to_check, table_type, data_array)
 {
-  var row_data = new Array();
-  var table = bridging_schedule_preop_table();
-  
-  var row_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(procedure_date, (-table.RowCount)), "%d-%b-%Y");
-  row_data.push(row_date, "-" + table.RowCount, false, false, false, "", "");
-  
-  //click add button
-  
-  return row_data;
-}
-//-------------------------------------------------------------------------------- 
-function validate_bridging_table_dates(procedure_date, rows_to_check)
-{
-  var expected_row_data = new Array();
-  var row_data = new Array();
-  var result_set_1;
   var result_set = new Array();
-  var table = bridging_schedule_preop_table();
+  var row_data = new Array();
+  var expected_data = new Array();
+  var row_index;
+  var table;
+  var counter = 0;
   
-  if(rows_to_check == (table.RowCount - 1))
+  if(table_type == "pre-op")
   {
-    for(var i = 1; i > table.RowCount; i++)
+    table = bridging_schedule_preop_table();
+  }
+  else if(table_type = "procedure")
+  {
+    table = bridging_schedule_procedure_table();
+  }
+  else if(table_type = "post-discharge")
+  {
+    table = bridging_schedule_post_discharge_table();
+  }
+  
+  for(var i = table.rowCount - 1; i >= (table.rowCount - rows_to_check); i--)
+  {
+    expected_data.length = 0;
+    row_index = (counter*7);
+    row_data = get_bridging_schedule_table_row(i, table_type);
+    
+    for(var j = 0; j < 7; j++)
     {
-      expected_row_data.length = 0;
-  
-      var row_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(procedure_date, (- (table.RowCount - i))), "%d-%b-%Y");
-      expected_row_data.push(row_date, "-" + (table.RowCount - i), false, false, false, "", "");
-    
-      row_data = get_bridging_schedule_table_row(i);
-    
-      result_set_1 = checkArrays(expected_row_data, row_data, "Compare Rows");
-      result_set.push(result_set_1);
+      var temp = data_array[(row_index + j)];
+      expected_data.push(temp);
     }
-    return results_checker_are_true(result_set);
+    
+    counter++;
+    var result_set_1 = checkArrays(row_data, expected_data);
+    result_set.push(result_set_1);
   }
-  else
-  {
-    return false;
-  }
+  
+  return result_set;
 }
+//--------------------------------------------------------------------------------
+function set_table_data(rows_to_set, data_array, table_type)
+{
+  var output = new Array();
+  var val = data_array[0];
+
+  if(table_type = "pre-op")
+  {
+    for(var i = 0; i < rows_to_set; i++)
+    {
+      for(var j = 0; j < data_array.length; j++)
+      {
+        output.push(data_array[j]);
+      }
+    }
+    for(var i = 0; i < rows_to_set; i++)
+    {
+      var date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(val, -(i+1)), "%d-%b-%Y")
+      var difference = "-" + (i+1);
+      output[i*7] = date;
+      output[(i*7) + 1] = difference; 
+    }
+  }
+  else if(table_type = "procedure")
+  {
+    for(var i = 0; i < rows_to_set; i++)
+    {
+      for(var j = 0; j < data_array.length; j++)
+      {
+        output.push(data_array[j]);
+      }
+    }
+    for(var i = 0; i < rows_to_set; i++)
+    {
+      var date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(val, i), "%d-%b-%Y")
+      var difference = "+" + i;
+      output[i*7] = date;
+      output[(i*7) + 1] = difference; 
+    }
+  }
+  else if(table_type = "post-discharge")
+  {
+    var proc_row_count = bridging_schedule_procedure_table().rowCount;
+    proc_row_count -= 2;
+    
+    for(var i = 0; i < rows_to_set; i++)
+    {
+      for(var j = 0; j < data_array.length; j++)
+      {
+        output.push(data_array[j]);
+      }
+    }
+    for(var i = proc_row_count; i < (proc_row_count + rows_to_set); i++)
+    {
+      var date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(val, i), "%d-%b-%Y")
+      var difference = "+" + i;
+      
+      output[i*7] = date;
+      output[(i*7) + 1] = difference; 
+    }
+  }
+  
+  return output;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

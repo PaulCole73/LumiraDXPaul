@@ -31,7 +31,7 @@ function tc_edit_each_field_of_patient_demographics()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 }
 //--------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ function tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 } 
 //--------------------------------------------------------------------------------

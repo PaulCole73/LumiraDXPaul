@@ -200,6 +200,22 @@ function get_treatment_row_key_values(row_num, table_type)
   return treatment_row_array;  
 }
 //-----------------------------------------------------------------------------------
+function get_treatment_summary_table_schedule()
+{
+  //needs a goto statement here
+  var smry_dosing_schedule = new Array();
+  var smry_schedule_day;
+  var smry_schedule_dose;
+  for(var i = 1; i <= 7; i++)
+  {
+    smry_schedule_day = aqString.SubString(patient_summary_schedule_table().Cell(i, 0).innerText, 0, 3);
+    smry_schedule_dose = smry_schedule_day + " " + patient_summary_schedule_table().Cell(i, 1).innerText;
+    smry_dosing_schedule.push(smry_schedule_dose);
+  }
+  
+  return smry_dosing_schedule;
+}
+//-----------------------------------------------------------------------------------
 //gets the data from the eqc table where the batch_ref matches
 function get_eqc_table_row(batch_ref)
 {
@@ -343,10 +359,23 @@ function get_pending_suggested_treatment_schedule(days)
   return pending_schedule;
 }
 //-----------------------------------------------------------------------------------
-function get_bridging_schedule_table_row(row_num)
+function get_bridging_schedule_table_row(row_num, table_type)
 {
   var row_data = new Array();
-  var table = bridging_schedule_preop_table();
+  var table;
+  
+  if(table_type = "pre-op")
+  {
+    table = bridging_schedule_preop_table();
+  }
+  else if(table_type = "procedure")
+  {
+    table = bridging_schedule_procedure_table();
+  }
+  else if(table_type = "post-discharge")
+  {
+    table = bridging_schedule_post_discharge_table();
+  }
   
   for(var i = 0; i < 7; i++)
   {
@@ -386,3 +415,84 @@ function get_top_note_text()
   
   return text;
 }
+//---------------------------------------------------------------------------------//
+//                            Bespoke Letters                                      //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_bespoke_letter_content(letter_name)
+{
+  Goto_Options_Letter_Management();
+  Goto_Bespoke_Letter(letter_name);
+  
+  var content = new Array();
+  
+  var temp = letter_editor_panel().Panel("LetterTemplatePropertiesPanel").Panel(0).Textbox("Name").value;
+  content.push(temp);
+  temp = letter_editor_panel().Panel("LetterTemplatePropertiesPanel").Panel(1).Textarea("Description").innerText;
+  content.push(temp);
+  temp = letter_editor_panel().Panel("ContentTextEditor").Panel(1).Panel(0).innerText;
+  content.push(temp);
+  
+  return content;
+}
+//-----------------------------------------------------------------------------------
+function get_bespoke_letter_permissions(letter_name)
+{
+  Goto_Options_Letter_Management();
+  Goto_Bespoke_Letter(letter_name);
+  
+  var content = new Array();
+  for(var i = 1; i <= 7; i++)
+  {
+    var temp = letter_management_permissions_field().panel(i).Child(0).checked;
+    content.push(temp);
+  }
+  
+  return content;
+}
+//---------------------------------------------------------------------------------//
+//                                  Diagnosis                                      //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_diagnosis_details(name)
+{
+  Goto_Options_Diagnosis();
+  options_diagnosis_list().ClickItem(name);
+
+  var diagnosis_data = new Array();
+  
+  var temp = diagnosis_details().Panel(0).Label("Name_DetachedLabel").innerText;
+  diagnosis_data.push(temp);
+  temp = diagnosis_details().Panel(1).Label("TargetINR_DetachedLabel").innerText;
+  diagnosis_data.push(temp);
+  temp = diagnosis_details().Panel(2).Label("TreatmentDuration_DetachedLabel").innerText;
+  diagnosis_data.push(temp);
+  
+  return diagnosis_data;
+}
+//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
+//                              Dosing Settings                                    //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_dosing_settings_data(item_no)
+{
+  Goto_Options();
+  dosing_settings_tab().Click();
+  location_dosing_settings().Link(item_no).Click();
+  
+  var panel = location_dosing_settings().Panel(item_no);
+  var dosing_data = new Array();
+  var string_array = new Array();
+  
+  for(var i = 1; i < panel.ChildCount; i++)
+  {
+    var temp = panel.Child(i).innerText;
+    string_array = temp.split("[set at] "); 
+    dosing_data.push(aqString.Trim(string_array[1], 3));
+  }
+  
+  return dosing_data;
+}
+
+

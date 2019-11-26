@@ -1,34 +1,32 @@
 ﻿//USEUNIT Tested_Apps
-//USEUNIT TC_Patient_Tests_Due
+//USEUNIT TC_Diagnosis
 //--------------------------------------------------------------------------------
-//Suite of tests for Patient Tests Due
+//Suite of tests for Diagnosis TCs
 //--------------------------------------------------------------------------------
 
 //Master Suites
 //--------------------------------------------------------------------------------
 //master suites are used for organised test groups
-function ts_master_patient_tests_due(send_mail)
+function ts_master_diagnosis(send_mail)
 {
   reset_folder();
   
-  tc_check_tests_due_tab();
- 
-  email_and_archive(send_mail, "ts_testdue_master");
+  tc_diagnosis_add_new_diagnosis();
+  tc_diagnosis_edit_diagnosis();
+  tc_diagnosis_delete_diagnosis();
+  
+  email_and_archive(send_mail, "ts_diagnosis_master");
 }
 //--------------------------------------------------------------------------------
 //regression suites are used for specific regression runs
-function ts_staging_regression_patient_tests_due()
+function ts_staging_regression_diagnosis()
 {
   reset_folder();
   
-  tc_check_tests_due_tab();
- 
-  email_and_archive(true, "ts_testdue_regression");
+  tc_diagnosis_add_new_diagnosis();
+  tc_diagnosis_edit_diagnosis();
+  tc_diagnosis_delete_diagnosis();
+  
+  email_and_archive(true, "ts_diagnosis_regression");
 }
-//-------------------------------------------------------------------------------
-
-
-
-//==============================================================================//
-//General Suites
 //--------------------------------------------------------------------------------

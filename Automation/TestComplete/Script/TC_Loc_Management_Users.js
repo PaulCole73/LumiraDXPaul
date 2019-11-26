@@ -1,7 +1,7 @@
 ﻿//USEUNIT TSA_Home_Page
 //USEUNIT TSA_Login
 //USEUNIT TSA_Loc_Management_Users
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_users_add_a_new_user()
@@ -27,7 +27,7 @@ function tc_users_add_a_new_user()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ function tc_users_manage_user_permissions()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ function tc_users_manage_change_permissions_to_read_only()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ function tc_users_reset_user_password()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -197,7 +197,7 @@ function tc_users_disable_user()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -240,6 +240,6 @@ function tc_users_enable_user()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
