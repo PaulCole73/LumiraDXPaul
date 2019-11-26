@@ -172,7 +172,7 @@ function ar_6312c()
          write_system_audit("Add Letter", w_outfile);
 
           //----------------------------------- Add a User
-          var w_user = "test_user"+ aqConvert.IntToStr(Math.floor(Math.random()*1000))+"@s2"
+          var w_user = "test_user"+ aqConvert.IntToStr(Math.floor(Math.random()*1000))+""
          Goto_Add_User();
          add_user_details(INRstarV5, w_user, "");
  

@@ -208,13 +208,13 @@ function  edit_letter_permissions()
           // For each User, see if the letter is now visible
           //---------------------------------------------------------------------------------------           
           var wa_Users = new Array(7);
-          wa_Users[0] = ;
-          wa_Users[1] = ;
-          wa_Users[2] = ;
-          wa_Users[3] = ;
-          wa_Users[4] = ;
-          wa_Users[5] = ;
-          wa_Users[6] = ;
+          wa_Users[0] = "";
+          wa_Users[1] = "";
+          wa_Users[2] = "";
+          wa_Users[3] = "";
+          wa_Users[4] = "";
+          wa_Users[5] = "";
+          wa_Users[6] = "";
 
           var wa_Roles = new Array(7);
           wa_Roles[0] = "Clinical Lead";

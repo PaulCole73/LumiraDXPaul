@@ -27,7 +27,7 @@ function ts_staging_regression_login_page()
   tc_log_on_to_inrstar_no_credentials();
   tc_log_off_inrstar();
  
-  //email_and_archive(true, "ts_login_regression");
+  email_and_archive(true, "ts_login_regression");
 }
 //--------------------------------------------------------------------------------
 

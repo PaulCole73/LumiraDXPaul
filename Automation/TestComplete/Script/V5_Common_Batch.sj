@@ -350,7 +350,7 @@ function record_new_values(INRstarV5, w_current_INR, w_outfile)
 // Set the system default values
 function set_parameters(w_Run, wf_round, w_RoundVal, wf_NPSA, wf_algo)
 {
-    Log_On(3);    // A.White @ maplestead
+    Log_On(3);    // 
     
     // Set general options --------------------------------------------------------------------
 //    preset_Algorithm(w_Run);

@@ -45,8 +45,6 @@ function self_care_access()
 
 //          // Short test of each type of user (can / cannot access Stage 2)
 //         wa_u= new Array(2);
-//        wa_u[0] = "admin@p1";
-//        wa_u[1] = "lead@p1";
        
         var w_nhs = "";
           

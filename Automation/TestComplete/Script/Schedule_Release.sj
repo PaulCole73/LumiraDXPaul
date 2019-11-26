@@ -92,8 +92,8 @@ function schedule_release()
 function Step_1_Logon()  
 {
    Log.Message("Step_1_Logon");
-   //Log_On(6); // John Smith @ Crofty
-   Log_On(8); // gov@prison
+   //Log_On(6); // 
+   Log_On(8); //
 }
 //===============================================================================
 // 2) Home page
