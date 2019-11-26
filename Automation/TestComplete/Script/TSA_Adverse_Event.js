@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 
 //--------------------------------------------------------------------------------
 function add_adverse_event()

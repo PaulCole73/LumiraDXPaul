@@ -211,7 +211,7 @@ function get_patient_summary_labels(patient_nhs)
   }
   catch(e)
   {
-    Log.Warning('Function "' + func_title + '" Failed Exception Occured = ' + e);
+    Log.Warning("Function \"" + func_title + "\" Failed Exception Occured = " + e);
   }
 }
 //--------------------------------------------------------------------------------
@@ -242,7 +242,7 @@ function check_summary_tab_image(patient_nhs)
   }
   catch(e)
   {
-    Log.Warning('Function "' + func_title + '" Failed Exception Occured = ' + e);
+    Log.Warning("Function \"" + func_title + "\" Failed Exception Occured = " + e);
   }
 }
 //--------------------------------------------------------------------------------

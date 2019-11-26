@@ -1,36 +1,37 @@
 ﻿//USEUNIT Tested_Apps
-//USEUNIT TC_PoCT
+//USEUNIT TC_Bespoke_Letters
 //--------------------------------------------------------------------------------
-//Suite of tests for PoCT
+//Suite of tests for Bespoke Letters
 //--------------------------------------------------------------------------------
 
 //Master Suites
 //--------------------------------------------------------------------------------
-//master suites are used for organised test groups
-function ts_master_poct(send_mail)
+function ts_master_bespoke_letters(send_mail)
 {
   reset_folder();
   
-  tc_add_a_new_poct();
-  tc_edit_a_new_poct_batch();
- 
-  email_and_archive(send_mail, "ts_poct_master");
+  tc_bespoke_letters_create_new_letter();
+  tc_bespoke_letters_edit_a_letter();
+  tc_bespoke_letters_copy_a_letter();
+  tc_bespoke_letters_rename_a_letter();
+  
+  email_and_archive(send_mail, "ts_bespoke_letters_master");
 }
 //--------------------------------------------------------------------------------
-//regression suites are used for specific regression runs
-function ts_staging_regression_poct()
+function ts_staging_regression_bespoke_letters()
 {
   reset_folder();
   
-  tc_add_a_new_poct();
-  tc_edit_a_new_poct_batch();
- 
-  email_and_archive(true, "ts_poct_regression");
+  tc_bespoke_letters_create_new_letter();
+  tc_bespoke_letters_edit_a_letter();
+  tc_bespoke_letters_copy_a_letter();
+  tc_bespoke_letters_rename_a_letter();
+  
+  email_and_archive(true, "ts_bespoke_letters_regression");
 }
 //--------------------------------------------------------------------------------
 
 
 
-//==============================================================================//
 //General Suites
 //--------------------------------------------------------------------------------

@@ -1,38 +1,37 @@
 ﻿//USEUNIT Tested_Apps
 //USEUNIT TC_Patient_Demographics
-
-
-//--------------------------------------------------------------------------------
-//Picking what suites you want to run within the main suite
-//--------------------------------------------------------------------------------
-//function ts_notes()
-{
-// open_application("INRstarWindows");
-// ts_staging_regression_demographics();
-// Close Application needed here ?
-} 
 //--------------------------------------------------------------------------------
 //Test cases within each suite for Demographics
 //--------------------------------------------------------------------------------
 
 //Master Suites
 //--------------------------------------------------------------------------------
-function ts_master_demographics()
+//master suites are used for organised test groups
+function ts_master_demographics(send_mail)  
 {
   reset_folder();
 
-  ts_demographics_edit()
+  tc_edit_each_field_of_patient_demographics();  
+  tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a_DOAC();
   
-  email_and_archive("ts_master_demographics");
+  email_and_archive(send_mail, "ts_demographics_master");
 }
 //--------------------------------------------------------------------------------
-function ts_staging_regression_demographics()
+//regression suites are used for specific regression runs
+function ts_staging_regression_demographics() 
 {
+  reset_folder();  
+
   tc_edit_each_field_of_patient_demographics();  
-  tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a_DOAC(); 
+  tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a_DOAC();
+  
+  email_and_archive(true, "ts_demographics_regression");
 }
 //--------------------------------------------------------------------------------
 
+
+
+//==============================================================================//
 //General Suites
 //--------------------------------------------------------------------------------
 function ts_demographics_edit()

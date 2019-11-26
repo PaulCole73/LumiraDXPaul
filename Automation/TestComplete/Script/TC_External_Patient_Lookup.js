@@ -24,7 +24,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
     var patient_data = new Array();
     var expected_note = "External Patient Lookup was used to view this patient. Reason: Patient present requiring treatment" 
                         + "\r\n" + "Comments: Test";
-    var exp_banner_msg = "The patient's recorded testing location is Deans Regression Testing Location 06925922205";
+    var exp_banner_msg = "The patient's recorded testing location is Deans Regression Testing Location"; //06925922205"; this limits testing to single environment because locations Id's vary
   
     var nhs = get_patient_nhs();
     patient_data = get_external_patient_lookup_data();
@@ -36,6 +36,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
   
     var text = get_top_note_text();
     var banner = patient_banner_yellow_bar().innerText;
+    banner = aqString.SubString(banner, 0, banner.length - 12);
   
     var result_set_1 = checkArrays(table_data, patient_data, test_title);
     result_set.push(result_set_1);
@@ -57,7 +58,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -106,7 +107,7 @@ function tc_external_patient_lookup_delete_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -160,7 +161,7 @@ function tc_external_patient_lookup_new_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -207,7 +208,7 @@ function tc_external_patient_lookup_same_day_maintenance_treatment()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -232,6 +233,8 @@ function tc_external_patient_lookup_add_historic_inr()
     login("cl3@regression2", "INRstar_5", "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
+    WaitSeconds(2);
+    
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
   
     var result_set_1 = checkArrays(table_data, patient_data, test_title);
@@ -248,7 +251,7 @@ function tc_external_patient_lookup_add_historic_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -296,7 +299,7 @@ function tc_external_patient_lookup_delete_multiple_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -337,7 +340,7 @@ function tc_external_patient_lookup_add_adverse_event()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -377,7 +380,7 @@ function tc_external_patient_lookup_add_note()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -429,7 +432,7 @@ function tc_external_patient_lookup_archive_note()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -472,7 +475,7 @@ function tc_external_patient_lookup_edit_treatment_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -514,7 +517,7 @@ function tc_external_patient_lookup_add_treatment_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -562,7 +565,7 @@ function tc_external_patient_lookup_add_treatment_to_old_plan()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -615,7 +618,7 @@ function tc_external_patient_lookup_treat_overdue_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -669,6 +672,6 @@ function tc_external_patient_lookup_refer_patient_treatment()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }

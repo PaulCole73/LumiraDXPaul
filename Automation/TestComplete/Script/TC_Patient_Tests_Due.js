@@ -3,7 +3,7 @@
 //USEUNIT TSA_Patient_Tests_Due
 //USEUNIT TSA_Treatment
 //USEUNIT TSA_Treatment_Plan
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_check_tests_due_tab()
@@ -25,7 +25,7 @@ function tc_check_tests_due_tab()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------

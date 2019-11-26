@@ -8,6 +8,7 @@
 //USEUNIT TSA_Patient_Demographics
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
 {
@@ -45,7 +46,7 @@ function tc_treatment_add_a_historic_treatment()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -85,7 +86,7 @@ function tc_treatment_add_a_manual_INR()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -131,7 +132,7 @@ function tc_treatment_manual_dosing_permissions()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -179,43 +180,43 @@ function tc_treatment_induction_dosing_permissions()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_treatment_comment()
 {
   try
- {
-  var test_title = 'Treatment - Add a treatment comment'
-  login('cl2@regression','INRstar_5','Shared');
-  add_patient('Regression', 'Treatment_comment', 'M', 'Shared'); 
-  add_treatment_plan('W','Hillingdon','','Shared','');
-  add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
+  {
+    var test_title = 'Treatment - Add a treatment comment'
+    login('cl2@regression','INRstar_5','Shared');
+    add_patient('Regression', 'Treatment_comment', 'M', 'Shared'); 
+    add_treatment_plan('W','Hillingdon','','Shared','');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
-  var comment = "regression testing comments field"
-  add_treatment_comment(comment);
+    var comment = "regression testing comments field"
+    add_treatment_comment(comment);
   
-  result_set = new Array(); 
+    result_set = new Array(); 
   
-  //Check the audit for adding the treatment
-  var result_set_1 = validate_more_info_top_treatment_audit('Comments set to ['+ comment + ']');
-  result_set.push(result_set_1);
+    //Check the audit for adding the treatment
+    var result_set_1 = validate_more_info_top_treatment_audit('Comments set to ['+ comment + ']');
+    result_set.push(result_set_1);
   
-   //Validate the results sets are true
-  var results = results_checker_are_true(result_set); 
-  Log.Message(results);
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set); 
+    Log.Message(results);
     
-  //Pass in the result
-  results_checker(results,test_title);
+    //Pass in the result
+    results_checker(results,test_title);
   
-  Log_Off(); 
+    Log_Off(); 
   } 
-   catch(e)
-   {
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
-   }
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_new_maintenance_in_range_inr()
@@ -257,7 +258,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -295,7 +296,7 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -334,7 +335,7 @@ function tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -366,7 +367,7 @@ function tc_treatment_user_cannot_override_an_induction_result()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -399,7 +400,7 @@ function tc_treatment_adding_a_result_earlier_than_last_recorded_result()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -433,7 +434,7 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -475,7 +476,7 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -483,19 +484,22 @@ function tc_treatment_add_a_new_maintenance_high_inr()
 {
 try
   {
+    //this test currently fails in hoth - because the dosing warning message has been changed
     var test_title = 'Treatment - Add a new maintenance high INR';
     login('cl3@regression','INRstar_5','Shared');
+    
+    var dosing_data = new Array();
+    dosing_data = get_dosing_settings_data(3);
+    
     add_patient('Regression', 'mainteance_high', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment_pop_up_checker("4.0",aqConvert.StrToDate(aqDateTime.Today()));
   
-    result_set = new Array(); 
-  
-    var actual_error_mess = get_dosing_engine_popup_text();
-    var expected_error_mess = "INR above target. Dose and review period adjusted. Check for signs of bruising or bleeding." + 
-                              " Check INR in 2/3 days to confirm INR reduction. See BNF section 2.8.2 or NICE guideline at " + 
-                              "http://tinyurl.com/NICEscenario3 for details.";      
+    var result_set = new Array();
+    
+    var actual_error_mess = process_alternate_popup("Please acknowledge", "Confirm");
+    var expected_error_mess = dosing_data[0];
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
     result_set.push(result_set_1);
   
@@ -518,7 +522,7 @@ try
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 } 
 //--------------------------------------------------------------------------------
@@ -560,7 +564,7 @@ function tc_treatment_out_of_range_maintenance_permissions()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -576,12 +580,12 @@ function tc_treatment_delete_the_last_treatment()
  
     var result_set = new Array(); 
     var formatted_inr_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (-7)), "%d-%b-%Y");
-    var message = 'Please confirm you want to delete the treatment added on the ' + formatted_inr_date + '.';
+    var exp_message = 'Please confirm you want to delete the treatment added on the ' + formatted_inr_date + '.';
+    
+    var message = delete_treatment();
   
-    var result_set_1 = delete_treatment_confim_checker(message);
+    var result_set_1 = compare_values(exp_message, message, test_title);
     result_set.push(result_set_1);
-  
-    delete_treatment();
   
     //Check the audit for adding the treatment
     result_set_1 = validate_top_patient_audit(test_title, "Treatment Deleted");
@@ -593,12 +597,12 @@ function tc_treatment_delete_the_last_treatment()
     //Pass in the result
     results_checker(results,test_title); 
   
-    Log_Off(); 
+    Log_Off();
   } 
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -645,7 +649,7 @@ function tc_treatment_refer_a_treatment()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -706,46 +710,46 @@ function tc_treatment_authorise_a_referral()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
 function tc_treatment_edit_a_treatment_comment()
 {
   try
- {
-  var test_title = 'Treatment - Edit a treatment comment'
-  login('cl3@regression','INRstar_5','Shared');
-  add_patient('Regression', 'edit_comment', 'M', 'Shared'); 
-  add_treatment_plan('W','Hillingdon','','Shared','');
-  add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
+  {
+    var test_title = 'Treatment - Edit a treatment comment'
+    login('cl3@regression','INRstar_5','Shared');
+    add_patient('Regression', 'edit_comment', 'M', 'Shared'); 
+    add_treatment_plan('W','Hillingdon','','Shared','');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
-  var old_comment = 'old comment'
-  add_treatment_comment(old_comment);
+    var old_comment = 'old comment'
+    add_treatment_comment(old_comment);
   
-  result_set = new Array(); 
+    result_set = new Array(); 
   
-  var new_comment = 'regression new comment'
-  add_treatment_comment(new_comment);
+    var new_comment = 'regression new comment'
+    add_treatment_comment(new_comment);
   
-  //Check the audit for adding the treatment
-  var result_set_1 = validate_more_info_top_treatment_audit('Comments changed from [' + old_comment + '] to [' + new_comment + ']');
-  result_set.push(result_set_1);
+    //Check the audit for adding the treatment
+    var result_set_1 = validate_more_info_top_treatment_audit('Comments changed from [' + old_comment + '] to [' + new_comment + ']');
+    result_set.push(result_set_1);
   
-   //Validate the results sets are true
-  var results = results_checker_are_true(result_set); 
-  Log.Message(results);
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set); 
+    Log.Message(results);
     
-  //Pass in the result
-  results_checker(results,test_title);
+    //Pass in the result
+    results_checker(results,test_title);
   
-  Log_Off(); 
+    Log_Off(); 
   } 
-   catch(e)
-   {
+  catch(e)
+  {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
-   }
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 function tc_treatment_add_multiple_historic_treatments()
@@ -794,7 +798,7 @@ function tc_treatment_add_multiple_historic_treatments()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -814,7 +818,7 @@ function tc_treatment_dosing_under_12_years_old()
     
     var result_set = new Array();
     
-    var INRstarV5 = set_system(); 
+    var INRstarV5 = INRstar_base();
  
     var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
     var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
@@ -835,7 +839,7 @@ function tc_treatment_dosing_under_12_years_old()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off();
+    restart_INRstar();
   }
 }
 
@@ -891,7 +895,7 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 	catch(e)
 	{
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
 	}
 }
 
@@ -934,7 +938,7 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 	catch(e)
 	{
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
 	}
 }
 
@@ -1013,7 +1017,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 	catch(e)
 	{
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
 	}
 }
 
@@ -1078,7 +1082,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 	catch(e)
 	{
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
 	}
 }
 
@@ -1134,7 +1138,7 @@ function tc_treatment_drag_and_drop_schedule_days()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
 
@@ -1198,7 +1202,7 @@ function tc_treatment_maintenance_save_override_treatment()
 	catch(e)
 	{
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
 	}
 }
 
@@ -1270,12 +1274,11 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
 
 //--------------------------------------------------------------------------------
-//
 //C1248473
 function tc_treatment_manual_mutliple_historic_summary_check()
 {
@@ -1290,18 +1293,15 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
     var patient_nhs = get_patient_nhs();
-    
-    add_pending_manual_treatment('2.6','PoCT','2.9','7 Days');
+    add_pending_manual_treatment('2.6', 'PoCT', '2.9', '7 Days');
     
     var treatment_values = new Array();
     var summary_values = new Array();
     var result_set = new Array();
-    var result_set_1;
     var smry_dosing_schedule = new Array();
     var dosing_schedule = get_pending_suggested_treatment_schedule(0);
     
-    var save_inr_path = save_inr_button();
-    save_inr_path.Click();
+    save_inr_button().Click();
     
     treatment_values = get_treatment_row_key_values(3);
     treatment_values[2] = treatment_values[2] + " mg/day";
@@ -1310,16 +1310,9 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     
     summary_values = get_patient_summary_labels(patient_nhs);
     
-    var smry_schedule_day;
-    var smry_schedule_dose;
-    for(var i = 1; i <= 7; i++)
-    {
-      smry_schedule_day = aqString.SubString(patient_summary_schedule_table().Cell(i, 0).innerText, 0, 3);
-      smry_schedule_dose = smry_schedule_day + " " + patient_summary_schedule_table().Cell(i, 1).innerText;
-      smry_dosing_schedule.push(smry_schedule_dose);
-    }
+    smry_dosing_schedule = get_treatment_summary_table_schedule();
     
-    result_set_1 = check_summary_tab_image(patient_nhs);
+    var result_set_1 = check_summary_tab_image(patient_nhs);
     result_set.push(result_set_1);
     
     //Check the arrays are the same size + values match
@@ -1332,7 +1325,6 @@ function tc_treatment_manual_mutliple_historic_summary_check()
 		
 		//Validate the results sets are true
 		var results = results_checker_are_true(result_set);
-		Log.Message(results);
 		
 		//Pass in the result
 		results_checker(results, test_title);
@@ -1342,10 +1334,9 @@ function tc_treatment_manual_mutliple_historic_summary_check()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
-
 //--------------------------------------------------------------------------------
 //
 //C1248489
@@ -1418,7 +1409,7 @@ function tc_treatment_maintenance_override_privilege()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
 
@@ -1475,7 +1466,7 @@ function tc_treatment_maintenance_cancel_pending()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -1534,7 +1525,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -1575,7 +1566,7 @@ function tc_treatment_add_treatment_for_self_tester()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -1684,7 +1675,7 @@ function cacuk432_bug_fix_sequence()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
   }
 }
 //--------------------------------------------------------------------------------
@@ -1735,6 +1726,6 @@ function cacuk432_bug_fix_single()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		Log_Off();
+		restart_INRstar();
   }
 }

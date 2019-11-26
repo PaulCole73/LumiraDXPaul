@@ -1,11 +1,12 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
 function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, td, using_prev_plan)
 {
- try
- {
+  try
+  {
     var INRstarV5 = INRstar_base();
     
     var prev_plan_action = "No";
@@ -30,8 +31,8 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     /* 
     if(tp_start_mode=='3')
     {
-      Goto_Patient_Treatmentplan_Add();//_pop_up(); 
-      var treatment_plan_area = add_treatment_plan_main_section_path();
+    Goto_Patient_Treatmentplan_Add();//_pop_up(); 
+    var treatment_plan_area = add_treatment_plan_main_section_path();
     }*/
    
     if(TestStepMode == "Shared")
@@ -79,20 +80,31 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
           var treatment_plan_warfarin_details_path = add_treatment_plan_warfarin_details();
           
           if (dm == 'Coventry')
-                  treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Coventry Maintenance");
+          {
+            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Coventry Maintenance");
+          }
           if (dm == 'Hillingdon')
-                  treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Hillingdon Maintenance");
+          {
+            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Hillingdon Maintenance");
+          }
           if (dm == 'Tait')
-                  treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Tait");
+          {
+            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Tait");
+          }
           if (dm == 'Oates')
-                  treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Oates");
+          {
+            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Oates");
+          }
           if (dm == 'Fast')
-                  treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Fast Fennerty Gedge");
+          {
+            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Fast Fennerty Gedge");
+          }
           if (dm == 'Manual')
-                  treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
-                    
-          //Acknowledge Dosing More Info window
-          process_more_information(INRstarV5);  
+          {
+            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
+          }
+          var item_val = treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").value;
+          process_popup("More information - " + item_val, "Ok");
 
           treatment_plan_warfarin_details_path.Panel(1).Select("TestingMethod").ClickItem("PoCT");
           treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 Days");
@@ -110,23 +122,16 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       if (drug != 'W' && drug != "Warfarin")
       {   
         treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
-        if(tp_start_mode == 2)
-        {
-          process_popup("Drug Confirmation Change", "OK");
-        }
+        process_popup("Drug Confirmation Change", "OK");
         treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
       }
+      
+      WaitSeconds(3, "Waiting for treatment details...");
       buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
       
-      if (drug == 'W' || drug == "Warfarin") //this may be able to be reduced with changes to process_popup()
-      {
-        process_popup("You will need to add an historical treatment", "OK");
-      }
-      if(tp_start_mode == "2")
-      {
-        var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");
-      }     
-      WaitSeconds(1);
+      process_popup("You will need to add an historical treatment", "OK");
+      var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");    
+      WaitSeconds(5, "Waiting for treatment plan...");
       return popup_msg;       
     }  
   } 
@@ -157,7 +162,9 @@ function edit_treatment_plan(dm)
               treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
                     
   // Acknowledge Dosing More Info window
-  var more_info = process_more_information(INRstarV5);  
+  var item_val = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").value;
+  var more_info = process_popup("More information - " + item_val, "Ok");
+  //var more_info = process_more_information(INRstarV5);  
 
   var buttons = edit_treatment_plan_button_path();       
   buttons.Button("UpdatePatientTreatmentPlan").Click();
@@ -353,42 +360,42 @@ function is_tp_date_picker_active()
 //--------------------------------------------------------------------------------
 function add_treatment_plan_drug_warning_checker(drug,exp_warn_mess)
 {
- try
- {
-  var INRstarV5 = INRstar_base();    
+  try
+  {
+    var INRstarV5 = INRstar_base();    
   
-  Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
-  var treatment_plan_area = add_treatment_plan_main_section_path();
+    Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
+    var treatment_plan_area = add_treatment_plan_main_section_path();
         
-  treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
-  WaitSeconds(1);
-  treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);     
+    treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
+    WaitSeconds(1);
+    treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);     
   
-  var pop_up_warning_message_path = pop_up_warning_message();
-  var actual_warn_mess = pop_up_warning_message_path.contentText; 
+    var pop_up_warning_message_path = pop_up_warning_message();
+    var actual_warn_mess = pop_up_warning_message_path.contentText; 
   
-  Log.Message(actual_warn_mess)
+    Log.Message(actual_warn_mess)
    
-     if (actual_warn_mess==exp_warn_mess)
-       {
-        WaitSeconds(1);
-        Log.Message('The warning text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        var pop_up_button_path = ok_error_pop_up_buttons();
-        pop_up_button_path.Click();
-        return true; 
-       } 
-        else 
-        {
-        Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess);
-        var pop_up_button_path = ok_error_pop_up_buttons();
-        pop_up_button_path.Click();
-        return false;
-        }
- }
-   catch(e)
-   {
-     Log.Warning('There was exception checking the drug warning pop up, exception was = ' + (e))
-   }  
+    if (actual_warn_mess==exp_warn_mess)
+    {
+      WaitSeconds(1);
+      Log.Message('The warning text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
+      var pop_up_button_path = ok_error_pop_up_buttons();
+      pop_up_button_path.Click();
+      return true; 
+    } 
+    else 
+    {
+      Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess);
+      var pop_up_button_path = ok_error_pop_up_buttons();
+      pop_up_button_path.Click();
+      return false;
+    }
+  }
+  catch(e)
+  {
+    Log.Warning('There was exception checking the drug warning pop up, exception was = ' + (e))
+  }  
 } 
 //--------------------------------------------------------------------------------
 function new_tp_popup_checker(exp_err_mess)
@@ -402,7 +409,6 @@ function new_tp_popup_checker(exp_err_mess)
   var pop_up_message = tp_popup_checker(exp_err_mess);
    
   return pop_up_message; 
-
 } 
 //--------------------------------------------------------------------------------
 function get_treatment_plan_single_field(data)

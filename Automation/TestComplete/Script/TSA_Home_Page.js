@@ -1,5 +1,5 @@
 ﻿//USEUNIT System_Paths
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function check_patient_on_refer_list(pat_name)
@@ -161,20 +161,20 @@ function unsuspend_patient_on_exceed_suspension_period_list(pat_name)
 //--------------------------------------------------------------------------------
 function check_patient_in_transfer_request_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
     var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
   
-  //In case the patient in question was the only one on the list
+    //In case the patient in question was the only one on the list
     if(link.Exists != true)
-      {
-       Log.Message('Home page message not displayed');
-       return false;
-      }
+    {
+      Log.Message('Home page message not displayed');
+      return false;
+    }
   
     WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
@@ -182,28 +182,28 @@ function check_patient_in_transfer_request_message(pat_name)
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
 
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            //Click checkbox against patient and then Unsuspend button    
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText == pat_name)
+      { 
+        //Click checkbox against patient and then Unsuspend button    
+        return true;
       }
+    }
     Log.Message('Patient was not found on the list')
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test check_patient_in_transfer_request FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Function - check_patient_in_transfer_request - FAILED Exception Occured = " + e);
+    restart_INRstar(); 
+  }
 } 
 //--------------------------------------------------------------------------------
 function check_patient_not_in_transfer_request_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
@@ -212,8 +212,8 @@ function check_patient_not_in_transfer_request_message(pat_name)
     //In case the patient in question was the only one on the list
     if(link.Exists != true)
     {
-     Log.Message('Home page message not displayed');
-     return true;
+      Log.Message('Home page message not displayed');
+      return true;
     }
     
     WaitSeconds(2);
@@ -222,28 +222,28 @@ function check_patient_not_in_transfer_request_message(pat_name)
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
 
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText!=pat_name)
-          { 
-            //Click checkbox against patient and then Unsuspend button    
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText!=pat_name)
+      { 
+        //Click checkbox against patient and then Unsuspend button    
+        return true;
       }
+    }
     Log.Message('Patient was on the transfer request list')
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test check_patient_not_in_transfer_request FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Function - check_patient_not_in_transfer_request - FAILED Exception Occured = " + e);
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 function accept_patient_in_transfer_request_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
@@ -252,8 +252,8 @@ function accept_patient_in_transfer_request_message(pat_name)
     //In case the patient in question was the only one on the list
     if(link.Exists != true)
     {
-     Log.Message('Home page message not displayed');
-     return false;
+      Log.Message('Home page message not displayed');
+      return false;
     }
     
     WaitSeconds(2);
@@ -261,30 +261,30 @@ function accept_patient_in_transfer_request_message(pat_name)
     
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            //Click Accept button against patient and accept the transfer    
-            table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-            process_confirm_change_location('');
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+        //Click Accept button against patient and accept the transfer    
+        table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+        process_confirm_change_location('');
+        return true;
       }
+    }
     Log.Message('Patient was not found on the list')
     return false;
   }
   catch (e)
-      {
-       Log.Warning('Test accept_patient_in_transfer_request FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  {
+    Log.Warning('Test accept_patient_in_transfer_request FAILED Exception Occured = ' + e);
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 function decline_patient_in_transfer_request_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
@@ -293,8 +293,8 @@ function decline_patient_in_transfer_request_message(pat_name)
     //In case the patient in question was the only one on the list
     if(link.Exists != true)
     {
-     Log.Message('Home page message not displayed');
-     return false;
+      Log.Message('Home page message not displayed');
+      return false;
     }
     
     WaitSeconds(2);
@@ -302,29 +302,29 @@ function decline_patient_in_transfer_request_message(pat_name)
     
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            //Click Decline button against patient and accept the transfer    
-            table.Cell(i, 6).Button("DeclineChangePatientTestingLocation").Click(); 
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+        //Click Decline button against patient and accept the transfer    
+        table.Cell(i, 6).Button("DeclineChangePatientTestingLocation").Click(); 
+        return true;
       }
+    }
     Log.Message('Patient was not found on the list')
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test decline_patient_in_transfer_request FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning('Test decline_patient_in_transfer_request FAILED Exception Occured = ' + e);
+    restart_INRstar(); 
+  }
 } 
 //--------------------------------------------------------------------------------
 function acknowledge_declined_patient_in_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     WaitSeconds(2);
     var INRstarV5 = INRstar_base();
@@ -334,8 +334,8 @@ function acknowledge_declined_patient_in_message(pat_name)
     //In case the patient in question was the only one on the list
     if(link.Exists != true)
     {
-     Log.Message('Home page message not displayed');
-     return false;
+      Log.Message('Home page message not displayed');
+      return false;
     }
   
     WaitSeconds(2);
@@ -343,29 +343,29 @@ function acknowledge_declined_patient_in_message(pat_name)
     
     var table = home_page_messages_path.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            //Click Decline button against patient and accept the transfer    
-            table.Cell(i, 4).Button("AcknowledgeDeclinedPatient").Click(); 
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+        //Click Decline button against patient and accept the transfer    
+        table.Cell(i, 4).Button("AcknowledgeDeclinedPatient").Click(); 
+        return true;
       }
+    }
     Log.Message('Patient was not found on the list')
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test acknowledge_declined_patient FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning('Test acknowledge_declined_patient FAILED Exception Occured = ' + e);
+    restart_INRstar(); 
+  }
 } 
 //--------------------------------------------------------------------------------
 function check_patient_not_in_decline_patient_transfer_request_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
@@ -374,8 +374,8 @@ function check_patient_not_in_decline_patient_transfer_request_message(pat_name)
     //In case the patient in question was the only one on the list
     if(link.Exists != true)
     {
-     Log.Message('Home page message not displayed');
-     return true;
+      Log.Message('Home page message not displayed');
+      return true;
     }
   
     WaitSeconds(2);
@@ -383,22 +383,22 @@ function check_patient_not_in_decline_patient_transfer_request_message(pat_name)
     var table = home_page_messages_path.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
 
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText!=pat_name)
-          { 
-            //Click checkbox against patient and then Unsuspend button
-            Log.Message("Patient not in List")    
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText!=pat_name)
+      { 
+      //Click checkbox against patient and then Unsuspend button
+      Log.Message("Patient not in List")    
+      return true;
       }
+    }
     Log.Message('Patient was on the decline transfer list')
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test - Decline_Patient_Transfer_Request - FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning('Test - Decline_Patient_Transfer_Request - FAILED Exception Occured = ' + e);
+    restart_INRstar(); 
+  }
 } 
 //--------------------------------------------------------------------------------
 function check_patient_in_transfer_request_not_accepted_message(pat_name)
@@ -442,27 +442,27 @@ function check_patient_in_transfer_request_not_accepted_message(pat_name)
   }
   catch(e)
   {
-    Log.Warning('Test patient_in_transfer_request_not_accepted FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    Log.Warning("Function - patient_in_transfer_request_not_accepted - FAILED Exception Occured = " + e);
+    restart_INRstar(); 
   }
 } 
 //--------------------------------------------------------------------------------
 function check_patient_with_incomplete_treatment_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
     var link = INRstarV5.NativeWebObject.Find("contentText", "*patient(s) with incomplete treatment.*");
   
-  //In case the patient in question was the only one on the list
+    //In case the patient in question was the only one on the list
     if(link.Exists != true)
-      {
-       Log.Message('Home page message not displayed');
-       return false;
-      }
+    {
+      Log.Message('Home page message not displayed');
+      return false;
+    }
   
     WaitSeconds(2);
     home_page_messages_path.Link(0).Click();
@@ -470,144 +470,140 @@ function check_patient_with_incomplete_treatment_message(pat_name)
     var table = home_page_messages_path.Panel("IncompleteTreatments").Table("IncompleteTreatmentsTable");
 
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            //Click checkbox against patient and then Unsuspend button    
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+      //Click checkbox against patient and then Unsuspend button    
+      return true;
       }
+    }
     Log.Message('Patient was not found on the list')
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test patient_in_referred_for_further_action FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Function - patient_in_referred_for_further_action - FAILED Exception Occured = " + e);
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 function check_patient_with_no_diagnosis_or_tp_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
     var link = INRstarV5.NativeWebObject.Find("idStr", "PatientsWithNoDiagnosisHeaderLink");
   
-  //In case the patient in question was the only one on the list
+    //In case the patient in question was the only one on the list
     if(link.Exists != true)
-      {
-       Log.Message('Home page message not displayed');
-       return false;
-      }
+    {
+      Log.Message('Home page message not displayed');
+      return false;
+    }
   
     WaitSeconds(2);
     home_page_messages_path.Link("PatientsWithNoDiagnosisHeaderLink").Click();
-    
     var table = home_page_messages_path.Panel("PatientsWithNoDiagnosis").Table("PatientWithNoDiagnosisReportTable");
 
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            //Click checkbox against patient and then Unsuspend button    
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+      //Click checkbox against patient and then Unsuspend button    
+      return true;
       }
-    Log.Message('Patient was not found on the list')
+    }
+    Log.Message('Patient was not found on the list');
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test patient_with_no_diagnosis_or_tp FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Function - patient_with_no_diagnosis_or_tp - FAILED Exception Occured = " + e);
+    restart_INRstar(); 
+  }
 } 
 //--------------------------------------------------------------------------------
 function check_overdue_non_warfarin_review_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
     var link = INRstarV5.NativeWebObject.Find("idStr", "OverdueReviewPatientHeaderLink");
   
-  //In case the patient in question was the only one on the list
+    //In case the patient in question was the only one on the list
     if(link.Exists != true)
-      {
-       Log.Message('Home page message not displayed');
-       return false;
-      }
+    {
+      Log.Message("Home page message not displayed");
+      return false;
+    }
   
     WaitSeconds(2);
     home_page_messages_path.Link("OverdueReviewPatientHeaderLink").Click();
-    
     var table = home_page_messages_path.Panel("OverdueReviewPatients").Table("PatientOverdueReviewReportTable");
 
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            Log.Message(pat_name);
-            //Click checkbox against patient and then Unsuspend button    
-            return true;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+      Log.Message(pat_name);
+      //Click checkbox against patient and then Unsuspend button    
+      return true;
       }
-    Log.Message('Patient was not found on the list')
+    }
+    Log.Message("Patient was not found on the list");
     return false;
   }
-  catch (e)
-      {
-       Log.Warning('Test overdue_non_warfarin_review FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Test overdue_non_warfarin_review FAILED Exception Occured = " + e);
+    restart_INRstar(); 
+  }
 } 
 //--------------------------------------------------------------------------------
-
 function check_patient_not_on_overdue_non_warfarin_review_message(pat_name)
 {
-  Goto_Home();
   try
   {
+    Goto_Home();  
     var home_page_messages_path = home_page_messages();
     var INRstarV5 = INRstar_base();
     WaitSeconds(2);
     var link = INRstarV5.NativeWebObject.Find("idStr", "OverdueReviewPatientHeaderLink");
   
-  //In case the patient in question was the only one on the list
+    //In case the patient in question was the only one on the list
     if(link.Exists != true)
-      {
-       Log.Message('Home page message not displayed');
-       return true;
-      }
+    {
+      Log.Message('Home page message not displayed');
+      return true;
+    }
   
     WaitSeconds(2);
     home_page_messages_path.Link("OverdueReviewPatientHeaderLink").Click();
-    
     var table = home_page_messages_path.Panel("OverdueReviewPatients").Table("PatientOverdueReviewReportTable");
 
     for (i=0; i<table.rowcount; i++)
-      {
-         if(table.Cell(i, 0).contentText==pat_name)
-          { 
-            Log.Message('Patient found on the list incorrectly ' + pat_name);
-            //Click checkbox against patient and then Unsuspend button    
-            return false;
-          }
+    {
+      if(table.Cell(i, 0).contentText==pat_name)
+      { 
+      Log.Message('Patient found on the list incorrectly ' + pat_name);
+      //Click checkbox against patient and then Unsuspend button    
+      return false;
       }
+    }
     Log.Message('Patient was not found on the list')
     return true;
   }
-  catch (e)
-      {
-       Log.Warning('Test patient_not_on_overdue_non_warfarin_review FAILED Exception Occured = ' + e);
-       Log_Off(); 
-      }
+  catch(e)
+  {
+    Log.Warning("Function - patient_not_on_overdue_non_warfarin_review - FAILED Exception Occured = " + e);
+    restart_INRstar();
+  }
 } 
 //--------------------------------------------------------------------------------
 function get_overdue_patient(patient_name)

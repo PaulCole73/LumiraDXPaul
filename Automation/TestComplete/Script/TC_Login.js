@@ -1,7 +1,6 @@
 ﻿//USEUNIT TSA_Login
 //USEUNIT TSV_Login
 //USEUNIT TSV_Logoff
-
 //--------------------------------------------------------------------------------
 function tc_log_on_to_inrstar_valid_credentials()
 {
@@ -15,7 +14,7 @@ function tc_log_on_to_inrstar_valid_credentials()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   }   
 }
 //--------------------------------------------------------------------------------
@@ -30,7 +29,7 @@ function tc_log_on_to_inrstar_no_credentials()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 }
 //--------------------------------------------------------------------------------
@@ -46,7 +45,7 @@ function tc_log_off_inrstar()
   catch(e)
   {
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    Log_Off(); 
+    restart_INRstar();
   } 
 }
 //--------------------------------------------------------------------------------
