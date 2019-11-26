@@ -660,32 +660,32 @@ function Goto_Local_Add_Permission(p_location, p_user)
 function Log_On(p_ctr)
 {
     wa_users = new Array(12);
-    wa_users[0] = "Sys.Admin_SCSL@INRstar.co.uk";
-    wa_users[1] = "hugo.searle@maplestead.com";
-    wa_users[2] = "dr_jones@studale";
-    wa_users[3] = "doc@prison";
-    wa_users[4] = "dr_dawn@studale";
-    wa_users[5] = "dr_extractv4@studale";
-    wa_users[6] = "dr_tierney@studale";
-    wa_users[7] = "dr_parry@studale";
-    wa_users[8] = "gov@prison";
-    wa_users[9] = "dr_jones@sterndale_practice";
-    wa_users[10] = "pt_dawn6";
-    wa_users[11] = "cl3@regression";
+    wa_users[0] = "";
+    wa_users[1] = "";
+    wa_users[2] = "";
+    wa_users[3] = "";
+    wa_users[4] = "";
+    wa_users[5] = "";
+    wa_users[6] = "";
+    wa_users[7] = "";
+    wa_users[8] = "";
+    wa_users[9] = "";
+    wa_users[10] = "";
+    wa_users[11] = "";
         
     wa_pwrd = new Array(12);
-    wa_pwrd[0] = "B1Scsl_INR";
-    wa_pwrd[1] = "INRstar_5";
-    wa_pwrd[2] = "INRstar_5";
-    wa_pwrd[3] = "INRstar_5";
-    wa_pwrd[4] = "Dawn6_01";
-    wa_pwrd[5] = "ExtractV4_11";
-    wa_pwrd[6] = "Tierney_1";
-    wa_pwrd[7] = "Parry_11";
-    wa_pwrd[8] = "INRstar_5";
-    wa_pwrd[9] = "INRstar_5";
-    wa_pwrd[10] = "INRstar_5";
-    wa_pwrd[11] = "INRstar_5";
+    wa_pwrd[0] = "";
+    wa_pwrd[1] = "";
+    wa_pwrd[2] = "";
+    wa_pwrd[3] = "";
+    wa_pwrd[4] = "";
+    wa_pwrd[5] = "";
+    wa_pwrd[6] = "";
+    wa_pwrd[7] = "";
+    wa_pwrd[8] = "";
+    wa_pwrd[9] = "";
+    wa_pwrd[10] = "";
+    wa_pwrd[11] = "";
 
     var w_system = Log_On_Where();
     

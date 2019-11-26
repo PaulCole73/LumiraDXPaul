@@ -10,7 +10,7 @@ function tc_add_a_new_warfarin_review()
   try
   {
     var test_title = 'Reviews - Add a new warfarin review'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_a_review', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_warfarin_review_new_review_button();
@@ -32,7 +32,7 @@ function tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine
   try
   {
     var test_title = 'Reviews - Add a non warfarin review with some test measurements for Creatinine clearance'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_a_review', 'M', 'Shared'); 
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite')
   

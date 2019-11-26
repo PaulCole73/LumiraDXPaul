@@ -17,7 +17,7 @@ function RunYahoo()
   textbox.SetText("deaninrstar@yahoo.com");
   button = form.buttonLoginSignin;
   button.ClickButton();
-  form.panelPasswdField.passwordboxLoginPasswd.SetText("INRstar_5");
+  form.panelPasswdField.passwordboxLoginPasswd.SetText("");
   button.ClickButton();
 }
   function navigate_through_list()
@@ -118,5 +118,5 @@ function RunHotmail()
   
   panel = Aliases.iexplore1.pageSignIn.formF1.panelIddivPwdPasswordtb;
   panel.panelIddivPwdPasswordexample.Click(53, 13);
-  panel.passwordboxI0118.SetText("INRstar_5");
+  panel.passwordboxI0118.SetText("");
 }

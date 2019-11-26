@@ -400,7 +400,7 @@ function set_Stage_value(INRstarV5, p_link, p_value, p_panel)
     form.Panel(1).SubmitButton("Save").Click();
 }
 //------------------------------------------------------------------------
-function reset_database_induction_dates(p_date1, p_date2, p_stage)
+function reset_database_induction_dates(p_date1, p_date2, p_stage)  //"SQL Clean-up"
 {
   var  ssms;
   var  wnd_desked_gsk;

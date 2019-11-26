@@ -7,7 +7,7 @@ function tc_add_a_new_iqc_result()
   try
   {
     var test_title = 'Options/IQC - Add a new IQC Result'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     var delete_existing_results =  delete_iqc_result_if_exists();
    
     var data_added_array = add_iqc_result();
@@ -29,7 +29,7 @@ function tc_edit_iqc_result()
   try
   {
     var test_title = 'Options/IQC -  Edit a new IQC Result'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     var delete_existing_results =  delete_iqc_result_if_exists();
     add_iqc_result();
   
@@ -52,7 +52,7 @@ function tc_delete_iqc_result()
   try
   {
     var test_title = 'Options/IQC - Delete the new IQC result'
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
     var delete_existing_results =  delete_iqc_result_if_exists();
  
     var data_added_array = add_iqc_result();

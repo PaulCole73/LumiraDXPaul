@@ -55,5 +55,5 @@ function quick_adverse_event_regression()
 
 function log_on_cl3()
 {
-     Log_On_User("cl3@regression","INRstar_5");
+     Log_On_User("");
 }

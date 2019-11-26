@@ -498,39 +498,43 @@ function set_month(p_m)
 function get_user_level(user_val)
 {
   var user_level;
+  var login_details = new Array();
+  login_details = get_login_details();
   
+  /*
   switch(user_val)
   {
     case 0: 
-    user_level = "clerical1";
+    user_level = login_details[0];
     break;
     case 1: 
-    user_level = "clerical2";
+    user_level = login_details[1];
     break;
     case 2: 
-    user_level = "clerical3";
+    user_level = login_details[2];
     break;
     case 3: 
-    user_level = "cl1";
+    user_level = login_details[3];
     break;
     case 4: 
-    user_level = "cl2";
+    user_level = login_details[4];
     break;
     case 5: 
-    user_level = "cl3";
+    user_level = login_details[5];
     break;
     case 6: 
-    user_level = "ladmin";
+    user_level = login_details[6];
     break;
     case 7: 
-    user_level = "clead";
+    user_level = login_details[7];
     break;
     case 8: 
-    user_level = "readonly";
+    user_level = login_details[8];
     break;
   }
+  */
   
-  return user_level;
+  return login_details[user_val];
 }
 //-----------------------------------------------------------------------------------
 function get_dosing_method(dm)
@@ -623,6 +627,7 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 
   try
   {
+    var pass = get_login_details(20);
     schema = "http://schemas.microsoft.com/cdo/configuration/";
     mConfig = getActiveXObject("CDO.Configuration");
     mConfig.Fields.$set("Item", schema + "sendusing", 2); // cdoSendUsingPort
@@ -645,7 +650,7 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 
     mConfig.Fields.$set("Item", schema + "smtpauthenticate", 1); // Authentication mechanism
     mConfig.Fields.$set("Item", schema + "sendusername", "AutomationLumira"); // User name (if needed)
-    mConfig.Fields.$set("Item", schema + "sendpassword", "INRstar_5"); // User password (if needed)
+    mConfig.Fields.$set("Item", schema + "sendpassword", pass); // User password (if needed)
     mConfig.Fields.Update();
 
     mMessage = getActiveXObject("CDO.Message");

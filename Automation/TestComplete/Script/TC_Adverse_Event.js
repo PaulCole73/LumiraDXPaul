@@ -9,7 +9,7 @@ function tc_add_a_new_adverse_event()
   try
   {
     var test_title = 'Adverse Event - Add a new adverse event'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_adverse_event', 'M', 'Shared'); 
     add_adverse_event();
     
@@ -43,7 +43,7 @@ function tc_delete_adverse_event()
   try
   {
     var test_title = 'Adverse Event - Delete adverse event'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'delete_adverse_event', 'M', 'Shared'); 
     add_adverse_event();
     delete_adverse_event();

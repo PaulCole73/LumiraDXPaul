@@ -11,7 +11,7 @@ function tc_neqas_add_new_from_eqc()
   try
   {
     var test_title = 'NEQAS - Add a NEQAS from the EQC tab'
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
       
     var batch_numbers = new Array();
     var row_data = new Array();
@@ -51,7 +51,7 @@ function tc_neqas_add_new_from_eqc_with_multiple_active_batches()
   try
   {
     var test_title = 'NEQAS - Add a NEQAS from the EQC tab with multiple batches'
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
       
     var batch_numbers = new Array();
     var row_data = new Array();
@@ -95,7 +95,7 @@ function tc_neqas_edit_existing_add_external_inr()
   try
   {
     var test_title = 'NEQAS - Edit Existing External INR'
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
       
     var batch_numbers = new Array();
     var row_data = new Array();
@@ -152,7 +152,7 @@ function tc_neqas_delete_ecq_entry()
   try
   {
     var test_title = 'NEQAS - Delete ECQ Entry'
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
       
     var batch_numbers = new Array();
     var row_data = new Array();
@@ -197,7 +197,7 @@ function tc_neqas_add_complete_ecq_entry()
   try
   {
     var test_title = 'NEQAS - Add a NEQAS from the EQC tab'
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
       
     var batch_numbers = new Array();
     var row_data = new Array();

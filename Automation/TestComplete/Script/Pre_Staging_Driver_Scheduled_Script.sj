@@ -130,7 +130,7 @@ function SendEmail(mFrom, mTo, mSubject, mBody, mAttach)
 
     mConfig.Fields.Item("smtpauthenticate") = 1; // Authentication mechanism
     mConfig.Fields.Item("sendusername") = "dean.lester@lumiradx.com"; // User name (if needed)
-    mConfig.Fields.Item("sendpassword") = "INRstar_5"; // User password (if needed)
+    mConfig.Fields.Item("sendpassword") = //password; // User password (if needed)
     mConfig.Fields.Update();
 
     mMessage = Sys.OleObject("CDO.Message");

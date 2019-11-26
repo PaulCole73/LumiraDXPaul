@@ -10,7 +10,7 @@ function tc_add_a_new_patient()
   try
   {
     var test_title = 'Patient - Add a new patient';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_a_new_patient', 'M', 'Shared'); 
     var results = validate_top_patient_audit(test_title, "Add Patient");
   
@@ -30,7 +30,7 @@ function tc_add_a_new_patient_duplicate_nhs()
   try
   {
     var test_title = 'Patient - Add a duplicate patient based on NHS number'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_a_new_dup_patient', 'M', 'Shared'); 
     var nhs_num = get_patient_nhs();
     var first_name = get_patient_firstname();

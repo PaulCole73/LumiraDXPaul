@@ -34,11 +34,11 @@
 			<testItem name="Staging" key="{3C83194B-70B7-4C90-AA43-178A4D0C7D9B}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
-					<testItem name="Login" key="{DC3A0BB4-779E-4CC7-AAF7-C31A5CA553AE}" group="False" enabled="False" testMoniker="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}login" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Login" key="{DC3A0BB4-779E-4CC7-AAF7-C31A5CA553AE}" group="False" enabled="True" testMoniker="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}login" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
-							<param0 name="User" type="3" localVarName="" varType="8" value="clead@regression" />
-							<param1 name="Password" type="3" localVarName="" varType="8" value="INRstar_5" />
-							<param2 name="TestStepMode" type="3" localVarName="" varType="8" value="Shared" />
+							<param0 name="user_index" type="3" localVarName="" varType="0" value="" />
+							<param1 name="TestStepMode" type="3" localVarName="" varType="8" value="Shared" />
+							<param2 name="reset_password" type="3" localVarName="" varType="0" value="" />
 						</testParameters>
 						<children />
 					</testItem>
