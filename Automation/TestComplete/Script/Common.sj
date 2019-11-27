@@ -210,7 +210,7 @@ function INRstar4_Start(INRstar4)
   WaitSeconds(10,"");
   
   // Enter password
-  INRstar4.frmMain.Window("MDIClient").VBObject("frmLogin").VBObject("txtPassword").wText = "supervisor";
+  INRstar4.frmMain.Window("MDIClient").VBObject("frmLogin").VBObject("txtPassword").wText = "";
   INRstar4.frmMain.Window("MDIClient").frmLogin.VBObject("cmdOK").ClickButton();
 }
 

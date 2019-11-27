@@ -7,7 +7,7 @@ function tc_find_patient_recently_viewed()
   try
   {
     var test_title = 'Patient Recently Viewed - Find patient recently viewed'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_a_new_patient', 'M', 'Shared'); 
   
     var patient_name = get_patient_fullname();

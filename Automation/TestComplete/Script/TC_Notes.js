@@ -8,7 +8,7 @@ function tc_add_a_new_note()
   try
   {
     var test_title = "Notes - Add a new note";
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_note', 'M', 'Shared'); 
     add_a_new_note();
   

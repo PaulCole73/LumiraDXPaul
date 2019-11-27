@@ -57,7 +57,23 @@ function remove_bridging_table_rows(no_of_rows, table_type)
   
   if(table_type = "pre-op")
   {
-    id_str = "placeholder"; 
+    var obj = bridging_schedule_preop_table().Cell(2, 7).Child(0);
+    id_str = obj.idStr;
+   
+    var delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
+    if(delete_button.Exists == true)
+    {
+      for(var i = 0; i < no_of_rows; i++)
+      {
+        var obj = bridging_schedule_preop_table().Cell(2, 7).Child(0);
+        id_str = obj.idStr;
+        delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
+        if(delete_button.Exists == true)
+        {
+          delete_button.Child(0).Click();
+        }
+      }
+    }
   }
   else if(table_type = "procedure")
   {
@@ -68,18 +84,7 @@ function remove_bridging_table_rows(no_of_rows, table_type)
     id_str = "placeholder"; 
   }
   
-  var delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
-  if(delete_button.Exists == true)
-  {
-    for(var i = 0; i < no_of_rows; i++)
-    {
-      delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
-      if(delete_button.Exists == true)
-      {
-        delete_button.Click();
-      }
-    }
-  }
+  WaitSeconds(2, "Waiting for row delete...");
 }
 //--------------------------------------------------------------------------------
 function add_bridging_table_rows(no_of_rows, table_type)
@@ -135,12 +140,15 @@ function validate_table(rows_to_check, table_type, data_array)
       expected_data.push(temp);
     }
     
+    Log.Message("Expected data is: " + expected_data + " ---- " + "Actual data is: " + row_data);
+    
     counter++;
     var result_set_1 = checkArrays(row_data, expected_data);
     result_set.push(result_set_1);
   }
   
-  return result_set;
+  var results = results_checker_are_true(result_set);
+  return results;
 }
 //--------------------------------------------------------------------------------
 function set_table_data(rows_to_set, data_array, table_type)
@@ -203,7 +211,7 @@ function set_table_data(rows_to_set, data_array, table_type)
       output[(i*7) + 1] = difference; 
     }
   }
-  
+  Log.Message(output);
   return output;
 }
 

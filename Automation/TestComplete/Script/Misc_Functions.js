@@ -113,7 +113,7 @@ function checkArrays(arrA, arrB, mess)
   if(arrA.length !== arrB.length) 
   {
     Log.Warning(mess + "//" + arrA + "//" + arrB + "//");
-    return false;
+    return false;Fget
   }
   for(var i=0;i<arrA.length;i++)
   {
@@ -498,39 +498,10 @@ function set_month(p_m)
 function get_user_level(user_val)
 {
   var user_level;
+  var login_details = new Array();
+  login_details = get_login_details();
   
-  switch(user_val)
-  {
-    case 0: 
-    user_level = "clerical1";
-    break;
-    case 1: 
-    user_level = "clerical2";
-    break;
-    case 2: 
-    user_level = "clerical3";
-    break;
-    case 3: 
-    user_level = "cl1";
-    break;
-    case 4: 
-    user_level = "cl2";
-    break;
-    case 5: 
-    user_level = "cl3";
-    break;
-    case 6: 
-    user_level = "ladmin";
-    break;
-    case 7: 
-    user_level = "clead";
-    break;
-    case 8: 
-    user_level = "readonly";
-    break;
-  }
-  
-  return user_level;
+  return login_details[user_val];
 }
 //-----------------------------------------------------------------------------------
 function get_dosing_method(dm)
@@ -623,6 +594,7 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 
   try
   {
+    var pass = get_login_details(20);
     schema = "http://schemas.microsoft.com/cdo/configuration/";
     mConfig = getActiveXObject("CDO.Configuration");
     mConfig.Fields.$set("Item", schema + "sendusing", 2); // cdoSendUsingPort
@@ -645,7 +617,7 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 
     mConfig.Fields.$set("Item", schema + "smtpauthenticate", 1); // Authentication mechanism
     mConfig.Fields.$set("Item", schema + "sendusername", "AutomationLumira"); // User name (if needed)
-    mConfig.Fields.$set("Item", schema + "sendpassword", "INRstar_5"); // User password (if needed)
+    mConfig.Fields.$set("Item", schema + "sendpassword", pass); // User password (if needed)
     mConfig.Fields.Update();
 
     mMessage = getActiveXObject("CDO.Message");
@@ -738,7 +710,7 @@ function change_environments(new_config_file_name) //Q:\Development and Testing\
   WaitSeconds(2);
   
   restart_INRstar();
-  WaitSeconds(20);
+  WaitSeconds(30);
 }
 //-----------------------------------------------------------------------------------
 function open_file_in_notepad(path)

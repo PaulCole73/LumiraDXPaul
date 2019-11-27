@@ -193,30 +193,30 @@ function Log_On(p_ctr)
 //  try
 //  {
     wa_users = new Array(11);
-    wa_users[0] = "Mary";
-    wa_users[1] = "hugo.searle@maplestead.com";
-    wa_users[2] = "dr_jones@studale";
-    wa_users[3] = "doc@prison";
-    wa_users[4] = "dr_dawn@studale";
-    wa_users[5] = "dr_extractv4@studale";
-    wa_users[6] = "dr_tierney@studale";
-    wa_users[7] = "dr_parry@studale";
-    wa_users[8] = "gov@prison";
-    wa_users[9] = "dr_jones@sterndale_practice";
-    wa_users[10] = "pt_dawn6";
+    wa_users[0] = "";
+    wa_users[1] = "";
+    wa_users[2] = "";
+    wa_users[3] = "";
+    wa_users[4] = "";
+    wa_users[5] = "";
+    wa_users[6] = "";
+    wa_users[7] = "";
+    wa_users[8] = "";
+    wa_users[9] = "";
+    wa_users[10] = "";
         
     wa_pwrd = new Array(11);
-    wa_pwrd[0] = "INRstar_5";
-    wa_pwrd[1] = "INRstar_5";
-    wa_pwrd[2] = "INRstar_5";
-    wa_pwrd[3] = "INRstar_5";
-    wa_pwrd[4] = "Dawn6_01";
-    wa_pwrd[5] = "ExtractV4_11";
-    wa_pwrd[6] = "Tierney_1";
-    wa_pwrd[7] = "Parry_11";
-    wa_pwrd[8] = "INRstar_5";
-    wa_pwrd[9] = "INRstar_5";
-    wa_pwrd[10] = "INRstar_5";
+    wa_pwrd[0] = "";
+    wa_pwrd[1] = "";
+    wa_pwrd[2] = "";
+    wa_pwrd[3] = "";
+    wa_pwrd[4] = "";
+    wa_pwrd[5] = "";
+    wa_pwrd[6] = "";
+    wa_pwrd[7] = "";
+    wa_pwrd[8] = "";
+    wa_pwrd[9] = "";
+    wa_pwrd[10] = "";
 
 
     var w_system = Log_On_Where();
@@ -306,8 +306,8 @@ function SCSL_Log_On()
     login_page = SCSL_Set_login_page(w_system);
     Log.Message("Login Page set to : " + login_page);
  
-    var w_user = "Mary";
-    var w_pwrd = "INRstar_5";
+    var w_user = "";
+    var w_pwrd = "";
     Log_On_Sub(login_page, w_user, w_pwrd);
 
     Log.Message("Just logged on as SCSL Admin");
@@ -326,18 +326,18 @@ function SCSL_Log_On_User(p_user)
  
     if (p_user == "Stu")
     {
-      var w_user = "stu_admin@inrstar.co.uk";
-      var w_pwrd = "Mary";
+      var w_user = "";
+      var w_pwrd = "";
     }
     if (p_user == "Paul")
     {
-      var w_user = "paul_admin@inrstar.co.uk";
-      var w_pwrd = "Mary";
+      var w_user = "";
+      var w_pwrd = "";
     }
     if (w_user == "")
     {
-      var w_user = "Sys.Admin_SCSL@INRstar.co.uk";
-      var w_pwrd = "B1Scsl_INR";
+      var w_user = "";
+      var w_pwrd = "";
     }
     Log_On_Sub(login_page, w_user, w_pwrd);
   }

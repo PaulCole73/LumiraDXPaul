@@ -17,7 +17,7 @@
 function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than_CL3_on_suggested_and_current_tab()
 {
   //Data setup
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'user_perms_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -47,7 +47,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
   Log_Off();
   
   //Check the lower level user has the button disabled
-  login('cl2@regression','INRstar_5','Shared');
+  login(4, "Shared");
   
   patient_search(pat_nhs);
   
@@ -67,7 +67,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
   Log_Off()
   
   //Check the lower level user has the button disabled
-  login('cl1@regression','INRstar_5','Shared');
+  login(3, "Shared");
 
   patient_search(pat_nhs);
   
@@ -95,7 +95,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
 //-----------------------------
 function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_suggested_and_current_tab()
 {
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -170,7 +170,7 @@ function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_sugges
   Log_Off()
 
   //Check the next level up user
-  login('clead@regression','INRstar_5','Shared');
+  login(7, "Shared");
   patient_search(pat_nhs);
 
   var sorb_button = sorb_button_suggested_path();
@@ -247,7 +247,7 @@ function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_sugges
 function tc_Patient_on_Induction_Fast_Fennerty_Gedge_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
   var test_title = 'SORB - Gets error when using SORB suggest button'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'fast_induct_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Fast','','Shared','');
   add_pending_fast_induction_treatment('1.2','Shared');
@@ -275,7 +275,7 @@ function tc_Patient_on_Induction_Fast_Fennerty_Gedge_dosing_gets_an_error_when_t
 function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
   var test_title = 'SORB - Slow Oates Error'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'oates_induct_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Oates','','Shared','');
   add_pending_induction_slow_treatment('1.2','Shared');
@@ -303,7 +303,7 @@ function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_
 function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
   var test_title = 'SORB - Slow Tait Error'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'tait_induct_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Tait','','Shared','');
   add_pending_induction_slow_treatment('1.2','Shared');
@@ -331,7 +331,7 @@ function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_u
 function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
 {
   var test_title = 'SORB - Manual Error'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'manual_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
   add_pending_manual_treatment('2.0','PoCT','2.0', '14 Days');
@@ -360,7 +360,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
 function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_coventry()
 {
   var test_title = 'SORB - Manual Error, prev Coventry'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -393,7 +393,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
 function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_hillingdon()
 {
   var test_title = 'SORB - Manual Error, prev Hillingdon'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Hillingdon','','Shared','');
   add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -426,7 +426,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
 function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual()
 {
   var test_title = 'SORB - Coventry Error, prev Manual'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
   add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'2.0','2.5','7');
@@ -458,7 +458,7 @@ function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB
 function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual()
 {
   var test_title = 'SORB - Hillingdon Error, prev Manual'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'dosing_method_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
   add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'2.0','2.5','7');
@@ -490,7 +490,7 @@ function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_So
 function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exists_on_all_dosing_algorithms()
 {
   var test_title = 'SORB - Disabled When No Previous Treatments'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB', 'no_current_treatment', 'M', 'Shared'); 
    
   //Manual dosing algorithm checks
@@ -580,7 +580,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
 function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_Maintenance_current_schedule_on_old_plan_is_Manual_on_current_tab()
 {
   var test_title = 'SORB - Long Title'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Manual','','Shared','');
   add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'2.2','2.0','7');
@@ -630,7 +630,7 @@ function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_M
 function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab()
 {
   var test_title = 'SORB - Coventry Maintenance Testing Review Period Boundaries'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -738,7 +738,7 @@ function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab(
 function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_tab()
 {
   var test_title = 'SORB - Hillingdon Review Period Boundaries'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Hillingdon', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Hillingdon','','Shared','');
   
@@ -845,7 +845,7 @@ function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_ta
 function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_valid()
 {
   var test_title = 'SORB - No SORB Current Schedule if Suggested Review Period Invalid'  
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Maintenance', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
 
@@ -947,7 +947,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
 function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_valid_and_current_review_is_invalid()
 {
   var test_title = 'SORB - No SORB Current Schedule if Suggested Review Period is Valid but Current is Invalid'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Maintenance', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
 
@@ -993,7 +993,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_va
 function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_invalid()
 {
   var test_title = 'SORB - No SORB is Suggested/Current Review Period is Invalid'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Maintenance', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
 
@@ -1024,7 +1024,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
 function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_function_with_self_tester_unticked_suggested_and_current_tab()
 {
   var test_title = 'SORB - Long Title'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'engage_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -1076,7 +1076,7 @@ function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_functio
 function tc_Patient_removed_from_Warfarin_self_testing_can_action_skip_or_boost_function_suggested_and_current_tab()
 {
   var test_title = 'SORB - Long Title'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'engage_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -1119,7 +1119,7 @@ function tc_Patient_removed_from_Warfarin_self_testing_can_action_skip_or_boost_
 function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_current_tab()
 {
   var test_title = 'SORB - Patient on Warfarin Self Testing Untick on Treatment Suggested/Current Tab'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'engage_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -1165,7 +1165,7 @@ function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_c
 function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab()
 {
   var test_title = 'SORB - Patient_on_DDD_program_gets_error_message_suggested_and_current_tab'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Hillingdon', 'DDD_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Hillingdon','','Shared','');
   
@@ -1209,7 +1209,7 @@ function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab(
 function tc_Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_function()
 {
   var test_title = 'SORB - Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_function'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'ddd_programme_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -1251,7 +1251,7 @@ function tc_Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_
 function tc_Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_function_in_suggested_and_current_schedule()
 {
   var test_title = 'SORB - Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_function_in_suggested_and_current_schedule'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'manual_self_test_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
@@ -1299,7 +1299,7 @@ function tc_suggested_and_current_tab_with_an_omit_day_in_suggested_schedule_get
   {
     var test_title = 'SORB Button Validation - Suggested and current tab with an omit day in Suggested schedule gets an error'
     var INRstarV5 = INRstar_base();
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('SORB_Coventry', 'omits', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -1350,7 +1350,7 @@ function tc_suggested_and_current_tab_check_do_not_take_days_do_not_block_sorb()
 // {
 //  var test_title = 'SORB Button Validation - Suggested and current tab check do not take days do not block SORB'
 //  var INRstarV5 = INRstar_base();
-//  login('cl3@regression','INRstar_5','Shared');
+//  login(5, "Shared");
 //  add_patient('SORB_Coventry', 'do_not_take', 'M', 'Shared'); 
 //  add_treatment_plan('W','Coventry','','Shared','');
 //  add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -1414,7 +1414,7 @@ function tc_suggested_and_current_tab_check_do_not_take_days_do_not_block_sorb()
 function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_suggested_schedule_on_suggested_and_current_tab()
 {
   var test_title = 'SORB - Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_suggested_schedule_on_suggested_and_current_tab'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'disabling_buttons', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -1487,7 +1487,7 @@ function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_aft
 function tc_Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_current_schedule_on_suggested_and_current_tab()
 {
   var test_title = 'SORB - Treatment_Buttons_Ensure_relevant_treatment_buttons_are_disabled_after_clicking_ok_on_SORB_screen_using_a_current_schedule_on_suggested_and_current_tab'
-  login('cl3@regression','INRstar_5','Shared');
+  login(5, "Shared");
   add_patient('SORB_Coventry', 'disabling_buttons', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");

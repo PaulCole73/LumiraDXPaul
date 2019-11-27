@@ -16,7 +16,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
   try
   {
     var test_title = "External Patient Lookup - Finding the patient - External patient lookup for a maintenance patient";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Lookup", "M", "Shared");
   
     var result_set = new Array();
@@ -31,7 +31,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
   
     var text = get_top_note_text();
@@ -67,7 +67,7 @@ function tc_external_patient_lookup_delete_inr()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Delete INR";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Delete", "M", "Shared");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -83,7 +83,7 @@ function tc_external_patient_lookup_delete_inr()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     delete_treatment();
@@ -116,7 +116,7 @@ function tc_external_patient_lookup_new_inr()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - New INR";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_INR", "M", "Shared");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -132,7 +132,7 @@ function tc_external_patient_lookup_new_inr()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_New_INR();
@@ -170,7 +170,7 @@ function tc_external_patient_lookup_same_day_maintenance_treatment()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Same day maintenance treatment";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "Ext_Second_Maint", "M", "Shared");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -187,7 +187,7 @@ function tc_external_patient_lookup_same_day_maintenance_treatment()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_New_INR();
@@ -217,7 +217,7 @@ function tc_external_patient_lookup_add_historic_inr()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Add a historical treatment to the current treatment plan";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Historic", "M", "Shared");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
   
@@ -230,7 +230,7 @@ function tc_external_patient_lookup_add_historic_inr()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     WaitSeconds(2);
@@ -260,7 +260,7 @@ function tc_external_patient_lookup_delete_multiple_inr()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Delete the two last external treatments";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "Ext_Delete_Two", "M", "Shared");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
   
@@ -273,7 +273,7 @@ function tc_external_patient_lookup_delete_multiple_inr()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -308,7 +308,7 @@ function tc_external_patient_lookup_add_adverse_event()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Add an adverse event to the patient";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Adverse", "M", "Shared");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
   
@@ -321,7 +321,7 @@ function tc_external_patient_lookup_add_adverse_event()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     add_adverse_event();
@@ -349,7 +349,7 @@ function tc_external_patient_lookup_add_note()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Add a patient note";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Note", "M", "Shared");
   
     var result_set = new Array();
@@ -361,7 +361,7 @@ function tc_external_patient_lookup_add_note()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     add_a_new_note();
@@ -389,7 +389,7 @@ function tc_external_patient_lookup_archive_note()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Archive a patient note";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Archive", "M", "Shared");
   
     var result_set = new Array();
@@ -412,7 +412,7 @@ function tc_external_patient_lookup_archive_note()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_Notes();
@@ -441,7 +441,7 @@ function tc_external_patient_lookup_edit_treatment_plan()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Edit the treatment plan";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "Ext_Edit_Treat", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
   
@@ -455,7 +455,7 @@ function tc_external_patient_lookup_edit_treatment_plan()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_Treatment_Plan();
@@ -484,7 +484,7 @@ function tc_external_patient_lookup_add_treatment_plan()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Add treatment plan from external location";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "Ext_Add_Treat", "M", "Shared");
   
     var result_set = new Array();
@@ -497,7 +497,7 @@ function tc_external_patient_lookup_add_treatment_plan()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_Treatment_Plan();
@@ -526,7 +526,7 @@ function tc_external_patient_lookup_add_treatment_to_old_plan()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Add treatment to a previous treatment plan";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "Ext_Prev_Treat", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -542,7 +542,7 @@ function tc_external_patient_lookup_add_treatment_to_old_plan()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_Treatments_Tab();
@@ -574,7 +574,7 @@ function tc_external_patient_lookup_treat_overdue_patient()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Overdue treatment checking";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Overdue", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.0", "0", "7", "2.5");
@@ -593,7 +593,7 @@ function tc_external_patient_lookup_treat_overdue_patient()
   
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
 
     add_maintenance_treatment("2.5", aqConvert.StrToDate(aqDateTime.Today()));
@@ -603,7 +603,7 @@ function tc_external_patient_lookup_treat_overdue_patient()
   
     Log_Off();
     
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     
     var state = check_patient_on_overdue_INR_list(pat_name);
     
@@ -627,7 +627,7 @@ function tc_external_patient_lookup_refer_patient_treatment()
   try
   {
     var test_title = "External Patient Lookup - Treating the patient - Referred treatment checking";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "External_Referred", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.0", "0", "7", "2.5");
@@ -643,7 +643,7 @@ function tc_external_patient_lookup_refer_patient_treatment()
     
     Log_Off();
   
-    login("cl3@regression2", "INRstar_5", "Shared");
+    login(15, "Shared");
     table_data = external_lookup_search_for_patient(nhs);
 
     add_pending_maintenance_treatment("2.0", aqDateTime.Today(), "", "poct");
@@ -657,7 +657,7 @@ function tc_external_patient_lookup_refer_patient_treatment()
   
     Log_Off();
     
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     
     var state = check_patient_on_refer_list(pat_name);
     

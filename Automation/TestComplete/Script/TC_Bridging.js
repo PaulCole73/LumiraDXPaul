@@ -16,7 +16,7 @@ function tc_bridging_tab_visible_only_with_warfarin()
   try
   {
     var test_title = "Patient: Treatment: Bridging - Tab only visible on Warfarin";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     
     var result_set = new Array();
     var drug_array = new Array();
@@ -47,7 +47,7 @@ function tc_bridging_button_new_bridging_record_permissions()
   try
   {
     var test_title = "Patient: Treatment: Bridging - Button - New Bridging Record, permissions";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -57,20 +57,19 @@ function tc_bridging_button_new_bridging_record_permissions()
     
     for(var i = 0; i < 9; i++)
     {
-      var user = get_user_level(i);
       var state = "";
     
-      login(user + "@regression", "INRstar_5", "Shared");
+      login(i, "Shared");
       patient_search(pat_nhs);
       state = get_new_bridging_record_button_state();
       
-      if(user == "clead" || user == "cl3")
+      if(i == 7 || i == 5)
       {
-        result_set_1 = button_checker(state, "enabled", "Check " + user + " Permissions");
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
       }
       else
       {
-        result_set_1 = button_checker(state, "disabled", "Check " + user + " Permissions");
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
       }
       result_set.push(result_set_1);
       var results = results_checker_are_true(result_set);
@@ -90,7 +89,7 @@ function tc_bridging_button_state_with_historic_warfarin_treatment()
   try
   {
     var test_title = "Patient: Treatment: Bridging - Button disabled with historic Warfarin plan";
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     
     var state;
     var result_set = new Array();
@@ -134,7 +133,7 @@ function tc_bridging_button_state_on_ddd_all_permissions()
   try
   {
     var test_title = "Patient: Treatment: Bridging - 'New Bridging Record' button disabled - on DDD - All permission levels";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -146,14 +145,13 @@ function tc_bridging_button_state_on_ddd_all_permissions()
     
     for(var i = 0; i < 9; i++)
     {
-      var user = get_user_level(i);
       var state = "";
     
-      login(user + "@regression", "INRstar_5", "Shared");
+      login(i, "Shared");
       patient_search(pat_nhs);
       state = get_new_bridging_record_button_state();
       
-      result_set_1 = button_checker(state, "disabled", "Check " + user + " Permissions");
+      result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
       result_set.push(result_set_1);
       
       var results = results_checker_are_true(result_set);
@@ -173,7 +171,7 @@ function tc_bridging_banner_msg_on_ddd_all_permissions()
   try
   {
     var test_title = "Patient: Treatment: Bridging - Banner is displayed - on DDD - All permission levels";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -187,10 +185,9 @@ function tc_bridging_banner_msg_on_ddd_all_permissions()
     
     for(var i = 0; i < 9; i++)
     {
-      var user = get_user_level(i);
       var state = "";
     
-      login(user + "@regression", "INRstar_5", "Shared");
+      login(i, "Shared");
       patient_search(pat_nhs);
       
       if(validate_bridging_tab_exists() == true)
@@ -219,7 +216,7 @@ function tc_bridging_button_state_on_ddd_stage_one()
   try
   {
     var test_title = "Patient: Treatment: Bridging - 'New Bridging Record' button disabled - Part 1 DDD";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -248,7 +245,7 @@ function tc_bridging_button_state_on_warfarin_self_test_all_permissions()
   try
   {
     var test_title = "Patient: Treatment: Bridging - 'New Bridging Record' button disabled - PST - All permissions";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -260,14 +257,13 @@ function tc_bridging_button_state_on_warfarin_self_test_all_permissions()
     
     for(var i = 0; i < 9; i++)
     {
-      var user = get_user_level(i);
       var state = "";
     
-      login(user + "@regression", "INRstar_5", "Shared");
+      login(i, "Shared");
       patient_search(pat_nhs);
       state = get_new_bridging_record_button_state();
       
-      result_set_1 = button_checker(state, "disabled", "Check " + user + " Permissions");
+      result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
       result_set.push(result_set_1);
         
       var results = results_checker_are_true(result_set);
@@ -287,7 +283,7 @@ function tc_bridging_banner_msg_on_warfarin_self_test_all_permissions()
   try
   {
     var test_title = "Patient: Treatment: Bridging - Banner is displayed - PST - All permissions";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -300,10 +296,9 @@ function tc_bridging_banner_msg_on_warfarin_self_test_all_permissions()
     
     for(var i = 0; i < 9; i++)
     {
-      var user = get_user_level(i);
       var state = "";
     
-      login(user + "@regression", "INRstar_5", "Shared");
+      login(i, "Shared");
       patient_search(pat_nhs);
       
       if(validate_bridging_tab_exists() == true)
@@ -332,7 +327,7 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_one()
   try
   {
     var test_title = "Patient: Treatment: Bridging - 'New Bridging Record' button disabled - Part 1 PST";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -361,7 +356,7 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_two()
   try
   {
     var test_title = "Patient: Treatment: Bridging - 'New Bridging Record' button disabled - Part 2 PST";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -391,7 +386,7 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_three()
   try
   {
     var test_title = "Patient: Treatment: Bridging - 'New Bridging Record' button disabled - Part 3 PST";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -424,7 +419,7 @@ function tc_bridging_create_schedule_add_six_days()
   try
   {
     var test_title = "Bridging - Pre-op Schedule +Add a day (0-6)";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -447,7 +442,7 @@ function tc_bridging_create_schedule_add_six_days()
       result_set.push(validate_table(i, "pre-op", data));
     }
     
-    var results = results_checker_are_true(validate_bridging_table_dates(date, rows_to_validate));
+    var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
     
     Log_Off();
@@ -464,7 +459,7 @@ function tc_bridging_create_schedule_add_days_procedure_today()
   try
   {
     var test_title = "Bridging - Pre-op Schedule +Add a day - Procedure is today.";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -477,7 +472,7 @@ function tc_bridging_create_schedule_add_days_procedure_today()
     
     data.push(date, "0", false, false, false, "", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
-    result_set = validate_table(3, "pre-op", data);
+    result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
@@ -504,7 +499,7 @@ function tc_bridging_create_schedule_add_days_procedure_tomorrow()
   try
   {
     var test_title = "Bridging - Pre-op Schedule +Add a day - Procedure is tomorrow.";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -517,7 +512,7 @@ function tc_bridging_create_schedule_add_days_procedure_tomorrow()
     
     data.push(date, "0", false, false, false, "", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
-    result_set = validate_table(3, "pre-op", data);
+    result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
@@ -544,7 +539,7 @@ function tc_bridging_create_schedule_add_days_procedure_yesterday()
   try
   {
     var test_title = "Bridging - Pre-op Schedule +Add a day - Procedure was yesterday.";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -557,7 +552,7 @@ function tc_bridging_create_schedule_add_days_procedure_yesterday()
     
     data.push(date, "0", false, false, false, "", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
-    result_set = validate_table(3, "pre-op", data);
+    result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
@@ -584,7 +579,7 @@ function tc_bridging_create_schedule_delete_six_days()
   try
   {
     var test_title = "Bridging - Pre-op Schedule -Delete a day (0-6)";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -621,7 +616,7 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
   try
   {
     var test_title = "Bridging - Pre-op Schedule -Delete a day - Procedure is tomorrow.";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -653,12 +648,12 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
 }
 //--------------------------------------------------------------------------------
 //Sprint 22
-function tc_bridging_procedure_schedule_add_days_today()
+function tc_bridging_procedure_schedule_delete_days_procedure_today()
 {
   try
   {
-    var test_title = "Bridging - Pre-op Schedule +Add a day - Procedure is today.";
-    login("clead@regression", "INRstar_5", "Shared");
+    var test_title = "Bridging - Pre-op Schedule -Delete a day - Procedure is today.";
+    login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
@@ -689,7 +684,44 @@ function tc_bridging_procedure_schedule_add_days_today()
     restart_INRstar();
   }
 }
-
+//--------------------------------------------------------------------------------
+//Sprint 22
+function tc_bridging_procedure_schedule_delete_days_procedure_yesterday()
+{
+  try
+  {
+    var test_title = "Bridging - Pre-op Schedule -Delete a day - Procedure is yesterday.";
+    login(7, "Shared");
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+    
+    var result_set = new Array();
+    var data = new Array();
+    
+    var date = aqDateTime.AddDays(aqDateTime.Today(), -1);
+    add_bridging_record(date);
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
+    
+    for(var i = 0; i < 3; i++)
+    {
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data = set_table_data((3-i), data, "pre-op");
+      result_set.push(validate_table((3-i), "pre-op", data));
+      remove_bridging_table_rows(1, "pre-op");
+    }
+    
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+    
+    Log_Off();
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    restart_INRstar();
+  }
+}
 
 
 
@@ -699,7 +731,7 @@ function tc_bridging_button_state_on_various_dms()
   try
   {
     var test_title = "Bridging - Check Bridging Button State";
-    login("cl3@regression", "INRstar_5", "Shared");
+    login(5, "Shared");
     var result_set = new Array();
     
     for(var i = 0; i < 6; i++)
