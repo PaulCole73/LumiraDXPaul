@@ -14,7 +14,7 @@ function login(user_index, TestStepMode, reset_password)
   
   login_details = get_login_details();
   
-  if(user_index != "")
+  if(user_index != null)
   {
     if(isNaN(user_index))
     {
@@ -67,7 +67,7 @@ function login(user_index, TestStepMode, reset_password)
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass)
 {
-  login(username, current_pass, 'Shared');
+  login(username, "Shared", current_pass);
   
   var login_details = new Array();
   login_details = get_login_details();

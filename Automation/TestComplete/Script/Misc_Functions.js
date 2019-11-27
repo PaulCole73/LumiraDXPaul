@@ -743,7 +743,7 @@ function change_environments(new_config_file_name) //Q:\Development and Testing\
   WaitSeconds(2);
   
   restart_INRstar();
-  WaitSeconds(20);
+  WaitSeconds(30);
 }
 //-----------------------------------------------------------------------------------
 function open_file_in_notepad(path)

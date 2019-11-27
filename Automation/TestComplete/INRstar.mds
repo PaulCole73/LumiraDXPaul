@@ -34,9 +34,9 @@
 			<testItem name="Staging" key="{3C83194B-70B7-4C90-AA43-178A4D0C7D9B}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
-					<testItem name="Login" key="{DC3A0BB4-779E-4CC7-AAF7-C31A5CA553AE}" group="False" enabled="False" testMoniker="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}login" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Login" key="{DC3A0BB4-779E-4CC7-AAF7-C31A5CA553AE}" group="False" enabled="True" testMoniker="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}login" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
-							<param0 name="user_index" type="3" localVarName="" varType="0" value="" />
+							<param0 name="user_index" type="3" localVarName="" varType="3" value="5" />
 							<param1 name="TestStepMode" type="3" localVarName="" varType="8" value="Shared" />
 							<param2 name="reset_password" type="3" localVarName="" varType="0" value="" />
 						</testParameters>
@@ -216,7 +216,7 @@
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="TS_Diagnosis" key="{B191A491-424C-4D26-BB36-C19DC474C8A0}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="TS_Diagnosis" key="{B191A491-424C-4D26-BB36-C19DC474C8A0}" group="False" enabled="False" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 						</testParameters>
@@ -315,7 +315,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="Setup" key="{B4D10557-E033-45CC-954E-CE3BBF51AD3A}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}change_environments" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -354,7 +354,7 @@
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="TS_Diagnosis" key="{36D2FBFE-1A48-48A1-BEC3-3A95B4F5904B}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="TS_Diagnosis" key="{36D2FBFE-1A48-48A1-BEC3-3A95B4F5904B}" group="False" enabled="False" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 						</testParameters>

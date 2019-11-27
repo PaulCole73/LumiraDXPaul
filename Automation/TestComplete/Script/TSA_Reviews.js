@@ -80,6 +80,8 @@ function add_non_warfarin_review(new_tp,data_req,rev_date,weight,creatinine)
   add_review_form_buttons_path.Button("SaveWarfarinReviewLink").Click();
 
   return review_data;
+  
+  WaitSeconds(2, "Waiting after Review...");
 }
 //--------------------------------------------------------------------------------
 function get_apixaban_review_data_before_save()

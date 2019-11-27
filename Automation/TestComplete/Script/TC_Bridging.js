@@ -442,7 +442,7 @@ function tc_bridging_create_schedule_add_six_days()
       result_set.push(validate_table(i, "pre-op", data));
     }
     
-    var results = results_checker_are_true(validate_bridging_table_dates(date, rows_to_validate));
+    var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
     
     Log_Off();
@@ -472,7 +472,7 @@ function tc_bridging_create_schedule_add_days_procedure_today()
     
     data.push(date, "0", false, false, false, "", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
-    result_set = validate_table(3, "pre-op", data);
+    result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
@@ -512,7 +512,7 @@ function tc_bridging_create_schedule_add_days_procedure_tomorrow()
     
     data.push(date, "0", false, false, false, "", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
-    result_set = validate_table(3, "pre-op", data);
+    result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
@@ -552,7 +552,7 @@ function tc_bridging_create_schedule_add_days_procedure_yesterday()
     
     data.push(date, "0", false, false, false, "", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
-    result_set = validate_table(3, "pre-op", data);
+    result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
@@ -648,11 +648,11 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
 }
 //--------------------------------------------------------------------------------
 //Sprint 22
-function tc_bridging_procedure_schedule_add_days_today()
+function tc_bridging_procedure_schedule_delete_days_today()
 {
   try
   {
-    var test_title = "Bridging - Pre-op Schedule +Add a day - Procedure is today.";
+    var test_title = "Bridging - Pre-op Schedule -Delete a day - Procedure is today.";
     login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
@@ -684,7 +684,44 @@ function tc_bridging_procedure_schedule_add_days_today()
     restart_INRstar();
   }
 }
-
+//--------------------------------------------------------------------------------
+//Sprint 22
+function tc_bridging_procedure_schedule_delete_days_yesterday()
+{
+  try
+  {
+    var test_title = "Bridging - Pre-op Schedule -Delete a day - Procedure is yesterday.";
+    login(7, "Shared");
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+    
+    var result_set = new Array();
+    var data = new Array();
+    
+    var date = aqDateTime.AddDays(aqDateTime.Today(), -1);
+    add_bridging_record(date);
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
+    
+    for(var i = 0; i < 3; i++)
+    {
+      data.length = 0;
+      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data = set_table_data((3-i), data, "pre-op");
+      result_set.push(validate_table((3-i), "pre-op", data));
+      remove_bridging_table_rows(1, "pre-op");
+    }
+    
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+    
+    Log_Off();
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    restart_INRstar();
+  }
+}
 
 
 

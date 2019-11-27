@@ -35,7 +35,8 @@ function tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine
     login(5, "Shared");
     add_patient('Regression', 'add_a_review', 'M', 'Shared'); 
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite')
-  
+    WaitSeconds(2, "Waiting after tp...");
+    
     var review_data_before = add_non_warfarin_review('','Y','','65','100');
     var review_data_after = get_review_tab_data();
 
