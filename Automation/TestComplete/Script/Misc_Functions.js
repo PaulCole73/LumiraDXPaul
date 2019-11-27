@@ -113,7 +113,7 @@ function checkArrays(arrA, arrB, mess)
   if(arrA.length !== arrB.length) 
   {
     Log.Warning(mess + "//" + arrA + "//" + arrB + "//");
-    return false;
+    return false;Fget
   }
   for(var i=0;i<arrA.length;i++)
   {
@@ -500,39 +500,6 @@ function get_user_level(user_val)
   var user_level;
   var login_details = new Array();
   login_details = get_login_details();
-  
-  /*
-  switch(user_val)
-  {
-    case 0: 
-    user_level = login_details[0];
-    break;
-    case 1: 
-    user_level = login_details[1];
-    break;
-    case 2: 
-    user_level = login_details[2];
-    break;
-    case 3: 
-    user_level = login_details[3];
-    break;
-    case 4: 
-    user_level = login_details[4];
-    break;
-    case 5: 
-    user_level = login_details[5];
-    break;
-    case 6: 
-    user_level = login_details[6];
-    break;
-    case 7: 
-    user_level = login_details[7];
-    break;
-    case 8: 
-    user_level = login_details[8];
-    break;
-  }
-  */
   
   return login_details[user_val];
 }
