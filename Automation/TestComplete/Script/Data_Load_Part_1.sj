@@ -21,7 +21,7 @@ function main()
   close_apps();
 }
 //=======================================================================
-function reset_database() //"SQL Clean-up"
+function reset_database()
 {
   Log.Message("About to Reset the Database");
   var ssms;

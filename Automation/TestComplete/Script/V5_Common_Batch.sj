@@ -400,7 +400,7 @@ function set_Stage_value(INRstarV5, p_link, p_value, p_panel)
     form.Panel(1).SubmitButton("Save").Click();
 }
 //------------------------------------------------------------------------
-function reset_database_induction_dates(p_date1, p_date2, p_stage)  //"SQL Clean-up"
+function reset_database_induction_dates(p_date1, p_date2, p_stage)  
 {
   var  ssms;
   var  wnd_desked_gsk;
@@ -428,13 +428,13 @@ function reset_database_induction_dates(p_date1, p_date2, p_stage)  //"SQL Clean
   
   Log.Message("Navigate to the Treatment Table"); 
   treeview = genericPane.Window("GenericPane").Window("WindowsForms10.Window.8.app.0.3553390").Window("WindowsForms10.SysTreeView32.app.0.3553390");
-  treeview.ExpandItem("|dev-sandpit\\manualtesting (SQL Server 10.0.1600 - sa)|Databases");
-  treeview.ExpandItem("|dev-sandpit\\manualtesting (SQL Server 10.0.1600 - sa)|Databases|ASPNETDB");
-  treeview.ExpandItem("|dev-sandpit\\manualtesting (SQL Server 10.0.1600 - sa)|Databases|ASPNETDB|Tables");
+  treeview.ExpandItem("");
+  treeview.ExpandItem("");
+  treeview.ExpandItem("");
   treeview.Drag(357, 260, 0, 128);
   
   Log.Message("Right click to Open for Edit");
-  treeview.ClickItemR("|dev-sandpit\\manualtesting (SQL Server 10.0.1600 - sa)|Databases|ASPNETDB|Tables|dbo.Treatment");
+  treeview.ClickItemR("");
   
   Log.Message("Open the SQL Editor");
   wnd_desked_gsk.Keys("^3");

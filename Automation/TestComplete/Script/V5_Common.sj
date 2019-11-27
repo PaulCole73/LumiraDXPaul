@@ -760,7 +760,7 @@ function set_practice_name(p_practice)
 }
 //=======================================================================
 // Reset all users passwords
-function reset_passwords() //Needs to be checked "SQL Clean-up"
+function reset_passwords()
 {
   Log.Message("About to Reset Passwords");
   var ssms;
