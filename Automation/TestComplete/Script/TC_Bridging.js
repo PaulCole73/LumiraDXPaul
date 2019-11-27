@@ -648,7 +648,7 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
 }
 //--------------------------------------------------------------------------------
 //Sprint 22
-function tc_bridging_procedure_schedule_delete_days_today()
+function tc_bridging_procedure_schedule_delete_days_procedure_today()
 {
   try
   {
@@ -686,7 +686,7 @@ function tc_bridging_procedure_schedule_delete_days_today()
 }
 //--------------------------------------------------------------------------------
 //Sprint 22
-function tc_bridging_procedure_schedule_delete_days_yesterday()
+function tc_bridging_procedure_schedule_delete_days_procedure_yesterday()
 {
   try
   {
