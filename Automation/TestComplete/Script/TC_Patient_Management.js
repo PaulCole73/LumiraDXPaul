@@ -22,7 +22,7 @@ function tc_patient_deactivate_a_patient()
     result_set.push(result_set_1);
   
     //Checking the yellow banner message for deactivation
-    process_confirm_sub('','De-Activating a patient');
+    process_popup("De-Activating a patient", "Confirm");
     result_set_1 = deactivating_patient_banner_warning_checker('Deactivating this patient will archive all existing treatment information and will cancel any unsaved treatment results.');
     result_set.push(result_set_1);
   
@@ -268,7 +268,7 @@ function tc_patient_change_the_patients_registered_practice()
     login(5, "Shared");
     add_patient('Regression', 'Registered_practice', 'M', 'Shared'); 
   
-    var reg_prac = "Deans Regression Testing Location 2";//"A01F0565" //"Deans Regression Testing Location 2" doesn't exist as a registered practice?
+    var reg_prac = "Deans Regression Testing Location 2";
     change_reg_practice(reg_prac);
     WaitSeconds(1)
   

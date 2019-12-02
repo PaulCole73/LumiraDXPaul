@@ -246,7 +246,6 @@ function edit_all_fields_treatment_plan_with_treatment()
 //This function will read in the existing field, amend the data and check the data is then different, if the data is the same after the edit then re-run the change until it is different
 
   var INRstarV5 = INRstar_base(); 
-  //Goto_Patient_TreatmentPlan_Edit();
   Goto_Patient_Treatment_Plan_Edit_Existing_Plan();
   var edit_treatment_plan = edit_treatment_plan_path();
   var treatment_plan_warfarin_details = edit_treatment_plan_warfarin_details_path();
@@ -255,14 +254,14 @@ function edit_all_fields_treatment_plan_with_treatment()
   //Treatment Duration
   var data_before = edit_treatment_plan.Panel(3).Select("TreatmentDuration").wText;
   edit_treatment_plan.Panel(3).Select("TreatmentDuration").ClickItem((Math.random()*8)+1);
-  process_confirm_sub('','Please Confirm');
+  process_popup("Please Confirm", "Confirm");
   var data_after = edit_treatment_plan.Panel(3).Select("TreatmentDuration").wText;
   
   //Check data is now different
   while (data_before==data_after)
   {
     edit_treatment_plan.Panel(3).Select("TreatmentDuration").ClickItem((Math.random()*8)+1);
-    process_confirm_sub('','Please Confirm');
+    process_popup("Please Confirm", "Confirm");
     var data_after = edit_treatment_plan.Panel(3).Select("TreatmentDuration").wText;
   } 
   Log.Message('This is data before amendment = // ' + data_before + ' //' + ' this is data after amendment = ' + '// ' + data_after + ' //')
@@ -270,14 +269,14 @@ function edit_all_fields_treatment_plan_with_treatment()
   //Target INR
   var data_before = treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").wText;
   treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").ClickItem((Math.random()*27)+1);
-  process_confirm_sub('','Please Confirm');
+  process_popup("Please Confirm", "Confirm");
   var data_after = treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").wText;
   
   //Check data is now different
   while (data_before==data_after)
   {
     treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").ClickItem((Math.random()*27)+1);
-    process_confirm_sub('','Please Confirm');
+    process_popup("Please Confirm", "Confirm");
     var data_after = treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").wText;
   } 
   Log.Message('This is data before amendment = // ' + data_before + ' //' + ' this is data after amendment = ' + '// ' + data_after + ' //')
@@ -285,14 +284,16 @@ function edit_all_fields_treatment_plan_with_treatment()
   //Dosing Method
   var data_before = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
   treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*2)+1);
-  var more_info = process_more_information(INRstarV5);
+  var item_val = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").value;
+  process_popup("More information - " + item_val, "Ok");
   var data_after = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
   
   //Check data is now different
   while (data_before==data_after)
   {
     treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*2)+1);
-    var more_info = process_more_information(INRstarV5);
+    var item_val = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").value;
+    process_popup("More information - " + item_val, "Ok");
     var data_after = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
   } 
   Log.Message('This is data before amendment = // ' + data_before + ' //' + ' this is data after amendment = ' + '// ' + data_after + ' //')

@@ -273,7 +273,7 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
     click_historic_button();
   
     var result_set = new Array(); 
-    var actual_warn_mess = get_pre_treatment_warning_message();
+    var actual_warn_mess = process_popup("Please Confirm", "Confirm");
     var expected_warn_mess = "Adding a historical treatment to this patient will remove them from this induction protocol. The patient must be treated by manual dosing.";
     var result_set_1 = compare_values(actual_warn_mess, expected_warn_mess, test_title); 
     result_set.push(result_set_1);
@@ -451,7 +451,7 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   
     result_set = new Array(); 
   
-    var actual_error_mess = get_dosing_engine_popup_text();
+    var actual_error_mess = process_alternate_popup("Please acknowledge", "Confirm");
     var expected_error_mess = "Low INR warning: Patient may be at increased risk of thromboembolic events until INR is back in-range." + 
                      " Consult clinical lead for advice about the use of LMWH for very low INR if clinically appropriate.";      
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
@@ -985,7 +985,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		override_finish_buttons.Button("OverrideAccept").Click();
 		
 	  //find the pop up window in the screen
-    output_message = return_message_please_confirm();
+    output_message = process_popup("Please confirm", "Confirm"); 
     
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
@@ -1437,12 +1437,9 @@ function tc_treatment_maintenance_cancel_pending()
     
     var cancel_btn = cancel_pending_treat_button()
     cancel_btn.Click();
-    
-    process_cancel_sub("", "Confirmation Required");
-    
+    process_popup("Confirmation Required", "Cancel");
     cancel_btn.Click();
-    
-    process_confirm_sub("", "Confirmation Required");
+    process_popup("Confirmation Required", "Confirm");
     
     treatment_values_1 = get_treatment_row(0);
     var child_count_1 = treatment_table().ChildCount;

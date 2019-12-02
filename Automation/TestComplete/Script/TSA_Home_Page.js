@@ -268,7 +268,7 @@ function accept_patient_in_transfer_request_message(pat_name)
         //Click Accept button against patient and accept the transfer
         table.Cell(i, 6).scrollIntoView(true);    
         table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-        process_confirm_change_location('');
+        process_popup("Please confirm to continue", "Confirm");
         return true;
       }
     }

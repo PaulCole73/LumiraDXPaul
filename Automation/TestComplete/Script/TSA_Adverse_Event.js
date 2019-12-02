@@ -36,7 +36,7 @@ function delete_adverse_event()
   {
     Log.Message("Delete button found");
     wbx_Button.Click();
-    process_confirm_delete_adverse_event();
+    process_popup("Confirmation Required", "Confirm");
   }
   else
   {

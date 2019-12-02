@@ -10,7 +10,7 @@ function deactivate_patient()
   WaitSeconds(1);  
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
   pat_managment_tab_status_buttons_path.Button("De_activatePatientButton").Click();
-  process_confirm_sub('','De-Activating a patient');
+  process_popup("De-Activating a patient", "Confirm");
  
   var patient_management_deactivate_form_path = patient_management_deactivate_form();
   patient_management_deactivate_form_path.Panel("DeactivatingReason").Panel("DeactivatingReasonList").Select("InactiveReason").ClickItem(5);
@@ -165,69 +165,79 @@ function reactivate_patient(drug, dm, start_date)
   
   treatment_plan_area.Panel(0).Image("calendar_png").Click();
       
-      datepicker = INRstarV5.Panel("ui_datepicker_div");
-      if (start_date=='')
-      {
-          datepicker.Panel(0).Panel(0).Select(1).ClickItem("2017");
-          datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jun");        
-          datepicker.Table(0).Cell(3, 3).Link(0).Click();
-      }
-      else
-      {
-           var w_yr = aqString.SubString(start_date,6,4);
-           var w_mth = aqConvert.StrToInt(aqString.SubString(start_date,3,2));
-           var w_day = aqString.SubString(start_date,0,2);
+  datepicker = INRstarV5.Panel("ui_datepicker_div");
+  if (start_date=='')
+  {
+    datepicker.Panel(0).Panel(0).Select(1).ClickItem("2017");
+    datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jun");        
+    datepicker.Table(0).Cell(3, 3).Link(0).Click();
+  }
+  else
+  {
+    var w_yr = aqString.SubString(start_date,6,4);
+    var w_mth = aqConvert.StrToInt(aqString.SubString(start_date,3,2));
+    var w_day = aqString.SubString(start_date,0,2);
            
-            datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
-            datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
-            select_day(w_day, datepicker);
-      }
+    datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+    datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+    select_day(w_day, datepicker);
+  }
       
-      treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
+  treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
       
-       if (drug == 'W')
-          {
-          treatment_plan_area.Panel(2).Select("DrugId").ClickItem("Warfarin");
-
-          var treatment_plan_warfarin_details_path = add_treatment_plan_warfarin_activate_details();  
+  if (drug == 'W')
+  {
+    treatment_plan_area.Panel(2).Select("DrugId").ClickItem("Warfarin");
+    var treatment_plan_warfarin_details_path = add_treatment_plan_warfarin_activate_details();  
           
-          if (dm == 'Coventry')
-                    treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Coventry Maintenance");
-          if (dm == 'Hillingdon')
-                    treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Hillingdon Maintenance");
-          if (dm == 'Tait')
-                    treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Tait");
-          if (dm == 'Oates')
-                    treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Oates");
-          if (dm == 'Fast')
-                    treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Fast Fennerty Gedge");
-          if (dm == 'Manual')
-                    treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
+    if (dm == 'Coventry')
+    {
+      treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Coventry Maintenance");
+    }
+    if (dm == 'Hillingdon')
+    {
+      treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Hillingdon Maintenance");
+    }
+    if (dm == 'Tait')
+    {
+      treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Tait");
+    }
+    if (dm == 'Oates')
+    {
+      treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Oates");
+    }
+    if (dm == 'Fast')
+    {
+      treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Fast Fennerty Gedge");
+    }
+    if (dm == 'Manual')
+    {
+      treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
+    }
                     
-          // Acknowledge Dosing More Info window
-          process_more_information(INRstarV5);  
+    // Acknowledge Dosing More Info window
+    var val = treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").value;
+    process_popup("More information - " + val, "Ok");
 
-          treatment_plan_warfarin_details_path.Panel(1).Select("TestingMethod").ClickItem("PoCT");
-          treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 Days");
+    treatment_plan_warfarin_details_path.Panel(1).Select("TestingMethod").ClickItem("PoCT");
+    treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 Days");
           
-          var tablet_selection_path = add_treatment_plan_activate_tablet_selection();
+    var tablet_selection_path = add_treatment_plan_activate_tablet_selection();
+    tablet_selection_path.Panel(1).Checkbox("Tablets_Use5").ClickChecked(true);
+    tablet_selection_path.Panel(2).Checkbox("Tablets_Use3").ClickChecked(true);
+    tablet_selection_path.Panel(3).Checkbox("Tablets_Use1").ClickChecked(true);
+    tablet_selection_path.Panel(4).Checkbox("Tablets_UseHalf").ClickChecked(true);
+    tablet_selection_path.Panel(5).Checkbox("Tablets_UseSplit").ClickChecked(true);
+  } 
           
-          tablet_selection_path.Panel(1).Checkbox("Tablets_Use5").ClickChecked(true);
-          tablet_selection_path.Panel(2).Checkbox("Tablets_Use3").ClickChecked(true);
-          tablet_selection_path.Panel(3).Checkbox("Tablets_Use1").ClickChecked(true);
-          tablet_selection_path.Panel(4).Checkbox("Tablets_UseHalf").ClickChecked(true);
-          tablet_selection_path.Panel(5).Checkbox("Tablets_UseSplit").ClickChecked(true);
-          } 
-          
-       if (drug != 'W')
-          {   
-           treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
-           treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
-          }
+  if (drug != 'W')
+  {   
+    treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
+    treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
+  }
       
-          var buttons_path = add_treatment_plan_activate_button(); 
-          buttons_path.SubmitButton("ActivatePatient").Click();
-                    
+  var buttons_path = add_treatment_plan_activate_button(); 
+  buttons_path.SubmitButton("ActivatePatient").Click();                 
 }   
 //--------------------------------------------------------------------------------
 function activating_patient_confirmation_checker(exp_err_mess)
@@ -447,7 +457,7 @@ function change_reg_practice(prac_name)
       pat_management_change_loc_path.SubmitButton("btnNext").Click();
       var reg_practice_final_buttons_path = reg_practice_final_buttons();
       reg_practice_final_buttons_path.SubmitButton("ConfirmChangeLocationDetails").Click();
-      process_confirm_change_location('');
+      process_popup("Please confirm to continue", "Confirm");
       
       break;
     }
@@ -594,7 +604,7 @@ function accept_transfer_with_warning(messagename)
           transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
         }       
         transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-        process_confirm_change_location('');
+        process_popup("Please confirm to continue", "Confirm");
         return true;
       }
     }

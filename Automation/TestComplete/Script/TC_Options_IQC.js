@@ -53,7 +53,7 @@ function tc_delete_iqc_result()
   {
     var test_title = 'Options/IQC - Delete the new IQC result'
     login(7, "Shared");
-    var delete_existing_results =  delete_iqc_result_if_exists();
+    delete_iqc_result_if_exists();
  
     var data_added_array = add_iqc_result();
     delete_iqc_result();

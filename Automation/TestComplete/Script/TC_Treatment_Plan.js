@@ -113,8 +113,8 @@ function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_a
 
     add_treatment_plan("W", "Manual", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2");
 
-    var result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
-    result_set.push(result_set_2);
+    result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
+    result_set.push(result_set_1);
   
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
