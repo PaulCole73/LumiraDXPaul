@@ -38,6 +38,7 @@ function Goto_Options_Diagnosis()
 function Goto_Options_Letter_Management()
 {
   Goto_Options();
+  WaitSeconds(1);
   options_letter_management().Click();
   WaitSeconds(1, "Going to Letter Management...");
 }
@@ -170,12 +171,11 @@ function Goto_Manage_User(username)
 // Log Off
 function Log_Off()
 {
-  WaitSeconds(1, "Waiting for Log Off button...");
+  WaitSeconds(3, "Waiting for Log Off button...");
   var INRstarV5 = INRstar_base();
   var panelHeader = INRstarV5.Panel("MainPage").Panel("header");
   var panelLoginStatus = panelHeader.Panel("logindisplay").Panel("LoginStatus");
-  panelLoginStatus.Link("LogoutLink").Click();    
-  WaitSeconds(2);
+  panelLoginStatus.Link("LogoutLink").Click();   
 }
 
 
@@ -346,6 +346,7 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
   }
     
   process_popup("Confirmation Required", "Confirm");
+  process_popup("New treatment plan will invalidate Induction protocol", "OK");
   WaitSeconds(1, "Waiting to go to Add Treatment Plan...");
 }
 //-------------------------------------------------------------------------------
@@ -620,6 +621,6 @@ function Goto_Create_Bridging_Record()
   Goto_Patient_Treatments_Tab();
   WaitSeconds(1);
   patient_clinical_tab().Link("PatientBridgingTab").Click();
-  bridging_schedule_buttons().Button("New_Bridging_Record").Click();
+  patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").Click();
   WaitSeconds(1, "Waiting to go to bridging form...");
 }

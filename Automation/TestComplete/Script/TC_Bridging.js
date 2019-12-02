@@ -436,7 +436,7 @@ function tc_bridging_create_schedule_add_six_days()
     for(var i = 1; i <= 6; i++)
     {
       data.length = 0;
-      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
       add_bridging_table_rows(1, "pre-op");
       data = set_table_data(i, data, "pre-op");
       result_set.push(validate_table(i, "pre-op", data));
@@ -470,7 +470,7 @@ function tc_bridging_create_schedule_add_days_procedure_today()
     var result_set = new Array();
     var data = new Array();
     
-    data.push(date, "0", false, false, false, "", "+ Add comment");
+    data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
     result_set.push(validate_table(3, "pre-op", data));
     
@@ -510,14 +510,14 @@ function tc_bridging_create_schedule_add_days_procedure_tomorrow()
     var result_set = new Array();
     var data = new Array();
     
-    data.push(date, "0", false, false, false, "", "+ Add comment");
+    data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
     result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
       data.length = 0;
-      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
       add_bridging_table_rows(1, "pre-op");
       data = set_table_data((3 + i), data, "pre-op");
       result_set.push(validate_table((3 + i), "pre-op", data));
@@ -550,14 +550,14 @@ function tc_bridging_create_schedule_add_days_procedure_yesterday()
     var result_set = new Array();
     var data = new Array();
     
-    data.push(date, "0", false, false, false, "", "+ Add comment");
+    data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
     data = set_table_data(3, data, "pre-op");
     result_set.push(validate_table(3, "pre-op", data));
     
     for(var i = 1; i <= 3; i++)
     {
       data.length = 0;
-      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
       add_bridging_table_rows(1, "pre-op");
       data = set_table_data((3 + i), data, "pre-op");
       result_set.push(validate_table((3 + i), "pre-op", data));
@@ -594,7 +594,7 @@ function tc_bridging_create_schedule_delete_six_days()
     for(var i = 0; i < 6; i++)
     {
       data.length = 0;
-      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
       data = set_table_data((6-i), data, "pre-op");
       result_set.push(validate_table((6-i), "pre-op", data));
       remove_bridging_table_rows(1, "pre-op");
@@ -630,7 +630,7 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
     for(var i = 0; i < 3; i++)
     {
       data.length = 0;
-      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
       data = set_table_data((3-i), data, "pre-op");
       result_set.push(validate_table((3-i), "pre-op", data));
       remove_bridging_table_rows(1, "pre-op");
@@ -667,7 +667,7 @@ function tc_bridging_procedure_schedule_delete_days_procedure_today()
     for(var i = 0; i < 3; i++)
     {
       data.length = 0;
-      data.push(date, "0", false, false, false, "", "+ Add comment");
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
       data = set_table_data((3-i), data, "pre-op");
       result_set.push(validate_table((3-i), "pre-op", data));
       remove_bridging_table_rows(1, "pre-op");
@@ -690,30 +690,30 @@ function tc_bridging_procedure_schedule_delete_days_procedure_yesterday()
 {
   try
   {
-    var test_title = "Bridging - Pre-op Schedule -Delete a day - Procedure is yesterday.";
+    var test_title = "Bridging - Procedure Schedule -Delete a day (0-6)";
     login(7, "Shared");
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
     var result_set = new Array();
     var data = new Array();
-    
-    var date = aqDateTime.AddDays(aqDateTime.Today(), -1);
+    var date = aqDateTime.Today();
     add_bridging_record(date);
     bridging_schedule_buttons().Button("Cancel").scrollIntoView();
     
-    for(var i = 0; i < 3; i++)
+    add_bridging_table_rows(5, "procedure");
+    
+    for(var i = 0; i < 6; i++)
     {
       data.length = 0;
-      data.push(date, "0", false, false, false, "", "+ Add comment");
-      data = set_table_data((3-i), data, "pre-op");
-      result_set.push(validate_table((3-i), "pre-op", data));
-      remove_bridging_table_rows(1, "pre-op");
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
+      data = set_table_data((6-i), data, "procedure");
+      result_set.push(validate_table((6-i), "procedure", data));
+      remove_bridging_table_rows(1, "procedure");
     }
-    
+        
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
-    
     Log_Off();
   } 
   catch(e)
@@ -722,7 +722,44 @@ function tc_bridging_procedure_schedule_delete_days_procedure_yesterday()
     restart_INRstar();
   }
 }
-
+//--------------------------------------------------------------------------------
+//CACUK945
+function tc_bridging_procedure_schedule_delete_six_days()
+{
+  try
+  {
+    var test_title = "Bridging - Procedure Schedule -Delete a day (0-6)";
+    login(7, "Shared");
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+    
+    var result_set = new Array();
+    var data = new Array();
+    var date = aqDateTime.Today();
+    add_bridging_record(date);
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
+    
+    add_bridging_table_rows(5, "procedure");
+    
+    for(var i = 0; i < 5; i++)
+    {
+      data.length = 0;
+      data.push(date, "0", false, false, false, "Once dailyTwice daily", "+ Add comment");
+      data = set_table_data((6-i), data, "procedure");
+      result_set.push(validate_table((6-i), "procedure", data));
+      remove_bridging_table_rows(1, "procedure");
+    }
+        
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+    Log_Off();
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    restart_INRstar();
+  }
+}
 
 
 //--------------------------------------------------------------------------------
@@ -754,7 +791,37 @@ function tc_bridging_button_state_on_various_dms()
     restart_INRstar();
   }
 }
-
-
-
-
+//--------------------------------------------------------------------------------
+function tc_bridging_INR_checkbox()
+{
+  try
+  {
+    var test_title = "Bridging - Check INR checkbox";
+    login(5, "Shared");
+    var result_set = new Array();
+    
+    for(var i = 0; i < 6; i++)
+    {
+      var dose = get_dosing_method(i);
+      add_patient("Bridging", "Schedule", "M", "Shared");
+      add_treatment_plan("W", dose, "", "Shared", "");
+      
+    var result_set = new Array();
+    var data = new Array();
+    var date = aqDateTime.Today();
+    add_bridging_record(date);
+    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
+    
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(6, "pre-op");
+    
+    //click "PatientBridgingTab"
+    }
+    Log_Off();
+  } 
+  catch(e)
+  {
+    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
+    restart_INRstar();
+  }
+}

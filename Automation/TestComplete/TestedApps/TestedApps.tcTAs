@@ -40,6 +40,18 @@
 			<testData />
 			<data />
 		</child>
+		<child key="{42D4DEAD-9F8D-4615-B0E9-D5C3C0547C0F}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+			<config nodeName="Disconnect" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="False">
+				<runModeParams activeRunMode="Simple">
+					<param name="RunAs" parameters="" workFolder="" userName="" password="" domain="" />
+					<param name="Profile" parameters="" workFolder="" useProject="False" projectFileName="" overrideProfiler="False" profilerName="" profileRunMode="Silent" AQtimeVersion="0" forceRunMode="False" />
+					<param name="Debug" parameters="" workFolder="" />
+					<param name="Simple" fileName="Disconnect.BAT" filePath="\\DEVSRV1\RedirectedFolders\tom.simons\Desktop\" parameters="" workFolder="" />
+				</runModeParams>
+			</config>
+			<testData />
+			<data />
+		</child>
 	</children>
 	<folders />
 </Root>

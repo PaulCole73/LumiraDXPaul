@@ -7,13 +7,27 @@ function external_lookup_search_for_patient(pat_nhs)
 {
   Goto_External_Patient_Lookup();
   
-  process_external_lookup_popup();
+  var registered = process_external_lookup_popup();
   
-  external_patient_lookup_reason_form().Panel(0).Checkbox("DirectCareConfirmation").Click();
-  external_patient_lookup_reason_form().Panel(1).Select("Reason").ClickItem(1);
-  external_patient_lookup_reason_form().Panel(2).Textbox("SupportingNotes").innerText = "Test";
-  external_patient_lookup_form().Panel("AdvancedSearchLeft").Panel(0).Textbox("NHSNumber").innerText = pat_nhs;
-  external_patient_lookup_form().Panel(0).SubmitButton("SearchButton").Click();
+  Log.Message(registered);
+  
+  if (registered == "")
+  
+  {
+    external_patient_lookup_reason_form().Panel(0).Checkbox("DirectCareConfirmation").Click();
+    external_patient_lookup_reason_form().Panel(1).Select("Reason").ClickItem(1);
+    external_patient_lookup_reason_form().Panel(2).Textbox("SupportingNotes").innerText = "Test";
+    external_patient_lookup_form().Panel("AdvancedSearchLeft").Panel(0).Textbox("NHSNumber").innerText = pat_nhs;
+    external_patient_lookup_form().Panel(0).SubmitButton("SearchButton").Click();
+  }
+  else
+  {
+    external_patient_lookup_reason_form_register().Panel(0).Checkbox("DirectCareConfirmation").Click();
+    external_patient_lookup_reason_form_register().Panel(1).Select("Reason").ClickItem(1);
+    external_patient_lookup_reason_form_register().Panel(2).Textbox("SupportingNotes").innerText = "Test";
+    external_patient_lookup_form_register().Panel("AdvancedSearchLeft").Panel(0).Textbox("NHSNumber").innerText = pat_nhs;
+    external_patient_lookup_form_register().Panel(0).SubmitButton("SearchButton").Click();
+  }
   
   WaitSeconds(1, "Waiting for Patient Table...");
   

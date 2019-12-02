@@ -550,6 +550,7 @@ function tc_external_patient_lookup_add_treatment_to_old_plan()
     patient_clinical_tab().Link("TreatmentItem").Click();
     
     var state = new_inr_button_path().enabled;
+    WaitSeconds(2, "Waiting..."); //had a timeout here
   
     var result_set_1 = checkArrays(table_data, patient_data, test_title);
     result_set.push(result_set_1);

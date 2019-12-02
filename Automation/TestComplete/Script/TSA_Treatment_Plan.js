@@ -235,7 +235,9 @@ function edit_treatment_plan_diagnosis()
   edit_treatment_plan.Panel(2).Select("DrugId").ClickItem('Warfarin');
   
   var buttons = edit_treatment_plan_button_path();       
-  buttons.Button("UpdatePatientTreatmentPlan").Click(); 
+  buttons.Button("UpdatePatientTreatmentPlan").Click();
+  
+  WaitSeconds(3, "Waiting for Edit Treatment Plan..."); 
 }
 //--------------------------------------------------------------------------------
 function edit_all_fields_treatment_plan_with_treatment()
@@ -252,14 +254,14 @@ function edit_all_fields_treatment_plan_with_treatment()
   
   //Treatment Duration
   var data_before = edit_treatment_plan.Panel(3).Select("TreatmentDuration").wText;
-  edit_treatment_plan.Panel(3).Select("TreatmentDuration").ClickItem((Math.random()*9)+1);
+  edit_treatment_plan.Panel(3).Select("TreatmentDuration").ClickItem((Math.random()*8)+1);
   process_confirm_sub('','Please Confirm');
   var data_after = edit_treatment_plan.Panel(3).Select("TreatmentDuration").wText;
   
   //Check data is now different
   while (data_before==data_after)
   {
-    edit_treatment_plan.Panel(3).Select("TreatmentDuration").ClickItem((Math.random()*9)+1);
+    edit_treatment_plan.Panel(3).Select("TreatmentDuration").ClickItem((Math.random()*8)+1);
     process_confirm_sub('','Please Confirm');
     var data_after = edit_treatment_plan.Panel(3).Select("TreatmentDuration").wText;
   } 
@@ -267,14 +269,14 @@ function edit_all_fields_treatment_plan_with_treatment()
   
   //Target INR
   var data_before = treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").wText;
-  treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").ClickItem((Math.random()*28)+1);
+  treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").ClickItem((Math.random()*27)+1);
   process_confirm_sub('','Please Confirm');
   var data_after = treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").wText;
   
   //Check data is now different
   while (data_before==data_after)
   {
-    treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").ClickItem((Math.random()*28)+1);
+    treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").ClickItem((Math.random()*27)+1);
     process_confirm_sub('','Please Confirm');
     var data_after = treatment_plan_warfarin_details.Panel("DiagnosisDetails").Panel(0).Select("TargetINR").wText;
   } 
@@ -282,14 +284,14 @@ function edit_all_fields_treatment_plan_with_treatment()
   
   //Dosing Method
   var data_before = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
-  treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*3)+1);
+  treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*2)+1);
   var more_info = process_more_information(INRstarV5);
   var data_after = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
   
   //Check data is now different
   while (data_before==data_after)
   {
-    treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*3)+1);
+    treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*2)+1);
     var more_info = process_more_information(INRstarV5);
     var data_after = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
   } 
@@ -342,7 +344,7 @@ function edit_all_fields_treatment_plan_with_treatment()
 function is_tp_date_picker_active()
 {
   //Goto_Patient_TreatmentPlan_Edit();
-  Goto_Patient_Treatmentplan_Edit_Existing_Plan();
+  Goto_Patient_Treatment_Plan_Edit_Existing_Plan();
   var edit_treatment_plan = edit_treatment_plan_path();
   var startDate = edit_treatment_plan.Panel(0).Textbox("Start");
     
@@ -398,19 +400,6 @@ function add_treatment_plan_drug_warning_checker(drug,exp_warn_mess)
   }  
 } 
 //--------------------------------------------------------------------------------
-function new_tp_popup_checker(exp_err_mess)
-{
-  var INRstarV5 = INRstar_base();    
-  Goto_Patient_Treatment_Plan();
-  var new_treatment_plan_button = new_treatment_plan_button_path();
-  new_treatment_plan_button.Click();
-  process_button(INRstarV5, "Confirmation Required", "Confirm");
-  
-  var pop_up_message = tp_popup_checker(exp_err_mess);
-   
-  return pop_up_message; 
-} 
-//--------------------------------------------------------------------------------
 function get_treatment_plan_single_field(data)
 {
   Goto_Patient_Treatment_Plan();
@@ -462,44 +451,23 @@ function get_patient_clinical_details()
 } 
 //--------------------------------------------------------------------------------
 function tp_banner_warning_checker(exp_warn_mess)
- {
-   var INRstarV5 = INRstar_base();
-   var tp_banner_path = tp_banner();
-   var actual_warn_mess = tp_banner_path.contentText;
+{
+  var tp_banner_path = tp_banner();
+  var actual_warn_mess = tp_banner_path.contentText;
   
-  Log.Message(actual_warn_mess)
-   
-     if (actual_warn_mess.includes(exp_warn_mess))
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
-        return false;
-        }
- }
+  Log.Message(actual_warn_mess)  
+  if (actual_warn_mess.includes(exp_warn_mess))
+  {
+    Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
+    return true; 
+  } 
+  else 
+  {
+    Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
+    return false;
+  }
+}
 //--------------------------------------------------------------------------------
-function tp_popup_checker(exp_warn_mess)
- {
-   var INRstarV5 = INRstar_base();
-   var pop_up_warning_message_path = pop_up_warning_message();
-   var actual_warn_mess = pop_up_warning_message_path.contentText; 
-  
-  Log.Message(actual_warn_mess)
-   
-     if (actual_warn_mess.includes(exp_warn_mess))
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
-        return false;
-        }
- }
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------

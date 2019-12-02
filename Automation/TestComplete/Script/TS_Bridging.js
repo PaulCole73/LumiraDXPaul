@@ -55,3 +55,8 @@ function ts_bridging_tab()
 {
   tc_bridging_tab_visible_only_with_warfarin();
 }
+//--------------------------------------------------------------------------------
+function ts_bridging_checkboxes()
+{
+  tc_bridging_INR_checkbox();
+}

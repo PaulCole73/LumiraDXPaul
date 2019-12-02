@@ -130,7 +130,7 @@ function process_external_lookup_popup()
     
     var reg_number = get_unique_number();
     
-    INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Select("ProfessionalRole").SelectItem(3);
+    INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Select("ProfessionalRole").ClickItem(3);
     INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Panel(0).Textbox("RegistrationNumber").innerText = reg_number;
     
     var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", "Update", "BUTTON");

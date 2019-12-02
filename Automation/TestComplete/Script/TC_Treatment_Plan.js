@@ -96,24 +96,24 @@ function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_a
 {
   try
   {  
-    var test_title = 'Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient'
+    var test_title = "Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient";
     login(5, "Shared");
-    add_patient('Regression', 'New_tp_induct_pat', 'M', 'Shared'); 
-    add_treatment_plan('W','Fast','','Shared','');
+    add_patient("Regression", "New_tp_induct_pat", "M", "Shared"); 
+    add_treatment_plan("W", "Fast", "", "Shared", "");
     add_fast_induction_treatment('1.0');
   
-    result_set = new Array();
+    var result_set = new Array();
 
-    result_set_1 = new_tp_popup_checker('This patient is currently on an Induction protocol. Creating a new treatment plan will invalidate the Induction protocol');
+    Goto_Patient_Treatment_Plan();
+    new_treatment_plan_button_path().Click();
+    process_popup("Confirmation Required", "Confirm");
+    var popup_msg = process_popup("New treatment plan will invalidate Induction protocol", "OK");
+    var result_set_1 = compare_values(popup_msg, "This patient is currently on an Induction protocol. Creating a new treatment plan will invalidate the Induction protocol"); 
     result_set.push(result_set_1);
-  
-    //need to continue with adding tp here so either continue or add then run the new tp function
-    var ok_error_pop_up_buttons_path = ok_error_pop_up_buttons();
-    ok_error_pop_up_buttons_path.Button(1).TextNode(0).Click();
 
-    add_treatment_plan('W','Manual',aqConvert.StrToDate(aqDateTime.Today()),'Shared','3');
+    add_treatment_plan("W", "Manual", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2");
 
-    result_set_2 = validate_top_patient_audit(test_title,'New Treatment Plan');
+    var result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
     result_set.push(result_set_2);
   
     //Validate all the results sets are true
@@ -409,12 +409,13 @@ function tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_de
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
  
-    var clinical_details_before_edit = get_patient_clinical_details();
-  
     var result_set = new Array();
+    
+    var clinical_details_before_edit = get_patient_clinical_details();
     edit_all_fields_treatment_plan_with_treatment();
-  
     var clinical_details_after_edit = get_patient_clinical_details();
+    Log.Message(clinical_details_before_edit);
+    Log.Message(clinical_details_after_edit);
   
     var result_set_1 = validate_arrays_dont_match(clinical_details_before_edit, clinical_details_after_edit, test_title);
     result_set.push(result_set_1);
