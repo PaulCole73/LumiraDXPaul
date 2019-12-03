@@ -73,7 +73,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
         var is_reusing = process_popup("New Warfarin Treatment Plan", prev_plan_action);
         if (is_reusing != "" && prev_plan_action != "No")
         {
-          buttons_path.SubmitButton("AddPatientTreatmentPlan").Click(); 
+          Log.Message("Treatment uses previous details, save and exiting...");
         }
         else
         {
@@ -120,7 +120,8 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       }
       
       if (drug != 'W' && drug != "Warfarin")
-      {   
+      {
+        Log.Message("Non-Warfarin Drug");
         treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
         process_popup("Drug Confirmation Change", "OK");
         treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);

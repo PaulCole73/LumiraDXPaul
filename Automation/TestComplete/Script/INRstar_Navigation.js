@@ -446,13 +446,13 @@ function Goto_Patient_Treatment()
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  WaitSeconds(2);
+  WaitSeconds(4, "Waiting for Treatment plan tab...");
   panelPT.Link("PatientTreatmentPlanTab").Click();
 
-  WaitSeconds(3, "Waiting at Treatment tab...");
+  WaitSeconds(4, "Waiting at Treatment tab...");
   
   patient_clinical_tab().Link("TreatmentItem").Click();
-  WaitSeconds(3, "Waiting for Treatments...");
+  WaitSeconds(4, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
