@@ -336,7 +336,7 @@
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="TS_Bridging" key="{5ABC41FE-D67D-4AC1-8A48-D449FC08B24D}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="TS_Bridging" key="{5ABC41FE-D67D-4AC1-8A48-D449FC08B24D}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 						</testParameters>

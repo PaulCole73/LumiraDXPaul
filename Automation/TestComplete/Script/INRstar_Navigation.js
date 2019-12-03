@@ -46,7 +46,7 @@ function Goto_Options_Letter_Management()
 // Navigate to Specific Letter
 function Goto_Bespoke_Letter(letter_name)
 {
-  var list = letter_management_list();
+  /*var list = letter_management_list();
   
   for(var i = 0; i < list.ChildCount; i++)
   {
@@ -61,7 +61,20 @@ function Goto_Bespoke_Letter(letter_name)
     {
       return false;
     }
+  }*/
+  var item = INRstar_base().NativeWebObject.Find("contentText", letter_name);
+  if(item.Exists && item.Height != 0)
+  {
+    item.scrollIntoView();
+    item.Click();
+    return true;
   }
+  else
+  {
+    return false;
+  }
+  
+  item.Refresh();
 }
 //-------------------------------------------------------------------------------
 // Navigate to Admin / IQC 
@@ -150,7 +163,7 @@ function Goto_Add_Clinic()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelMCTC = panelMCP.Panel("ManageClinicsTabContent");
     
-  WaitSeconds(2, "Waiting because clinics...");    
+  WaitSeconds(3, "Waiting because clinics...");    
   panelMCTC.Panel(0).Button("btnAddAppointment").Click();
   WaitSeconds(3, "Waiting to go to new clinic form...");
 }
