@@ -215,15 +215,19 @@ function goto_patient_clinic_tab_appointment_name(name, weeks_ahead)
     var child = clinic_names.Child(i).Panel("appointmentDiv").Table(0).Cell(0, 1).Table(0).Cell(0, 1).Table(0).Cell(2, 0).TextNode("lblDescription");
     if(child.contentText == name)
     {
+      Log.Message("Clinic Found.");
       for(var j = 0; j <= 24; j++)
       {
         var box = clinic_patients_appointments_container().FindChild("contentText", "Appts:" + j + "/24" + "\n" + name);
         if(box.Exists == true)
         {
+          Log.Message("Appointment Found.");
           box.ClickR();
           break;
         }
+        WaitSeconds(1);
       }
+      WaitSeconds(1);
       break;
     }
   }

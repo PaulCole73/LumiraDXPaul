@@ -539,6 +539,8 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "7", "2.5");
     
+    Log.Message(clinic_name);
+    Log.Message(clinic_date);
     tsa_clinic_make_appointment(clinic_name, clinic_date);
     
     var date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
