@@ -26,6 +26,7 @@ function tc_diagnosis_add_new_diagnosis()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     restart_INRstar();
   }
@@ -61,6 +62,7 @@ function tc_diagnosis_edit_diagnosis()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     restart_INRstar();
   }
@@ -92,6 +94,7 @@ function tc_diagnosis_delete_diagnosis()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     restart_INRstar();
   }

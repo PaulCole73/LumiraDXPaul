@@ -28,6 +28,7 @@ function tc_users_add_a_new_user()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -59,6 +60,7 @@ function tc_users_manage_user_permissions()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -115,6 +117,7 @@ function tc_users_manage_change_permissions_to_read_only()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -159,6 +162,7 @@ function tc_users_reset_user_password()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -203,6 +207,7 @@ function tc_users_disable_user()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -247,6 +252,7 @@ function tc_users_enable_user()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }

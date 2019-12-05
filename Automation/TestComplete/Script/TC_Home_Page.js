@@ -36,6 +36,7 @@ function tc_home_page_view_overdue_inr_test_message()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar(); 
   } 
@@ -75,6 +76,7 @@ function tc_home_page_view_exceeded_suspension_period_message()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar(); 
   } 
@@ -128,6 +130,7 @@ function tc_home_page_unsuspend_patient_through_message()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -180,6 +183,7 @@ function tc_home_page_view_patient_transfer_request()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -232,6 +236,7 @@ function tc_home_page_accept_patient_transfer_request()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar(); 
   }
@@ -290,6 +295,7 @@ function tc_home_page_decline_patient_transfer_request()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -334,6 +340,7 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -376,6 +383,7 @@ function tc_home_page_view_patient_with_incomplete_treatment()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -414,6 +422,7 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -453,6 +462,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -492,6 +502,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -543,6 +554,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
   }
   catch (e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar(); 
   }

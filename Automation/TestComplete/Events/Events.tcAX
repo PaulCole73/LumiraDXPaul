@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Root signature="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}" version="2" key="{4275B655-47E2-42AB-BDC1-2026BE76FD90}" type="Events" typeId="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}">
+<Root signature="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}" version="2" key="{78B47A72-ABB2-4987-B979-E4891B7767A0}" type="Events" typeId="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}">
 	<config nodeName="Events" tlbHistory="&quot;TestComplete general events&quot;" />
 	<testData />
 	<data />
 	<children>
-		<child key="{8E85D139-B68A-4CEE-92EC-10444818A776}" type="Event control" typeId="{8A98BAC4-2A89-4883-AAE7-F07337DF59D1}">
-			<config nodeName="GeneralEvents" lastOpenedTLB="" generatedCLSID="{DC8499D8-5842-481D-8AE4-C29CF2B3F285}" generatedTLBKey="{2709A136-2887-49A0-9E4F-3644C4CC1829}" generatedEventsKey="{30C31C03-4351-43B4-A0EF-FA146A37FF98}" generatedTLBDesc="TestComplete GeneralEvents Control - 09/02/2017 15:34:34">
+		<child key="{5928235B-3BDA-440B-B11F-5D8A576842C9}" type="Event control" typeId="{8A98BAC4-2A89-4883-AAE7-F07337DF59D1}">
+			<config nodeName="GeneralEvents" lastOpenedTLB="" generatedCLSID="{17B09A3F-6A44-4896-AFDD-9E66AB79CCD3}" generatedTLBKey="{916D8DD1-8A4A-4F5B-966B-8ACB37713EE3}" generatedEventsKey="{A6B3083E-A3E4-49B6-AAF8-B8BE7A3E83F5}" generatedTLBDesc="TestComplete GeneralEvents Control - 05/12/2019 15:59:03">
 				<eventInfo infoTLBVer="version.dll" infoGUID="{4C03E9F2-BB22-4E21-B2E7-E51B754FCBBA}" infoID="1610743820" infoControlName="General Events" infoEventName="OnTimeout" infoEventRealName="OnTimeout" infoDescription="Occurs when a timeout expires in a project or in a project suite." />
 				<eventInfo infoTLBVer="version.dll" infoGUID="{4C03E9F2-BB22-4E21-B2E7-E51B754FCBBA}" infoID="1610743819" infoControlName="General Events" infoEventName="OnOverlappingWindow" infoEventRealName="OnOverlappingWindow" infoDescription="Occurs when an overlapping window appears." />
 				<eventInfo infoTLBVer="version.dll" infoGUID="{4C03E9F2-BB22-4E21-B2E7-E51B754FCBBA}" infoID="1610743818" infoControlName="General Events" infoEventName="OnUnexpectedWindow" infoEventRealName="OnUnexpectedWindow" infoDescription="Occurs when an unexpected window appears." />
@@ -21,6 +21,7 @@
 				<eventInfo infoTLBVer="version.dll" infoGUID="{4C03E9F2-BB22-4E21-B2E7-E51B754FCBBA}" infoID="1610743809" infoControlName="General Events" infoEventName="OnLogMessage" infoEventRealName="OnLogMessage" infoDescription="Occurs when an informative message is posted to the test log." />
 				<eventInfo infoTLBVer="version.dll" infoGUID="{F5856842-4323-49FD-B806-36E22179EF8A}" infoID="1610743809" infoControlName="Test Engine Events" infoEventName="OnStopTest" infoEventRealName="OnStopTest" infoDescription="Occurs when TestComplete stops running a test or when the execution of a test item is over." />
 				<eventInfo infoTLBVer="version.dll" infoGUID="{F5856842-4323-49FD-B806-36E22179EF8A}" infoID="1610743808" infoControlName="Test Engine Events" infoEventName="OnStartTest" infoEventRealName="OnStartTest" infoDescription="Occurs when TestComplete starts running a test (whether it is run from the UI or command line, or as a project test item)." />
+				<handlerInfo handlerName="exception_occured" handlerMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}exception_occured" handlerEventName="OnLogError" handlerRealIID="{4C03E9F2-BB22-4E21-B2E7-E51B754FCBBA}" handlerRealDispID="1610743811" />
 			</config>
 			<testData />
 			<data />

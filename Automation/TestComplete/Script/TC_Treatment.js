@@ -45,6 +45,7 @@ function tc_treatment_add_a_historic_treatment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -85,6 +86,7 @@ function tc_treatment_add_a_manual_INR()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -131,6 +133,7 @@ function tc_treatment_manual_dosing_permissions()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -179,6 +182,7 @@ function tc_treatment_induction_dosing_permissions()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -214,6 +218,7 @@ function tc_treatment_add_a_treatment_comment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -257,6 +262,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -295,6 +301,7 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -334,6 +341,7 @@ function tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -366,6 +374,7 @@ function tc_treatment_user_cannot_override_an_induction_result()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -399,6 +408,7 @@ function tc_treatment_adding_a_result_earlier_than_last_recorded_result()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -433,6 +443,7 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -475,6 +486,7 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -482,7 +494,7 @@ function tc_treatment_add_a_new_maintenance_low_inr()
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_new_maintenance_high_inr()
 {
-try
+  try
   {
     //this test currently fails in hoth - because the dosing warning message has been changed
     var test_title = 'Treatment - Add a new maintenance high INR';
@@ -521,6 +533,7 @@ try
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -563,6 +576,7 @@ function tc_treatment_out_of_range_maintenance_permissions()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -601,6 +615,7 @@ function tc_treatment_delete_the_last_treatment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -648,6 +663,7 @@ function tc_treatment_refer_a_treatment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -709,6 +725,7 @@ function tc_treatment_authorise_a_referral()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -747,6 +764,7 @@ function tc_treatment_edit_a_treatment_comment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -797,6 +815,7 @@ function tc_treatment_add_multiple_historic_treatments()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -838,6 +857,7 @@ function tc_treatment_dosing_under_12_years_old()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -894,6 +914,7 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 	}
 	catch(e)
 	{
+    Options.Run.Timeout = 15000;
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
 	}
@@ -937,6 +958,7 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 	}
 	catch(e)
 	{
+    Options.Run.Timeout = 15000;
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
 	}
@@ -1016,6 +1038,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 	}
 	catch(e)
 	{
+    Options.Run.Timeout = 15000;
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
 	}
@@ -1081,6 +1104,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 	}
 	catch(e)
 	{
+    Options.Run.Timeout = 15000;
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
 	}
@@ -1137,6 +1161,7 @@ function tc_treatment_drag_and_drop_schedule_days()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
   }
@@ -1201,6 +1226,7 @@ function tc_treatment_maintenance_save_override_treatment()
 	}
 	catch(e)
 	{
+    Options.Run.Timeout = 15000;
 		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
 	}
@@ -1273,6 +1299,7 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
   }
@@ -1333,6 +1360,7 @@ function tc_treatment_manual_mutliple_historic_summary_check()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
   }
@@ -1408,6 +1436,7 @@ function tc_treatment_maintenance_override_privilege()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
   }
@@ -1462,6 +1491,7 @@ function tc_treatment_maintenance_cancel_pending()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
 		restart_INRstar();
   }
@@ -1521,6 +1551,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
 		restart_INRstar();
   }
@@ -1562,6 +1593,7 @@ function tc_treatment_add_treatment_for_self_tester()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
 		restart_INRstar();
   }

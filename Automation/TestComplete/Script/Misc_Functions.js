@@ -68,7 +68,7 @@ function data_contains_checker(data_1, data_2, test_mess)
   }
 }
 //-----------------------------------------------------------------------------------
-//Generic method for checking state of a button
+//Generic method for comparing state of a button
 function button_checker(actual_state, expected_state, test_mess)
 {
   if(actual_state == null || expected_state == null)
@@ -497,7 +497,6 @@ function set_month(p_m)
 //-----------------------------------------------------------------------------------
 function get_user_level(user_val)
 {
-  var user_level;
   var login_details = new Array();
   login_details = get_login_details();
   
@@ -564,7 +563,10 @@ function process_object_exists(content_type, content_data)
   }
 }
 //-----------------------------------------------------------------------------------
-
+function exception_occured(a, b)//randomly required 2 parameters
+{
+  Options.Run.Timeout = 0; //rush through test at error
+}
 
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------

@@ -19,12 +19,16 @@
 		<child name="TestedApps" key="{1CDA66BB-6D71-4DA8-810D-DFAD03478222}" type="Tested Applications" typeId="{90D101C8-80C7-48D4-9055-2E451B9BCD75}" pluginName="">
 			<data path="TestedApps\TestedApps.tcTAs" />
 		</child>
+		<child name="Events" key="{78B47A72-ABB2-4987-B979-E4891B7767A0}" type="Events" typeId="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}" pluginName="">
+			<data path="Events\Events.tcAX" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="Advanced" description="A logical folder that is used to organize project items and elements." moniker="{69583268-92F3-49FA-B573-C831F5ABC27B}">
 			<references>
 				<ref key="{61FF6AD2-8DBE-49B6-86C3-50F5B30F2BDB}" />
 				<ref key="{3B9D2A66-00BA-4877-8150-D6D0D0EF2106}" />
+				<ref key="{78B47A72-ABB2-4987-B979-E4891B7767A0}" />
 			</references>
 		</folder>
 	</folders>
@@ -478,7 +482,7 @@
 			</data>
 		</setting>
 		<setting name="{42651A7C-4287-4C91-AE26-98CBD2EA9355}" type="1" value="False" />
-		<setting name="{A2568CC8-7E8E-42C5-A87D-B69684A1E616}" type="1" value="True" />
+		<setting name="{A2568CC8-7E8E-42C5-A87D-B69684A1E616}" type="1" value="False" />
 		<setting name="{3EADAFE2-0CD4-4B1E-A2A9-B184E94FDCC7}" type="6" rowIndex="1" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
@@ -645,7 +649,7 @@
 			<data />
 		</setting>
 		<setting name="{3FC2A7B4-F4AF-4807-8D37-C3EE096DD330}" type="2" value="1024" />
-		<setting name="{9EB8E8E6-D2F2-4A8A-ADFB-492E8C0EAFEF}" type="2" value="25000" />
+		<setting name="{9EB8E8E6-D2F2-4A8A-ADFB-492E8C0EAFEF}" type="2" value="15000" />
 		<setting name="{47A56F4F-F2D3-4697-BEC8-632B29D5A344}" type="6" rowIndex="11" colIndex="1">
 			<columns>
 				<column type="1" enabled="True" />

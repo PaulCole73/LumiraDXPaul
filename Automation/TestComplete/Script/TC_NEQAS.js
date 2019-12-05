@@ -41,6 +41,7 @@ function tc_neqas_add_new_from_eqc()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -85,6 +86,7 @@ function tc_neqas_add_new_from_eqc_with_multiple_active_batches()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -142,6 +144,7 @@ function tc_neqas_edit_existing_add_external_inr()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -187,6 +190,7 @@ function tc_neqas_delete_ecq_entry()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -227,6 +231,7 @@ function tc_neqas_add_complete_ecq_entry()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }

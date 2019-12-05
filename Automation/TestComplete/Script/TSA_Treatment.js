@@ -218,7 +218,7 @@ function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
   process_popup("Please confirm that the following is correct", "Confirm");
 }
 //--------------------------------------------------------------------------------
-function add_maintenance_treatment(inr,date)
+function add_maintenance_treatment(inr, date)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();

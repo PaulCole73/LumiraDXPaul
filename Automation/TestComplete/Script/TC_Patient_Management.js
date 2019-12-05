@@ -51,6 +51,7 @@ function tc_patient_deactivate_a_patient()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -97,6 +98,7 @@ function tc_patient_reactivate_a_patient()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -134,6 +136,7 @@ function tc_patient_amend_a_patient_to_be_a_manual_self_tester()
   }
   catch (e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -172,6 +175,7 @@ function tc_patient_suspend_a_patient()
   }
   catch (e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -217,6 +221,7 @@ function tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -255,6 +260,7 @@ function tc_patient_unsuspend_a_patient()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -296,6 +302,7 @@ function tc_patient_change_the_patients_registered_practice()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -324,6 +331,7 @@ function tc_transfer_a_patient_who_has_a_pending_treatment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -379,6 +387,7 @@ function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_exist
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -425,6 +434,7 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
   }
   catch (e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -474,6 +484,7 @@ function tc_reactivate_a_potential_duplicate_patient()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -510,6 +521,7 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }

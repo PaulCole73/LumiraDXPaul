@@ -10,7 +10,7 @@ function tc_add_a_new_adverse_event()
   {
     var test_title = 'Adverse Event - Add a new adverse event'
     login(5, "Shared");
-    add_patient('Regression', 'add_adverse_event', 'M', 'Shared'); 
+    add_patient('Regression', 'add_adverse_event', 'M', 'Shared');
     add_adverse_event();
     
     var adverse_confirmation_banner = adverse_event_tab_confirm_box().Panel(0).Panel("PatientsAdverseEventsMessages").TextNode(0).contentText;
@@ -33,6 +33,7 @@ function tc_add_a_new_adverse_event()
   }
   catch (e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar(); 
   } 
@@ -55,6 +56,7 @@ function tc_delete_adverse_event()
   }
   catch (e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 

@@ -31,3 +31,18 @@ function add_sorb_based_on_current()
     sorb_finish_buttons.Button("SORBOk").Click();
 } 
 //--------------------------------------------------------------------------------
+function click_sorb_button(tab) //should be in SORB tsa
+{
+  var path = pending_treatment_buttons();
+  panelPTI = path.Panel("PendingTreatmentInfo");
+  
+  if(tab == "suggested")
+  {
+    panelPTI.Panel(0).Button("SkipOrBoost0").Click();
+  }
+  else if (tab == "current")
+  {
+    panelPTI.Panel("DosingSchedule").Link("CurrentTab").Click();
+    panelPTI.Panel(0).Button("SkipOrBoost1").Click(); 
+  }   
+}

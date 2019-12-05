@@ -19,6 +19,7 @@ function tc_add_a_new_note()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 

@@ -20,6 +20,7 @@ function tc_add_a_new_patient()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 
@@ -55,6 +56,7 @@ function tc_add_a_new_patient_duplicate_nhs()
   }
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   } 

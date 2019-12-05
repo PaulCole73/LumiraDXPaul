@@ -37,6 +37,7 @@ function tc_bespoke_letters_create_new_letter()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -78,6 +79,7 @@ function tc_bespoke_letters_edit_a_letter()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -115,6 +117,7 @@ function tc_bespoke_letters_copy_a_letter()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -169,6 +172,7 @@ function tc_bespoke_letters_rename_a_letter()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }

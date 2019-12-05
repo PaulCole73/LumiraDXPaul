@@ -37,6 +37,7 @@ function tc_treatment_plan_add_first_manual_treatment_plan()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -61,6 +62,7 @@ function tc_treatment_plan_add_first_maintenance_treatment_plan()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }  
@@ -87,6 +89,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_b
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }  
@@ -95,7 +98,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_b
 function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_added_induction_patient()
 {
   try
-  {  
+  { 
     var test_title = "Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient";
     login(5, "Shared");
     add_patient("Regression", "New_tp_induct_pat", "M", "Shared"); 
@@ -127,6 +130,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_a
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -150,6 +154,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yel
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -158,7 +163,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yel
 function tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_plan_if_no_treatments_have_been_added()
 {
   try
-  {  
+  { 
     var test_title = 'Treatment Plan - Ensure that all fields are editable on the treatment plan if no treatments have been added'
     login(5, "Shared");
     add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
@@ -207,6 +212,7 @@ function tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }   
@@ -247,6 +253,7 @@ function tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unl
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }  
@@ -288,6 +295,7 @@ function tc_edit_treatment_plan_after_a_review_has_been_added()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }   
@@ -358,6 +366,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_a_non_warfarin_drug_chec
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }  
@@ -394,6 +403,7 @@ function tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algo
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }  
@@ -433,6 +443,7 @@ function tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_de
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -471,6 +482,7 @@ function tc_edit_treatment_plan_change_diagnosis()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -517,6 +529,7 @@ function tc_treatment_plan_add_second_treatment_using_previous()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -568,6 +581,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     restart_INRstar();
   }

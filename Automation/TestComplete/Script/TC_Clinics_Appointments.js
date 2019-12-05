@@ -32,6 +32,7 @@ function tc_clinics_add_a_recurring_clinic()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -75,6 +76,7 @@ function tc_clinics_make_appointment_today_for_overdue_patient()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -130,6 +132,7 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -190,6 +193,7 @@ function tc_clinics_move_seven_days_beyond_ntd()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -232,6 +236,7 @@ function tc_clinics_cancel_future_appointment()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
@@ -241,7 +246,7 @@ function tc_clinics_mark_unmark_dna()
 {
   try
   {
-    var test_title = "Clinics/Appointments - Move NTD Beyond 7 Day Threshold";
+    var test_title = "Clinics/Appointments - Mark and Unmark DNA";
     login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
@@ -291,6 +296,7 @@ function tc_clinics_mark_unmark_dna()
   } 
   catch(e)
   {
+    Options.Run.Timeout = 15000;
     Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
     restart_INRstar();
   }
