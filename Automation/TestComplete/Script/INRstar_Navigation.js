@@ -38,6 +38,7 @@ function Goto_Options_Diagnosis()
 function Goto_Options_Letter_Management()
 {
   Goto_Options();
+  WaitSeconds(1);
   options_letter_management().Click();
   WaitSeconds(1, "Going to Letter Management...");
 }
@@ -45,7 +46,7 @@ function Goto_Options_Letter_Management()
 // Navigate to Specific Letter
 function Goto_Bespoke_Letter(letter_name)
 {
-  var list = letter_management_list();
+  /*var list = letter_management_list();
   
   for(var i = 0; i < list.ChildCount; i++)
   {
@@ -60,7 +61,20 @@ function Goto_Bespoke_Letter(letter_name)
     {
       return false;
     }
+  }*/
+  var item = INRstar_base().NativeWebObject.Find("contentText", letter_name);
+  if(item.Exists && item.Height != 0)
+  {
+    item.scrollIntoView();
+    item.Click();
+    return true;
   }
+  else
+  {
+    return false;
+  }
+  
+  item.Refresh();
 }
 //-------------------------------------------------------------------------------
 // Navigate to Admin / IQC 
@@ -149,7 +163,7 @@ function Goto_Add_Clinic()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelMCTC = panelMCP.Panel("ManageClinicsTabContent");
     
-  WaitSeconds(2, "Waiting because clinics...");    
+  WaitSeconds(3, "Waiting because clinics...");    
   panelMCTC.Panel(0).Button("btnAddAppointment").Click();
   WaitSeconds(3, "Waiting to go to new clinic form...");
 }
@@ -170,12 +184,11 @@ function Goto_Manage_User(username)
 // Log Off
 function Log_Off()
 {
-  WaitSeconds(1, "Waiting for Log Off button...");
+  WaitSeconds(3, "Waiting for Log Off button...");
   var INRstarV5 = INRstar_base();
   var panelHeader = INRstarV5.Panel("MainPage").Panel("header");
   var panelLoginStatus = panelHeader.Panel("logindisplay").Panel("LoginStatus");
-  panelLoginStatus.Link("LogoutLink").Click();    
-  WaitSeconds(2);
+  panelLoginStatus.Link("LogoutLink").Click();   
 }
 
 
@@ -346,6 +359,7 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
   }
     
   process_popup("Confirmation Required", "Confirm");
+  process_popup("New treatment plan will invalidate Induction protocol", "OK");
   WaitSeconds(1, "Waiting to go to Add Treatment Plan...");
 }
 //-------------------------------------------------------------------------------
@@ -432,13 +446,13 @@ function Goto_Patient_Treatment()
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  WaitSeconds(2);
+  WaitSeconds(4, "Waiting for Treatment plan tab...");
   panelPT.Link("PatientTreatmentPlanTab").Click();
 
-  WaitSeconds(3, "Waiting at Treatment tab...");
+  WaitSeconds(4, "Waiting at Treatment tab...");
   
   patient_clinical_tab().Link("TreatmentItem").Click();
-  WaitSeconds(3, "Waiting for Treatments...");
+  WaitSeconds(4, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
@@ -620,6 +634,6 @@ function Goto_Create_Bridging_Record()
   Goto_Patient_Treatments_Tab();
   WaitSeconds(1);
   patient_clinical_tab().Link("PatientBridgingTab").Click();
-  bridging_schedule_buttons().Button("New_Bridging_Record").Click();
+  patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").Click();
   WaitSeconds(1, "Waiting to go to bridging form...");
 }

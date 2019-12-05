@@ -148,7 +148,8 @@ function unsuspend_patient_on_exceed_suspension_period_list(pat_name)
       {
          if(table.Cell(i, 0).contentText==pat_name)
           { 
-            //Click checkbox against patient and then Unsuspend button    
+            //Click checkbox against patient and then Unsuspend button
+            table.Cell(i, 5).scrollIntoView(true);    
             table.Cell(i, 5).Checkbox("patients").ClickChecked(true);
             home_page_messages_path.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Panel(0).SubmitButton("UnsuspendLink").Click();
             return true;
@@ -264,9 +265,10 @@ function accept_patient_in_transfer_request_message(pat_name)
     {
       if(table.Cell(i, 0).contentText==pat_name)
       { 
-        //Click Accept button against patient and accept the transfer    
+        //Click Accept button against patient and accept the transfer
+        table.Cell(i, 6).scrollIntoView(true);    
         table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-        process_confirm_change_location('');
+        process_popup("Please confirm to continue", "Confirm");
         return true;
       }
     }
@@ -305,7 +307,8 @@ function decline_patient_in_transfer_request_message(pat_name)
     {
       if(table.Cell(i, 0).contentText==pat_name)
       { 
-        //Click Decline button against patient and accept the transfer    
+        //Click Decline button against patient and accept the transfer
+        table.Cell(i, 6).scrollIntoView(true);    
         table.Cell(i, 6).Button("DeclineChangePatientTestingLocation").Click(); 
         return true;
       }
@@ -346,7 +349,8 @@ function acknowledge_declined_patient_in_message(pat_name)
     {
       if(table.Cell(i, 0).contentText==pat_name)
       { 
-        //Click Decline button against patient and accept the transfer    
+        //Click Decline button against patient and accept the transfer
+        table.Cell(i, 4).scrollIntoView(true);    
         table.Cell(i, 4).Button("AcknowledgeDeclinedPatient").Click(); 
         return true;
       }
@@ -623,6 +627,7 @@ function get_overdue_patient(patient_name)
     {
       if(table.Cell(i, 0).contentText == patient_name)
       {
+        table.Cell(i, 0).scrollIntoView(true);
         table.Cell(i, 0).Click();
         break;
       }

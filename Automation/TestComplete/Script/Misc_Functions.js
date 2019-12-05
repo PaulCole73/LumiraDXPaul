@@ -113,7 +113,7 @@ function checkArrays(arrA, arrB, mess)
   if(arrA.length !== arrB.length) 
   {
     Log.Warning(mess + "//" + arrA + "//" + arrB + "//");
-    return false;Fget
+    return false;
   }
   for(var i=0;i<arrA.length;i++)
   {
@@ -618,6 +618,7 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
     mConfig.Fields.$set("Item", schema + "smtpauthenticate", 1); // Authentication mechanism
     mConfig.Fields.$set("Item", schema + "sendusername", "AutomationLumira"); // User name (if needed)
     mConfig.Fields.$set("Item", schema + "sendpassword", pass); // User password (if needed)
+    Log.Message(pass)
     mConfig.Fields.Update();
 
     mMessage = getActiveXObject("CDO.Message");
@@ -710,6 +711,7 @@ function change_environments(new_config_file_name) //Q:\Development and Testing\
   WaitSeconds(2);
   
   restart_INRstar();
+  
   WaitSeconds(30);
 }
 //-----------------------------------------------------------------------------------

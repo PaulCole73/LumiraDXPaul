@@ -47,7 +47,7 @@ function add_bridging_record(procedure_date)
   
   date_picker(date_path, date);
   
-  patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("CreateBridgingSchedulesForm").Panel(0).SubmitButton("CreateScheduleButton").Click();
+  patient_treatment_bridging_tab().Form("BridgingForm").Panel("BridgingTabContent").Panel(0).SubmitButton("CreateScheduleButton").Click();
 }
 //--------------------------------------------------------------------------------
 function remove_bridging_table_rows(no_of_rows, table_type)
@@ -55,33 +55,40 @@ function remove_bridging_table_rows(no_of_rows, table_type)
   var INRstarV5 = INRstar_base();
   var id_str; 
   
-  if(table_type = "pre-op")
+  if(table_type == "pre-op")
   {
-    var obj = bridging_schedule_preop_table().Cell(2, 7).Child(0);
-    id_str = obj.idStr;
-   
-    var delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
-    if(delete_button.Exists == true)
+    var table = bridging_schedule_preop_table();
+    for(var i = 0; i < no_of_rows; i++)
     {
-      for(var i = 0; i < no_of_rows; i++)
+      if(table.rowCount > 2)
       {
-        var obj = bridging_schedule_preop_table().Cell(2, 7).Child(0);
-        id_str = obj.idStr;
-        delete_button = INRstarV5.NativeWebObject.Find("idStr", id_str);
-        if(delete_button.Exists == true)
-        {
-          delete_button.Child(0).Click();
-        }
+        table.Cell(2, 7).Child(0).Click();
       }
     }
   }
-  else if(table_type = "procedure")
+  else if(table_type == "procedure")
   {
-    id_str = "placeholder"; 
+    var table = bridging_schedule_procedure_table();
+    for(var i = 0; i < no_of_rows; i++)
+    {
+      if(table.rowCount > 3)
+      {
+        var row_num = table.rowCount - 2;
+        table.Cell(row_num, 7).Child(0).Click();
+      }
+    }
   }
   else if(table_type = "post_discharge")
   {
-    id_str = "placeholder"; 
+    var table = bridging_schedule_post_discharge_table();
+    for(var i = 0; i < no_of_rows; i++)
+    {
+      if(table.rowCount > 2)
+      {
+        var row_num = table.rowCount - 2;
+        table.Cell(row_num, 7).Child(0).Click();
+      }
+    }
   }
   
   WaitSeconds(2, "Waiting for row delete...");
@@ -91,17 +98,19 @@ function add_bridging_table_rows(no_of_rows, table_type)
 {
   for(var i = 0; i < no_of_rows; i++)
   {
-    if(table_type = "pre-op")
+    if(table_type == "pre-op")
     {
       bridging_schedule_add_button().Click();
     }
-    else if(table_type = "procedure")
+    else if(table_type == "procedure")
     {
-      //add_button.Click();
+      bridging_schedule_procedure_table().FindChild("idStr", "ProcedureAddButton", 1).Click();
+      bridging_schedule_procedure_table().Refresh();
     }
-    else if(table_type = "post-discharge")
+    else if(table_type == "post-discharge")
     {
-      //add_button.Click();
+      bridging_schedule_post_discharge_table().FindChild("idStr", "Post-dischargeAddButton", 1).Click();
+      bridging_schedule_post_discharge_table().Refresh();
     }
   }
 }
@@ -114,6 +123,7 @@ function validate_table(rows_to_check, table_type, data_array)
   var row_index;
   var table;
   var counter = 0;
+  var start_row;
   
   if(table_type == "pre-op")
   {
@@ -131,8 +141,8 @@ function validate_table(rows_to_check, table_type, data_array)
   for(var i = table.rowCount - 1; i >= (table.rowCount - rows_to_check); i--)
   {
     expected_data.length = 0;
-    row_index = (counter*7);
     row_data = get_bridging_schedule_table_row(i, table_type);
+    row_index = (counter*7);
     
     for(var j = 0; j < 7; j++)
     {
@@ -156,7 +166,7 @@ function set_table_data(rows_to_set, data_array, table_type)
   var output = new Array();
   var val = data_array[0];
 
-  if(table_type = "pre-op")
+  if(table_type == "pre-op")
   {
     for(var i = 0; i < rows_to_set; i++)
     {
@@ -173,7 +183,7 @@ function set_table_data(rows_to_set, data_array, table_type)
       output[(i*7) + 1] = difference; 
     }
   }
-  else if(table_type = "procedure")
+  else if(table_type == "procedure")
   {
     for(var i = 0; i < rows_to_set; i++)
     {
@@ -184,13 +194,21 @@ function set_table_data(rows_to_set, data_array, table_type)
     }
     for(var i = 0; i < rows_to_set; i++)
     {
+      var temp = rows_to_set - 1 - i;
       var date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(val, i), "%d-%b-%Y")
-      var difference = "+" + i;
-      output[i*7] = date;
+      if(temp != 0)
+      {
+        var difference = "+" + temp;
+      }
+      else
+      {
+        var difference = temp;
+      }
+      output[temp*7] = date;
       output[(i*7) + 1] = difference; 
     }
   }
-  else if(table_type = "post-discharge")
+  else if(table_type == "post-discharge")
   {
     var proc_row_count = bridging_schedule_procedure_table().rowCount;
     proc_row_count -= 2;

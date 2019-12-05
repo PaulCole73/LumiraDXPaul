@@ -365,15 +365,16 @@ function get_bridging_schedule_table_row(row_num, table_type)
   var table;
   row_data.length = 0;
   
-  if(table_type = "pre-op")
+  if(table_type == "pre-op")
   {
     table = bridging_schedule_preop_table();
   }
-  else if(table_type = "procedure")
+  else if(table_type == "procedure")
   {
     table = bridging_schedule_procedure_table();
+    row_num -= 1;
   }
-  else if(table_type = "post-discharge")
+  else if(table_type == "post-discharge")
   {
     table = bridging_schedule_post_discharge_table();
   }
@@ -385,7 +386,7 @@ function get_bridging_schedule_table_row(row_num, table_type)
   {
     if(i == 2 || i == 3 || i == 4)
     {
-      row_data.push(table.Cell(row_num, i).Child(0).Checked);
+      row_data.push(table.Cell(row_num, i).Child(1).checked);
     }
     else
     {
