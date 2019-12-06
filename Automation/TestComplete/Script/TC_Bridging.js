@@ -7,8 +7,9 @@
 //USEUNIT TSA_Patient_Management
 //USEUNIT TSA_Self_Care
 //USEUNIT TSA_Bridging
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT Get_Functions
 //--------------------------------------------------------------------------------
 //CACUK-919 CACUK-920
 function tc_bridging_tab_visible_only_with_warfarin()

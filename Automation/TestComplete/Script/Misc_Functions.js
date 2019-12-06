@@ -496,43 +496,6 @@ function set_month(p_m)
   return w_Month;
 }
 //-----------------------------------------------------------------------------------
-function get_user_level(user_val)
-{
-  var login_details = new Array();
-  login_details = get_login_details();
-  
-  return login_details[user_val];
-}
-//-----------------------------------------------------------------------------------
-function get_dosing_method(dm)
-{
-  var dose_method;
-  
-  switch(dm)
-  {
-    case 0: 
-    dose_method = "Coventry";
-    break;
-    case 1: 
-    dose_method = "Hillingdon";
-    break;
-    case 2: 
-    dose_method = "Fast";
-    break;
-    case 3: 
-    dose_method = "Oates";
-    break;
-    case 4: 
-    dose_method = "Tait";
-    break;
-    case 5: 
-    dose_method = "Manual";
-    break;
-  }
-  
-  return dose_method;
-}
-//-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
 {
   var INRstarV5 = INRstar_base();
@@ -627,7 +590,6 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
     mConfig.Fields.$set("Item", schema + "smtpauthenticate", 1); // Authentication mechanism
     mConfig.Fields.$set("Item", schema + "sendusername", "AutomationLumira"); // User name (if needed)
     mConfig.Fields.$set("Item", schema + "sendpassword", pass); // User password (if needed)
-    Log.Message(pass)
     mConfig.Fields.Update();
 
     mMessage = getActiveXObject("CDO.Message");
@@ -835,16 +797,4 @@ function set_get_environment(env)
     environment = env;
     return environment;
   }
-}
-
-function test()
-{
-  var string = "Misc_Functions." + "do_this";
-  Runner.CallMethod(string);
-}
-
-function do_this()
-{
-  var item = Project.TestItems.Current;
-  Log.Message(item);
 }

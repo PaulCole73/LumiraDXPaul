@@ -18,7 +18,6 @@
 //USEUNIT TC_Patient_Tests_Due
 //USEUNIT TC_PoCT
 //USEUNIT TC_Reviews
-//USEUNIT TC_Skip_Or_Boost
 //USEUNIT TC_Treatment
 //USEUNIT TC_Treatment_Plan
 //USEUNIT Misc_Functions
@@ -26,18 +25,21 @@
 //---------------------------------------------------------------------------------//
 //                              GLOBAL VARIABLES                                   //
 //---------------------------------------------------------------------------------//
-var test_names = new Array();
+var test_names = new Array(); //array must be global so it remains in scope and can be added to by external functions
 
 
 //---------------------------------------------------------------------------------//
 //                            Failed Test Functions                                //
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
-function reset_tests_array()
+//Resets the array to hold a list of the units/tests that fail during a run
+//Tests are entered into this array when they throw their respective catch blocks
+function reset_tests_array() 
 {
   test_names.length = 0;
 }
 //-----------------------------------------------------------------------------------
+//Enters tests into array via catch block, resets the timeout duration to default, restarts application to clear window
 function handle_failed_tests(suite_name, test_name)
 {
   Options.Run.Timeout = 15000;
@@ -65,6 +67,8 @@ function handle_failed_tests(suite_name, test_name)
   restart_INRstar();
 }
 //-----------------------------------------------------------------------------------
+//Loops through all tests that have failed at the end of an automation run
+//only loops through the number that are present at the first call will not re-run tests that fail a second time
 function retest_failed_automation_tests()
 {
   WaitSeconds(2);
