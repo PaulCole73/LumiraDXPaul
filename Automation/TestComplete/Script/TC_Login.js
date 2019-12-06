@@ -9,13 +9,16 @@ function tc_log_on_to_inrstar_valid_credentials()
     var test_title = 'Login - Log on to INRstar valid credentials'
     
     login(5, "Shared");
-    tsv_login_inrstar("1", "cl3 @ Deans Regression Testing Location"); 
+    tsv_login_inrstar("1", "cl3 @ Deans Regression Testing Location");
+    
     Log_Off();
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Login";
+    var test_name = "tc_log_on_to_inrstar_valid_credentials";
+    handle_failed_tests(suite_name, test_name);
   }   
 }
 //--------------------------------------------------------------------------------
@@ -29,8 +32,10 @@ function tc_log_on_to_inrstar_no_credentials()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Login";
+    var test_name = "tc_log_on_to_inrstar_no_credentials";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
@@ -45,8 +50,10 @@ function tc_log_off_inrstar()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Login";
+    var test_name = "tc_log_off_inrstar";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------

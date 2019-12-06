@@ -19,10 +19,12 @@ function tc_find_patient_recently_viewed()
 
     Log_Off()
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Recently_Viewed";
+    var test_name = "tc_find_patient_recently_viewed";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------

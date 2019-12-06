@@ -27,7 +27,9 @@ function tc_diagnosis_add_new_diagnosis()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
+    var suite_name = "TC_Diagnosis";
+    var test_name = "tc_diagnosis_add_new_diagnosis";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -62,7 +64,9 @@ function tc_diagnosis_edit_diagnosis()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
+    var suite_name = "TC_Diagnosis";
+    var test_name = "tc_diagnosis_edit_diagnosis";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -93,6 +97,8 @@ function tc_diagnosis_delete_diagnosis()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
+    var suite_name = "TC_Diagnosis";
+    var test_name = "tc_diagnosis_delete_diagnosis";
+    handle_failed_tests(suite_name, test_name);
   }
 }

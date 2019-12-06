@@ -36,8 +36,10 @@ function tc_home_page_view_overdue_inr_test_message()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_inr_test_message";
+    handle_failed_tests(suite_name, test_name); 
   } 
 }
 //-------------------------------------------------------------------------------- 
@@ -75,8 +77,10 @@ function tc_home_page_view_exceeded_suspension_period_message()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_exceeded_suspension_period_message";
+    handle_failed_tests(suite_name, test_name); 
   } 
 }
 //-------------------------------------------------------------------------------- 
@@ -128,8 +132,10 @@ function tc_home_page_unsuspend_patient_through_message()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_unsuspend_patient_through_message";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
@@ -180,8 +186,10 @@ function tc_home_page_view_patient_transfer_request()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_transfer_request";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -232,8 +240,10 @@ function tc_home_page_accept_patient_transfer_request()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_accept_patient_transfer_request";
+    handle_failed_tests(suite_name, test_name); 
   }
 }
 //--------------------------------------------------------------------------------
@@ -290,8 +300,10 @@ function tc_home_page_decline_patient_transfer_request()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_decline_patient_transfer_request";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -334,8 +346,10 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_transfer_requests_not_yet_accepted";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -376,8 +390,10 @@ function tc_home_page_view_patient_with_incomplete_treatment()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_with_incomplete_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -414,8 +430,10 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_with_no_diagnosis_or_tp";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -453,8 +471,10 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -492,8 +512,10 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_overdue";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -543,8 +565,10 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
   }
   catch (e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue";
+    handle_failed_tests(suite_name, test_name); 
   }
 }
 //--------------------------------------------------------------------------------

@@ -78,7 +78,7 @@ function remove_bridging_table_rows(no_of_rows, table_type)
       }
     }
   }
-  else if(table_type = "post_discharge")
+  else if(table_type == "post_discharge")
   {
     var table = bridging_schedule_post_discharge_table();
     for(var i = 0; i < no_of_rows; i++)
@@ -123,7 +123,6 @@ function validate_table(rows_to_check, table_type, data_array)
   var row_index;
   var table;
   var counter = 0;
-  var start_row;
   
   if(table_type == "pre-op")
   {

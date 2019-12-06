@@ -59,21 +59,6 @@ function cancel_pending_sorb_treatment()
   INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
 }
 //-----------------------------------------------------------------------------------
-function click_sorb_button(tab)
-{
-  var path = pending_treatment_buttons();
-  panelPTI = path.Panel("PendingTreatmentInfo");
-  
-  if(tab == "suggested")
-  {
-    panelPTI.Panel(0).Button("SkipOrBoost0").Click();
-  }
-  else if (tab == "current")
-  {
-    panelPTI.Panel("DosingSchedule").Link("CurrentTab").Click();
-    panelPTI.Panel(0).Button("SkipOrBoost1").Click(); 
-  }   
-}
 //-----------------------------------------------------------------------------------
 function get_sorb_button_error_message()
 {

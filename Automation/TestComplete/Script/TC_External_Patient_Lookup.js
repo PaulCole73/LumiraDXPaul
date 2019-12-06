@@ -57,8 +57,10 @@ function tc_external_patient_lookup_for_maintenance_patient()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_for_maintenance_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -106,8 +108,10 @@ function tc_external_patient_lookup_delete_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_delete_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -160,8 +164,10 @@ function tc_external_patient_lookup_new_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_new_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -207,8 +213,10 @@ function tc_external_patient_lookup_same_day_maintenance_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_same_day_maintenance_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -250,8 +258,10 @@ function tc_external_patient_lookup_add_historic_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_add_historic_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -298,8 +308,10 @@ function tc_external_patient_lookup_delete_multiple_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_delete_multiple_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -339,8 +351,10 @@ function tc_external_patient_lookup_add_adverse_event()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_add_adverse_event";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -379,8 +393,10 @@ function tc_external_patient_lookup_add_note()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_add_note";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -431,8 +447,10 @@ function tc_external_patient_lookup_archive_note()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_archive_note";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -474,8 +492,10 @@ function tc_external_patient_lookup_edit_treatment_plan()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_edit_treatment_plan";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -516,8 +536,10 @@ function tc_external_patient_lookup_add_treatment_plan()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_add_treatment_plan";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -565,8 +587,10 @@ function tc_external_patient_lookup_add_treatment_to_old_plan()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_add_treatment_to_old_plan";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -618,8 +642,10 @@ function tc_external_patient_lookup_treat_overdue_patient()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_treat_overdue_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -672,7 +698,9 @@ function tc_external_patient_lookup_refer_patient_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_External_Patient_Lookup";
+    var test_name = "tc_external_patient_lookup_refer_patient_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }

@@ -7,8 +7,9 @@
 //USEUNIT TSA_Patient_Management
 //USEUNIT TSA_Self_Care
 //USEUNIT TSA_Bridging
-//USEUNIT Navigation
+//USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT Get_Functions
 //--------------------------------------------------------------------------------
 //CACUK-919 CACUK-920
 function tc_bridging_tab_visible_only_with_warfarin()
@@ -37,8 +38,10 @@ function tc_bridging_tab_visible_only_with_warfarin()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_tab_visible_only_with_warfarin";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -79,8 +82,10 @@ function tc_bridging_button_new_bridging_record_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_new_bridging_record_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -123,8 +128,10 @@ function tc_bridging_button_state_with_historic_warfarin_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_with_historic_warfarin_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -161,8 +168,10 @@ function tc_bridging_button_state_on_ddd_all_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_on_ddd_all_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -206,8 +215,10 @@ function tc_bridging_banner_msg_on_ddd_all_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_banner_msg_on_ddd_all_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -235,8 +246,10 @@ function tc_bridging_button_state_on_ddd_stage_one()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_on_ddd_stage_one";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -273,8 +286,10 @@ function tc_bridging_button_state_on_warfarin_self_test_all_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_on_warfarin_self_test_all_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -317,8 +332,10 @@ function tc_bridging_banner_msg_on_warfarin_self_test_all_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_banner_msg_on_warfarin_self_test_all_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -346,8 +363,10 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_one()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_on_warfarin_self_test_stage_one";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -376,8 +395,10 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_two()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_on_warfarin_self_test_stage_two";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -407,8 +428,10 @@ function tc_bridging_button_state_on_warfarin_self_test_stage_three()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_on_warfarin_self_test_stage_three";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -449,8 +472,10 @@ function tc_bridging_create_schedule_add_six_days()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_create_schedule_add_six_days";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -489,8 +514,10 @@ function tc_bridging_create_schedule_add_days_procedure_today()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_create_schedule_add_days_procedure_today";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -529,8 +556,10 @@ function tc_bridging_create_schedule_add_days_procedure_tomorrow()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_create_schedule_add_days_procedure_tomorrow";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -569,8 +598,10 @@ function tc_bridging_create_schedule_add_days_procedure_yesterday()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_create_schedule_add_days_procedure_yesterday";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -606,8 +637,10 @@ function tc_bridging_create_schedule_delete_six_days()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_create_schedule_delete_six_days";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -642,8 +675,10 @@ function tc_bridging_create_schedule_delete_days_procedure_tomorrow()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_create_schedule_delete_days_procedure_tomorrow";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -680,8 +715,10 @@ function tc_bridging_procedure_schedule_delete_days_procedure_today()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_procedure_schedule_delete_days_procedure_today";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -718,8 +755,10 @@ function tc_bridging_procedure_schedule_delete_days_procedure_yesterday()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_procedure_schedule_delete_days_procedure_yesterday";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -756,8 +795,10 @@ function tc_bridging_procedure_schedule_delete_six_days()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_procedure_schedule_delete_six_days";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 
@@ -787,8 +828,10 @@ function tc_bridging_button_state_on_various_dms()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_button_state_on_various_dms";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -821,7 +864,9 @@ function tc_bridging_INR_checkbox()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_INR_checkbox";
+    handle_failed_tests(suite_name, test_name);
   }
 }

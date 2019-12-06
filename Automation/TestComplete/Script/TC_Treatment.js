@@ -45,8 +45,10 @@ function tc_treatment_add_a_historic_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_historic_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -85,8 +87,10 @@ function tc_treatment_add_a_manual_INR()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_manual_INR";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -131,8 +135,10 @@ function tc_treatment_manual_dosing_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_manual_dosing_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -179,8 +185,10 @@ function tc_treatment_induction_dosing_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_induction_dosing_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -214,8 +222,10 @@ function tc_treatment_add_a_treatment_comment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_treatment_comment";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -257,8 +267,10 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_new_maintenance_in_range_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -295,8 +307,10 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_historical_treatment_to_an_induction_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -334,8 +348,10 @@ function tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -366,8 +382,10 @@ function tc_treatment_user_cannot_override_an_induction_result()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_user_cannot_override_an_induction_result";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -399,8 +417,10 @@ function tc_treatment_adding_a_result_earlier_than_last_recorded_result()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_adding_a_result_earlier_than_last_recorded_result";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -433,8 +453,10 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when_on_maintenance";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -475,14 +497,16 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_new_maintenance_low_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_new_maintenance_high_inr()
 {
-try
+  try
   {
     //this test currently fails in hoth - because the dosing warning message has been changed
     var test_title = 'Treatment - Add a new maintenance high INR';
@@ -521,8 +545,10 @@ try
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_new_maintenance_high_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -563,8 +589,10 @@ function tc_treatment_out_of_range_maintenance_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_out_of_range_maintenance_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -601,8 +629,10 @@ function tc_treatment_delete_the_last_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_delete_the_last_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -648,8 +678,10 @@ function tc_treatment_refer_a_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_refer_a_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -709,8 +741,10 @@ function tc_treatment_authorise_a_referral()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_authorise_a_referral";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -747,8 +781,10 @@ function tc_treatment_edit_a_treatment_comment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_edit_a_treatment_comment";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -797,12 +833,13 @@ function tc_treatment_add_multiple_historic_treatments()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_multiple_historic_treatments";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-
 function tc_treatment_dosing_under_12_years_old()
 {
   try
@@ -838,13 +875,14 @@ function tc_treatment_dosing_under_12_years_old()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_dosing_under_12_years_old";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 
 //--------------------------------------------------------------------------------
-
 //test to check that a new dosing schedule can be selected, checks the original does not match the new schedule
 //C1248478
 //Test Change Schedule
@@ -894,13 +932,14 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_create_maintenance_use_alternate_schedules";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
 
 //--------------------------------------------------------------------------------
-
 //checks to see if the correct error message displays for the specified treatment plan
 //C1248484
 function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
@@ -937,15 +976,14 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_starting_algorithm_for_unstable_patient";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
-
 //--------------------------------------------------------------------------------
-
 //checks dose/review period can be overwritten and message displays for dose changes > 20%
-//C1248488
 function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 {
 	try
@@ -1016,15 +1054,14 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
-
 //--------------------------------------------------------------------------------
-
 //checks that dose and review periods can be overwritten
-//C1248497
 function tc_treatment_maintenance_overriding_dose_and_review_period()
 {
 	try
@@ -1081,15 +1118,14 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_overriding_dose_and_review_period";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
-
 //--------------------------------------------------------------------------------
 //testing schedules can be re-order via drag/drop dosing values between days, checks schedules change after action
-//C1248479
-//Test Change Schedule
 function tc_treatment_drag_and_drop_schedule_days()
 {
   try
@@ -1137,14 +1173,15 @@ function tc_treatment_drag_and_drop_schedule_days()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_drag_and_drop_schedule_days";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 
 //--------------------------------------------------------------------------------
 //checks a pending treatment can be overwritten, saved, overwrite maintained, strikethrough values display
-//C1248498
 function tc_treatment_maintenance_save_override_treatment()
 {
 	try
@@ -1201,14 +1238,15 @@ function tc_treatment_maintenance_save_override_treatment()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_save_override_treatment";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
 
 //--------------------------------------------------------------------------------
 //testing for warning message when patient's last INR test exceeds max review period
-//C1248475
 function tc_treatment_maintenance_INR_more_then_max_review_period()
 {
   try
@@ -1273,13 +1311,13 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_INR_more_then_max_review_period";
+    handle_failed_tests(suite_name, test_name);
   }
 }
-
 //--------------------------------------------------------------------------------
-//C1248473
 function tc_treatment_manual_mutliple_historic_summary_check()
 {
   try
@@ -1333,13 +1371,13 @@ function tc_treatment_manual_mutliple_historic_summary_check()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_manual_mutliple_historic_summary_check";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-//
-//C1248489
 function tc_treatment_maintenance_override_privilege()
 {
   try
@@ -1408,14 +1446,14 @@ function tc_treatment_maintenance_override_privilege()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_override_privilege";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 
 //--------------------------------------------------------------------------------
-//
-//C1368479
 function tc_treatment_maintenance_cancel_pending()
 {
   try
@@ -1462,13 +1500,13 @@ function tc_treatment_maintenance_cancel_pending()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_cancel_pending";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-//
-//C1248491
 function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
 {
   try
@@ -1521,8 +1559,10 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
   }
   catch(e)
   {
-    Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_add_pending_treatment_with_pending_transfer";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -1562,8 +1602,10 @@ function tc_treatment_add_treatment_for_self_tester()
   }
   catch(e)
   {
-    Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_treatment_for_self_tester";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -1671,8 +1713,10 @@ function cacuk432_bug_fix_sequence()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "cacuk432_bug_fix_sequence";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -1722,7 +1766,9 @@ function cacuk432_bug_fix_single()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "cacuk432_bug_fix_single";
+    handle_failed_tests(suite_name, test_name);
   }
 }

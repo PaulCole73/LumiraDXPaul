@@ -32,8 +32,10 @@ function tc_clinics_add_a_recurring_clinic()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_add_a_recurring_clinic";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -75,8 +77,10 @@ function tc_clinics_make_appointment_today_for_overdue_patient()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_make_appointment_today_for_overdue_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -130,8 +134,10 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_add_inr_for_patient_with_appointment_today";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -190,8 +196,10 @@ function tc_clinics_move_seven_days_beyond_ntd()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_move_seven_days_beyond_ntd";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -232,8 +240,10 @@ function tc_clinics_cancel_future_appointment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_cancel_future_appointment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -241,7 +251,7 @@ function tc_clinics_mark_unmark_dna()
 {
   try
   {
-    var test_title = "Clinics/Appointments - Move NTD Beyond 7 Day Threshold";
+    var test_title = "Clinics/Appointments - Mark and Unmark DNA";
     login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
@@ -291,7 +301,9 @@ function tc_clinics_mark_unmark_dna()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_mark_unmark_dna";
+    handle_failed_tests(suite_name, test_name);
   }
 }

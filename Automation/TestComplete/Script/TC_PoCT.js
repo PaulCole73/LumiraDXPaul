@@ -33,10 +33,12 @@ function tc_add_a_new_poct()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_PoCT";
+    var test_name = "tc_add_a_new_poct";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //-------------------------------
@@ -77,8 +79,10 @@ function tc_edit_a_new_poct_batch()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_PoCT";
+    var test_name = "tc_edit_a_new_poct_batch";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //-------------------------------

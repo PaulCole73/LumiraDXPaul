@@ -14,15 +14,15 @@
 //--------------------------------------------------------------------------------
 //Tests for testing the SORB button for user permission validation 
 //--------------------------------------------------------------------------------
-function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than_CL3_on_suggested_and_current_tab()
-{
+function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than_CL3_on_suggested_and_current_tab() //would benefit from looping users
+{                                                                                                 //combine this test and below test
   //Data setup
   login(5, "Shared");
   add_patient('SORB_Coventry', 'user_perms_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
   add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-  add_inr_backdated("2.2", aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))));
+  add_inr_backdated("2.2", aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3)))); //needs refactor 
   add_pending_maintenance_treatment('2.0', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))));
   
   //Create the array of results for the final check to ensure all dosing algorithms pass the test
@@ -30,7 +30,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
   
   //Check the suggested tab button
   var sorb_button = sorb_button_suggested_path();
-  var button = check_button(sorb_button);
+  var button = check_button(sorb_button); //needs refactor
   
   var cl3_suggested_tab = button_checker(button,'enabled','Testing cl3 level user on the suggested tab');
   result_set.push(cl3_suggested_tab);
@@ -93,8 +93,8 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
   Log_Off();
 } 
 //-----------------------------
-function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_suggested_and_current_tab()
-{
+function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_suggested_and_current_tab() //remove! combine with above
+{   //most of this is unnecessary
   login(5, "Shared");
   add_patient('SORB_Coventry', 'review_period_validation', 'M', 'Shared'); 
   add_treatment_plan('W','Coventry','','Shared','');
@@ -253,7 +253,7 @@ function tc_Patient_on_Induction_Fast_Fennerty_Gedge_dosing_gets_an_error_when_t
   add_pending_fast_induction_treatment('1.2','Shared');
   click_sorb_button("suggested"); 
   
-  var actual_err_mess = get_sorb_button_error_message();
+  var actual_err_mess = get_sorb_button_error_message(); //needs refactor
   var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient on an induction protocol.");      
   
   var result_set = new Array();
@@ -267,12 +267,12 @@ function tc_Patient_on_Induction_Fast_Fennerty_Gedge_dosing_gets_an_error_when_t
   //Pass in the result
   results_checker(results,test_title); 
        
-  var INRstar = INRstar_base()
+  var INRstar = INRstar_base() //clicking a popup at the end?... needs to be removed handled prior to validation
   INRstar.Panel(3).Panel(1).Panel(0).Button(0).TextNode(0).Click();
   Log_Off();
 }
 //-----------------------------
-function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
+function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab() //same as above
 {
   var test_title = 'SORB - Slow Oates Error'
   login(5, "Shared");
@@ -281,7 +281,7 @@ function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_
   add_pending_induction_slow_treatment('1.2','Shared');
   click_sorb_button("suggested"); 
   
-  var actual_err_mess = get_sorb_button_error_message();
+  var actual_err_mess = get_sorb_button_error_message(); //needs refactor
   var expected_err_mess = ("You cannot create a temporary Skip or Boost schedule for a patient on an induction protocol.");      
   
   var result_set = new Array();
@@ -300,7 +300,7 @@ function tc_Patient_on_Induction_Slow_Oates_dosing_gets_an_error_when_trying_to_
   Log_Off();
 } 
 //-----------------------------
-function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
+function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab() //same as above
 {
   var test_title = 'SORB - Slow Tait Error'
   login(5, "Shared");
@@ -328,7 +328,7 @@ function tc_Patient_on_Induction_Slow_Tait_dosing_gets_an_error_when_trying_to_u
   Log_Off();
 }
 //-----------------------------
-function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab()
+function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_suggested_tab() //same as above
 {
   var test_title = 'SORB - Manual Error'
   login(5, "Shared");
@@ -357,7 +357,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
   Log_Off();
 }
 //-----------------------------
-function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_coventry()
+function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_coventry() //same as above
 {
   var test_title = 'SORB - Manual Error, prev Coventry'
   login(5, "Shared");
@@ -390,7 +390,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
   Log_Off();
 }
 //-----------------------------
-function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_hillingdon()
+function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_hillingdon()//same as above
 {
   var test_title = 'SORB - Manual Error, prev Hillingdon'
   login(5, "Shared");
@@ -423,7 +423,7 @@ function tc_Patient_on_Manual_dosing_gets_an_error_when_trying_to_use_the_SorB_b
   Log_Off();
 }
 //-----------------------------
-function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual()
+function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual() //same as above
 {
   var test_title = 'SORB - Coventry Error, prev Manual'
   login(5, "Shared");
@@ -455,7 +455,7 @@ function tc_Patient_on_Coventry_dosing_gets_an_error_when_trying_to_use_the_SorB
   Log_Off();
 } 
 //-----------------------------
-function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual()
+function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_SorB_button_in_current_schedule_where_prev_treatment_is_manual() //same as above
 {
   var test_title = 'SORB - Hillingdon Error, prev Manual'
   login(5, "Shared");
@@ -487,7 +487,7 @@ function tc_Patient_on_Hillingdon_dosing_gets_an_error_when_trying_to_use_the_So
   Log_Off();
 }
 //-----------------------------
-function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exists_on_all_dosing_algorithms()
+function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exists_on_all_dosing_algorithms()//general refactor, should be looping
 {
   var test_title = 'SORB - Disabled When No Previous Treatments'
   login(5, "Shared");
@@ -577,7 +577,7 @@ function tc_Sorb_button_disabled_on_current_tab_when_no_previous_treatment_exist
   Log_Off();
 }
 //-----------------------------
-function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_Maintenance_current_schedule_on_old_plan_is_Manual_on_current_tab()
+function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_Maintenance_current_schedule_on_old_plan_is_Manual_on_current_tab() //same refactors as above
 {
   var test_title = 'SORB - Long Title'
   login(5, "Shared");
@@ -627,7 +627,7 @@ function tc_SORB_Button_Validation_with_multiple_treatment_plans_Current_TP_is_M
 //--------------------------------------------------------------------------------
 //Tests for testing the SORB button for review period validation
 //--------------------------------------------------------------------------------
-function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab()
+function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab()//needs to be changed, pretty much checks is the button enabled, nothing else needs to prove boundaries
 {
   var test_title = 'SORB - Coventry Maintenance Testing Review Period Boundaries'
   login(5, "Shared");
@@ -735,7 +735,7 @@ function tc_Coventry_maintenance_testing_review_period_boundaries_suggested_tab(
   Log_Off();
 }
 //--------------------------------------------------------------------------------
-function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_tab()
+function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_tab() //same as above
 {
   var test_title = 'SORB - Hillingdon Review Period Boundaries'
   login(5, "Shared");
@@ -842,7 +842,7 @@ function tc_Hillingdon_maintenance_testing_review_period_boundaries_suggested_ta
   Log_Off();
 }
 //--------------------------------------------------------------------------------
-function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_valid()
+function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_valid() //needs refactor, needs streamlining
 {
   var test_title = 'SORB - No SORB Current Schedule if Suggested Review Period Invalid'  
   login(5, "Shared");
@@ -944,7 +944,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
   Log_Off();
 }
 //--------------------------------------------------------------------------------
-function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_valid_and_current_review_is_invalid()
+function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_valid_and_current_review_is_invalid() //same as above
 {
   var test_title = 'SORB - No SORB Current Schedule if Suggested Review Period is Valid but Current is Invalid'
   login(5, "Shared");
@@ -990,7 +990,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_va
  Log_Off();
 } 
 //--------------------------------------------------------------------------------
-function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_invalid()
+function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_invalid_and_current_review_period_is_invalid() //small updates needed
 {
   var test_title = 'SORB - No SORB is Suggested/Current Review Period is Invalid'
   login(5, "Shared");
@@ -1021,7 +1021,7 @@ function tc_Cant_skip_or_boost_current_schedule_if_suggested_review_period_is_in
 //--------------------------------------------------------------------------------
 //Tests for self care programme validation on sorb button 
 //--------------------------------------------------------------------------------
-function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_function_with_self_tester_unticked_suggested_and_current_tab()
+function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_function_with_self_tester_unticked_suggested_and_current_tab() //needs refactor
 {
   var test_title = 'SORB - Long Title'
   login(5, "Shared");
@@ -1073,7 +1073,7 @@ function tc_Patient_on_Warfarin_self_testing_cannot_action_skip_or_boost_functio
   Log_Off();
 }
 //--------------------------------------------------------------------------------
-function tc_Patient_removed_from_Warfarin_self_testing_can_action_skip_or_boost_function_suggested_and_current_tab()
+function tc_Patient_removed_from_Warfarin_self_testing_can_action_skip_or_boost_function_suggested_and_current_tab() //needs refactor
 {
   var test_title = 'SORB - Long Title'
   login(5, "Shared");
@@ -1116,7 +1116,7 @@ function tc_Patient_removed_from_Warfarin_self_testing_can_action_skip_or_boost_
   Log_Off();
 } 
 //--------------------------------------------------------------------------------
-function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_current_tab()
+function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_current_tab() //duplicate
 {
   var test_title = 'SORB - Patient on Warfarin Self Testing Untick on Treatment Suggested/Current Tab'
   login(5, "Shared");
@@ -1162,7 +1162,7 @@ function tc_Patient_on_Warfarin_self_testing_untick_on_treatment_suggested_and_c
   Log_Off();
 } 
 //--------------------------------------------------------------------------------
-function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab()
+function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab() //needs refactor
 {
   var test_title = 'SORB - Patient_on_DDD_program_gets_error_message_suggested_and_current_tab'
   login(5, "Shared");
@@ -1179,7 +1179,7 @@ function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab(
   add_pending_maintenance_treatment('2.2', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))))
   click_sorb_button("suggested");
   
-  var actual_err_mess = get_sorb_button_error_message();
+  var actual_err_mess = get_sorb_button_error_message(); //this is a popup
   var expected_err_mess = ("The patient is currently enrolled in the digital dosing diary programme. You cannot create a temporary skip or boost schedule for a patient who is on a care programme or is a self tester.");      
   var result_set_1 = test_data_individual_step(actual_err_mess,expected_err_mess,"Patient on DDD program gets error message - suggested tab")  
   
@@ -1206,7 +1206,7 @@ function tc_Patient_on_DDD_program_gets_error_message_suggested_and_current_tab(
   Log_Off();
 } 
 //--------------------------------------------------------------------------------
-function tc_Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_function()
+function tc_Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_function() //needs refactor
 {
   var test_title = 'SORB - Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_function'
   login(5, "Shared");
@@ -1248,7 +1248,7 @@ function tc_Patient_removed_from_DDD_self_care_program_can_action_skip_or_boost_
   Log_Off();
 } 
 //--------------------------------------------------------------------------------
-function tc_Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_function_in_suggested_and_current_schedule()
+function tc_Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_function_in_suggested_and_current_schedule() 
 {
   var test_title = 'SORB - Patient_marked_as_a_manual_INR_self_tester_can_action_skip_or_boost_function_in_suggested_and_current_schedule'
   login(5, "Shared");

@@ -20,8 +20,10 @@ function tc_add_a_new_patient()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Add";
+    var test_name = "tc_add_a_new_patient";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -55,8 +57,10 @@ function tc_add_a_new_patient_duplicate_nhs()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Add";
+    var test_name = "tc_add_a_new_patient_duplicate_nhs";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //--------------------------------------------------------------------------------

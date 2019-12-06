@@ -19,12 +19,16 @@
 		<child name="TestedApps" key="{1CDA66BB-6D71-4DA8-810D-DFAD03478222}" type="Tested Applications" typeId="{90D101C8-80C7-48D4-9055-2E451B9BCD75}" pluginName="">
 			<data path="TestedApps\TestedApps.tcTAs" />
 		</child>
+		<child name="Events" key="{78B47A72-ABB2-4987-B979-E4891B7767A0}" type="Events" typeId="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}" pluginName="">
+			<data path="Events\Events.tcAX" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="Advanced" description="A logical folder that is used to organize project items and elements." moniker="{69583268-92F3-49FA-B573-C831F5ABC27B}">
 			<references>
 				<ref key="{61FF6AD2-8DBE-49B6-86C3-50F5B30F2BDB}" />
 				<ref key="{3B9D2A66-00BA-4877-8150-D6D0D0EF2106}" />
+				<ref key="{78B47A72-ABB2-4987-B979-E4891B7767A0}" />
 			</references>
 		</folder>
 	</folders>
@@ -42,7 +46,7 @@
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="Setup" key="{64355FF1-B609-4ADA-A0B7-F220DB229D94}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}change_environments" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Setup" key="{64355FF1-B609-4ADA-A0B7-F220DB229D94}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsStaging" />
 						</testParameters>
@@ -168,6 +172,10 @@
 						</testParameters>
 						<children />
 					</testItem>
+					<testItem name="Re-try Failed Tests" key="{ADC9A126-DA6B-4767-8585-CA1E97AFE2A6}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
 					<testItem name="Email" key="{0649AF28-783D-48A4-9215-49E46E168D89}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
@@ -180,7 +188,7 @@
 			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
-					<testItem name="Setup" key="{B4D10557-E033-45CC-954E-CE3BBF51AD3A}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}change_environments" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Setup" key="{B4D10557-E033-45CC-954E-CE3BBF51AD3A}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsTatooine" />
 						</testParameters>
@@ -306,6 +314,10 @@
 						</testParameters>
 						<children />
 					</testItem>
+					<testItem name="Re-try Failed Tests" key="{BFA0BBC0-B51B-413C-9727-28AFD2B9A947}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
 					<testItem name="Email" key="{7A13020F-16AB-4898-A534-9BC2EB53479F}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
@@ -318,7 +330,7 @@
 			<testItem name="Hoth" key="{0A6F56F9-6359-41D8-821C-FA6DD9C4DAF7}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
-					<testItem name="Setup" key="{D0A91893-48C6-45A1-958C-365D66F93DC6}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}change_environments" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Setup" key="{D0A91893-48C6-45A1-958C-365D66F93DC6}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsHoth" />
 						</testParameters>
@@ -444,6 +456,10 @@
 						</testParameters>
 						<children />
 					</testItem>
+					<testItem name="Re-try Failed Tests" key="{C111F753-A1FE-4979-B4C5-CA98B5672BFA}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
 					<testItem name="Email" key="{751CE15A-7282-4C90-AD24-C0F02FA92ED3}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
@@ -456,7 +472,13 @@
 		</children>
 	</testItems>
 	<variables key="{4B9173FC-9A59-474A-BB11-CB532AE3D687}">
-		<data Version="3" />
+		<data Version="3">
+			<Items>
+				<Variable Name="Var1" Type="{F38B9AD1-7B22-410F-95FC-6D9420FDE947}" Local="False">
+					<DefValue />
+				</Variable>
+			</Items>
+		</data>
 	</variables>
 	<settings key="{5F7B2CD5-3048-4A58-B14C-6E60A48FE68C}">
 		<settingsVersion value="12.41" />
@@ -478,7 +500,7 @@
 			</data>
 		</setting>
 		<setting name="{42651A7C-4287-4C91-AE26-98CBD2EA9355}" type="1" value="False" />
-		<setting name="{A2568CC8-7E8E-42C5-A87D-B69684A1E616}" type="1" value="True" />
+		<setting name="{A2568CC8-7E8E-42C5-A87D-B69684A1E616}" type="1" value="False" />
 		<setting name="{3EADAFE2-0CD4-4B1E-A2A9-B184E94FDCC7}" type="6" rowIndex="1" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
@@ -645,7 +667,7 @@
 			<data />
 		</setting>
 		<setting name="{3FC2A7B4-F4AF-4807-8D37-C3EE096DD330}" type="2" value="1024" />
-		<setting name="{9EB8E8E6-D2F2-4A8A-ADFB-492E8C0EAFEF}" type="2" value="25000" />
+		<setting name="{9EB8E8E6-D2F2-4A8A-ADFB-492E8C0EAFEF}" type="2" value="15000" />
 		<setting name="{47A56F4F-F2D3-4697-BEC8-632B29D5A344}" type="6" rowIndex="11" colIndex="1">
 			<columns>
 				<column type="1" enabled="True" />

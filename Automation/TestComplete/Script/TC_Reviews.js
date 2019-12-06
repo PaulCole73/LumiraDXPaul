@@ -22,8 +22,10 @@ function tc_add_a_new_warfarin_review()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Reviews";
+    var test_name = "tc_add_a_new_warfarin_review";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -56,8 +58,10 @@ function tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Reviews";
+    var test_name = "tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine_clearance";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------

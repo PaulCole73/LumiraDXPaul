@@ -37,8 +37,10 @@ function tc_treatment_plan_add_first_manual_treatment_plan()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_first_manual_treatment_plan";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //----------------------------------------
@@ -61,8 +63,10 @@ function tc_treatment_plan_add_first_maintenance_treatment_plan()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_first_maintenance_treatment_plan";
+    handle_failed_tests(suite_name, test_name);
   }  
 }
 //----------------------------------------
@@ -87,15 +91,17 @@ function tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_b
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_been_added";
+    handle_failed_tests(suite_name, test_name);
   }  
 } 
 //----------------------------------------
 function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_added_induction_patient()
 {
   try
-  {  
+  { 
     var test_title = "Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient";
     login(5, "Shared");
     add_patient("Regression", "New_tp_induct_pat", "M", "Shared"); 
@@ -127,8 +133,10 @@ function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_a
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_added_induction_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //----------------------------------------
@@ -150,15 +158,17 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yel
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yellow_banner_is_displayed";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //----------------------------------------
 function tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_plan_if_no_treatments_have_been_added()
 {
   try
-  {  
+  { 
     var test_title = 'Treatment Plan - Ensure that all fields are editable on the treatment plan if no treatments have been added'
     login(5, "Shared");
     add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
@@ -207,8 +217,10 @@ function tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_plan_if_no_treatments_have_been_added";
+    handle_failed_tests(suite_name, test_name);
   }   
 } 
 //----------------------------------------
@@ -247,8 +259,10 @@ function tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unl
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unless_requested_specifically";
+    handle_failed_tests(suite_name, test_name);
   }  
 } 
 //----------------------------------------
@@ -288,8 +302,10 @@ function tc_edit_treatment_plan_after_a_review_has_been_added()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_edit_treatment_plan_after_a_review_has_been_added";
+    handle_failed_tests(suite_name, test_name);
   }   
 } 
 //----------------------------------------
@@ -358,8 +374,10 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_a_non_warfarin_drug_chec
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_a_new_treatment_plan_for_a_non_warfarin_drug_check_all_the_drugs_warn_the_user";
+    handle_failed_tests(suite_name, test_name);
   }  
 } 
 //----------------------------------------
@@ -394,8 +412,10 @@ function tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algo
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algorithm";
+    handle_failed_tests(suite_name, test_name);
   }  
 } 
 //----------------------------------------
@@ -433,8 +453,10 @@ function tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_de
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_detail_with_existing_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //----------------------------------------
@@ -471,12 +493,13 @@ function tc_edit_treatment_plan_change_diagnosis()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_edit_treatment_plan_change_diagnosis";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //----------------------------------------
-//C1248183
 function tc_treatment_plan_add_second_treatment_using_previous()
 {
   try
@@ -517,12 +540,13 @@ function tc_treatment_plan_add_second_treatment_using_previous()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_second_treatment_using_previous";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //----------------------------------------
-//C1248185
 function tc_treatment_plan_add_treatment_patient_with_future_appointment()
 {
   try
@@ -569,7 +593,9 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
+    var suite_name = "TC_Treatment_Plan";
+    var test_name = "tc_treatment_plan_add_treatment_patient_with_future_appointment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //----------------------------------------
