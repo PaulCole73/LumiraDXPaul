@@ -31,11 +31,12 @@ function tc_add_a_new_adverse_event()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Adverse_Event";
+    var test_name = "tc_add_a_new_adverse_event";
+    handle_failed_tests(suite_name, test_name); 
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -54,11 +55,12 @@ function tc_delete_adverse_event()
   
     Log_Off();  
   }
-  catch (e)
+  catch(e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Adverse_Event";
+    var test_name = "tc_delete_adverse_event";
+    handle_failed_tests(suite_name, test_name); 
   } 
 } 
 //--------------------------------------------------------------------------------

@@ -24,9 +24,10 @@ function tc_check_tests_due_tab()
   }
   catch(e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Tests_Due";
+    var test_name = "tc_check_tests_due_tab";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------

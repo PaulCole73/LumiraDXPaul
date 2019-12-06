@@ -30,9 +30,10 @@ function tc_edit_each_field_of_patient_demographics()
   }
   catch(e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Demographics";
+    var test_name = "tc_edit_each_field_of_patient_demographics";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
@@ -63,9 +64,10 @@ function tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a
   }
   catch(e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Demographics";
+    var test_name = "tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a_DOAC";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //--------------------------------------------------------------------------------

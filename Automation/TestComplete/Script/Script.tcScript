@@ -904,6 +904,9 @@
 		<child name="TSA_Diagnosis" key="{05EB5657-8347-4C4C-871C-472AF4EEB29D}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TSA_Diagnosis.js" />
 		</child>
+		<child name="Failed_Test_Handlers" key="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Failed_Test_Handlers.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -971,6 +974,7 @@
 				<ref key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" />
 				<ref key="{5AB1C72D-FAF0-43FB-9A9F-41EEB745D98A}" />
 				<ref key="{53C017A4-89CB-4429-8289-B2F80476AA1C}" />
+				<ref key="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}" />
 			</references>
 		</folder>
 		<folder caption="Old Scripts" description="A logical folder that is used to organize project items and elements." moniker="">

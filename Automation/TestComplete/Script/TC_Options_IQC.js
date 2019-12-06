@@ -17,11 +17,12 @@ function tc_add_a_new_iqc_result()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Options_IQC";
+    var test_name = "tc_add_a_new_iqc_result";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //------------------------------------------
@@ -43,9 +44,10 @@ function tc_edit_iqc_result()
   }
   catch (e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Options_IQC";
+    var test_name = "tc_edit_iqc_result";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //------------------------------------------
@@ -71,9 +73,10 @@ function tc_delete_iqc_result()
   }
   catch(e)
   {
-    Options.Run.Timeout = 15000;
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Options_IQC";
+    var test_name = "tc_delete_iqc_result";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //------------------------------------------

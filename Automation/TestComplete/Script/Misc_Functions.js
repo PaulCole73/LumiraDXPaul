@@ -1,6 +1,7 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
 //USEUNIT Get_Functions
+//USEUNIT Failed_Test_Handlers
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -567,6 +568,12 @@ function exception_occured(a, b)//randomly required 2 parameters
 {
   Options.Run.Timeout = 0; //rush through test at error
 }
+//-----------------------------------------------------------------------------------
+function setup_automation(new_config_file_name)
+{
+  reset_tests_array();
+  change_environments(new_config_file_name)
+}
 
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
@@ -829,4 +836,16 @@ function set_get_environment(env)
     environment = env;
     return environment;
   }
+}
+
+function test()
+{
+  var string = "Misc_Functions." + "do_this";
+  Runner.CallMethod(string);
+}
+
+function do_this()
+{
+  var item = Project.TestItems.Current;
+  Log.Message(item);
 }
