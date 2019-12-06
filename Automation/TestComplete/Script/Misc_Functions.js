@@ -572,7 +572,7 @@ function exception_occured(a, b)//randomly required 2 parameters
 function setup_automation(new_config_file_name)
 {
   reset_tests_array();
-  change_environments(new_config_file_name)
+  change_environments(new_config_file_name);
 }
 
 //-----------------------------------------------------------------------------------
@@ -701,10 +701,9 @@ function reset_folder()
 function restart_INRstar()
 {
   var path = Sys.Process("INRstarWindows").Path;
-  
   Sys.Process("INRstarWindows").Close();
-  
   Win32API.WinExec(path, SW_SHOWNORMAL);
+  Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Maximize();
 }
 //-----------------------------------------------------------------------------------
 function change_environments(new_config_file_name) //Q:\Development and Testing\Testing\EnvironmentConfigs - config files can be found here
