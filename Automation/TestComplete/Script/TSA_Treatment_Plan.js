@@ -138,7 +138,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   } 
   catch(e)
   {
-    Log.Warning('Adding a TP FAILED Exception Occured = ' + e);  
+    Log.Message('Adding a TP FAILED Exception Occured = ' + e);  
   }
 } 
 //--------------------------------------------------------------------------------

@@ -2042,4 +2042,25 @@ function clinic_move_calendar_forward()
   
   return button;
 }
-
+//------------------------------------------------------------------------
+////////////////////////  External Results / HL7  ////////////////////////
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function patient_results_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var main_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var tab = main_content.Panel("ManagePatients").Panel("PatientTab").Link("TestResultsTabLink");
+  
+  return tab;
+}
+//------------------------------------------------------------------------
+function patient_external_results_table()
+{
+  var INRstarV5 = INRstar_base();
+  var main_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var warf_container = main_content.Panel("PatientContent").Panel("ExternalResultsContent").Panel("WarfarinResultsContainer");
+  var table = warf_container.Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
+  
+  return table;
+}
