@@ -36,13 +36,14 @@ var test_names = new Array(); //array must be global so it remains in scope and 
 //Tests are entered into this array when they throw their respective catch blocks
 function reset_tests_array() 
 {
+  Options.Run.Timeout = 25000;
   test_names.length = 0;
 }
 //-----------------------------------------------------------------------------------
 //Enters tests into array via catch block, resets the timeout duration to default, restarts application to clear window
 function handle_failed_tests(suite_name, test_name)
 {
-  Options.Run.Timeout = 15000;
+  Options.Run.Timeout = 25000;
   var name = suite_name + "." + test_name;
   var is_new = true;
 

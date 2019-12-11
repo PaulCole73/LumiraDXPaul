@@ -323,12 +323,25 @@ function Goto_Patient_Treatments_Tab()
 // Navigate to Patient Treatment Plan
 function Goto_Patient_Treatment_Plan()
 {
+  var counter = 0;
+
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
   WaitSeconds(3, "Waiting to go to Treatment Plan...");
   var panelPMTC = main_patient_tab();
-  panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientTreatmentPlanTab").Click();
+  var obj = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
+  
+  do //this function has been experiencing regular/consistent timeouts, now using a loop to minimize failure and provide re-testability 
+  {
+    var temp = obj.FindChild("Name", ".Link(\"PatientTreatmentPlanTab\")");
+    if(temp.Exists)
+    {
+      temp.Click();
+    }
+    counter++;
+  }while(temp.Exists == false && counter < 5);
+  
   WaitSeconds(3, "Waiting to go to Treatment Plan...");
 }
 //-------------------------------------------------------------------------------
@@ -616,7 +629,17 @@ function Goto_Suggested_Treatment_Audit()
   
   INRstarV5.Panel(2).Panel(1).Panel(0).Button(1).Click();
 }
-
+//===============================================================================
+//===============================================================================
+// External Results / HL7 Navigation
+//===============================================================================
+//===============================================================================
+function Goto_Patient_Results()
+{
+  Goto_Patient_Search();
+  patient_results_tab().Click();
+  WaitSeconds(1, "Waiting for Patient Results table...");
+}
 //===============================================================================
 //===============================================================================
 // Bridging Navigation

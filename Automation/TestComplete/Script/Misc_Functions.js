@@ -10,6 +10,10 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 
+//GLOBAL VARIABLES
+var environment = "INRstarWindowsHoth";
+
+
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
@@ -530,6 +534,8 @@ function process_object_exists(content_type, content_data)
 function exception_occured(a, b)//randomly required 2 parameters
 {
   Options.Run.Timeout = 0; //rush through test at error
+  Log.Message("Error occured, this test should be re-tested, check next log error for more info.");
+  //restart_INRstar();
 }
 //-----------------------------------------------------------------------------------
 function setup_automation(new_config_file_name)
@@ -670,6 +676,7 @@ function restart_INRstar()
 //-----------------------------------------------------------------------------------
 function change_environments(new_config_file_name) //Q:\Development and Testing\Testing\EnvironmentConfigs - config files can be found here
 {
+  environment = new_config_file_name;
   var sys_path = Sys.Process("INRstarWindows").Path;
   var config_path = sys_path + ".config";
   var base_path = "Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\" + new_config_file_name;
