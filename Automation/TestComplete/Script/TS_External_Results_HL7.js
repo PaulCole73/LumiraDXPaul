@@ -12,6 +12,7 @@ function ts_master_external_results_hl7(send_mail)
   tc_external_results_hl7_message_todays_date_patient_match();
   tc_external_results_hl7_message_4_days_passed_with_dosing();
   tc_external_results_hl7_message_today_does_not_match_patient();
+  tc_external_results_hl7_message_duplicate_entries_different_nhs();
   
   email_and_archive(send_mail, "ts_external_results_master");
 }

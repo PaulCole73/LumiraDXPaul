@@ -33,12 +33,35 @@ function login(user_index, TestStepMode, reset_password)
   
   if(Mode == "Shared")
   { 
-    //Navigating to the Login fields and entering the passed in values
-    login_area.Panel("LoginInput").Panel(0).Textbox("Username").Text = username;
-    login_area.Panel("LoginInput").Panel(1).Passwordbox("Password").Text = password;
+    var counter = 0;
+    var is_page_loaded = false;
+    
+    do
+    {
+      login_area.Refresh();
+      var obj = INRstarV5.NativeWebObject.Find("idStr", "Username");
+      
+      if(obj.Exists == true && obj.isContentEditable == true)
+      {
+        is_page_loaded = true;
+        //Navigating to the Login fields and entering the passed in values
+        login_area.Panel("LoginInput").Panel(0).Textbox("Username").Text = username;
+        login_area.Panel("LoginInput").Panel(1).Passwordbox("Password").Text = password;
        
-    // Click the button 
-    var login_button = login_area.Panel(0).SubmitButton("LoginButton").Click();
+        // Click the button 
+        var login_button = login_area.Panel(0).SubmitButton("LoginButton").Click();
+      }
+      else
+      {
+        is_page_loaded = false;
+        WaitSeconds(10, "Waiting for login page...");
+        Log.Message("Login page not ready, automation still broke, try again tomorrow...");
+      }
+      
+      counter++;
+      Log.Message(counter);
+    }
+    while(is_page_loaded == false && counter < 3);
   }
   else if (Mode == "")
   { 
@@ -65,19 +88,26 @@ function login(user_index, TestStepMode, reset_password)
   process_popup("Email Address", "Cancel");
 }
 //--------------------------------------------------------------------------------
-function log_in_new_user(username, current_pass)
+function log_in_new_user(username, current_pass, is_password_reset, new_password)
 {
   login(username, "Shared", current_pass);
   
   var login_details = new Array();
   login_details = get_login_details();
-    
-  var panelMCP = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement").Click();
+  
+  if(is_password_reset == null || is_password_reset == false)
+  {
+    var panelMCP = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
+    var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement").Click();
+  }
+  if(new_password == null)
+  {
+    new_password = login_details[20];
+  }
     
   password_expired_form().Panel(0).PasswordBox("currentPassword").Text = current_pass;
-  password_expired_form().Panel(1).PasswordBox("newPassword").Text = login_details[20];
-  password_expired_form().Panel(2).PasswordBox("confirmPassword").Text = login_details[20];
+  password_expired_form().Panel(1).PasswordBox("newPassword").Text = new_password;
+  password_expired_form().Panel(2).PasswordBox("confirmPassword").Text = new_password;
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
   
   process_popup("Important Information", "Do Not Show Again");
