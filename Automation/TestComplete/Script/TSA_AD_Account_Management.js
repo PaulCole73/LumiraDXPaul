@@ -194,9 +194,9 @@ function get_location_license_details(client_name, location_name)
   admin_dash_location_tabs().Link("LocationLicenceLink").Click();
   var details = new Array();
   
-  for(var i = 0; i < 4; i++)
+  for(var i = 0; i < 5; i++)
   {
-    var temp = admin_dash_location_details().Panel(i).Child(0).value;
+    var temp = admin_dash_location_details().Panel(i).Child(0).innerText;
     Log.Message(temp);
     details.push(temp);
   }
@@ -479,7 +479,7 @@ function edit_client_location(client_name, location_name, new_loc_name)
   form.Panel(19).SubmitButton("Update").Click();
 }
 //--------------------------------------------------------------------------------
-function edit_client_location_licenses(client_name, location_name, license_index, no_license, no_pst_license, license_exp_date)
+function edit_client_location_licenses(client_name, location_name, license_index, no_license, no_pst_license, license_exp_date, clinic_sys_index)
 {
   select_client_location(client_name, location_name);
   admin_dash_client_details().Panel(1).Button("ManageLocation").Click();
@@ -524,6 +524,10 @@ function edit_client_location_licenses(client_name, location_name, license_index
   
   
   temp = form.Panel(3).Textbox("ExpiryDate");
+  details.push(temp.value);
+  
+  temp = form.Panel(4).Select("ClinicalSystemId");
+  temp.ClickItem(clinic_sys_index);
   details.push(temp.value);
   
   form.Panel(9).SubmitButton("UpdateLocationsLicenceDetails").Click();

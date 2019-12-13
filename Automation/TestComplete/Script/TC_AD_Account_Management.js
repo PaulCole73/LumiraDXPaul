@@ -366,14 +366,11 @@ function tc_account_management_create_treatment_location()
     var test_title = "Admin Dashboard - Account Management - Create a Treatment Location";
     login_admin_dash();
   
-    var name_suffix = get_unique_number();
-    var name = "Regression" + name_suffix;
+    var name = "Regression" + get_unique_number();
     add_new_client(name);
     
-    var loc_name = "Reg_Loc";
-    var licence_index = 1;
-    var loc_id = new_guid(7);
-    loc_name = add_treatment_location(name, loc_name, licence_index, loc_id)
+    var loc_name = "Reg_Loc_" + get_unique_number();
+    loc_name = add_treatment_location(name, loc_name, 1, new_guid(7));
     
     var result_set = new Array();
     var result_set_1 = select_client_location(name, loc_name)
@@ -405,14 +402,11 @@ function tc_account_management_create_view_only_location()
     var test_title = "Admin Dashboard - Account Management - Create a View Only Location";
     login_admin_dash();
   
-    var name_suffix = get_unique_number();
-    var name = "Regression" + name_suffix;
+    var name = "Regression" + get_unique_number();
     add_new_client(name);
     
-    var loc_name = "Reg_Loc";
-    var licence_index = 2;
-    var loc_id = new_guid(7);
-    loc_name = add_treatment_location(name, loc_name, licence_index, loc_id)
+    var loc_name = "Reg_Loc_" + get_unique_number();
+    loc_name = add_treatment_location(name, loc_name, 2, new_guid(7));
     
     var result_set = new Array();
     var result_set_1 = select_client_location(name, loc_name)
@@ -444,14 +438,11 @@ function tc_account_management_edit_treatment_location_details()
     var test_title = "Admin Dashboard - Account Management - Edit a Treatment Location";
     login_admin_dash();
   
-    var name_suffix = get_unique_number();
-    var name = "Regression" + name_suffix;
+    var name = "Regression" + get_unique_number();
     add_new_client(name);
     
     var loc_name = "Reg_Loc_" + get_unique_number();
-    var licence_index = 1;
-    var loc_id = new_guid(7);
-    add_treatment_location(name, loc_name, licence_index, loc_id);
+    add_treatment_location(name, loc_name, 1, new_guid(7));
     
     var original_data = new Array();
     original_data = get_location_details(name, loc_name, "editable");
@@ -492,14 +483,11 @@ function tc_account_management_edit_treatment_location_license()
     var test_title = "Admin Dashboard - Account Management - Create a Treatment Location";
     login_admin_dash();
   
-    var name_suffix = get_unique_number();
-    var name = "Regression" + name_suffix;
+    var name = "Regression" + get_unique_number();
     add_new_client(name);
     
     var loc_name = "Reg_Loc_" + get_unique_number();
-    var licence_index = 1;
-    var loc_id = new_guid(7);
-    add_treatment_location(name, loc_name, licence_index, loc_id);
+    add_treatment_location(name, loc_name, 1, new_guid(7));
     
     var values = new Array();
     values = get_location_license_details(name, loc_name);
@@ -515,13 +503,13 @@ function tc_account_management_edit_treatment_location_license()
     var result_set_1 = compare_values("Updated location's license details", audit_text, test_title);
     result_set.push(result_set_1);
     
-    /*
     result_set_1 = compare_values(values[1], edited_values[1], test_title);
+    result_set_1 = results_checker_are_false(result_set_1);
     result_set.push(result_set_1);
     
     result_set_1 = compare_values(values[3], edited_values[3], test_title);
+    result_set_1 = results_checker_are_false(result_set_1);
     result_set.push(result_set_1);
-    */
   
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title);
@@ -537,3 +525,88 @@ function tc_account_management_edit_treatment_location_license()
   }
 }
 //--------------------------------------------------------------------------------
+function tc_account_management_search_facility()
+{
+  try
+  {
+    var test_title = "Admin Dashboard - Account Management - Search Facility";
+    login_admin_dash();
+  
+    var name = "Regression" + get_unique_number();
+    add_new_client(name);
+    
+    var loc_name = "Reg_Loc_" + get_unique_number();
+    loc_name = add_treatment_location(name, loc_name, 2, new_guid(7));
+    
+    var result_set = new Array();
+    var result_set_1 = select_client_location(name, loc_name)
+    result_set.push(result_set_1);
+    
+    loc_name = "Reg_Loc_" + get_unique_number();
+    loc_name = add_treatment_location(name, loc_name, 1, new_guid(7));
+    
+    result_set_1 = select_client_location(name, loc_name)
+    result_set.push(result_set_1);
+    
+    search_for_client(name);
+    var name_found = admin_dash_client_details().Panel(1).Label("Name_DetachedLabel").innerText;
+    
+    result_set_1 = compare_values(name, name_found, test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+  
+    log_off_admin_dash();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_AD_Account_Management";
+    var test_name = "tc_account_management_search_facility";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_account_management_change_clinical_system()
+{
+  try
+  {
+    var test_title = "Admin Dashboard - Account Management - Change Clinical System";
+    login_admin_dash();
+  
+    var name = "Regression" + get_unique_number();
+    add_new_client(name);
+    
+    var loc_name = "Reg_Loc_" + get_unique_number();
+    loc_name = add_treatment_location(name, loc_name, 1, new_guid(7));
+    
+    var values = new Array();
+    values = get_location_license_details(name, loc_name);
+    
+    var date = aqDateTime.AddDays(aqDateTime.Today(), 10);
+    var edited_values = new Array();
+    edited_values = edit_client_location_licenses(name, loc_name, 1, 3, 2, date, 1);
+    
+    var audit_text = get_audit_entry_admin_dash(1);
+    var result_set = new Array();
+    var result_set_1 = compare_values("Updated location's license details", audit_text, test_title);
+    result_set.push(result_set_1);
+    
+    result_set_1 = compare_values(values[4], edited_values[4], test_title);
+    result_set_1 = results_checker_are_false(result_set_1);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+  
+    log_off_admin_dash();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_AD_Account_Management";
+    var test_name = "tc_account_management_change_clinical_system";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
