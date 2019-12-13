@@ -13,7 +13,6 @@
 //GLOBAL VARIABLES
 var environment = "INRstarWindowsHoth";
 
-
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
@@ -531,11 +530,11 @@ function process_object_exists(content_type, content_data)
   }
 }
 //-----------------------------------------------------------------------------------
-function exception_occured(a, b)//randomly required 2 parameters
+function exception_occured(a, b) //randomly required 2 parameters
 {
   Options.Run.Timeout = 0; //rush through test at error
   Log.Message("Error occured, this test should be re-tested, check next log error for more info.");
-  //restart_INRstar();
+  Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Minimize();
 }
 //-----------------------------------------------------------------------------------
 function setup_automation(new_config_file_name)
