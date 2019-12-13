@@ -334,9 +334,11 @@ function Goto_Patient_Treatment_Plan()
   
   do //this function has been experiencing regular/consistent timeouts, now using a loop to minimize failure and provide re-testability 
   {
-    var temp = obj.FindChild("Name", ".Link(\"PatientTreatmentPlanTab\")");
+    obj.Refresh();
+    var temp = obj.FindChild("idStr", "PatientTreatmentPlanTab");
     if(temp.Exists)
     {
+      Log.Message(temp.Name);
       temp.Click();
     }
     counter++;

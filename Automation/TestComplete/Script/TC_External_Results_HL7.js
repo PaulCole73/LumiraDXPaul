@@ -156,6 +156,8 @@ function tc_external_results_hl7_message_duplicate_entries_different_nhs()
     generate_hl7_message(patient_data_array);
     send_hl7_message();
     
+    Goto_Patient_Results();
+    
     button = table.FindChild("idStr", "FindPatient");
     result_set_1 = button.Exists;
     result_set.push(result_set_1);

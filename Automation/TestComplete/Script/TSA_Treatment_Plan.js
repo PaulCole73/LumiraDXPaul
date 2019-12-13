@@ -398,7 +398,8 @@ function add_treatment_plan_drug_warning_checker(drug,exp_warn_mess)
   }
   catch(e)
   {
-    Log.Warning('There was exception checking the drug warning pop up, exception was = ' + (e))
+    Log.Message('There was exception checking the drug warning pop up, exception was = ' + (e))
+    return false;
   }  
 } 
 //--------------------------------------------------------------------------------
@@ -448,7 +449,7 @@ function get_patient_clinical_details()
   
   clinical_data_array.push(duration,target_inr,dosing_method,testing_method,max_review,tablet_5mg); 
   
-//  Log.Message(clinical_data_array); 
+  //Log.Message(clinical_data_array); 
   return clinical_data_array;  
 } 
 //--------------------------------------------------------------------------------

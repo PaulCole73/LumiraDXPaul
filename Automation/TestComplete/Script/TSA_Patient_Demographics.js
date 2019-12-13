@@ -266,4 +266,6 @@ function edit_patient_dob_to_be_under_18(months)
   
   var save_button = patient_edit_demographics_form_buttons();
   save_button.SubmitButton("UpdatePatientDetails").Click();
+  
+  WaitSeconds(2, "Waiting for banner message...");
 } 
