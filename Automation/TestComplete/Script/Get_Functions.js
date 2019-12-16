@@ -576,6 +576,7 @@ function get_hl7_file_folder()
     break;
   }
   
+  Log.Message(folder_name);
   return folder_name;
 }
 //-----------------------------------------------------------------------------------
@@ -589,31 +590,41 @@ function get_hl7_patient_info(table_position)
     table_position = 1;  
   }
   
-  var obj = patient_external_results_table().Cell(table_position, 1).Panel(0).FindChild("name", "Link(\"PatientLink\")");
-  var obj_alt = patient_external_results_table().Cell(table_position, 1).Panel(0).FindChild("name", "Label(\"Name_DetachedLabel\")");
-  var name;
-  if(obj.Exists)
+  if(patient_external_results_table().Cell(1, 0).innerText != "There are no new results")
   {
-    name = obj.innerText;
-  }
-  else if(obj_alt.Exists)
-  {
-    name = obj_alt.innerText;
+    var obj = patient_external_results_table().Cell(table_position, 1).Panel(0).FindChild("name", "Link(\"PatientLink\")");
+    var obj_alt = patient_external_results_table().Cell(table_position, 1).Panel(0).FindChild("name", "Label(\"Name_DetachedLabel\")");
+
+    var name;
+    if(obj.Exists)
+    {
+      name = obj.innerText;
+    }
+    else if(obj_alt.Exists)
+    {
+      name = obj_alt.innerText;
+    }
+    else
+    {
+      name = "";
+    }
+    
+    var name_split = name.split(",");
+  
+    var surname = aqString.Trim(name_split[0]);
+    var firstname = aqString.Trim(name_split[1]);
+    var dob = patient_external_results_table().Cell(table_position, 1).Panel(0).Label("Born_DetachedLabel").innerText;
+    var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
+    var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("PatientNumber_DetachedLabel").innerText;
+  
+    patient_data.push(surname, firstname, dob, nhs, pat_no);
+    Log.Message(patient_data);
   }
   else
   {
-    name = "";
+    Log.Message("No table entries!");
+    patient_data.push("", "", "", "", "");
   }
-  var name_split = name.split(",");
-  
-  var surname = aqString.Trim(name_split[0]);
-  var firstname = aqString.Trim(name_split[1]);
-  var dob = patient_external_results_table().Cell(table_position, 1).Panel(0).Label("Born_DetachedLabel").innerText;
-  var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
-  var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("PatientNumber_DetachedLabel").innerText;
-  
-  patient_data.push(surname, firstname, dob, nhs, pat_no);
-  Log.Message(patient_data);
   
   return patient_data;
 }

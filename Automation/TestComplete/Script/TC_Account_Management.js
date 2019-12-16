@@ -1,4 +1,7 @@
 ﻿//USEUNIT TSA_Account_Management
+//USEUNIT TSA_AD_Login
+//USEUNIT Admin_Dash_Navigation
+//USEUNIT Admin_Dash_Get_Functions
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_account_management_add_a_new_client()
@@ -12,7 +15,7 @@ function tc_account_management_add_a_new_client()
     var name = "Regression" + name_suffix;
     add_new_client(name);
     
-    search_for_client(name);
+    Goto_Client(name);
   
     var name_found = admin_dash_client_details().Panel(1).Label("Name_DetachedLabel").innerText;
     var audit_text = get_audit_entry_admin_dash(1);
@@ -35,6 +38,7 @@ function tc_account_management_add_a_new_client()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_add_a_new_client";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -44,9 +48,6 @@ function tc_account_management_edit_client_details()
   {
     var test_title = "Admin Dashboard - Account Management - Edit Client's Details";
     login_admin_dash();
-  
-    admin_dash_navigation().Link("AccountManagementLink").Click();
-    admin_dash_new_client_button().Click();
   
     var name_suffix = get_unique_number();
     var name = "Regression" + name_suffix;
@@ -84,6 +85,7 @@ function tc_account_management_edit_client_details()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_client_details";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -94,7 +96,7 @@ function tc_account_management_add_org_clinical_lead_user()
     var test_title = "Admin Dashboard - Account Management - Add Org Clinical Lead User";
     login_admin_dash();
     
-    var parent_client = "St. O'  455 & QRNR Prison";
+    var parent_client = get_parent_client_name();
     var username = add_a_new_user(parent_client, "org clinical");
     
     log_off_admin_dash();
@@ -105,7 +107,6 @@ function tc_account_management_add_org_clinical_lead_user()
     result_set.push(result_set_1);
     
     Log_Off();
-    
     login_admin_dash();
     
     var audit_text = get_audit_entry_admin_dash(1);
@@ -123,6 +124,7 @@ function tc_account_management_add_org_clinical_lead_user()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_add_org_clinical_lead_user";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -133,7 +135,7 @@ function tc_account_management_reset_org_clinical_lead_user_password()
     var test_title = "Admin Dashboard - Account Management - Reset Org Clinical Lead Password";
     login_admin_dash();
     
-    var parent_client = "St. O'  455 & QRNR Prison";
+    var parent_client = get_parent_client_name();
     var username = add_a_new_user(parent_client, "org clinical");
     
     log_off_admin_dash();
@@ -173,6 +175,7 @@ function tc_account_management_reset_org_clinical_lead_user_password()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_reset_org_clinical_lead_user_password";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -183,7 +186,7 @@ function tc_account_management_remove_org_clinical_lead()
     var test_title = "Admin Dashboard - Account Management - Remove Org Clinical Lead User";
     login_admin_dash();
     
-    var parent_client = "St. O'  455 & QRNR Prison";
+    var parent_client = get_parent_client_name();
     var username = add_a_new_user(parent_client, "org clinical");
     
     update_a_user(parent_client, username, "remove");
@@ -204,6 +207,7 @@ function tc_account_management_remove_org_clinical_lead()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_remove_org_clinical_lead";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -242,6 +246,7 @@ function tc_account_management_add_admin_lead_user()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_add_admin_lead_user";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -275,6 +280,7 @@ function tc_account_management_edit_admin_lead_user()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_admin_lead_user";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -325,6 +331,7 @@ function tc_account_management_reset_location_admin_user_password()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_reset_location_admin_user_password";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -356,6 +363,7 @@ function tc_account_management_remove_location_admin()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_remove_location_admin";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -373,7 +381,7 @@ function tc_account_management_create_treatment_location()
     loc_name = add_treatment_location(name, loc_name, 1, new_guid(7));
     
     var result_set = new Array();
-    var result_set_1 = select_client_location(name, loc_name)
+    var result_set_1 = Goto_Client_Location(name, loc_name)
     result_set.push(result_set_1);
     
     var audit_text = get_audit_entry_admin_dash(1);
@@ -392,6 +400,7 @@ function tc_account_management_create_treatment_location()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_create_treatment_location";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -409,7 +418,7 @@ function tc_account_management_create_view_only_location()
     loc_name = add_treatment_location(name, loc_name, 2, new_guid(7));
     
     var result_set = new Array();
-    var result_set_1 = select_client_location(name, loc_name)
+    var result_set_1 = Goto_Client_Location(name, loc_name)
     result_set.push(result_set_1);
     
     var audit_text = get_audit_entry_admin_dash(1);
@@ -428,6 +437,7 @@ function tc_account_management_create_view_only_location()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_create_view_only_location";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -473,6 +483,7 @@ function tc_account_management_edit_treatment_location_details()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_treatment_location_details";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -522,6 +533,7 @@ function tc_account_management_edit_treatment_location_license()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_treatment_location_license";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -539,16 +551,16 @@ function tc_account_management_search_facility()
     loc_name = add_treatment_location(name, loc_name, 2, new_guid(7));
     
     var result_set = new Array();
-    var result_set_1 = select_client_location(name, loc_name)
+    var result_set_1 = Goto_Client_Location(name, loc_name)
     result_set.push(result_set_1);
     
     loc_name = "Reg_Loc_" + get_unique_number();
     loc_name = add_treatment_location(name, loc_name, 1, new_guid(7));
     
-    result_set_1 = select_client_location(name, loc_name)
+    result_set_1 = Goto_Client_Location(name, loc_name)
     result_set.push(result_set_1);
     
-    search_for_client(name);
+    Goto_Client(name);
     var name_found = admin_dash_client_details().Panel(1).Label("Name_DetachedLabel").innerText;
     
     result_set_1 = compare_values(name, name_found, test_title);
@@ -565,6 +577,7 @@ function tc_account_management_search_facility()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_search_facility";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }
 //--------------------------------------------------------------------------------
@@ -608,5 +621,6 @@ function tc_account_management_change_clinical_system()
     var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_change_clinical_system";
     handle_failed_tests(suite_name, test_name);
+    restart_admin_dash();
   }
 }

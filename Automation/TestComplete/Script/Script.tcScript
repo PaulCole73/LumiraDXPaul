@@ -928,6 +928,21 @@
 		<child name="Admin_Dash_Get_Functions" key="{C528866F-35FA-4E7B-8841-EFCC40562D3F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="Admin_Dash_Get_Functions.js" />
 		</child>
+		<child name="Admin_Dash_System_Paths" key="{B3BA6F44-ADBD-4334-A780-ED9AB89B7087}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Admin_Dash_System_Paths.js" />
+		</child>
+		<child name="Admin_Dash_Navigation" key="{88617AA4-25B3-431B-BF23-6A299A17FE80}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Admin_Dash_Navigation.js" />
+		</child>
+		<child name="Admin_Dash_Popup_Handlers" key="{54E7AC23-4048-4407-8D5F-C81905010CCD}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Admin_Dash_Popup_Handlers.js" />
+		</child>
+		<child name="Admin_Dash_Misc_Functions" key="{A94478F8-47B5-4911-A6B5-854A062280AF}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="Admin_Dash_Misc_Functions.js" />
+		</child>
+		<child name="TSA_AD_Login" key="{4561D0BC-A857-40D8-9E8B-057A6A0A881F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_AD_Login.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1286,11 +1301,16 @@
 				<folder caption="3. Test Step Actions" description="A logical folder that is used to organize project items and elements." moniker="">
 					<references>
 						<ref key="{49674F76-DA46-4508-A57D-94EC61EF1775}" />
+						<ref key="{4561D0BC-A857-40D8-9E8B-057A6A0A881F}" />
 					</references>
 				</folder>
 				<folder caption="4. Utilities" description="A logical folder that is used to organize project items and elements." moniker="">
 					<references>
 						<ref key="{C528866F-35FA-4E7B-8841-EFCC40562D3F}" />
+						<ref key="{B3BA6F44-ADBD-4334-A780-ED9AB89B7087}" />
+						<ref key="{88617AA4-25B3-431B-BF23-6A299A17FE80}" />
+						<ref key="{54E7AC23-4048-4407-8D5F-C81905010CCD}" />
+						<ref key="{A94478F8-47B5-4911-A6B5-854A062280AF}" />
 					</references>
 				</folder>
 			</folders>
