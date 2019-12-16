@@ -1,34 +1,9 @@
-﻿//USEUNIT System_Paths
+﻿//USEUNIT Admin_Dash_System_Paths
+//USEUNIT System_Paths
+//USEUNIT Admin_Dash_Misc_Functions
 //USEUNIT Misc_Functions
-//--------------------------------------------------------------------------------
-function open_admin_dash()
-{
-  TestedApps.Admin_Dashboard.Run(0, true);
-  WaitSeconds(10, "Waiting for application to open...");
-  
-  Sys.Browser("iexplore").BrowserWindow(0).Maximize();
-  Sys.Browser("iexplore").BrowserWindow(0).SetFocus();
-}
-//--------------------------------------------------------------------------------
-function close_admin_dash()
-{
-  TestedApps.Admin_Dashboard.Terminate();
-  WaitSeconds(2, "Waiting for application to close...");
-}
-//--------------------------------------------------------------------------------
-function login_admin_dash()
-{
-  admin_dash_username_login().innerText = get_login_details(23); //remove these credentials before check into git
-  admin_dash_password_login().innerText = get_login_details(20);
-  admin_dash_login_button().Click();
-  WaitSeconds(5, "Waiting to login...");
-}
-//--------------------------------------------------------------------------------
-function log_off_admin_dash()
-{
-  admin_dash_logoff_button().Click();
-  WaitSeconds(2, "Waiting to log off...");
-}
+//USEUNIT Admin_Dash_Navigation
+//USEUNIT Admin_Dash_Popup_Handlers
 //--------------------------------------------------------------------------------
 function add_new_client(name)
 {
@@ -63,50 +38,9 @@ function add_new_client(name)
   WaitSeconds(4, "Creating Client...");
 }
 //--------------------------------------------------------------------------------
-function search_for_client(name)
-{
-  admin_dash_navigation().Link("AccountManagementLink").Click();
-  WaitSeconds(3, "Waiting for account management tab...");
-  
-  admin_dash_search_client_box().Text = name;
-  WaitSeconds(3, "Waiting for search box...");
-  
-  if(name == "St. O'  455 & QRNR Prison")
-  {
-    name = "St. O' 455 & QRNR Prison";
-  }
-  
-  var counter = 0;
-  var is_object_matching = false;
-  do
-  {
-    admin_dash_base().Refresh();
-    var obj = admin_dash_base().FindChild("Name", "Link(" + counter + ")", 0); 
-    if(obj.Exists)
-    {
-      var temp = new Array();
-      var temp_text = obj.innerText;
-      temp = temp_text.split("\r\n");
-      
-      if(temp[0] == name)
-      {
-        obj.Click();
-        is_object_matching = true;
-        break;
-      }
-    }
-    else
-    {
-      break;
-    }
-    counter++;
-  }
-  while(is_object_matching == false);
-}
-//--------------------------------------------------------------------------------
 function edit_client_details(current_name, new_name) //this could be done in a loop, but due to the possible need for the user to set these values it is currently using this method
 {
-  search_for_client(current_name)
+  Goto_Client(current_name)
   admin_dash_client_details().Panel(17).Button("EditClientAccountLink").Click();
   
   admin_dash_edit_client_form().Panel(1).Textbox("Name").innerText = new_name;
@@ -134,74 +68,6 @@ function edit_client_details(current_name, new_name) //this could be done in a l
   
   admin_dash_edit_client_form().Panel(17).SubmitButton("Update").Click();
   WaitSeconds(2, "Waiting for edit for to update...");
-}
-//--------------------------------------------------------------------------------
-function get_client_details(name)
-{
-  search_for_client(name)
-
-  var form = admin_dash_client_details();
-  var details = new Array();
-
-  for(var i = 1; i < form.ChildCount - 1; i++)
-  {
-    var temp = form.Panel(i).Child(0).innerText;
-    details.push(temp);
-  }
-  
-  return details;
-}
-//--------------------------------------------------------------------------------
-function get_location_details(client_name, location_name, amount_of_details)
-{
-  select_client_location(client_name, location_name);
-  admin_dash_client_details().Panel(1).Button("ManageLocation").Click();
-  var form = admin_dash_location_details();
-  var details = new Array();
-  
-  if(amount_of_details == null || amount_of_details == "full")
-  {
-    for(var i = 0; i < form.ChildCount - 3; i++)
-    {
-      var temp = form.Panel(i).Child(0).innerText;
-      details.push(temp);
-    }
-  }
-  else if(amount_of_details == "editable");
-  {
-    for(var i = 0; i < form.ChildCount - 3; i++)
-    {
-      if(i == 0 || i == 2 || i == 4 || i == 5)
-      {
-        
-      }
-      else
-      {
-        var temp = form.Panel(i).Child(0).innerText;
-        details.push(temp);
-      }
-    }
-  }
-  
-  Log.Message(details);
-  return details;
-}
-//--------------------------------------------------------------------------------
-function get_location_license_details(client_name, location_name)
-{
-  select_client_location(client_name, location_name);
-  admin_dash_client_details().Panel(1).Button("ManageLocation").Click();
-  admin_dash_location_tabs().Link("LocationLicenceLink").Click();
-  var details = new Array();
-  
-  for(var i = 0; i < 5; i++)
-  {
-    var temp = admin_dash_location_details().Panel(i).Child(0).innerText;
-    Log.Message(temp);
-    details.push(temp);
-  }
-  
-  return details;
 }
 //--------------------------------------------------------------------------------
 function add_a_new_user(client_name, user_level)
@@ -328,71 +194,6 @@ function update_a_location_admin(client_name, username, edit_type, edit_fullname
   }
 }
 //--------------------------------------------------------------------------------
-function Goto_Client_Users(name)
-{
-  search_for_client(name);
-  WaitSeconds(1, "Waiting for client details...");
-  admin_dash_account_tabs().Link("AccountAdministratorTab").Click();
-  WaitSeconds(1, "Waiting for users tab...");
-}
-//--------------------------------------------------------------------------------
-function Goto_Client_Location_Users(name)
-{
-  search_for_client(name);
-  WaitSeconds(1, "Waiting for client details...");
-  admin_dash_location_tabs().Link("LocationAdministratorTab").Click();
-  WaitSeconds(1, "Waiting for users tab...");
-}
-//--------------------------------------------------------------------------------
-function Goto_Client_Locations(name)
-{
-  search_for_client(name);
-  WaitSeconds(1, "Waiting for client details...");
-  /*admin_dash_location_tabs()*/admin_dash_account_tabs().Link("AccountLocationsTab").Click();
-  WaitSeconds(1, "Waiting for locations tab...");
-}
-//--------------------------------------------------------------------------------
-function get_audit_entry_admin_dash(audit_item)
-{
-  admin_dash_navigation().Link("ViewAuditTrailLink").Click();
-
-  var table = admin_dash_audit_table();
-  var text = table.Cell(audit_item, 1).innerText;
-  
-  WaitSeconds(2, "Waiting for audit value...");
-  
-  return text;
-}
-//--------------------------------------------------------------------------------
-function process_admin_dash_popup(header, button)
-{
-  var obj = admin_dash_base().NativeWebObject.Find("contentText", header);
-  
-  if (obj.Exists == false || obj.Height == 0)
-  { 
-    Log.Message("'" + header + "' box not displayed");
-    return "";
-  }
-  else
-  { 
-    Log.Message("'" + header + "' box displayed");
-    var obj_button = admin_dash_base().NativeWebObject.Find("innerText", button, "BUTTON");
-    if (obj_button.Exists == false || obj_button.Height == 0)
-    {
-      Log.Message("'" + header + "' "+ button +" button not found");
-      return "";
-    }
-    else
-    {
-      var text = admin_dash_base().Panel(2).Panel("modalDialogBox").innerText;
-      Log.Message("Clicking '" + header + "' "+ button +" button ");
-      Sys.HighlightObject(obj_button, 2);
-      obj_button.Click();
-      return text;
-    }
-  }
-}
-//--------------------------------------------------------------------------------
 function add_treatment_location(client_name, loc_name, licence_index, loc_id)
 {
   Goto_Client_Locations(client_name);
@@ -423,35 +224,9 @@ function add_treatment_location(client_name, loc_name, licence_index, loc_id)
   return loc_name;
 }
 //--------------------------------------------------------------------------------
-function select_client_location(client_name, location_name)
-{
-  Goto_Client_Locations(client_name);
-  var list = admin_dash_client_details().Panel(0).Select("Locations");
-  var is_location_in_list = false;
-  
-  for(var i = 1; i < list.wItemCount; i++)
-  {
-    if(list.wItem(i) == location_name)
-    {
-      list.ClickItem(i);
-      is_location_in_list = true;
-      break;
-    }
-  }
-  
-  if(is_location_in_list == false)
-  {
-    return false;
-  }
-  else
-  {
-    return true;
-  }
-}
-//--------------------------------------------------------------------------------
 function edit_client_location(client_name, location_name, new_loc_name)
 {
-  select_client_location(client_name, location_name)
+  Goto_Client_Location(client_name, location_name)
   admin_dash_client_details().Panel(1).Button("ManageLocation").Click();
   
   var container = admin_dash_location_details();
@@ -481,7 +256,7 @@ function edit_client_location(client_name, location_name, new_loc_name)
 //--------------------------------------------------------------------------------
 function edit_client_location_licenses(client_name, location_name, license_index, no_license, no_pst_license, license_exp_date, clinic_sys_index)
 {
-  select_client_location(client_name, location_name);
+  Goto_Client_Location(client_name, location_name);
   admin_dash_client_details().Panel(1).Button("ManageLocation").Click();
   admin_dash_location_tabs().Link("LocationLicenceLink").Click();
   

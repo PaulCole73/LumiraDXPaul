@@ -108,13 +108,31 @@ function send_hl7_message()
   
   WaitSeconds(8, "Waiting for HL7 message to send..."); //wait for hl7 message to process
 }
-
+//--------------------------------------------------------------------------------
 function dose_patient_external_result(table_position)
 {
   if(table_position == null)
   {
     table_position = 1;
   }
-  
   patient_external_results_table().Cell(table_position, 4).Panel(0).Panel("Div1").Button("DosePatient").Click();
+  var text = process_popup("Historic Treatment", "OK");
+  
+  return text;
+}
+//--------------------------------------------------------------------------------
+function validate_hl7_buttons(button_id)
+{
+  Goto_Patient_Results();
+  
+  var obj;
+  
+  if(patient_external_results_table().Cell(1, 0).innerText != "There are no new results")
+  {
+      var table = patient_external_results_table().Cell(1, 4).Panel(0).Panel("Div1");
+      var button = table.FindChild("idStr", button_id);
+      var obj = button.Exists;
+  }
+  
+  return obj;
 }

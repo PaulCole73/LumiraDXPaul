@@ -12,6 +12,7 @@
 
 //GLOBAL VARIABLES
 var environment = "INRstarWindowsHoth";
+var admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -534,7 +535,6 @@ function exception_occured(a, b) //randomly required 2 parameters
 {
   Options.Run.Timeout = 0; //rush through test at error
   Log.Message("Error occured, this test should be re-tested, check next log error for more info.");
-  Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Minimize();
 }
 //-----------------------------------------------------------------------------------
 function setup_automation(new_config_file_name)

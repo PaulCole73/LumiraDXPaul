@@ -15,7 +15,11 @@
 //when checking, check additional properties, height/visible updates dynamically
 function process_popup(header, button)
 {
-  WaitSeconds(1);
+  if(header == "Important Information")
+  {
+    WaitSeconds(4);
+  }
+  
   var INRstarV5 = INRstar_base();
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
   

@@ -5,7 +5,7 @@ function tc_external_results_hl7_message_todays_date_patient_match()
 {
   try
   {
-    var test_title = "HL7";
+    var test_title = "External Results: HL7 Message Dated Today - Match Patient";
     login(22, "Shared"); 
     add_patient("Regression", "HL7", "M", "Shared");
     
@@ -20,11 +20,8 @@ function tc_external_results_hl7_message_todays_date_patient_match()
     external_patient_data = get_hl7_patient_info(1);
     var ext_nhs = external_patient_data[3];
     
-    var table = patient_external_results_table().Cell(1, 4).Panel(0).Panel("Div1");
-    var button = table.FindChild("idStr", "DosePatient");
-    
     var result_set = new Array();
-    var result_set_1 = button.Exists;
+    var result_set_1 = validate_hl7_buttons("DosePatient");
     result_set.push(result_set_1);
     
     result_set_1 = compare_values(nhs, ext_nhs, test_title);
@@ -48,7 +45,7 @@ function tc_external_results_hl7_message_4_days_passed_with_dosing()
 {
   try
   {
-    var test_title = "HL7";
+    var test_title = "External Results: HL7 Message Dated 4 Days Past - Patient Dosing";
     login(22, "Shared"); 
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
@@ -66,8 +63,11 @@ function tc_external_results_hl7_message_4_days_passed_with_dosing()
     external_patient_data = get_hl7_patient_info(1);
     var ext_nhs = external_patient_data[3];
     
-    dose_patient_external_result(1);
-    var confirm_historic_text = process_popup("Historic Treatment", "OK");
+    var confirm_historic_text;
+    if(nhs == ext_nhs)
+    {
+      confirm_historic_text = dose_patient_external_result(1);
+    } 
     var expected_text = "This result is more than 3 days old. The result will be entered as a historical treatment.";
     
     var result_set = new Array();
@@ -95,19 +95,16 @@ function tc_external_results_hl7_message_today_does_not_match_patient()
 {
   try
   {
-    var test_title = "HL7";
+    var test_title = "External Results: HL7 Message Dated Today - Does Not Match Patient";
     login(22, "Shared"); 
     
     var dt;
     
     setup_hl7_message_data(dt, "123456", "123 456 7890", "surname", "firstname", "31-Dec-1990", "F", "address1", "address2", "address3", "address4", "pos cod", "2.5");
     send_hl7_message();
-    
-    Goto_Patient_Results();
-    var table_div = patient_external_results_table().Cell(1, 4).Panel(0).Panel("Div1");
 
     var result_set = new Array();
-    var result_set_1 = table_div.FindChild("idStr", "FindPatient");
+    var result_set_1 = validate_hl7_buttons("FindPatient");
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set); 
@@ -128,7 +125,7 @@ function tc_external_results_hl7_message_duplicate_entries_different_nhs()
 {
   try
   {
-    var test_title = "HL7";
+    var test_title = "External Results: HL7 Message Dated Today - Different NHS Numbers, Find Patient";
     login(22, "Shared"); 
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
@@ -145,21 +142,15 @@ function tc_external_results_hl7_message_duplicate_entries_different_nhs()
     external_patient_data = get_hl7_patient_info(1);
     var ext_nhs = external_patient_data[3];
     
-    var table = patient_external_results_table().Cell(1, 4).Panel(0).Panel("Div1");
-    var button = table.FindChild("idStr", "DosePatient");
-    
     var result_set = new Array();
-    var result_set_1 = button.Exists;
+    var result_set_1 = validate_hl7_buttons("DosePatient");
     result_set.push(result_set_1);
     
     patient_data_array[1] = "123 456 7890";
     generate_hl7_message(patient_data_array);
     send_hl7_message();
     
-    Goto_Patient_Results();
-    
-    button = table.FindChild("idStr", "FindPatient");
-    result_set_1 = button.Exists;
+    result_set_1 = validate_hl7_buttons("FindPatient");
     result_set.push(result_set_1);
     
     result_set_1 = compare_values(nhs, ext_nhs, test_title);
