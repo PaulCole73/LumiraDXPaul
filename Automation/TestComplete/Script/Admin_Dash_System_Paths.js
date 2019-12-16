@@ -1,16 +1,19 @@
-﻿//USEUNIT Misc_Functions
+﻿//USEUNIT Admin_Dash_Misc_Functions
+//USEUNIT Misc_Functions
 //------------------------------------------------------------------------
 ////////////////////////////  Admin Dashboard  ///////////////////////////
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 function admin_dash_base()
 {
+  set_admin_dash_url();
   var main = Sys.Browser("iexplore").Page(admin_dash_url);
   return main;
 }
 //------------------------------------------------------------------------
 function admin_dash_login_base()
 {
+  set_admin_dash_url();
   Log.Message(admin_dash_url);
   var main = Sys.Browser("iexplore").Page(admin_dash_url + "Security/Authentication/LogOn?ReturnUrl=%2f");
   return main;
