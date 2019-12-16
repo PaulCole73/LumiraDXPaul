@@ -4,22 +4,8 @@
 //--------------------------------------------------------------------------------
 function open_admin_dash()
 {
-  var page_address;
-  var base = "INRstarWindows";
-  Log.Message(environment);
+  set_admin_dash_url();
   
-  switch(environment)
-  {
-    case base + "Hoth": 
-    admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
-    break;
-    case base + "Tatooine": 
-    admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
-    break;
-    case base + "Staging": 
-    admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
-    break;
-  }
   TestedApps.Admin_Dashboard.PageAddress = admin_dash_url;
   WaitSeconds(2, "Waiting to get page address...");
 
@@ -52,7 +38,28 @@ function restart_admin_dash()
 function setup_automation_admin_dash(env_url)
 {
   environment = env_url;
+  setup_automation(environment);
   open_admin_dash();
   reset_tests_array();
 }
 //--------------------------------------------------------------------------------
+function set_admin_dash_url()
+{
+  var base = "INRstarWindows";
+  Log.Message(environment);
+  
+  switch(environment)
+  {
+    case base + "Hoth": 
+    admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
+    break;
+    case base + "Tatooine": 
+    admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
+    break;
+    case base + "Staging": 
+    admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
+    break;
+  }
+  
+  Log.Message(admin_dash_url);
+}
