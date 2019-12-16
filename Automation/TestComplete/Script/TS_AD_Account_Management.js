@@ -25,5 +25,5 @@ function ts_master_admin_dash_account_management(send_mail)
   tc_account_management_search_facility();
   tc_account_management_change_clinical_system();
   
-  email_and_archive(send_mail, "ts_account_management_master");
+  email_and_archive(send_mail, "ts_ad_account_management_master");
 }
