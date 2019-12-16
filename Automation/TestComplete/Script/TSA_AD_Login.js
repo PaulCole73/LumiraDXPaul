@@ -14,3 +14,16 @@ function log_off_admin_dash()
   admin_dash_logoff_button().Click();
   WaitSeconds(2, "Waiting to log off...");
 }
+//--------------------------------------------------------------------------------
+function validate_login()
+{
+  var name_split = new Array();
+  if(admin_dash_base().Exists)
+  {
+    var username = admin_dash_base().Panel("MainPage").Panel("header").Panel("logindisplay").Panel("LoginStatus").TextNode(0).innerText;
+    name_split = username.split(" ");
+    username = name_split[0];
+  }
+  
+  return username;
+}

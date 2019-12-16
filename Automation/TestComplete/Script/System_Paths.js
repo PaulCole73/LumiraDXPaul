@@ -73,7 +73,26 @@ function home_page_messages()
   var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
    
   return list;
-} 
+}
+//------------------------------------------------------------------------
+//////////////////////////  Feedback Tab  ////////////////////////////////
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function feedback_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var link = INRstarV5.Panel("MainPage").Panel("main").Panel(0).Link("FeedbackLink");
+  
+  return link;
+}
+//------------------------------------------------------------------------
+function feedback_tab_textarea()
+{
+  var INRstarV5 = INRstar_base();
+  var area = INRstarV5.Panel(6).Panel("feedbackPanel").Form("CollectFeedbackForm").Textarea("Message");
+  
+  return area;
+}
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Demographics  /////////////////////////
 //------------------------------------------------------------------------
@@ -85,7 +104,7 @@ function patient_banner_blue_bar()
    
   return blue_header_bar; 
 } 
- //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 function patient_banner_yellow_bar()
 {
   var INRstarV5 = INRstar_base();

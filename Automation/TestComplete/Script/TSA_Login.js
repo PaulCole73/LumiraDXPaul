@@ -84,8 +84,10 @@ function login(user_index, TestStepMode, reset_password)
     var reset_code_button = login_area_reset.Panel("ResetArea").Panel(1).SubmitButton("submitButton").Click();
   }
   
-  process_popup("Important Information", "Do Not Show Again");
+  var text = process_popup("Important Information", "Do Not Show Again");
   process_popup("Email Address", "Cancel");
+  
+  return text;
 }
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, is_password_reset, new_password)

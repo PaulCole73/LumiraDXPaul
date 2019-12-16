@@ -15,14 +15,14 @@
 //when checking, check additional properties, height/visible updates dynamically
 function process_popup(header, button)
 {
+  var INRstarV5 = INRstar_base();
+  INRstarV5.Refresh();
+  
   if(header == "Important Information")
   {
-    WaitSeconds(4);
+    WaitSeconds(3);
   }
-  
-  var INRstarV5 = INRstar_base();
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
-  
   if (wbx.Exists == false || wbx.Height == 0)
   { 
     Log.Message("'" + header + "' box not displayed");
