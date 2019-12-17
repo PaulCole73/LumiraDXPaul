@@ -916,11 +916,11 @@
 		<child name="TSA_External_Results_HL7" key="{3B715FD9-90AD-4F3E-95F4-9809F85E35DF}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TSA_External_Results_HL7.js" />
 		</child>
-		<child name="TS_Account_Management" key="{5876BC81-65BD-474C-8646-F2406979CD55}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
-			<data path="TS_Account_Management.js" />
+		<child name="TS_AD_Account_Management" key="{5876BC81-65BD-474C-8646-F2406979CD55}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_AD_Account_Management.js" />
 		</child>
-		<child name="TC_Account_Management" key="{301AEB0E-4993-4F25-8323-35D4DF2EF9C4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
-			<data path="TC_Account_Management.js" />
+		<child name="TC_AD_Account_Management" key="{301AEB0E-4993-4F25-8323-35D4DF2EF9C4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_AD_Account_Management.js" />
 		</child>
 		<child name="TSA_Account_Management" key="{49674F76-DA46-4508-A57D-94EC61EF1775}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TSA_Account_Management.js" />
@@ -942,6 +942,39 @@
 		</child>
 		<child name="TSA_AD_Login" key="{4561D0BC-A857-40D8-9E8B-057A6A0A881F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TSA_AD_Login.js" />
+		</child>
+		<child name="TS_AD_Feedback" key="{DC5503CC-632A-4A3A-B189-1F024ADC6D13}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_AD_Feedback.js" />
+		</child>
+		<child name="TC_AD_Feedback" key="{6E6B5B9E-C088-433A-95D4-CC7663BD454B}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_AD_Feedback.js" />
+		</child>
+		<child name="TSA_AD_Feedback" key="{16B55C8C-E00F-4B57-A462-100C5B091EC9}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_AD_Feedback.js" />
+		</child>
+		<child name="TC_AD_Login" key="{403CA147-B939-489A-9937-09E6E40AE4DB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_AD_Login.js" />
+		</child>
+		<child name="TS_AD_Login" key="{71A977BF-EA83-4B1D-9B08-1B39437FCA7F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_AD_Login.js" />
+		</child>
+		<child name="TS_AD_Banner_Message" key="{26324FE2-0AC8-49C0-BE25-6DF24FE3ABF6}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_AD_Banner_Message.js" />
+		</child>
+		<child name="TC_AD_Banner_Message" key="{E050B23C-0075-46B7-AED9-13FD0E546E84}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_AD_Banner_Message.js" />
+		</child>
+		<child name="TSA_AD_Banner_Message" key="{FA573A03-D464-4873-BE01-11125707D610}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_AD_Banner_Message.js" />
+		</child>
+		<child name="TS_AD_Main_Page" key="{E789870B-20CD-4D53-8259-C8E2D2C597C2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_AD_Main_Page.js" />
+		</child>
+		<child name="TC_AD_Main_Page" key="{BA4AEF97-6657-449E-BE9F-3FEE77C69464}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_AD_Main_Page.js" />
+		</child>
+		<child name="TSA_AD_Main_Page" key="{64F64156-2FA9-4EC3-A6E0-326422AC69DB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_AD_Main_Page.js" />
 		</child>
 	</children>
 	<folders>
@@ -1291,17 +1324,28 @@
 				<folder caption="1. Test Suites" description="A logical folder that is used to organize project items and elements." moniker="">
 					<references>
 						<ref key="{5876BC81-65BD-474C-8646-F2406979CD55}" />
+						<ref key="{DC5503CC-632A-4A3A-B189-1F024ADC6D13}" />
+						<ref key="{71A977BF-EA83-4B1D-9B08-1B39437FCA7F}" />
+						<ref key="{26324FE2-0AC8-49C0-BE25-6DF24FE3ABF6}" />
+						<ref key="{E789870B-20CD-4D53-8259-C8E2D2C597C2}" />
 					</references>
 				</folder>
 				<folder caption="2. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="">
 					<references>
 						<ref key="{301AEB0E-4993-4F25-8323-35D4DF2EF9C4}" />
+						<ref key="{6E6B5B9E-C088-433A-95D4-CC7663BD454B}" />
+						<ref key="{403CA147-B939-489A-9937-09E6E40AE4DB}" />
+						<ref key="{E050B23C-0075-46B7-AED9-13FD0E546E84}" />
+						<ref key="{BA4AEF97-6657-449E-BE9F-3FEE77C69464}" />
 					</references>
 				</folder>
 				<folder caption="3. Test Step Actions" description="A logical folder that is used to organize project items and elements." moniker="">
 					<references>
 						<ref key="{49674F76-DA46-4508-A57D-94EC61EF1775}" />
 						<ref key="{4561D0BC-A857-40D8-9E8B-057A6A0A881F}" />
+						<ref key="{16B55C8C-E00F-4B57-A462-100C5B091EC9}" />
+						<ref key="{FA573A03-D464-4873-BE01-11125707D610}" />
+						<ref key="{64F64156-2FA9-4EC3-A6E0-326422AC69DB}" />
 					</references>
 				</folder>
 				<folder caption="4. Utilities" description="A logical folder that is used to organize project items and elements." moniker="">

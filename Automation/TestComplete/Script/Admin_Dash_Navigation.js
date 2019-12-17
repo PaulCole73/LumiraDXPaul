@@ -93,3 +93,17 @@ function Goto_Client_Locations(name)
   WaitSeconds(1, "Waiting for locations tab...");
 }
 //--------------------------------------------------------------------------------
+function Goto_Feedback()
+{
+  admin_dash_navigation().Link("ViewFeedbackLink").Click();
+}
+//--------------------------------------------------------------------------------
+function Goto_Important_Information()
+{
+  admin_dash_navigation().Link("ImportInfoLink").Click();
+}
+//--------------------------------------------------------------------------------
+function Goto_Banner_Message()
+{
+  admin_dash_navigation().Link("SiteInfoLink").Click();
+}
