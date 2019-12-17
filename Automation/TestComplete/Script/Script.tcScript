@@ -943,6 +943,21 @@
 		<child name="TSA_AD_Login" key="{4561D0BC-A857-40D8-9E8B-057A6A0A881F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TSA_AD_Login.js" />
 		</child>
+		<child name="TSA_Engage" key="{740F31EA-632E-437D-950D-7C5948944E79}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_Engage.js" />
+		</child>
+		<child name="TSA_engage_Retrieve_Login_Code" key="{762DD115-3B3E-4628-84C2-9A4950F7C6D4}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TSA_engage_Retrieve_Login_Code.js" />
+		</child>
+		<child name="TC_Engage" key="{FC7157DF-F982-4291-A8BA-F45074D6588F}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Engage.js" />
+		</child>
+		<child name="engage_Misc_Functions" key="{8DBBC935-809E-4484-B76C-4DD998B594F2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="engage_Misc_Functions.js" />
+		</child>
+		<child name="engage_System_Paths" key="{29E108F5-E818-4F26-8CA7-6FD84458B8EF}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="engage_System_Paths.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1311,6 +1326,28 @@
 						<ref key="{88617AA4-25B3-431B-BF23-6A299A17FE80}" />
 						<ref key="{54E7AC23-4048-4407-8D5F-C81905010CCD}" />
 						<ref key="{A94478F8-47B5-4911-A6B5-854A062280AF}" />
+					</references>
+				</folder>
+			</folders>
+		</folder>
+		<folder caption="7. Engage" description="A logical folder that is used to organize project items and elements." moniker="">
+			<folders>
+				<folder caption="1. Test Suites" description="A logical folder that is used to organize project items and elements." moniker="" />
+				<folder caption="2. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{FC7157DF-F982-4291-A8BA-F45074D6588F}" />
+					</references>
+				</folder>
+				<folder caption="3. Test Step Actions" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{740F31EA-632E-437D-950D-7C5948944E79}" />
+						<ref key="{762DD115-3B3E-4628-84C2-9A4950F7C6D4}" />
+					</references>
+				</folder>
+				<folder caption="4. Utilities" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{8DBBC935-809E-4484-B76C-4DD998B594F2}" />
+						<ref key="{29E108F5-E818-4F26-8CA7-6FD84458B8EF}" />
 					</references>
 				</folder>
 			</folders>
