@@ -1,5 +1,5 @@
 ﻿//USEUNIT TSA_Engage
-//USEUNIT TSA_Retrieve_LoginCode
+//USEUNIT TSA_engage_Retrieve_Login_Code
 //USEUNIT Failed_Test_Handlers
 //--------------------------------------------------------------------------------
 function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule()
