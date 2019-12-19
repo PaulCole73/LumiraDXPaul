@@ -1,4 +1,5 @@
 ﻿//USEUNIT System_Paths
+//USEUNIT Admin_Dash_System_Paths
 //USEUNIT INRstar_Navigation
 //USEUNIT Get_Functions
 //USEUNIT Failed_Test_Handlers
@@ -11,8 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsHoth";
+var environment = "INRstarWindowsTatooine";
 var admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -398,12 +400,28 @@ function get_random_num_inrange(low, high)
 }
 //-----------------------------------------------------------------------------------
 //Pass in the path of the date picker, the date you want to check
-function date_picker(path, date)
+function date_picker(path, date, product)
 {
-  var INRstarV5 = INRstar_base(); 
+  var base;
+  if(product == "INRstar")
+  {
+    base = INRstar_base();
+  }
+  else if(product == "Admin Dash")
+  {
+    base = admin_dash_base();
+  }
+  else if(product == null)
+  {
+    base = INRstar_base();
+  }
+  else
+  {
+    base = INRstar_base();
+  }
   
   path.Panel(0).Image("calendar_png").Click();     
-  datepicker = INRstarV5.Panel("ui_datepicker_div");
+  datepicker = base.Panel("ui_datepicker_div");
   
   var expiry_date = date; 
     
@@ -801,7 +819,6 @@ function set_get_environment(env)
   else
   {
     environment = env;
-    return environment;
   }
 }
 //-----------------------------------------------------------------------------------

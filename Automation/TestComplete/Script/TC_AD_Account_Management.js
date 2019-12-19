@@ -35,7 +35,7 @@ function tc_account_management_add_a_new_client()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_add_a_new_client";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -82,7 +82,7 @@ function tc_account_management_edit_client_details()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_client_details";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -121,7 +121,7 @@ function tc_account_management_add_org_clinical_lead_user()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_add_org_clinical_lead_user";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -172,7 +172,7 @@ function tc_account_management_reset_org_clinical_lead_user_password()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_reset_org_clinical_lead_user_password";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -204,7 +204,7 @@ function tc_account_management_remove_org_clinical_lead()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_remove_org_clinical_lead";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -243,7 +243,7 @@ function tc_account_management_add_admin_lead_user()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_add_admin_lead_user";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -277,7 +277,7 @@ function tc_account_management_edit_admin_lead_user()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_admin_lead_user";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -328,7 +328,7 @@ function tc_account_management_reset_location_admin_user_password()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_reset_location_admin_user_password";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -360,7 +360,7 @@ function tc_account_management_remove_location_admin()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_remove_location_admin";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -397,7 +397,7 @@ function tc_account_management_create_treatment_location()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_create_treatment_location";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -434,7 +434,7 @@ function tc_account_management_create_view_only_location()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_create_view_only_location";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -480,7 +480,7 @@ function tc_account_management_edit_treatment_location_details()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_treatment_location_details";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -530,7 +530,7 @@ function tc_account_management_edit_treatment_location_license()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_edit_treatment_location_license";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -574,7 +574,7 @@ function tc_account_management_search_facility()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_search_facility";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
@@ -618,7 +618,7 @@ function tc_account_management_change_clinical_system()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Account_Management";
+    var suite_name = "TC_AD_Account_Management";
     var test_name = "tc_account_management_change_clinical_system";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
