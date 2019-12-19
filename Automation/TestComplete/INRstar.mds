@@ -35,6 +35,36 @@
 	<config language="{90F89436-9452-4F95-9882-6B5210079F13}" />
 	<testItems key="{A5BC5C71-F805-4316-B6F5-D494E8E419AC}">
 		<children>
+			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+				<testParameters />
+				<children>
+					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters>
+							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsHoth" />
+						</testParameters>
+						<children />
+					</testItem>
+					<testItem name="Bridging_CACUK-1030" key="{951F5153-2E6C-4DC9-9D9F-E0718272AD84}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+					<testItem name="Bridging_CACUK-1032" key="{6C3B5601-18D8-4C02-A5AD-C225C83BAA0B}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1032" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+					<testItem name="Re-try Failed Tests" key="{A7581979-2E11-4482-B90F-2BDED95D1449}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+					<testItem name="Email" key="{4E778308-EE7D-40FB-A0C1-5D6691B6E4E6}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters>
+							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
+							<param1 name="name" type="3" localVarName="" varType="8" value="tatooine_regression_output" />
+						</testParameters>
+						<children />
+					</testItem>
+				</children>
+			</testItem>
 			<testItem name="Staging" key="{3C83194B-70B7-4C90-AA43-178A4D0C7D9B}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
@@ -246,13 +276,13 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Bridging" key="{1C5EE9F8-1F53-4B14-AF11-610CDD8623A3}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="TS_Bridging" key="{1C5EE9F8-1F53-4B14-AF11-610CDD8623A3}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Clinics_Appointments" key="{54590F1F-942E-4123-860D-9EF78A045BD2}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="TS_Clinics_Appointments" key="{54590F1F-942E-4123-860D-9EF78A045BD2}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
