@@ -36,7 +36,7 @@ function create_hl7_message(datetime, patientID, patientNHS, surname, firstname,
 //--------------------------------------------------------------------------------
 function setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr)
 {
-  if(datetime == null)
+  if(datetime == null || datetime == "")
   {
     var dt = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%Y%m%d%H%M");
   }
@@ -69,7 +69,7 @@ function setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstn
     gen = "F";
   }
   
-  var patID;
+  var patID = patientID;
   if(patientID == "None")
   {
     patID = "";
@@ -78,7 +78,7 @@ function setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstn
   create_hl7_message(dt, patID, nhs, surname, firstname, dateofbirth, gen, addr1, addr2, addr3, addr4, postcode, inr)
 }
 //--------------------------------------------------------------------------------
-function generate_hl7_message(patient_data_array, datetime)
+function generate_hl7_message(patient_data_array, datetime, inr)
 {
   var patientID = patient_data_array[0];
   var patientNHS = patient_data_array[1];
@@ -91,9 +91,17 @@ function generate_hl7_message(patient_data_array, datetime)
   var addr3 = patient_data_array[13];
   var addr4 = patient_data_array[14];
   var postcode = patient_data_array[16];
-  var inr = "2.5";
   
-  setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr);
+  if(inr == null)
+  {
+    var inr_val = "2.5";
+  }
+  else
+  {
+    var inr_val = inr;
+  }
+  
+  setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr_val);
 }
 //--------------------------------------------------------------------------------
 function send_hl7_message()
