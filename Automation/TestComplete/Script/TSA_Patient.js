@@ -62,8 +62,8 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
       panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
       panelEPCD.Panel(7).Textbox("Mobile").Text = "07111 225588";
       
-      var guid = new_guid();
-      panelEPCD.Panel(8).Textbox("Email").Text = "test_user_+" + guid + "@gmail.com";
+      var guid = new_guid(15);
+      panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
 
       var button_area = add_patient_demographics_buttons_system_path()
       var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
