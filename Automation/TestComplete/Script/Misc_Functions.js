@@ -387,13 +387,20 @@ function get_unique_number()
 //-----------------------------------------------------------------------------------
 function get_random_num_inrange(low, high)
 {
-  var num
+  var num;
   
-  do
+  if(high >= low)
   {
-    num =  Math.trunc(Math.random()*high);
+    do
+    {
+      num =  Math.trunc(Math.random()*high);
+    }
+    while(num < low)
   }
-  while(num < low)
+  else
+  {
+    num = 0;
+  }
   
   return num;
 }
@@ -550,8 +557,7 @@ function process_object_exists(content_type, content_data)
 //-----------------------------------------------------------------------------------
 function exception_occured(a, b) //randomly required 2 parameters
 {
-  Options.Run.Timeout = 0; //rush through test at error
-  Log.Message("Error occured, this test should be re-tested, check next log error for more info.");
+  Options.Run.Timeout = 0; //rush through test at erroro.");
 }
 //-----------------------------------------------------------------------------------
 function setup_automation(new_config_file_name)
@@ -569,11 +575,12 @@ function get_new_number_v5()
 {
   var wnd;
 
-  WaitSeconds(1);
+  WaitSeconds(2);
   TestedApps.NHSNumberGenerator.Run(1, true);
-  WaitSeconds(1);
+  WaitSeconds(2);
 
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
+  WaitSeconds(2);
   form.WinFormsObject("button1").ClickButton();
 
   wnd = form.WinFormsObject("textBox1").wText;

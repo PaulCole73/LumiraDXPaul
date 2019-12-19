@@ -190,3 +190,30 @@ function process_bespoke_letters_popup(header, button)
     }
   }
 }
+//-------------------------------------------------------------------------------
+function process_bridging_popup(header, button, content)
+{
+  var wbx = INRstar_base().NativeWebObject.Find("innerText", header);
+  if (wbx.Exists == false || wbx.Height == 0)
+  { 
+    Log.Message("'" + header + "' box not displayed");
+    return "";
+  }
+  else
+  { 
+    Log.Message("'" + header + "' box displayed");
+    var wb_Ok = INRstar_base().NativeWebObject.Find("innerText", button, "BUTTON");
+    if (wb_Ok.Exists == false || wb_Ok.Height == 0)
+    {
+      Log.Message("'" + header + "' "+ button +" button not found");
+    }
+    else
+    {
+      INRstar_base().Panel(3).Panel("modalDialogBox").Panel(0).Textarea("modalTextInput").innerText = content;
+      Log.Message("Clicking '" + header + "' "+ button +" button ");
+      Sys.HighlightObject(wb_Ok, 2);
+      wb_Ok.Click();
+      //INRstar_base().Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
+    }
+  }
+}

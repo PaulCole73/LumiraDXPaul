@@ -834,39 +834,1883 @@ function tc_bridging_button_state_on_various_dms()
     handle_failed_tests(suite_name, test_name);
   }
 }
+
 //--------------------------------------------------------------------------------
-function tc_bridging_INR_checkbox()
+
+
+
+//--------------------------------------------------------------------------------
+function bridging_test()
+{
+  login(7, "Shared");
+  
+  add_patient("Bridging", "Schedule", "M", "Shared");
+  add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+  var date = aqDateTime.Today();
+  add_bridging_record(date, 1);
+  
+  populate_table_column("pre-op", "all", 3);
+  var table_data = new Array();
+  table_data = get_table_column_data("pre-op", "all", 3);
+  
+  var start_date = aqDateTime.Today();
+  var new_date = aqDateTime.AddDays(aqDateTime.Today(), 1);
+  var expected_data = new Array();
+  expected_data = update_bridging_array_dates(table_data, start_date, new_date);
+  
+  update_procedure_date(new_date);
+  
+  table_data = get_table_column_data("pre-op", "all", 3);
+  
+  var result_set = new Array();
+  var result_set_1 = checkArrays(expected_data, table_data);
+  result_set.push(result_set_1);
+  
+  var results = results_checker_are_true(result_set);
+  results_checker(results);
+  
+  Log_Off();
+}
+//--------------------------------------------------------------------------------
+function bridging_test_2()
 {
   try
   {
-    var test_title = "Bridging - Check INR checkbox";
-    login(5, "Shared");
-    var result_set = new Array();
-    
-    for(var i = 0; i < 6; i++)
-    {
-      var dose = get_dosing_method(i);
-      add_patient("Bridging", "Schedule", "M", "Shared");
-      add_treatment_plan("W", dose, "", "Shared", "");
-      
-    var result_set = new Array();
-    var data = new Array();
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
     var date = aqDateTime.Today();
-    add_bridging_record(date);
-    bridging_schedule_buttons().Button("Cancel").scrollIntoView();
-    
+    add_bridging_record(date, 1);
+  
+    add_bridging_table_rows(3, "pre-op");
     add_bridging_table_rows(5, "procedure");
-    add_bridging_table_rows(6, "pre-op");
-    
-    //click "PatientBridgingTab"
-    }
-    Log_Off();
+    add_bridging_table_rows(3, "post-discharge");  
+  
+    populate_table_column("all", "inr_checkbox", 6);
+    populate_table_column("all", "lmwh_checkbox", 6);
+    populate_table_column("all", "lmwh_dropdown", 6);
+  
+    var result_set = new Array();
+    //save_button.Click();
+    //var expected_message = "...";
+    //var expected_message_1 = "...";
+    //var message = get_banner_message_text();
+    //var result_set_1 = compare_values(expected_message + "\r\n" + expected_message_1, message, test_title);
+    //result_set.push(result_set_1);
+  
+    populate_table_column("pre-op", "inr_dropdown", 6);
+    populate_table_column("procedure", "inr_dropdown", 6);
+    populate_table_column("post", "inr_dropdown", 5);
+  
+    //save_button.Click();
+    //message = get_banner_message_text();
+    //var result_set_1 = compare_values(expected_message + "\r\n" + expected_message_1, message, test_title);
+    //result_set.push(result_set_1);
+  
+    bridging_schedule_post_discharge_table().Cell(6, 2).Child(0).ClickItem(2);
+  
+    //save_button.Click();
+    //message = get_banner_message_text();
+    //result_set_1 = compare_values(expected_message_1, message, test_title);
+    //result_set.push(result_set_1);
+  
+    populate_table_column("all", "inr_checkbox", 6);
+    populate_table_column("all", "inr_checkbox", 6);
+  
+    //save_button.Click();
+    //message = get_banner_message_text();
+    //var result_set_1 = compare_values(expected_message + "\r\n" + expected_message_1, message, test_title);
+    //result_set.push(result_set_1);
+  
+    populate_table_column("pre-op", "frequency", 6);
+    populate_table_column("procedure", "frequency", 6);
+    populate_table_column("post", "frequency", 5);
+  
+    //save_button.Click();
+    //message = get_banner_message_text();
+    //var result_set_1 = compare_values(expected_message + "\r\n" + expected_message_1, message, test_title);
+    //result_set.push(result_set_1);
+  
+    bridging_schedule_post_discharge_table().Cell(6, 5).Child(0).ClickItem(1);
+  
+    //save_button.Click();
+    //message = get_banner_message_text();
+    //result_set_1 = compare_values(expected_message, message, test_title);
+    //result_set.push(result_set_1);
+  
+    populate_table_column("all", "lmwh_checkbox", 6);
+    populate_table_column("all", "lmwh_checkbox", 6);
+    populate_table_column("all", "lmwh_dropdown", 6);
+  
+    //save_button.Click();
+    //message = get_banner_message_text();
+    //var result_set_1 = compare_values(expected_message + "\r\n" + expected_message_1, message, test_title);
+    //result_set.push(result_set_1);
+  
+    //var results = results_checker_are_true(result_set);
+    //results_checker(results);
+  
+    //Log_Off();
   } 
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_INR_checkbox";
+    var test_name = "bridging_test_2";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function bridging_test_3()
+{
+  login(7, "Shared");
+  
+  add_patient("Bridging", "Schedule", "M", "Shared");
+  add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+  var date = aqDateTime.Today();
+  add_bridging_record(date, 1);
+  
+  populate_table_column("pre-op", "lmwh_checkbox", 3);
+  populate_table_column("pre-op", "lmwh_dropdown", 3);
+  populate_table_column("procedure", "lmwh_checkbox", 1);
+  populate_table_column("procedure", "lmwh_dropdown", 1);
+  populate_table_column("post", "lmwh_checkbox", 3);
+  populate_table_column("post", "lmwh_dropdown", 3);
+  
+  var result_set = new Array();
+  //save_button.Click();
+  //var expected_message = "...";
+  //var message = get_banner_message_text();
+  //var result_set_1 = compare_values(expected_message, message, test_title);
+  //result_set.push(result_set_1);
+  
+  populate_table_column("pre-op", "frequency", 3);
+  populate_table_column("procedure", "frequency", 1);
+  populate_table_column("post", "frequency", 3);
+  
+  //save_button.Click();
+  //result_set_1 = INRstar_base().NativeWebObject.Find("idStr", "*the id*").Exists;   check warning message exists - should not exist
+  //result_set.push(result_set_1);
+  
+  remove_bridging_table_rows(3, "pre-op");
+  remove_bridging_table_rows(3, "post-discharge");
+  
+  add_bridging_table_rows(1, "pre-op");
+  add_bridging_table_rows(1, "procedure");
+  add_bridging_table_rows(1, "post-discharge");
+  
+  //save_button.Click();
+  //result_set_1 = INRstar_base().NativeWebObject.Find("idStr", "*the id*").Exists;   check warning message exists - should not exist
+  //result_set.push(result_set_1);
+  
+  populate_table_column("procedure", "lmwh_checkbox", 1);
+  populate_table_column("procedure", "lmwh_checkbox", 2);
+  populate_table_column("procedure", "lmwh_dropdown", 2);
+  populate_table_column("pre-op", "lmwh_checkbox", 1);
+  populate_table_column("pre-op", "lmwh_dropdown", 1);
+  populate_table_column("post", "lmwh_checkbox", 1);
+  populate_table_column("post", "lmwh_dropdown", 1);
+  
+  //save_button.Click();
+  //message = get_banner_message_text();
+  //result_set_1 = compare_values(expected_message, message, test_title);
+  //result_set.push(result_set_1);
+  
+  //var results = results_checker_are_true(result_set);
+  //results_checker(results);
+  
+  //Log_Off();
+}
+//CACUK-1030
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Dalteparin to Enoxaparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(2, "Cancel");
+    update_bridging_lmwh(2, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Enoxaparin (mg)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 6, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 6, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 6, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_dalteparin_to_tinzaparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Dalteparin to Tinzaparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(3, "Cancel");
+    update_bridging_lmwh(3, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Tinzaparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 6, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 6, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 6, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_dalteparin_to_tinzaparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_enoxaparin_to_dalteparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Enoxaparin to Dalteparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 2);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(1, "Cancel");
+    update_bridging_lmwh(1, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Dalteparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 6, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 6, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 6, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_enoxaparin_to_dalteparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Enoxaparin to Tinzaparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 2);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(3, "Cancel");
+    update_bridging_lmwh(3, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Tinzaparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 6, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 6, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 6, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Tinzaparin to Dalteparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 3);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(1, "Cancel");
+    update_bridging_lmwh(1, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Dalteparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 6, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 6, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 6, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_tinzaparin_to_enoxaparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Tinzaparin to Enoxaparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 3);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(2, "Cancel");
+    update_bridging_lmwh(2, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Enoxaparin (mg)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 6, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 6, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 6, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_tinzaparin_to_enoxaparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_dalteparin_to_dalteparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Dalteparin to Dalteparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(1, "Cancel");
+  
+    var result_set = new Array();
+    var expected_title = "Dalteparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+    
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "lmwh_checkbox", "lmwh_dropdown", "comments");
+  
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_dalteparin_to_dalteparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_enoxaparin_to_enoxaparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Enoxaparin to Enoxaparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 2);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(2, "Cancel");
+  
+    var result_set = new Array();
+    var expected_title = "Enoxaparin (mg)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "lmwh_checkbox", "lmwh_dropdown", "comments");
+  
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_enoxaparin_to_enoxaparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_tinzaparin_to_tinzaparin_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Tinzaparin to Tinzaparin - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 3);
+  
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+  
+    populate_table_column("all", "all", 6);
+  
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+  
+    update_bridging_lmwh(3, "Cancel");
+  
+    var result_set = new Array();
+    var expected_title = "Tinzaparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "lmwh_checkbox", "lmwh_dropdown", "comments");
+  
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 6, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = validate_columns_match("procedure", 6, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = validate_columns_match("post", 6, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_tinzaparin_to_tinzaparin_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_1_day()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Dalteparin to Enoxaparin - 1 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    remove_bridging_table_rows(2, "pre-op");
+    remove_bridging_table_rows(2, "post-discharge");
+    
+    populate_table_column("all", "all", 1);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 1);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 1);
+    
+    update_bridging_lmwh(2, "Cancel");
+    update_bridging_lmwh(2, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Enoxaparin (mg)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 1, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 1, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 1, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 1, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_1_day";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_1_day()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Enoxaparin to Tinzaparin - 1 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 2);
+    
+    remove_bridging_table_rows(2, "pre-op");
+    remove_bridging_table_rows(2, "post-discharge");
+    
+    populate_table_column("all", "all", 1);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 1);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 1);
+    
+    update_bridging_lmwh(3, "Cancel");
+    update_bridging_lmwh(3, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Tinzaparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 1, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 1, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 1, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 1, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_1_day";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
+{
+  try
+  {
+    var test_title = "Bridging: LMWH switch from Tinzaparin to Dalteparin - 1 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 3);
+    
+    remove_bridging_table_rows(2, "pre-op");
+    remove_bridging_table_rows(2, "post-discharge");
+    
+    populate_table_column("all", "all", 1);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 1);
+  
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+  
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 1);
+    
+    update_bridging_lmwh(1, "Cancel");
+    update_bridging_lmwh(1, "Confirm");
+  
+    var result_set = new Array();
+    var expected_title = "Dalteparin (IU)";
+    bridging_schedule_preop_table().Refresh();
+    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_procedure_table().Refresh();
+    title = bridging_schedule_procedure_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    bridging_schedule_post_discharge_table().Refresh();
+    title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
+    result_set.push(compare_values(expected_title, title, test_title));
+  
+    var columns_to_match = new Array();
+    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
+    
+    var vals = new Array();
+    vals = validate_columns_match("pre-op", 1, preop_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+    
+    vals = compare_table_columns("pre-op", "lmwh_checkbox", 1, preop_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    vals = validate_columns_match("post", 1, post_data, columns_to_match);
+    result_set.push(results_checker_are_true(vals));
+  
+    vals = compare_table_columns("post", "lmwh_checkbox", 1, post_data);
+    result_set.push(results_checker_are_false(vals));
+    
+    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
+    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    var result_set_1 = compare_values(value, "~Dose", test_title);
+    result_set.push(result_set_1);
+  
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+//CACUK-1032
+function tc_bridging_amend_date_to_same_day_procedure_tomorrow()
+{
+  try
+  {
+    var test_title = "Bridging:  Procedure date is tomorrow's date and amended to same date - default schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.AddDays(aqDateTime.Today(), 1);
+    add_bridging_record(date, 2);
+    
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
+    update_procedure_date(date);
+  
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
+    
+    var result_set = new Array();
+    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_same_day_procedure_tomorrow";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_same_day_procedure_yesterday()
+{
+  try
+  {
+    var test_title = "Bridging:  Procedure date is yesterday's date and amended to same date - default schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.AddDays(aqDateTime.Today(), -1);
+    add_bridging_record(date, 3);
+    
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
+    update_procedure_date(date);
+  
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
+    
+    var result_set = new Array();
+    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_same_day_procedure_yesterday";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_same_day_procedure_today()
+{
+  try
+  {
+    var test_title = "Bridging:  Procedure date is today's date and amended to same date - default schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
+    update_procedure_date(date);
+  
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
+    
+    var result_set = new Array();
+    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_same_day_procedure_today";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_today_procedure_in_the_past()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date in past amended to today's date - default schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.AddDays(aqDateTime.Today(), -6);
+    add_bridging_record(date, 1);
+    
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
+    var new_date = aqDateTime.Today();
+    update_bridging_array_dates(preop_data, date, new_date, "+");
+    update_bridging_array_dates(procedure_data, date, new_date, "+");
+    update_bridging_array_dates(post_data, date, new_date, "+");
+    
+    update_procedure_date(new_date);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
+    
+    var result_set = new Array();
+    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_today_procedure_in_the_past";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_today_procedure_in_the_future()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date in future amended to today's date - default schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.AddDays(aqDateTime.Today(), 20);
+    add_bridging_record(date, 1);
+    
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
+    var new_date = aqDateTime.Today();
+    update_bridging_array_dates(preop_data, date, new_date, "-");
+    update_bridging_array_dates(procedure_data, date, new_date, "-");
+    update_bridging_array_dates(post_data, date, new_date, "-");
+    
+    update_procedure_date(new_date);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
+    
+    var result_set = new Array();
+    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_today_procedure_in_the_future";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_past_procedure_is_today()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date is today's date and amended to 11 days in the past - 1 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    remove_bridging_table_rows(2, "pre-op");
+    remove_bridging_table_rows(2, "post-discharge");
+    
+    populate_table_column("pre-op", "all", 1);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 1);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 1);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 1);
+    
+    var new_date = aqDateTime.AddDays(aqDateTime.Today(), -12);
+    
+    var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
+    date_path.scrollIntoView();
+    new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
+    var status = date_picker(date_path, new_date, "INRstar");
+    date_path.Panel(0).Image("calendar_png").Click();
+    var result_set = new Array();
+    var result_set_1 = compare_values("inactive", status, test_title);
+    
+    new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
+    update_bridging_array_dates(preop_data, date, new_date, "-");
+    update_bridging_array_dates(procedure_data, date, new_date, "-");
+    update_bridging_array_dates(post_data, date, new_date, "-");
+    update_procedure_date(new_date);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 1);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 1);
+    
+    result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_past_procedure_is_today";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_future_procedure_is_today()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date is today's date and amended to 6 weeks in the future - 1 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    remove_bridging_table_rows(2, "pre-op");
+    remove_bridging_table_rows(2, "post-discharge");
+    
+    populate_table_column("pre-op", "all", 1);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 1);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 1);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 1);
+    
+    var new_date = aqDateTime.AddDays(aqDateTime.Today(), 43);
+    
+    var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
+    date_path.scrollIntoView();
+    new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
+    var status = date_picker(date_path, new_date, "INRstar");
+    date_path.Panel(0).Image("calendar_png").Click();
+    var result_set = new Array();
+    var result_set_1 = compare_values("inactive", status, test_title);
+    
+    new_date = aqDateTime.AddDays(aqDateTime.Today(), 42);
+    update_bridging_array_dates(preop_data, date, new_date, "+");
+    update_bridging_array_dates(procedure_data, date, new_date, "+");
+    update_bridging_array_dates(post_data, date, new_date, "+");
+    update_procedure_date(new_date);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 1);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 1);
+    
+    result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_future_procedure_is_today";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_past_procedure_is_today_0_day_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date is today's date and amended to 11 days in the past - 0 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    remove_bridging_table_rows(3, "pre-op");
+    remove_bridging_table_rows(3, "post-discharge");
+    
+    populate_table_column("procedure", "all", 1);
+    
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    
+    var new_date = aqDateTime.AddDays(aqDateTime.Today(), -12);
+    
+    var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
+    date_path.scrollIntoView();
+    new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
+    var status = date_picker(date_path, new_date, "INRstar");
+    date_path.Panel(0).Image("calendar_png").Click();
+    var result_set = new Array();
+    var result_set_1 = compare_values("inactive", status, test_title);
+    
+    new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
+    update_bridging_array_dates(procedure_data, date, new_date, "-");
+    update_procedure_date(new_date);
+    
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_past_procedure_is_today_0_day_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_amend_date_to_future_procedure_is_today_0_day_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date is today's date and amended to 6 weeks in the future - 0 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    remove_bridging_table_rows(3, "pre-op");
+    remove_bridging_table_rows(3, "post-discharge");
+    
+    populate_table_column("procedure", "all", 1);
+    
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    
+    var new_date = aqDateTime.AddDays(aqDateTime.Today(), 43);
+    
+    var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
+    date_path.scrollIntoView();
+    new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
+    var status = date_picker(date_path, new_date, "INRstar");
+    date_path.Panel(0).Image("calendar_png").Click();
+    var result_set = new Array();
+    var result_set_1 = compare_values("inactive", status, test_title);
+    
+    new_date = aqDateTime.AddDays(aqDateTime.Today(), 42);
+    update_bridging_array_dates(procedure_data, date, new_date, "+");
+    update_procedure_date(new_date);
+    
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_amend_date_to_future_procedure_is_today_0_day_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_procedure_date_today_amend_to_past_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date is today's date and amended to 11 days in the past - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+    
+    populate_table_column("pre-op", "all", 6);
+    populate_table_column("procedure", "all", 6);
+    populate_table_column("post", "all", 6);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+    
+    var new_date = aqDateTime.AddDays(aqDateTime.Today(), -12);
+    
+    var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
+    date_path.scrollIntoView();
+    new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
+    var status = date_picker(date_path, new_date, "INRstar");
+    date_path.Panel(0).Image("calendar_png").Click();
+    var result_set = new Array();
+    var result_set_1 = compare_values("inactive", status, test_title);
+    
+    new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
+    update_bridging_array_dates(preop_data, date, new_date, "-");
+    update_bridging_array_dates(procedure_data, date, new_date, "-");
+    update_bridging_array_dates(post_data, date, new_date, "-");
+    update_procedure_date(new_date);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 6);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 6);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 6);
+    
+    result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_procedure_date_today_amend_to_past_max_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_bridging_procedure_date_today_amend_to_future_max_schedule()
+{
+  try
+  {
+    var test_title = "Bridging: Procedure date is today's date and amended to 6 weeks in the future - Max 6 day schedule";
+    login(7, "Shared");
+  
+    add_patient("Bridging", "Schedule", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+  
+    var date = aqDateTime.Today();
+    add_bridging_record(date, 1);
+    
+    add_bridging_table_rows(3, "pre-op");
+    add_bridging_table_rows(5, "procedure");
+    add_bridging_table_rows(3, "post-discharge");
+    
+    populate_table_column("pre-op", "all", 6);
+    populate_table_column("procedure", "all", 6);
+    populate_table_column("post", "all", 6);
+    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 6);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 6);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 6);
+    
+    var new_date = aqDateTime.AddDays(aqDateTime.Today(), 43);
+    
+    var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
+    date_path.scrollIntoView();
+    new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
+    var status = date_picker(date_path, new_date, "INRstar");
+    date_path.Panel(0).Image("calendar_png").Click();
+    var result_set = new Array();
+    var result_set_1 = compare_values("inactive", status, test_title);
+    
+    new_date = aqDateTime.AddDays(aqDateTime.Today(), 42);
+    update_bridging_array_dates(preop_data, date, new_date, "+");
+    update_bridging_array_dates(procedure_data, date, new_date, "+");
+    update_bridging_array_dates(post_data, date, new_date, "+");
+    update_procedure_date(new_date);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 6);
+    var procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 6);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 6);
+    
+    result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set.push(result_set_1);
+    
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  
+    //Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bridging";
+    var test_name = "tc_bridging_procedure_date_today_amend_to_future_max_schedule";
     handle_failed_tests(suite_name, test_name);
   }
 }
