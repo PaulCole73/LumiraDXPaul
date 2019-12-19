@@ -106,7 +106,7 @@ function send_hl7_message()
   
   aqFileSystem.RenameFile(old_path, new_path, true);
   
-  WaitSeconds(8, "Waiting for HL7 message to send..."); //wait for hl7 message to process
+  WaitSeconds(15, "Waiting for HL7 message to send..."); //wait for hl7 message to process
 }
 //--------------------------------------------------------------------------------
 function dose_patient_external_result(table_position)

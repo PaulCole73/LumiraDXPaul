@@ -4,7 +4,8 @@
 //--------------------------------------------------------------------------------
 function add_patient(p_surname, p_firstname, p_gender, TestStepMode, nhs_num)  
 {
-  add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, "1975")
+  add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, "1975");
+  WaitSeconds(3, "Waiting for patient to add...");
 }
 
 function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, dobyr)  

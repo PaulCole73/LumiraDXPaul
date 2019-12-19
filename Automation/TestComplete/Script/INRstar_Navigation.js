@@ -324,7 +324,6 @@ function Goto_Patient_Treatments_Tab()
 function Goto_Patient_Treatment_Plan()
 {
   var counter = 0;
-
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
@@ -332,6 +331,7 @@ function Goto_Patient_Treatment_Plan()
   var panelPMTC = main_patient_tab();
   var obj = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
   
+  counter = 0;
   do //this function has been experiencing regular/consistent timeouts, now using a loop to minimize failure and provide re-testability 
   {
     obj.Refresh();
@@ -342,6 +342,7 @@ function Goto_Patient_Treatment_Plan()
       temp.Click();
     }
     counter++;
+    Log.Message(counter);
   }while(temp.Exists == false && counter < 5);
   
   WaitSeconds(3, "Waiting to go to Treatment Plan...");

@@ -582,6 +582,7 @@ function get_hl7_file_folder()
 //-----------------------------------------------------------------------------------
 function get_hl7_patient_info(table_position)
 {
+  WaitSeconds(5, "Waiting for table to update...");
   Goto_Patient_Results();
   var patient_data = new Array();
 
