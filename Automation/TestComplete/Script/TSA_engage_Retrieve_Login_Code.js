@@ -1,8 +1,11 @@
 ﻿//USEUNIT System_Paths
+//USEUNIT Misc_Functions
+//USEUNIT engage_System_Paths
 //-----------------------------------------------------------------------------------
 function get_engage_login_code() //in progress
 {
   //TestedApps.gmail.Run();
+  Sys.Browser("iexplore").BrowserWindow(0).Keys("^[F5]");
   WaitSeconds(15, "Waiting for application to open...");
   
   Sys.Browser("iexplore").BrowserWindow(0).Maximize();

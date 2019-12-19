@@ -6,17 +6,17 @@ function open_engage()
 {
   set_engage_url();
   
-  TestedApps.Engage.PageAddress = admin_dash_url;
+  TestedApps.Engage.PageAddress = engage_url;
   WaitSeconds(2, "Waiting to get page address...");
 
   TestedApps.Engage.Run(0, true);
   WaitSeconds(10, "Waiting for application to open...");
   
-  Sys.Browser("iexplore").BrowserWindow(0).Maximize();
+  Sys.Browser("chrome").BrowserWindow(0).Maximize();
   WaitSeconds(2);
-  Sys.Browser("iexplore").BrowserWindow(0).SetFocus();
+  Sys.Browser("chrome").BrowserWindow(0).SetFocus();
   
-  var page = Sys.Browser("iexplore").Page("*").URL;
+  var page = Sys.Browser("chrome").Page("*").URL;
   if(page == engage_url)
   {
     log_off_engage();
@@ -29,7 +29,7 @@ function close_engage()
   WaitSeconds(10, "Waiting for application to close...");
 }
 //--------------------------------------------------------------------------------
-function restart_admin_dash()
+function restart_engage()
 {
   close_engage();
   open_engage();
