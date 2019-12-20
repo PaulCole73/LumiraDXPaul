@@ -72,12 +72,11 @@ function validate_diagnosis(diagnosis_name)
 {
   Goto_Options_Diagnosis();
   var list = options_diagnosis_list();
-  var is_diagnosis_valid = false;
-  var list_content = list.wItemList;
+  var is_diagnosis_valid = false;             
   
-  for(var i = 0; i < list.wItemCount; i++)
+  for(var i = 1; i < list.wItemCount; i++)
   {
-    if(aqString.GetListItem(list_content, i) == diagnosis_name)
+    if(list.wItem(i) == diagnosis_name)
     {
       is_diagnosis_valid = true;
     }

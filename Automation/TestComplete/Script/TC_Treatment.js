@@ -15,7 +15,7 @@ function tc_treatment_add_a_historic_treatment()
   try
   {
     var test_title = 'Treatment - Add a historic treatment'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Add_historic', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -45,8 +45,10 @@ function tc_treatment_add_a_historic_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_historic_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -55,7 +57,7 @@ function tc_treatment_add_a_manual_INR()
   try
   {
     var test_title = 'Treatment - Add a manual INR'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Manual_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'2.0','2.5','7');
@@ -85,8 +87,10 @@ function tc_treatment_add_a_manual_INR()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_manual_INR";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -95,7 +99,7 @@ function tc_treatment_manual_dosing_permissions()
   try
   {
     var test_title = 'Treatment - Manual dosing permissions'
-    login('cl2@regression','INRstar_5','Shared');
+    login(4, "Shared");
     add_patient('Regression', 'Manual_permissions', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
  
@@ -108,11 +112,11 @@ function tc_treatment_manual_dosing_permissions()
   
     var pat_nhs = get_patient_nhs();
     Log_Off();
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     patient_search(pat_nhs);
     add_pending_manual_treatment('2.5','Lab','2.0','7 Days');
     Log_Off();
-    login('cl2@regression','INRstar_5','Shared');
+    login(4, "Shared");
     patient_search(pat_nhs);
   
     var save_inr_button_path = save_inr_button();
@@ -131,8 +135,10 @@ function tc_treatment_manual_dosing_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_manual_dosing_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -141,7 +147,7 @@ function tc_treatment_induction_dosing_permissions()
   try
   {
     var test_title = 'Treatment - Induction dosing permissions'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Induction_permissions', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
     add_pending_induction_slow_treatment('1.2','Shared');
@@ -154,7 +160,7 @@ function tc_treatment_induction_dosing_permissions()
   
     var pat_nhs = get_patient_nhs();
     Log_Off();
-    login('cl2@regression','INRstar_5','Shared');
+    login(4, "Shared");
     patient_search(pat_nhs);
   
     button = save_inr_button().enabled;
@@ -162,7 +168,7 @@ function tc_treatment_induction_dosing_permissions()
     result_set.push(result_set_1);
     
     Log_Off();
-    login('cl1@regression','INRstar_5','Shared');
+    login(3, "Shared");
     patient_search(pat_nhs);
   
     button = save_inr_button().enabled;
@@ -179,8 +185,10 @@ function tc_treatment_induction_dosing_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_induction_dosing_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -189,7 +197,7 @@ function tc_treatment_add_a_treatment_comment()
   try
   {
     var test_title = 'Treatment - Add a treatment comment'
-    login('cl2@regression','INRstar_5','Shared');
+    login(4, "Shared");
     add_patient('Regression', 'Treatment_comment', 'M', 'Shared'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -214,8 +222,10 @@ function tc_treatment_add_a_treatment_comment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_treatment_comment";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -224,7 +234,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   try
   {
     var test_title = 'Treatment - Add a new Maintenance in-range INR';
-    login('cl2@regression','INRstar_5','Shared');
+    login(4, "Shared");
     add_patient('Regression', 'treatment_inrange', 'M', 'Shared'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -257,8 +267,10 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_new_maintenance_in_range_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -267,13 +279,13 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
   try
   {
     var test_title = 'Treatment - Add a historical treatment to an induction patient';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'historic_induction', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
     click_historic_button();
   
     var result_set = new Array(); 
-    var actual_warn_mess = get_pre_treatment_warning_message();
+    var actual_warn_mess = process_popup("Please Confirm", "Confirm");
     var expected_warn_mess = "Adding a historical treatment to this patient will remove them from this induction protocol. The patient must be treated by manual dosing.";
     var result_set_1 = compare_values(actual_warn_mess, expected_warn_mess, test_title); 
     result_set.push(result_set_1);
@@ -295,8 +307,10 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_historical_treatment_to_an_induction_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -305,7 +319,7 @@ function tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol()
   try
   {
     var test_title = 'Treatment - No treatment can be added to a patient on no protocol';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'no_protocol_pat', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
   
@@ -334,8 +348,10 @@ function tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -344,7 +360,7 @@ function tc_treatment_user_cannot_override_an_induction_result()
   try
   {
     var test_title = 'Treatment - user cannot override an induction result';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'override_induction', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
   
@@ -366,8 +382,10 @@ function tc_treatment_user_cannot_override_an_induction_result()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_user_cannot_override_an_induction_result";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -376,7 +394,7 @@ function tc_treatment_adding_a_result_earlier_than_last_recorded_result()
   try
   {
     var test_title = 'Treatment - Adding a result earlier than last recorded result';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'treatment_dated_before', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
@@ -399,8 +417,10 @@ function tc_treatment_adding_a_result_earlier_than_last_recorded_result()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_adding_a_result_earlier_than_last_recorded_result";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -409,7 +429,7 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
   try
   {
     var test_title = 'Treatment - User is unable to add two treatments for the same day when on maintenance';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'treatment_same_day', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
@@ -433,8 +453,10 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when_on_maintenance";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -443,7 +465,7 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   try
   {
     var test_title = 'Treatment - Add a new maintenance low INR';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'mainteance_low', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
@@ -451,7 +473,7 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   
     result_set = new Array(); 
   
-    var actual_error_mess = get_dosing_engine_popup_text();
+    var actual_error_mess = process_alternate_popup("Please acknowledge", "Confirm");
     var expected_error_mess = "Low INR warning: Patient may be at increased risk of thromboembolic events until INR is back in-range." + 
                      " Consult clinical lead for advice about the use of LMWH for very low INR if clinically appropriate.";      
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
@@ -475,18 +497,20 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_new_maintenance_low_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_new_maintenance_high_inr()
 {
-try
+  try
   {
     //this test currently fails in hoth - because the dosing warning message has been changed
     var test_title = 'Treatment - Add a new maintenance high INR';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     
     var dosing_data = new Array();
     dosing_data = get_dosing_settings_data(3);
@@ -521,8 +545,10 @@ try
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_a_new_maintenance_high_inr";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -531,7 +557,7 @@ function tc_treatment_out_of_range_maintenance_permissions()
   try
   {
     var test_title = 'Treatment - Out of Range maintenance permissions'
-    login('cl2@regression','INRstar_5','Shared');
+    login(4, "Shared");
     add_patient('Regression', 'out_of_range_permissions', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -546,7 +572,7 @@ function tc_treatment_out_of_range_maintenance_permissions()
     var pat_nhs = get_patient_nhs();
     Log_Off();
   
-    login('cl1@regression','INRstar_5','Shared');
+    login(3, "Shared");
     patient_search(pat_nhs);
   
     button = save_inr_button().enabled;
@@ -563,8 +589,10 @@ function tc_treatment_out_of_range_maintenance_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_out_of_range_maintenance_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -573,7 +601,7 @@ function tc_treatment_delete_the_last_treatment()
   try
   {
     var test_title = 'Treatment - Delete the last treatment'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'delete_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -601,8 +629,10 @@ function tc_treatment_delete_the_last_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_delete_the_last_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -611,7 +641,7 @@ function tc_treatment_refer_a_treatment()
   try
   {
     var test_title = 'Treatment - Refer a treatment'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -648,8 +678,10 @@ function tc_treatment_refer_a_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_refer_a_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -658,7 +690,7 @@ function tc_treatment_authorise_a_referral()
  try
  {
     var test_title = 'Treatment - Authorise a referral'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'authorise_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -709,8 +741,10 @@ function tc_treatment_authorise_a_referral()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_authorise_a_referral";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -719,7 +753,7 @@ function tc_treatment_edit_a_treatment_comment()
   try
   {
     var test_title = 'Treatment - Edit a treatment comment'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'edit_comment', 'M', 'Shared'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -747,8 +781,10 @@ function tc_treatment_edit_a_treatment_comment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_edit_a_treatment_comment";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -757,7 +793,7 @@ function tc_treatment_add_multiple_historic_treatments()
   try
   {
     var test_title = 'Treatment - Maintenance - Historical treatments all dated the same'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'multiple_historical', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
   
@@ -797,18 +833,19 @@ function tc_treatment_add_multiple_historic_treatments()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_multiple_historic_treatments";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-
 function tc_treatment_dosing_under_12_years_old()
 {
   try
   {
     var test_title = 'Treatment - Maintenance/Manual - Dosing under 12 years old'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     var w_yr = aqString.SubString(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-800))), 6, 4);
   
     add_patient_extended('Regression', 'under_12', 'M', 'Shared', null, w_yr); 
@@ -838,13 +875,14 @@ function tc_treatment_dosing_under_12_years_old()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_dosing_under_12_years_old";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 
 //--------------------------------------------------------------------------------
-
 //test to check that a new dosing schedule can be selected, checks the original does not match the new schedule
 //C1248478
 //Test Change Schedule
@@ -853,7 +891,7 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 	try
 	{
 		var test_title = 'Treatment - Create Maintenance Use Alternate Schedules';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
 		add_patient('Regression', 'Use_Alternate', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "11", "2.5");
@@ -894,13 +932,14 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_create_maintenance_use_alternate_schedules";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
 
 //--------------------------------------------------------------------------------
-
 //checks to see if the correct error message displays for the specified treatment plan
 //C1248484
 function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
@@ -908,7 +947,7 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 	try
 	{
 		var test_title = 'Treatment tab - Starting Algorithm for Unstable Patient';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
 		add_patient('Regression', 'Unstable_Patient', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-4))), "2.3", "1.2", "0", "4", "2.5");
@@ -937,21 +976,20 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_starting_algorithm_for_unstable_patient";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
-
 //--------------------------------------------------------------------------------
-
 //checks dose/review period can be overwritten and message displays for dose changes > 20%
-//C1248488
 function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 {
 	try
 	{
 		var test_title = 'Treatment - Overriding Greater than 20%';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
 		add_patient('Regression', 'Overriding_Twenty', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "1.3", "0", "11", "2.4");
@@ -985,7 +1023,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		override_finish_buttons.Button("OverrideAccept").Click();
 		
 	  //find the pop up window in the screen
-    output_message = return_message_please_confirm();
+    output_message = process_popup("Please confirm", "Confirm"); 
     
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
@@ -1016,21 +1054,20 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
-
 //--------------------------------------------------------------------------------
-
 //checks that dose and review periods can be overwritten
-//C1248497
 function tc_treatment_maintenance_overriding_dose_and_review_period()
 {
 	try
 	{
 		var test_title = 'Treatment - Overriding Dose and Review Period';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
 		add_patient('Regression', 'Dose_And_Review_Override', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.9", "0", "11", "2.4");
@@ -1081,22 +1118,21 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_overriding_dose_and_review_period";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
-
 //--------------------------------------------------------------------------------
 //testing schedules can be re-order via drag/drop dosing values between days, checks schedules change after action
-//C1248479
-//Test Change Schedule
 function tc_treatment_drag_and_drop_schedule_days()
 {
   try
   {
     //setup a treatment
     var test_title = 'Treatment - Drag and Drop Schedule Days';
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
 	  add_patient('Regression', 'Drag_Drop', 'M', 'Shared');
 	  add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.9", "0", "11", "2.4");
@@ -1137,20 +1173,21 @@ function tc_treatment_drag_and_drop_schedule_days()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_drag_and_drop_schedule_days";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 
 //--------------------------------------------------------------------------------
 //checks a pending treatment can be overwritten, saved, overwrite maintained, strikethrough values display
-//C1248498
 function tc_treatment_maintenance_save_override_treatment()
 {
 	try
 	{
 		var test_title = 'Treatment - Overriding Dose and Review Period and Save';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
 		add_patient('Regression', 'DoseReview_OverrideSave', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.9", "0", "11", "2.4");
@@ -1201,20 +1238,21 @@ function tc_treatment_maintenance_save_override_treatment()
 	}
 	catch(e)
 	{
-		Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_save_override_treatment";
+    handle_failed_tests(suite_name, test_name);
 	}
 }
 
 //--------------------------------------------------------------------------------
 //testing for warning message when patient's last INR test exceeds max review period
-//C1248475
 function tc_treatment_maintenance_INR_more_then_max_review_period()
 {
   try
   {
     var test_title = 'Treatment - INR More Than Max Review Period';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
     
     var options_button = home_page_options_tab().Click();
     var dosing_tab = dosing_settings_tab().Click();
@@ -1273,19 +1311,19 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_INR_more_then_max_review_period";
+    handle_failed_tests(suite_name, test_name);
   }
 }
-
 //--------------------------------------------------------------------------------
-//C1248473
 function tc_treatment_manual_mutliple_historic_summary_check()
 {
   try
   {
     var test_title = 'Treatment - Multiple Historic INRs, Summary Check';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
     add_patient('Regression', 'Mutliple_Historic', 'M', 'Shared');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-20))), "2.0", "2.0", "0", "11", "2.5");
@@ -1333,19 +1371,19 @@ function tc_treatment_manual_mutliple_historic_summary_check()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_manual_mutliple_historic_summary_check";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-//
-//C1248489
 function tc_treatment_maintenance_override_privilege()
 {
   try
   {
     var test_title = 'Treatment - Override Privilege, in-range INR';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
     add_patient('Regression', 'Override_Privilege', 'M', 'Shared');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     var patient_nhs_number = get_patient_nhs();
@@ -1360,7 +1398,7 @@ function tc_treatment_maintenance_override_privilege()
     
     Log_Off();
     
-    login('readonly@regression', 'INRstar_5', 'Shared');
+    login(8, "Shared");
     patient_search(patient_nhs_number);
   
     button = override_button().enabled;
@@ -1370,7 +1408,7 @@ function tc_treatment_maintenance_override_privilege()
   
     Log_Off();
     
-    login('cl1@regression', 'INRstar_5', 'Shared');
+    login(3, "Shared");
     patient_search(patient_nhs_number);
   
     button = override_button().enabled;
@@ -1379,7 +1417,7 @@ function tc_treatment_maintenance_override_privilege()
   
     Log_Off();
 
-    login('cl2@regression', 'INRstar_5', 'Shared');
+    login(4, "Shared");
     patient_search(patient_nhs_number);
     
     button = override_button().enabled;
@@ -1388,7 +1426,7 @@ function tc_treatment_maintenance_override_privilege()
   
     Log_Off();
     
-    login('clead@regression', 'INRstar_5', 'Shared');
+    login(7, "Shared");
     patient_search(patient_nhs_number);
   
     button = override_button().enabled;
@@ -1408,20 +1446,20 @@ function tc_treatment_maintenance_override_privilege()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_override_privilege";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 
 //--------------------------------------------------------------------------------
-//
-//C1368479
 function tc_treatment_maintenance_cancel_pending()
 {
   try
   {
     var test_title = 'Treatment - Cancel Pending Treatment';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
     add_patient('Regression', 'Cancel_Pending', 'M', 'Shared');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -1437,12 +1475,9 @@ function tc_treatment_maintenance_cancel_pending()
     
     var cancel_btn = cancel_pending_treat_button()
     cancel_btn.Click();
-    
-    process_cancel_sub("", "Confirmation Required");
-    
+    process_popup("Confirmation Required", "Cancel");
     cancel_btn.Click();
-    
-    process_confirm_sub("", "Confirmation Required");
+    process_popup("Confirmation Required", "Confirm");
     
     treatment_values_1 = get_treatment_row(0);
     var child_count_1 = treatment_table().ChildCount;
@@ -1465,19 +1500,19 @@ function tc_treatment_maintenance_cancel_pending()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_cancel_pending";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-//
-//C1248491
 function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
 {
   try
   {
     var test_title = 'Treatment - Add Pending Treatment to Patient with Pending Transfer Acceptance';
-		login('cl3@regression','INRstar_5','Shared');
+		login(5, "Shared");
     add_patient('Regression', 'PendingTreatment_PendingTransfer', 'M', 'Shared');
     
     var messagename = get_patient_fullname();
@@ -1496,7 +1531,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
     
     Log_Off();
      
-    login('cl3@regression2','INRstar_5','Shared');
+    login(15, "Shared");
     
     var is_in_table = accept_transfer(messagename);
     
@@ -1524,8 +1559,10 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
   }
   catch(e)
   {
-    Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_maintenance_add_pending_treatment_with_pending_transfer";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -1534,7 +1571,7 @@ function tc_treatment_add_treatment_for_self_tester()
   try
   {
     var test_title = "Treatment - Add a treatment for a self-tester and check it within the database";
-		login("cl3@regression", "INRstar_5", "Shared");
+		login(5, "Shared");
     add_patient("Regression", "Self_tester", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -1565,8 +1602,10 @@ function tc_treatment_add_treatment_for_self_tester()
   }
   catch(e)
   {
-    Log.Warning("Test \"" + test_title + "\" Failed Exception Occured = " + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_treatment_add_treatment_for_self_tester";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -1579,7 +1618,7 @@ function tc_treatment_add_treatment_for_self_tester()
 //  try
 //{
 // var test_title = 'Treatment - Maintenance - Cancel pending treatment'
-// login('cl3@regression', 'INRstar_5', 'Shared');
+// login(5, "Shared");
 //  
 //  add_patient('Regression', 'Cancel_Pending', 'M', 'Shared');
 //  add_treatment_plan('W','Coventry','','Shared','');
@@ -1622,7 +1661,7 @@ function cacuk432_bug_fix_sequence()
     var test_title = "CACUK-432 - Bug Fix";
     var drug_array = new Array();
     drug_array.push("Warfarin", "Acenocoumarol", "Apixaban", "Dabigatran", "Edoxaban", "Rivaroxaban", "Dalteparin (LMWH)", "Enoxaparin (LMWH)");
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     
     for(var i = 0; i < drug_array.length; i++)
     {
@@ -1674,8 +1713,10 @@ function cacuk432_bug_fix_sequence()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "cacuk432_bug_fix_sequence";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -1684,7 +1725,7 @@ function cacuk432_bug_fix_single()
   try
   {
     var test_title = "CACUK-432 - Bug Fix";
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     
     var drug_1 = "Acenocoumarol";
     var drug_2 = "Apixaban";
@@ -1725,7 +1766,9 @@ function cacuk432_bug_fix_single()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" Failed Exception Occured = ' + e);
-		restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "cacuk432_bug_fix_single";
+    handle_failed_tests(suite_name, test_name);
   }
 }

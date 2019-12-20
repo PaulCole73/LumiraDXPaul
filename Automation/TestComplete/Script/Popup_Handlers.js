@@ -15,10 +15,14 @@
 //when checking, check additional properties, height/visible updates dynamically
 function process_popup(header, button)
 {
-  WaitSeconds(1);
   var INRstarV5 = INRstar_base();
-  var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
+  INRstarV5.Refresh();
   
+  if(header == "Important Information")
+  {
+    WaitSeconds(3);
+  }
+  var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
   if (wbx.Exists == false || wbx.Height == 0)
   { 
     Log.Message("'" + header + "' box not displayed");
@@ -130,7 +134,7 @@ function process_external_lookup_popup()
     
     var reg_number = get_unique_number();
     
-    INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Select("ProfessionalRole").SelectItem(3);
+    INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Select("ProfessionalRole").ClickItem(3);
     INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Panel(0).Textbox("RegistrationNumber").innerText = reg_number;
     
     var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", "Update", "BUTTON");
@@ -183,6 +187,33 @@ function process_bespoke_letters_popup(header, button)
       Sys.HighlightObject(wb_Ok, 2);
       wb_Ok.Click();
       return name_number;
+    }
+  }
+}
+//-------------------------------------------------------------------------------
+function process_bridging_popup(header, button, content)
+{
+  var wbx = INRstar_base().NativeWebObject.Find("innerText", header);
+  if (wbx.Exists == false || wbx.Height == 0)
+  { 
+    Log.Message("'" + header + "' box not displayed");
+    return "";
+  }
+  else
+  { 
+    Log.Message("'" + header + "' box displayed");
+    var wb_Ok = INRstar_base().NativeWebObject.Find("innerText", button, "BUTTON");
+    if (wb_Ok.Exists == false || wb_Ok.Height == 0)
+    {
+      Log.Message("'" + header + "' "+ button +" button not found");
+    }
+    else
+    {
+      INRstar_base().Panel(3).Panel("modalDialogBox").Panel(0).Textarea("modalTextInput").innerText = content;
+      Log.Message("Clicking '" + header + "' "+ button +" button ");
+      Sys.HighlightObject(wb_Ok, 2);
+      wb_Ok.Click();
+      //INRstar_base().Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
     }
   }
 }

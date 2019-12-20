@@ -55,3 +55,43 @@ function ts_bridging_tab()
 {
   tc_bridging_tab_visible_only_with_warfarin();
 }
+//--------------------------------------------------------------------------------
+function ts_bridging_checkboxes()
+{
+  tc_bridging_INR_checkbox();
+}
+//--------------------------------------------------------------------------------
+function ts_bridging_cacuk_1030()
+{
+  tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day();
+  tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_1_day();
+  tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_1_day();
+  tc_bridging_lmwh_switch_from_tinzaparin_to_tinzaparin_max_schedule();
+  tc_bridging_lmwh_switch_from_enoxaparin_to_enoxaparin_max_schedule();
+  tc_bridging_lmwh_switch_from_dalteparin_to_dalteparin_max_schedule();
+  tc_bridging_lmwh_switch_from_tinzaparin_to_enoxaparin_max_schedule();
+  tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_max_schedule();
+  tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_max_schedule();
+  tc_bridging_lmwh_switch_from_enoxaparin_to_dalteparin_max_schedule();
+  tc_bridging_lmwh_switch_from_dalteparin_to_tinzaparin_max_schedule();
+  tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_max_schedule();
+  
+  email_and_archive(true, "ts_bridging_cacuk_1030");
+}
+//--------------------------------------------------------------------------------
+function ts_bridging_cacuk_1032()
+{
+  tc_bridging_amend_date_to_future_procedure_is_today_0_day_schedule();
+  tc_bridging_amend_date_to_past_procedure_is_today_0_day_schedule();
+  tc_bridging_amend_date_to_future_procedure_is_today();
+  tc_bridging_amend_date_to_past_procedure_is_today();
+  tc_bridging_amend_date_to_today_procedure_in_the_future();
+  tc_bridging_amend_date_to_today_procedure_in_the_past();
+  tc_bridging_amend_date_to_same_day_procedure_today();
+  tc_bridging_amend_date_to_same_day_procedure_yesterday();
+  tc_bridging_amend_date_to_same_day_procedure_tomorrow();
+  tc_bridging_procedure_date_today_amend_to_past_max_schedule();
+  tc_bridging_procedure_date_today_amend_to_future_max_schedule();
+  
+  email_and_archive(true, "ts_bridging_cacuk_1032");
+}

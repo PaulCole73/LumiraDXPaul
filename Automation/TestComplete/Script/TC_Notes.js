@@ -8,7 +8,7 @@ function tc_add_a_new_note()
   try
   {
     var test_title = "Notes - Add a new note";
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_note', 'M', 'Shared'); 
     add_a_new_note();
   
@@ -19,8 +19,10 @@ function tc_add_a_new_note()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Notes";
+    var test_name = "tc_add_a_new_note";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //--------------------------------------------------------------------------------

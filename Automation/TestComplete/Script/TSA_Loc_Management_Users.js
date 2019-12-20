@@ -109,7 +109,7 @@ function manage_user_permissions(username, p_level)
   var permission_checkbox = permissions_panel.Table(0).Cell(1, p_level).Checkbox("roles").Click();
   var permission_update_button = permissions_panel.Panel(0).SubmitButton("Update").Click();
   
-  process_confirm_INR_cancel();
+  process_popup("Confirmation Required", "Confirm");
 }
 //--------------------------------------------------------------------------------
 function reset_user_permissions_to_readonly(username)

@@ -25,8 +25,9 @@ function add_pending_fast_induction_treatment(inr, TestStepMode)
     var buttons = pre_treatment_induction_buttons_path();
     buttons.SubmitButton("CalculateWarfarinDose").Click();
     handle_poct_expired();
-     
-    process_confirm_INR(INRstarV5);
+    
+    process_popup("Please confirm that the following is correct", "Confirm");
+    //process_confirm_INR(INRstarV5);
   }
 }
 //--------------------------------------------------------------------------------
@@ -51,8 +52,8 @@ function add_fast_induction_treatment(inr)
   var buttons = pre_treatment_induction_buttons_path();
   buttons.SubmitButton("CalculateWarfarinDose").Click();
   handle_poct_expired();
-     
-  process_confirm_INR(INRstarV5);
+  
+  process_popup("Please confirm that the following is correct", "Confirm");
   
   var pending_treatment_buttons_path = pending_treatment_buttons();
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
@@ -77,13 +78,8 @@ function add_pending_induction_slow_treatment(inr,TestStepMode)
      
     var buttons = pre_treatment_induction_buttons_path();
     buttons.SubmitButton("CalculateWarfarinDose").Click();
-     
-    process_confirm_INR();
-     
-    //handle_no_poct('induct');
-    //handle_poct_expired();
-      
-    //process_confirm_INR();
+    
+    process_popup("Please confirm that the following is correct", "Confirm");
   }
 }
 //--------------------------------------------------------------------------------
@@ -115,7 +111,6 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    handle_poct_expired();
    
    process_popup("Please confirm that the following is correct", "Confirm");
-   //process_confirm_INR(INRstarV5);
    WaitSeconds(2);
 }
 //--------------------------------------------------------------------------------
@@ -172,10 +167,10 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   WaitSeconds(1);   
    
   // Click the Confirm button in the confirm window
-  process_confirm_INR(INRstarV5);
+  process_popup("Please confirm that the following is correct", "Confirm");
   
-  //This was taken out to do the warning pop up 
-  process_Please_acknowledge_warnings();
+  //This was taken out to do the warning pop up
+  process_alternate_popup("Please acknowledge", "Confirm"); 
 }
 //--------------------------------------------------------------------------------
 function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
@@ -220,10 +215,10 @@ function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
   WaitSeconds(1);   
    
   // Click the Confirm button in the confirm window but not the yellow warning
-  process_confirm_INR(INRstarV5);
+  process_popup("Please confirm that the following is correct", "Confirm");
 }
 //--------------------------------------------------------------------------------
-function add_maintenance_treatment(inr,date)
+function add_maintenance_treatment(inr, date)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
@@ -255,7 +250,7 @@ function add_maintenance_treatment(inr,date)
   handle_poct_expired();
        
   // Click the Confirm button in the confirm window
-  process_confirm_INR(INRstarV5);
+  process_popup("Please confirm that the following is correct", "Confirm");
   
    //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();
@@ -296,7 +291,8 @@ function add_override_treatment(inr,date,p_review)
   handle_poct_expired();
        
   //Click the Confirm button in the confirm window
-  process_confirm_INR(INRstarV5);
+  process_popup("Please confirm that the following is correct", "Confirm");
+  //process_confirm_INR(INRstarV5);
   
   //Click override
   treatment_buttons.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
@@ -331,7 +327,6 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     var INRstarV5 = INRstar_base();
     Goto_Add_Historical();
     process_popup("Please Confirm", "Confirm");
-    //process_confirm_sub('','Please Confirm');
     
     var historic_treatment_form = historic_treatment_path();
     
@@ -366,7 +361,6 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
 
     // Click confirm panel
     process_popup("Please confirm that the following is correct", "Confirm");
-    //process_confirm_historical_treatment(INRstarV5);
     
     WaitSeconds(5, "Waiting for Add Historic...");
 }
@@ -623,7 +617,7 @@ function override_dose(dose)
   treatment_override_field_container_path.Cell(1, 1).Select("Treatment_Dose").ClickItem(dose);
 
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Form("EditPendingTreatmentForm").Panel(0).Button("OverrideAccept").Click();
-  process_confirm_sub(INRstarV5, "Please Confirm");
+  process_popup("Please Confirm", "Confirm");
   WaitSeconds(1,"Waiting for Override to complete");
 } 
 //--------------------------------------------------------------------------------
@@ -681,7 +675,7 @@ function get_pre_treatment_warning_message()
 {
   var treatment_pop_up_warning_message_path = treatment_pop_up_warning_message();
   var warning_text = treatment_pop_up_warning_message_path.contentText;
-  process_confirm_sub('','Please Confirm');
+  process_popup("Please Confirm", "Confirm");
   return warning_text;
 } 
 //--------------------------------------------------------------------------------                                        

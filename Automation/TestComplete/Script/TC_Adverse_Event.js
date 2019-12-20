@@ -9,8 +9,8 @@ function tc_add_a_new_adverse_event()
   try
   {
     var test_title = 'Adverse Event - Add a new adverse event'
-    login('cl3@regression','INRstar_5','Shared');
-    add_patient('Regression', 'add_adverse_event', 'M', 'Shared'); 
+    login(5, "Shared");
+    add_patient('Regression', 'add_adverse_event', 'M', 'Shared');
     add_adverse_event();
     
     var adverse_confirmation_banner = adverse_event_tab_confirm_box().Panel(0).Panel("PatientsAdverseEventsMessages").TextNode(0).contentText;
@@ -31,10 +31,12 @@ function tc_add_a_new_adverse_event()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Adverse_Event";
+    var test_name = "tc_add_a_new_adverse_event";
+    handle_failed_tests(suite_name, test_name); 
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -43,7 +45,7 @@ function tc_delete_adverse_event()
   try
   {
     var test_title = 'Adverse Event - Delete adverse event'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'delete_adverse_event', 'M', 'Shared'); 
     add_adverse_event();
     delete_adverse_event();
@@ -53,10 +55,12 @@ function tc_delete_adverse_event()
   
     Log_Off();  
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Adverse_Event";
+    var test_name = "tc_delete_adverse_event";
+    handle_failed_tests(suite_name, test_name); 
   } 
 } 
 //--------------------------------------------------------------------------------

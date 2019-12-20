@@ -8,7 +8,7 @@ function tc_find_a_patient()
   try
   {
     var test_title = 'Patient Search - Find a patient'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'find_a_patient', 'M', 'Shared'); 
     var pat_nhs = get_patient_nhs();
     patient_search(pat_nhs);
@@ -31,8 +31,10 @@ function tc_find_a_patient()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_find_a_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------

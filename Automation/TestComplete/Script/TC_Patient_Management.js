@@ -12,7 +12,7 @@ function tc_patient_deactivate_a_patient()
   try
   {
     var test_title = 'Patient Management - De-activate a patient'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Deactivate_patient', 'M', 'Shared'); 
   
     var result_set = new Array();
@@ -22,7 +22,7 @@ function tc_patient_deactivate_a_patient()
     result_set.push(result_set_1);
   
     //Checking the yellow banner message for deactivation
-    process_confirm_sub('','De-Activating a patient');
+    process_popup("De-Activating a patient", "Confirm");
     result_set_1 = deactivating_patient_banner_warning_checker('Deactivating this patient will archive all existing treatment information and will cancel any unsaved treatment results.');
     result_set.push(result_set_1);
   
@@ -51,8 +51,10 @@ function tc_patient_deactivate_a_patient()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_patient_deactivate_a_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -61,7 +63,7 @@ function tc_patient_reactivate_a_patient()
   try
   {
     var test_title = 'Patient Management - Re-activate a patient'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Activate_patient', 'M', 'Shared'); 
     deactivate_patient();
   
@@ -97,8 +99,10 @@ function tc_patient_reactivate_a_patient()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_patient_reactivate_a_patient";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -107,7 +111,7 @@ function tc_patient_amend_a_patient_to_be_a_manual_self_tester()
   try
   {
     var test_title = 'Patient Management - Amend a patient to be a self tester'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'self_test_patient', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -132,10 +136,12 @@ function tc_patient_amend_a_patient_to_be_a_manual_self_tester()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_patient_amend_a_patient_to_be_a_manual_self_tester";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
@@ -144,7 +150,7 @@ function tc_patient_suspend_a_patient()
   try
   {
     var test_title = 'Patient Management - Suspend a patient'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'suspend_patient', 'M', 'Shared'); 
   
     var result_set = new Array();
@@ -170,10 +176,12 @@ function tc_patient_suspend_a_patient()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_patient_suspend_a_patient";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
@@ -182,7 +190,7 @@ function tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in
   try
   {
     var test_title = 'Patient Management - Suspend a patient user unable to select a date more than 6 months in the future'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'suspend_limit', 'M', 'Shared'); 
 
     var result_set = new Array();
@@ -217,8 +225,10 @@ function tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in_the_future";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -227,7 +237,7 @@ function tc_patient_unsuspend_a_patient()
   try
   {
     var test_title = 'Patient Management - Unsuspend a patient'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Unsuspend_patient', 'M', 'Shared'); 
     suspend_patient(); 
     WaitSeconds(2);
@@ -255,8 +265,10 @@ function tc_patient_unsuspend_a_patient()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_patient_unsuspend_a_patient";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
@@ -265,10 +277,10 @@ function tc_patient_change_the_patients_registered_practice()
   try
   {
     var test_title = 'Patient Management - Change the patients registered practice'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Registered_practice', 'M', 'Shared'); 
   
-    var reg_prac = "Deans Regression Testing Location 2";//"A01F0565" //"Deans Regression Testing Location 2" doesn't exist as a registered practice?
+    var reg_prac = "Deans Regression Testing Location 2";
     change_reg_practice(reg_prac);
     WaitSeconds(1)
   
@@ -296,8 +308,10 @@ function tc_patient_change_the_patients_registered_practice()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_patient_change_the_patients_registered_practice";
+    handle_failed_tests(suite_name, test_name);
   } 
 } 
 //--------------------------------------------------------------------------------
@@ -306,7 +320,7 @@ function tc_transfer_a_patient_who_has_a_pending_treatment()
   try
   {
     var test_title = 'Patient Management - Transfer a patient who has a pending treatment'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Transfer_pending', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_pending_manual_treatment('2.5','Lab','2.0','7 Days');
@@ -324,8 +338,10 @@ function tc_transfer_a_patient_who_has_a_pending_treatment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_transfer_a_patient_who_has_a_pending_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -336,14 +352,14 @@ function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_exist
     var test_title = 'Patient Management - Transfer a patient where the patient will be a duplicate of an existing INACTIVE patient at the destination location'
   
     //Adding the patient that is the duplicate at test location
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Transfer_inactive_patient', 'M', 'Shared'); 
     var nhs_num_one = get_patient_nhs();
     deactivate_patient();
     Log_Off();
   
     //Add second duplicate and send to the test location
-    login('cl3@regression2','INRstar_5','Shared');
+    login(15, "Shared");
     add_patient('Regression', 'Trans_inactive_pat', 'M', 'Shared',nhs_num_one); 
   
     var messagename = get_patient_fullname();
@@ -352,7 +368,7 @@ function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_exist
     change_test_practice(test_prac);
     WaitSeconds(1);
     Log_Off();
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
 
     var result_set = new Array();
   
@@ -379,8 +395,10 @@ function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_exist
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_existing_inactive_patient_at_the_destination_location";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -390,7 +408,7 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
   {
     var test_title = 'Patient Management - Transfer a patient who is on an induction protocol'
   
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Transfer_induction_patient', 'M', 'Shared');
     var messagename = get_patient_fullname();
     add_treatment_plan('W','Fast','','Shared','');
@@ -405,7 +423,7 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
     change_test_practice_with_warning(test_prac);
   
     Log_Off();
-    login('cl3@regression2','INRstar_5','Shared');
+    login(15, "Shared");
   
     //Accept the transfer
     var result_set_1 = accept_transfer(messagename);
@@ -423,10 +441,12 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_transfer_a_patient_who_is_on_an_induction_protocol";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -437,7 +457,7 @@ function tc_reactivate_a_potential_duplicate_patient()
     var test_title = 'Patient Management - Re-activate a potential duplicate patient'
   
     //Adding patient and making them inactive
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     var unique_val = get_unique_number();
     add_patient('Regression', unique_val, 'M', 'Shared');
     var patFirstname_one = get_patient_firstname();
@@ -446,7 +466,7 @@ function tc_reactivate_a_potential_duplicate_patient()
     Log_Off();
   
     //Add second duplicate and send to the test location
-    login('cl3@regression2','INRstar_5','Shared');
+    login(15, "Shared");
     add_patient('Regression', 'Trans_inactive_pat', 'M', 'Shared', nhs_num_one);
     var messagename = get_patient_fullname();
     var nhs_num = get_patient_nhs();
@@ -457,7 +477,7 @@ function tc_reactivate_a_potential_duplicate_patient()
     Log_Off();
   
     //Log back in accept transfer then try to reactivate the patient
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     accept_transfer_with_warning(messagename);
     inactive_patient_search(patFirstname_one);
     Goto_Patient_Management();
@@ -474,8 +494,10 @@ function tc_reactivate_a_potential_duplicate_patient()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_reactivate_a_potential_duplicate_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -484,7 +506,7 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
   try
   {
     var test_title = 'Patient Management - Suspending an overdue patient removes them from the overdue report'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'overdue_suspend_patient', 'M', 'Shared'); 
     add_treatment_plan('W','Manual',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))),'Shared','');
     var patNHS = get_patient_nhs();
@@ -510,8 +532,10 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Management";
+    var test_name = "tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------

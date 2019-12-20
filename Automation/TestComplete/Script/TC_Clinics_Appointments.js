@@ -14,7 +14,7 @@ function tc_clinics_add_a_recurring_clinic()
     var test_title = "Clinics/Appointments - Add a Recurring Clinic";
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
     tsa_add_a_clinic(clinic_name, clinic_date, true, false);
     
     var result_set = new Array();
@@ -32,8 +32,10 @@ function tc_clinics_add_a_recurring_clinic()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_add_a_recurring_clinic";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -42,7 +44,7 @@ function tc_clinics_make_appointment_today_for_overdue_patient()
   try
   {
     var test_title = "Clinics/Appointments - Make Appointment for Overdue Patient";
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
@@ -75,8 +77,10 @@ function tc_clinics_make_appointment_today_for_overdue_patient()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_make_appointment_today_for_overdue_patient";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -85,7 +89,7 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
   try
   {
     var test_title = "Clinics/Appointments - Add INR for Patient with Appointment Today";
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
@@ -130,8 +134,10 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_add_inr_for_patient_with_appointment_today";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -140,7 +146,7 @@ function tc_clinics_move_seven_days_beyond_ntd()
   try
   {
     var test_title = "Clinics/Appointments - Move NTD Beyond 7 Day Threshold";
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
     var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 1));
@@ -158,7 +164,7 @@ function tc_clinics_move_seven_days_beyond_ntd()
     WaitSeconds(2);
     
     Log_Off();
-    login('cl1@regression','INRstar_5','Shared');
+    login(3, "Shared");
     
     patient_search(p_nhs);
     
@@ -190,8 +196,10 @@ function tc_clinics_move_seven_days_beyond_ntd()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_move_seven_days_beyond_ntd";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -200,7 +208,7 @@ function tc_clinics_cancel_future_appointment()
   try
   {
     var test_title = "Clinics/Appointments - Cancel Appointment In The Future";
-    login('clead@regression','INRstar_5','Shared');
+    login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
     var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 1));
@@ -232,8 +240,10 @@ function tc_clinics_cancel_future_appointment()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_cancel_future_appointment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -241,8 +251,8 @@ function tc_clinics_mark_unmark_dna()
 {
   try
   {
-    var test_title = "Clinics/Appointments - Move NTD Beyond 7 Day Threshold";
-    login('clead@regression','INRstar_5','Shared');
+    var test_title = "Clinics/Appointments - Mark and Unmark DNA";
+    login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
@@ -291,7 +301,9 @@ function tc_clinics_mark_unmark_dna()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Clinics_Appointments";
+    var test_name = "tc_clinics_mark_unmark_dna";
+    handle_failed_tests(suite_name, test_name);
   }
 }

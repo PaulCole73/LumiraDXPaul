@@ -27,27 +27,15 @@ function SQL_Set_connection()
  w_system = Log_On_Where();
  
 // // Default DB
- var w_con = "Provider=SQLNCLI10;" 
-           + " Server=dev_sandpit\\autotesting;"
-           + " Database=Starsky_ASPNETDB;"
-           + " User Id=INRstarUser;"
-           + " Password=AdminStar-1;"; 
+ //db connection
  
 // if (w_system == "Admin-SSIS")
 // {
-//       w_con = "Provider=SQLNCLI10;"
-//           + " Server=dev_sandpit\\autotesting;"
-//           + " Database=ASPNETDB-SSIS;"
-//           + " User Id=sa;"
-//           + " Password=AdminStar-1;"; 
+//       db connection
 // }
 // if (w_system == "TTRClient") or (w_system == "Test8082")
-// {
-//       w_con = "Provider=SQLNCLI10;" 
-//           + " Server=dev_sandpit\\autotesting;"
-//           + " Database=ttr_recalc_ASPNETDB;"
-//           + " User Id=INRstarUser;"
-//           + " Password=AdminStar-1;"; 
+// {  
+//    db connection   
 //  }
 //  Log.Message("Con = " + w_con);
     
@@ -1489,9 +1477,9 @@ function SQL_add_clead_user()
 +" DECLARE @username NVARCHAR(MAX);"
 
 +" set @sectionid='BBC8CFA1-B8A3-458A-A8A4-DD7B0DD27382';"
-+" set @sectionname='dpjl_regression'"
++" set @sectionname="
 
-+" set @role='clead';"
++" set @role="
 +" set @username = @role+'@'+@sectionname;"
 
 +" INSERT INTO [ASPNETDB].[dbo].[User] "
@@ -1535,9 +1523,9 @@ function SQL_add_cl2_user()
 +" DECLARE @username NVARCHAR(MAX);"
 
 +" set @sectionid='BBC8CFA1-B8A3-458A-A8A4-DD7B0DD27382';"
-+" set @sectionname='dpjl_regression'"
++" set @sectionname="
 
-+" set @role='cl2';"
++" set @role="
 +" set @username = @role+'@'+@sectionname;"
 
 +" INSERT INTO [ASPNETDB].[dbo].[User] "
@@ -1582,9 +1570,9 @@ function SQL_add_cl3_user()
 +" DECLARE @username NVARCHAR(MAX);"
 
 +" set @sectionid='BBC8CFA1-B8A3-458A-A8A4-DD7B0DD27382';"
-+" set @sectionname='dpjl_regression'"
++" set @sectionname="
 
-+" set @role='cl3';"
++" set @role="
 +" set @username = @role+'@'+@sectionname;"
 
 +" INSERT INTO [ASPNETDB].[dbo].[User] "

@@ -28,7 +28,7 @@ function SORB_schedule_testing_test_cases()
 //-----------------------------------------------------------------------------------
 function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_order_when_treatment_date_is_for_today_for_7_8_9_10_day_review_periods() 
 {
-  log_on_cl3_coruscant("cl3@regression","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(10, "Waiting for home page");
   var INRstarV5 = set_system();
 
@@ -174,7 +174,7 @@ function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_or
 //--------------------------------------------------------------------------------------------------------------------------------------------------
  function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_order_when_treatment_date_is_backdated_by_1_days_for_7_8_9_10_day_review_periods() 
 {
-  log_on_cl3_coruscant("cl3@emisweb","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(10, "Waiting for home page");
   var INRstarV5 = set_system();
 
@@ -329,7 +329,7 @@ function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_or
 //--------------------------------------------------------------------------------------------------------------------------------------------------
  function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_order_when_treatment_date_is_backdated_by_2_days_for_7_8_9_10_day_review_periods() 
 {
-  log_on_cl3_coruscant("cl3@regression","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(10, "Waiting for home page");
   var INRstarV5 = set_system();
 
@@ -469,7 +469,7 @@ function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_or
  //--------------------------------------------------------------------------------------------------------------------------------------------------
  function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_order_when_treatment_date_is_backdated_by_3_days_for_7_8_9_10_day_review_periods() 
 {
-  log_on_cl3_coruscant("cl3@regression","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(10, "Waiting for home page");
   var INRstarV5 = set_system();
 
@@ -609,7 +609,7 @@ function tc_Schedule_ordering_suggested_tab_ensure_schedule_is_in_the_correct_or
  //-----------------------------------------------------------------------------------
 function tc_Schedule_ordering_current_tab_ensure_schedule_is_in_the_correct_order_when_treatment_date_is_for_today_for_7_8_9_10_day_review_periods() 
 {
-  log_on_cl3_coruscant("cl3@regression","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(8, "Waiting for home page");
   var INRstarV5 = set_system();
 
@@ -738,7 +738,7 @@ function tc_Schedule_ordering_current_tab_ensure_schedule_is_in_the_correct_orde
  //--------------------------------------------------------------------------------------------------------------------------------------------------
  function tc_Schedule_ordering_current_tab_ensure_schedule_is_in_the_correct_order_when_treatment_date_is_backdated_by_1_days_for_7_8_9_10_day_review_periods() 
 {
-  log_on_cl3_coruscant("cl3@regression","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(10, "Waiting for home page");
   var INRstarV5 = set_system();
 
@@ -861,7 +861,7 @@ function tc_Schedule_ordering_current_tab_ensure_schedule_is_in_the_correct_orde
  //--------------------------------------------------------------------------------------------------------------------------------------------------
  function tc_Schedule_ordering_current_tab_ensure_schedule_is_in_the_correct_order_when_treatment_date_is_backdated_by_2_days_for_7_8_9_10_day_review_periods() 
 {
-  log_on_cl3_coruscant("cl3@regression","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(10, "Waiting for home page");
   var INRstarV5 = set_system();
 

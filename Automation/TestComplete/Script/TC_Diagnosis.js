@@ -8,7 +8,7 @@ function tc_diagnosis_add_new_diagnosis()
   try
   {
     var test_title = "Diagnosis - Add a new diagnosis";
-    login("orgadmin@regression", "INRstar_5", "Shared");
+    login(9, "Shared");
     
     var result_set = new Array();
     
@@ -27,7 +27,9 @@ function tc_diagnosis_add_new_diagnosis()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
+    var suite_name = "TC_Diagnosis";
+    var test_name = "tc_diagnosis_add_new_diagnosis";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -36,7 +38,7 @@ function tc_diagnosis_edit_diagnosis()
   try
   {
     var test_title = "Diagnosis - Edit a diagnosis";
-    login("orgadmin@regression", "INRstar_5", "Shared");
+    login(9, "Shared");
     
     var original_data = new Array();
     var edited_data = new Array();
@@ -62,7 +64,9 @@ function tc_diagnosis_edit_diagnosis()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
+    var suite_name = "TC_Diagnosis";
+    var test_name = "tc_diagnosis_edit_diagnosis";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -71,7 +75,7 @@ function tc_diagnosis_delete_diagnosis()
   try
   {
     var test_title = "Diagnosis - Delete a diagnosis";
-    login("orgadmin@regression", "INRstar_5", "Shared");
+    login(9, "Shared");
     
     var diagnosis_name = add_diagnosis();
     
@@ -93,6 +97,8 @@ function tc_diagnosis_delete_diagnosis()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
+    var suite_name = "TC_Diagnosis";
+    var test_name = "tc_diagnosis_delete_diagnosis";
+    handle_failed_tests(suite_name, test_name);
   }
 }

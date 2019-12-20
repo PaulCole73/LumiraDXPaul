@@ -746,7 +746,7 @@ function Step_4_3_25_Override_Permissions(INRstarV5)
 //    }
 //    
 //    //----------------------------------- Logon
-//    Log_On_User("lead@s2","INRstar_5");
+//    Log_On_User("");
 //    Step_4_3_25_sub();
 //    var w_NHS = get_patient_nhs(INRstarV5);
    Log_Off();
@@ -755,12 +755,12 @@ function Step_4_3_25_Override_Permissions(INRstarV5)
     var w_NHS = "353 045 1738";
 //End of Temp Code
     //---------------------------------------------------------------------------------------           
-    var w_locn = "@s2";
+    var w_locn = "";
     var wa_Users = new Array(4);
-    wa_Users[0] = "lead"+w_locn;
-    wa_Users[1] = "cl3"+w_locn;
-    wa_Users[2] = "cl2"+w_locn;
-    wa_Users[3] = "cl1"+w_locn;
+    wa_Users[0] = 
+    wa_Users[1] = 
+    wa_Users[2] = 
+    wa_Users[3] = "";
     
     var w_inr="2.3";
     var w_meds=false;
@@ -769,7 +769,7 @@ function Step_4_3_25_Override_Permissions(INRstarV5)
     for (u = 0; u <wa_Users.length; u++)
     {
               // Log on as User
-              Log_On_User(wa_Users[u],"INRstar_5");
+              Log_On_User(wa_Users[u],"");
                     
               Goto_Patient_Search();
               preset_Fetch_Patient_NHS(INRstarV5, w_NHS);

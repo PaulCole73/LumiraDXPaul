@@ -68,3 +68,24 @@ var hotmail_email_content = hotmail_email.contentText;
                         else Log.Warning("TC_Password_Reset_Code_Email - Fail");
             }
 //--------------------------------------------------------------------------------
+function validate_user_logged_in(username)
+{
+  var obj = INRstar_base().NativeWebObject.Find("idStr", "LoginStatus");
+  
+  if(obj.Exists)
+  {
+    var temp = aqString.Find(obj.contentText, username);
+    if(temp != -1)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  else
+  {
+    return false;
+  }
+}

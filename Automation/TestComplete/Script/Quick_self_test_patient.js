@@ -14,7 +14,7 @@
 
 function timing_test()
 {
-  log_on_cl3_coruscant("cl3@regression","INRstar_5");
+  log_on_cl3_coruscant("");
   WaitSeconds(2, "Waiting for home page");
   var INRstarV5 = set_system();
 

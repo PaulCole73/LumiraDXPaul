@@ -73,7 +73,26 @@ function home_page_messages()
   var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
    
   return list;
-} 
+}
+//------------------------------------------------------------------------
+//////////////////////////  Feedback Tab  ////////////////////////////////
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function feedback_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var link = INRstarV5.Panel("MainPage").Panel("main").Panel(0).Link("FeedbackLink");
+  
+  return link;
+}
+//------------------------------------------------------------------------
+function feedback_tab_textarea()
+{
+  var INRstarV5 = INRstar_base();
+  var area = INRstarV5.Panel(6).Panel("feedbackPanel").Form("CollectFeedbackForm").Textarea("Message");
+  
+  return area;
+}
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Demographics  /////////////////////////
 //------------------------------------------------------------------------
@@ -85,7 +104,7 @@ function patient_banner_blue_bar()
    
   return blue_header_bar; 
 } 
- //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 function patient_banner_yellow_bar()
 {
   var INRstarV5 = INRstar_base();
@@ -880,7 +899,7 @@ function patient_treatment_bridging_tab()
 function bridging_schedule_form()
 {
   var tab = patient_treatment_bridging_tab();
-  var panel = tab.Panel("BridgingTabContent").Form("CreateBridgingSchedulesForm");
+  var panel = tab.Form("BridgingForm").Panel("BridgingTabContent");
   
   return panel;
 }
@@ -888,7 +907,7 @@ function bridging_schedule_form()
 function bridging_schedule_buttons()
 {
   var tab = patient_treatment_bridging_tab();
-  var panel = tab.Panel(0);
+  var panel = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel(0);
   
   return panel;
 }
@@ -896,7 +915,7 @@ function bridging_schedule_buttons()
 function bridging_schedule_preop_table()
 {
   var tab = patient_treatment_bridging_tab();
-  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule").Panel(0).Table("Pre_opTable");
+  var table = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel("Schedules").Panel("BridgingSchedule").Table("Pre_opTable");
   
   return table;
 }
@@ -904,7 +923,7 @@ function bridging_schedule_preop_table()
 function bridging_schedule_procedure_table()
 {
   var tab = patient_treatment_bridging_tab();
-  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule_2").Panel(0).Table("ProcedureTable");
+  var table = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel("Schedules").Panel("BridgingSchedule_2").Table("ProcedureTable");
   
   return table;
 }
@@ -912,7 +931,7 @@ function bridging_schedule_procedure_table()
 function bridging_schedule_post_discharge_table()
 {
   var tab = patient_treatment_bridging_tab();
-  var table = tab.Panel("BridgingSchedules").Panel("Schedules").Panel("BridgingSchedule_3").Panel(0).Table("Post_dischargeTable");
+  var table = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel("Schedules").Panel("BridgingSchedule_3").Table("Post_dischargeTable");
   
   return table;
 }
@@ -925,13 +944,6 @@ function bridging_schedule_add_button()
   return button;
 }
 //------------------------------------------------------------------------
-function bridging_procedure_schedule_add_button()
-{
-  var panel = bridging_schedule_preop_table();
-  var button = panel.Cell(1, 0).Link("ProcedureAddButton");
-  
-  return button;
-}
 //------------------------------------------------------------------------
 //////////////////////////  Summary  ///////////////////////////////////
 //------------------------------------------------------------------------
@@ -994,6 +1006,16 @@ function external_patient_lookup_reason_form()
   return external_lookup_form;
 }
 //------------------------------------------------------------------------
+function external_patient_lookup_reason_form_register()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var external_lookup_panel = panelMCP.Panel("PatientContent").Panel("AdvancedSearchTab").Panel("AdvancedSearchTab");
+  var external_lookup_form_register = external_lookup_panel.Form("PatientAdvancedSearchForm").Panel("LocationSearchDiv").Panel("Reason");
+  
+  return external_lookup_form_register;
+}
+//------------------------------------------------------------------------
 function external_patient_lookup_form()
 {
   var INRstarV5 = INRstar_base();
@@ -1002,6 +1024,16 @@ function external_patient_lookup_form()
   var external_lookup_form = external_lookup_panel.Form("PatientAdvancedSearchForm").Panel("AdvancedSearchCriteria");
   
   return external_lookup_form;
+}
+//------------------------------------------------------------------------
+function external_patient_lookup_form_register()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var external_lookup_panel = panelMCP.Panel("PatientContent").Panel("AdvancedSearchTab").Panel("AdvancedSearchTab");
+  var external_lookup_form_register = external_lookup_panel.Form("PatientAdvancedSearchForm").Panel("AdvancedSearchCriteria");
+  
+  return external_lookup_form_register;
 }
 //------------------------------------------------------------------------
 //////////////////////////  Patient Management  //////////////////////////
@@ -2029,4 +2061,45 @@ function clinic_move_calendar_forward()
   
   return button;
 }
+//------------------------------------------------------------------------
+////////////////////////  External Results / HL7  ////////////////////////
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function patient_results_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var main_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var tab = main_content.Panel("ManagePatients").Panel("PatientTab").Link("TestResultsTabLink");
+  
+  return tab;
+}
+//------------------------------------------------------------------------
+function patient_external_results_table()
+{
+  var INRstarV5 = INRstar_base();
+  var main_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var warf_container = main_content.Panel("PatientContent").Panel("ExternalResultsContent").Panel("WarfarinResultsContainer");
+  var table = warf_container.Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
+  
+  return table;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

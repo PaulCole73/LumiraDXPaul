@@ -8,7 +8,7 @@ function tc_bespoke_letters_create_new_letter()
   try
   {
     var test_title = "Bespoke Letters - Create a new bespoke letter";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     
     var expected_content = new Array();
     var content = new Array();
@@ -37,8 +37,10 @@ function tc_bespoke_letters_create_new_letter()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bespoke_Letters";
+    var test_name = "tc_bespoke_letters_create_new_letter";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -47,7 +49,7 @@ function tc_bespoke_letters_edit_a_letter()
   try
   {
     var test_title = "Bespoke Letters - Edit a bespoke letter";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     
     var expected_content = new Array();
     var content = new Array();
@@ -78,8 +80,10 @@ function tc_bespoke_letters_edit_a_letter()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bespoke_Letters";
+    var test_name = "tc_bespoke_letters_edit_a_letter";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -88,7 +92,7 @@ function tc_bespoke_letters_copy_a_letter()
   try
   {
     var test_title = "Bespoke Letters - Create a copy of a letter";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     
     var expected_content = new Array();
     var content = new Array();
@@ -115,8 +119,10 @@ function tc_bespoke_letters_copy_a_letter()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+   Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bespoke_Letters";
+    var test_name = "tc_bespoke_letters_copy_a_letter";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //-----------------------------------------------------------------------------------
@@ -125,7 +131,7 @@ function tc_bespoke_letters_rename_a_letter()
   try
   {
     var test_title = "Bespoke Letters - Rename a letter";
-    login("clead@regression", "INRstar_5", "Shared");
+    login(7, "Shared");
     
     var expected_content = new Array();
     var content = new Array();
@@ -169,7 +175,9 @@ function tc_bespoke_letters_rename_a_letter()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Bespoke_Letters";
+    var test_name = "tc_bespoke_letters_rename_a_letter";
+    handle_failed_tests(suite_name, test_name);
   }
 }

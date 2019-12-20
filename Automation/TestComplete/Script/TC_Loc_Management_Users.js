@@ -9,8 +9,10 @@ function tc_users_add_a_new_user()
   try
   {
     var test_title = 'Users - Add a New User';
-    login('clead@regression','INRstar_5','Shared');
-    var username = add_new_user("add", "user", "add", "INRstar_6");
+    login(7, "Shared");
+    var new_pass = get_login_details(21);
+    
+    var username = add_new_user("add", "user", "add", new_pass);
     
     var result_set = new Array();
     var result_set_1 = validate_top_system_audit(test_title, "Add User");
@@ -26,8 +28,10 @@ function tc_users_add_a_new_user()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Loc_Management_Users";
+    var test_name = "tc_users_add_a_new_user";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -36,8 +40,10 @@ function tc_users_manage_user_permissions()
   try
   {
     var test_title = 'Users - Manage User Permissions';
-    login('clead@regression','INRstar_5','Shared');
-    var username = add_new_user("manage", "perms", "manage", "INRstar_6");
+    login(7, "Shared");
+    var new_pass = get_login_details(21);
+    
+    var username = add_new_user("manage", "perms", "manage", new_pass);
     
     manage_user_permissions(username, "clerical 1");
     
@@ -55,8 +61,10 @@ function tc_users_manage_user_permissions()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Loc_Management_Users";
+    var test_name = "tc_users_manage_user_permissions";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -65,8 +73,9 @@ function tc_users_manage_change_permissions_to_read_only()
   try
   {
     var test_title = 'Users - Change Permission to Read Only';
-    login('clead@regression','INRstar_5','Shared');
-    var username = add_new_user("read", "only", "read", "INRstar_6");
+    login(7, "Shared");
+    var new_pass = get_login_details(21);
+    var username = add_new_user("read", "only", "read", new_pass);
     
     manage_user_permissions(username, "clerical 1");
     
@@ -81,7 +90,7 @@ function tc_users_manage_change_permissions_to_read_only()
     
     Log_Off();
     
-    log_in_new_user(username, "INRstar_6", "INRstar_5");
+    log_in_new_user(username, new_pass);
      
     var base = INRstar_base().Panel("MainPage");
     base.Panel("header").Link("MainPatientLink").Click();
@@ -110,8 +119,10 @@ function tc_users_manage_change_permissions_to_read_only()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Loc_Management_Users";
+    var test_name = "tc_users_manage_change_permissions_to_read_only";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -120,8 +131,9 @@ function tc_users_reset_user_password()
   try
   {
     var test_title = 'Users - Reset Password';
-    login('clead@regression','INRstar_5','Shared');
-    var username = add_new_user("reset", "password", "reset", "INRstar_6");
+    login(7, "Shared");
+    var new_pass = get_login_details(21);
+    var username = add_new_user("reset", "password", "reset", new_pass);
     
     var user_data = reset_user_password(username);
     var new_password = aqString.SubString(user_data[1], 51, 8);
@@ -135,7 +147,7 @@ function tc_users_reset_user_password()
     
     Log_Off();
     
-    login(username, new_password, 'Shared');
+    login(username, "Shared", new_password);
     
     var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;
@@ -153,8 +165,10 @@ function tc_users_reset_user_password()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Loc_Management_Users";
+    var test_name = "tc_users_reset_user_password";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -163,8 +177,9 @@ function tc_users_disable_user()
   try
   {
     var test_title = 'Users - Disable User';
-    login('clead@regression','INRstar_5','Shared');
-    var username = add_new_user("disable", "user", "disable", "INRstar_6");
+    login(7, "Shared");
+    var new_pass = get_login_details(21);
+    var username = add_new_user("disable", "user", "disable", new_pass);
     
     var text = disable_user_account(username);
     
@@ -177,7 +192,7 @@ function tc_users_disable_user()
     
     Log_Off();
     
-    login(username, "INRstar_6", "Shared");
+    login(username, "Shared", new_pass);
     
     var logon_page_path = log_on_form().Panel("LoginArea").Panel("Logon");
     
@@ -196,8 +211,10 @@ function tc_users_disable_user()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Loc_Management_Users";
+    var test_name = "tc_users_disable_user";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -206,8 +223,9 @@ function tc_users_enable_user()
   try
   {
     var test_title = 'Users - Enable User'
-    login('clead@regression','INRstar_5','Shared');
-    var username = add_new_user("enable", "user", "enable", "INRstar_6");
+    login(7, "Shared");
+    var new_pass = get_login_details(21);
+    var username = add_new_user("enable", "user", "enable", new_pass);
     
     var text = disable_user_account(username);
     enable_user_account(username);
@@ -221,7 +239,7 @@ function tc_users_enable_user()
     
     Log_Off();
     
-    login(username, "INRstar_6", "Shared");
+    login(username, "Shared", new_pass);
     
     var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;
@@ -239,7 +257,9 @@ function tc_users_enable_user()
   } 
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Loc_Management_Users";
+    var test_name = "tc_users_enable_user";
+    handle_failed_tests(suite_name, test_name);
   }
 }

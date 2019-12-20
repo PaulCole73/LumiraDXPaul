@@ -126,32 +126,30 @@ function delete_iqc_result()
   var delete_button = options_iqc_table_path.Cell(1, 8).Button("DeleteIQC");
   
   delete_button.Click();
-  process_confirm_button_IQC();
+  process_popup("Confirmation Required", "Confirm");
   
   WaitSeconds(2)
 }
 //--------------------------------------------------------------------------------
 function delete_iqc_result_if_exists()
 {
- Goto_Admin_IQC();
- var iqc_table_path = options_iqc_table();
-  if(iqc_table_path.Cell(1, 0).contentText!='There are no IQCs recorded')
+  Goto_Admin_IQC();
+  var iqc_table_path = options_iqc_table();
+  if(iqc_table_path.Cell(1, 0).contentText != "There are no IQCs recorded")
   {
-//    Goto_Admin_IQC();
-    var INRstarV5 = INRstar_base();
     var options_iqc_table_path = options_iqc_table();
     var delete_button = options_iqc_table_path.Cell(1, 8).Button("DeleteIQC");
   
-      while(delete_button.Exists == true)
-      {
-        delete_button.Click();
-        process_confirm_button_IQC();
-        WaitSeconds(2)
-      } 
+    while(delete_button.Exists == true)
+    {
+      delete_button.Click();
+      process_popup("Confirmation Required", "Confirm");
+      WaitSeconds(2);
+    } 
   } 
   else 
   {
-      Log.Message('No IQC results exist')
+    Log.Message('No IQC results exist')
   }
 }
 //--------------------------------------------------------------------------------

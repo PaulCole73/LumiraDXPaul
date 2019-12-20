@@ -9,7 +9,7 @@ function tc_add_a_new_poct()
   try
   {
     var test_title = 'Options/PoCT - Add a new PoCT batch'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
   
     var batch_numbers = new Array();
     batch_numbers = get_poct_batch_numbers();
@@ -33,10 +33,12 @@ function tc_add_a_new_poct()
   
     Log_Off();
   }
-  catch (e)
+  catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_PoCT";
+    var test_name = "tc_add_a_new_poct";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //-------------------------------
@@ -45,7 +47,7 @@ function tc_edit_a_new_poct_batch()
   try
   {
     var test_title = 'Options/PoCT - Edit a new PoCT batch'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     var result_set = new Array();
   
     var batch_numbers = new Array();
@@ -77,8 +79,10 @@ function tc_edit_a_new_poct_batch()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_PoCT";
+    var test_name = "tc_edit_a_new_poct_batch";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //-------------------------------

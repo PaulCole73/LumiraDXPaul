@@ -201,29 +201,38 @@ function get_days_in_month(month_no, year_no)
 //--------------------------------------------------------------------------------
 function goto_patient_clinic_tab_appointment_name(name, weeks_ahead)
 { 
+  WaitSeconds(2, "Waiting for 'Make' button...");
   treatment_appointment_buttons().Button("MakeAppointment").Click(20, 20);
   
   for(var i = 0; i < weeks_ahead; i++)
   {
     clinic_move_calendar_forward().Click();
   }
+  
+  WaitSeconds(3, "Waiting to get path to container...");
   var clinic_names = clinic_patients_appointments_container();
+  Log.Message(clinic_names.ChildCount);
   WaitSeconds(2, "Waiting for clinics...");
+  
   for(var i = 0; i < clinic_names.ChildCount; i++)
   {
     WaitSeconds(2, "Waiting for clinics...");
     var child = clinic_names.Child(i).Panel("appointmentDiv").Table(0).Cell(0, 1).Table(0).Cell(0, 1).Table(0).Cell(2, 0).TextNode("lblDescription");
     if(child.contentText == name)
     {
+      Log.Message("Clinic Found.");
       for(var j = 0; j <= 24; j++)
       {
         var box = clinic_patients_appointments_container().FindChild("contentText", "Appts:" + j + "/24" + "\n" + name);
         if(box.Exists == true)
         {
+          Log.Message("Appointment Found.");
           box.ClickR();
           break;
         }
+        WaitSeconds(1);
       }
+      WaitSeconds(1);
       break;
     }
   }

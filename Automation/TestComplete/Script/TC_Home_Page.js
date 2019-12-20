@@ -13,7 +13,7 @@ function tc_home_page_view_overdue_inr_test_message()
   try
   {
     var test_title = "Home Page - View the 'Overdue an INR test' message"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Overdue_INR_message', 'M', 'Shared');
     add_treatment_plan('W','Manual','','Shared','');
   
@@ -36,8 +36,10 @@ function tc_home_page_view_overdue_inr_test_message()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_inr_test_message";
+    handle_failed_tests(suite_name, test_name); 
   } 
 }
 //-------------------------------------------------------------------------------- 
@@ -46,7 +48,7 @@ function tc_home_page_view_exceeded_suspension_period_message()
   try
   {
     var test_title = "Home Page - View the 'Exceeded suspension period' message"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Exceed_suspension_period', 'M', 'Shared');
     add_treatment_plan('W','Manual','','Shared','');
   
@@ -75,8 +77,10 @@ function tc_home_page_view_exceeded_suspension_period_message()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_exceeded_suspension_period_message";
+    handle_failed_tests(suite_name, test_name); 
   } 
 }
 //-------------------------------------------------------------------------------- 
@@ -85,7 +89,7 @@ function tc_home_page_unsuspend_patient_through_message()
   try
   {
     var test_title = "Home Page - Unsuspend patient through message"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Unsuspend_message', 'M', 'Shared');
     add_treatment_plan('W','Manual','','Shared','');
   
@@ -128,8 +132,10 @@ function tc_home_page_unsuspend_patient_through_message()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_unsuspend_patient_through_message";
+    handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
@@ -138,7 +144,7 @@ function tc_home_page_view_patient_transfer_request()
   try 
   {
     var test_title = "Home Page - View the 'Patient transfer requests'"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Transfer_request', 'M', 'Shared');
     
     //Get the patient details
@@ -150,7 +156,7 @@ function tc_home_page_view_patient_transfer_request()
     Log_Off();
     
     //Login to transfered testing location
-    login('cl3@regression2','INRstar_5','Shared');
+    login(15, "Shared");
 
     var result_set = new Array();
     
@@ -160,7 +166,7 @@ function tc_home_page_view_patient_transfer_request()
     Log_Off();
     
     //Login to original location
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     
     patient_search(pat_nhs);
     
@@ -180,8 +186,10 @@ function tc_home_page_view_patient_transfer_request()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_transfer_request";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -190,7 +198,7 @@ function tc_home_page_accept_patient_transfer_request()
   try 
   {
     var test_title = "Home Page - View the 'Accept patient transfer requests'"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Accept_transfer_request', 'M', 'Shared');
     
     //Get the patient details
@@ -203,7 +211,7 @@ function tc_home_page_accept_patient_transfer_request()
     Log_Off();
     
     //Login to transfered testing location
-    login('cl3@regression2','INRstar_5','Shared');
+    login(15, "Shared");
 
     var result_set = new Array();
     
@@ -232,8 +240,10 @@ function tc_home_page_accept_patient_transfer_request()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_accept_patient_transfer_request";
+    handle_failed_tests(suite_name, test_name); 
   }
 }
 //--------------------------------------------------------------------------------
@@ -242,7 +252,7 @@ function tc_home_page_decline_patient_transfer_request()
   try 
   {
     var test_title = "Home Page - View the 'Decline patient transfer'";
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Decline_transfer_request', 'M', 'Shared');
     
     //Get the patient details
@@ -254,7 +264,7 @@ function tc_home_page_decline_patient_transfer_request()
     Log_Off();
     
     //Login to transfered testing location
-    login('cl3@regression2','INRstar_5','Shared');
+    login(15, "Shared");
 
     var result_set = new Array();
     
@@ -268,7 +278,7 @@ function tc_home_page_decline_patient_transfer_request()
     Log_Off();
     
     //Login to Sending location to Acknowledge declined transfer
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     result_set_1 = acknowledge_declined_patient_in_message(message_name)
     result_set.push(result_set_1);
         
@@ -290,8 +300,10 @@ function tc_home_page_decline_patient_transfer_request()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_decline_patient_transfer_request";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -300,7 +312,7 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
   try 
   {
     var test_title = "Home Page - View the 'Patient transfer requests not accepted'"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Not_accepted_transfer', 'M', 'Shared');
     
     //Get the patient details
@@ -334,8 +346,10 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_transfer_requests_not_yet_accepted";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -344,7 +358,7 @@ function tc_home_page_view_patient_with_incomplete_treatment()
   try 
   {
     var test_title = "Home Page - View the 'Patient with incomplete treatment'"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Incomplete_treatment', 'M', 'Shared');
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "7", "2.5");
@@ -376,8 +390,10 @@ function tc_home_page_view_patient_with_incomplete_treatment()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_with_incomplete_treatment";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -386,7 +402,7 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
   try 
   {
     var test_title = "Home Page - View the 'Patient with no diagnosis or TP'"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'No_diagnosis', 'M', 'Shared');
     
     //Get the patient details
@@ -414,8 +430,10 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_patient_with_no_diagnosis_or_tp";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -424,7 +442,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
   try 
   {
     var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP but no DOAC review"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Overdue_non_warf_review', 'M', 'Shared');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -7)),'Shared','','Indefinite');
     
@@ -453,8 +471,10 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -463,7 +483,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
   try 
   {
     var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP and review, not overdue"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -150)),'Shared','','Indefinite');
     add_non_warfarin_review('','Y',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -1)),'65','100');
@@ -492,8 +512,10 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_overdue";
+    handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
@@ -502,7 +524,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
   try 
   {
     var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP and review, not overdue"
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
     add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite');
     
@@ -543,8 +565,10 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
   }
   catch (e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue";
+    handle_failed_tests(suite_name, test_name); 
   }
 }
 //--------------------------------------------------------------------------------

@@ -1,6 +1,8 @@
 ﻿//USEUNIT System_Paths
+//USEUNIT Admin_Dash_System_Paths
 //USEUNIT INRstar_Navigation
 //USEUNIT Get_Functions
+//USEUNIT Failed_Test_Handlers
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -8,6 +10,11 @@
 //Add functions (in current style) if they are missing from here
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
+
+//GLOBAL VARIABLES
+var environment = "INRstarWindowsHoth";
+var admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -68,7 +75,7 @@ function data_contains_checker(data_1, data_2, test_mess)
   }
 }
 //-----------------------------------------------------------------------------------
-//Generic method for checking state of a button
+//Generic method for comparing state of a button
 function button_checker(actual_state, expected_state, test_mess)
 {
   if(actual_state == null || expected_state == null)
@@ -381,24 +388,47 @@ function get_unique_number()
 //-----------------------------------------------------------------------------------
 function get_random_num_inrange(low, high)
 {
-  var num
+  var num;
   
-  do
+  if(high >= low)
   {
-    num =  Math.trunc(Math.random()*high);
+    do
+    {
+      num =  Math.trunc(Math.random()*high);
+    }
+    while(num < low)
   }
-  while(num < low)
+  else
+  {
+    num = 0;
+  }
   
   return num;
 }
 //-----------------------------------------------------------------------------------
 //Pass in the path of the date picker, the date you want to check
-function date_picker(path, date)
+function date_picker(path, date, product)
 {
-  var INRstarV5 = INRstar_base(); 
+  var base;
+  if(product == "INRstar")
+  {
+    base = INRstar_base();
+  }
+  else if(product == "Admin Dash")
+  {
+    base = admin_dash_base();
+  }
+  else if(product == null)
+  {
+    base = INRstar_base();
+  }
+  else
+  {
+    base = INRstar_base();
+  }
   
   path.Panel(0).Image("calendar_png").Click();     
-  datepicker = INRstarV5.Panel("ui_datepicker_div");
+  datepicker = base.Panel("ui_datepicker_div");
   
   var expiry_date = date; 
     
@@ -495,73 +525,6 @@ function set_month(p_m)
   return w_Month;
 }
 //-----------------------------------------------------------------------------------
-function get_user_level(user_val)
-{
-  var user_level;
-  
-  switch(user_val)
-  {
-    case 0: 
-    user_level = "clerical1";
-    break;
-    case 1: 
-    user_level = "clerical2";
-    break;
-    case 2: 
-    user_level = "clerical3";
-    break;
-    case 3: 
-    user_level = "cl1";
-    break;
-    case 4: 
-    user_level = "cl2";
-    break;
-    case 5: 
-    user_level = "cl3";
-    break;
-    case 6: 
-    user_level = "ladmin";
-    break;
-    case 7: 
-    user_level = "clead";
-    break;
-    case 8: 
-    user_level = "readonly";
-    break;
-  }
-  
-  return user_level;
-}
-//-----------------------------------------------------------------------------------
-function get_dosing_method(dm)
-{
-  var dose_method;
-  
-  switch(dm)
-  {
-    case 0: 
-    dose_method = "Coventry";
-    break;
-    case 1: 
-    dose_method = "Hillingdon";
-    break;
-    case 2: 
-    dose_method = "Fast";
-    break;
-    case 3: 
-    dose_method = "Oates";
-    break;
-    case 4: 
-    dose_method = "Tait";
-    break;
-    case 5: 
-    dose_method = "Manual";
-    break;
-  }
-  
-  return dose_method;
-}
-//-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
 {
   var INRstarV5 = INRstar_base();
@@ -593,7 +556,16 @@ function process_object_exists(content_type, content_data)
   }
 }
 //-----------------------------------------------------------------------------------
-
+function exception_occured(a, b) //randomly required 2 parameters
+{
+  Options.Run.Timeout = 0; //rush through test at erroro.");
+}
+//-----------------------------------------------------------------------------------
+function setup_automation(new_config_file_name)
+{
+  reset_tests_array();
+  change_environments(new_config_file_name);
+}
 
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
@@ -604,11 +576,12 @@ function get_new_number_v5()
 {
   var wnd;
 
-  WaitSeconds(1);
+  WaitSeconds(2);
   TestedApps.NHSNumberGenerator.Run(1, true);
-  WaitSeconds(1);
+  WaitSeconds(2);
 
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
+  WaitSeconds(2);
   form.WinFormsObject("button1").ClickButton();
 
   wnd = form.WinFormsObject("textBox1").wText;
@@ -623,6 +596,7 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 
   try
   {
+    var pass = get_login_details(20);
     schema = "http://schemas.microsoft.com/cdo/configuration/";
     mConfig = getActiveXObject("CDO.Configuration");
     mConfig.Fields.$set("Item", schema + "sendusing", 2); // cdoSendUsingPort
@@ -645,7 +619,7 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
 
     mConfig.Fields.$set("Item", schema + "smtpauthenticate", 1); // Authentication mechanism
     mConfig.Fields.$set("Item", schema + "sendusername", "AutomationLumira"); // User name (if needed)
-    mConfig.Fields.$set("Item", schema + "sendpassword", "INRstar_5"); // User password (if needed)
+    mConfig.Fields.$set("Item", schema + "sendpassword", pass); // User password (if needed)
     mConfig.Fields.Update();
 
     mMessage = getActiveXObject("CDO.Message");
@@ -719,14 +693,14 @@ function reset_folder()
 function restart_INRstar()
 {
   var path = Sys.Process("INRstarWindows").Path;
-  
   Sys.Process("INRstarWindows").Close();
-  
   Win32API.WinExec(path, SW_SHOWNORMAL);
+  Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Maximize();
 }
 //-----------------------------------------------------------------------------------
 function change_environments(new_config_file_name) //Q:\Development and Testing\Testing\EnvironmentConfigs - config files can be found here
 {
+  environment = new_config_file_name;
   var sys_path = Sys.Process("INRstarWindows").Path;
   var config_path = sys_path + ".config";
   var base_path = "Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\" + new_config_file_name;
@@ -738,7 +712,8 @@ function change_environments(new_config_file_name) //Q:\Development and Testing\
   WaitSeconds(2);
   
   restart_INRstar();
-  WaitSeconds(20);
+  
+  WaitSeconds(30);
 }
 //-----------------------------------------------------------------------------------
 function open_file_in_notepad(path)
@@ -851,6 +826,7 @@ function set_get_environment(env)
   else
   {
     environment = env;
-    return environment;
   }
 }
+//-----------------------------------------------------------------------------------
+

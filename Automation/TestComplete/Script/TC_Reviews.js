@@ -10,7 +10,7 @@ function tc_add_a_new_warfarin_review()
   try
   {
     var test_title = 'Reviews - Add a new warfarin review'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_a_review', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_warfarin_review_new_review_button();
@@ -22,8 +22,10 @@ function tc_add_a_new_warfarin_review()
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Reviews";
+    var test_name = "tc_add_a_new_warfarin_review";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------
@@ -32,10 +34,11 @@ function tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine
   try
   {
     var test_title = 'Reviews - Add a non warfarin review with some test measurements for Creatinine clearance'
-    login('cl3@regression','INRstar_5','Shared');
+    login(5, "Shared");
     add_patient('Regression', 'add_a_review', 'M', 'Shared'); 
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite')
-  
+    WaitSeconds(2, "Waiting after tp...");
+    
     var review_data_before = add_non_warfarin_review('','Y','','65','100');
     var review_data_after = get_review_tab_data();
 
@@ -55,8 +58,10 @@ function tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine
   }
   catch(e)
   {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Reviews";
+    var test_name = "tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine_clearance";
+    handle_failed_tests(suite_name, test_name);
   }
 } 
 //--------------------------------------------------------------------------------

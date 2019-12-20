@@ -75,9 +75,13 @@ function get_patient_demographics()
   var mobile = patient_demographics_tab_contact_address_path.Panel(2).Label("Mobile_DetachedLabel").contentText;
   var email = patient_demographics_tab_contact_address_path.Panel(3).Label("Email_DetachedLabel").contentText;
   
-  patient_data_array.push(pat_num,nhs_num,title,surname,firstname,born,sex,gender,ethnicity,language,mar_status,line_1,line_2,line_3,town,county,post_code,tel,mobile,email); 
+  patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, ethnicity, language, mar_status, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
   
-  //Log.Message(patient_data_array) 
+  for(var i = 0; i < patient_data_array.length; i++)
+  {
+    Log.Message("Array element: " + i + " is " + patient_data_array[i]);
+  }
+   
   return patient_data_array;  
 } 
 //-----------------------------------------------------------------------------------
@@ -363,32 +367,36 @@ function get_bridging_schedule_table_row(row_num, table_type)
 {
   var row_data = new Array();
   var table;
+  row_data.length = 0;
   
-  if(table_type = "pre-op")
+  if(table_type == "pre-op")
   {
     table = bridging_schedule_preop_table();
   }
-  else if(table_type = "procedure")
+  else if(table_type == "procedure")
   {
     table = bridging_schedule_procedure_table();
+    row_num -= 1;
   }
-  else if(table_type = "post-discharge")
+  else if(table_type == "post-discharge")
   {
     table = bridging_schedule_post_discharge_table();
   }
+  //when performing looping actions, test complete will cache objects
+  //these need to be refreshed or the test will fail
+  table.Refresh();
   
   for(var i = 0; i < 7; i++)
   {
     if(i == 2 || i == 3 || i == 4)
     {
-      row_data.push(table.Cell(row_num, i).Child(0).Checked);
+      row_data.push(table.Cell(row_num, i).Child(1).checked);
     }
     else
     {
       row_data.push(aqString.Trim(table.Cell(row_num, i).innerText));
     }
   }
-  
   return row_data;
 }
 //-----------------------------------------------------------------------------------
@@ -414,6 +422,55 @@ function get_top_note_text()
   var text = aqString.Trim(note_text_path.innerText);
   
   return text;
+}
+//-----------------------------------------------------------------------------------
+function get_dosing_method(dm)
+{
+  var dose_method;
+  
+  switch(dm)
+  {
+    case 0: 
+    dose_method = "Coventry";
+    break;
+    case 1: 
+    dose_method = "Hillingdon";
+    break;
+    case 2: 
+    dose_method = "Fast";
+    break;
+    case 3: 
+    dose_method = "Oates";
+    break;
+    case 4: 
+    dose_method = "Tait";
+    break;
+    case 5: 
+    dose_method = "Manual";
+    break;
+  }
+  
+  return dose_method;
+}
+//---------------------------------------------------------------------------------//
+//                                  Login                                          //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_login_details(index)
+{
+  var login_details = new Array();
+  var user_path = "C:\\Automation\\UserDetails.txt";
+  var file = aqFile.ReadWholeTextFile(user_path, aqFile.ctANSI);
+  login_details = file.split(",");
+  
+  if(index == null)
+  {
+    return login_details;
+  }
+  else
+  {
+    return login_details[index];
+  }
 }
 //---------------------------------------------------------------------------------//
 //                            Bespoke Letters                                      //
@@ -494,5 +551,81 @@ function get_dosing_settings_data(item_no)
   
   return dosing_data;
 }
+//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
+//                                      HL7                                        //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_hl7_file_folder()
+{
+  var folder_name;
+  var base = "INRstarWindows";
+  
+  Log.Message(environment);
+  
+  switch(environment)
+  {
+    case base + "Hoth": 
+    folder_name = "Test_Hoth HL7 Channel";
+    break;
+    case base + "Tatooine": 
+    folder_name = "Test_Tatooine HL7 Channel";
+    break;
+    case base + "Staging": 
+    folder_name = "Staging HL7 Channel";
+    break;
+  }
+  
+  Log.Message(folder_name);
+  return folder_name;
+}
+//-----------------------------------------------------------------------------------
+function get_hl7_patient_info(table_position)
+{
+  WaitSeconds(5, "Waiting for table to update...");
+  Goto_Patient_Results();
+  var patient_data = new Array();
 
+  if(table_position == null)
+  {
+    table_position = 1;  
+  }
+  
+  if(patient_external_results_table().Cell(1, 0).innerText != "There are no new results")
+  {
+    var obj = patient_external_results_table().Cell(table_position, 1).Panel(0).FindChild("name", "Link(\"PatientLink\")");
+    var obj_alt = patient_external_results_table().Cell(table_position, 1).Panel(0).FindChild("name", "Label(\"Name_DetachedLabel\")");
 
+    var name;
+    if(obj.Exists)
+    {
+      name = obj.innerText;
+    }
+    else if(obj_alt.Exists)
+    {
+      name = obj_alt.innerText;
+    }
+    else
+    {
+      name = "";
+    }
+    
+    var name_split = name.split(",");
+  
+    var surname = aqString.Trim(name_split[0]);
+    var firstname = aqString.Trim(name_split[1]);
+    var dob = patient_external_results_table().Cell(table_position, 1).Panel(0).Label("Born_DetachedLabel").innerText;
+    var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
+    var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("PatientNumber_DetachedLabel").innerText;
+  
+    patient_data.push(surname, firstname, dob, nhs, pat_no);
+    Log.Message(patient_data);
+  }
+  else
+  {
+    Log.Message("No table entries!");
+    patient_data.push("", "", "", "", "");
+  }
+  
+  return patient_data;
+}
