@@ -991,6 +991,12 @@
 		<child name="engage_System_Paths" key="{29E108F5-E818-4F26-8CA7-6FD84458B8EF}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="engage_System_Paths.js" />
 		</child>
+		<child name="engage_Navigation" key="{40F85205-1AE7-4E8E-A15E-BDB656678D6A}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="engage_Navigation.js" />
+		</child>
+		<child name="engage_Popup_Handlers" key="{A22CE44C-6AF4-4B6F-863A-982348489852}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="engage_Popup_Handlers.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1338,11 +1344,11 @@
 			<folders>
 				<folder caption="1. Test Suites" description="A logical folder that is used to organize project items and elements." moniker="">
 					<references>
-							<ref key="{5876BC81-65BD-474C-8646-F2406979CD55}" />
-							<ref key="{DC5503CC-632A-4A3A-B189-1F024ADC6D13}" />
-							<ref key="{71A977BF-EA83-4B1D-9B08-1B39437FCA7F}" />
-							<ref key="{26324FE2-0AC8-49C0-BE25-6DF24FE3ABF6}" />
-							<ref key="{E789870B-20CD-4D53-8259-C8E2D2C597C2}" />
+						<ref key="{5876BC81-65BD-474C-8646-F2406979CD55}" />
+						<ref key="{DC5503CC-632A-4A3A-B189-1F024ADC6D13}" />
+						<ref key="{71A977BF-EA83-4B1D-9B08-1B39437FCA7F}" />
+						<ref key="{26324FE2-0AC8-49C0-BE25-6DF24FE3ABF6}" />
+						<ref key="{E789870B-20CD-4D53-8259-C8E2D2C597C2}" />
 					</references>
 				</folder>
 				<folder caption="2. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1392,6 +1398,8 @@
 					<references>
 						<ref key="{8DBBC935-809E-4484-B76C-4DD998B594F2}" />
 						<ref key="{29E108F5-E818-4F26-8CA7-6FD84458B8EF}" />
+						<ref key="{40F85205-1AE7-4E8E-A15E-BDB656678D6A}" />
+						<ref key="{A22CE44C-6AF4-4B6F-863A-982348489852}" />
 					</references>
 				</folder>
 			</folders>

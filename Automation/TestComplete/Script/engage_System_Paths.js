@@ -26,7 +26,14 @@ function engage_base()
   set_engage_url();
   var main = Sys.Browser("chrome").Page(engage_url);
   return main;
-} 
+}
+//------------------------------------------------------------------------
+function engage_password_base()
+{
+  set_engage_url();
+  var main = Sys.Browser("chrome").Page(engage_url + "#/password");
+  return main;
+}
 //------------------------------------------------------------------------
 function engage_login_base()
 {
@@ -35,10 +42,17 @@ function engage_login_base()
   return main;
 }
 //------------------------------------------------------------------------
+function engage_questionnaire_base()
+{
+  set_engage_url();
+  var main = Sys.Browser("chrome").Page(engage_url + "#/home/questionnaire");
+  return main;
+}
+//------------------------------------------------------------------------
 function engage_signin_login_tab()
 {
   var base = engage_login_base();
-  var logon_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_signin");
+  var signin_login_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_signin");
     
   return signin_login_tab;
 }
@@ -46,7 +60,7 @@ function engage_signin_login_tab()
 function engage_signin_register_tab()
 {
   var base = engage_login_base();
-  var logon_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_register");
+  var signin_register_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_register");
     
   return signin_register_tab;
 }
@@ -88,7 +102,7 @@ function engage_register_base()
 function engage_register_login_tab()
 {
   var base = engage_register_base();
-  var register_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_signin");
+  var register_login_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_signin");
     
   return register_login_tab;
 }
@@ -96,7 +110,7 @@ function engage_register_login_tab()
 function engage_register_register_tab()
 {
   var base = engage_register_base();
-  var register_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_register");
+  var register_register_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_register");
     
   return register_register_tab;
 }
@@ -146,3 +160,26 @@ function engage_cancel_button_register()
   return cancel_button;
 }
 //------------------------------------------------------------------------
+function engage_set_new_password()
+{
+  var base = engage_password_base();
+  var password_box = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).PasswordBox(0);
+  
+  return password_box;
+}
+//------------------------------------------------------------------------
+function engage_confirm_new_password()
+{
+  var base = engage_password_base();
+  var password_box = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).PasswordBox(0);
+  
+  return password_box;
+}
+//------------------------------------------------------------------------
+function engage_password_confirm_button()
+{
+  var base = engage_password_base();
+  var button = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_password_submit");
+  
+  return button;
+}

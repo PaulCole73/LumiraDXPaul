@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsHoth";
+var environment = "INRstarWindowsTatooine";
 var admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
 var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
