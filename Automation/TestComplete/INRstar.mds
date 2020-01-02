@@ -59,7 +59,7 @@
 					<testItem name="Email" key="{4E778308-EE7D-40FB-A0C1-5D6691B6E4E6}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-							<param1 name="name" type="3" localVarName="" varType="8" value="bridging_regression_output" />
+							<param1 name="name" type="3" localVarName="" varType="8" value="tatooine_regression_output" />
 						</testParameters>
 						<children />
 					</testItem>
@@ -418,39 +418,15 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_AD_Banner_Message" key="{CCC471CC-9B9B-45D5-B4DC-B6566C2E74F3}" group="False" enabled="True" testMoniker="{26324FE2-0AC8-49C0-BE25-6DF24FE3ABF6}ts_master_admin_dash_banner_message" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="TS_AD_Feedback" key="{72781880-7BE5-47FD-A186-703DB9A44D7F}" group="False" enabled="True" testMoniker="{DC5503CC-632A-4A3A-B189-1F024ADC6D13}ts_master_admin_dash_feedback" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="TS_AD_Login" key="{5499AE9C-F157-4537-863C-8BD1C67470BA}" group="False" enabled="True" testMoniker="{71A977BF-EA83-4B1D-9B08-1B39437FCA7F}ts_master_admin_dash_login" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="TS_AD_Main_Page" key="{141CF17B-29DF-4028-BD35-9CF14515D594}" group="False" enabled="True" testMoniker="{E789870B-20CD-4D53-8259-C8E2D2C597C2}ts_master_admin_dash_main_page" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="Re-try Failed Tests" key="{1FF25BBA-6200-40E6-A41F-1BD4CA3F0955}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="Re-try Failed Tests" key="{1FF25BBA-6200-40E6-A41F-1BD4CA3F0955}" group="False" enabled="False" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters />
 								<children />
 							</testItem>
-							<testItem name="Close" key="{71A90B61-4567-40C2-9A43-E3550A85B1DC}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}close_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="Close" key="{71A90B61-4567-40C2-9A43-E3550A85B1DC}" group="False" enabled="False" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}close_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters />
 								<children />
 							</testItem>
-							<testItem name="Email" key="{5A26B745-446B-470B-A20A-21B16C156EF5}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="Email" key="{5A26B745-446B-470B-A20A-21B16C156EF5}" group="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
 									<param1 name="name" type="3" localVarName="" varType="8" value="hoth_admin_dash_output" />
@@ -612,7 +588,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Admin Dashboard" key="{A3856B19-A76D-4768-ADFD-C08951FE44AA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Admin Dashboard" key="{A3856B19-A76D-4768-ADFD-C08951FE44AA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{95A22295-4257-4CEC-A670-57740D7D72C9}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -622,30 +598,6 @@
 								<children />
 							</testItem>
 							<testItem name="TS_AD_Account_Management" key="{4BD2A7BB-62F7-4823-ADDF-6D26606AC78F}" group="False" enabled="True" testMoniker="{5876BC81-65BD-474C-8646-F2406979CD55}ts_master_admin_dash_account_management" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="TS_AD_Banner_Message_1" key="{8EF92FF7-DAF1-42A3-9495-14048688C245}" group="False" enabled="True" testMoniker="{26324FE2-0AC8-49C0-BE25-6DF24FE3ABF6}ts_master_admin_dash_banner_message" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="TS_AD_Feedback_1" key="{D312C85F-FF42-4292-B191-A59F19B3C3A4}" group="False" enabled="True" testMoniker="{DC5503CC-632A-4A3A-B189-1F024ADC6D13}ts_master_admin_dash_feedback" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="TS_AD_Login_1" key="{C327F554-3E84-4F7D-8B04-AF8B6BD53272}" group="False" enabled="True" testMoniker="{71A977BF-EA83-4B1D-9B08-1B39437FCA7F}ts_master_admin_dash_login" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-								<testParameters>
-									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-								</testParameters>
-								<children />
-							</testItem>
-							<testItem name="TS_AD_Main_Page_1" key="{AE404C43-A212-457A-ABAA-5DC9CFB3EAD4}" group="False" enabled="True" testMoniker="{E789870B-20CD-4D53-8259-C8E2D2C597C2}ts_master_admin_dash_main_page" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
