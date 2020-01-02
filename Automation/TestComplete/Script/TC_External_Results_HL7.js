@@ -223,7 +223,7 @@ function tc_external_results_hl7_message_duplicate_entries_bad_nhs()
 {
   try
   {
-    var test_title = "External Results: HL7 Message Dated Today - Different DOB, Find Patient";
+    var test_title = "External Results: HL7 Message Dated Today - False NHS numbers, Find Patient";
     login(22, "Shared"); 
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
@@ -237,10 +237,6 @@ function tc_external_results_hl7_message_duplicate_entries_bad_nhs()
     generate_hl7_message(patient_data_array);
     send_hl7_message();
     
-    var external_patient_data = new Array();
-    external_patient_data = get_hl7_patient_info(1);
-    var ext_nhs = external_patient_data[3];
-    
     var result_set = new Array();
     var result_set_1 = validate_hl7_buttons("FindPatient");
     result_set.push(result_set_1);
@@ -250,9 +246,6 @@ function tc_external_results_hl7_message_duplicate_entries_bad_nhs()
     send_hl7_message();
     
     result_set_1 = validate_hl7_buttons("FindPatient");
-    result_set.push(result_set_1);
-    
-    result_set_1 = compare_values(nhs, ext_nhs, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set); 
@@ -486,10 +479,6 @@ function tc_external_results_hl7_message_duplicate_entries_no_nhs_same_patientid
     generate_hl7_message(patient_data_array, datetime);
     send_hl7_message();
     
-    var external_patient_data = new Array();
-    external_patient_data = get_hl7_patient_info(1);
-    var ext_nhs = external_patient_data[3];
-    
     var result_set = new Array();
     var result_set_1 = validate_hl7_buttons("FindPatient");
     result_set.push(result_set_1);
@@ -498,9 +487,6 @@ function tc_external_results_hl7_message_duplicate_entries_no_nhs_same_patientid
     send_hl7_message();
     
     result_set_1 = validate_hl7_buttons("FindPatient");
-    result_set.push(result_set_1);
-    
-    result_set_1 = compare_values(nhs, ext_nhs, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set); 
