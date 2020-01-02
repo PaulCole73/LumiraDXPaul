@@ -23,35 +23,30 @@ function gmail_account_top_email()
 //------------------------------------------------------------------------
 function engage_base()
 {
-  set_engage_url();
-  var main = Sys.Browser("chrome").Page(engage_url);
+  var url = get_current_url();
+  var main = Sys.Browser("chrome").Page(url);
   return main;
 }
 //------------------------------------------------------------------------
-function engage_password_base()
+function engage_navigation_menu_button()
 {
-  set_engage_url();
-  var main = Sys.Browser("chrome").Page(engage_url + "#/password");
-  return main;
+  var base = engage_base();
+  var button = base.Panel(0).Panel(0).Panel(0).Panel(0).Header("navigation_navbar_title_anticoagulation").Panel(0).Panel("button_navbar_menubutton");
+  
+  return button;
 }
 //------------------------------------------------------------------------
-function engage_login_base()
+function engage_navigation_signout_button()
 {
-  set_engage_url();
-  var main = Sys.Browser("chrome").Page(engage_url + "#/signin");
-  return main;
-}
-//------------------------------------------------------------------------
-function engage_questionnaire_base()
-{
-  set_engage_url();
-  var main = Sys.Browser("chrome").Page(engage_url + "#/home/questionnaire");
-  return main;
+  var base = engage_base();
+  var button = base.Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Link("link_menu_signout").TextNode(0);
+  
+  return button;
 }
 //------------------------------------------------------------------------
 function engage_signin_login_tab()
 {
-  var base = engage_login_base();
+  var base = engage_base();
   var signin_login_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_signin");
     
   return signin_login_tab;
@@ -59,7 +54,7 @@ function engage_signin_login_tab()
 //------------------------------------------------------------------------
 function engage_signin_register_tab()
 {
-  var base = engage_login_base();
+  var base = engage_base();
   var signin_register_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_register");
     
   return signin_register_tab;
@@ -67,7 +62,7 @@ function engage_signin_register_tab()
 //------------------------------------------------------------------------
 function engage_username_login()
 {
-  var base = engage_login_base();
+  var base = engage_base();
   var logon_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Form(0);
   var textbox = logon_form.Panel(0).EmailInput("input_signintab_emailaddress");
   
@@ -76,7 +71,7 @@ function engage_username_login()
 //------------------------------------------------------------------------
 function engage_password_login()
 {
-  var base = engage_login_base();
+  var base = engage_base();
   var logon_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Form(0);
   var pass_box = logon_form.Panel(1).PasswordBox("input_signintab_password");
   
@@ -85,23 +80,16 @@ function engage_password_login()
 //------------------------------------------------------------------------
 function engage_sign_in_button()
 {
-  var base = engage_login_base();
+  var base = engage_base();
   var logon_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Form(0);
   var button = logon_form.Button("button_signintab_signin");
   
   return button;
 }
 //------------------------------------------------------------------------
-function engage_register_base()
-{
-  set_engage_url();
-  var main = Sys.Browser("chrome").Page(engage_url + "#/register");
-  return main;
-}
-//------------------------------------------------------------------------
 function engage_register_login_tab()
 {
-  var base = engage_register_base();
+  var base = engage_base();
   var register_login_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_signin");
     
   return register_login_tab;
@@ -109,7 +97,7 @@ function engage_register_login_tab()
 //------------------------------------------------------------------------
 function engage_register_register_tab()
 {
-  var base = engage_register_base();
+  var base = engage_base();
   var register_register_tab = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_loginleftpanel_register");
     
   return register_register_tab;
@@ -117,7 +105,7 @@ function engage_register_register_tab()
 //------------------------------------------------------------------------
 function engage_username_register()
 {
-  var base = engage_register_base();
+  var base = engage_base();
   var register_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
   var textbox = register_form.Panel(0).EmailInput(0);
   
@@ -126,7 +114,7 @@ function engage_username_register()
 //------------------------------------------------------------------------
 function engage_code_register()
 {
-  var base = engage_register_base();
+  var base = engage_base();
   var register_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
   var code_box = register_form.Panel(1).Panel(0).Textbox(0);
   
@@ -135,7 +123,7 @@ function engage_code_register()
 //------------------------------------------------------------------------
 function engage_send_code_register()
 {
-  var base = engage_register_base();
+  var base = engage_base();
   var register_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
   var link_box = register_form.Link(0);
   
@@ -144,7 +132,7 @@ function engage_send_code_register()
 //------------------------------------------------------------------------
 function engage_next_button_register()
 {
-  var base = engage_register_base();
+  var base = engage_base();
   var register_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
   var next_button = register_form.Button(1);
   
@@ -153,7 +141,7 @@ function engage_next_button_register()
 //------------------------------------------------------------------------
 function engage_cancel_button_register()
 {
-  var base = engage_register_base();
+  var base = engage_base();
   var register_form = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
   var cancel_button = register_form.Button(0);
   
@@ -162,7 +150,7 @@ function engage_cancel_button_register()
 //------------------------------------------------------------------------
 function engage_set_new_password()
 {
-  var base = engage_password_base();
+  var base = engage_base();
   var password_box = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).PasswordBox(0);
   
   return password_box;
@@ -170,7 +158,7 @@ function engage_set_new_password()
 //------------------------------------------------------------------------
 function engage_confirm_new_password()
 {
-  var base = engage_password_base();
+  var base = engage_base();
   var password_box = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).PasswordBox(0);
   
   return password_box;
@@ -178,8 +166,33 @@ function engage_confirm_new_password()
 //------------------------------------------------------------------------
 function engage_password_confirm_button()
 {
-  var base = engage_password_base();
+  var base = engage_base();
   var button = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Button("button_password_submit");
   
   return button;
 }
+//------------------------------------------------------------------------
+function engage_things_to_do_today_panel()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodotoday");
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function engage_new_dosing_schedule_understand_buttons()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel("question_radio_objectobject_");
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function engage_new_dosing_submit_buttons()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2);
+  
+  return panel;
+}
+//------------------------------------------------------------------------

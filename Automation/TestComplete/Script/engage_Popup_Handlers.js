@@ -1,25 +1,10 @@
 ﻿//USEUNIT engage_System_Paths
 //USEUNIT System_Paths
 //--------------------------------------------------------------------------------
-function process_engage_popup(base_path_suffix, class_name, header, button)
+function process_engage_popup(class_name, header, button)
 {
-  var base;
-  if(base_path_suffix == "register")
-  {
-    base = engage_register_base();
-  }
-  else if(base_path_suffix == "signin")
-  {
-    base = engage_login_base();
-  }
-  else if(base_path_suffix == "main")
-  {
-    base = engage_base();
-  }
-  else if(base_path_suffix == "questionnaire")
-  {
-    base = engage_questionnaire_base();
-  }
+  WaitSeconds(2, "Waiting for popups...");
+  var base = engage_base();
   
   var obj = base.NativeWebObject.Find("className", class_name);
   if(obj.Exists)
@@ -45,5 +30,9 @@ function process_engage_popup(base_path_suffix, class_name, header, button)
         popup_button.Click();
       }
     }
+  }
+  else
+  {
+    Log.Message("No popup appeared");
   }
 }

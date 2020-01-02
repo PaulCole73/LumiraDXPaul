@@ -5,7 +5,7 @@
 
 //Master Suites
 //--------------------------------------------------------------------------------
-function ts_master_external_results_hl7()
+function ts_master_external_results_hl7(send_mail)
 {
   reset_folder();
   
@@ -22,5 +22,5 @@ function ts_master_external_results_hl7()
   tc_external_results_hl7_message_duplicate_entries_no_nhs_same_patientid();
   tc_external_results_hl7_message_single_entry_no_nhs_no();
   
-  email_and_archive(true, "ts_external_results_master");
+  email_and_archive(send_mail, "ts_external_results_master");
 }

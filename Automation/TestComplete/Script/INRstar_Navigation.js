@@ -45,22 +45,6 @@ function Goto_Options_Letter_Management()
 // Navigate to Specific Letter
 function Goto_Bespoke_Letter(letter_name)
 {
-  /*var list = letter_management_list();
-  
-  for(var i = 0; i < list.ChildCount; i++)
-  {
-    if(list.Child(i).innerText == letter_name)
-    {
-      list.Child(i).scrollIntoView();
-      list.Child(i).Click();
-      return true;
-      break;
-    }
-    else
-    {
-      return false;
-    }
-  }*/
   var item = INRstar_base().NativeWebObject.Find("contentText", letter_name);
   if(item.Exists && item.Height != 0)
   {
@@ -201,6 +185,16 @@ function Log_Off()
 //===============================================================================
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
+//===============================================================================
+//===============================================================================
+// Home Page Navigation
+//===============================================================================
+//===============================================================================
+function Goto_Urgent_Patient_Tab()
+{
+  Goto_Home();
+  home_page_messages().Panel("urgentNotificationsPlaceholder").Panel("urgentNotificationCount").Click();
+}
 //===============================================================================
 //===============================================================================
 // Patient Navigation

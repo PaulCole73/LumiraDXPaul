@@ -40,7 +40,7 @@ function add_bridging_record(procedure_date, drug_index)
   Goto_Create_Bridging_Record();
   
   bridging_schedule_form().Panel("ProcedureDetailsContent").Panel(2).Select("ProcedureDetails_TreatmentType").ClickItem(1);
-  bridging_schedule_form().Panel("ProcedureDetailsContent").Panel(3).Select("ProcedureDetails_LMWH_Id").ClickItem(drug_index);
+  bridging_schedule_form().Panel("ProcedureDetailsContent").Panel(3).Select("ProcedureDetails_LMWH").ClickItem(drug_index);
   
   var date_path = bridging_schedule_form().Panel("BridgingScheduleDetails");
   var date = aqConvert.DateTimeToFormatStr(procedure_date, "%d/%m/%Y");
@@ -276,7 +276,7 @@ function update_procedure_date(new_date)
 function update_bridging_lmwh(drug_index, popup_input)
 {
   var form = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent");
-  form.Panel("ProcedureDetailsContent").Panel(3).Select("ProcedureDetails_LMWH_Id").ClickItem(drug_index);
+  form.Panel("ProcedureDetailsContent").Panel(3).Select("ProcedureDetails_LMWH").ClickItem(drug_index);
   process_popup("Confirm you wish to change the LMWH", popup_input);
 }
 //--------------------------------------------------------------------------------

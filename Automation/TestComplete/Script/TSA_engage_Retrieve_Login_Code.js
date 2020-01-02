@@ -24,7 +24,6 @@ function get_engage_login_code() //in progress
   
   var code_pos = aqString.Find(msg, "Your code is ", 0, true);
   var code = aqString.SubString(msg, code_pos + 13, 9);
-  Log.Message(code);
   obj.Keys("[BS]");
   
   TestedApps.gmail.Terminate();
