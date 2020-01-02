@@ -59,7 +59,7 @@
 					<testItem name="Email" key="{4E778308-EE7D-40FB-A0C1-5D6691B6E4E6}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-							<param1 name="name" type="3" localVarName="" varType="8" value="tatooine_regression_output" />
+							<param1 name="name" type="3" localVarName="" varType="8" value="bridging_regression_output" />
 						</testParameters>
 						<children />
 					</testItem>

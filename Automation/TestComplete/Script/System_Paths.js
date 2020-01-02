@@ -948,7 +948,7 @@ function bridging_schedule_add_button()
 function bridging_schedule_save_button()
 {
   var tab = patient_treatment_bridging_tab();
-  var button = tab.Panel("BridgingTabContent").Panel("BridgingTabContent").Form("BridgingForm").Panel(0).SubmitButton("SaveBridgingRecord")
+  var button = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel(0).SubmitButton("SaveBridgingRecord");
   
   return button;
 }

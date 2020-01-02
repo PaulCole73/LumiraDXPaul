@@ -2023,8 +2023,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
   }
 }
 //--------------------------------------------------------------------------------
-  function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_to_enoxaparin_to_tinzaparin_default_schedule()
-  {
+function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_to_enoxaparin_to_tinzaparin_default_schedule()
+{
   try
   {
     var test_title = "Bridging - LMWH switch from Tinzaparin to Dalteparin to Enoxaparin and back to Tinzaparin - default schedule";
@@ -2042,10 +2042,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
-  
     var procedure_data = new Array();
     procedure_data = get_table_column_data("procedure", "all", 1);
-  
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 3);
     
@@ -2071,19 +2069,14 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
@@ -2114,19 +2107,14 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
@@ -2135,7 +2123,7 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var result_set_1 = compare_values(value, "~Dose", test_title);
     result_set.push(result_set_1);
     
-     update_bridging_lmwh(3, "Confirm");
+    update_bridging_lmwh(3, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Tinzaparin (IU)";
@@ -2157,19 +2145,14 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
@@ -2192,8 +2175,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
   }
 }
 //--------------------------------------------------------------------------------
-  function tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_to_dalteparin_to_enoxaparin_default_schedule()
-  {
+function tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_to_dalteparin_to_enoxaparin_default_schedule()
+{
   try
   {
     var test_title = "Bridging - LMWH switch from Enoxaparin to Tinzaparin to Dalteparin and back to Enoxaparin - default schedule";
@@ -2211,10 +2194,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
-  
     var procedure_data = new Array();
     procedure_data = get_table_column_data("procedure", "all", 1);
-  
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 3);
     
@@ -2240,19 +2221,14 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
@@ -2283,33 +2259,27 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
     bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
-    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
-    var result_set_1 = compare_values(value, "~Dose", test_title);
+    value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    result_set_1 = compare_values(value, "~Dose", test_title);
     result_set.push(result_set_1);
     
-     update_bridging_lmwh(2, "Confirm");
+    update_bridging_lmwh(2, "Confirm");
   
-    var result_set = new Array();
-    var expected_title = "Enoxaparin (mg)";
+    expected_title = "Enoxaparin (mg)";
     bridging_schedule_preop_table().Refresh();
-    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    title = bridging_schedule_preop_table().Cell(0, 4).innerText;
     result_set.push(compare_values(expected_title, title, test_title));
   
     bridging_schedule_procedure_table().Refresh();
@@ -2326,25 +2296,20 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
     bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
-    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
-    var result_set_1 = compare_values(value, "~Dose", test_title);
+    value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    result_set_1 = compare_values(value, "~Dose", test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2361,8 +2326,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
   }
 }
 //--------------------------------------------------------------------------------
-  function tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_to_tinzaparin_to_dalteparin_default_schedule()
-  {
+function tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_to_tinzaparin_to_dalteparin_default_schedule()
+{
   try
   {
     var test_title = "Bridging - LMWH switch from Dalteparin to Enoxaparin to Tinzaparin and back to Dalteparin - default schedule";
@@ -2409,19 +2374,14 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
@@ -2431,11 +2391,10 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     result_set.push(result_set_1);
   
     update_bridging_lmwh(3, "Confirm");
-  
-    var result_set = new Array();
-    var expected_title = "Tinzaparin (IU)";
+
+    expected_title = "Tinzaparin (IU)";
     bridging_schedule_preop_table().Refresh();
-    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    title = bridging_schedule_preop_table().Cell(0, 4).innerText;
     result_set.push(compare_values(expected_title, title, test_title));
   
     bridging_schedule_procedure_table().Refresh();
@@ -2452,33 +2411,27 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
     bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
-    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
-    var result_set_1 = compare_values(value, "~Dose", test_title);
+    value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    result_set_1 = compare_values(value, "~Dose", test_title);
     result_set.push(result_set_1);
     
-     update_bridging_lmwh(1, "Confirm");
+    update_bridging_lmwh(1, "Confirm");
   
-    var result_set = new Array();
-    var expected_title = "Dalteparin (IU)";
+    expected_title = "Dalteparin (IU)";
     bridging_schedule_preop_table().Refresh();
-    var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
+    title = bridging_schedule_preop_table().Cell(0, 4).innerText;
     result_set.push(compare_values(expected_title, title, test_title));
   
     bridging_schedule_procedure_table().Refresh();
@@ -2495,25 +2448,20 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var vals = new Array();
     vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-    
     vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
     result_set.push(results_checker_are_false(vals));
-    
     vals = validate_columns_match("post", 3, post_data, columns_to_match);
     result_set.push(results_checker_are_true(vals));
-  
     vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
     result_set.push(results_checker_are_false(vals));
     
     bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
-    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
-    var result_set_1 = compare_values(value, "~Dose", test_title);
+    value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
+    result_set_1 = compare_values(value, "~Dose", test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -3276,18 +3224,18 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     update_bridging_array_dates(procedure_data, new_date, new_date_2, "+");
     update_bridging_array_dates(post_data, new_date, new_date_2, "+");
     
-    var preop_data_2 = new Array();
-    preop_data_2 = get_table_column_data("pre-op", "all", 3);
-    var procedure_data_2 = new Array();
-    procedure_data_2 = get_table_column_data("procedure", "all", 1);
-    var post_data_2 = new Array();
-    post_data_2 = get_table_column_data("post", "all", 3);
+    preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
      
-    result_set_2 = checkArrays(preop_data_2, preop_data, test_title);
-    result_set.push(result_set_2);
-    result_set_2 = checkArrays(procedure_data_2, procedure_data, test_title);
-    result_set.push(result_set_2);
-    result_set_2 = checkArrays(post_data_2, post_data, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_2);   
     
     new_date_3 = aqDateTime.Today();
@@ -3296,19 +3244,19 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     update_bridging_array_dates(post_data, new_date_2, new_date_3, "-");
     update_procedure_date(new_date_3);
 
-    var preop_data_3 = new Array();
-    preop_data_3 = get_table_column_data("pre-op", "all", 3);
-    var procedure_data_3 = new Array();
-    procedure_data_3 = get_table_column_data("procedure", "all", 1);
-    var post_data_3 = new Array();
-    post_data_3 = get_table_column_data("post", "all", 3);
+    preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
      
-    result_set_3 = checkArrays(preop_data_3, preop_data, test_title);
-    result_set.push(result_set_3);
-    result_set_3 = checkArrays(procedure_data_3, procedure_data, test_title);
-    result_set.push(result_set_3);
-    result_set_3 = checkArrays(post_data_3, post_data, test_title);
-    result_set.push(result_set_3);   
+    result_set_1 = checkArrays(preop_data_3, preop_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data_3, procedure_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data_3, post_data, test_title);
+    result_set.push(result_set_1);   
          
     var results = results_checker_are_true(result_set);
     Log.Message(results);
@@ -3458,6 +3406,7 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     update_bridging_array_dates(preop_data, date, new_date, "-");
     update_bridging_array_dates(procedure_data, date, new_date, "-");
     update_bridging_array_dates(post_data, date, new_date, "-");
+    
     update_procedure_date(new_date);
 
     var preop_data_1 = new Array();
@@ -3474,45 +3423,46 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
    
-    new_date_2 = aqDateTime.Today();
+    var new_date_2 = aqDateTime.Today();
     update_bridging_array_dates(preop_data, new_date, new_date_2, "+");
     update_bridging_array_dates(procedure_data, new_date, new_date_2, "+");
     update_bridging_array_dates(post_data, new_date, new_date_2, "+");
+    
     update_procedure_date(new_date_2);
 
-    var preop_data_2 = new Array();
-    preop_data_2 = get_table_column_data("pre-op", "all", 3);
-    var procedure_data_2 = new Array();
-    procedure_data_2 = get_table_column_data("procedure", "all", 1);
-    var post_data_2 = new Array();
-    post_data_2 = get_table_column_data("post", "all", 3);
+    preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
      
-    result_set_2 = checkArrays(preop_data_2, preop_data, test_title);
-    result_set.push(result_set_2);
-    result_set_2 = checkArrays(procedure_data_2, procedure_data, test_title);
-    result_set.push(result_set_2);
-    result_set_2 = checkArrays(post_data_2, post_data, test_title);
-    result_set.push(result_set_2);   
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
+    result_set.push(result_set_1);   
     
-    new_date_3 = aqDateTime.AddDays(aqDateTime.Today(), 20);
+    var new_date_3 = aqDateTime.AddDays(aqDateTime.Today(), 20);
     update_bridging_array_dates(preop_data, new_date_2, new_date_3, "+");
     update_bridging_array_dates(procedure_data, new_date_2, new_date_3, "+");
     update_bridging_array_dates(post_data, new_date_2, new_date_3, "+");
     update_procedure_date(new_date_3);
 
-    var preop_data_3 = new Array();
-    preop_data_3 = get_table_column_data("pre-op", "all", 3);
-    var procedure_data_3 = new Array();
-    procedure_data_3 = get_table_column_data("procedure", "all", 1);
-    var post_data_3 = new Array();
-    post_data_3 = get_table_column_data("post", "all", 3);
+    preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    procedure_data_1 = new Array();
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
      
-    result_set_3 = checkArrays(preop_data_3, preop_data, test_title);
-    result_set.push(result_set_3);
-    result_set_3 = checkArrays(procedure_data_3, procedure_data, test_title);
-    result_set.push(result_set_3);
-    result_set_3 = checkArrays(post_data_3, post_data, test_title);
-    result_set.push(result_set_3);   
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
+    result_set.push(result_set_1);   
          
     var results = results_checker_are_true(result_set);
     Log.Message(results);
