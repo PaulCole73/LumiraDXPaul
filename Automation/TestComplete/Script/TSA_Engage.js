@@ -51,6 +51,7 @@ function register_engage(email_address)
 //--------------------------------------------------------------------------------
 function sign_in_engage(email_address)
 {
+  Log.LockEvents(0);
   var password = get_login_details(20);
   engage_username_login().SetText(email_address);
   engage_password_login().SetText(password);
@@ -58,12 +59,90 @@ function sign_in_engage(email_address)
   WaitSeconds(2);
 }
 //--------------------------------------------------------------------------------
-function complete_eula_questionnaire()
+function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
 {
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+  if((is_box_1_ticked == null && is_box_2_ticked == null) || (is_box_1_ticked == true && is_box_2_ticked == true) )
+  {
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    var text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Agreements Complete", "OK");
+    return text;
+  }
+  else
+  {
+    if(is_box_1_ticked == true)
+    {
+      engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    }
+    if(is_box_2_ticked == true)
+    {
+      engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    }
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Incomplete Agreements", "OK");
+    return text;
+  }
   
-  process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Agreements Complete", "OK");
   WaitSeconds(2);
+}
+//--------------------------------------------------------------------------------
+function get_schedule_data()
+{
+  Goto_Understand_Schedule_Tab();
+  var box = engage_dosing_schedule();
+  var data = box.textContent;
+  
+  var string_array = new Array();
+  string_array = data.split("\n\n");
+  
+  var schedule_data = new Array();
+  
+  for(var i = 2; i < string_array.length; i++)
+  {
+    aqString.Remove(string_array[i], 0, 1);
+    var length = aqString.GetLength(string_array[i]);
+    
+    for(var j = 0; j < length; j++)
+    {
+      var char = aqString.GetChar(string_array[i], 0);
+      if(char == " ")
+      {
+        break;
+      }
+      else
+      {
+        string_array[i] = aqString.Remove(string_array[i], 0, 1);
+      }
+    }
+  }
+  
+  for(var i = 2; i < string_array.length; i++)
+  {
+    schedule_data.push(string_array[i]);
+  }
+  
+  engage_new_dosing_submit_buttons().Button("button_home_anticoagulation_questionnaire_cancel").Click();
+  return schedule_data;
+}
+//--------------------------------------------------------------------------------
+function get_daily_dose()
+{
+  var obj = engage_things_to_do_today_panel().Panel(1);
+  
+  var task = obj.FindChild("innerText", "Daily dose of warfarin", 3);
+  task.Click();
+  
+  var text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Daily dose of warfarin", "Cancel");
+  
+  return text;
+}
+//--------------------------------------------------------------------------------
+function complete_schedule(button_number)
+{
+  Goto_Understand_Schedule_Tab();
+  engage_new_dosing_schedule_understand_buttons().Panel(1).Panel(0).Label(button_number).TextNode(0).Click();
+  engage_new_dosing_submit_buttons().Button("button_home_anticoagulation_questionnaire_submit").Click();
+  process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Dosing Schedule", "OK");
 }

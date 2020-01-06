@@ -128,7 +128,7 @@ function patient_search_screen_results_table()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var patient_search_results_table = panelMCP.Panel("PatientContent").Panel("SearchResults").Form("ExternalTestPatientSearchForm").Panel("PatientSearchResults").Table("PatientResults")
+  var patient_search_results_table = panelMCP.Panel("PatientContent").Panel("SearchResults").Form("ExternalTestPatientSearchForm").Panel("PatientSearchResults").Table("PatientResults");
   
   return patient_search_results_table;
 } 

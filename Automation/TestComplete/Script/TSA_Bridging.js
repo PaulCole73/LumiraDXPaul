@@ -246,7 +246,6 @@ function update_bridging_array_dates(table_data, start_date, new_date, function_
   
   for(var i = 0; i < table_data.length; i += 10)
   {
-    Log.Message(i);
     if(function_type == "+")
     {
       var temp = aqDateTime.AddDays(table_data[i], day_difference);
@@ -271,6 +270,8 @@ function update_procedure_date(new_date)
   
   date_picker(date_path, date);
   process_popup("Confirm you wish to change the procedure date", "Confirm");
+  
+  WaitSeconds(4, "Waiting for tables to update...");
 }
 //--------------------------------------------------------------------------------
 function update_bridging_lmwh(drug_index, popup_input)
@@ -278,6 +279,8 @@ function update_bridging_lmwh(drug_index, popup_input)
   var form = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent");
   form.Panel("ProcedureDetailsContent").Panel(3).Select("ProcedureDetails_LMWH").ClickItem(drug_index);
   process_popup("Confirm you wish to change the LMWH", popup_input);
+  
+  WaitSeconds(4, "Waiting for tables to update...");
 }
 //--------------------------------------------------------------------------------
 function populate_table_column(table_type, column_to_change, number_of_rows)
