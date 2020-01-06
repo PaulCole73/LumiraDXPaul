@@ -359,7 +359,69 @@ function get_pending_suggested_treatment_schedule(days)
       var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
       pending_schedule.push(day + " " + dose);
     }
-  }    
+  }
+  else if(days == "4")
+  {
+    for(var i = 0; i < 7; i++)
+    {
+      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
+      var day = aqString.SubString(data,0,3);
+      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
+      pending_schedule.push(day + " " + dose);
+    }
+    for(var i = 0; i < 4; i++)
+    {
+      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
+      var day = aqString.SubString(data,0,3);
+      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
+      pending_schedule.push(day + " " + dose);
+    }
+  }
+  else if(days == "5")
+  {
+    for(var i = 0; i < 7; i++)
+    {
+      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
+      var day = aqString.SubString(data,0,3);
+      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
+      pending_schedule.push(day + " " + dose);
+    }
+    for(var i = 0; i < 5; i++)
+    {
+      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
+      var day = aqString.SubString(data,0,3);
+      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
+      pending_schedule.push(day + " " + dose);
+    }
+  }
+  else if(days == "6")
+  {
+    for(var i = 0; i < 7; i++)
+    {
+      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
+      var day = aqString.SubString(data,0,3);
+      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
+      pending_schedule.push(day + " " + dose);
+    }
+    for(var i = 0; i < 6; i++)
+    {
+      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
+      var day = aqString.SubString(data,0,3);
+      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
+      pending_schedule.push(day + " " + dose);
+    }
+  }
+  else if(days == "7")
+  {
+    for(i=0; i<7; i++)
+    {
+      var data = schedulegrid.TextNode("ScheduleDays").TextNode(i).contentText;
+      var day = aqString.SubString(data,0,3);
+      var dose = schedulegrid.TextNode("sortableSchedule").TextNode(i).contentText;
+      pending_schedule.push(day + " " + dose);
+    }
+  } 
+  
   return pending_schedule;
 }
 //-----------------------------------------------------------------------------------

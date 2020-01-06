@@ -196,3 +196,26 @@ function engage_new_dosing_submit_buttons()
   return panel;
 }
 //------------------------------------------------------------------------
+function engage_submit_my_INR_tile()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function engage_dosing_schedule()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel("question_preformattedtext_objectobject_").Panel(0).TextNode(0);
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function engage_things_to_do_soon_panel()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon")
+  
+  return panel;
+}
