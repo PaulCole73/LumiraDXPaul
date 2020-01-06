@@ -563,6 +563,7 @@ function exception_occured(a, b) //randomly required 2 parameters
 //-----------------------------------------------------------------------------------
 function setup_automation(new_config_file_name)
 {
+  Log.LockEvents(0);
   reset_tests_array();
   change_environments(new_config_file_name);
 }

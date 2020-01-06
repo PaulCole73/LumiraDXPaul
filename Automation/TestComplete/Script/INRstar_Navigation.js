@@ -445,8 +445,7 @@ function Goto_Patient_New_INR()
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
   panelPPT.Panel("TreatmentButtonsContainer").Fieldset("TreatmentButtons").Button("NewINR").Click();
   
-  //process_popup("Please Acknowledge", "Confirm");   //look at these popups
-  process_Please_acknowledge_maintenance();
+  process_alternate_popup("Please acknowledge", "Confirm", 1);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment

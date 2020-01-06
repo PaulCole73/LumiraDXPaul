@@ -51,10 +51,15 @@ function process_popup(header, button)
 //Some popups have 0 height buttons which cannot be clicked through a find
 //to click these buttons the full path to the button must be used
 //these also have a separate path to the inner text
-function process_alternate_popup(header, button)
+function process_alternate_popup(header, button, button_index)
 {
   WaitSeconds(1);
   var INRstarV5 = INRstar_base();
+  
+  if(button_index == null)
+  {
+    button_index = 0;
+  }
   
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
   if (wbx.Exists == false || wbx.Height == 0)
@@ -75,7 +80,7 @@ function process_alternate_popup(header, button)
     {
       var text = INRstarV5.Panel(4).Panel("modalDialogBoxSecondary").innerText;
       Log.Message("Clicking '" + header + "' "+ button +" button ");
-      INRstarV5.Panel(4).Panel(1).Panel(0).Button(0).Click();
+      INRstarV5.Panel(4).Panel(1).Panel(0).Button(button_index).Click();
       return text;
     }
   }

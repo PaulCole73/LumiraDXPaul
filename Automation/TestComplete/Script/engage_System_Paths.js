@@ -1,4 +1,4 @@
-﻿//USEUNIT Misc_Functions
+//USEUNIT Misc_Functions
 //USEUNIT engage_Misc_Functions
 //------------------------------------------------------------------------
 ////////////////////////////////  Engage  ////////////////////////////////
@@ -31,8 +31,19 @@ function engage_base()
 function engage_navigation_menu_button()
 {
   var base = engage_base();
-  var button = base.Panel(0).Panel(0).Panel(0).Panel(0).Header("navigation_navbar_title_anticoagulation").Panel(0).Panel("button_navbar_menubutton");
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(0);
   
+  var obj;
+  if(panel.FindChild("Name", "Header(\"navigation_navbar_title_anticoagulation\")").Exists)
+  {
+    obj = panel.Header("navigation_navbar_title_anticoagulation");
+  }
+  else
+  {
+    obj = panel.Header("navigation_navbar_title_home");
+  }
+  
+  var button = obj.Panel(0).Panel("button_navbar_menubutton");
   return button;
 }
 //------------------------------------------------------------------------
@@ -180,6 +191,22 @@ function engage_things_to_do_today_panel()
   return panel;
 }
 //------------------------------------------------------------------------
+function engage_things_i_did_yesterday_panel()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingsididyesterday");
+  
+  return panel;
+}
+//------------------------------------------------------------------------
+function engage_things_to_do_soon_panel()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon");
+  
+  return panel;
+}
+//------------------------------------------------------------------------
 function engage_new_dosing_schedule_understand_buttons()
 {
   var base = engage_base();
@@ -204,14 +231,6 @@ function engage_submit_my_INR_tile()
   return panel;
 }
 //------------------------------------------------------------------------
-function engage_dosing_schedule()
-{
-  var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel("question_preformattedtext_objectobject_").Panel(0).TextNode(0);
-  
-  return panel;
-}
-//------------------------------------------------------------------------
 function engage_things_to_do_soon_panel()
 {
   var base = engage_base();
@@ -219,3 +238,13 @@ function engage_things_to_do_soon_panel()
   
   return panel;
 }
+//------------------------------------------------------------------------
+function engage_dosing_schedule()
+{
+  var base = engage_base();
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
+  var questionaire = panel.Panel("question_preformattedtext_objectobject_").Panel(0).TextNode(0);
+  
+  return questionaire;
+}
+//------------------------------------------------------------------------

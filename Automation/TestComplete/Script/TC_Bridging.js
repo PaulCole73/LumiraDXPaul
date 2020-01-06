@@ -2513,11 +2513,11 @@ function tc_bridging_amend_date_to_same_day_procedure_tomorrow()
     post_data_1 = get_table_column_data("post", "all", 3);
     
     var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2569,11 +2569,11 @@ function tc_bridging_amend_date_to_same_day_procedure_yesterday()
     post_data_1 = get_table_column_data("post", "all", 3);
     
     var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2625,11 +2625,11 @@ function tc_bridging_amend_date_to_same_day_procedure_today()
     post_data_1 = get_table_column_data("post", "all", 3);
     
     var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2686,11 +2686,11 @@ function tc_bridging_amend_date_to_today_procedure_in_the_past()
     post_data_1 = get_table_column_data("post", "all", 3);
     
     var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2747,11 +2747,11 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future()
     post_data_1 = get_table_column_data("post", "all", 3);
     
     var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2819,11 +2819,11 @@ function tc_bridging_amend_date_to_past_procedure_is_today()
     var post_data_1 = new Array();
     post_data_1 = get_table_column_data("post", "all", 1);
     
-    result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2891,11 +2891,11 @@ function tc_bridging_amend_date_to_future_procedure_is_today()
     var post_data_1 = new Array();
     post_data_1 = get_table_column_data("post", "all", 1);
     
-    result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2951,7 +2951,7 @@ function tc_bridging_amend_date_to_past_procedure_is_today_0_day_schedule()
     var procedure_data_1 = new Array();
     procedure_data_1 = get_table_column_data("procedure", "all", 1);
     
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -3007,7 +3007,7 @@ function tc_bridging_amend_date_to_future_procedure_is_today_0_day_schedule()
     var procedure_data_1 = new Array();
     procedure_data_1 = get_table_column_data("procedure", "all", 1);
     
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -3076,11 +3076,11 @@ function tc_bridging_procedure_date_today_amend_to_past_max_schedule()
     var post_data_1 = new Array();
     post_data_1 = get_table_column_data("post", "all", 6);
     
-    result_set_1 = checkArrays(preop_data, preop_data_1, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data, procedure_data_1, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data, post_data_1, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -3236,7 +3236,7 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
     result_set_1 = checkArrays(post_data_1, post_data, test_title);
-    result_set.push(result_set_2);   
+    result_set.push(result_set_1);   
     
     new_date_3 = aqDateTime.Today();
     update_bridging_array_dates(preop_data, new_date_2, new_date_3, "-");
@@ -3251,11 +3251,11 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     post_data_1 = new Array();
     post_data_1 = get_table_column_data("post", "all", 3);
      
-    result_set_1 = checkArrays(preop_data_3, preop_data, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(procedure_data_3, procedure_data, test_title);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
-    result_set_1 = checkArrays(post_data_3, post_data, test_title);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);   
          
     var results = results_checker_are_true(result_set);
