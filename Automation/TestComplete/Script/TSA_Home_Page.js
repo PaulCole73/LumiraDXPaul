@@ -634,3 +634,53 @@ function get_overdue_patient(patient_name)
     }
   }
 }
+//--------------------------------------------------------------------------------
+function get_urgent_patient_message(patient_nhs)
+{
+  Goto_Urgent_Patient_Tab();
+  var table = home_page_messages().Panel("urgentNotificationsPlaceholder").Panel("UrgentNotificationsContent").Table("UrgentNotificationsReportTable");
+  var nhs_value_array = new Array();
+  
+  nhs_value_array = table.FindAllChildren("idStr", "NHSNumber_DetachedLabel", 5);
+  
+  for(var i = 0; i < nhs_value_array.length; i++)
+  {
+    if(nhs_value_array[i].innerText == patient_nhs)
+    {
+      //this can be improved in the future to click on / select the patient
+      return true;
+      break;
+    }
+  }
+  
+  return false;
+}
+//--------------------------------------------------------------------------------
+function get_urgent_patient_message_text(patient_nhs)
+{
+  Goto_Home();
+  var INRstarV5 = INRstar_base();
+  
+  var link = INRstarV5.NativeWebObject.Find("idStr", "urgentNotificationCount");
+  
+  if(link.Exists == true)
+  {
+    home_page_messages().Panel("urgentNotificationsPlaceholder").Panel("urgentNotificationCount").Click();
+    var table = home_page_messages().Panel("urgentNotificationsPlaceholder").Panel("UrgentNotificationsContent").Table("UrgentNotificationsReportTable");
+    
+    for(var i = 1; i < table.rowCount; i++)
+    {
+      if(table.Cell(i, 1).Panel(1).Panel(0).Label("NHSNumber_DetachedLabel").contentText == patient_nhs)
+      {
+        table.Cell(i, 1).scrollIntoView(true);
+        var urgent_message = table.Cell(i,2).contentText;
+        return urgent_message;
+        //return true;
+        break;
+      }
+    }
+  }
+  
+  return false;
+}
+  

@@ -12,40 +12,28 @@ function warfarin_self_care(stage)
   var authorise_button = warfarin_self_testing_self_testing_stage_three_path();
   var stage_four_buttons = warfarin_self_testing_self_testing_stage_four_path();
   
-  if(stage=='1')
+  if(stage == "1")
   {
     enrol_button.Click();
     stage_one_buttons.Panel(0).Checkbox("Program_Warfarin_Self_Testing_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
     stage_one_buttons.Button("Program_Warfarin_Self_Testing_Phases_Stage_1_6_Content_Input").Click();
-    WaitSeconds(4,"Waiting to be enrolled")
+    WaitSeconds(4, "Waiting to be enrolled")
   } 
-  else if (stage=='2')
+  else if (stage == "2")
   {
     training_button.ClickChecked(true); 
   }  
-  else if (stage=='3')
+  else if (stage == "3")
   {
     authorise_button.ClickChecked(true);
     INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
   } 
-  else if (stage=='disenrolled')
+  else if (stage == "disenrol")
   {
-    enrol_button.Click();
-    stage_one_buttons.Panel(0).Checkbox("Program_Warfarin_Self_Testing_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
-    stage_one_buttons.Button("Program_Warfarin_Self_Testing_Phases_Stage_1_6_Content_Input").Click();
-    WaitSeconds(6,"Waiting to be enrolled")
-        
-    training_button.ClickChecked(true); 
-    WaitSeconds(1,"Waiting for authorise button")
-        
-    authorise_button.ClickChecked(true);
-    INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
-    WaitSeconds(1,"Waiting for remove button")
-  
     stage_four_buttons.Panel(0).Checkbox("Program_Warfarin_Self_Testing_Phases_Stage_4_1_Content_Input").ClickChecked(true);
     stage_four_buttons.Button("Program_Warfarin_Self_Testing_Phases_Stage_4_3_Content_Input").Click();
-    INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
-    
+    INRstar_base().Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
+    WaitSeconds(3, "Waiting to dis-enorol...");
   } 
   else if (stage=='all')
   {
@@ -55,7 +43,7 @@ function warfarin_self_care(stage)
     WaitSeconds(10,"Waiting to be enrolled")
         
     training_button.ClickChecked(true); 
-    WaitSeconds(1,"Waiting for authorise button")
+    WaitSeconds(1, "Waiting for authorise button")
         
     authorise_button.ClickChecked(true);
     INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();

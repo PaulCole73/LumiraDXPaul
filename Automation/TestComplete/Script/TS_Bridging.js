@@ -75,6 +75,9 @@ function ts_bridging_cacuk_1030()
   tc_bridging_lmwh_switch_from_enoxaparin_to_dalteparin_max_schedule();
   tc_bridging_lmwh_switch_from_dalteparin_to_tinzaparin_max_schedule();
   tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_max_schedule();
+  tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_to_enoxaparin_to_tinzaparin_default_schedule();
+  tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_to_dalteparin_to_enoxaparin_default_schedule();
+  tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_to_tinzaparin_to_dalteparin_default_schedule();
   
   email_and_archive(true, "ts_bridging_cacuk_1030");
 }
@@ -92,6 +95,9 @@ function ts_bridging_cacuk_1032()
   tc_bridging_amend_date_to_same_day_procedure_tomorrow();
   tc_bridging_procedure_date_today_amend_to_past_max_schedule();
   tc_bridging_procedure_date_today_amend_to_future_max_schedule();
+  tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and_then_back_to_original_date();
+  tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH();
+  tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_back_to_original_date();
   
   email_and_archive(true, "ts_bridging_cacuk_1032");
 }

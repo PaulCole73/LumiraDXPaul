@@ -4,13 +4,15 @@
 //-----------------------------------------------------------------------------------
 function get_engage_login_code() //in progress
 {
-  //TestedApps.gmail.Run();
-  Sys.Browser("iexplore").BrowserWindow(0).Keys("^[F5]");
+  WaitSeconds(10);
+  TestedApps.gmail.Run();
   WaitSeconds(15, "Waiting for application to open...");
   
   Sys.Browser("iexplore").BrowserWindow(0).Maximize();
   Sys.Browser("iexplore").BrowserWindow(0).SetFocus();
   
+  gmail_account_main().Refresh();
+  WaitSeconds(3);
   gmail_account_top_email().Click();
   WaitSeconds(10);
   
@@ -22,9 +24,10 @@ function get_engage_login_code() //in progress
   
   var code_pos = aqString.Find(msg, "Your code is ", 0, true);
   var code = aqString.SubString(msg, code_pos + 13, 9);
-  Log.Message(code);
   obj.Keys("[BS]");
   
-  //TestedApps.gmail.Terminate();
+  TestedApps.gmail.Terminate();
   WaitSeconds(2, "Waiting for application to close...");
+  
+  return code;
 }

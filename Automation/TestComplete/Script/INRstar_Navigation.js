@@ -45,22 +45,6 @@ function Goto_Options_Letter_Management()
 // Navigate to Specific Letter
 function Goto_Bespoke_Letter(letter_name)
 {
-  /*var list = letter_management_list();
-  
-  for(var i = 0; i < list.ChildCount; i++)
-  {
-    if(list.Child(i).innerText == letter_name)
-    {
-      list.Child(i).scrollIntoView();
-      list.Child(i).Click();
-      return true;
-      break;
-    }
-    else
-    {
-      return false;
-    }
-  }*/
   var item = INRstar_base().NativeWebObject.Find("contentText", letter_name);
   if(item.Exists && item.Height != 0)
   {
@@ -201,6 +185,16 @@ function Log_Off()
 //===============================================================================
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
+//===============================================================================
+//===============================================================================
+// Home Page Navigation
+//===============================================================================
+//===============================================================================
+function Goto_Urgent_Patient_Tab()
+{
+  Goto_Home();
+  home_page_messages().Panel("urgentNotificationsPlaceholder").Panel("urgentNotificationCount").Click();
+}
 //===============================================================================
 //===============================================================================
 // Patient Navigation
@@ -451,8 +445,7 @@ function Goto_Patient_New_INR()
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
   panelPPT.Panel("TreatmentButtonsContainer").Fieldset("TreatmentButtons").Button("NewINR").Click();
   
-  //process_popup("Please Acknowledge", "Confirm");   //look at these popups
-  process_Please_acknowledge_maintenance();
+  process_alternate_popup("Please acknowledge", "Confirm", 1);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment

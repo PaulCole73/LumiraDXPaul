@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsHoth";
+var environment = "INRstarWindowsTatooine";
 var admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
 var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
@@ -563,6 +563,7 @@ function exception_occured(a, b) //randomly required 2 parameters
 //-----------------------------------------------------------------------------------
 function setup_automation(new_config_file_name)
 {
+  Log.LockEvents(0);
   reset_tests_array();
   change_environments(new_config_file_name);
 }

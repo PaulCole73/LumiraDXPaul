@@ -51,15 +51,36 @@ function set_engage_url()
   switch(environment)
   {
     case base + "Hoth": 
-    admin_dash_url = "https://engage-hoth.lumiradxcaresolutions.com/";
+    engage_url = "https://engage-hoth.lumiradxcaresolutions.com/";
     break;
     case base + "Tatooine": 
-    admin_dash_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+    engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
     break;
     case base + "Staging": 
-    admin_dash_url = "https://engage-staging.lumiradxcaresolutions.com/";
+    engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
     break;
   }
   
   Log.Message(engage_url);
+}
+//--------------------------------------------------------------------------------
+function get_current_url()
+{
+  set_engage_url();
+  var url;
+  var page_array = new Array();
+  page_array = Sys.Browser("chrome").FindAllChildren("ObjectType", "Page", 1, true);
+  
+  for(var i = 0; i < page_array.length; i++)
+  {
+    var string_val = aqString.Find(page_array[i].URL, engage_url);
+    if(string_val != -1)
+    {
+      url = page_array[i].URL;
+      break;
+    }
+  }
+  
+  Log.Message(url);
+  return url;
 }
