@@ -12,7 +12,7 @@ function get_engage_login_code() //in progress
   Sys.Browser("iexplore").BrowserWindow(0).SetFocus();
   
   gmail_account_main().Refresh();
-  WaitSeconds(1);
+  WaitSeconds(3);
   gmail_account_top_email().Click();
   WaitSeconds(10);
   

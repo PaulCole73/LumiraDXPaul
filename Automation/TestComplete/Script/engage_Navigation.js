@@ -1,4 +1,4 @@
-﻿//USEUNIT engage_System_Paths
+//USEUNIT engage_System_Paths
 //USEUNIT engage_Popup_Handlers
 //------------------------------------------------------------------------
 function Goto_Understand_Schedule_Tab()
