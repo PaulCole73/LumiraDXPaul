@@ -5,6 +5,7 @@
 //--------------------------------------------------------------------------------
 function login(user_index, TestStepMode, reset_password)  
 {
+  Log.LockEvents(0);
   var counter = 0;
   var Mode = TestStepMode
   var INRstarV5 = INRstar_base(); 

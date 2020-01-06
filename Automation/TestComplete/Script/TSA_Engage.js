@@ -51,6 +51,7 @@ function register_engage(email_address)
 //--------------------------------------------------------------------------------
 function sign_in_engage(email_address)
 {
+  Log.LockEvents(0);
   var password = get_login_details(20);
   engage_username_login().SetText(email_address);
   engage_password_login().SetText(password);

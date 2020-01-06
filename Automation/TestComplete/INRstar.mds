@@ -35,7 +35,7 @@
 	<config language="{90F89436-9452-4F95-9882-6B5210079F13}" />
 	<testItems key="{A5BC5C71-F805-4316-B6F5-D494E8E419AC}">
 		<children>
-			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -477,7 +477,7 @@
 							<testItem name="Email" key="{5A26B745-446B-470B-A20A-21B16C156EF5}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="hoth_admin_dash_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="tatooine_admin_dash_output" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -485,7 +485,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Hoth" key="{0A6F56F9-6359-41D8-821C-FA6DD9C4DAF7}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Hoth" key="{0A6F56F9-6359-41D8-821C-FA6DD9C4DAF7}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{43F43762-A0DD-4C00-B05F-3D0A1C52C8E1}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
