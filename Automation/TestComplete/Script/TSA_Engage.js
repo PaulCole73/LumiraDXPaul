@@ -90,7 +90,7 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
 //--------------------------------------------------------------------------------
 function get_schedule_data()
 {
-  Goto_Understand_Schedule_Tab();
+  Goto_Understand_Schedule_Tab(true);
   var box = engage_dosing_schedule();
   var data = box.textContent;
   var string_array = new Array();
@@ -128,28 +128,36 @@ function get_schedule_data()
 //--------------------------------------------------------------------------------
 function submit_INR_with_answers(INR,match,dose,medication,bleeding,missed)
 {
+  engage_submit_my_INR_tile().Click();
+  var engage_submit_INR = engage_submit_INR_questionnaire();
   //INR selector
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel("question_select_objectobject_").Panel(1).Select(0).ClickItem(INR);
+  engage_submit_INR.Panel(0).Panel(0).Panel("question_select_objectobject_").Panel(1).Select(0).ClickItem(INR);
   //INR match machine - match should be 0 for Yes or 1 for No
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(match).TextNode(0).Click();
+  engage_submit_INR.Panel(1).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(match).TextNode(0).Click();
   //dose selector
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_textrange_objectobject_").Panel(1).Select(0).ClickItem(dose);
+  engage_submit_INR.Panel(2).Panel(0).Panel("question_textrange_objectobject_").Panel(1).Select(0).ClickItem(dose);
   //medication change - medication should be 0 for Yes or 1 for No
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(3).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(medication).TextNode(0).Click();
+  engage_submit_INR.Panel(3).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(medication).TextNode(0).Click();
   //bleeding symptoms - bleeding should be 0 for Yes or 1 for No
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(4).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(bleeding).TextNode(0).Click();
+  engage_submit_INR.Panel(4).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(bleeding).TextNode(0).Click();
   //missed dose - missed should be 0 for Yes or 1 for No
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(5).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(missed).TextNode(0).Click();
+  engage_submit_INR.Panel(5).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(missed).TextNode(0).Click();
   //submit button
-  engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(7).Button("button_home_anticoagulation_questionnaire_submit").Click();
+  engage_submit_INR.Panel(7).Button("button_home_anticoagulation_questionnaire_submit").Click();
   
-  //date and time submitted
-  var submitted_date_time = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
-    
-  process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "INR Test Complete", "OK");
+  //return either date and time submitted if sucessful or pop up message text if not 
+  if (match == 1)
+  {
+   var returnData = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Mismatching INR", "OK"); 
+  }
+  else if (match ==0)
+  {
+    returnData = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
+    process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "INR Test Complete", "OK");
+  }
   WaitSeconds(2);
   
-  return submitted_date_time;
+  return returnData;
 }
 //--------------------------------------------------------------------------------
 function get_daily_dose()
@@ -166,8 +174,35 @@ function get_daily_dose()
 //--------------------------------------------------------------------------------
 function complete_schedule(button_number)
 {
-  Goto_Understand_Schedule_Tab();
+  Goto_Understand_Schedule_Tab(true);
+  WaitSeconds(2);
   engage_new_dosing_schedule_understand_buttons().Panel(1).Panel(0).Label(button_number).TextNode(0).Click();
   engage_new_dosing_submit_buttons().Button("button_home_anticoagulation_questionnaire_submit").Click();
   process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Dosing Schedule", "OK");
+}
+//--------------------------------------------------------------------------------
+function cancel_submit_INR(button_function)
+{
+  var engage_submit_INR = engage_submit_INR_questionnaire();
+  //click cancel button
+  engage_submit_INR.Panel(7).Button("button_home_anticoagulation_questionnaire_cancel").Click();
+  //deal with the stay on page popup
+  if (button_function == "stay")
+  {
+    engage_base().Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_stayonpage").Click();
+  }
+  else if (button_function == "leave")
+  {
+    engage_base().Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_leavepage").Click();
+  }
+}
+//--------------------------------------------------------------------------------
+function complete_things_to_do_today_task(task_name)
+{
+  var obj = engage_things_to_do_today_panel().Panel(1);
+  //find pending task
+  var task = obj.Find("innerText", task_name, 3);
+  task.Click();
+  //click complete button
+  engage_base().Panel(0).Panel("information_performyourinrtest").Panel(0).Panel(1).Button("button_popup_completed").Click();  
 }

@@ -2091,6 +2091,15 @@ function patient_external_results_table()
   
   return table;
 }
+//------------------------------------------------------------------------
+function patient_INR_treatment_questions()
+{
+  var main_content = pending_treatment_buttons();
+  var treatment_questions = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRConfirm");
+  
+  return treatment_questions;
+}
+//------------------------------------------------------------------------
 
 
 
