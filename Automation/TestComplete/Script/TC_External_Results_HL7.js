@@ -96,7 +96,7 @@ function tc_external_results_hl7_message_today_does_not_match_patient()
   try
   {
     var test_title = "External Results: HL7 Message Dated Today - Does Not Match Patient";
-    login(22, "Shared"); 
+    login(5, "Shared"); 
     
     var dt;
     

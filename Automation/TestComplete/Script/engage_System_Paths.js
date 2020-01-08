@@ -1,4 +1,4 @@
-//USEUNIT Misc_Functions
+﻿//USEUNIT Misc_Functions
 //USEUNIT engage_Misc_Functions
 //------------------------------------------------------------------------
 ////////////////////////////////  Engage  ////////////////////////////////
@@ -199,14 +199,6 @@ function engage_things_i_did_yesterday_panel()
   return panel;
 }
 //------------------------------------------------------------------------
-function engage_things_to_do_soon_panel()
-{
-  var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon");
-  
-  return panel;
-}
-//------------------------------------------------------------------------
 function engage_new_dosing_schedule_understand_buttons()
 {
   var base = engage_base();
@@ -234,7 +226,7 @@ function engage_submit_my_INR_tile()
 function engage_things_to_do_soon_panel()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon")
+  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon");
   
   return panel;
 }
@@ -248,3 +240,10 @@ function engage_dosing_schedule()
   return questionaire;
 }
 //------------------------------------------------------------------------
+function engage_submit_INR_questionnaire()
+{
+  var base = engage_base();
+  var questionnaire = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
+  
+  return questionnaire;
+}
