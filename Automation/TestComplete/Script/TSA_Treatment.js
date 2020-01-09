@@ -409,7 +409,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
   wbt_Confirm.Click();
   
   process_popup("Insert Confirmation", "Confirm");
-  WaitSeconds(2, "Saving the Treatment");  
+  WaitSeconds(2, "Saving the Treatment...");  
   
   //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();
@@ -512,7 +512,7 @@ function handle_PoCT(main_path)
    }       
 }
 //--------------------------------------------------------------------------------
-function handle_poct_expired()
+function handle_poct_expired() //THIS NEEDS CHANGING
 {
  //Handle if PoCT has expired
  var INRstarV5 = INRstar_base(); 

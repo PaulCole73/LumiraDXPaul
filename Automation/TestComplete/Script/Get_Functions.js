@@ -636,6 +636,15 @@ function get_hl7_file_folder()
     case base + "Staging": 
     folder_name = "Staging HL7 Channel";
     break;
+    case base + "HothV4": 
+    folder_name = "Test_Hoth HL7 Channel";
+    break;
+    case base + "TatooineV4": 
+    folder_name = "Test_Tatooine HL7 Channel";
+    break;
+    case base + "StagingV4": 
+    folder_name = "Staging HL7 Channel";
+    break;
   }
   
   Log.Message(folder_name);
@@ -679,14 +688,15 @@ function get_hl7_patient_info(table_position)
     var dob = patient_external_results_table().Cell(table_position, 1).Panel(0).Label("Born_DetachedLabel").innerText;
     var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
     var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("PatientNumber_DetachedLabel").innerText;
+    var inr = patient_external_results_table().Cell(table_position, 3).innerText;
   
-    patient_data.push(surname, firstname, dob, nhs, pat_no);
+    patient_data.push(surname, firstname, dob, nhs, pat_no, inr);
     Log.Message(patient_data);
   }
   else
   {
     Log.Message("No table entries!");
-    patient_data.push("", "", "", "", "");
+    patient_data.push("", "", "", "", "", "");
   }
   
   return patient_data;

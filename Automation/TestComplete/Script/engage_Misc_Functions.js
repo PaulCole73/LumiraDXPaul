@@ -40,13 +40,12 @@ function setup_automation_engage(env_url)
   environment = env_url;
   setup_automation(environment);
   open_engage();
-  reset_tests_array();
 }
 //--------------------------------------------------------------------------------
 function set_engage_url()
 {
   var base = "INRstarWindows";
-  Log.Message(environment);
+  //Log.Message(environment);
   
   switch(environment)
   {
@@ -60,8 +59,7 @@ function set_engage_url()
     engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
     break;
   }
-  
-  Log.Message(engage_url);
+  //Log.Message(engage_url);
 }
 //--------------------------------------------------------------------------------
 function get_current_url()
@@ -80,7 +78,6 @@ function get_current_url()
       break;
     }
   }
-  
-  Log.Message(url);
+  //Log.Message(url);
   return url;
 }

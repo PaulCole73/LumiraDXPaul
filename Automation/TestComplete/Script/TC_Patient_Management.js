@@ -251,7 +251,6 @@ function tc_patient_unsuspend_a_patient()
     ' INR results and warfarin doses are entered as historical treatments. For non-warfarin patients you should ensure review information is up to date.');
     result_set.push(result_set_1);
   
-    Goto_Patient_Audit();
     result_set_1 = validate_top_patient_audit(test_title, "Unsuspend Patient");
     result_set.push(result_set_1);
   

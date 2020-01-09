@@ -12,8 +12,8 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsTatooine";
-var admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsStagingV4";
+var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
 var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
@@ -694,7 +694,9 @@ function reset_folder()
 function restart_INRstar()
 {
   var path = Sys.Process("INRstarWindows").Path;
+  Log.Message(path);
   Sys.Process("INRstarWindows").Close();
+  WaitSeconds(2, "Waiting to close...");
   Win32API.WinExec(path, SW_SHOWNORMAL);
   Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Maximize();
 }

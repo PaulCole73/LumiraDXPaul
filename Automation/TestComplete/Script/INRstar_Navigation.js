@@ -136,6 +136,7 @@ function Goto_Clinics()
   var INRstarV5 = INRstar_base();
   var panel = INRstarV5.Panel("MainPage");
   var button = panel.Panel("header").Link("ClinicsLink").Click();
+  WaitSeconds(2, "Waiting for Clinics...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Clinics
@@ -466,6 +467,7 @@ function Goto_Patient_Treatment()
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
 function Goto_Add_Historical()
 {
+  WaitSeconds(2, "Waiting before creating historic...");
   Goto_Patient_Treatment();
   var button_id = "AddHistoricalTreatment";
   process_button_exists(button_id);
@@ -504,10 +506,7 @@ function Goto_Patient_Treatment_Plan_Review()
 // Navigate to Patient Treatment Plan Reviews
 function Goto_Patient_Treatment_Plan_Review_New()
 {
-  /*var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  panelPT.Link("PatientTreatmentPlanTab").Click();*/
+  WaitSeconds(2, "Waiting to go to 'New Review'...");
   Goto_Patient_Treatment_Plan_Review();
   var panelPTC = main_patient_tab().Panel("PatientTabContent");
   panelPTC.Panel("AnnualReviewWrapper").Panel("AnnualReviewActions").Fieldset("Fieldset1").Button("AddWarfarinReviewLink").Click();

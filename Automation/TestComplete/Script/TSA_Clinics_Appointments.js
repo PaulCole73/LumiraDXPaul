@@ -5,6 +5,8 @@
 //--------------------------------------------------------------------------------
 function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
 {
+  Log.Message(name);
+  Log.Message(date);
   var date_split = new Array();
   date_split = tsa_clinic_split_date(date);
   Goto_Add_Clinic();
@@ -204,9 +206,20 @@ function goto_patient_clinic_tab_appointment_name(name, weeks_ahead)
   WaitSeconds(2, "Waiting for 'Make' button...");
   treatment_appointment_buttons().Button("MakeAppointment").Click(20, 20);
   
-  for(var i = 0; i < weeks_ahead; i++)
+  if(weeks_ahead >= 0)
   {
-    clinic_move_calendar_forward().Click();
+    for(var i = 0; i < weeks_ahead; i++)
+    {
+      clinic_move_calendar_forward().Click();
+    }
+  }
+  else
+  {
+    weeks_ahead = weeks_ahead * -1;
+    for(var i = 0; i < weeks_ahead; i++)
+    {
+      clinic_move_calendar_backwards().Click();
+    }
   }
   
   WaitSeconds(3, "Waiting to get path to container...");
@@ -293,9 +306,17 @@ function tsa_clinic_confirm_default_ntd()
   return result_set_1;
 }
 //--------------------------------------------------------------------------------
-function tsa_clinic_make_appointment(clinic_name, clinic_date)
+function tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date, msg_index)
 {
-  var weeks_ahead = tc_clinics_weeks_to_progress(clinic_date)
+  WaitSeconds(3);
+  Log.Message(clinic_name);
+  Log.Message(clinic_date);
+  if(current_test_date == null)
+  {
+    current_test_date = aqDateTime.Today();
+  }
+
+  var weeks_ahead = tc_clinics_weeks_to_progress(clinic_date, current_test_date)
   goto_patient_clinic_tab_appointment_name(clinic_name, weeks_ahead);
   var close = INRstar_base().Panel(3).Panel(1).Panel(0).Button(0).TextNode(0);
   var popup_msg = "";
@@ -316,9 +337,19 @@ function tsa_clinic_make_appointment(clinic_name, clinic_date)
       popup_msg = process_clinic_popup("Authorisation Required", "Authorise");
     }
   }
+  
+  var popup_msg_1 = process_clinic_popup("Confirmation Required", "Confirm");
   WaitSeconds(4);
   close.Click();
-  return popup_msg;
+  
+  if(msg_index == null || msg_index == 0)
+  {
+    return popup_msg;
+  }
+  else if(msg_index == 1)
+  {
+    return popup_msg_1; 
+  }
 }
 //--------------------------------------------------------------------------------
 function tsa_clinic_check_patient_status(clinic_name, f_name, s_name, clinic_date)
@@ -383,19 +414,42 @@ function tsa_clinic_split_date(date)
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_clinics_weeks_to_progress(clinic_date)
+function tc_clinics_weeks_to_progress(clinic_date, current_test_date)
 {
   var weeks_ahead = 0;
   if(clinic_date != null)
   {
-    var t_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(aqDateTime.Today()));
+    //the default date for clinics page will be the current clinic
+    var t_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(current_test_date));
+    //work out the numeric day of the week value
     var day_of_week = aqDateTime.GetDayOfWeek(t_date);
+    //calculate number of days between ntd and monday of that week
     var days_to_monday = 2 - day_of_week;
-    var m_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), days_to_monday)));
+    //work out mondays date
+    var m_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(aqDateTime.AddDays(current_test_date, days_to_monday)));
+    //get time interval between monday and the clinic to make appointment in
     var difference = aqDateTime.TimeInterval(aqConvert.StrToDate(m_date), aqConvert.StrToDate(clinic_date));
+    //split down so only difference in days is used
     var difference_in_days = aqConvert.TimeIntervalToStr(difference).split(":")[0]
     weeks_ahead = aqConvert.VarToFloat(difference_in_days / 7);
-    weeks_ahead = Math.trunc(weeks_ahead);
+    
+    //if the clinic is after monday, calendar should stay the same or move forward
+    if(aqDateTime.Compare(clinic_date, m_date) == 1)
+    {
+      weeks_ahead = Math.trunc(weeks_ahead);
+    }
+    else if(aqDateTime.Compare(clinic_date, m_date) == -1) //if the clinic is before monday, calendar will move backwards
+    {
+      var rounded = Math.round(weeks_ahead); 
+      if(rounded < weeks_ahead)
+      {
+        rounded += 1;
+      }
+      //weeks ahead is always calculated as a positive so adjust
+      weeks_ahead = rounded * -1;
+    }
   }
+  Log.Message("Number of weeks to move is: " + weeks_ahead);
+  
   return weeks_ahead;
 }
