@@ -2660,10 +2660,6 @@ function tc_bridging_amend_date_to_today_procedure_in_the_past()
     var date = aqDateTime.AddDays(aqDateTime.Today(), -6);
     add_bridging_record(date, 1);
     
-    populate_table_column("pre-op", "all", 3);
-    populate_table_column("procedure", "all", 1);
-    populate_table_column("post", "all", 3);
-    
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
     var procedure_data = new Array();
@@ -2671,12 +2667,22 @@ function tc_bridging_amend_date_to_today_procedure_in_the_past()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 3);
     
-    var new_date = aqDateTime.Today();
-    update_bridging_array_dates(preop_data, date, new_date, "+");
-    update_bridging_array_dates(procedure_data, date, new_date, "+");
-    update_bridging_array_dates(post_data, date, new_date, "+");
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
     
-    update_procedure_date(new_date);
+    var result_set = new Array();
+    var new_date = aqDateTime.Today();
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "+");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "+");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "+");
+    
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    var result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
     var preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
@@ -2685,8 +2691,7 @@ function tc_bridging_amend_date_to_today_procedure_in_the_past()
     var post_data_1 = new Array();
     post_data_1 = get_table_column_data("post", "all", 3);
     
-    var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
     result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
@@ -2721,10 +2726,6 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future()
     var date = aqDateTime.AddDays(aqDateTime.Today(), 20);
     add_bridging_record(date, 1);
     
-    populate_table_column("pre-op", "all", 3);
-    populate_table_column("procedure", "all", 1);
-    populate_table_column("post", "all", 3);
-    
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
     var procedure_data = new Array();
@@ -2732,12 +2733,22 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 3);
     
-    var new_date = aqDateTime.Today();
-    update_bridging_array_dates(preop_data, date, new_date, "-");
-    update_bridging_array_dates(procedure_data, date, new_date, "-");
-    update_bridging_array_dates(post_data, date, new_date, "-");
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
     
-    update_procedure_date(new_date);
+    var result_set = new Array();
+    var new_date = aqDateTime.Today();
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "-");
+    
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    var result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
     var preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
@@ -2746,8 +2757,7 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future()
     var post_data_1 = new Array();
     post_data_1 = get_table_column_data("post", "all", 3);
     
-    var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
     result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
@@ -2782,6 +2792,13 @@ function tc_bridging_amend_date_to_past_procedure_is_today()
     var date = aqDateTime.Today();
     add_bridging_record(date, 1);
     
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
     remove_bridging_table_rows(2, "pre-op");
     remove_bridging_table_rows(2, "post-discharge");
     
@@ -2789,35 +2806,35 @@ function tc_bridging_amend_date_to_past_procedure_is_today()
     populate_table_column("procedure", "all", 1);
     populate_table_column("post", "all", 1);
     
-    var preop_data = new Array();
-    preop_data = get_table_column_data("pre-op", "all", 1);
-    var procedure_data = new Array();
-    procedure_data = get_table_column_data("procedure", "all", 1);
-    var post_data = new Array();
-    post_data = get_table_column_data("post", "all", 1);
-    
     var new_date = aqDateTime.AddDays(aqDateTime.Today(), -12);
-    
     var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
     date_path.scrollIntoView();
     new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
     var status = date_picker(date_path, new_date, "INRstar");
     date_path.Panel(0).Image("calendar_png").Click();
+    
     var result_set = new Array();
     var result_set_1 = compare_values("inactive", status, test_title);
+    result_set.push(result_set_1);
     
     new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
-    update_bridging_array_dates(preop_data, date, new_date, "-");
-    update_bridging_array_dates(procedure_data, date, new_date, "-");
-    update_bridging_array_dates(post_data, date, new_date, "-");
-    update_procedure_date(new_date);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "-");
+    
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
     var preop_data_1 = new Array();
-    preop_data_1 = get_table_column_data("pre-op", "all", 1);
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
     var procedure_data_1 = new Array();
     procedure_data_1 = get_table_column_data("procedure", "all", 1);
     var post_data_1 = new Array();
-    post_data_1 = get_table_column_data("post", "all", 1);
+    post_data_1 = get_table_column_data("post", "all", 3);
     
     result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
@@ -2854,6 +2871,13 @@ function tc_bridging_amend_date_to_future_procedure_is_today()
     var date = aqDateTime.Today();
     add_bridging_record(date, 1);
     
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
     remove_bridging_table_rows(2, "pre-op");
     remove_bridging_table_rows(2, "post-discharge");
     
@@ -2861,35 +2885,35 @@ function tc_bridging_amend_date_to_future_procedure_is_today()
     populate_table_column("procedure", "all", 1);
     populate_table_column("post", "all", 1);
     
-    var preop_data = new Array();
-    preop_data = get_table_column_data("pre-op", "all", 1);
-    var procedure_data = new Array();
-    procedure_data = get_table_column_data("procedure", "all", 1);
-    var post_data = new Array();
-    post_data = get_table_column_data("post", "all", 1);
-    
     var new_date = aqDateTime.AddDays(aqDateTime.Today(), 43);
-    
     var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
     date_path.scrollIntoView();
     new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
     var status = date_picker(date_path, new_date, "INRstar");
     date_path.Panel(0).Image("calendar_png").Click();
+    
     var result_set = new Array();
     var result_set_1 = compare_values("inactive", status, test_title);
+    result_set.push(result_set_1);
     
     new_date = aqDateTime.AddDays(aqDateTime.Today(), 42);
-    update_bridging_array_dates(preop_data, date, new_date, "+");
-    update_bridging_array_dates(procedure_data, date, new_date, "+");
-    update_bridging_array_dates(post_data, date, new_date, "+");
-    update_procedure_date(new_date);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "+");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "+");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "+");
+    
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
     var preop_data_1 = new Array();
-    preop_data_1 = get_table_column_data("pre-op", "all", 1);
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
     var procedure_data_1 = new Array();
     procedure_data_1 = get_table_column_data("procedure", "all", 1);
     var post_data_1 = new Array();
-    post_data_1 = get_table_column_data("post", "all", 1);
+    post_data_1 = get_table_column_data("post", "all", 3);
     
     result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
@@ -2926,32 +2950,52 @@ function tc_bridging_amend_date_to_past_procedure_is_today_0_day_schedule()
     var date = aqDateTime.Today();
     add_bridging_record(date, 1);
     
-    remove_bridging_table_rows(3, "pre-op");
-    remove_bridging_table_rows(3, "post-discharge");
-    
-    populate_table_column("procedure", "all", 1);
-    
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
     var procedure_data = new Array();
     procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
+    remove_bridging_table_rows(3, "pre-op");
+    remove_bridging_table_rows(3, "post-discharge");
+    populate_table_column("procedure", "all", 1);
     
     var new_date = aqDateTime.AddDays(aqDateTime.Today(), -12);
-    
     var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
     date_path.scrollIntoView();
     new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
     var status = date_picker(date_path, new_date, "INRstar");
     date_path.Panel(0).Image("calendar_png").Click();
+    
     var result_set = new Array();
     var result_set_1 = compare_values("inactive", status, test_title);
+    result_set.push(result_set_1);
     
     new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
-    update_bridging_array_dates(procedure_data, date, new_date, "-");
-    update_procedure_date(new_date);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "-");
     
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
     var procedure_data_1 = new Array();
     procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
     
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set.push(result_set_1);
     result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -2982,16 +3026,19 @@ function tc_bridging_amend_date_to_future_procedure_is_today_0_day_schedule()
     var date = aqDateTime.Today();
     add_bridging_record(date, 1);
     
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
     remove_bridging_table_rows(3, "pre-op");
     remove_bridging_table_rows(3, "post-discharge");
     
     populate_table_column("procedure", "all", 1);
     
-    var procedure_data = new Array();
-    procedure_data = get_table_column_data("procedure", "all", 1);
-    
     var new_date = aqDateTime.AddDays(aqDateTime.Today(), 43);
-    
     var date_path = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent").Panel("BridgingScheduleDetails");
     date_path.scrollIntoView();
     new_date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
@@ -2999,15 +3046,32 @@ function tc_bridging_amend_date_to_future_procedure_is_today_0_day_schedule()
     date_path.Panel(0).Image("calendar_png").Click();
     var result_set = new Array();
     var result_set_1 = compare_values("inactive", status, test_title);
+    result_set.push(result_set_1);
     
     new_date = aqDateTime.AddDays(aqDateTime.Today(), 42);
-    update_bridging_array_dates(procedure_data, date, new_date, "+");
-    update_procedure_date(new_date);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "+");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "+");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "+");
     
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
+    
+    var preop_data_1 = new Array();
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
     var procedure_data_1 = new Array();
     procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    var post_data_1 = new Array();
+    post_data_1 = get_table_column_data("post", "all", 3);
     
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set.push(result_set_1);
     result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -3038,6 +3102,13 @@ function tc_bridging_procedure_date_today_amend_to_past_max_schedule()
     var date = aqDateTime.Today();
     add_bridging_record(date, 1);
     
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
     add_bridging_table_rows(3, "pre-op");
     add_bridging_table_rows(5, "procedure");
     add_bridging_table_rows(3, "post-discharge");
@@ -3045,13 +3116,6 @@ function tc_bridging_procedure_date_today_amend_to_past_max_schedule()
     populate_table_column("pre-op", "all", 6);
     populate_table_column("procedure", "all", 6);
     populate_table_column("post", "all", 6);
-    
-    var preop_data = new Array();
-    preop_data = get_table_column_data("pre-op", "all", 6);
-    var procedure_data = new Array();
-    procedure_data = get_table_column_data("procedure", "all", 6);
-    var post_data = new Array();
-    post_data = get_table_column_data("post", "all", 6);
     
     var new_date = aqDateTime.AddDays(aqDateTime.Today(), -12);
     
@@ -3062,19 +3126,26 @@ function tc_bridging_procedure_date_today_amend_to_past_max_schedule()
     date_path.Panel(0).Image("calendar_png").Click();
     var result_set = new Array();
     var result_set_1 = compare_values("inactive", status, test_title);
+    result_set.push(result_set_1);
     
     new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
-    update_bridging_array_dates(preop_data, date, new_date, "-");
-    update_bridging_array_dates(procedure_data, date, new_date, "-");
-    update_bridging_array_dates(post_data, date, new_date, "-");
-    update_procedure_date(new_date);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "-");
+    
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
     var preop_data_1 = new Array();
-    preop_data_1 = get_table_column_data("pre-op", "all", 6);
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
     var procedure_data_1 = new Array();
-    procedure_data_1 = get_table_column_data("procedure", "all", 6);
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
     var post_data_1 = new Array();
-    post_data_1 = get_table_column_data("post", "all", 6);
+    post_data_1 = get_table_column_data("post", "all", 3);
     
     result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
@@ -3111,6 +3182,13 @@ function tc_bridging_procedure_date_today_amend_to_future_max_schedule()
     var date = aqDateTime.Today();
     add_bridging_record(date, 1);
     
+    var preop_data = new Array();
+    preop_data = get_table_column_data("pre-op", "all", 3);
+    var procedure_data = new Array();
+    procedure_data = get_table_column_data("procedure", "all", 1);
+    var post_data = new Array();
+    post_data = get_table_column_data("post", "all", 3);
+    
     add_bridging_table_rows(3, "pre-op");
     add_bridging_table_rows(5, "procedure");
     add_bridging_table_rows(3, "post-discharge");
@@ -3118,13 +3196,6 @@ function tc_bridging_procedure_date_today_amend_to_future_max_schedule()
     populate_table_column("pre-op", "all", 6);
     populate_table_column("procedure", "all", 6);
     populate_table_column("post", "all", 6);
-    
-    var preop_data = new Array();
-    preop_data = get_table_column_data("pre-op", "all", 6);
-    var procedure_data = new Array();
-    procedure_data = get_table_column_data("procedure", "all", 6);
-    var post_data = new Array();
-    post_data = get_table_column_data("post", "all", 6);
     
     var new_date = aqDateTime.AddDays(aqDateTime.Today(), 43);
     
@@ -3135,19 +3206,26 @@ function tc_bridging_procedure_date_today_amend_to_future_max_schedule()
     date_path.Panel(0).Image("calendar_png").Click();
     var result_set = new Array();
     var result_set_1 = compare_values("inactive", status, test_title);
+    result_set.push(result_set_1);
     
     new_date = aqDateTime.AddDays(aqDateTime.Today(), 42);
-    update_bridging_array_dates(preop_data, date, new_date, "+");
-    update_bridging_array_dates(procedure_data, date, new_date, "+");
-    update_bridging_array_dates(post_data, date, new_date, "+");
-    update_procedure_date(new_date);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "+");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "+");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "+");
+    
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
     var preop_data_1 = new Array();
-    preop_data_1 = get_table_column_data("pre-op", "all", 6);
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
     var procedure_data_1 = new Array();
-    procedure_data_1 = get_table_column_data("procedure", "all", 6);
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
     var post_data_1 = new Array();
-    post_data_1 = get_table_column_data("post", "all", 6);
+    post_data_1 = get_table_column_data("post", "all", 3);
     
     result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
@@ -3185,10 +3263,6 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     var date = aqDateTime.Today();
     add_bridging_record(date, 3);
     
-    populate_table_column("pre-op", "all", 3);
-    populate_table_column("procedure", "all", 1);
-    populate_table_column("post", "all", 3);
-  
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
     var procedure_data = new Array();
@@ -3196,12 +3270,22 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 3);
     
-    var new_date = aqDateTime.AddDays(date, -11);
-    update_procedure_date(new_date); 
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
     
-    update_bridging_array_dates(preop_data, date, new_date, "-");
-    update_bridging_array_dates(procedure_data, date, new_date, "-");
-    update_bridging_array_dates(post_data, date, new_date, "-");
+    var new_date = aqDateTime.AddDays(date, -11);
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    
+    var result_set = new Array();
+    var result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
+    
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "-");
 
     var preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
@@ -3218,11 +3302,15 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     result_set.push(result_set_1);
         
     new_date_2 = aqDateTime.AddDays(new_date, 42);
-    update_procedure_date(new_date_2);
+    exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date_2, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    popup_text = update_procedure_date(new_date_2);
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
-    update_bridging_array_dates(preop_data, new_date, new_date_2, "+");
-    update_bridging_array_dates(procedure_data, new_date, new_date_2, "+");
-    update_bridging_array_dates(post_data, new_date, new_date_2, "+");
+    preop_data = update_bridging_array_dates(preop_data, new_date, new_date_2, "+");
+    procedure_data = update_bridging_array_dates(procedure_data, new_date, new_date_2, "+");
+    post_data = update_bridging_array_dates(post_data, new_date, new_date_2, "+");
     
     preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
@@ -3239,10 +3327,15 @@ function tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_bac
     result_set.push(result_set_1);   
     
     new_date_3 = aqDateTime.Today();
-    update_bridging_array_dates(preop_data, new_date_2, new_date_3, "-");
-    update_bridging_array_dates(procedure_data, new_date_2, new_date_3, "-");
-    update_bridging_array_dates(post_data, new_date_2, new_date_3, "-");
-    update_procedure_date(new_date_3);
+    preop_data = update_bridging_array_dates(preop_data, new_date_2, new_date_3, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, new_date_2, new_date_3, "-");
+    post_data = update_bridging_array_dates(post_data, new_date_2, new_date_3, "-");
+    
+    exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date_3, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    popup_text = update_procedure_date(new_date_3);
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
 
     preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
@@ -3286,10 +3379,6 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     var date = aqDateTime.AddDays(aqDateTime.Today(), 20);
     add_bridging_record(date, 1);
     
-    populate_table_column("pre-op", "all", 3);
-    populate_table_column("procedure", "all", 1);
-    populate_table_column("post", "all", 3);
-    
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
     var procedure_data = new Array();
@@ -3297,12 +3386,21 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 3);
     
-    var new_date = aqDateTime.Today();
-    update_bridging_array_dates(preop_data, date, new_date, "-");
-    update_bridging_array_dates(procedure_data, date, new_date, "-");
-    update_bridging_array_dates(post_data, date, new_date, "-");
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
     
-    update_procedure_date(new_date);
+    var new_date = aqDateTime.Today();
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "-");
+    
+    var result_set = new Array();
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    var result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
     
     var preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
@@ -3311,8 +3409,7 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     var post_data_1 = new Array();
     post_data_1 = get_table_column_data("post", "all", 3);
     
-    var result_set = new Array();
-    var result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
     result_set.push(result_set_1);
     result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
     result_set.push(result_set_1);
@@ -3321,7 +3418,6 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     
     update_bridging_lmwh(3, "Confirm");
     
-    var result_set = new Array();
     var expected_title = "Tinzaparin (IU)";
     bridging_schedule_preop_table().Refresh();
     var title = bridging_schedule_preop_table().Cell(0, 4).innerText;
@@ -3335,6 +3431,17 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     title = bridging_schedule_post_discharge_table().Cell(0, 4).innerText;
     result_set.push(compare_values(expected_title, title, test_title));
   
+    preop_data_1 = get_table_column_data("pre-op", "all", 3);
+    procedure_data_1 = get_table_column_data("procedure", "all", 1);
+    post_data_1 = get_table_column_data("post", "all", 3);
+    
+    result_set_1 = checkArrays(preop_data_1, preop_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(procedure_data_1, procedure_data, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = checkArrays(post_data_1, post_data, test_title);
+    result_set.push(result_set_1);
+    /*
     var columns_to_match = new Array();
     columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
     
@@ -3361,6 +3468,7 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
     var result_set_1 = compare_values(value, "~Dose", test_title);
     result_set.push(result_set_1);
+    */
   
     var results = results_checker_are_true(result_set);
     Log.Message(results);
@@ -3381,7 +3489,6 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
 {
   try
   {
-    var result_set = new Array();
     var test_title = "Bridging - Procedure date is future date and amended to 11 days in the past and then to today's date and then back to original future date";
     login(7, "Shared");
   
@@ -3391,10 +3498,6 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     var date = aqDateTime.AddDays(aqDateTime.Today(), 20);
     add_bridging_record(date, 1);
     
-    populate_table_column("pre-op", "all", 3);
-    populate_table_column("procedure", "all", 1);
-    populate_table_column("post", "all", 3);
-    
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
     var procedure_data = new Array();
@@ -3402,12 +3505,21 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 3);
     
-    var new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
-    update_bridging_array_dates(preop_data, date, new_date, "-");
-    update_bridging_array_dates(procedure_data, date, new_date, "-");
-    update_bridging_array_dates(post_data, date, new_date, "-");
+    populate_table_column("pre-op", "all", 3);
+    populate_table_column("procedure", "all", 1);
+    populate_table_column("post", "all", 3);
     
-    update_procedure_date(new_date);
+    var new_date = aqDateTime.AddDays(aqDateTime.Today(), -11);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date, "-");
+    
+    var result_set = new Array();
+    var exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    var popup_text = update_procedure_date(new_date);
+    var result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
 
     var preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
@@ -3424,12 +3536,16 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     result_set.push(result_set_1);
    
     var new_date_2 = aqDateTime.Today();
-    update_bridging_array_dates(preop_data, new_date, new_date_2, "+");
-    update_bridging_array_dates(procedure_data, new_date, new_date_2, "+");
-    update_bridging_array_dates(post_data, new_date, new_date_2, "+");
+    preop_data = update_bridging_array_dates(preop_data, date, new_date_2, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date_2, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date_2, "-");
     
-    update_procedure_date(new_date_2);
-
+    exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date_2, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    popup_text = update_procedure_date(new_date_2);
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
+    
     preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
     procedure_data_1 = new Array();
@@ -3445,10 +3561,15 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     result_set.push(result_set_1);   
     
     var new_date_3 = aqDateTime.AddDays(aqDateTime.Today(), 20);
-    update_bridging_array_dates(preop_data, new_date_2, new_date_3, "+");
-    update_bridging_array_dates(procedure_data, new_date_2, new_date_3, "+");
-    update_bridging_array_dates(post_data, new_date_2, new_date_3, "+");
-    update_procedure_date(new_date_3);
+    preop_data = update_bridging_array_dates(preop_data, date, new_date_3, "-");
+    procedure_data = update_bridging_array_dates(procedure_data, date, new_date_3, "-");
+    post_data = update_bridging_array_dates(post_data, date, new_date_3, "-");
+    
+    exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date_3, "%d-%b-%Y") 
+    + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
+    popup_text = update_procedure_date(new_date_3);
+    result_set_1 = compare_values(popup_text, exp_text, test_title);
+    result_set.push(result_set_1);
 
     preop_data_1 = new Array();
     preop_data_1 = get_table_column_data("pre-op", "all", 3);

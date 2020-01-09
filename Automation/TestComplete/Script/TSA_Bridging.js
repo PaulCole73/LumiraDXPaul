@@ -269,9 +269,10 @@ function update_procedure_date(new_date)
   var date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
   
   date_picker(date_path, date);
-  process_popup("Confirm you wish to change the procedure date", "Confirm");
+  var text = process_popup("Confirm you wish to change the procedure date", "Confirm");
   
   WaitSeconds(4, "Waiting for tables to update...");
+  return text;
 }
 //--------------------------------------------------------------------------------
 function update_bridging_lmwh(drug_index, popup_input)
