@@ -22,7 +22,7 @@ function Emis_tests()
   
   WaitSeconds(10)
   
-  login('dean@emisweb','INRstar_5','Shared');
+  login('');
   add_data();
   close_application();
 }

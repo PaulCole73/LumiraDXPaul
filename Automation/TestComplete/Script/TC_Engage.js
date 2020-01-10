@@ -44,16 +44,13 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
     var result_set_1 = compare_values(daily_dose_text, expected_text, test_title);
     result_set.push(result_set_1);
     
-    //this needs to be its own function
-    engage_things_to_do_today_panel().Panel(1).Panel(0).Panel(0).Click();
-    engage_new_dosing_schedule_understand_buttons().Panel(1).Panel(0).Label(1).TextNode(0).Click();
-    
     var schedule_data = new Array();
     schedule_data = get_schedule_data();
     
+    complete_schedule(1); //0 is the label index for the "yes" button
+    
     result_set_1 = checkArrays(schedule_data, expected_array, test_title);
     result_set.push(result_set_1);
-    complete_schedule(0);
     
     log_off_engage();
     

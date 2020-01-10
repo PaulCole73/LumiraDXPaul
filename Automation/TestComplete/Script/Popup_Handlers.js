@@ -222,3 +222,18 @@ function process_bridging_popup(header, button, content)
     }
   }
 }
+//-------------------------------------------------------------------------------
+function process_blue_popup()
+{
+  var INRstarV5 = INRstar_base();
+  INRstarV5.Refresh();
+  var base = INRstarV5.Panel("MainPage");
+  var popup_obj =  base.FindChild("idStr", "changeMessageDialog3");
+  
+  if(popup_obj.Exists)
+  {
+    Log.Message("Blue popup displayed.");
+    Log.Message("Clicking 'OK' button.");
+    base.Panel("changeMessageDialog3").Panel("changeMessageDialog3Text").Panel(0).Panel(1).Button(0).Click();
+  }
+}

@@ -50,7 +50,7 @@ function add_new_user(u_firstname, u_surname, u_username, u_password)
   
   if (u_password == "")
   {
-    var password = "INRstar_6";
+    var password = "";
   }
   else
   {

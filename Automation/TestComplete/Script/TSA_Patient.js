@@ -92,8 +92,11 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     var button_area = add_patient_demographics_buttons_system_path()
     var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
       
-    save_button.Click();
-  }   
+    //save_button.Click();
+  }
+  
+  var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2)
 }
 //--------------------------------------------------------------------------------
 function patient_search(data)

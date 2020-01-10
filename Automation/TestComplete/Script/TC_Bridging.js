@@ -1056,8 +1056,8 @@ function tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(2, "Cancel");
-    update_bridging_lmwh(2, "Confirm");
+    update_bridging_lmwh(1, "Cancel");
+    update_bridging_lmwh(1, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Enoxaparin (mg)";
@@ -1143,8 +1143,8 @@ function tc_bridging_lmwh_switch_from_dalteparin_to_tinzaparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(3, "Cancel");
-    update_bridging_lmwh(3, "Confirm");
+    update_bridging_lmwh(2, "Cancel");
+    update_bridging_lmwh(2, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Tinzaparin (IU)";
@@ -1230,8 +1230,8 @@ function tc_bridging_lmwh_switch_from_enoxaparin_to_dalteparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(1, "Cancel");
-    update_bridging_lmwh(1, "Confirm");
+    update_bridging_lmwh(0, "Cancel");
+    update_bridging_lmwh(0, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Dalteparin (IU)";
@@ -1317,8 +1317,8 @@ function tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(3, "Cancel");
-    update_bridging_lmwh(3, "Confirm");
+    update_bridging_lmwh(2, "Cancel");
+    update_bridging_lmwh(2, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Tinzaparin (IU)";
@@ -1404,8 +1404,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(1, "Cancel");
-    update_bridging_lmwh(1, "Confirm");
+    update_bridging_lmwh(0, "Cancel");
+    update_bridging_lmwh(0, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Dalteparin (IU)";
@@ -1491,8 +1491,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_enoxaparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(2, "Cancel");
-    update_bridging_lmwh(2, "Confirm");
+    update_bridging_lmwh(1, "Cancel");
+    update_bridging_lmwh(1, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Enoxaparin (mg)";
@@ -1578,7 +1578,7 @@ function tc_bridging_lmwh_switch_from_dalteparin_to_dalteparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(1, "Cancel");
+    update_bridging_lmwh(0, "Cancel");
   
     var result_set = new Array();
     var expected_title = "Dalteparin (IU)";
@@ -1650,7 +1650,7 @@ function tc_bridging_lmwh_switch_from_enoxaparin_to_enoxaparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(2, "Cancel");
+    update_bridging_lmwh(1, "Cancel");
   
     var result_set = new Array();
     var expected_title = "Enoxaparin (mg)";
@@ -1722,7 +1722,7 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_tinzaparin_max_schedule()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 6);
   
-    update_bridging_lmwh(3, "Cancel");
+    update_bridging_lmwh(2, "Cancel");
   
     var result_set = new Array();
     var expected_title = "Tinzaparin (IU)";
@@ -1793,8 +1793,8 @@ function tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_1_day()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 1);
     
-    update_bridging_lmwh(2, "Cancel");
-    update_bridging_lmwh(2, "Confirm");
+    update_bridging_lmwh(1, "Cancel");
+    update_bridging_lmwh(1, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Enoxaparin (mg)";
@@ -1879,8 +1879,8 @@ function tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_1_day()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 1);
     
-    update_bridging_lmwh(3, "Cancel");
-    update_bridging_lmwh(3, "Confirm");
+    update_bridging_lmwh(2, "Cancel");
+    update_bridging_lmwh(2, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Tinzaparin (IU)";
@@ -1965,8 +1965,8 @@ function tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day()
     var post_data = new Array();
     post_data = get_table_column_data("post", "all", 1);
     
-    update_bridging_lmwh(1, "Cancel");
-    update_bridging_lmwh(1, "Confirm");
+    update_bridging_lmwh(0, "Cancel");
+    update_bridging_lmwh(0, "Confirm");
   
     var result_set = new Array();
     var expected_title = "Dalteparin (IU)";

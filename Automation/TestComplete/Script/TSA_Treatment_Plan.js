@@ -5,140 +5,133 @@
 //--------------------------------------------------------------------------------
 function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, td, using_prev_plan)
 {
-  try
-  {
-    var INRstarV5 = INRstar_base();
+  var INRstarV5 = INRstar_base();
     
-    var prev_plan_action = "No";
-    if(using_prev_plan == true)
-    {
-      prev_plan_action = "Yes"
-    }
+  var prev_plan_action = "No";
+  if(using_prev_plan == true)
+  {
+    prev_plan_action = "Yes"
+  }
   
-    //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp new tp, activate patient tp and not first tp
-    //Also it may skip the got to if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
+  //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp new tp, activate patient tp and not first tp
+  //Also it may skip the got to if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
   
-    if(tp_start_mode=='')
-    {
-      Goto_Patient_Treatment_Plan_Add(); 
-      var treatment_plan_area = add_treatment_plan_main_section_path();
-    }
-    if(tp_start_mode=='2')
-    {
-      Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
-      var treatment_plan_area = add_treatment_plan_main_section_path();
-    }
-    /* 
-    if(tp_start_mode=='3')
-    {
-    Goto_Patient_Treatmentplan_Add();//_pop_up(); 
+  if(tp_start_mode=='')
+  {
+    Goto_Patient_Treatment_Plan_Add(); 
     var treatment_plan_area = add_treatment_plan_main_section_path();
-    }*/
+  }
+  if(tp_start_mode=='2')
+  {
+    Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
+    var treatment_plan_area = add_treatment_plan_main_section_path();
+  }
+  /* 
+  if(tp_start_mode=='3')
+  {
+  Goto_Patient_Treatmentplan_Add();//_pop_up(); 
+  var treatment_plan_area = add_treatment_plan_main_section_path();
+  }*/
    
-    if(TestStepMode == "Shared")
-    {
-      treatment_plan_area.Panel(0).Image("calendar_png").Click();
-      datepicker = INRstarV5.Panel("ui_datepicker_div");
+  if(TestStepMode == "Shared")
+  {
+    treatment_plan_area.Panel(0).Image("calendar_png").Click();
+    datepicker = INRstarV5.Panel("ui_datepicker_div");
   
-      if (start_date=='')
+    if (start_date=='')
+    {
+      datepicker.Panel(0).Panel(0).Select(1).ClickItem("2017");
+      datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jun");        
+      datepicker.Table(0).Cell(3, 3).Link(0).Click();
+    }
+    else
+    {
+      var w_yr = aqString.SubString(start_date,6,4);
+      var w_mth = aqConvert.StrToInt(aqString.SubString(start_date,3,2));
+      var w_day = aqString.SubString(start_date,0,2);
+           
+      datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+      datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+      select_day(w_day, datepicker);
+    }
+      
+    treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
+      
+    var buttons_path = add_treatment_plan_button();
+      
+    if (drug == 'W' || drug == "Warfarin")
+    { 
+      WaitSeconds(1)
+      treatment_plan_area.Panel(2).Select("DrugId").ClickItem("Warfarin");
+        
+      process_popup("Drug Confirmation Change", "OK");
+          
+      //proces the pop-ups
+      //process_button(INRstarV5, "Is this patient currently taking Warfarin?", "No");
+      var is_reusing = process_popup("New Warfarin Treatment Plan", prev_plan_action);
+      if (is_reusing != "" && prev_plan_action != "No")
       {
-        datepicker.Panel(0).Panel(0).Select(1).ClickItem("2017");
-        datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jun");        
-        datepicker.Table(0).Cell(3, 3).Link(0).Click();
+        Log.Message("Treatment uses previous details, save and exiting...");
       }
       else
       {
-        var w_yr = aqString.SubString(start_date,6,4);
-        var w_mth = aqConvert.StrToInt(aqString.SubString(start_date,3,2));
-        var w_day = aqString.SubString(start_date,0,2);
-           
-        datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
-        datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
-        select_day(w_day, datepicker);
-      }
-      
-      treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
-      
-      var buttons_path = add_treatment_plan_button();
-      
-      if (drug == 'W' || drug == "Warfarin")
-      { 
-        WaitSeconds(1)
-        treatment_plan_area.Panel(2).Select("DrugId").ClickItem("Warfarin");
-        
-        process_popup("Drug Confirmation Change", "OK");
+        var treatment_plan_warfarin_details_path = add_treatment_plan_warfarin_details();
           
-        //proces the pop-ups
-        //process_button(INRstarV5, "Is this patient currently taking Warfarin?", "No");
-        var is_reusing = process_popup("New Warfarin Treatment Plan", prev_plan_action);
-        if (is_reusing != "" && prev_plan_action != "No")
+        if (dm == 'Coventry')
         {
-          Log.Message("Treatment uses previous details, save and exiting...");
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Coventry Maintenance");
         }
-        else
+        if (dm == 'Hillingdon')
         {
-          var treatment_plan_warfarin_details_path = add_treatment_plan_warfarin_details();
-          
-          if (dm == 'Coventry')
-          {
-            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Coventry Maintenance");
-          }
-          if (dm == 'Hillingdon')
-          {
-            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Hillingdon Maintenance");
-          }
-          if (dm == 'Tait')
-          {
-            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Tait");
-          }
-          if (dm == 'Oates')
-          {
-            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Oates");
-          }
-          if (dm == 'Fast')
-          {
-            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Fast Fennerty Gedge");
-          }
-          if (dm == 'Manual')
-          {
-            treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
-          }
-          var item_val = treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").value;
-          process_popup("More information - " + item_val, "Ok");
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Hillingdon Maintenance");
+        }
+        if (dm == 'Tait')
+        {
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Tait");
+        }
+        if (dm == 'Oates')
+        {
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Oates");
+        }
+        if (dm == 'Fast')
+        {
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Fast Fennerty Gedge");
+        }
+        if (dm == 'Manual')
+        {
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
+        }
+        var item_val = treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").value;
+        process_popup("More information - " + item_val, "Ok");
 
-          treatment_plan_warfarin_details_path.Panel(1).Select("TestingMethod").ClickItem("PoCT");
-          treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 Days");
+        treatment_plan_warfarin_details_path.Panel(1).Select("TestingMethod").ClickItem("PoCT");
+        treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 Days");
           
-          var tablet_selection_path = add_treatment_plan_tablet_selection();
+        var tablet_selection_path = add_treatment_plan_tablet_selection();
                                      
-          tablet_selection_path.Panel(1).Checkbox("Tablets_Use5").ClickChecked(true);
-          tablet_selection_path.Panel(2).Checkbox("Tablets_Use3").ClickChecked(true);
-          tablet_selection_path.Panel(3).Checkbox("Tablets_Use1").ClickChecked(true);
-          tablet_selection_path.Panel(4).Checkbox("Tablets_UseHalf").ClickChecked(true);
-          tablet_selection_path.Panel(5).Checkbox("Tablets_UseSplit").ClickChecked(true);
-        }
+        tablet_selection_path.Panel(1).Checkbox("Tablets_Use5").ClickChecked(true);
+        tablet_selection_path.Panel(2).Checkbox("Tablets_Use3").ClickChecked(true);
+        tablet_selection_path.Panel(3).Checkbox("Tablets_Use1").ClickChecked(true);
+        tablet_selection_path.Panel(4).Checkbox("Tablets_UseHalf").ClickChecked(true);
+        tablet_selection_path.Panel(5).Checkbox("Tablets_UseSplit").ClickChecked(true);
       }
+    }
       
-      if (drug != 'W' && drug != "Warfarin")
-      {
-        Log.Message("Non-Warfarin Drug");
-        treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
-        process_popup("Drug Confirmation Change", "OK");
-        treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
-      }
+    if (drug != 'W' && drug != "Warfarin")
+    {
+      Log.Message("Non-Warfarin Drug");
+      treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
+      process_popup("Drug Confirmation Change", "OK");
+      treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
+    }
       
-      WaitSeconds(3, "Waiting for treatment details...");
-      buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
+    WaitSeconds(3, "Waiting for treatment details...");
+    buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
       
-      process_popup("You will need to add an historical treatment", "OK");
-      var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");    
-      WaitSeconds(5, "Waiting for treatment plan...");
-      return popup_msg;       
-    }  
-  } 
-  catch(e)
-  {
-    Log.Message('Adding a TP FAILED Exception Occured = ' + e);  
+    process_popup("You will need to add an historical treatment", "OK");
+    var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");    
+    WaitSeconds(5, "Waiting for treatment plan...");
+    return popup_msg;       
   }
 } 
 //--------------------------------------------------------------------------------
