@@ -58,6 +58,9 @@ function set_admin_dash_url()
     case base + "Staging": 
     admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
     break;
+    case base + "Alderaan": 
+    admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+    break;
     case base + "HothV4": 
     admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
     break;
@@ -66,6 +69,9 @@ function set_admin_dash_url()
     break;
     case base + "StagingV4": 
     admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
+    break;
+    case base + "AlderaanV4": 
+    admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
     break;
   }
 }

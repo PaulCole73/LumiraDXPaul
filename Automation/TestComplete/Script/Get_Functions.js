@@ -636,6 +636,9 @@ function get_hl7_file_folder()
     case base + "Staging": 
     folder_name = "Staging HL7 Channel";
     break;
+    case base + "Alderaan": 
+    folder_name = "Test_Alderaan HL7 Channel";
+    break;
     case base + "HothV4": 
     folder_name = "Test_Hoth HL7 Channel";
     break;
@@ -644,6 +647,9 @@ function get_hl7_file_folder()
     break;
     case base + "StagingV4": 
     folder_name = "Staging HL7 Channel";
+    break;
+    case base + "AlderaanV4": 
+    folder_name = "Test_Alderaan HL7 Channel";
     break;
   }
   

@@ -40,12 +40,14 @@
 				<children>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
-							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsStaging" />
+							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsHoth" />
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="CACUK-432" key="{6C3B5601-18D8-4C02-A5AD-C225C83BAA0B}" group="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}cacuk432_bug_fix_sequence" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-						<testParameters />
+					<testItem name="Bridging 1030/1032" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters>
+							<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+						</testParameters>
 						<children />
 					</testItem>
 					<testItem name="Re-try Failed Tests" key="{A7581979-2E11-4482-B90F-2BDED95D1449}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -55,8 +57,12 @@
 					<testItem name="Email" key="{4E778308-EE7D-40FB-A0C1-5D6691B6E4E6}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-							<param1 name="name" type="3" localVarName="" varType="8" value="cacuk432_regression_output" />
+							<param1 name="name" type="3" localVarName="" varType="8" value="bridging_1030_1032_output" />
 						</testParameters>
+						<children />
+					</testItem>
+					<testItem name="CACUK-432" key="{6C3B5601-18D8-4C02-A5AD-C225C83BAA0B}" group="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}cacuk432_bug_fix_sequence" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
 						<children />
 					</testItem>
 				</children>
@@ -752,7 +758,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="New_1" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{9B459D66-1D5A-4BC3-B10C-682BC0CDC3A3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -760,7 +766,7 @@
 						<children>
 							<testItem name="Setup" key="{C470E218-AB58-40BB-8CF8-98688B01D670}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
-									<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsHoth" />
+									<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -897,7 +903,7 @@
 							<testItem name="Email" key="{4E328738-51BC-4182-B3C6-D55BCDD562FE}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="hoth_regression_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan_regression_output" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -908,7 +914,7 @@
 						<children>
 							<testItem name="Setup" key="{275DB10C-83E2-4296-9757-442C32A8BF5E}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
-									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsHoth" />
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -953,7 +959,7 @@
 							<testItem name="Email" key="{8F576540-522B-4195-AEB9-3FA2601F85B4}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="hoth_admin_dash_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan_admin_dash_output" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -964,7 +970,7 @@
 						<children>
 							<testItem name="Setup" key="{3D64C225-9370-475C-A590-C00A25D89BAD}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
-									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsHoth" />
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -985,7 +991,7 @@
 							<testItem name="Email" key="{CB5D93BA-EB4C-4BC1-9931-73142FF121F8}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="hoth_engage_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan_engage_output" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1684,7 +1690,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="New_V4_1" key="{1A531187-C3C1-4E8B-B457-C8D4CAB6F271}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Alderaan_V4" key="{1A531187-C3C1-4E8B-B457-C8D4CAB6F271}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{790D8B2D-E4F0-42BC-8F50-A24EFEE0D203}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -1692,7 +1698,7 @@
 						<children>
 							<testItem name="Setup" key="{75230B4C-52C6-4E73-A199-2282F11D0642}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
-									<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsHothV4" />
+									<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaanV4" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1708,7 +1714,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Bridging" key="{068342C7-C34F-43F9-8E56-11395ED05AB3}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="TS_Bridging" key="{068342C7-C34F-43F9-8E56-11395ED05AB3}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
@@ -1829,7 +1835,7 @@
 							<testItem name="Email" key="{B7DB95A3-1D1C-42C3-9B6E-2D2F61E2BFB1}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="hoth4_regression_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan4_regression_output" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1840,7 +1846,7 @@
 						<children>
 							<testItem name="Setup" key="{338B51A6-7788-45EC-9AF9-ED44D8CC1841}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
-									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsHothV4" />
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaanV4" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1885,18 +1891,18 @@
 							<testItem name="Email" key="{89077068-F970-407C-B6C4-1713EED03220}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="hoth4_admin_dash_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan4_admin_dash_output" />
 								</testParameters>
 								<children />
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Engage" key="{68D95A62-DA2D-4CD9-AEF1-7A8CA8847E54}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Engage" key="{68D95A62-DA2D-4CD9-AEF1-7A8CA8847E54}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{B8FF9343-EEE3-46AD-8A35-955F7AF993A1}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
-									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsHothV4" />
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaanV4" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1917,7 +1923,7 @@
 							<testItem name="Email" key="{6CA42A46-496A-4A0C-B2CD-F06FB85E5584}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="hoth4_engage_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan4_engage_output" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -2123,7 +2129,7 @@
 			<data />
 		</setting>
 		<setting name="{3FC2A7B4-F4AF-4807-8D37-C3EE096DD330}" type="2" value="1024" />
-		<setting name="{9EB8E8E6-D2F2-4A8A-ADFB-492E8C0EAFEF}" type="2" value="0" />
+		<setting name="{9EB8E8E6-D2F2-4A8A-ADFB-492E8C0EAFEF}" type="2" value="25000" />
 		<setting name="{47A56F4F-F2D3-4697-BEC8-632B29D5A344}" type="6" rowIndex="11" colIndex="1">
 			<columns>
 				<column type="1" enabled="True" />

@@ -58,6 +58,21 @@ function set_engage_url()
     case base + "Staging": 
     engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
     break;
+    case base + "Alderaan": 
+    engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+    break;
+    case base + "HothV4": 
+    engage_url = "https://engage-hoth.lumiradxcaresolutions.com/";
+    break;
+    case base + "TatooineV4": 
+    engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+    break;
+    case base + "StagingV4": 
+    engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
+    break;
+    case base + "AlderaanV4": 
+    engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+    break;
   }
   //Log.Message(engage_url);
 }
