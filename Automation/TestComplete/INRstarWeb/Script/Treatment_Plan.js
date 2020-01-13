@@ -16,7 +16,7 @@
 function tc_add_first_maintenance_treatment_plan()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@regression','INRstar_5','Shared');
+ login('');
  
  //Parameters to pass in - (firstname,surname,title,sex,gender,address line 1,address line 2,address line 3,town,county,postcode,home tel,mob,email,nhs,Step)
  tsa_patient_add('Maintenance','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com','','Shared');
@@ -40,7 +40,7 @@ function tc_add_first_maintenance_treatment_plan()
 function tc_add_first_manual_treatment_plan()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@regression','INRstar_5','Shared');
+ login('');
  
  //Parameters to pass in - (firstname,surname,title,sex,gender,address line 1,address line 2,address line 3,town,county,postcode,home tel,mob,email,nhs,Step)
  tsa_patient_add('Manual','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com','','Shared');
@@ -64,7 +64,7 @@ function tc_add_first_manual_treatment_plan()
 function tc_add_a_new_treatment_plan_after_a_treatment_has_been_added_selecting_yes_to_using_previous()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@regression','INRstar_5','Shared');
+ login('');
  
  //Parameters to pass in - (firstname,surname,title,sex,gender,address line 1,address line 2,address line 3,town,county,postcode,home tel,mob,email,nhs,Step)
  tsa_patient_add('Manual','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com','','Shared'); 
@@ -101,7 +101,7 @@ function tc_add_a_new_treatment_plan_after_a_treatment_has_been_added_selecting_
 function tc_add_a_new_treatment_plan_after_treatments_have_been_added_patient_with_an_unknown_diagnosis()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@regression','INRstar_5','Shared');
+ login('');
  
  //Parameters to pass in - (firstname,surname,title,sex,gender,address line 1,address line 2,address line 3,town,county,postcode,home tel,mob,email,nhs,Step)
  tsa_patient_add('Manual','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com','','Shared'); 
@@ -128,7 +128,7 @@ function tc_add_a_new_treatment_plan_after_treatments_have_been_added_patient_wi
 function tc_add_a_new_treatment_plan_before_any_treatments_have_been_added()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@regression','INRstar_5','Shared');
+ login('');
  
  //Parameters to pass in - (firstname,surname,title,sex,gender,address line 1,address line 2,address line 3,town,county,postcode,home tel,mob,email,nhs,Step)
  tsa_patient_add('Manual','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com','','Shared'); 
@@ -149,7 +149,7 @@ function tc_add_a_new_treatment_plan_before_any_treatments_have_been_added()
 function tc_add_a_new_treatment_plan_after_treatments_have_been_added_Induction_patient()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@regression','INRstar_5','Shared');
+ login('');
  
  //Parameters to pass in - (firstname,surname,title,sex,gender,address line 1,address line 2,address line 3,town,county,postcode,home tel,mob,email,nhs,Step)
  tsa_patient_add('Manual','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com','','Shared'); 
@@ -188,7 +188,7 @@ function tc_add_a_new_treatment_plan_after_treatments_have_been_added_Induction_
 //function tc_Add_a_new_treatment_plan_after_treatments_have_been_added_patient_with_a_future_appointment()
 //{
 // //Parameters to pass in - (UserName, Password, Step)
-// login('clead@regression','INRstar_5','Shared');
+// login('');
 // 
 // //add clinic
 // 

@@ -11,8 +11,8 @@ function tc_users_add_a_new_user()
   {
     var test_title = 'Users - Add a New User'
     var username;
-    login('clead@regression','INRstar_5','Shared');
-    username = add_new_user("add", "user", "add", "INRstar_6");
+    login('','Shared');
+    username = add_new_user("add", "user", "add", "");
     
     var result_set = new Array();
     var result_set_1 = validate_top_system_audit(test_title, "Add User");
@@ -40,8 +40,8 @@ function tc_users_manage_user_permissions()
   {
     var test_title = 'Users - Manage User Permissions'
     var username;
-    login('clead@regression','INRstar_5','Shared');
-    username = add_new_user("manage", "perms", "manage", "INRstar_6");
+    login('','Shared');
+    username = add_new_user("manage", "perms", "manage", "");
     
     manage_user_permissions(username, "clerical 1");
     
@@ -71,10 +71,10 @@ function tc_users_manage_change_permissions_to_read_only()
   {
     var test_title = 'Users - Change Permission to Read Only'
     var username;
-    login('clead@regression','INRstar_5','Shared');
-    username = add_new_user("read", "only", "read", "INRstar_6");
+    login('');
+    username = add_new_user("read", "only", "read", "");
     
-    manage_user_permissions(username, "clerical 1");
+    manage_user_permissions(username, "");
     
     reset_user_permissions_to_readonly(username);
     
@@ -82,7 +82,7 @@ function tc_users_manage_change_permissions_to_read_only()
     var result_set_1 = validate_top_system_audit(test_title, "Edit user permissions");
     result_set.push(result_set_1);
     
-    result_set_1 = more_info_top_system_audit("Role changed from [Clerical 1] to deleted.");
+    result_set_1 = more_info_top_system_audit("Role changed from [] to deleted.");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
@@ -107,8 +107,8 @@ function tc_users_reset_user_password()
   {
     var test_title = 'Users - Reset Password'
     var username;
-    login('clead@regression','INRstar_5','Shared');
-    username = add_new_user("reset", "password", "reset", "INRstar_6");
+    login('');
+    username = add_new_user("reset", "password", "reset", "");
     
     var user_data = reset_user_password(username);
     var new_password = aqString.SubString(user_data[1], 51, 8);
@@ -152,8 +152,8 @@ function tc_users_disable_user()
   {
     var test_title = 'Users - Disable User'
     var username;
-    login('clead@regression','INRstar_5','Shared');
-    username = add_new_user("disable", "user", "disable", "INRstar_6");
+    login('');
+    username = add_new_user("disable", "user", "disable", "");
     
     var text = disable_user_account(username);
     
@@ -201,8 +201,8 @@ function tc_users_enable_user()
   {
     var test_title = 'Users - Enable User'
     var username;
-    login('clead@regression','INRstar_5','Shared');
-    username = add_new_user("enable", "user", "enable", "INRstar_6");
+    login('');
+    username = add_new_user("enable", "user", "enable", "");
     
     var text = disable_user_account(username);
     enable_user_account(username);
@@ -216,7 +216,7 @@ function tc_users_enable_user()
     
     Log_Off();
     
-    login(username, "INRstar_6", "Shared");
+    login(username, "", "Shared");
     
     var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;

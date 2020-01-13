@@ -12,8 +12,8 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsTatooine";
-var admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsStagingV4";
+var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
 var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
@@ -600,20 +600,21 @@ function send_email(mFrom, mTo, mSubject, mBody, mAttach)
     var pass = get_login_details(20);
     schema = "http://schemas.microsoft.com/cdo/configuration/";
     mConfig = getActiveXObject("CDO.Configuration");
-    mConfig.Fields.$set("Item", schema + "sendusing", 2); // cdoSendUsingPort
+    mConfig.Fields.$set("Item", schema + "sendusing", 2); 
+    //cdoSendUsingPort
     //mConfig.Fields.$set("Item", schema + "smtpserver", "ServerName"); // SMTP server
     //mConfig.Fields.$set("Item", schema + "smtpserverport", 25); // Port number
 
-    // If you use Gmail --
+    //If you use Gmail --
     mConfig.Fields.$set("Item", schema + "smtpserver", "smtp.gmail.com");
     mConfig.Fields.$set("Item", schema + "smtpserverport", 25);
     mConfig.Fields.$set("Item", schema + "smtpusessl", 1);
 
-    // If you use Outlook --
-    // mConfig.Fields.$set("Item", schema + "smtpserver", "smtp-mail.outlook.com");
-    // mConfig.Fields.$set("Item", schema + "smtpserverport", 25);
+    //If you use Outlook --
+    //mConfig.Fields.$set("Item", schema + "smtpserver", "smtp-mail.outlook.com");
+    //mConfig.Fields.$set("Item", schema + "smtpserverport", 25);
 
-    // If you use Office365 --
+    //If you use Office365 --
     //mConfig.Fields.$set("Item", schema + "smtpserver", "smtp.office365.com");
     //mConfig.Fields.$set("Item", schema + "smtpserverport", 587);
     //mConfig.Fields.$set("Item", schema + "smtpusessl", 1);
@@ -694,7 +695,9 @@ function reset_folder()
 function restart_INRstar()
 {
   var path = Sys.Process("INRstarWindows").Path;
+  Log.Message(path);
   Sys.Process("INRstarWindows").Close();
+  WaitSeconds(2, "Waiting to close...");
   Win32API.WinExec(path, SW_SHOWNORMAL);
   Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Maximize();
 }
@@ -735,7 +738,7 @@ function open_file_in_notepad(path)
 //---------------------------------------------------------------------------------//
 //                                Wait Functions                                   //
 //---------------------------------------------------------------------------------//
-function WaitSeconds(seconds,p_text)
+function WaitSeconds(seconds, p_text)
 {
   if (p_text == "")
   {
@@ -746,7 +749,30 @@ function WaitSeconds(seconds,p_text)
     BuiltIn.Delay(seconds * 1000, p_text);
   }  
 }
+//-----------------------------------------------------------------------------------
+function wait_for_object(obj_root, obj_property, obj_value, depth)
+{
+  var INRstarV5 = INRstar_base();
+  var counter = 0;  
 
+  do
+  {
+    INRstarV5.Refresh();
+    obj_root.Refresh();
+    var root = obj_root;
+    var obj = root.FindChild(obj_property, obj_value, depth);
+    counter++;
+    
+    if(obj.Exists == false)
+    {
+      Log.Message("--------------------- Slow performance. Waiting for object... ---------------------","",500);
+      WaitSeconds(3, "Waiting for object...");
+    }
+  }
+  while(obj.Exists == false && counter < 5);
+  
+  return obj;
+}
 
 
 

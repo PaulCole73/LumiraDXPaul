@@ -58,8 +58,8 @@ function add_new_user(u_firstname, u_surname, u_username, u_password)
       
   if (u_password == "")
   {
-    password_textbox.Text = "INRstar_6";
-    password_confirm_textbox.Text = "INRstar_6";
+    password_textbox.Text = "";
+    password_confirm_textbox.Text = "";
   }
   else
   {

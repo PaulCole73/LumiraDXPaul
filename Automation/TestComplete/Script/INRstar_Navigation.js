@@ -136,6 +136,7 @@ function Goto_Clinics()
   var INRstarV5 = INRstar_base();
   var panel = INRstarV5.Panel("MainPage");
   var button = panel.Panel("header").Link("ClinicsLink").Click();
+  WaitSeconds(2, "Waiting for Clinics...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Clinics
@@ -320,24 +321,23 @@ function Goto_Patient_Treatment_Plan()
   var counter = 0;
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
+  var obj_root = panelMCP.Panel("PatientRecord").Panel("PatientTab");
+  
+  var obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTab", 1);
+  if(obj != false)
+  {
+    obj.Click();
+  }
+  
   WaitSeconds(3, "Waiting to go to Treatment Plan...");
   var panelPMTC = main_patient_tab();
-  var obj = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
+  obj_root = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
   
-  counter = 0;
-  do //this function has been experiencing regular/consistent timeouts, now using a loop to minimize failure and provide re-testability 
+  var obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTab", 1);
+  if(obj != false)
   {
-    obj.Refresh();
-    var temp = obj.FindChild("idStr", "PatientTreatmentPlanTab");
-    if(temp.Exists)
-    {
-      Log.Message(temp.Name);
-      temp.Click();
-    }
-    counter++;
-    Log.Message(counter);
-  }while(temp.Exists == false && counter < 5);
+    obj.Click();
+  }
   
   WaitSeconds(3, "Waiting to go to Treatment Plan...");
 }
@@ -446,6 +446,7 @@ function Goto_Patient_New_INR()
   panelPPT.Panel("TreatmentButtonsContainer").Fieldset("TreatmentButtons").Button("NewINR").Click();
   
   process_alternate_popup("Please acknowledge", "Confirm", 1);
+  process_blue_popup();
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment
@@ -466,6 +467,7 @@ function Goto_Patient_Treatment()
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
 function Goto_Add_Historical()
 {
+  WaitSeconds(2, "Waiting before creating historic...");
   Goto_Patient_Treatment();
   var button_id = "AddHistoricalTreatment";
   process_button_exists(button_id);
@@ -504,10 +506,7 @@ function Goto_Patient_Treatment_Plan_Review()
 // Navigate to Patient Treatment Plan Reviews
 function Goto_Patient_Treatment_Plan_Review_New()
 {
-  /*var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  panelPT.Link("PatientTreatmentPlanTab").Click();*/
+  WaitSeconds(2, "Waiting to go to 'New Review'...");
   Goto_Patient_Treatment_Plan_Review();
   var panelPTC = main_patient_tab().Panel("PatientTabContent");
   panelPTC.Panel("AnnualReviewWrapper").Panel("AnnualReviewActions").Fieldset("Fieldset1").Button("AddWarfarinReviewLink").Click();

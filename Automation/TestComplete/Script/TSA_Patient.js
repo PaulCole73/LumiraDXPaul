@@ -5,7 +5,7 @@
 function add_patient(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, pat_no)  
 {
   add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, "1975", pat_no);
-  WaitSeconds(3, "Waiting for patient to add...");
+  WaitSeconds(4, "Waiting for patient to add...");
 }
 
 function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, dobyr, pat_no)  
@@ -93,7 +93,10 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
       
     save_button.Click();
-  }   
+  }
+  
+  var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2)
 }
 //--------------------------------------------------------------------------------
 function patient_search(data)

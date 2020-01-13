@@ -2070,6 +2070,16 @@ function clinic_move_calendar_forward()
   return button;
 }
 //------------------------------------------------------------------------
+function clinic_move_calendar_backwards()
+{
+  var INRstarV5 = INRstar_base();
+  var panel = INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0).Table("scheduler").Cell(0, 0).Table(0).Cell(0, 0);
+  var table = panel.Panel("scheduler_viewNavigatorBlock_innerContent").Table(0).Cell(0, 0).Table("IC")
+  var button = table.Cell(0, 0).Table(0).Cell(0, 0).Table(0).Cell(0, 0);
+  
+  return button;
+}
+//------------------------------------------------------------------------
 ////////////////////////  External Results / HL7  ////////////////////////
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------

@@ -118,6 +118,7 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
+  
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
   var treatment_inr_test_options_path = treatment_inr_test_options();
   
@@ -404,13 +405,13 @@ function add_manual_treatment(date, inr, dose, review, tm)
   var treatment_button_path = treatment_buttons_pre_schedule();
   treatment_button_path.SubmitButton("SubmitManualDose").Click();
   handle_poct_expired();
-   
+  
   //Confirm the values
   var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
   wbt_Confirm.Click();
   
   process_popup("Insert Confirmation", "Confirm");
-  WaitSeconds(2, "Saving the Treatment");  
+  WaitSeconds(2, "Saving the Treatment...");  
   
   //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();
@@ -513,7 +514,7 @@ function handle_PoCT(main_path)
    }       
 }
 //--------------------------------------------------------------------------------
-function handle_poct_expired()
+function handle_poct_expired() //THIS NEEDS CHANGING
 {
  //Handle if PoCT has expired
  var INRstarV5 = INRstar_base(); 

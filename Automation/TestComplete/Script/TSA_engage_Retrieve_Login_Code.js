@@ -8,11 +8,13 @@ function get_engage_login_code() //in progress
   TestedApps.gmail.Run();
   WaitSeconds(15, "Waiting for application to open...");
   
+  Sys.Refresh();
+  WaitSeconds(1, "Waiting to maximise...");
   Sys.Browser("iexplore").BrowserWindow(0).Maximize();
   Sys.Browser("iexplore").BrowserWindow(0).SetFocus();
   
   gmail_account_main().Refresh();
-  WaitSeconds(3);
+  WaitSeconds(5);
   gmail_account_top_email().Click();
   WaitSeconds(10);
   

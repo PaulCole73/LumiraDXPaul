@@ -997,6 +997,9 @@
 		<child name="engage_Popup_Handlers" key="{A22CE44C-6AF4-4B6F-863A-982348489852}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="engage_Popup_Handlers.js" />
 		</child>
+		<child name="TS_Engage" key="{1B15472F-B752-4004-A991-EA62F33068D2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TS_Engage.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1382,7 +1385,11 @@
 		</folder>
 		<folder caption="7. Engage" description="A logical folder that is used to organize project items and elements." moniker="">
 			<folders>
-				<folder caption="1. Test Suites" description="A logical folder that is used to organize project items and elements." moniker="" />
+				<folder caption="1. Test Suites" description="A logical folder that is used to organize project items and elements." moniker="">
+					<references>
+						<ref key="{1B15472F-B752-4004-A991-EA62F33068D2}" />
+					</references>
+				</folder>
 				<folder caption="2. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="">
 					<references>
 						<ref key="{FC7157DF-F982-4291-A8BA-F45074D6588F}" />

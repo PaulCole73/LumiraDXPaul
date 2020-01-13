@@ -2,7 +2,7 @@
  
 }
 
-// login('cl3@regression','INRstar_5','Shared');
+// login('','','Shared');
  
 function EnterTextTextField(path,data) {
 

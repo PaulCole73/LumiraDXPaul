@@ -9,7 +9,7 @@
 function tc_add_a_new_patient()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@emisweb','INRstar_5','Shared');
+ login('');
  
  //Parameters to pass in - (firstname,surname,title,sex,gender,address line 1,address line 2,address line 3,town,county,postcode,home tel,mob,email,nhs,Step)
  tsa_patient_add('Quick','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com',' ','Shared');
@@ -24,7 +24,7 @@ function tc_add_a_new_patient()
 function tc_add_a_duplicate_patient_based_on_NHS_number()
 {
  //Parameters to pass in - (UserName, Password, Step)
- login('cl3@regression','INRstar_5','Shared'); 
+ login(''); 
  
  tsa_patient_add('Quick','Patient','Mr','Male','Male','add1','add2','add3','town','county','tr72dh','01252 545454','07930 454765','test@hotmail.com',' ','Shared');
  var nhs = get_patient_nhs();

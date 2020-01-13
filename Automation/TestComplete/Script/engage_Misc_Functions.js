@@ -40,13 +40,12 @@ function setup_automation_engage(env_url)
   environment = env_url;
   setup_automation(environment);
   open_engage();
-  reset_tests_array();
 }
 //--------------------------------------------------------------------------------
 function set_engage_url()
 {
   var base = "INRstarWindows";
-  Log.Message(environment);
+  //Log.Message(environment);
   
   switch(environment)
   {
@@ -59,9 +58,23 @@ function set_engage_url()
     case base + "Staging": 
     engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
     break;
+    case base + "Alderaan": 
+    engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+    break;
+    case base + "HothV4": 
+    engage_url = "https://engage-hoth.lumiradxcaresolutions.com/";
+    break;
+    case base + "TatooineV4": 
+    engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+    break;
+    case base + "StagingV4": 
+    engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
+    break;
+    case base + "AlderaanV4": 
+    engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+    break;
   }
-  
-  Log.Message(engage_url);
+  //Log.Message(engage_url);
 }
 //--------------------------------------------------------------------------------
 function get_current_url()
@@ -80,7 +93,6 @@ function get_current_url()
       break;
     }
   }
-  
-  Log.Message(url);
+  //Log.Message(url);
   return url;
 }

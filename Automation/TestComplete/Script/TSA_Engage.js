@@ -1,4 +1,4 @@
-﻿//USEUNIT engage_Navigation
+//USEUNIT engage_Navigation
 //USEUNIT Misc_Functions
 //USEUNIT engage_Misc_Functions
 //USEUNIT TSA_engage_Retrieve_Login_Code
@@ -91,6 +91,8 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
 function get_schedule_data()
 {
   Goto_Understand_Schedule_Tab(true);
+  WaitSeconds(3, "Waiting for dosing schedule...");
+  
   var box = engage_dosing_schedule();
   var data = box.textContent;
   var string_array = new Array();
@@ -126,10 +128,13 @@ function get_schedule_data()
   return schedule_data;
 }
 //--------------------------------------------------------------------------------
-function submit_INR_with_answers(INR,match,dose,medication,bleeding,missed)
+function submit_INR_with_answers(INR, match, dose, medication, bleeding, missed)
 {
   engage_submit_my_INR_tile().Click();
+
+  WaitSeconds(2, "Waiting for form...");
   var engage_submit_INR = engage_submit_INR_questionnaire();
+
   //INR selector
   engage_submit_INR.Panel(0).Panel(0).Panel("question_select_objectobject_").Panel(1).Select(0).ClickItem(INR);
   //INR match machine - match should be 0 for Yes or 1 for No
@@ -172,9 +177,27 @@ function get_daily_dose()
   return text;
 }
 //--------------------------------------------------------------------------------
+function get_perform_inr_test_due_date()
+{
+  var obj = engage_things_to_do_soon_panel().Panel(1);
+  var task = obj.FindChild("innerText", "Perform your INR test", 3);
+  var parent = task.Parent;
+  var due_date = "";
+  
+  for(var i = 0; i < parent.ChildCount; i++)
+  {
+    if(parent.Child(i).innerText != "Perform your INR test")
+    {
+      due_date = parent.Child(i).innerText;
+    }
+  }
+  return due_date;
+}
+//--------------------------------------------------------------------------------
 function complete_schedule(button_number)
 {
   Goto_Understand_Schedule_Tab(true);
+
   WaitSeconds(2);
   engage_new_dosing_schedule_understand_buttons().Panel(1).Panel(0).Label(button_number).TextNode(0).Click();
   engage_new_dosing_submit_buttons().Button("button_home_anticoagulation_questionnaire_submit").Click();

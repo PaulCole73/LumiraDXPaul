@@ -1,4 +1,4 @@
-﻿//USEUNIT TSA_Engage
+//USEUNIT TSA_Engage
 //USEUNIT TSA_Patient
 //USEUNIT Failed_Test_Handlers
 //USEUNIT engage_System_Paths
@@ -45,16 +45,13 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
     var result_set_1 = compare_values(daily_dose_text, expected_text, test_title);
     result_set.push(result_set_1);
     
-    //this needs to be its own function
-    engage_things_to_do_today_panel().Panel(1).Panel(0).Panel(0).Click();
-    engage_new_dosing_schedule_understand_buttons().Panel(1).Panel(0).Label(1).TextNode(0).Click();
-    
     var schedule_data = new Array();
     schedule_data = get_schedule_data();
     
+    complete_schedule(1); //0 is the label index for the "yes" button
+    
     result_set_1 = checkArrays(schedule_data, expected_array, test_title);
     result_set.push(result_set_1);
-    complete_schedule(0);
     
     log_off_engage();
     
@@ -75,10 +72,11 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
     var suite_name = "TC_Engage";
     var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------
-function ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_greater_than_1_below_target()
+function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_greater_than_1_below_target()
 {
   try
   {
@@ -106,18 +104,14 @@ function ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_gre
     register_engage(email_address);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
-   
-    //understand original schedule
-    complete_schedule(0);
+    complete_schedule(0); //0 is the label index for the "yes" button
    
     //set INR and dose to be used for engage
     var INR = (StrToFloat(targetINR) - 1.1);
-    var dose = '2.5'
-    engage_submit_my_INR_tile().Click();
-    var submitted_date_time = submit_INR_with_answers(INR,0,dose,1,1,1);
-//     
+    var dose = "2.5"
+    var submitted_date_time = submit_INR_with_answers(INR ,0 , dose, 1, 1, 1);
+    
     log_off_engage();
-   
     login(5, "Shared");
    
     var result_set = new Array();
@@ -127,91 +121,61 @@ function ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_gre
     result_set.push(result_set_1);
    
     //process the external result from engage
-    Goto_Patient_Results();
     dose_patient_external_result(1);
    
     var warning_message_check = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Panel("NewINRMessages").contentText;
     var expected_warning_message = "Early INR test"
     result_set_1 = data_contains_checker(warning_message_check,expected_warning_message,test_title);
     result_set.push(result_set_1);
-   
-    //check INR value is the same as entered into engage
-    var INR_value = pre_treatment_non_induct_path().Panel(1).Select("INR").wText;
-    result_set_1 = compare_values(INR_value, INR, test_title);
+    
+    var external_dose_data = new Array();
+    external_dose_data = dose_external_result("2.0", "7 Days");
+    
+    var result_set = new Array();
+    result_set_1 = compare_values(external_dose_data[0], INR, test_title);
     result_set.push(result_set_1);
-   
-    //check test date is the same as entered into engage
-    var INR_date = pre_treatment_non_induct_path().Panel(0).Label("Date_Value_DetachedLabel").contentText;
-    result_set_1 = compare_values(INR_date, aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), test_title);
+    result_set_1 = compare_values(external_dose_data[1], aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), test_title);
     result_set.push(result_set_1);
-   
-    //check the clinical question tickboxes
-    var changed_dose_checkbox = patient_INR_treatment_questions().Panel("LastTreatment").Checkbox("PatientChangedLastTreatment").checked;
-    result_set_1 = compare_values(changed_dose_checkbox, false, test_title);
+    result_set_1 = compare_values(external_dose_data[2], false, test_title);
     result_set.push(result_set_1);
-   
-    var missed_dose_checkbox = patient_INR_treatment_questions().Panel("MissedDose").Checkbox("MissedDoses").checked;
-    result_set_1 = compare_values(missed_dose_checkbox, false, test_title);
+    result_set_1 = compare_values(external_dose_data[3], false, test_title);
     result_set.push(result_set_1);
-       
-    var changed_medication_checkbox = patient_INR_treatment_questions().Panel("ChangedMedications").Checkbox("ChangedMedication").checked;
-    result_set_1 = compare_values(changed_medication_checkbox, false, test_title);
+    result_set_1 = compare_values(external_dose_data[4], false, test_title);
     result_set.push(result_set_1);
-   
-    Log.Message("clinical question tickboxes OK")
-   
-    //check the comments contain the correct details entered into engage
-    var yesterday = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),-1), "%A %d-%b-%Y");
-    var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+    result_set_1 = compare_values(external_dose_data[6], true, test_title);
+    result_set.push(result_set_1);
+    
+    var yesterday = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), -1), "%A %d-%b-%Y");
     var expected_submission_comments = "Patient Self Testing INR taken on " + submitted_date_time +
     " No bleeding event reported. Patient states that they took " + dose + "mg Warfarin on " + yesterday;
-    result_set_1 = compare_values(actual_submission_comments, expected_submission_comments, test_title);
+    
+    result_set_1 = compare_values(external_dose_data[5], expected_submission_comments, test_title);
     result_set.push(result_set_1);
    
-    //complete and save the treatment
-    var test_info_path = treatment_inr_test_info_path()
-    test_info_path.Panel(0).Select("Dose").ClickItem("2.0");
-    test_info_path.Panel(2).Select("Review").ClickItem("7 Days");
-   
-    var treatment_button_path = treatment_buttons_pre_schedule();
-    treatment_button_path.SubmitButton("SubmitManualDose").Click();
-    handle_poct_expired();
-  
-    //Confirm the values
-    var INRstarV5 = INRstar_base();
-    var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
-    wbt_Confirm.Click();
- 
-    var popup = INRstarV5.NativeWebObject.Find("contentText", "Insert Confirmation");
-    if(popup.Exists == true)
-    {
-      process_popup("Insert Confirmation", "Confirm");
-    }
-  
-    WaitSeconds(2, "Saving the Treatment");
- 
-    //Save the INR
-    var pending_treatment_buttons_path = pending_treatment_buttons();
-    pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
     Log_Off();
-   
-    //login to engage
     sign_in_engage(email_address);
-    //confirm the perform your INR test date
-    var testDueDate = engage_things_to_do_soon_panel().Panel(1).Panel(6).textContent.split(": ");
-    var actualDueDate = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),+7), "%a %d %b %Y");
-    result_set_1 = compare_values(testDueDate[1],actualDueDate,test_title);
+    
+    var testDueDate = get_perform_inr_test_due_date();
+    var actualDueDate = "Due date: " + aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (7)), "%a %d %b %Y");
+    result_set_1 = compare_values(testDueDate, actualDueDate, test_title);
     result_set.push(result_set_1);
-    //confirm the new schedule
+    
     var expected_schedule_array = new Array();
     var new_schedule = get_schedule_data();
-    expected_schedule_array.push("   2 x 1mg (Brown tablet)\n(2mg total for the day)","   2 x 1mg (Brown tablet)\n(2mg total for the day)"
-    ,"   2 x 1mg (Brown tablet)\n(2mg total for the day)","   2 x 1mg (Brown tablet)\n(2mg total for the day)"
-    ,"   2 x 1mg (Brown tablet)\n(2mg total for the day)","   2 x 1mg (Brown tablet)\n(2mg total for the day)","   2 x 1mg (Brown tablet)\n(2mg total for the day)",);  
+    expected_schedule_array.push(
+    "   2 x 1mg (Brown tablet)\n(2mg total for the day)",
+    "   2 x 1mg (Brown tablet)\n(2mg total for the day)",
+    "   2 x 1mg (Brown tablet)\n(2mg total for the day)",
+    "   2 x 1mg (Brown tablet)\n(2mg total for the day)",
+    "   2 x 1mg (Brown tablet)\n(2mg total for the day)",
+    "   2 x 1mg (Brown tablet)\n(2mg total for the day)",
+    "   2 x 1mg (Brown tablet)\n(2mg total for the day)",);  
     result_set_1 = checkArrays(new_schedule, expected_schedule_array, test_title);
     result_set.push(result_set_1);
     log_off_engage();
    
+    log_off_engage();
+    
     var results = results_checker_are_true(result_set);
     Log.Message(results);
     results_checker(results, test_title);
@@ -220,8 +184,9 @@ function ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_gre
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Engage";
-    var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule";
+    var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_greater_than_1_below_target";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------
@@ -292,6 +257,7 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     var suite_name = "TC_Engage";
     var test_name = "tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_existing_NTD";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------
@@ -371,6 +337,7 @@ function tc_new_historical_treatment_is_most_recent_with_NTD_less_than_than_exis
     var suite_name = "TC_Engage";
     var test_name = "tc_new_historical_treatment_is_most_recent_with_NTD_less_than_than_existing_NTD";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------
@@ -427,6 +394,7 @@ function tc_accept_engage_eula_web()
     var suite_name = "TC_Engage";
     var test_name = "tc_accept_engage_eula_web";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------
@@ -484,6 +452,7 @@ function tc_reenrol_user_can_log_into_engage()
     var suite_name = "TC_Engage";
     var test_name = "tc_reenrol_user_can_log_into_engage";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------
@@ -509,7 +478,7 @@ function tc_disenrol_user_with_current_treatment_plan()
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     complete_schedule(0); //0 is the label index for the "yes" button
-    var text = Goto_Understand_Schedule_Tab();
+    var text = Goto_Understand_Schedule_Tab(false);
     
     var result_set = new Array();
     var result_set_1 = compare_values(text, "Completed", test_title);
@@ -539,6 +508,7 @@ function tc_disenrol_user_with_current_treatment_plan()
     var suite_name = "TC_Engage";
     var test_name = "tc_disenrol_user_with_current_treatment_plan";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------
@@ -547,10 +517,10 @@ function tc_move_ntb_back_from_ten_to_seven_days_schedules_unchanged()
   try
   {
     var test_title = "Engage - Disenroll Patient from Engage (confirm non-completed task >= today are deleted)";
-    login(5, "Shared");
+    login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
-    var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (7)), "%d/%m/%Y");
+    var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (17)), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
     add_patient("Regression", "Engage", "M", "Shared"); 
@@ -564,20 +534,19 @@ function tc_move_ntb_back_from_ten_to_seven_days_schedules_unchanged()
     
     Log_Off();
     
-    var result_set = new Array();
     register_engage(email_address);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     
     var schedule_data_1 = new Array();
     schedule_data_1 = get_schedule_data();
-    complete_schedule(0); //0 is the label index for the "yes" button
     
     log_off_engage();
     login(5, "Shared");
     
     patient_search(pat_nhs);
-    tsa_clinic_make_appointment(clinic_name, clinic_date);
+    var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (10));
+    tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date);
     
     Log_Off();
     sign_in_engage(email_address);
@@ -600,8 +569,542 @@ function tc_move_ntb_back_from_ten_to_seven_days_schedules_unchanged()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Engage";
-    var test_name = "tc_disenrol_user_with_current_treatment_plan";
+    var test_name = "tc_move_ntb_back_from_ten_to_seven_days_schedules_unchanged";
     handle_failed_tests(suite_name, test_name);
+    restart_engage();
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_move_ntb_back_from_seven_to_six_days_schedules_changed()
+{
+  try
+  {
+    var test_title = "Engage - Move NTD Backward (7 day review to 6 day review - Generic Schedule Text is correctly appearing in Engage)";
+    login(7, "Shared");
+    
+    var expected_msg = "Changing the next test date could make the patient's existing dosing schedule inaccurate. Please contact the patient to advise on a suitable dosing schedule.";
+    var expected_array_1 = new Array();
+    expected_array_1.push(
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)"); 
+    var expected_array_2 = new Array();
+    expected_array_2.push(
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician"); 
+    
+    var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
+    var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (6)), "%d/%m/%Y");
+    tsa_add_a_clinic(clinic_name, clinic_date, false, false);
+    
+    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_treatment_plan("W", "Manual", "", "Shared","");
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7");
+    
+    var pat_nhs = get_patient_nhs();
+    var patient_demographics = get_patient_demographics();
+    var email_address = patient_demographics[19];
+    warfarin_self_care("all");
+    
+    Log_Off();
+    
+    register_engage(email_address);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
+    
+    var schedule_data = new Array();
+    schedule_data = get_schedule_data();
+    
+    var result_set = new Array();
+    var result_set_1 = checkArrays(schedule_data, expected_array_1, test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    patient_search(pat_nhs);
+    var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (7));
+    var msg = tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date, 1);
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    schedule_data = get_schedule_data();
+    complete_schedule(0); //0 is the label index for the "yes" button
+    
+    var result_set_1 = checkArrays(schedule_data, expected_array_2, test_title);
+    result_set.push(result_set_1);
+  
+    var result_set_1 = compare_values(msg, expected_msg, test_title);
+    result_set.push(result_set_1);
+    
+    submit_INR_with_answers("2.5", 0, "2.5", 1, 1, 1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    var external_patient_data = get_hl7_patient_info(1);
+    var ext_nhs = external_patient_data[3];
+    result_set_1 = compare_values(pat_nhs, ext_nhs, test_title);
+    result_set.push(result_set_1);
+    
+    var ext_inr = external_patient_data[5];
+    result_set_1 = compare_values("2.5", ext_inr, test_title);
+    result_set.push(result_set_1);
+    
+    Log_Off();
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  } 
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Engage";
+    var test_name = "tc_move_ntb_back_from_seven_to_six_days_schedules_changed";
+    handle_failed_tests(suite_name, test_name);
+    restart_engage();
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_move_ntb_forward_from_five_to_seven_days_schedules_changed()
+{
+  try
+  {
+    var test_title = "Engage - Move NTD forward (5 day review to 7 day review - Generic Schedule Text is correctly appearing in Engage)";
+    login(7, "Shared");
+    
+    var expected_msg = "Changing the next test date could make the patient's existing dosing schedule inaccurate. Please contact the patient to advise on a suitable dosing schedule.";
+    var expected_array_1 = new Array();
+    expected_array_1.push(
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)",
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)"); 
+    var expected_array_2 = new Array();
+    expected_array_2.push(
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician", 
+    "   Take warfarin as advised by clinician",
+    "   Take warfarin as advised by clinician"); 
+    
+    var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
+    var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (7)), "%d/%m/%Y");
+    tsa_add_a_clinic(clinic_name, clinic_date, false, false);
+    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_treatment_plan("W", "Manual", "", "Shared","");
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "5.0", "5");
+    
+    var pat_nhs = get_patient_nhs();
+    var patient_demographics = get_patient_demographics();
+    var email_address = patient_demographics[19];
+    warfarin_self_care("all");
+    
+    Log_Off();
+    
+    register_engage(email_address);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
+    
+    var schedule_data = new Array();
+    schedule_data = get_schedule_data();
+    
+    var result_set = new Array();
+    var result_set_1 = checkArrays(schedule_data, expected_array_1, test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    patient_search(pat_nhs);
+    var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (5));
+    var msg = tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date, 1);
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    schedule_data = get_schedule_data();
+    complete_schedule(0); //0 is the label index for the "yes" button
+    
+    var result_set_1 = checkArrays(schedule_data, expected_array_2, test_title);
+    result_set.push(result_set_1);
+    var result_set_1 = compare_values(msg, expected_msg, test_title);
+    result_set.push(result_set_1);
+    submit_INR_with_answers("2.5", 0, "2.5", 1, 1, 1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    var external_patient_data = get_hl7_patient_info(1);
+    var ext_nhs = external_patient_data[3];
+    result_set_1 = compare_values(pat_nhs, ext_nhs, test_title);
+    result_set.push(result_set_1);
+    
+    var ext_inr = external_patient_data[5];
+    result_set_1 = compare_values("2.5", ext_inr, test_title);
+    result_set.push(result_set_1);
+    
+    Log_Off();
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  } 
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Engage";
+    var test_name = "tc_move_ntb_forward_from_five_to_seven_days_schedules_changed";
+    handle_failed_tests(suite_name, test_name);
+    restart_engage();
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
+{
+  try
+  {
+    var test_title = "Engage - Early INR (submitted by clinician) then delete treatment (Previous NTD in the future reinstating NTD, doses and schedule)";
+    login(7, "Shared");
+    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_treatment_plan("W", "Manual", "", "Shared","");
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))), "2.5", "5.0", "7");
+    
+    var pat_nhs = get_patient_nhs();
+    var patient_demographics = get_patient_demographics();
+    var email_address = patient_demographics[19];
+    warfarin_self_care("all");
+    
+    Log_Off();
+    
+    var expected_text = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a %d %b %Y") + "\n" + "1 x 5mg (Pink tablet) (5mg total for the day)";
+    var expected_date = "Due date: " + aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (5)), "%a %d %b %Y");
+    var expected_array = new Array();
+    expected_array.push(
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
+    "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)");
+    
+    register_engage(email_address);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
+    
+    var schedule_data = new Array();
+    var result_set = new Array();
+    var text = get_daily_dose();
+    var result_set_1 = compare_values(text, expected_text, test_title);
+    result_set.push(result_set_1);
+    
+    text = get_perform_inr_test_due_date();
+    result_set_1 = compare_values(text, expected_date, test_title);
+    result_set.push(result_set_1);
+    
+    schedule_data = get_schedule_data();
+    result_set_1 = checkArrays(schedule_data, expected_array, test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    patient_search(pat_nhs);
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7", "PoCT");
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    var expected_text_1 = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a %d %b %Y") + "\n" + "½ x 5mg (Pink tablet) (2.5mg total for the day)";
+    var expected_date_1 = "Due date: " + aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (7)), "%a %d %b %Y");
+    var expected_array_1 = new Array();
+    expected_array_1.push(
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)");
+    
+    text = get_daily_dose();
+    result_set_1 = compare_values(text, expected_text_1, test_title);
+    result_set.push(result_set_1);
+    
+    text = get_perform_inr_test_due_date();
+    result_set_1 = compare_values(text, expected_date_1, test_title);
+    result_set.push(result_set_1);
+    
+    schedule_data = get_schedule_data();
+    result_set_1 = checkArrays(schedule_data, expected_array_1, test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    patient_search(pat_nhs);
+    delete_treatment();
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    text = get_daily_dose();
+    result_set_1 = compare_values(text, expected_text, test_title);
+    result_set.push(result_set_1);
+    
+    text = get_perform_inr_test_due_date();
+    result_set_1 = compare_values(text, expected_date, test_title);
+    result_set.push(result_set_1);
+    
+    schedule_data = get_schedule_data();
+    result_set_1 = checkArrays(schedule_data, expected_array, test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  } 
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Engage";
+    var test_name = "tc_add_inr_update_inr_delete_inr_confirm_original_schedule";
+    handle_failed_tests(suite_name, test_name);
+    restart_engage();
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedule()
+{
+  try
+  {
+    var test_title = "Engage - Overdue INR (submitted by clinician) then delete treatment (Previous NTD in the past - removes non-completed tasks)";
+    login(7, "Shared");
+    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_treatment_plan("W", "Manual", "", "Shared","");
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", "5.0", "2");
+    
+    var pat_nhs = get_patient_nhs();
+    var patient_demographics = get_patient_demographics();
+    var email_address = patient_demographics[19];
+    warfarin_self_care("all");
+    
+    Log_Off();
+    
+    register_engage(email_address);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
+    
+    var result_set = new Array();
+    var task_text = engage_things_to_do_soon_panel().Panel(1).innerText;
+    var result_set_1 = compare_values(task_text, "You have no tasks", test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    patient_search(pat_nhs);
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7", "PoCT");
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    var expected_array = new Array();
+    expected_array.push(
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)");
+    
+    var schedule_data = get_schedule_data();
+    result_set_1 = checkArrays(schedule_data, expected_array, test_title);
+    result_set.push(result_set_1);
+    
+    complete_schedule(0); //0 is the label index for the "yes" button
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    patient_search(pat_nhs);
+    delete_treatment();
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    task_text = engage_things_to_do_soon_panel().Panel(1).innerText;
+    result_set_1 = compare_values(task_text, "You have no tasks", test_title);
+    result_set.push(result_set_1);
+    
+    var schedule_text = Goto_Understand_Schedule_Tab(false);
+    result_set_1 = compare_values(schedule_text, "Completed", test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  } 
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Engage";
+    var test_name = "tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedule";
+    handle_failed_tests(suite_name, test_name);
+    restart_engage();
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_submit_multiple_inrs_same_day_long_dose_schedule()
+{
+  try //this test will currently fail due to a known bug in engage
+  {
+    var test_title = "Engage - Correct behaviour when submitting multiple INRs on the same day, long dose schedule is displayed in engage";
+    login(7, "Shared");
+    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_treatment_plan("W", "Manual", "", "Shared","");
+    var dose = "1.0";
+    add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", dose, "3");
+    
+    var pat_nhs = get_patient_nhs();
+    var patient_demographics = get_patient_demographics();
+    var email_address = patient_demographics[19];
+    warfarin_self_care("all");
+    
+    Log_Off();
+    
+    register_engage(email_address);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
+    
+    var submitted_date_time = submit_INR_with_answers("2.2", 0, dose, 1, 1, 1);
+    submit_INR_with_answers("2.3", 0, dose, 1, 1, 1);
+        
+    log_off_engage();
+    login(5, "Shared");
+    
+    dose_patient_external_result(2);
+    
+    var external_dose_data = new Array();
+    external_dose_data = dose_external_result("2.5", "70 Days");
+    
+    var result_set = new Array();
+    var result_set_1 = compare_values(external_dose_data[0], "2.2", test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[1], aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[2], false, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[3], false, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[4], false, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[6], true, test_title);
+    result_set.push(result_set_1);
+    
+    var yesterday = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),-1), "%A %d-%b-%Y");
+    var expected_submission_comments = "Patient Self Testing INR taken on " + submitted_date_time +
+    " No bleeding event reported. Patient states that they took " + dose + "mg Warfarin on " + yesterday;
+    
+    result_set_1 = compare_values(external_dose_data[5], expected_submission_comments, test_title);
+    result_set.push(result_set_1);
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    var expected_array = new Array();
+    expected_array.push(
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)", 
+    "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)");
+    var expected_date = "Due date: " + aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (70)), "%a %d %b %Y");
+    
+    var schedule_data = get_schedule_data();
+    result_set_1 = checkArrays(schedule_data, expected_array, test_title);
+    result_set.push(result_set_1);
+    
+    var text = get_perform_inr_test_due_date();
+    result_set_1 = compare_values(text, expected_date, test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+    login(5, "Shared");
+    
+    dose_patient_external_result(1, 1);
+    
+    var external_dose_data = new Array();
+    external_dose_data = dose_external_result("2.5", "10 Days");
+    
+    var result_set = new Array();
+    var result_set_1 = compare_values(external_dose_data[0], "2.3", test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[1], aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[2], false, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[3], false, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[4], false, test_title);
+    result_set.push(result_set_1);
+    result_set_1 = compare_values(external_dose_data[6], true, test_title);
+    result_set.push(result_set_1);
+    
+    var yesterday = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),-1), "%A %d-%b-%Y");
+    var expected_submission_comments = "Patient Self Testing INR taken on " + submitted_date_time +
+    " No bleeding event reported. Patient states that they took " + dose + "mg Warfarin on " + yesterday;
+    
+    result_set_1 = compare_values(external_dose_data[5], expected_submission_comments, test_title);
+    result_set.push(result_set_1);
+    
+    Log_Off();
+    sign_in_engage(email_address);
+    
+    expected_date = "Due date: " + aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (10)), "%a %d %b %Y");
+    schedule_data = get_schedule_data();
+    result_set_1 = checkArrays(schedule_data, expected_array, test_title);
+    result_set.push(result_set_1);
+    complete_schedule(0); //0 is the label index for the "yes" button
+    
+    text = get_perform_inr_test_due_date();
+    result_set_1 = compare_values(text, expected_date, test_title);
+    result_set.push(result_set_1);
+    
+    log_off_engage();
+  
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  } 
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Engage";
+    var test_name = "tc_submit_multiple_inrs_same_day_long_dose_schedule";
+    handle_failed_tests(suite_name, test_name);
+    restart_engage();
   }
 }
 //--------------------------------------------------------------------------------

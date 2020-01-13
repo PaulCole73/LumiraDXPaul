@@ -269,13 +269,15 @@ function update_procedure_date(new_date)
   var date = aqConvert.DateTimeToFormatStr(new_date, "%d/%m/%Y");
   
   date_picker(date_path, date);
-  process_popup("Confirm you wish to change the procedure date", "Confirm");
+  var text = process_popup("Confirm you wish to change the procedure date", "Confirm");
   
   WaitSeconds(4, "Waiting for tables to update...");
+  return text;
 }
 //--------------------------------------------------------------------------------
 function update_bridging_lmwh(drug_index, popup_input)
 {
+  WaitSeconds(1, "Waiting to update LMWH...");
   var form = patient_treatment_bridging_tab().Panel("BridgingTabContent").Form("BridgingForm").Panel("BridgingTabContent");
   form.Panel("ProcedureDetailsContent").Panel(3).Select("ProcedureDetails_LMWH").ClickItem(drug_index);
   process_popup("Confirm you wish to change the LMWH", popup_input);
@@ -376,6 +378,8 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
 //--------------------------------------------------------------------------------
 function get_table_column_data(table_type, column_name, number_of_rows)
 {
+  WaitSeconds(2);  
+
   if(table_type == "pre-op")
   {
     bridging_schedule_preop_table().Refresh();

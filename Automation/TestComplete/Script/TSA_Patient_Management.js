@@ -296,7 +296,8 @@ function suspend_patient_confirmation_checker(exp_warn_mess)
   } 
   else 
   {
-    Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
+    Log.Warning("Message was displayed but the text did not match the expected result. It was: " 
+                + actual_warn_mess + " // Expected was: " + exp_warn_mess);
     return false;
   }
 } 

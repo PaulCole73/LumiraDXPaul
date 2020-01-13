@@ -83,8 +83,8 @@ function add_user_details(INRstarV5, driverUsers, p_username)
   
   formUser.Panel(0).Textbox("FullName").Text = driverUsers.Value(1);
   formUser.Panel(1).Textbox("Username").Text = p_username;
-  formUser.Panel(2).PasswordBox("Password").Text = "Password_1" //driver.Value(3);
-  formUser.Panel(3).PasswordBox("ConfirmPassword").Text = "Password_1" //driver.Value(3);
+  formUser.Panel(2).PasswordBox("Password").Text = "" //driver.Value(3);
+  formUser.Panel(3).PasswordBox("ConfirmPassword").Text = "" //driver.Value(3);
   
   formUser.Panel(4).SubmitButton("Add").Click();  
     

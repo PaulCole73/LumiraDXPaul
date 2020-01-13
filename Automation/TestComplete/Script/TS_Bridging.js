@@ -10,9 +10,13 @@ function ts_master_bridging(send_mail)
 {
   reset_folder();
 
+  ts_bridging_cacuk_1030();
+  ts_bridging_cacuk_1032();
+  /*
   ts_bridging_permissions();
   ts_bridging_button();
   ts_bridging_tab();
+  */
   
   email_and_archive(send_mail, "ts_bridging_master");
 }
@@ -84,15 +88,15 @@ function ts_bridging_cacuk_1030()
 //--------------------------------------------------------------------------------
 function ts_bridging_cacuk_1032()
 {
+  tc_bridging_amend_date_to_same_day_procedure_today();
+  tc_bridging_amend_date_to_same_day_procedure_yesterday();
+  tc_bridging_amend_date_to_same_day_procedure_tomorrow();
   tc_bridging_amend_date_to_future_procedure_is_today_0_day_schedule();
   tc_bridging_amend_date_to_past_procedure_is_today_0_day_schedule();
   tc_bridging_amend_date_to_future_procedure_is_today();
   tc_bridging_amend_date_to_past_procedure_is_today();
   tc_bridging_amend_date_to_today_procedure_in_the_future();
   tc_bridging_amend_date_to_today_procedure_in_the_past();
-  tc_bridging_amend_date_to_same_day_procedure_today();
-  tc_bridging_amend_date_to_same_day_procedure_yesterday();
-  tc_bridging_amend_date_to_same_day_procedure_tomorrow();
   tc_bridging_procedure_date_today_amend_to_past_max_schedule();
   tc_bridging_procedure_date_today_amend_to_future_max_schedule();
   tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and_then_back_to_original_date();

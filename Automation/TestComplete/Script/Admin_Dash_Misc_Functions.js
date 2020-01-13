@@ -46,7 +46,6 @@ function setup_automation_admin_dash(env_url)
 function set_admin_dash_url()
 {
   var base = "INRstarWindows";
-  Log.Message(environment);
   
   switch(environment)
   {
@@ -59,8 +58,21 @@ function set_admin_dash_url()
     case base + "Staging": 
     admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
     break;
+    case base + "Alderaan": 
+    admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+    break;
+    case base + "HothV4": 
+    admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
+    break;
+    case base + "TatooineV4": 
+    admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
+    break;
+    case base + "StagingV4": 
+    admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
+    break;
+    case base + "AlderaanV4": 
+    admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+    break;
   }
-  
-  Log.Message(admin_dash_url);
 }
 //--------------------------------------------------------------------------------

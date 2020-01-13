@@ -117,14 +117,24 @@ function send_hl7_message()
   WaitSeconds(15, "Waiting for HL7 message to send..."); //wait for hl7 message to process
 }
 //--------------------------------------------------------------------------------
-function dose_patient_external_result(table_position)
+function dose_patient_external_result(table_position, text_index)
 {
+  Goto_Patient_Results();
   if(table_position == null)
   {
     table_position = 1;
   }
   patient_external_results_table().Cell(table_position, 4).Panel(0).Panel("Div1").Button("DosePatient").Click();
-  var text = process_popup("Historic Treatment", "OK");
+  
+  var text;
+  if(text_index == null || text_index == 0)
+  {
+    text = process_popup("Historic Treatment", "OK");
+  }
+  else if(text_index == 1)
+  {
+    text = process_popup("Please confirm", "Confirm");
+  }
   
   return text;
 }
@@ -143,4 +153,59 @@ function validate_hl7_buttons(button_id)
   }
   
   return obj;
+}
+//--------------------------------------------------------------------------------
+function dose_external_result(dose, review_days)
+{
+  var external_result_data = new Array();
+  //results are entered into array in order "0: INR, 1: Date, 2: Checkbox 1, 3: Checkbox 2, 4: Checkbox 3, 5: Comments Box, 6: Checkbox 4"
+  
+  //check INR value is the same as entered into engage
+  var INR_value = pre_treatment_non_induct_path().Panel(1).Select("INR").wText;
+  external_result_data.push(INR_value);
+   
+  //check test date is the same as entered into engage
+  var INR_date = pre_treatment_non_induct_path().Panel(0).Label("Date_Value_DetachedLabel").contentText;
+  external_result_data.push(INR_date);
+   
+  //check the clinical question tickboxes
+  var changed_dose_checkbox = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRConfirm").Panel("LastTreatment").Checkbox("PatientChangedLastTreatment").checked;
+  external_result_data.push(changed_dose_checkbox);
+  pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRConfirm").Panel("LastTreatment").Checkbox("PatientChangedLastTreatment").ClickChecked(false);
+   
+  var missed_dose_checkbox = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRConfirm").Panel("MissedDose").Checkbox("MissedDoses").checked;
+  external_result_data.push(missed_dose_checkbox);
+      
+  var changed_medication_checkbox = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRConfirm").Panel("ChangedMedications").Checkbox("ChangedMedication").checked;
+  external_result_data.push(changed_medication_checkbox);
+ 
+  //check the comments contain the correct details entered into engage
+  var actual_submission_comments = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRConfirm").Panel("NewINRComments").Textarea("Comments").contentText;
+  external_result_data.push(actual_submission_comments);
+  
+  var self_check_tickbox = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRTestDetails").Fieldset("Options").Panel(2).Checkbox("SelfTested").checked;
+  external_result_data.push(self_check_tickbox); 
+  
+  //complete and save the treatment
+  var test_info_path = treatment_inr_test_info_path()
+  test_info_path.Panel(0).Select("Dose").ClickItem(dose);
+  test_info_path.Panel(2).Select("Review").ClickItem(review_days);
+   
+  var treatment_button_path = treatment_buttons_pre_schedule();
+  treatment_button_path.SubmitButton("SubmitManualDose").Click();
+  handle_poct_expired();
+  
+  //Confirm the values
+  var INRstarV5 = INRstar_base();
+  var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
+  wbt_Confirm.Click();
+ 
+  process_popup("Insert Confirmation", "Confirm");
+  WaitSeconds(2, "Saving the Treatment");
+ 
+  //Save the INR
+  var pending_treatment_buttons_path = pending_treatment_buttons();
+  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+  
+  return external_result_data;
 }

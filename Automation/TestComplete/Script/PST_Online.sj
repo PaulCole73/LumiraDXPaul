@@ -14,7 +14,7 @@ function RunYahoo()
   form = browser.pageYahooLogin.panelMbrDesktop.fieldsetMbrLoginFieldset.formMbrLoginForm;
   textbox = form.panelInputs.textboxLoginUsername;
   textbox.Click(62, 19);
-  textbox.SetText("deaninrstar@yahoo.com");
+  textbox.SetText("");
   button = form.buttonLoginSignin;
   button.ClickButton();
   form.panelPasswdField.passwordboxLoginPasswd.SetText("");
@@ -114,7 +114,7 @@ function RunHotmail()
   form = Aliases.iexplore1.pageSignIn.formF1;
   emailInput1 = form.emailinputI0116;
   form.panelIddivPwdUsernameexample.Click(23, 7);
-  emailInput1.Keys("dean.inrstar@hotmail.com");
+  emailInput1.Keys("");
   
   panel = Aliases.iexplore1.pageSignIn.formF1.panelIddivPwdPasswordtb;
   panel.panelIddivPwdPasswordexample.Click(53, 13);

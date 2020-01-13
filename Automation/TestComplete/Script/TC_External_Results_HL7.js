@@ -1,4 +1,4 @@
-﻿//USEUNIT TSA_External_Results_HL7
+//USEUNIT TSA_External_Results_HL7
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_external_results_hl7_message_todays_date_patient_match()
@@ -6,9 +6,16 @@ function tc_external_results_hl7_message_todays_date_patient_match()
   try
   {
     var test_title = "External Results: HL7 Message Dated Today - Match Patient";
-    login(22, "Shared"); 
-    add_patient("Regression", "HL7", "M", "Shared");
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
     
+    add_patient("Regression", "HL7", "M", "Shared");
     var patient_data_array = new Array();
     patient_data_array = get_patient_demographics();
     var nhs = patient_data_array[1];
@@ -46,10 +53,17 @@ function tc_external_results_hl7_message_4_days_passed_with_dosing()
   try
   {
     var test_title = "External Results: HL7 Message Dated 4 Days Past - Patient Dosing";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+    
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
-    
     var patient_data_array = new Array();
     patient_data_array = get_patient_demographics();
     var nhs = patient_data_array[1];
@@ -96,10 +110,16 @@ function tc_external_results_hl7_message_today_does_not_match_patient()
   try
   {
     var test_title = "External Results: HL7 Message Dated Today - Does Not Match Patient";
-    login(5, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
     
     var dt;
-    
     setup_hl7_message_data(dt, "123456", "123 456 7890", "surname", "firstname", "31-Dec-1990", "F", "address1", "address2", "address3", "address4", "pos cod", "2.5");
     send_hl7_message();
 
@@ -126,7 +146,15 @@ function tc_external_results_hl7_message_duplicate_entries_different_nhs()
   try
   {
     var test_title = "External Results: HL7 Message Dated Today - Different NHS Numbers, Find Patient";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+    
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -175,7 +203,15 @@ function tc_external_results_hl7_message_duplicate_entries_different_dob()
   try
   {
     var test_title = "External Results: HL7 Message Dated Today - Different DOB, Find Patient";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+    
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -224,7 +260,15 @@ function tc_external_results_hl7_message_duplicate_entries_bad_nhs()
   try
   {
     var test_title = "External Results: HL7 Message Dated Today - False NHS numbers, Find Patient";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+    
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -267,7 +311,15 @@ function tc_external_results_hl7_message_duplicate_entries_bad_dob()
   try
   {
     var test_title = "External Results: HL7 message with incorrect D.O.B is sent in twice";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+     
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -317,7 +369,15 @@ function tc_external_results_hl7_message_duplicate_entries_different_inrs()
   try
   {
     var test_title = "External Results: HL7 message with different INR's is sent twice";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+    
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -365,7 +425,15 @@ function tc_external_results_hl7_message_duplicate_entries_different_times()
   try
   {
     var test_title = "External Results: HL7 message with different time is sent twice";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+     
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -414,7 +482,15 @@ function tc_external_results_hl7_message_duplicate_entries_different_dates_same_
   try
   {
     var test_title = "External Results: HL7 message with same time but different date is sent twice";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+    
     add_patient("Regression", "HL7", "M", "Shared");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
@@ -464,7 +540,15 @@ function tc_external_results_hl7_message_duplicate_entries_no_nhs_same_patientid
   try
   {
     var test_title = "External Results: HL7 message with no NHS number but same Patient Id is sent twice";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+     
     var pat_no = new_guid(10);
     add_patient("Regression", "HL7", "M", "Shared", " ", pat_no);
     add_treatment_plan("W", "Manual", "", "Shared", "");
@@ -508,7 +592,15 @@ function tc_external_results_hl7_message_single_entry_no_nhs_no()
   try
   {
     var test_title = "External Results: HL7 message with no NHS number";
-    login(22, "Shared"); 
+    if(environment == "INRstarWindowsStaging" || environment == "INRstarWindowsStagingV4")
+    {
+      login(7, "Shared");
+    }
+    else
+    {
+      login(22, "Shared");
+    }
+     
     var pat_no = new_guid(10);
     add_patient("Regression", "HL7", "M", "Shared", " ", pat_no);
     add_treatment_plan("W", "Manual", "", "Shared", "");
