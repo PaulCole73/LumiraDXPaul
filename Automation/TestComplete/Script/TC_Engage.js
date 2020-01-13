@@ -1,9 +1,10 @@
-﻿//USEUNIT TSA_Engage
+//USEUNIT TSA_Engage
 //USEUNIT TSA_Patient
 //USEUNIT Failed_Test_Handlers
 //USEUNIT engage_System_Paths
 //USEUNIT TSA_Clinics_Appointments
 //USEUNIT TSA_External_Results_HL7
+//USEUNIT System_Paths
 //--------------------------------------------------------------------------------
 function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule()
 {
@@ -103,7 +104,6 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     register_engage(email_address);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
-    
     complete_schedule(0); //0 is the label index for the "yes" button
    
     //set INR and dose to be used for engage
@@ -172,6 +172,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     "   2 x 1mg (Brown tablet)\n(2mg total for the day)",);  
     result_set_1 = checkArrays(new_schedule, expected_schedule_array, test_title);
     result_set.push(result_set_1);
+    log_off_engage();
    
     log_off_engage();
     
@@ -1106,3 +1107,299 @@ function tc_submit_multiple_inrs_same_day_long_dose_schedule()
     restart_engage();
   }
 }
+//--------------------------------------------------------------------------------
+function ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_greater_than_5()
+{
+  try
+  {
+    var test_title = "Engage - Ensure urgent notification is displayed when patient submits an INR greater than 5";
+    login(5, "Shared");
+    add_patient("Regression", "Engage", "M", "Shared");
+    add_treatment_plan("W","Hillingdon","","Shared","");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.5", "0", "7", "2.5");
+    add_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))));
+    WaitSeconds(2);
+   
+    var pat_nhs = get_patient_nhs();
+    var patient_demographics = get_patient_demographics();
+    var email_address = patient_demographics[19];
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
+    Log_Off();
+   
+    register_engage(email_address);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
+   
+    //understand original schedule
+    complete_schedule(0);
+   
+    //set INR and dose to be used for engage
+    var INR = '6.8';
+    var dose = '2.5'
+    var submitted_date_time = submit_INR_with_answers(INR,0,dose,1,1,1);     
+    log_off_engage();
+   
+    login(5, "Shared");
+   
+    var result_set = new Array();
+    var urgent_message_text = get_urgent_patient_message_text(pat_nhs);
+    var expected_urgent_text = "INR is greater than 5"
+    var result_set_1 = compare_values(urgent_message_text, expected_urgent_text, test_title);
+    result_set.push(result_set_1);
+   
+    //process the external result from engage
+    Goto_Patient_Results();
+    dose_patient_external_result(1);
+   
+    var warning_message_check = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Panel("NewINRMessages").contentText;
+    var expected_warning_message = "Early INR test"
+    result_set_1 = data_contains_checker(warning_message_check,expected_warning_message,test_title);
+    result_set.push(result_set_1);
+   
+    //check INR value is the same as entered into engage
+    var INR_value = pre_treatment_non_induct_path().Panel(1).Select("INR").wText;
+    result_set_1 = compare_values(INR_value, INR, test_title);
+    result_set.push(result_set_1);
+   
+    //check test date is the same as entered into engage
+    var INR_date = pre_treatment_non_induct_path().Panel(0).Label("Date_Value_DetachedLabel").contentText;
+    result_set_1 = compare_values(INR_date, aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), test_title);
+    result_set.push(result_set_1);
+   
+    //check the clinical question tickboxes
+    var changed_dose_checkbox = patient_INR_treatment_questions().Panel("LastTreatment").Checkbox("PatientChangedLastTreatment").checked;
+    result_set_1 = compare_values(changed_dose_checkbox, false, test_title);
+    result_set.push(result_set_1);
+   
+    var missed_dose_checkbox = patient_INR_treatment_questions().Panel("MissedDose").Checkbox("MissedDoses").checked;
+    result_set_1 = compare_values(missed_dose_checkbox, false, test_title);
+    result_set.push(result_set_1);
+       
+    var changed_medication_checkbox = patient_INR_treatment_questions().Panel("ChangedMedications").Checkbox("ChangedMedication").checked;
+    result_set_1 = compare_values(changed_medication_checkbox, false, test_title);
+    result_set.push(result_set_1);
+   
+    Log.Message("clinical question tickboxes OK")
+   
+    //check the comments contain the correct details entered into engage
+    var yesterday = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),-1), "%A %d-%b-%Y");
+    var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+    var expected_submission_comments = "Patient Self Testing INR taken on " + submitted_date_time +
+    " No bleeding event reported. Patient states that they took " + dose + "mg Warfarin on " + yesterday;
+    result_set_1 = compare_values(actual_submission_comments, expected_submission_comments, test_title);
+    result_set.push(result_set_1);
+   
+    //complete and save the treatment - should be its own function
+    var save_button_pre_schedule = treatment_buttons_pre_schedule();
+    save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
+  
+    handle_poct_expired();
+       
+    // Click the Confirm button in the confirm window
+    process_popup("Please confirm that the following is correct", "Confirm");
+    WaitSeconds(1);
+    
+    //Click confirm on high INR warning
+    process_alternate_popup("Please acknowledge", "Confirm");
+  
+    //Save the INR
+    var pending_treatment_buttons_path = pending_treatment_buttons();
+    pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+    Log_Off();
+    
+    //login to engage
+    sign_in_engage(email_address);
+    //confirm the perform your INR test date - write a function to find the due date
+    var testDueDate = engage_things_to_do_soon_panel().Panel(1).Panel(4).textContent.split(": ");
+    var actualDueDate = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),+5), "%a %d %b %Y");
+    result_set_1 = compare_values(testDueDate[1],actualDueDate,test_title);
+    result_set.push(result_set_1);
+    //confirm the new schedule
+    var expected_schedule_array = new Array();
+    var new_schedule = get_schedule_data();
+    expected_schedule_array.push("   Do not take warfarin tablets today\n(0mg total for the day)","   Do not take warfarin tablets today\n(0mg total for the day)"
+    ,"   1½ x 1mg (Brown tablet)\n(1.5mg total for the day)","   1½ x 1mg (Brown tablet)\n(1.5mg total for the day)"
+    ,"   2 x 1mg (Brown tablet)\n(2mg total for the day)",);  
+    result_set_1 = checkArrays(new_schedule, expected_schedule_array, test_title);
+    result_set.push(result_set_1);
+    log_off_engage();
+   
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Engage";
+    var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medication_and_missed_dose_using_split_tablets()
+{
+  try
+  {
+    var test_title = "Engage - inrange INR with bleeding event incorrect previous dose change to medication and missed dose using split tablets";
+    login(5, "Shared");
+    add_patient("Regression", "Engage", "M", "Shared");
+    add_treatment_plan("W","Manual","","Shared","");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.5", "0", "14", "2.5");
+    WaitSeconds(2);
+   
+    var pat_nhs = get_patient_nhs();
+    var patient_demographics = get_patient_demographics();
+    var email_address = patient_demographics[19];
+    
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
+    Log_Off();
+   
+    register_engage(email_address);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
+   
+    //set INR and dose to be used for submit INR
+    var result_set = new Array(); 
+    var INR = '2.8';
+    var dose = '2.5'
+    var returnedText = submit_INR_with_answers(INR,1,dose,1,1,1);
+    var expectedText = "You have indicated that the INR value on this screen is not the same as the INR displayed on your machine. " +
+    "This could lead to incorrect dosing advice.\nPlease contact your anticoagulation clinic for further advice."
+    var result_set_1 = compare_values(returnedText, expectedText, test_title);
+    result_set.push(result_set_1);
+    cancel_submit_INR("leave");     
+    log_off_engage();
+   
+    login(5, "Shared");
+   
+    //search for the external result from engage and comfirm it has not been sent back
+    //retrieve the top patient details and compare to patient being tested
+    var top_patient_data = get_hl7_patient_info(1); //surname, firstname, dob, nhs, pat_no
+    var top_patient_data2 = new Array();
+    //remove dob from top_patient_data as all our patients have the same dob
+    top_patient_data2.push(top_patient_data[0], top_patient_data[1], top_patient_data[3], top_patient_data[4])
+    var test_patient_data = new Array();
+    test_patient_data.push(patient_demographics[3], patient_demographics[4], patient_demographics[1],patient_demographics[0]);
+    var result_set_1 = validate_arrays_dont_match(top_patient_data2, test_patient_data, test_title);
+    result_set.push(result_set_1);
+    Log_Off();
+   
+    //login to engage and submit INR again, different dose to yesterdays and yes to all questions
+    sign_in_engage(email_address);
+    var INR = '2.8';
+    var dose = '2.0'
+    var submitted_date_time = submit_INR_with_answers(INR,0,dose,0,0,0);
+    //complete the submit INR task
+    complete_things_to_do_today_task("Perform your INR test");   
+    log_off_engage();
+    
+    //check home page urgent message in engage
+    login(5, "Shared");
+    var urgent_message_text = get_urgent_patient_message_text(pat_nhs);
+    var expected_urgent_text = "Patient has stated bleeding has occurred"
+    var result_set_1 = compare_values(urgent_message_text, expected_urgent_text, test_title);
+    result_set.push(result_set_1);
+    
+    //dose the result from engage
+    Goto_Patient_Results();
+    dose_patient_external_result(1);
+    
+    //check INR value is the same as entered into engage
+    var INR_value = pre_treatment_non_induct_path().Panel(1).Select("INR").wText;
+    result_set_1 = compare_values(INR_value, INR, test_title);
+    result_set.push(result_set_1);
+   
+    //check test date is the same as entered into engage
+    var INR_date = pre_treatment_non_induct_path().Panel(0).Label("Date_Value_DetachedLabel").contentText;
+    result_set_1 = compare_values(INR_date, aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), test_title);
+    result_set.push(result_set_1);
+   
+    //check the clinical question tickboxes
+    var changed_dose_checkbox = patient_INR_treatment_questions().Panel("LastTreatment").Checkbox("PatientChangedLastTreatment").checked;
+    result_set_1 = compare_values(changed_dose_checkbox, true, test_title);
+    result_set.push(result_set_1);
+   
+    var missed_dose_checkbox = patient_INR_treatment_questions().Panel("MissedDose").Checkbox("MissedDoses").checked;
+    result_set_1 = compare_values(missed_dose_checkbox, true, test_title);
+    result_set.push(result_set_1);
+       
+    var changed_medication_checkbox = patient_INR_treatment_questions().Panel("ChangedMedications").Checkbox("ChangedMedication").checked;
+    result_set_1 = compare_values(changed_medication_checkbox, true, test_title);
+    result_set.push(result_set_1);
+   
+    Log.Message("Clinical question tickboxes OK")
+   
+    //check the comments contain the correct details entered into engage
+    var yesterday = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),-1), "%A %d-%b-%Y");
+    var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+    var expected_submission_comments = "Patient Self Testing INR taken on " + submitted_date_time +
+    " *** Patient has reported a bleeding event. *** Patient states that they took " + dose + "mg Warfarin on " + yesterday;
+    result_set_1 = compare_values(actual_submission_comments, expected_submission_comments, test_title);
+    result_set.push(result_set_1);
+    
+    //Uncheck the Changed their last prescribed dose
+    patient_INR_treatment_questions().Panel("LastTreatment").Checkbox("PatientChangedLastTreatment").Click();
+    var test_info_path = treatment_inr_test_info_path()
+    test_info_path.Panel(0).Select("Dose").ClickItem("1.5");
+    test_info_path.Panel(2).Select("Review").ClickItem("7 Days"); 
+   
+    //complete and save the treatment - should be its own function
+    var treatment_button_path = treatment_buttons_pre_schedule();
+    treatment_button_path.SubmitButton("SubmitManualDose").Click();
+    handle_poct_expired();
+  
+    //Confirm the values
+    var INRstarV5 = INRstar_base();
+    var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
+    wbt_Confirm.Click();
+ 
+    var popup = INRstarV5.NativeWebObject.Find("contentText", "Insert Confirmation");
+    if(popup.Exists == true)
+    {
+      process_popup("Insert Confirmation", "Confirm");
+    }
+  
+    WaitSeconds(2, "Saving the Treatment");
+ 
+    //Save the INR
+    var pending_treatment_buttons_path = pending_treatment_buttons();
+    pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+    Log_Off();
+ 
+    
+    //login to engage
+    sign_in_engage(email_address);
+    //confirm the perform your INR test date - write a function to find the due date
+    var testDueDate = engage_things_to_do_soon_panel().Panel(1).Panel(4).textContent.split(": ");
+    var actualDueDate = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),+5), "%a %d %b %Y");
+    result_set_1 = compare_values(testDueDate[1],actualDueDate,test_title);
+    result_set.push(result_set_1);
+    //confirm the new schedule
+    var expected_schedule_array = new Array();
+    var new_schedule = get_schedule_data();
+    expected_schedule_array.push("   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)","   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)"
+    ,"   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)","   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)"
+    ,"   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)","   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)"
+    ,"   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)");  
+    result_set_1 = checkArrays(new_schedule, expected_schedule_array, test_title);
+    result_set.push(result_set_1);
+    log_off_engage();
+   
+    var results = results_checker_are_true(result_set);
+    Log.Message(results);
+    results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Engage";
+    var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------

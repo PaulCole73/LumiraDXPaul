@@ -240,3 +240,10 @@ function engage_dosing_schedule()
   return questionaire;
 }
 //------------------------------------------------------------------------
+function engage_submit_INR_questionnaire()
+{
+  var base = engage_base();
+  var questionnaire = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
+  
+  return questionnaire;
+}
