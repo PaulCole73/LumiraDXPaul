@@ -3416,7 +3416,7 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
-    update_bridging_lmwh(3, "Confirm");
+    update_bridging_lmwh(1, "Confirm");
     
     var expected_title = "Tinzaparin (IU)";
     bridging_schedule_preop_table().Refresh();

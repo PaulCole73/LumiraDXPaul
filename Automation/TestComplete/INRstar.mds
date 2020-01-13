@@ -44,10 +44,12 @@
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="Bridging 1030/1032" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-						<testParameters>
-							<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-						</testParameters>
+					<testItem name="CACUK 1030" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+					<testItem name="CACUK 1032" key="{116B572A-4160-4A9D-81F5-60D37D412D3C}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1032" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
 						<children />
 					</testItem>
 					<testItem name="Re-try Failed Tests" key="{A7581979-2E11-4482-B90F-2BDED95D1449}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -276,7 +278,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{85A67BE8-AFD0-4B5E-B237-71137BF8BE6B}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -483,7 +485,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Engage" key="{5FDF27CD-0A0E-4D30-90D3-DA2DF02E3954}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Engage" key="{5FDF27CD-0A0E-4D30-90D3-DA2DF02E3954}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{C84E7F4A-84B2-4579-8C9A-DC06F6A5C918}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -541,7 +543,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Bridging" key="{5ABC41FE-D67D-4AC1-8A48-D449FC08B24D}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="TS_Bridging" key="{5ABC41FE-D67D-4AC1-8A48-D449FC08B24D}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>

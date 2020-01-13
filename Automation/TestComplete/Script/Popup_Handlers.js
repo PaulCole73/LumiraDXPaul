@@ -227,13 +227,24 @@ function process_blue_popup()
 {
   var INRstarV5 = INRstar_base();
   INRstarV5.Refresh();
-  var base = INRstarV5.Panel("MainPage");
-  var popup_obj =  base.FindChild("idStr", "changeMessageDialog3");
   
-  if(popup_obj.Exists)
+  WaitSeconds(3);
+  
+  var text = "All expired batches have been deactivated and should no longer be used. To add new test strip batch numbers please go to the Options tab / PoCT." + "\r\n\r\n\r\n" +
+  "Due to an update made to INRstar on 19-September-2019, test strip batch numbers now have to be recorded against point of care treatments. This is to ensure that the correct PoCT batch is recorded against the correct patient, in case of a test strip batch recall." + "\r\n" +
+  "OK";
+  
+  var obj = INRstarV5.NativeWebObject.Find("innerText", text);
+  
+  if(obj.Exists)
   {
+    var name = obj.Name;
+    var name_array = new Array();
+    name_array = name.split("\"");
+    var new_panel = name_array[1] + "Text"
+    
     Log.Message("Blue popup displayed.");
     Log.Message("Clicking 'OK' button.");
-    base.Panel("changeMessageDialog3").Panel("changeMessageDialog3Text").Panel(0).Panel(1).Button(0).Click();
+    obj.Panel(new_panel).Panel(0).Panel(1).Button(0).Click();
   }
 }
