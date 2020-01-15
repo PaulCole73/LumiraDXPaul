@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsStagingV4";
+var environment = "INRstarWindowsTatooine";
 var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
 var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
@@ -119,12 +119,12 @@ function checkArrays(arrA, arrB, mess)
   
   if(arrA.length !== arrB.length) 
   {
-    Log.Warning(mess + "//" + arrA + "//" + arrB + "//");
+    Log.Message(mess + "//" + arrA + "//" + arrB + "//");
     return false;
   }
-  for(var i=0;i<arrA.length;i++)
+  for(var i = 0; i < arrA.length; i++)
   {
-    if(arrA[i]!=arrB[i])
+    if(arrA[i] != arrB[i])
     { 
       Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
       return false;
@@ -141,11 +141,11 @@ function validate_arrays_dont_match(arrA, arrB, mess)
     return false;
   }
   
-  for(var i=0;i<arrA.length;i++)
+  for(var i = 0; i < arrA.length; i++)
   {
     if(arrA[i] == arrB[i])
     { 
-      Log.Message(mess + " - TEST FAILED" + ' ON the following ' + arrB[i] + ' was the same as ' + arrA[i])
+      Log.Message(mess + "Failed: Data 1 was: " + arrB[i] + "// Data 2 was: " + arrA[i]);
       return false;
     }   
   }
@@ -750,10 +750,16 @@ function WaitSeconds(seconds, p_text)
   }  
 }
 //-----------------------------------------------------------------------------------
-function wait_for_object(obj_root, obj_property, obj_value, depth)
+function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time)
 {
   var INRstarV5 = INRstar_base();
-  var counter = 0;  
+  var counter = 0; 
+  Log.Message(obj_value);
+  
+  if(wait_time == null)
+  {
+    wait_time = 3;
+  }
 
   do
   {
@@ -766,7 +772,13 @@ function wait_for_object(obj_root, obj_property, obj_value, depth)
     if(obj.Exists == false)
     {
       Log.Message("--------------------- Slow performance. Waiting for object... ---------------------","",500);
-      WaitSeconds(3, "Waiting for object...");
+      WaitSeconds(wait_time, "Waiting for object...");
+    }
+    else
+    {
+      Log.Message(obj.Name);
+      Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
+      Log.Message("The object is enabled: " + obj.Enabled);
     }
   }
   while(obj.Exists == false && counter < 5);

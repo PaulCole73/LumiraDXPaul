@@ -362,6 +362,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     WaitSeconds(2, "Waiting to save...");
 
     // Click confirm panel
+    process_popup("Please confirm treatment date", "Confirm");
     process_popup("Please confirm that the following is correct", "Confirm");
     
     WaitSeconds(5, "Waiting for Add Historic...");
