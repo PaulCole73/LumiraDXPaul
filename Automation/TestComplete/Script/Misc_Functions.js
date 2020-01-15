@@ -763,6 +763,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time)
 
   do
   {
+    var is_obj_valid = false;
     INRstarV5.Refresh();
     obj_root.Refresh();
     var root = obj_root;
@@ -779,9 +780,15 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time)
       Log.Message(obj.Name);
       Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
       Log.Message("The object is enabled: " + obj.Enabled);
+      obj.scrollIntoView();
+      
+      if(obj.VisibleOnScreen)
+      {
+        is_obj_valid = true;
+      }
     }
   }
-  while(obj.Exists == false && counter < 5);
+  while(is_obj_valid == false && counter < 5);
   
   return obj;
 }

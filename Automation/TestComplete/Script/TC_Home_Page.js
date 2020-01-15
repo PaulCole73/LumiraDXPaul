@@ -572,3 +572,42 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
   }
 }
 //--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+//wait for object testing/demo function
+function test()
+{
+  login(5, "Shared");
+  
+  var INRstarV5 = INRstar_base();
+  
+  var obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  
+  obj = wait_for_object(obj_root, "idStr", "PatientsWithNoDiagnosisHeaderLink", 4, 2);
+  
+  if(obj.Exists)
+  {
+    obj.Click();
+    WaitSeconds(10);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
