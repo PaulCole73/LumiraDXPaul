@@ -16,7 +16,6 @@ function ts_master_external_patient_lookup(send_mail)
   tc_external_patient_lookup_new_inr();
   tc_external_patient_lookup_add_historic_inr();
   tc_external_patient_lookup_same_day_maintenance_treatment();
-  tc_external_patient_lookup_add_historic_inr();
   tc_external_patient_lookup_delete_multiple_inr();
   tc_external_patient_lookup_add_adverse_event();
   tc_external_patient_lookup_add_note();

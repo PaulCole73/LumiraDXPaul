@@ -52,7 +52,7 @@ function tc_clinics_make_appointment_today_for_overdue_patient()
     
     add_patient('Regression', 'appointment_overdue', 'M', 'Shared');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-15))), "2.0", "2.0", "0", "7", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6300))), "2.0", "2.0", "0", "7", "2.5");
     
     var result_set = new Array();
     var name = get_patient_fullname();

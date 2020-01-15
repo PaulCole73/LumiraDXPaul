@@ -421,10 +421,17 @@ function tc_clinics_weeks_to_progress(clinic_date, current_test_date)
   {
     //the default date for clinics page will be the current clinic
     var t_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(current_test_date));
-    //work out the numeric day of the week value
+    //work out the numeric day of the week value, adjusts return so monday is day 1
     var day_of_week = aqDateTime.GetDayOfWeek(t_date);
+    day_of_week -= 1;
+    
+    if(day_of_week == 0)
+    {
+      day_of_week = 7;
+    }
+    
     //calculate number of days between ntd and monday of that week
-    var days_to_monday = 2 - day_of_week;
+    var days_to_monday = 1 - day_of_week;
     //work out mondays date
     var m_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(aqDateTime.AddDays(current_test_date, days_to_monday)));
     //get time interval between monday and the clinic to make appointment in

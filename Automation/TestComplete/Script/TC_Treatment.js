@@ -57,7 +57,7 @@ function tc_treatment_add_a_manual_INR()
   try
   {
     var test_title = 'Treatment - Add a manual INR'
-    login(5, "Shared");
+    login(7, "Shared");
     add_patient('Regression', 'Manual_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'2.0','2.5','7');

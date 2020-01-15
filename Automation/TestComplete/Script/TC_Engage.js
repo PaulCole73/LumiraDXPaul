@@ -1,4 +1,4 @@
-//USEUNIT TSA_Engage
+﻿//USEUNIT TSA_Engage
 //USEUNIT TSA_Patient
 //USEUNIT Failed_Test_Handlers
 //USEUNIT engage_System_Paths
@@ -54,11 +54,11 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
     result_set.push(result_set_1);
     
     log_off_engage();
-    
     login(5, "Shared");
     
-    result_set_1 = get_urgent_patient_message(pat_nhs);
-    result_set.push(result_set_1);
+    var temp = get_urgent_patient_message_text(pat_nhs);
+    result_set_1 = compare_values(temp, false, test_title);
+    result_set.push(results_checker_are_false(result_set_1));
     
     var results = results_checker_are_true(result_set);
     Log.Message(results);
@@ -172,13 +172,12 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     "   2 x 1mg (Brown tablet)\n(2mg total for the day)",);  
     result_set_1 = checkArrays(new_schedule, expected_schedule_array, test_title);
     result_set.push(result_set_1);
-    log_off_engage();
-   
-    log_off_engage();
     
     var results = results_checker_are_true(result_set);
     Log.Message(results);
     results_checker(results, test_title);
+    
+    log_off_engage();
   }
   catch(e)
   {
@@ -197,7 +196,7 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     var test_title = "Engage - New historical treatment is not most recent with NTD greater than existing NTD";
     login(5, "Shared");
     add_patient("Regression", "Engage", "M", "Shared"); 
-    add_treatment_plan("W","Manual","","Shared","");
+    add_treatment_plan("W", "Manual", "", "Shared", "");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.Today()), "2.0", "2.5", "7");
     
     var pat_nhs = get_patient_nhs();
@@ -205,7 +204,7 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     var email_address = patient_demographics[19];
     
     //enroll the patient onto engage self-care
-    warfarin_self_care('all');
+    warfarin_self_care("all");
     Log_Off();
     
     register_engage(email_address);
@@ -215,31 +214,21 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     //needs features in here
     var result_set = new Array();
     var daily_dose_text_1 = get_daily_dose();
-    //this needs to be its own function
-    engage_things_to_do_today_panel().Panel(1).Panel(0).Panel(0).Click();
-    
     var schedule_data_1 = new Array();
     schedule_data_1 = get_schedule_data();
     
     log_off_engage();
-    
     login(5, "Shared");
     
     patient_search(pat_nhs);
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.0", "0", "14", "2.5");
     
     Log_Off();
-    
     sign_in_engage(email_address);
     
     var daily_dose_text_2 = get_daily_dose();
-    //this needs to be its own function
-    engage_things_to_do_today_panel().Panel(1).Panel(0).Panel(0).Click();
-    
     var schedule_data_2 = new Array();
     schedule_data_2 = get_schedule_data();
-    
-    log_off_engage();
     
     var result_set_1 = compare_values(daily_dose_text_1, daily_dose_text_2, test_title);
     result_set.push(result_set_1);
@@ -250,6 +239,8 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     var results = results_checker_are_true(result_set);
     Log.Message(results);
     results_checker(results, test_title);
+    
+    log_off_engage();
   } 
   catch(e)
   {
@@ -736,6 +727,7 @@ function tc_move_ntb_forward_from_five_to_seven_days_schedules_changed()
     Log_Off();
     sign_in_engage(email_address);
     
+    var schedule_data = new Array();
     schedule_data = get_schedule_data();
     complete_schedule(0); //0 is the label index for the "yes" button
     
@@ -1245,15 +1237,15 @@ function inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medic
   {
     var test_title = "Engage - inrange INR with bleeding event incorrect previous dose change to medication and missed dose using split tablets";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared");
-    add_treatment_plan("W","Manual","","Shared","");
+    var pat_no = new_guid(8);
+    add_patient("Regression", "Engage", "M", "Shared", "", pat_no);
+    add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.5", "0", "14", "2.5");
     WaitSeconds(2);
    
     var pat_nhs = get_patient_nhs();
     var patient_demographics = get_patient_demographics();
     var email_address = patient_demographics[19];
-    
    
     //enroll the patient onto engage self-care
     warfarin_self_care('all');
@@ -1266,15 +1258,15 @@ function inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medic
     //set INR and dose to be used for submit INR
     var result_set = new Array(); 
     var INR = '2.8';
-    var dose = '2.5'
+    var dose = '2.5';
     var returnedText = submit_INR_with_answers(INR,1,dose,1,1,1);
     var expectedText = "You have indicated that the INR value on this screen is not the same as the INR displayed on your machine. " +
     "This could lead to incorrect dosing advice.\nPlease contact your anticoagulation clinic for further advice."
     var result_set_1 = compare_values(returnedText, expectedText, test_title);
     result_set.push(result_set_1);
-    cancel_submit_INR("leave");     
+    cancel_submit_INR("leave"); 
+        
     log_off_engage();
-   
     login(5, "Shared");
    
     //search for the external result from engage and comfirm it has not been sent back
@@ -1284,7 +1276,7 @@ function inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medic
     //remove dob from top_patient_data as all our patients have the same dob
     top_patient_data2.push(top_patient_data[0], top_patient_data[1], top_patient_data[3], top_patient_data[4])
     var test_patient_data = new Array();
-    test_patient_data.push(patient_demographics[3], patient_demographics[4], patient_demographics[1],patient_demographics[0]);
+    test_patient_data.push(patient_demographics[3], patient_demographics[4], patient_demographics[1], patient_demographics[0]);
     var result_set_1 = validate_arrays_dont_match(top_patient_data2, test_patient_data, test_title);
     result_set.push(result_set_1);
     Log_Off();
@@ -1337,8 +1329,10 @@ function inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medic
     //check the comments contain the correct details entered into engage
     var yesterday = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),-1), "%A %d-%b-%Y");
     var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+    
     var expected_submission_comments = "Patient Self Testing INR taken on " + submitted_date_time +
     " *** Patient has reported a bleeding event. *** Patient states that they took " + dose + "mg Warfarin on " + yesterday;
+    
     result_set_1 = compare_values(actual_submission_comments, expected_submission_comments, test_title);
     result_set.push(result_set_1);
     
@@ -1363,29 +1357,32 @@ function inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medic
     {
       process_popup("Insert Confirmation", "Confirm");
     }
-  
     WaitSeconds(2, "Saving the Treatment");
  
     //Save the INR
     var pending_treatment_buttons_path = pending_treatment_buttons();
     pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
-    Log_Off();
- 
     
-    //login to engage
+    Log_Off();
     sign_in_engage(email_address);
+    
     //confirm the perform your INR test date - write a function to find the due date
     var testDueDate = engage_things_to_do_soon_panel().Panel(1).Panel(4).textContent.split(": ");
     var actualDueDate = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),+5), "%a %d %b %Y");
     result_set_1 = compare_values(testDueDate[1],actualDueDate,test_title);
     result_set.push(result_set_1);
+    
     //confirm the new schedule
     var expected_schedule_array = new Array();
     var new_schedule = get_schedule_data();
-    expected_schedule_array.push("   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)","   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)"
-    ,"   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)","   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)"
-    ,"   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)","   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)"
-    ,"   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)");  
+    expected_schedule_array.push(
+    "   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)",
+    "   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)",
+    "   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)",
+    "   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)",
+    "   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)",
+    "   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)",
+    "   ½ x 3mg (Blue tablet)\n(1.5mg total for the day)");  
     result_set_1 = checkArrays(new_schedule, expected_schedule_array, test_title);
     result_set.push(result_set_1);
     log_off_engage();

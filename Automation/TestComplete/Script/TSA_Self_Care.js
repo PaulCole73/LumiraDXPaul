@@ -33,9 +33,9 @@ function warfarin_self_care(stage)
     stage_four_buttons.Panel(0).Checkbox("Program_Warfarin_Self_Testing_Phases_Stage_4_1_Content_Input").ClickChecked(true);
     stage_four_buttons.Button("Program_Warfarin_Self_Testing_Phases_Stage_4_3_Content_Input").Click();
     INRstar_base().Panel(3).Panel(1).Panel(0).Button(1).TextNode(0).Click();
-    WaitSeconds(3, "Waiting to dis-enorol...");
+    WaitSeconds(3, "Waiting to dis-enrol...");
   } 
-  else if (stage=='all')
+  else if (stage == "all")
   {
     enrol_button.Click();
     stage_one_buttons.Panel(0).Checkbox("Program_Warfarin_Self_Testing_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
