@@ -462,47 +462,30 @@ function change_reg_practice(prac_name)
       
       break;
     }
-    else 
-    {
-      Log.Error('Location was not found');
-    } 
   }
 } 
 //--------------------------------------------------------------------------------
 function change_test_practice(prac_name)
 {
+  Goto_Change_Testing_Location();
+  WaitSeconds(2);
+ 
+  var pat_management_test_practice_search_path = pat_management_test_practice_search();
 
- Goto_Change_Testing_Location();
- WaitSeconds(2);
+  pat_management_test_practice_search_path.Select("SearchType").ClickItem("Name");
+  pat_management_test_practice_search_path.Textbox("SearchCriteria").Text = prac_name;
+  pat_management_test_practice_search_path.SubmitButton("Search").Click()
  
-// var test_loc_confirm_pop_up_buttons_path = warning_pop_up();
-// var button = test_loc_confirm_pop_up_buttons_path.Button(1);
-// 
-// if(button.Exists)
-// {
-//  button.Click();
-// }
+  var test_practice_table_path = test_practice_table();
+  var row_count = test_practice_table_path.rowcount;
  
- var pat_management_test_practice_search_path = pat_management_test_practice_search();
-
- pat_management_test_practice_search_path.Select("SearchType").ClickItem('Name');
- pat_management_test_practice_search_path.Textbox("SearchCriteria").Text = prac_name
- pat_management_test_practice_search_path.SubmitButton("Search").Click()
- 
- var test_practice_table_path = test_practice_table();
- var row_count = test_practice_table_path.rowcount;
- 
- for(i=1; i<row_count; i++) 
+  for(i=1; i<row_count; i++) 
   {
-     if(test_practice_table_path.Cell(i, 0).contentText==prac_name)
-     {           
-        test_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
-        i = row_count
-     }
-     else 
-     {
-       Log.Warning('Location was not found');
-     } 
+    if(test_practice_table_path.Cell(i, 0).contentText==prac_name)
+    {           
+      test_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
+      break;
+    } 
   }
   
   var pat_management_change_test_loc_path = pat_management_change_test_loc();
@@ -514,33 +497,28 @@ function change_test_practice(prac_name)
 //--------------------------------------------------------------------------------
 function change_test_practice_with_warning(prac_name)
 {
+  Goto_Change_Testing_Location();
+  WaitSeconds(2)
+ 
+  var test_loc_confirm_pop_up_buttons_path = warning_pop_up();
+  var button = test_loc_confirm_pop_up_buttons_path.Button(1).Click();
+ 
+  var pat_management_test_practice_search_path = pat_management_test_practice_search();
 
- Goto_Change_Testing_Location();
- WaitSeconds(2)
+  pat_management_test_practice_search_path.Select("SearchType").ClickItem("Name");
+  pat_management_test_practice_search_path.Textbox("SearchCriteria").Text = prac_name;
+  pat_management_test_practice_search_path.SubmitButton("Search").Click()
  
- var test_loc_confirm_pop_up_buttons_path = warning_pop_up();
- var button = test_loc_confirm_pop_up_buttons_path.Button(1).Click();
+  var test_practice_table_path = test_practice_table();
+  var row_count = test_practice_table_path.rowcount;
  
- var pat_management_test_practice_search_path = pat_management_test_practice_search();
-
- pat_management_test_practice_search_path.Select("SearchType").ClickItem('Name');
- pat_management_test_practice_search_path.Textbox("SearchCriteria").Text = prac_name
- pat_management_test_practice_search_path.SubmitButton("Search").Click()
- 
- var test_practice_table_path = test_practice_table();
- var row_count = test_practice_table_path.rowcount;
- 
- for(i=1; i<row_count; i++) 
+  for(var i = 1; i < row_count; i++) 
   {
-     if(test_practice_table_path.Cell(i, 0).contentText==prac_name)
-     {           
-        test_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
-        i = row_count
-     }
-     else 
-     {
-       Log.Warning('Location was not found');
-     } 
+    if(test_practice_table_path.Cell(i, 0).contentText == prac_name)
+    {           
+      test_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
+      break;
+    }
   }
   
   var pat_management_change_test_loc_path = pat_management_change_test_loc();
@@ -561,169 +539,81 @@ function get_patient_reg_prac()
 //--------------------------------------------------------------------------------
 function check_transfer_test_location_errors()
 {
-   Goto_Patient_Management()
-   var pat_managment_tab_preferences_buttons_path = pat_managment_tab_preferences_buttons();
-   pat_managment_tab_preferences_buttons_path.Button("EditPatientTestingSectionLink").Click();
-   var wording_check = popup_error_checker('This patient cannot be transferred because they have a pending treatment.')
+  Goto_Patient_Management()
+  var pat_managment_tab_preferences_buttons_path = pat_managment_tab_preferences_buttons();
+  pat_managment_tab_preferences_buttons_path.Button("EditPatientTestingSectionLink").Click();
+  var wording_check = popup_error_checker("This patient cannot be transferred because they have a pending treatment.")
    
-   return wording_check;
+  return wording_check;
 } 
 //--------------------------------------------------------------------------------
 function check_transfer_test_location_warning()
 {
-   Goto_Change_Testing_Location();
-   var wording_check = popup_warning_checker('This patient\'s dosing method is currently set to Induction Fast Fennerty Gedge Protocol. Are you sure you want to transfer them?')
+  Goto_Change_Testing_Location();
+  var wording_check = popup_warning_checker("This patient's dosing method is currently set to Induction Fast Fennerty Gedge Protocol. Are you sure you want to transfer them?");
    
-   WaitSeconds(2);
+  WaitSeconds(2);
    
-   var test_loc_confirm_pop_up_buttons_path = warning_pop_up();
-   test_loc_confirm_pop_up_buttons_path.Button(1).Click();
+  var test_loc_confirm_pop_up_buttons_path = warning_pop_up();
+  test_loc_confirm_pop_up_buttons_path.Button(1).Click();
    
-   return wording_check;
+  return wording_check;
 }
 //--------------------------------------------------------------------------------
 function accept_transfer_with_warning(messagename) 
 {
-  try
+  Goto_Home();
+  WaitSeconds(2);
+  var home_page_messages_path = home_page_messages();
+  home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
+  WaitSeconds(3);
+    
+  var transfer_list_table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
+  var row_count = transfer_list_table.rowcount;
+    
+  for(var i = 1; i < row_count; i++) 
   {
-    Goto_Home();
-    WaitSeconds(2);
-    var home_page_messages_path = home_page_messages();
-    home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    WaitSeconds(3);
-    
-    var transfer_list_table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
-    var row_count = transfer_list_table.rowcount;
-    
-    for(i=1; i<row_count; i++) 
-    {
-      var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
-      if(transfer_list_pat==messagename)
-      { 
-        while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-        {
-          transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-        }       
-        transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-        process_popup("Please confirm to continue", "Confirm");
-        return true;
-      }
+    var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
+    if(transfer_list_pat == messagename)
+    { 
+      while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen == false)
+      {
+        transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
+      }       
+      transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+      process_popup("Please confirm to continue", "Confirm");
+      return true;
     }
-    Log.Message('Patient was not found on the list')
   }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    restart_INRstar();
-  }
+  Log.Message("Patient was not found on the list")
 } 
 //--------------------------------------------------------------------------------
 function accept_transfer(messagename)
 {
-  try
+  Goto_Home();
+  var home_page_messages_path = home_page_messages();
+  home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
+  WaitSeconds(2);
+    
+  var transfer_list_table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
+  var row_count = transfer_list_table.rowcount;
+    
+  for(var i = 1; i < row_count; i++) 
   {
-    Goto_Home();
-    var home_page_messages_path = home_page_messages();
-    home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    WaitSeconds(2);
-    
-    var transfer_list_table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
-    var row_count = transfer_list_table.rowcount;
-    
-    for(i=1; i<row_count; i++) 
-    {
-      var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
-      if(transfer_list_pat==messagename)
-      { 
-        while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-        {
-          transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-        }       
-        transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
-        return true;
-      }
+    var transfer_list_pat = transfer_list_table.Cell(i, 0).contentText;
+    if(transfer_list_pat == messagename)
+    { 
+      while(transfer_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen == false)
+      {
+        transfer_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
+      }       
+      transfer_list_table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+      return true;
     }
-    Log.Message('Patient was not found on the list')
   }
-  catch(e)
-  {
-    Log.Warning("Function - Accept Transfer - FAILED Exception Occured = " + e);
-    restart_INRstar();
-  }
+  Log.Message("Patient was not found on the list");
 } 
 
-//--------------------------------------------------------------------------------
-function find_patient_overdue_list(messagename) //possibly duplication with home page
-{
-  try
-  {
-    Goto_Home();
-    WaitSeconds(3);
-    var test_title = 'Patient Management - Suspending an overdue patient removes them from the overdue report'
-    var home_page_messages_path = home_page_messages();
-    home_page_messages_path.Link("OverduePatientHeaderLink").Click();
-    WaitSeconds(3);
-    
-    var overdue_list_table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
-    var row_count = overdue_list_table.rowcount;
-    
-    for(i=1; i<row_count; i++) 
-    {
-      var overdue_list_pat = overdue_list_table.Cell(i, 0).contentText;
-      if(overdue_list_pat == messagename)
-      { 
-        while(overdue_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-        {
-          overdue_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-        }       
-        return true;
-      }
-    }
-    Log.Message("Patient was not found on the list");
-    return false;
-  }
-  catch(e)
-  {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar(); 
-  }
-} 
-//--------------------------------------------------------------------------------
-function dont_find_patient_overdue_list(messagename) //possibly duplication with home page
-{
-  try
-  {
-    Goto_Home();
-    WaitSeconds(3);
-    var test_title = 'Patient Management - Suspending an overdue patient removes them from the overdue report'
-    var home_page_messages_path = home_page_messages();
-    home_page_messages_path.Link("OverduePatientHeaderLink").Click();
-    WaitSeconds(3);
-    
-    var overdue_list_table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
-    var row_count = overdue_list_table.rowcount;
-    
-    for(i=1; i<row_count; i++) 
-    {
-      var overdue_list_pat = overdue_list_table.Cell(i, 0).contentText;
-      if(overdue_list_pat==messagename)
-      { 
-        while(overdue_list_table.Cell(i, 0).Link("PatientLink").VisibleOnScreen==false)
-        {
-          overdue_list_table.Cell(i, 0).Link("PatientLink").ScrollIntoView(true);
-        }       
-        return false;
-      }
-    }
-    Log.Message('Patient was not found on the list');
-    return true;
-  }
-  catch(e)
-  {
-    Log.Warning('Test "' + test_title + '" FAILED Exception Occured = ' + e);
-    restart_INRstar();
-  }
-} 
 //--------------------------------------------------------------------------------
 
 

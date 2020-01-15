@@ -20,7 +20,7 @@ function process_popup(header, button)
   
   if(header == "Important Information")
   {
-    WaitSeconds(3);
+    WaitSeconds(5);
   }
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
   if (wbx.Exists == false || wbx.Height == 0)

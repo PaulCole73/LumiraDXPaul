@@ -13,9 +13,9 @@ function Goto_Home()
 {
   var INRstarV5 = INRstar_base();
   var obj_root = INRstarV5.Panel("MainPage").Panel("header");
-  
   wait_for_object(INRstarV5, "idStr", "HomeLink", 3, 3);
   
+  WaitSeconds(2, "Waiting...");
   var obj = obj_root.Link("HomeLink").Click();
   
   obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");

@@ -578,7 +578,8 @@ function get_overdue_patient(patient_name)
   if(link.Exists == true)
   {
     home_page_messages_path.Link("OverduePatientHeaderLink").Click();
-    var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
+    var table = wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
+    //var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
     
     for(var i = 1; i < table.rowCount; i++)
     {
@@ -588,10 +589,12 @@ function get_overdue_patient(patient_name)
         table.Cell(i, 0).scrollIntoView(true);
         WaitSeconds(2, "Waiting to click...");
         table.Cell(i, 0).Click();
+        return true;
         break;
       }
     }
   }
+  return false;
   WaitSeconds(4, "Waiting to go to patient...");
 }
 //--------------------------------------------------------------------------------

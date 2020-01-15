@@ -421,7 +421,7 @@ function tc_clinics_weeks_to_progress(clinic_date, current_test_date)
   {
     //the default date for clinics page will be the current clinic
     var t_date = aqConvert.DateTimeToStr(aqConvert.StrToDate(current_test_date));
-    //work out the numeric day of the week value
+    //work out the numeric day of the week value, adjusts return so monday is day 1
     var day_of_week = aqDateTime.GetDayOfWeek(t_date);
     day_of_week -= 1;
     

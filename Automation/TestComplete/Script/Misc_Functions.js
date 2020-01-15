@@ -696,7 +696,7 @@ function restart_INRstar()
 {
   var path = Sys.Process("INRstarWindows").Path;
   Log.Message(path);
-  Sys.Process("INRstarWindows").Close();
+  Sys.Process("INRstarWindows").Terminate();
   WaitSeconds(2, "Waiting to close...");
   Win32API.WinExec(path, SW_SHOWNORMAL);
   Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Maximize();
@@ -753,8 +753,7 @@ function WaitSeconds(seconds, p_text)
 function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time)
 {
   var INRstarV5 = INRstar_base();
-  var counter = 0; 
-  Log.Message(obj_value);
+  var counter = 0;
   
   if(wait_time == null)
   {
@@ -777,7 +776,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time)
     }
     else
     {
-      Log.Message(obj.Name);
+      Log.Message(obj.FullName);
       Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
       Log.Message("The object is enabled: " + obj.Enabled);
       obj.scrollIntoView();
@@ -789,7 +788,6 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time)
     }
   }
   while(is_obj_valid == false && counter < 5);
-  
   return obj;
 }
 
