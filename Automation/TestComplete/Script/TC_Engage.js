@@ -1200,7 +1200,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Engage";
-    var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule";
+    var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_greater_than_5";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -1332,7 +1332,7 @@ function tc_inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_me
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Engage";
-    var test_name = "tc_ensure_urgent_notification_is_displayed_when_patient_does_not_understand_their_schedule";
+    var test_name = "tc_inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medication_and_missed_dose_using_split_tablets";
     handle_failed_tests(suite_name, test_name);
   }
 }
