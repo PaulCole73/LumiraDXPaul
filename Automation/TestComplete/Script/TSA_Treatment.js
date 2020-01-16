@@ -404,7 +404,8 @@ function add_manual_treatment(date, inr, dose, review, tm)
    
   var treatment_button_path = treatment_buttons_pre_schedule();
   treatment_button_path.SubmitButton("SubmitManualDose").Click();
-  handle_poct_expired();
+  //handle_poct_expired();
+  process_popup("PoCT Batch Expired", "Confirm");
   
   //Confirm the values
   var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
