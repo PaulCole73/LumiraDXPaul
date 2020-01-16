@@ -504,22 +504,24 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
 {
   try
   {
-    var test_title = 'Patient Management - Suspending an overdue patient removes them from the overdue report'
+    var test_title = "Patient Management - Suspending an overdue patient removes them from the overdue report";
     login(5, "Shared");
-    add_patient('Regression', 'overdue_suspend_patient', 'M', 'Shared'); 
-    add_treatment_plan('W','Manual',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))),'Shared','');
+    add_patient("Regression", "overdue_suspend_patient", "M", "Shared"); 
+    add_treatment_plan("W", "Manual", aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "Shared", "");
     var patNHS = get_patient_nhs();
-    var messagename = get_patient_fullname();
+    var patient_name = get_patient_fullname();
   
     //Check the patient is displayed on the overdue report
     var result_set = new Array();
-    var result_set_1 = find_patient_overdue_list(messagename);
+    var result_set_1 = get_overdue_patient(patient_name);
+    result_set.push(result_set_1);
   
-    patient_search(patNHS);
+    //patient_search(patNHS);
     suspend_patient();
   
     //Check the patient is now not on the overdue list
-    result_set_1 = dont_find_patient_overdue_list(messagename);
+    result_set_1 = get_overdue_patient(patient_name);
+    result_set.push(results_checker_are_false(result_set_1));
   
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set);

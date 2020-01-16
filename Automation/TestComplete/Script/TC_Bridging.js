@@ -3377,7 +3377,7 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     add_treatment_plan("W", "Coventry", "", "Shared", "");
   
     var date = aqDateTime.AddDays(aqDateTime.Today(), 20);
-    add_bridging_record(date, 1);
+    add_bridging_record(date, 3);
     
     var preop_data = new Array();
     preop_data = get_table_column_data("pre-op", "all", 3);
@@ -3416,7 +3416,7 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
     
-    update_bridging_lmwh(1, "Confirm");
+    update_bridging_lmwh(0, "Confirm");
     
     var expected_title = "Tinzaparin (IU)";
     bridging_schedule_preop_table().Refresh();
@@ -3441,34 +3441,6 @@ function tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH(
     result_set.push(result_set_1);
     result_set_1 = checkArrays(post_data_1, post_data, test_title);
     result_set.push(result_set_1);
-    /*
-    var columns_to_match = new Array();
-    columns_to_match.push("inr_checkbox", "inr_dropdown", "warf_checkbox", "warf_dropdown", "comments");
-    
-    var vals = new Array();
-    vals = validate_columns_match("pre-op", 3, preop_data, columns_to_match);
-    result_set.push(results_checker_are_true(vals));
-    
-    vals = compare_table_columns("pre-op", "lmwh_checkbox", 3, preop_data);
-    result_set.push(results_checker_are_false(vals));
-    
-    vals = validate_columns_match("procedure", 1, procedure_data, columns_to_match);
-    result_set.push(results_checker_are_true(vals));
-  
-    vals = compare_table_columns("procedure", "lmwh_checkbox", 1, procedure_data);
-    result_set.push(results_checker_are_false(vals));
-    
-    vals = validate_columns_match("post", 3, post_data, columns_to_match);
-    result_set.push(results_checker_are_true(vals));
-  
-    vals = compare_table_columns("post", "lmwh_checkbox", 3, post_data);
-    result_set.push(results_checker_are_false(vals));
-    
-    bridging_schedule_preop_table().Cell(2, 4).Child(1).Click();
-    var value = bridging_schedule_preop_table().Cell(2, 4).Child(0).wText;
-    var result_set_1 = compare_values(value, "~Dose", test_title);
-    result_set.push(result_set_1);
-    */
   
     var results = results_checker_are_true(result_set);
     Log.Message(results);
@@ -3536,9 +3508,9 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     result_set.push(result_set_1);
    
     var new_date_2 = aqDateTime.Today();
-    preop_data = update_bridging_array_dates(preop_data, date, new_date_2, "-");
-    procedure_data = update_bridging_array_dates(procedure_data, date, new_date_2, "-");
-    post_data = update_bridging_array_dates(post_data, date, new_date_2, "-");
+    preop_data = update_bridging_array_dates(preop_data, new_date, new_date_2, "+");
+    procedure_data = update_bridging_array_dates(procedure_data, new_date, new_date_2, "+");
+    post_data = update_bridging_array_dates(post_data, new_date, new_date_2, "+");
     
     exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date_2, "%d-%b-%Y") 
     + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
@@ -3561,9 +3533,9 @@ function tc_bridging_procedure_date_in_future_amended_to_past_and_then_today_and
     result_set.push(result_set_1);   
     
     var new_date_3 = aqDateTime.AddDays(aqDateTime.Today(), 20);
-    preop_data = update_bridging_array_dates(preop_data, date, new_date_3, "-");
-    procedure_data = update_bridging_array_dates(procedure_data, date, new_date_3, "-");
-    post_data = update_bridging_array_dates(post_data, date, new_date_3, "-");
+    preop_data = update_bridging_array_dates(preop_data, new_date_2, new_date_3, "+");
+    procedure_data = update_bridging_array_dates(procedure_data, new_date_2, new_date_3, "+");
+    post_data = update_bridging_array_dates(post_data, new_date_2, new_date_3, "+");
     
     exp_text = "The procedure date will be changed to " + aqConvert.DateTimeToFormatStr(new_date_3, "%d-%b-%Y") 
     + " and all data entered will be removed.\r\n\r\nYou will need to enter the schedule details again against the new dates.";
