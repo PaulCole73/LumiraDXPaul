@@ -519,7 +519,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Hoth" key="{0A6F56F9-6359-41D8-821C-FA6DD9C4DAF7}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Hoth" key="{0A6F56F9-6359-41D8-821C-FA6DD9C4DAF7}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{43F43762-A0DD-4C00-B05F-3D0A1C52C8E1}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -760,7 +760,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{9B459D66-1D5A-4BC3-B10C-682BC0CDC3A3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -784,7 +784,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Bridging" key="{9B5498BE-9427-4132-A686-95BC9A21A8F2}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="TS_Bridging" key="{9B5498BE-9427-4132-A686-95BC9A21A8F2}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
@@ -967,7 +967,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Engage" key="{4ED18E9E-F2ED-4FD6-B8F5-0873A466F7F0}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Engage" key="{4ED18E9E-F2ED-4FD6-B8F5-0873A466F7F0}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{3D64C225-9370-475C-A590-C00A25D89BAD}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">

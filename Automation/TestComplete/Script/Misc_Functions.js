@@ -765,27 +765,41 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time)
     var is_obj_valid = false;
     INRstarV5.Refresh();
     obj_root.Refresh();
-    var root = obj_root;
-    var obj = root.FindChild(obj_property, obj_value, depth);
-    counter++;
     
-    if(obj.Exists == false)
-    {
-      Log.Message("--------------------- Slow performance. Waiting for object... ---------------------","",500);
-      WaitSeconds(wait_time, "Waiting for object...");
-    }
-    else
-    {
-      Log.Message(obj.FullName);
-      Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
-      Log.Message("The object is enabled: " + obj.Enabled);
-      obj.scrollIntoView();
-      
-      if(obj.VisibleOnScreen)
+    //var loading_popup = INRstarV5.FindChild("idStr", "loading", 4);
+    //if(loading_popup.VisibleOnScreen)
+    //{
+      //Log.Message("Screen is loading...");
+    //}
+    //else
+    //{
+      var root = obj_root;
+      var obj = root.FindChild(obj_property, obj_value, depth);
+      counter++;
+    
+      if(obj.Exists == false)
       {
-        is_obj_valid = true;
+        Log.Message("--------------------- Slow performance. Waiting for object... ---------------------","",500);
+        WaitSeconds(wait_time, "Waiting for object...");
       }
-    }
+      else
+      {
+        Log.Message(obj.FullName);
+        Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
+        Log.Message("The object is enabled: " + obj.Enabled);
+        obj.scrollIntoView();
+      
+        if(obj.VisibleOnScreen)
+        {
+          is_obj_valid = true;
+        }
+        else
+        {
+          Log.Message("--------------------- Slow performance. Object currently not visible... ---------------------");
+          WaitSeconds(wait_time, "Waiting for object...");
+        }
+      }
+    //}
   }
   while(is_obj_valid == false && counter < 5);
   return obj;

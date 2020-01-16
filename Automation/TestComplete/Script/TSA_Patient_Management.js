@@ -3,6 +3,10 @@
 //USEUNIT Misc_Functions
 //USEUNIT TSA_Patient
 //--------------------------------------------------------------------------------
+
+//THIS FILE NEEDS TO BE REFACTORED
+
+//--------------------------------------------------------------------------------
 function deactivate_patient()
 {
   WaitSeconds(1);
@@ -16,27 +20,11 @@ function deactivate_patient()
   patient_management_deactivate_form_path.Panel("DeactivatingReason").Panel("DeactivatingReasonList").Select("InactiveReason").ClickItem(5);
  
   patient_management_deactivate_form_path.Panel(1).SubmitButton("Confirm").Click();
-} 
-//--------------------------------------------------------------------------------
-function deactivating_patient_confirmation_checker(exp_err_mess)
-{
-  var INRstarV5 = INRstar_base(); 
-  var deactivate_confirmation_message_path = pat_management_status_confirmation_message();
-  var actual_err_mess = deactivate_confirmation_message_path.contentText; 
   
-  Log.Message(actual_err_mess)
-   
-     if (exp_err_mess==actual_err_mess)
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
-        return false;
-        }
+  var text = pat_management_status_confirmation_message().contentText;
+  return text;
 } 
+//-------------------------------------------------------------------------------- 
 //--------------------------------------------------------------------------------
 function deactivating_patient_banner_warning_checker(exp_err_mess)
 {
@@ -237,89 +225,13 @@ function reactivate_patient(drug, dm, start_date)
   }
       
   var buttons_path = add_treatment_plan_activate_button(); 
-  buttons_path.SubmitButton("ActivatePatient").Click();                 
+  buttons_path.SubmitButton("ActivatePatient").Click();       
+  
+  var text = activate_confirmation_message().contentText;
+  return text;          
 }   
 //--------------------------------------------------------------------------------
-function activating_patient_confirmation_checker(exp_err_mess)
-{
-  var INRstarV5 = INRstar_base(); 
-  var activate_confirmation_message_path = activate_confirmation_message();
-  var actual_err_mess = activate_confirmation_message_path.contentText; 
-  
-  Log.Message(actual_err_mess)
-   
-     if (exp_err_mess==actual_err_mess)
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_err_mess + 'and you passed in ' + exp_err_mess)
-        return false;
-        }
-}
 //--------------------------------------------------------------------------------
-function activating_patient_error_checker(exp_err_mess)
-{
-  var INRstarV5 = INRstar_base(); 
-  var activate_error_banner_path = activate_error_banner();
-  var actual_err_mess = activate_error_banner_path.contentText; 
-  
-  Log.Message(actual_err_mess)
-   
-     if (exp_err_mess==actual_err_mess)
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess);
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_err_mess + 'and you passed in ' + exp_err_mess)
-        return false;
-        }
-} 
-//--------------------------------------------------------------------------------
-function suspend_patient_confirmation_checker(exp_warn_mess)
-{
-  var INRstarV5 = INRstar_base(); 
-  var suspend_confirmation_message_path = pat_management_status_confirmation_message();
-  WaitSeconds(1);
-  var actual_warn_mess = suspend_confirmation_message_path.contentText; 
-  WaitSeconds(1);
-  Log.Message(actual_warn_mess)
-   
-  if (actual_warn_mess.includes(exp_warn_mess))
-  {
-    Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-    return true; 
-  } 
-  else 
-  {
-    Log.Warning("Message was displayed but the text did not match the expected result. It was: " 
-                + actual_warn_mess + " // Expected was: " + exp_warn_mess);
-    return false;
-  }
-} 
-//--------------------------------------------------------------------------------
-function patient_confirmation_checker(exp_warn_mess)
-{
-  var INRstarV5 = INRstar_base(); 
-  var reg_practice_confirmation_path = reg_practice_confirmation();
-  var actual_warn_mess = reg_practice_confirmation_path.contentText; 
-  Log.Message(actual_warn_mess)
-   
-  if (actual_warn_mess.includes(exp_warn_mess))
-  {
-    Log.Message('The error text exists' + ' / This is the expected / ' + exp_warn_mess + ' / This is the actual / ' + actual_warn_mess );
-    return true; 
-  } 
-  else 
-  {
-    Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_warn_mess)
-    return false;
-  }
-} 
 //--------------------------------------------------------------------------------
 function add_manual_self_test_group()
 {
@@ -380,7 +292,7 @@ function suspend_patient()
   suspend_pat_form_path.Panel(0).Image("calendar_png").Click();     
   datepicker = INRstarV5.Panel("ui_datepicker_div");
   
-  var expiry_date = (aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (+7)))); 
+  var expiry_date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (+7))); 
     
   var w_yr = aqString.SubString(expiry_date,6,4);
   var w_mth = aqConvert.StrToInt(aqString.SubString(expiry_date,3,2));
@@ -393,7 +305,10 @@ function suspend_patient()
   //Suspension Reason
   suspend_pat_form_path.Panel(1).Select("SuspensionReasonId").ClickItem(2);
   
-  suspend_pat_form_path.Panel(3).SubmitButton("Confirm").Click(); 
+  suspend_pat_form_path.Panel(3).SubmitButton("Confirm").Click();
+  
+  var text = pat_management_status_confirmation_message().contentText;
+  return text;
 } 
 //--------------------------------------------------------------------------------
 function suspend_patient_days(num_of_days_from_today)
@@ -432,6 +347,9 @@ function unsuspend_patient(nhs_num)
   
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
   pat_managment_tab_status_buttons_path.Button("UnsuspendPatientButton").Click();
+  
+  var text = pat_management_status_confirmation_message().contentText;
+  return text;
 } 
 //--------------------------------------------------------------------------------
 function change_reg_practice(prac_name)
@@ -463,6 +381,11 @@ function change_reg_practice(prac_name)
       break;
     }
   }
+  var obj_root = patient_management_base().Panel("PatientManagementDetailsWrapper");
+  wait_for_object(obj_root, "idStr", "WizardRegisteredLocationStep3Container", 1, 1);
+  
+  var text = reg_practice_confirmation().contentText;
+  return text;
 } 
 //--------------------------------------------------------------------------------
 function change_test_practice(prac_name)

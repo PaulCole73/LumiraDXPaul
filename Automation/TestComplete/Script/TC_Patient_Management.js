@@ -31,10 +31,11 @@ function tc_patient_deactivate_a_patient()
     result_set_1 = deactivating_patient_banner_error_checker('Please select the reason for deactivation');
     result_set.push(result_set_1);
   
-    deactivate_patient();
- 
+    var expected_text = "The patient has been successfully deactivated";
+    var text = deactivate_patient();
+    
     //Check the confirmation banner is displayed
-    result_set_1 = deactivating_patient_confirmation_checker('The patient has been successfully deactivated');
+    result_set_1 = compare_values(text, expected_text, test_title);
     result_set.push(result_set_1);
   
     //Check the patient audit is written
@@ -62,22 +63,21 @@ function tc_patient_reactivate_a_patient()
 {
   try
   {
-    var test_title = 'Patient Management - Re-activate a patient'
+    var test_title = "Patient Management - Re-activate a patient";
     login(5, "Shared");
-    add_patient('Regression', 'Activate_patient', 'M', 'Shared'); 
+    add_patient("Regression", "Activate_patient", "M", "Shared"); 
     deactivate_patient();
   
-    WaitSeconds(1);
-    var result_set = new Array();
     //Checking the tp page is displayed when clicking on activate
+    var result_set = new Array();
     var result_set_1 = check_tp_page_displayed_on_activate();
     result_set.push(result_set_1);
 
-    reactivate_patient('W', 'Coventry','')
     //Check the confirmation banner is displayed
-    result_set_1 = activating_patient_confirmation_checker('This patient has successfully been reactivated, you will now need to' +
-                                                          ' enter the current warfarin dose and review period before ' +
-                                                          'using the system to calculate a new warfarin dose.');
+    var text = reactivate_patient("W", "Coventry", "");
+    var expected_text = "This patient has successfully been reactivated, you will now need to enter the current warfarin dose and " 
+                        + "review period before using the system to calculate a new warfarin dose."
+    result_set_1 = compare_values(text, expected_text, test_title);
     result_set.push(result_set_1);
   
     //Check the view all treatment buttons is disabled
@@ -159,10 +159,12 @@ function tc_patient_suspend_a_patient()
     var result_set_1 = check_suspend_errors()
     result_set.push(result_set_1);
   
-    suspend_patient();
+    var expiry_date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (+7))); 
+    var text = suspend_patient();
+    var expected_text = "The patient has been successfully suspended with reason of On holiday, until " + aqConvert.DateTimeToFormatStr(expiry_date, "%A %d-%B-%Y" + ".");
   
     //Check the confirmation banner is displayed
-    result_set_1 = suspend_patient_confirmation_checker('The patient has been successfully suspended');
+    result_set_1 = compare_values(text, expected_text, test_title);
     result_set.push(result_set_1);
   
     result_set_1 = validate_top_patient_audit(test_title, "Suspend Patient");
@@ -236,19 +238,19 @@ function tc_patient_unsuspend_a_patient()
 {
   try
   {
-    var test_title = 'Patient Management - Unsuspend a patient'
+    var test_title = "Patient Management - Unsuspend a patient"
     login(5, "Shared");
-    add_patient('Regression', 'Unsuspend_patient', 'M', 'Shared'); 
-    suspend_patient(); 
-    WaitSeconds(2);
-    unsuspend_patient();
-  
-    result_set = new Array();
-  
+    add_patient("Regression", "Unsuspend_patient", "M", "Shared"); 
+    
+    suspend_patient();
+    var text = unsuspend_patient();
+    var expected_text = "The patient has been successfully unsuspended." +
+    "\nThe patient may have been treated elsewhere during the suspension period. For warfarin patients please ensure that any recent" +
+    " INR results and warfarin doses are entered as historical treatments. For non-warfarin patients you should ensure review information is up to date.";
+    
     //Check the confirmation banner is displayed
-    var result_set_1 = suspend_patient_confirmation_checker('The patient has been successfully unsuspended.' +
-    '\nThe patient may have been treated elsewhere during the suspension period. For warfarin patients please ensure that any recent' +
-    ' INR results and warfarin doses are entered as historical treatments. For non-warfarin patients you should ensure review information is up to date.');
+    var result_set = new Array();
+    var result_set_1 = compare_values(text, expected_text, test_title);
     result_set.push(result_set_1);
   
     result_set_1 = validate_top_patient_audit(test_title, "Unsuspend Patient");
@@ -275,23 +277,22 @@ function tc_patient_change_the_patients_registered_practice()
 {
   try
   {
-    var test_title = 'Patient Management - Change the patients registered practice'
+    var test_title = "Patient Management - Change the patients registered practice";
     login(5, "Shared");
-    add_patient('Regression', 'Registered_practice', 'M', 'Shared'); 
+    add_patient("Regression", "Registered_practice", "M", "Shared"); 
   
     var reg_prac = "Deans Regression Testing Location 2";
-    change_reg_practice(reg_prac);
-    WaitSeconds(1)
-  
-    var result_set = new Array();
+    var expected_text = "The patient(s) registered practice has been successfully changed.";
+    var text = change_reg_practice(reg_prac);
   
     //Check the confirmation banner is displayed
-    var result_set_1 = patient_confirmation_checker('The patient(s) registered practice has been successfully changed.');
+    var result_set = new Array();
+    var result_set_1 = compare_values(text, expected_text, test_title);
     result_set.push(result_set_1);
   
     //Check the reg practice been updated on tab
     var reg_prac_after = get_patient_reg_prac();
-    result_set_1 = compare_values(reg_prac, reg_prac_after)
+    result_set_1 = compare_values(reg_prac, reg_prac_after, test_title);
     result_set.push(result_set_1);
   
     result_set_1 = validate_top_patient_audit(test_title, "Changed patient's registered practice");
@@ -481,10 +482,12 @@ function tc_reactivate_a_potential_duplicate_patient()
     inactive_patient_search(patFirstname_one);
     Goto_Patient_Management();
     var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
-    pat_managment_tab_status_buttons_path.Button("ActivatePatientButton").Click(); 
-
+    pat_managment_tab_status_buttons_path.Button("ActivatePatientButton").Click();
+    
+    var text = activate_error_banner().contentText;
+    var expected_msg = "This patient may already exist at this location as " + messagename + " ["+ nhs_num + "]";
     //Check the error is displayed
-    var result = activating_patient_error_checker('This patient may already exist at this location as ' + messagename + ' ['+ nhs_num + ']');
+    var result = compare_values(text, expected_msg, test_title);
   
     //Validate the result set
     results_checker(result, test_title); 

@@ -273,9 +273,12 @@ function Goto_Edit_Patient_Demographics()
 function Goto_Patient_Management()
 {
   var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientManagementTab").Click();
-  WaitSeconds(1, "Waiting at Patient Management tab...");
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord");
+  panelMCP.Panel("PatientTab").Link("PatientManagementTab").Click();
+  //WaitSeconds(1, "Waiting at Patient Management tab...");
+  
+  var obj_root = panelMCP.Panel("PatientMainTabContent");
+  wait_for_object(obj_root, "idStr", "PatientManagementWrapper", 1, 2);
 }
 //-------------------------------------------------------------------------------
 // Navigate to suspend screen

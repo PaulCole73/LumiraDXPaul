@@ -503,7 +503,7 @@ function tc_disenrol_user_with_current_treatment_plan()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_move_ntb_back_from_ten_to_seven_days_schedules_unchanged()
+function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
 {
   try
   {
@@ -566,7 +566,7 @@ function tc_move_ntb_back_from_ten_to_seven_days_schedules_unchanged()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_move_ntb_back_from_seven_to_six_days_schedules_changed()
+function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
 {
   try
   {
@@ -667,7 +667,7 @@ function tc_move_ntb_back_from_seven_to_six_days_schedules_changed()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_move_ntb_forward_from_five_to_seven_days_schedules_changed()
+function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
 {
   try
   {

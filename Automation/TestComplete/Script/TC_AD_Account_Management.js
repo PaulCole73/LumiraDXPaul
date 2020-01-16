@@ -296,7 +296,8 @@ function tc_account_management_reset_location_admin_user_password()
     
     log_off_admin_dash();
     var val = new_guid(4);
-    log_in_new_user(username, get_login_details(21), null,  "Reg_" + val);
+    var pass = get_login_details(21);
+    log_in_new_user(username, pass, null, "Reg_" + val);
     
     var result_set = new Array();
     result_set_1 = validate_user_logged_in(username);

@@ -89,9 +89,9 @@ function tc_users_manage_change_permissions_to_read_only()
     result_set.push(result_set_1);
     
     Log_Off();
-    
     log_in_new_user(username, new_pass);
-     
+    
+    //this should be a function with parameters of: path, query selector, text
     var base = INRstar_base().Panel("MainPage");
     base.Panel("header").Link("MainPatientLink").Click();
     
