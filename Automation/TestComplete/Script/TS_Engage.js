@@ -23,6 +23,8 @@ function ts_master_engage(send_mail)
   tc_add_inr_update_inr_delete_inr_confirm_original_schedule();
   tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedule();
   tc_submit_multiple_inrs_same_day_long_dose_schedule();
+  tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_greater_than_5();
+  tc_inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medication_and_missed_dose_using_split_tablets();
   
   email_and_archive(send_mail, "ts_engage_master");
 }
