@@ -16,25 +16,15 @@ function gmail_account_top_email()
   var base = gmail_account_main();
   var panel_seq1 = base.Panel(5).Panel(2).Panel(0).Panel(1).Panel(0).Panel(1);
   var panel_seq2 = panel_seq1.Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0);
-  var top_email = panel_seq2.Panel(0).Panel(0).Panel(5).Panel(0).Panel("z").Panel(2).Panel(0).Table("k");
+  var top_email = panel_seq2.Panel(0).Panel(0).Panel(5).Panel(0).Panel("z").Panel(2).Panel(0).Table("k").Row("l");;
   
   return top_email;
 }
 //------------------------------------------------------------------------
-function gmail_account_control_bar()
-{
-  var base = gmail_account_main();
-  var panel_seq1 = base.Panel(5).Panel(2).Panel(0).Panel(1).Panel(0).Panel(1);
-  var panel_seq2 = panel_seq1.Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2);
-  var panel = panel_seq2.Panel(0).Panel(0).Panel(0).Panel(0);
-  
-  return panel;
-}
-//------------------------------------------------------------------------
 function gmail_account_delete_button()
 {
-  var base = gmail_account_control_bar();
-  var button = base.Panel(1).Panel(2).Panel(0);
+  var base = gmail_account_main();
+  var button = base.Panel(28).Panel(4).Panel(0);
   
   return button;
 }

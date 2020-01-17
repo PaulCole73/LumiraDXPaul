@@ -55,7 +55,7 @@
 		<child key="{BA57EBC4-8303-4C76-BBED-E9D44AD58AD1}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
 			<config nodeName="Admin_Dashboard" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://admin-tatooine.lumiradxcaresolutions.com/" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://admin-alderaan.lumiradxcaresolutions.com/" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
