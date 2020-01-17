@@ -24,7 +24,6 @@ function add_pending_fast_induction_treatment(inr, TestStepMode)
      
     var buttons = pre_treatment_induction_buttons_path();
     buttons.SubmitButton("CalculateWarfarinDose").Click();
-    //handle_poct_expired();
     process_popup("PoCT Batch Expired", "Confirm");
     
     process_popup("Please confirm that the following is correct", "Confirm");
@@ -52,7 +51,6 @@ function add_fast_induction_treatment(inr)
      
   var buttons = pre_treatment_induction_buttons_path();
   buttons.SubmitButton("CalculateWarfarinDose").Click();
-  //handle_poct_expired();
   process_popup("PoCT Batch Expired", "Confirm");
   
   process_popup("Please confirm that the following is correct", "Confirm");
@@ -110,7 +108,6 @@ function add_pending_manual_treatment(inr, tm, dose, review)
        
    var save_button_pre_schedule = treatment_buttons_pre_schedule();
    save_button_pre_schedule.SubmitButton("SubmitManualDose").Click();
-   //handle_poct_expired();
    process_popup("PoCT Batch Expired", "Confirm");
    
    process_popup("Please confirm that the following is correct", "Confirm");
@@ -165,8 +162,7 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
   
   //  WaitSeconds(2)
-  handle_no_poct('non_induct');
-  //handle_poct_expired();
+  handle_no_poct("non_induct");
   process_popup("PoCT Batch Expired", "Confirm");
    
   WaitSeconds(1);   
@@ -215,7 +211,6 @@ function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
   
   //  WaitSeconds(2)
   handle_no_poct('non_induct');
-  //handle_poct_expired();
   process_popup("PoCT Batch Expired", "Confirm");
    
   WaitSeconds(1);   
@@ -253,7 +248,6 @@ function add_maintenance_treatment(inr, date)
   var save_button_pre_schedule = treatment_buttons_pre_schedule();
   save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
   
-  //handle_poct_expired();
   process_popup("PoCT Batch Expired", "Confirm");
        
   // Click the Confirm button in the confirm window
@@ -296,7 +290,6 @@ function add_override_treatment(inr,date,p_review)
   
   var save_button_pre_schedule = treatment_buttons_pre_schedule();
   save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
-  //handle_poct_expired();
   process_popup("PoCT Batch Expired", "Confirm");
        
   //Click the Confirm button in the confirm window
@@ -412,7 +405,6 @@ function add_manual_treatment(date, inr, dose, review, tm)
    
   var treatment_button_path = treatment_buttons_pre_schedule();
   treatment_button_path.SubmitButton("SubmitManualDose").Click();
-  //handle_poct_expired();
   process_popup("PoCT Batch Expired", "Confirm");
   
   //Confirm the values
@@ -521,22 +513,9 @@ function handle_PoCT(main_path)
             } 
      }
    }       
-}
+}   
 //--------------------------------------------------------------------------------
-function handle_poct_expired() //THIS NEEDS CHANGING
-{
- //Handle if PoCT has expired
- var INRstarV5 = INRstar_base(); 
- var popup_buttons_path = warning_pop_up();
- var poct_expire = INRstarV5.NativeWebObject.Find("innerText", "The current PoCT batch 85451bd002b96cc67db3 expired on 13-Nov-2018, please confirm you wish to use this PoCT batch.");
- //INRstarV5.NativeWebObject.Find("innerText", "The current PoCT batch' + '(*)' + 'please confirm you wish to use this PoCT batch.");
-     if (poct_expire.Exists)
-     {  
-      popup_buttons_path.Button(1).Click();
-     }             
-}      
-//--------------------------------------------------------------------------------
-function handle_no_poct(dose_method)
+function handle_no_poct(dose_method) //probably also needs changing
 {
  //Handle if there is no PoCT
  var INRstarV5 = INRstar_base(); 

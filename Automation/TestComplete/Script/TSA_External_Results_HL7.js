@@ -200,7 +200,6 @@ function dose_external_result(dose, review_days, dm)
    
     var treatment_button_path = treatment_buttons_pre_schedule();
     treatment_button_path.SubmitButton("SubmitManualDose").Click();
-    //handle_poct_expired();
     process_popup("PoCT Batch Expired", "Confirm");
   
     //Confirm the values
@@ -245,7 +244,7 @@ function dose_external_result(dose, review_days, dm)
    
     var save_button_pre_schedule = treatment_buttons_pre_schedule();
     save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
-    handle_poct_expired();
+    process_popup("PoCT Batch Expired", "Confirm");
     
     process_popup("Please confirm that the following is correct", "Confirm");
     WaitSeconds(1);
