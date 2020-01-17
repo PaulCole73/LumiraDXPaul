@@ -106,13 +106,15 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   password_expired_form().Panel(0).PasswordBox("currentPassword").Text = current_pass;
   password_expired_form().Panel(1).PasswordBox("newPassword").Text = new_password;
   password_expired_form().Panel(2).PasswordBox("confirmPassword").Text = new_password;
-  password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
   
-  var obj_root = INRstar_base();
-  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5);
+  WaitSeconds(2);
+  password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
   
   process_popup("Important Information", "Do Not Show Again");
   process_popup("Email Address", "Cancel");
+  
+  var obj_root = INRstar_base();
+  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5);
 }
 
 

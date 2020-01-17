@@ -63,6 +63,9 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
 {
   if((is_box_1_ticked == null && is_box_2_ticked == null) || (is_box_1_ticked == true && is_box_2_ticked == true) )
   {
+    var obj_root = engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
+    wait_for_object(obj_root, "idStr", "button__home_questionnaire_submit", 3);
+  
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     
@@ -150,19 +153,21 @@ function submit_INR_with_answers(INR, match, dose, medication, bleeding, missed)
   //submit button
   engage_submit_INR.Panel(7).Button("button_home_anticoagulation_questionnaire_submit").Click();
   
+  wait_for_object(engage_base(), "className", "PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", 3);
+  
   //return either date and time submitted if sucessful or pop up message text if not 
   if (match == 1)
   {
-   var returnData = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Mismatching INR", "OK"); 
+   var return_data = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Mismatching INR", "OK"); 
   }
   else if (match ==0)
   {
-    returnData = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
+    return_data = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
     process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "INR Test Complete", "OK");
   }
   WaitSeconds(2);
   
-  return returnData;
+  return return_data;
 }
 //--------------------------------------------------------------------------------
 function get_daily_dose()
