@@ -40,7 +40,13 @@ function warfarin_self_care(stage)
     enrol_button.Click();
     stage_one_buttons.Panel(0).Checkbox("Program_Warfarin_Self_Testing_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
     stage_one_buttons.Button("Program_Warfarin_Self_Testing_Phases_Stage_1_6_Content_Input").Click();
-    WaitSeconds(10,"Waiting to be enrolled")
+    //WaitSeconds(10,"Waiting to be enrolled")
+    
+    var base_path = warfarin_self_testing_self_testing_phases_path();
+    var stage_two_path = base_path.Panel("Program_Warfarin_Self_Testing_Phases_Stage_2").Panel("Program_Warfarin_Self_Testing_Phases_Stage_2_Content");
+    var obj_root = stage_two_path.Panel(0);
+    
+    wait_for_object(obj_root, "idStr", "Program_Warfarin_Self-Testing_Phases_Stage_2_1_Content_Input", 1, 5);
         
     training_button.ClickChecked(true); 
     WaitSeconds(1, "Waiting for authorise button")

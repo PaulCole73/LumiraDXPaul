@@ -1651,6 +1651,15 @@ function error_pane_demographics()
 //------------------------------------------------------------------------
 ////////////////////////////  Patient Management  ////////////////////////
 //------------------------------------------------------------------------
+function patient_management_base()
+{
+  var INRstarV5 = INRstar_base();
+  var main = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var base = main.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientManagementWrapper");
+  
+  return base;
+}
+//------------------------------------------------------------------------
 function patient_management_path()
 {
   var INRstarV5 = INRstar_base();
@@ -2110,8 +2119,15 @@ function patient_INR_treatment_questions()
   return treatment_questions;
 }
 //------------------------------------------------------------------------
-
-
+//------------------------------------------------------------------------
+/////////////////////////////  Loading Popup  ////////////////////////////
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function loading_popup_path()
+{
+  var INRstarV5 = INRstar_base();
+  var obj = INRstarV5.Panel(1).Panel("loading");
+}
 
 
 

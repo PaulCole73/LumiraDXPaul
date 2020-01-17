@@ -6,8 +6,12 @@ function edit_all_patient_demographics(gender)
 {
   //This function will read in the existing field, amend the data and check the data is then different, if the data is the same after the edit then re-run the change until it is different
   Goto_Edit_Patient_Demographics();
+  
   var INRstarV5 = INRstar_base();
   var patient_edit_demographics_form_pat_details_path = patient_edit_demographics_form_pat_details();
+  
+  var obj_root = patient_edit_demographics_form_pat_details();
+  wait_for_object(obj_root, "Name", "TextNode(0)", 1);
   
   //Pat number
   new_pat_num = new_guid(20);
@@ -241,6 +245,9 @@ function edit_all_patient_demographics(gender)
 
   var save_button = patient_edit_demographics_form_buttons();
   save_button.SubmitButton("UpdatePatientDetails").Click();
+  
+  obj_root = patient_demographics_tab_demographics();
+  wait_for_object(obj_root, "Name", "TextNode(0)", 1);
 } 
 //--------------------------------------------------------------------------------
 function edit_patient_dob_to_be_under_18(months)

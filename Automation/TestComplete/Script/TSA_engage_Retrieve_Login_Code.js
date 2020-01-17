@@ -28,8 +28,21 @@ function get_engage_login_code() //in progress
   var code = aqString.SubString(msg, code_pos + 13, 9);
   obj.Keys("[BS]");
   
+  delete_engage_code_email();
+  
   TestedApps.gmail.Terminate();
   WaitSeconds(2, "Waiting for application to close...");
   
   return code;
+}
+//-----------------------------------------------------------------------------------
+function delete_engage_code_email()
+{
+  var obj_root = gmail_account_main().Panel(5).Panel(2).Panel(0).Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0);
+  wait_for_object(obj_root, "idStr", ":2l", 9);
+  
+  gmail_account_top_email().ClickR();
+  gmail_account_delete_button().Click();
+  
+  WaitSeconds(2);
 }

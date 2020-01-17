@@ -514,6 +514,15 @@ function get_dosing_method(dm)
   
   return dose_method;
 }
+//-----------------------------------------------------------------------------------
+function get_patient_management_banner_message()
+{
+  Goto_Patient_Management();
+  var text = pat_management_status_confirmation_message().contentText;
+  
+  return text;
+}
+
 //---------------------------------------------------------------------------------//
 //                                  Login                                          //
 //---------------------------------------------------------------------------------//
