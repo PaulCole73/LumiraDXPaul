@@ -46,7 +46,8 @@ function add_inr_backdated(p_INR, p_date)
        var save_button_pre_schedule = treatment_buttons_pre_schedule();
        save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
        
-       handle_poct_expired();
+       //handle_poct_expired();
+       process_popup("PoCT Batch Expired", "Confirm");
        
 //       // Test if date is valid - no other treatments exist after this date
 //      wf_validation_messages = INRstarV5.NativeWebObject.Find("innerText", "You cannot add a treatment with a date that is older than the patient's latest treatment date.");

@@ -1187,7 +1187,8 @@ function ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_gre
     var save_button_pre_schedule = treatment_buttons_pre_schedule();
     save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
   
-    handle_poct_expired();
+    //handle_poct_expired();
+    process_popup("PoCT Batch Expired", "Confirm");
        
     // Click the Confirm button in the confirm window
     process_popup("Please confirm that the following is correct", "Confirm");
@@ -1345,7 +1346,8 @@ function inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_medic
     //complete and save the treatment - should be its own function
     var treatment_button_path = treatment_buttons_pre_schedule();
     treatment_button_path.SubmitButton("SubmitManualDose").Click();
-    handle_poct_expired();
+    //handle_poct_expired();
+    process_popup("PoCT Batch Expired", "Confirm");
   
     //Confirm the values
     var INRstarV5 = INRstar_base();
