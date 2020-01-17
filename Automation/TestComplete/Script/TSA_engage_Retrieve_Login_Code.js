@@ -6,7 +6,11 @@ function get_engage_login_code() //in progress
 {
   WaitSeconds(10);
   TestedApps.gmail.Run();
+  Sys.WaitBrowser("iexplore", 30000, 1);
   WaitSeconds(15, "Waiting for application to open...");
+  
+  var obj_root = gmail_account_main().Panel(5).Panel(2).Panel(0).Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0);
+  wait_for_object(obj_root, "idStr", ":2l", 9, 10);
   
   Sys.Refresh();
   WaitSeconds(1, "Waiting to maximise...");
@@ -42,6 +46,8 @@ function delete_engage_code_email()
   wait_for_object(obj_root, "idStr", ":2l", 9);
   
   gmail_account_top_email().ClickR();
+  WaitSeconds(2);
+  
   gmail_account_delete_button().Click();
   
   WaitSeconds(2);

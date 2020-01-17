@@ -166,7 +166,7 @@ function tc_users_disable_user()
     
     Log_Off();
     
-    login(username, "INRstar_6", "Shared");
+    login(username, "", "Shared");
     
     var logon_page_path = log_on_form().Panel("LoginArea").Panel("Logon");
     

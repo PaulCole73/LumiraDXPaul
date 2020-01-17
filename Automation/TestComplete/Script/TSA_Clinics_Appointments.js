@@ -206,6 +206,9 @@ function goto_patient_clinic_tab_appointment_name(name, weeks_ahead)
   WaitSeconds(2, "Waiting for 'Make' button...");
   treatment_appointment_buttons().Button("MakeAppointment").Click(20, 20);
   
+  var obj_root = INRstar_base();
+  wait_for_object(obj_root, "idStr", "scheduler_containerBlock_verticalScrollContainer", 9, 5);
+  
   if(weeks_ahead >= 0)
   {
     for(var i = 0; i < weeks_ahead; i++)
@@ -325,6 +328,7 @@ function tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date
   if(popup_button.Exists == true && popup_button.VisibleOnScreen == true)
   {
     popup_button.Click();
+    WaitSeconds(2);
     
     clinic_make_appointment_container().Panel("selectionLayer").Panel("appointmentsScheduler_commonControlsBlock_selectionDiv").Click(700, 20);
     clinic_make_appointment_container().Table("appointmentsScheduler_containerBlock_vertTable").Cell(1, 1).ClickR(700, 20);

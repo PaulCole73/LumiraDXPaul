@@ -46,7 +46,7 @@ function warfarin_self_care(stage)
     var stage_two_path = base_path.Panel("Program_Warfarin_Self_Testing_Phases_Stage_2").Panel("Program_Warfarin_Self_Testing_Phases_Stage_2_Content");
     var obj_root = stage_two_path.Panel(0);
     
-    wait_for_object(obj_root, "idStr", "Program_Warfarin_Self-Testing_Phases_Stage_2_1_Content_Input", 1, 5);
+    wait_for_object(obj_root, "idStr", "Program_Warfarin_Self-Testing_Phases_Stage_2_1_Content_Input", 1, 5, 10);
         
     training_button.ClickChecked(true); 
     WaitSeconds(1, "Waiting for authorise button")
