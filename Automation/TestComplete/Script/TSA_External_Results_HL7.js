@@ -200,7 +200,8 @@ function dose_external_result(dose, review_days, dm)
    
     var treatment_button_path = treatment_buttons_pre_schedule();
     treatment_button_path.SubmitButton("SubmitManualDose").Click();
-    handle_poct_expired();
+    //handle_poct_expired();
+    process_popup("PoCT Batch Expired", "Confirm");
   
     //Confirm the values
     var INRstarV5 = INRstar_base();
