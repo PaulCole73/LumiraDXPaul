@@ -127,22 +127,22 @@ log_off()
 
 function log_on_cl2()
 {
-     log_on_regression("cl2@regression","INRstar_5");
+     log_on_regression("");
 }
 
 function log_on_cl3()
 {
-    log_on_regression("cl3@regression","INRstar_5");
+    log_on_regression("");
 }
 
 function log_on_cl3_regression2()
 {
-    log_on_regression("cl3@regression2","INRstar_5");
+    log_on_regression("");
 }
 
 function log_on_clead()
 {
-     log_on_regression("clead@regression","INRstar_5");
+     log_on_regression("");
 }
 
 //==============================================================================

@@ -83,7 +83,7 @@ function login(user_index, TestStepMode, reset_password)
   while(page.Exists == false && counter < 3);
   
   var obj_root = INRstarV5;
-  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5);
+  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5, 10);
 }
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, is_password_reset, new_password)

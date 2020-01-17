@@ -341,12 +341,15 @@ function suspend_patient_days(num_of_days_from_today)
   suspend_pat_form_path.Panel(3).SubmitButton("Confirm").Click(); 
 } 
 //--------------------------------------------------------------------------------
-function unsuspend_patient(nhs_num)
+function unsuspend_patient()
 {
   Goto_Patient_Management();
   
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
   pat_managment_tab_status_buttons_path.Button("UnsuspendPatientButton").Click();
+  
+  var obj_root = patient_management_base().Panel("PatientStatus");
+  wait_for_object(obj_root, "Name", "TextNode(0)", 2, 1);
   
   var text = pat_management_status_confirmation_message().contentText;
   return text;
@@ -453,7 +456,11 @@ function change_test_practice_with_warning(prac_name)
 //--------------------------------------------------------------------------------
 function get_patient_reg_prac()
 {
-  Goto_Patient_Management()
+  Goto_Patient_Management();
+  
+  var obj_root = pat_managment_tab_preferences_buttons();
+  wait_for_object(obj_root, "idStr", "EditPatientManagementLink", 1, 2);
+  
   var patient_management_care_team_path = patient_management_care_team();
   var reg_prac = patient_management_care_team_path.Panel(1).Label("RegisteredSectionId_DetachedLabel").contentText;
   
