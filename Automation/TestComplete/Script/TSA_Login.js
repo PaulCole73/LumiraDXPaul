@@ -109,6 +109,7 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   
   WaitSeconds(2);
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
+  WaitSeconds(2);
   
   process_popup("Important Information", "Do Not Show Again");
   process_popup("Email Address", "Cancel");

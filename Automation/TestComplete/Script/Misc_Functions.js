@@ -12,9 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsTatooine";
-var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsAlderaan";
+var admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //

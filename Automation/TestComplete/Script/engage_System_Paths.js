@@ -21,14 +21,6 @@ function gmail_account_top_email()
   return top_email;
 }
 //------------------------------------------------------------------------
-function gmail_account_delete_button()
-{
-  var base = gmail_account_main();
-  var button = base.Panel(27).FindChild("contentText", "Delete", 2);
-  
-  return button;
-}
-//------------------------------------------------------------------------
 function engage_base()
 {
   var url = get_current_url();

@@ -328,13 +328,17 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
       table.Cell(i, 2).Child(1).Click();
       break;
       case "inr_dropdown":
-      table.Cell(i, 2).Child(0).ClickItem(2);
+      count = table.Cell(i, 2).Child(0).wItemCount - 1;
+      num = get_random_num_inrange(1, count);
+      table.Cell(i, 2).Child(0).ClickItem(num);
       break;
       case "warf_checkbox": 
       table.Cell(i, 3).Child(1).Click();
       break;
       case "warf_dropdown": 
-      table.Cell(i, 3).Child(0).ClickItem(2);
+      count = table.Cell(i, 3).Child(0).wItemCount - 1;
+      num = get_random_num_inrange(1, count);
+      table.Cell(i, 3).Child(0).ClickItem(num);
       break;
       case "lmwh_checkbox": 
       table.Cell(i, 4).Child(1).Click();
@@ -343,7 +347,9 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
       table.Cell(i, 4).Child(0).ClickItem(1);
       break;
       case "frequency":
-      table.Cell(i, 5).Child(0).ClickItem(1);
+      count = table.Cell(i, 5).Child(0).wItemCount - 1;
+      num = get_random_num_inrange(1, count);
+      table.Cell(i, 5).Child(0).ClickItem(num);
       break;
       case "comments":
       table.Cell(i, 6).Child(0).Click();
@@ -563,8 +569,26 @@ function validate_columns_match(table_type, number_of_rows, array, array_of_colu
   Log.Message(results);
   return results;
 }
-
-
+//--------------------------------------------------------------------------------
+function save_bridging_schedule()
+{
+  bridging_schedule_save_button().Click();
+  process_popup("Please confirm the bridging schedule", "Confirm");
+}
+//--------------------------------------------------------------------------------
+function view_bridging_schedule(item_position)
+{
+  Goto_Bridging_Tab();
+  var button = bridging_summary_schedule_table().Cell(item_position, 6).Button("View");
+  var state = button.Enabled;
+  
+  if(state == true)
+  {
+    button.Click();
+  }
+  
+  return state;
+}
 
 
 
