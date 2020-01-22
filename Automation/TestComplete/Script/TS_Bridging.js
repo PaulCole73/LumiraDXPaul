@@ -16,18 +16,6 @@ function ts_master_bridging(send_mail)
   email_and_archive(send_mail, "ts_bridging_master");
 }
 //--------------------------------------------------------------------------------
-function ts_regression_bridging()
-{
-  reset_folder();
-
-  ts_bridging_permissions();
-  ts_bridging_button();
-  ts_bridging_tab();
-  
-  email_and_archive(true, "ts_bridging_regression");
-}
-//--------------------------------------------------------------------------------
-
 
 
 //General Suites
@@ -53,11 +41,6 @@ function ts_bridging_button()
 function ts_bridging_tab()
 {
   tc_bridging_tab_visible_only_with_warfarin();
-}
-//--------------------------------------------------------------------------------
-function ts_bridging_checkboxes()
-{
-  tc_bridging_INR_checkbox();
 }
 //--------------------------------------------------------------------------------
 function ts_bridging_cacuk_1030()
@@ -99,4 +82,19 @@ function ts_bridging_cacuk_1032()
   tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_back_to_original_date();
   
   email_and_archive(true, "ts_bridging_cacuk_1032");
+}
+//--------------------------------------------------------------------------------
+function ts_bridging_cacuk_1163()
+{
+  tc_bridging_inr_checkbox_display_active_schedule();
+  tc_bridging_inr_checkbox_display_pending_schedule();
+  tc_bridging_checkbox_dropdown_not_editable();
+  tc_bridging_checkbox_max_warnings_dalteparin();
+  tc_bridging_checkbox_warnings_inr_one_day_schedule();
+  tc_bridging_inr_checkbox_selections_amended_procedure_date();
+  tc_bridging_checkbox_selection_amend_lmwh();
+  tc_bridging_inr_checkbox_selection_add_days();
+  tc_bridging_inr_checkbox_selection_delete_days();
+  
+  email_and_archive(true, "ts_bridging_cacuk_1163");
 }

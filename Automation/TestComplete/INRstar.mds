@@ -48,6 +48,14 @@
 						<testParameters />
 						<children />
 					</testItem>
+					<testItem name="CACUK 1030" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+					<testItem name="CACUK 1163" key="{33945B7A-01EA-41C2-9F3C-C0C1AD297935}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1163" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
 					<testItem name="Re-try Failed Tests" key="{A7581979-2E11-4482-B90F-2BDED95D1449}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
@@ -57,10 +65,6 @@
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
 							<param1 name="name" type="3" localVarName="" varType="8" value="bridging_1030_1032_output" />
 						</testParameters>
-						<children />
-					</testItem>
-					<testItem name="CACUK 1030" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
-						<testParameters />
 						<children />
 					</testItem>
 					<testItem name="CACUK-432" key="{6C3B5601-18D8-4C02-A5AD-C225C83BAA0B}" group="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}cacuk432_bug_fix_sequence" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">

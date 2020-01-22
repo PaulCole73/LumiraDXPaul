@@ -1044,15 +1044,6 @@
 			</references>
 		</folder>
 		<folder caption="3. Test Cases" description="A logical folder that is used to organize project items and elements." moniker="">
-			<folders>
-				<folder caption="TC_Bridging" description="A logical folder that is used to organize project items and elements." moniker="">
-					<references>
-						<ref key="{A37E2935-6334-44BE-8071-3B96F22DF7EB}" />
-						<ref key="{DD5E2EED-DED6-460A-B155-3895F67CC337}" />
-						<ref key="{B7C34FA1-80FB-4FC2-A9BA-81B060613ECE}" />
-					</references>
-				</folder>
-			</folders>
 			<references>
 				<ref key="{9F7E6A1D-3FE9-49F2-8827-CD5CBB932D00}" />
 				<ref key="{974B3CE8-24E9-4F50-9A75-5F9CBDA4B1BC}" />
@@ -1428,6 +1419,13 @@
 					</references>
 				</folder>
 			</folders>
+		</folder>
+		<folder caption="8. TC_Bridging" description="A logical folder that is used to organize project items and elements." moniker="">
+			<references>
+				<ref key="{A37E2935-6334-44BE-8071-3B96F22DF7EB}" />
+				<ref key="{DD5E2EED-DED6-460A-B155-3895F67CC337}" />
+				<ref key="{B7C34FA1-80FB-4FC2-A9BA-81B060613ECE}" />
+			</references>
 		</folder>
 	</folders>
 </Root>
