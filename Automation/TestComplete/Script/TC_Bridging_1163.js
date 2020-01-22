@@ -546,7 +546,7 @@ function tc_bridging_inr_checkbox_selections_amended_procedure_date()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_checkbox_warnings_inr_one_day_schedule";
+    var test_name = "tc_bridging_inr_checkbox_selections_amended_procedure_date";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -555,7 +555,7 @@ function tc_bridging_checkbox_selection_amend_lmwh()
 {
   try
   {
-    var test_title = "Bridging - Amend procedure date and check INR checkbox selections available";
+    var test_title = "Bridging - Amend LMWH and check INR checkbox selections remain";
     login(7, "Shared");
   
     add_patient("Bridging", "Schedule", "M", "Shared");
@@ -653,7 +653,7 @@ function tc_bridging_checkbox_selection_amend_lmwh()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_checkbox_warnings_inr_one_day_schedule";
+    var test_name = "tc_bridging_checkbox_selection_amend_lmwh";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -662,7 +662,7 @@ function tc_bridging_inr_checkbox_selection_add_days()
 {
   try
   {
-    var test_title = "Bridging - Amend procedure date and check INR checkbox selections available";
+    var test_title = "Bridging - Add days and check INR checkbox selections";
     login(7, "Shared");
   
     add_patient("Bridging", "Schedule", "M", "Shared");
@@ -770,7 +770,7 @@ function tc_bridging_inr_checkbox_selection_add_days()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_checkbox_warnings_inr_one_day_schedule";
+    var test_name = "tc_bridging_inr_checkbox_selection_add_days";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -827,7 +827,7 @@ function tc_bridging_inr_checkbox_selection_delete_days()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_checkbox_warnings_inr_one_day_schedule";
+    var test_name = "tc_bridging_inr_checkbox_selection_delete_days";
     handle_failed_tests(suite_name, test_name);
   }
 }
