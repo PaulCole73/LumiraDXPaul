@@ -33,17 +33,7 @@ function engage_navigation_menu_button()
   var base = engage_base();
   var panel = base.Panel(0).Panel(0).Panel(0).Panel(0);
   
-  var obj;
-  if(panel.FindChild("Name", "Header(\"navigation_navbar_title_anticoagulation\")").Exists)
-  {
-    obj = panel.Header("navigation_navbar_title_anticoagulation");
-  }
-  else
-  {
-    obj = panel.Header("navigation_navbar_title_home");
-  }
-  
-  var button = obj.Panel(0).Panel("button_navbar_menubutton");
+  var button = panel.FindChild("idStr", "button_navbar_menubutton", 5);
   return button;
 }
 //------------------------------------------------------------------------

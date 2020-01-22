@@ -40,15 +40,15 @@
 				<children>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
-							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsHoth" />
+							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaanV4" />
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="CACUK 1032" key="{116B572A-4160-4A9D-81F5-60D37D412D3C}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1032" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 1030" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
-					<testItem name="CACUK 1030" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 1032" key="{116B572A-4160-4A9D-81F5-60D37D412D3C}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1032" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
@@ -63,7 +63,7 @@
 					<testItem name="Email" key="{4E778308-EE7D-40FB-A0C1-5D6691B6E4E6}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
 							<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-							<param1 name="name" type="3" localVarName="" varType="8" value="bridging_1030_1032_output" />
+							<param1 name="name" type="3" localVarName="" varType="8" value="bridging_output" />
 						</testParameters>
 						<children />
 					</testItem>
@@ -1059,7 +1059,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_External_Results_HL7" key="{69852A0A-9849-4380-B5BE-59ADFEC84CB2}" group="False" enabled="False" testMoniker="{4B592C50-F943-446F-AE9E-14F564CED33B}ts_master_external_results_hl7" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="TS_External_Results_HL7" key="{69852A0A-9849-4380-B5BE-59ADFEC84CB2}" group="False" enabled="True" testMoniker="{4B592C50-F943-446F-AE9E-14F564CED33B}ts_master_external_results_hl7" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
@@ -1246,7 +1246,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine_V4" key="{57F5D929-A023-4BDB-A8FA-A7081602B372}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Tatooine_V4" key="{57F5D929-A023-4BDB-A8FA-A7081602B372}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{9A9DF8B8-09BE-44DD-BE7B-54E511660CEB}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -1476,7 +1476,7 @@
 								<testParameters />
 								<children />
 							</testItem>
-							<testItem name="Email" key="{4F782D56-39EA-471D-A8C0-621CFD02F113}" group="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="Email" key="{4F782D56-39EA-471D-A8C0-621CFD02F113}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
 									<param1 name="name" type="3" localVarName="" varType="8" value="tatooine4_engage_output" />
