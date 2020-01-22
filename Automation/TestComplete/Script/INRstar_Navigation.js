@@ -278,7 +278,8 @@ function Goto_Patient_Management()
   //WaitSeconds(1, "Waiting at Patient Management tab...");
   
   var obj_root = panelMCP.Panel("PatientMainTabContent");
-  wait_for_object(obj_root, "idStr", "PatientManagementWrapper", 1, 2);
+  wait_for_object(obj_root, "idStr", "PatientManagementWrapper", 1, 4);
+  WaitSeconds(1);
 }
 //-------------------------------------------------------------------------------
 // Navigate to suspend screen

@@ -345,6 +345,9 @@ function unsuspend_patient()
 {
   Goto_Patient_Management();
   
+  var obj_root = main_patient_tab();
+  wait_for_object(obj_root, "idStr", "UnsuspendPatientButton", 4);
+  
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
   pat_managment_tab_status_buttons_path.Button("UnsuspendPatientButton").Click();
   

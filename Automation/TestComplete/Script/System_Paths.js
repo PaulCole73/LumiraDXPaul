@@ -961,6 +961,14 @@ function bridging_summary_schedule_table()
   return table;
 }
 //------------------------------------------------------------------------
+function bridging_schedule_warning_banner()
+{
+  var tab = patient_treatment_bridging_tab();
+  var banner = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel("Schedules").Panel("BridgingScheduleMessages");
+  
+  return banner;
+}
+//------------------------------------------------------------------------
 //////////////////////////  Summary  ///////////////////////////////////
 //------------------------------------------------------------------------
 function summary_tab_path()

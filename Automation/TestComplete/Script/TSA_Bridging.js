@@ -589,7 +589,26 @@ function view_bridging_schedule(item_position)
   
   return state;
 }
+//--------------------------------------------------------------------------------
+function get_bridging_warning_message(message_index)
+{
+  var obj_root = patient_treatment_bridging_tab();
+  wait_for_object(obj_root, "idStr", "BridgingScheduleMessages", 4);
 
+  var banner = bridging_schedule_warning_banner();
+  var warning;
+  
+  if(message_index == "all")
+  {
+    warning = banner.innerText;
+  }
+  else
+  {
+    warning = banner.TextNode(message_index).innerText;
+  }
+  
+  return warning;
+}
 
 
 

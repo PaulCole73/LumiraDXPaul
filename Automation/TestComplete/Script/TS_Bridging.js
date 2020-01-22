@@ -12,11 +12,6 @@ function ts_master_bridging(send_mail)
 
   ts_bridging_cacuk_1030();
   ts_bridging_cacuk_1032();
-  /*
-  ts_bridging_permissions();
-  ts_bridging_button();
-  ts_bridging_tab();
-  */
   
   email_and_archive(send_mail, "ts_bridging_master");
 }
