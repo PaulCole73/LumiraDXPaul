@@ -1398,7 +1398,6 @@ function tc_treatment_maintenance_override_privilege()
     
     Log_Off();
     
-    /* Needs database update to password - readonly needs password set / expiry set
     login(8, "Shared");
     patient_search(patient_nhs_number);
   
@@ -1408,7 +1407,6 @@ function tc_treatment_maintenance_override_privilege()
     result_set.push(result_set_1);
   
     Log_Off();
-    */
     
     login(3, "Shared");
     patient_search(patient_nhs_number);
