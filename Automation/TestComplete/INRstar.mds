@@ -35,7 +35,7 @@
 	<config language="{90F89436-9452-4F95-9882-6B5210079F13}" />
 	<testItems key="{A5BC5C71-F805-4316-B6F5-D494E8E419AC}">
 		<children>
-			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -52,7 +52,7 @@
 						<testParameters />
 						<children />
 					</testItem>
-					<testItem name="CACUK 1163" key="{33945B7A-01EA-41C2-9F3C-C0C1AD297935}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1163" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 1163" key="{33945B7A-01EA-41C2-9F3C-C0C1AD297935}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1163" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
@@ -67,7 +67,7 @@
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="CACUK-432" key="{6C3B5601-18D8-4C02-A5AD-C225C83BAA0B}" group="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}cacuk432_bug_fix_sequence" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 432" key="{6C3B5601-18D8-4C02-A5AD-C225C83BAA0B}" group="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}cacuk432_bug_fix_sequence" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
@@ -1212,7 +1212,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Engage" key="{68D95A62-DA2D-4CD9-AEF1-7A8CA8847E54}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Engage" key="{68D95A62-DA2D-4CD9-AEF1-7A8CA8847E54}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{B8FF9343-EEE3-46AD-8A35-955F7AF993A1}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
