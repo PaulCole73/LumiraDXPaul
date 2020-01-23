@@ -12,9 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsTatooine";
-var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsAlderaan";
+var admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -790,6 +790,8 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
       if(obj.VisibleOnScreen)
       {
         is_obj_valid = true;
+        Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
+        Log.Message("Object: " + obj.Name + " found.");
       }
       else
       {

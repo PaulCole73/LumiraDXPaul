@@ -251,12 +251,18 @@ function Goto_Patient_Demographics()
   var panelPR = panelMCP.Panel("PatientRecord");
   
   var obj_root = panelPR.Panel("PatientTab")
+  
+  //object wait wrapper, waits for obj 1 to be available and performs action until obj 2 is available
   var obj = wait_for_object(obj_root, "idStr", "PatientDemographicsTab", 1);
-  if(obj != false)
+  do 
   {
-    obj.Click();
+    if(obj != false)
+    {
+      obj.Click();
+    }
+    var new_obj = wait_for_object(panelPR, "idStr", "PatientDetails", 4);
   }
-  WaitSeconds(3, "Waiting to go to Demographics tab...");
+  while(new_obj == false);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Edit Patient Demographics
@@ -274,11 +280,19 @@ function Goto_Patient_Management()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord");
-  panelMCP.Panel("PatientTab").Link("PatientManagementTab").Click();
-  //WaitSeconds(1, "Waiting at Patient Management tab...");
+  var obj_root = panelMCP.Panel("PatientTab");
   
-  var obj_root = panelMCP.Panel("PatientMainTabContent");
-  wait_for_object(obj_root, "idStr", "PatientManagementWrapper", 1, 2);
+  var obj = wait_for_object(obj_root, "idStr", "PatientManagementTab", 1);
+  do 
+  {
+    if(obj != false)
+    {
+      obj.Click();
+      Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Minimize();
+    }
+    var new_obj = wait_for_object(panelMCP.Panel("PatientMainTabContent"), "idStr", "PatientManagementDetails", 4);
+  }
+  while(new_obj == false);
 }
 //-------------------------------------------------------------------------------
 // Navigate to suspend screen

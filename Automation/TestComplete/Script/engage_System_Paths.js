@@ -21,14 +21,6 @@ function gmail_account_top_email()
   return top_email;
 }
 //------------------------------------------------------------------------
-function gmail_account_delete_button()
-{
-  var base = gmail_account_main();
-  var button = base.Panel(27).FindChild("contentText", "Delete", 2);
-  
-  return button;
-}
-//------------------------------------------------------------------------
 function engage_base()
 {
   var url = get_current_url();
@@ -41,17 +33,7 @@ function engage_navigation_menu_button()
   var base = engage_base();
   var panel = base.Panel(0).Panel(0).Panel(0).Panel(0);
   
-  var obj;
-  if(panel.FindChild("Name", "Header(\"navigation_navbar_title_anticoagulation\")").Exists)
-  {
-    obj = panel.Header("navigation_navbar_title_anticoagulation");
-  }
-  else
-  {
-    obj = panel.Header("navigation_navbar_title_home");
-  }
-  
-  var button = obj.Panel(0).Panel("button_navbar_menubutton");
+  var button = panel.FindChild("idStr", "button_navbar_menubutton", 5);
   return button;
 }
 //------------------------------------------------------------------------

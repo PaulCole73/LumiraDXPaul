@@ -1000,6 +1000,27 @@
 		<child name="TS_Engage" key="{1B15472F-B752-4004-A991-EA62F33068D2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TS_Engage.js" />
 		</child>
+		<child name="TC_Bridging_1163" key="{A37E2935-6334-44BE-8071-3B96F22DF7EB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_1163.js" />
+		</child>
+		<child name="TC_Bridging_1032" key="{DD5E2EED-DED6-460A-B155-3895F67CC337}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_1032.js" />
+		</child>
+		<child name="TC_Bridging_1030" key="{B7C34FA1-80FB-4FC2-A9BA-81B060613ECE}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_1030.js" />
+		</child>
+		<child name="TC_Bridging_919" key="{122115BF-4BE8-4F92-9024-08FC1F1EC2B5}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_919.js" />
+		</child>
+		<child name="TC_Bridging_920" key="{EAE8F324-8465-4F2E-A5D0-90C22A00D23B}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_920.js" />
+		</child>
+		<child name="TC_Bridging_934" key="{B4BDC917-8933-49A7-8C69-E99C1CACEAB2}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_934.js" />
+		</child>
+		<child name="TC_Bridging_935" key="{C35944AE-FBB2-4976-BCDF-851A2A6D4ACB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_935.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1410,6 +1431,17 @@
 					</references>
 				</folder>
 			</folders>
+		</folder>
+		<folder caption="8. TC_Bridging" description="A logical folder that is used to organize project items and elements." moniker="">
+			<references>
+				<ref key="{A37E2935-6334-44BE-8071-3B96F22DF7EB}" />
+				<ref key="{DD5E2EED-DED6-460A-B155-3895F67CC337}" />
+				<ref key="{B7C34FA1-80FB-4FC2-A9BA-81B060613ECE}" />
+				<ref key="{122115BF-4BE8-4F92-9024-08FC1F1EC2B5}" />
+				<ref key="{EAE8F324-8465-4F2E-A5D0-90C22A00D23B}" />
+				<ref key="{B4BDC917-8933-49A7-8C69-E99C1CACEAB2}" />
+				<ref key="{C35944AE-FBB2-4976-BCDF-851A2A6D4ACB}" />
+			</references>
 		</folder>
 	</folders>
 </Root>

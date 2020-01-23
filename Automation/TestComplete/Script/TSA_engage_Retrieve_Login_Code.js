@@ -48,7 +48,9 @@ function delete_engage_code_email()
   gmail_account_top_email().ClickR();
   WaitSeconds(2);
   
-  gmail_account_delete_button().Click();
+  var base = gmail_account_main();
+  var button = wait_for_object(base, "contentText", "Delete", 5, 3);
+  button.Click();
   
   WaitSeconds(2);
 }

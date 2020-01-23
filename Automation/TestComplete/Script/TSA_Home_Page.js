@@ -481,6 +481,7 @@ function check_patient_with_no_diagnosis_or_tp_message(pat_name)
   {
     WaitSeconds(2);
     home_page_messages_path.Link("PatientsWithNoDiagnosisHeaderLink").Click();
+    wait_for_object(home_page_messages_path, "idStr", "PatientWithNoDiagnosisReportTable", 2);
     var table = home_page_messages_path.Panel("PatientsWithNoDiagnosis").Table("PatientWithNoDiagnosisReportTable");
 
     for (i=0; i<table.rowcount; i++)
