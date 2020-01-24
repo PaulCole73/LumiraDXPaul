@@ -208,11 +208,12 @@ function Log_Off()
 // Navigate to Patient Search
 function Goto_Patient_Search()
 {
-  WaitSeconds(3);
   var INRstarV5 = INRstar_base();
-  panel = INRstarV5.Panel("MainPage");
-  panel.Panel("header").Link("MainPatientLink").Click();
-  WaitSeconds(2, "Waiting at Patient Tab...");
+  var obj_root = INRstarV5.Panel("MainPage");
+  //panel.Panel("header").Link("MainPatientLink").Click();
+  //WaitSeconds(2, "Waiting at Patient Tab...");
+  var obj = wait_for_object(obj_root, "idStr", "MainPatientLink", 2);
+  click_navigation_wrapper(obj, obj_root, "idStr", "searchCriteria", 5);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Search
@@ -254,15 +255,7 @@ function Goto_Patient_Demographics()
   
   //object wait wrapper, waits for obj 1 to be available and performs action until obj 2 is available
   var obj = wait_for_object(obj_root, "idStr", "PatientDemographicsTab", 1);
-  do 
-  {
-    if(obj != false)
-    {
-      obj.Click();
-    }
-    var new_obj = wait_for_object(panelPR, "idStr", "PatientDetails", 4);
-  }
-  while(new_obj == false);
+  click_navigation_wrapper(obj, panelPR, "idStr", "PatientDetails", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Edit Patient Demographics
@@ -282,17 +275,8 @@ function Goto_Patient_Management()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord");
   var obj_root = panelMCP.Panel("PatientTab");
   
-  var obj = wait_for_object(obj_root, "idStr", "PatientManagementTab", 1);
-  do 
-  {
-    if(obj != false)
-    {
-      obj.Click();
-      Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Minimize();
-    }
-    var new_obj = wait_for_object(panelMCP.Panel("PatientMainTabContent"), "idStr", "PatientManagementDetails", 4);
-  }
-  while(new_obj == false);
+  var obj = wait_for_object(obj_root, "idStr", "PatientManagementTab", 1); 
+  click_navigation_wrapper(obj, panelMCP.Panel("PatientMainTabContent"), "idStr", "PatientManagementDetails", 4)
 }
 //-------------------------------------------------------------------------------
 // Navigate to suspend screen
@@ -345,7 +329,6 @@ function Goto_Patient_Treatments_Tab()
 // Navigate to Patient Treatment Plan
 function Goto_Patient_Treatment_Plan()
 {
-  var counter = 0;
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var obj_root = panelMCP.Panel("PatientRecord").Panel("PatientTab");
@@ -356,7 +339,7 @@ function Goto_Patient_Treatment_Plan()
     obj.Click();
   }
   
-  WaitSeconds(3, "Waiting to go to Treatment Plan...");
+  //WaitSeconds(3, "Waiting to go to Treatment Plan...");
   var panelPMTC = main_patient_tab();
   obj_root = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
   
@@ -366,7 +349,7 @@ function Goto_Patient_Treatment_Plan()
     obj.Click();
   }
   
-  WaitSeconds(3, "Waiting to go to Treatment Plan...");
+  //WaitSeconds(3, "Waiting to go to Treatment Plan...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan Add - If no prior treatment plan exists as the path will be different otherwise
@@ -557,11 +540,12 @@ function Goto_Patient_Adverse_Events()
 // Navigate to Patient / Audit
 function Goto_Patient_Audit()
 {
-  WaitSeconds(1);
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientAuditTraiTab").Click();
-  WaitSeconds(1);
+  var obj_root = panelMCP.Panel("PatientRecord");
+  
+  var obj = wait_for_object(obj_root.Panel("PatientTab"), "idStr", "PatientAuditTraiTab", 1); //object select, navigation wrapper
+  click_navigation_wrapper(obj, obj_root, "idStr", "AuditTrailTable", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to system / Audit
@@ -573,11 +557,7 @@ function Goto_System_Audit()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   
   var obj = wait_for_object(panelMCP, "idStr", "AuditTab", 2, 1);
-  if(obj.Exists)
-  {
-    obj.Click();
-  }
-  WaitSeconds(1);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "AuditTrailTable", 3);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Treatment / Audit

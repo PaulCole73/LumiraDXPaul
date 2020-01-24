@@ -45,7 +45,6 @@ function setup_automation_engage(env_url)
 function set_engage_url()
 {
   var base = "INRstarWindows";
-  //Log.Message(environment);
   
   switch(environment)
   {
@@ -74,7 +73,6 @@ function set_engage_url()
     engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
     break;
   }
-  //Log.Message(engage_url);
 }
 //--------------------------------------------------------------------------------
 function get_current_url()
@@ -82,6 +80,7 @@ function get_current_url()
   set_engage_url();
   var url;
   var page_array = new Array();
+  Sys.WaitBrowser("chrome");
   page_array = Sys.Browser("chrome").FindAllChildren("ObjectType", "Page", 1, true);
   
   for(var i = 0; i < page_array.length; i++)
@@ -93,6 +92,5 @@ function get_current_url()
       break;
     }
   }
-  //Log.Message(url);
   return url;
 }

@@ -70,6 +70,7 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    WaitSeconds(2);
     var text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Agreements Complete", "OK");
     return text;
   }
@@ -84,6 +85,7 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
       engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     }
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    WaitSeconds(2);
     text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Incomplete Agreements", "OK");
     return text;
   }
