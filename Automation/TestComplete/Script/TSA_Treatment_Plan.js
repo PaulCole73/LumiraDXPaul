@@ -129,8 +129,10 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     buttons_path.SubmitButton("AddPatientTreatmentPlan").Click();
       
     process_popup("You will need to add an historical treatment", "OK");
-    var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");    
-    WaitSeconds(5, "Waiting for treatment plan...");
+    var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");   
+    
+    var obj_root = main_patient_tab();
+    wait_for_object(obj_root, "idStr", "PatientTreatmentHistoryTable", 7, 1, 20);
     return popup_msg;       
   }
 } 

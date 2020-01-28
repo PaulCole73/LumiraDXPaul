@@ -38,9 +38,16 @@
 			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
+					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters>
+							<param0 name="do_login" type="3" localVarName="" varType="11" value="False" />
+							<param1 name="dm" type="3" localVarName="" varType="8" value="Coventry" />
+						</testParameters>
+						<children />
+					</testItem>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters>
-							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaanV4" />
+							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
 						</testParameters>
 						<children />
 					</testItem>
@@ -73,7 +80,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{9B459D66-1D5A-4BC3-B10C-682BC0CDC3A3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -127,7 +134,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_External_Results_HL7" key="{BE7FF819-42F5-49C7-AFBD-DF110D1697C4}" group="False" enabled="False" testMoniker="{4B592C50-F943-446F-AE9E-14F564CED33B}ts_master_external_results_hl7" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+							<testItem name="TS_External_Results_HL7" key="{BE7FF819-42F5-49C7-AFBD-DF110D1697C4}" group="False" enabled="True" testMoniker="{4B592C50-F943-446F-AE9E-14F564CED33B}ts_master_external_results_hl7" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
@@ -314,7 +321,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{85A67BE8-AFD0-4B5E-B237-71137BF8BE6B}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -1005,7 +1012,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Alderaan_V4" key="{1A531187-C3C1-4E8B-B457-C8D4CAB6F271}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Alderaan_V4" key="{1A531187-C3C1-4E8B-B457-C8D4CAB6F271}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{790D8B2D-E4F0-42BC-8F50-A24EFEE0D203}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -1246,7 +1253,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine_V4" key="{57F5D929-A023-4BDB-A8FA-A7081602B372}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Tatooine_V4" key="{57F5D929-A023-4BDB-A8FA-A7081602B372}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{9A9DF8B8-09BE-44DD-BE7B-54E511660CEB}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">

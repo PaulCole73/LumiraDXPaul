@@ -12,9 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsTatooine";
-var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsAlderaan";
+var admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -583,14 +583,11 @@ function get_new_number_v5()
 
   WaitSeconds(2);
   TestedApps.NHSNumberGenerator.Run(1, true);
-  WaitSeconds(2);
+  Sys.WaitProcess("NHSNumberGenerator");
 
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
-  WaitSeconds(2);
   form.WinFormsObject("button1").ClickButton();
-
   wnd = form.WinFormsObject("textBox1").wText;
-
   form.Close();
   return wnd;
 }
@@ -761,12 +758,12 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   
   if(wait_time == null || wait_time == "")
   {
-    wait_time = 3;
+    wait_time = 1;
   }
   
   if(iterations == null || wait_time == "")
   {
-    iterations = 5;
+    iterations = 20;
   }
 
   do
@@ -781,7 +778,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
     
     if(obj.Exists == false)
     {
-      Log.Message("--------------------- Slow performance. Waiting for object... ---------------------","",500);
+      Log.Message("--------------------- Slow performance. Waiting for object... ---------------------");
       WaitSeconds(wait_time, "Waiting for object...");
     }
     else
@@ -802,6 +799,10 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
     }
   }
   while(is_obj_valid == false && counter < iterations);
+  if(is_obj_valid == false)
+  {
+    Log.Picture(Sys.Desktop, "------------------ Object Timeout ------------------");
+  }
   return obj;
 }
 //-----------------------------------------------------------------------------------
@@ -903,4 +904,12 @@ function set_get_environment(env)
   }
 }
 //-----------------------------------------------------------------------------------
-
+function setup_generic_patient(do_login, dm)
+{
+  if(do_login == true)
+  {
+    login(5, "Shared");
+  }
+  add_patient("Generic", "Patient", "M", "Shared");
+  add_treatment_plan("W", dm, "", "Shared", "");
+}

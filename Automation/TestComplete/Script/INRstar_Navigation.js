@@ -227,11 +227,13 @@ function Goto_External_Patient_Lookup()
 // Navigate to Add Patient
 function Goto_Add_Patient()
 {
-  Goto_Patient_Search() 
+  Goto_Patient_Search(); 
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
-  panelMCP.Panel("ManagePatients").Panel("PatientTab").Link("AddPatientDetailsTab").Click();
-  WaitSeconds(1, "Waiting at Add Patient...");
+  var obj_root = panelMCP.Panel("ManagePatients").Panel("PatientTab");
+  
+  var obj = wait_for_object(obj_root, "idStr", "AddPatientDetailsTab", 1, 1, 20);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "EditPatientContactDetails", 6);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Tests Due
@@ -276,7 +278,7 @@ function Goto_Patient_Management()
   var obj_root = panelMCP.Panel("PatientTab");
   
   var obj = wait_for_object(obj_root, "idStr", "PatientManagementTab", 1); 
-  click_navigation_wrapper(obj, panelMCP.Panel("PatientMainTabContent"), "idStr", "PatientManagementDetails", 4)
+  click_navigation_wrapper(obj, panelMCP.Panel("PatientMainTabContent"), "idStr", "PatientStatus_DetachedLabel_Label", 5)
 }
 //-------------------------------------------------------------------------------
 // Navigate to suspend screen
@@ -356,11 +358,14 @@ function Goto_Patient_Treatment_Plan()
 function Goto_Patient_Treatment_Plan_Add()
 {
   Goto_Patient_Treatment_Plan();
-  change_treatment_plan_buttons().Panel(0).Button("AddPatientTreatmentPlanLink").Click();
-  
+  var obj_root = change_treatment_plan_buttons(); 
+  var obj = wait_for_object(obj_root, "idStr", "AddPatientTreatmentPlanLink", 2);
+  if(obj != false)
+  {
+    obj.Click();
+  }
   process_popup("Confirmation Required", "Confirm");
-  
-  WaitSeconds(1, "Waiting to go to Add Treatment Plan...");
+  wait_for_object(main_patient_tab(), "idStr", "AddTreatmentPlanForm", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan Add - If a treatment plan exists
@@ -456,13 +461,24 @@ function Goto_Patient_Treatment()
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  WaitSeconds(4, "Waiting for Treatment plan tab...");
-  panelPT.Link("PatientTreatmentPlanTab").Click();
-
-  WaitSeconds(4, "Waiting at Treatment tab...");
+  var obj = wait_for_object(panelPT, "idStr", "PatientTreatmentPlanTab", 1, 1, 20);
   
-  patient_clinical_tab().Link("TreatmentItem").Click();
-  WaitSeconds(4, "Waiting for Treatments...");
+  if(obj != false)
+  {
+    obj.Click();
+  }
+
+  var obj_root = main_patient_tab();
+  var obj = wait_for_object(obj_root, "idStr", "TreatmentPlanSubTab", 1, 1, 20);
+  obj = wait_for_object(obj, "idStr", "PatientTreatmentPlanTabSubMenu", 1, 1, 20);
+  obj = wait_for_object(obj, "idStr", "TreatmentItem", 1, 1, 20);
+  
+  if(obj != false)
+  {
+    obj.Click();
+  }
+  
+  WaitSeconds(2, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment

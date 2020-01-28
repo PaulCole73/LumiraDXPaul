@@ -5,7 +5,6 @@
 function add_patient(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, pat_no)  
 {
   add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, "1975", pat_no);
-  WaitSeconds(4, "Waiting for patient to add...");
 }
 
 function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, dobyr, pat_no)  
@@ -96,7 +95,7 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
   }
   
   var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2)
+  wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
 }
 //--------------------------------------------------------------------------------
 function patient_search(data)
@@ -185,16 +184,16 @@ function banner_checker(exp_err_mess)
   var patient_banner_yellow_bar_path = patient_banner_yellow_bar();
   var actual_err_mess = patient_banner_yellow_bar_path.contentText; 
    
-     if (exp_err_mess==actual_err_mess)
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
-        return false;
-        }
+  if (exp_err_mess==actual_err_mess)
+  {
+    Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
+    return true; 
+  } 
+  else 
+  {
+    Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
+    return false;
+  }
 } 
 //--------------------------------------------------------------------------------
 function banner_checker_includes(exp_err_mess)
@@ -218,61 +217,47 @@ function banner_checker_includes(exp_err_mess)
 //this return an array of key labels from the patient summary tab
 function get_patient_summary_labels(patient_nhs) 
 {
-  try
-  {
-    var func_title = "Get Key Summary Labels";
-    var smry_labels = new Array();
+  var func_title = "Get Key Summary Labels";
+  var smry_labels = new Array();
     
-    patient_search(patient_nhs);
+  patient_search(patient_nhs);
    
-    var summary_button = summary_tab_path();
-    summary_button.Click();
+  var summary_button = summary_tab_path();
+  summary_button.Click();
     
-    var smry_test_date = patient_current_summary().Panel(0).Label("CurrentTreatment_LatestINRTestDate_DetachedLabel").innerText;
-    var smry_inr = patient_current_summary().Panel(1).Label("CurrentTreatment_LatestINR_DetachedLabel").innerText;
-    var smry_dose = patient_current_summary().Panel(2).Label("CurrentTreatment_LatestDose_DetachedLabel").innerText;
-    var smry_review_date = patient_current_summary().Panel(3).Label("CurrentTreatment_LatestReview_DetachedLabel").innerText;
-    var smry_next_test = aqConvert.DateTimeToStr(patient_current_summary().Panel(4).Label("CurrentTreatment_NextINRTestDate_DetachedLabel").innerText);
+  var smry_test_date = patient_current_summary().Panel(0).Label("CurrentTreatment_LatestINRTestDate_DetachedLabel").innerText;
+  var smry_inr = patient_current_summary().Panel(1).Label("CurrentTreatment_LatestINR_DetachedLabel").innerText;
+  var smry_dose = patient_current_summary().Panel(2).Label("CurrentTreatment_LatestDose_DetachedLabel").innerText;
+  var smry_review_date = patient_current_summary().Panel(3).Label("CurrentTreatment_LatestReview_DetachedLabel").innerText;
+  var smry_next_test = aqConvert.DateTimeToStr(patient_current_summary().Panel(4).Label("CurrentTreatment_NextINRTestDate_DetachedLabel").innerText);
     
-    smry_labels.push(smry_test_date, smry_inr, smry_dose, smry_review_date, smry_next_test);
+  smry_labels.push(smry_test_date, smry_inr, smry_dose, smry_review_date, smry_next_test);
     
-    return smry_labels;
-  }
-  catch(e)
-  {
-    Log.Warning("Function \"" + func_title + "\" Failed Exception Occured = " + e);
-  }
+  return smry_labels;
 }
 //--------------------------------------------------------------------------------
 //checks for populated summary tab image, returns false if image doesn't exist or is blank
 function check_summary_tab_image(patient_nhs) 
 {
-  try
-  {
-    var func_title = "Check Image";
-    var is_image_there = false;
+  var func_title = "Check Image";
+  var is_image_there = false;
     
-    patient_search(patient_nhs);
+  patient_search(patient_nhs);
    
-    var summary_button = summary_tab_path();
-    summary_button.Click();
+  var summary_button = summary_tab_path();
+  summary_button.Click();
     
-    var results_chart = patient_summary_result_chart();
+  var results_chart = patient_summary_result_chart();
     
-    if(results_chart.Child(0).Exists)
-    {
-      results_chart = results_chart.Child(0).Name;
-      if (aqString.Contains(results_chart, "treatmentPlanId") != -1)
-      {
-        is_image_there = true;
-      }
-    }
-    return is_image_there;
-  }
-  catch(e)
+  if(results_chart.Child(0).Exists)
   {
-    Log.Warning("Function \"" + func_title + "\" Failed Exception Occured = " + e);
+    results_chart = results_chart.Child(0).Name;
+    if (aqString.Contains(results_chart, "treatmentPlanId") != -1)
+    {
+      is_image_there = true;
+    }
   }
+  return is_image_there;
 }
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------

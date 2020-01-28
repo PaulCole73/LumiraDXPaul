@@ -95,122 +95,6 @@ function tc_bridging_button_state_on_various_dms()
 }
 
 //--------------------------------------------------------------------------------
-
-
-
-//CACUK-1126
-//--------------------------------------------------------------------------------
-function tc_bridging_view_display_cl1_to_clead_permissions()
-{
-  try
-  {
-    var test_title = "Bridging - View Display - CL1, CL2, CL3 and LCL (Pending record)";
-    login(7, "Shared");
-  
-    add_patient("Bridging", "Schedule", "M", "Shared");
-    add_treatment_plan("W", "Coventry", "", "Shared", "");
-    
-    var nhs = get_patient_nhs();
-  
-    var date = aqDateTime.AddDays(aqDateTime.Today(), 28);
-    add_bridging_record(date, 1);
-    save_bridging_schedule();
-    var state = view_bridging_schedule(1);
-    
-    var result_set = new Array();
-    var result_set_1 = compare_values(state, true, test_title);
-    result_set.push(result_set_1);
-    
-    patient_treatment_bridging_tab().Refresh();
-    var obj_root = patient_treatment_bridging_tab().Form("BridgingForm");
-    var obj = wait_for_object(obj_root, "idStr", "Schedules", 2);
-      
-    result_set_1 = obj.Exists;
-    result_set.push(result_set_1);
-    Log_Off();
-    
-    for(var i = 5; i >= 3; i--)
-    {
-      login(i, "Shared");
-    
-      patient_search(nhs);
-      var state = view_bridging_schedule(1);
-    
-      result_set_1 = compare_values(state, true, test_title);
-      result_set.push(result_set_1);
-    
-      obj_root.Refresh();
-      obj = wait_for_object(obj_root, "idStr", "Schedules", 2);
-      
-      result_set_1 = obj.Exists;
-      result_set.push(result_set_1);
-      Log_Off();
-    }
-    
-    var results = results_checker_are_true(result_set);
-    Log.Message(results);
-    results_checker(results, test_title);
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_view_display_cl1_to_clead_permissions";
-    handle_failed_tests(suite_name, test_name);
-  }
-}
-//--------------------------------------------------------------------------------
-function tc_bridging_view_display_clerical_level_permissions()
-{
-  try
-  {
-    var test_title = "Bridging - View Display - Clerical 1, Clerical 2, Clerical 3 and Location Admin (Pending record)";
-    login(7, "Shared");
-  
-    add_patient("Bridging", "Schedule", "M", "Shared");
-    add_treatment_plan("W", "Coventry", "", "Shared", "");
-    
-    var nhs = get_patient_nhs();
-  
-    var date = aqDateTime.Today();
-    add_bridging_record(date, 1); 
-    save_bridging_schedule();
-    
-    Log_Off();
-    
-    var result_set = new Array();
-    for(var i = 0; i < 7; i++)
-    {
-      if(i != 3 && i != 4 && i != 5)
-      {
-        login(i, "Shared");
-    
-        patient_search(nhs);
-        var state = view_bridging_schedule(1);
-    
-        var result_set_1 = compare_values(state, true, test_title);
-        result_set.push(result_set_1);
-    
-        //add check for the post-view page
-        Log_Off();
-      }
-    }
-    
-    var results = results_checker_are_true(result_set);
-    Log.Message(results);
-    results_checker(results, test_title);
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_view_display_clerical_level_permissions";
-    handle_failed_tests(suite_name, test_name);
-  }
-}
-
-//CACUK-1127
-//--------------------------------------------------------------------------------
 function tc_bridging_delete_schedule_clerical_permissions()
 {
   try
@@ -258,106 +142,6 @@ function tc_bridging_delete_schedule_clerical_permissions()
     handle_failed_tests(suite_name, test_name);
   }
 }
-//--------------------------------------------------------------------------------
-function tc_bridging_edit_schedule_clerical_permissions()
-{
-  try
-  {
-    var test_title = "Bridging - View Display - 'Edit' button (Pending record) Clerical 1,2 and 3";
-    login(7, "Shared");
-  
-    add_patient("Bridging", "Schedule", "M", "Shared");
-    add_treatment_plan("W", "Coventry", "", "Shared", "");
-    
-    var nhs = get_patient_nhs();
-  
-    var date = aqDateTime.Today();
-    add_bridging_record(date, 1); 
-    save_bridging_schedule();
-    
-    Log_Off();
-    
-    var result_set = new Array();
-    for(var i = 0; i < 3; i++)
-    {
-      login(i, "Shared");
-    
-      patient_search(nhs);
-      view_bridging_schedule(1);
-    
-      //add check for the post-view page
-      
-      //var state = edit_button.Enabled;
-      //var result_set_1 = compare_values(state, false, test_title);
-      //result_set.push(result_set_1);
-      
-      Log_Off();
-    }
-    
-    var results = results_checker_are_true(result_set);
-    Log.Message(results);
-    results_checker(results, test_title);
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_edit_schedule_clerical_permissions";
-    handle_failed_tests(suite_name, test_name);
-  }
-}
-//--------------------------------------------------------------------------------
-function tc_bridging_edit_schedule_disabled_permissions()
-{
-  try
-  {
-    var test_title = "Bridging - View Display - 'Edit' button (Pending record) CL1, CL2 and Location Admin ";
-    login(7, "Shared");
-  
-    add_patient("Bridging", "Schedule", "M", "Shared");
-    add_treatment_plan("W", "Coventry", "", "Shared", "");
-    
-    var nhs = get_patient_nhs();
-  
-    var date = aqDateTime.Today();
-    add_bridging_record(date, 1); 
-    save_bridging_schedule();
-    
-    Log_Off();
-    
-    var result_set = new Array();
-    for(var i = 3; i <= 6; i++)
-    {
-      if(i != 5)
-      {
-        login(i, "Shared");
-    
-        patient_search(nhs);
-        view_bridging_schedule(1);
-        
-        //add check for the post-view page
-  
-        //var state = path_to_button().Enabled;
-        //var result_set_1 = compare_values(state, false, test_title);
-        //result_set.push(result_set_1);
-      
-        Log_Off();
-      }
-    }
-    
-    var results = results_checker_are_true(result_set);
-    Log.Message(results);
-    results_checker(results, test_title);
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Bridging";
-    var test_name = "tc_bridging_edit_schedule_disabled_permissions";
-    handle_failed_tests(suite_name, test_name);
-  }
-}
-//--------------------------------------------------------------------------------
 function tc_bridging_delete_schedule_disabled_permissions()
 {
   try
@@ -385,12 +169,10 @@ function tc_bridging_delete_schedule_disabled_permissions()
     
         patient_search(nhs);
         view_bridging_schedule(1);
-        
-        //add check for the post-view page
   
-        //var state = path_to_button().Enabled;
-        //var result_set_1 = compare_values(state, false, test_title);
-        //result_set.push(result_set_1);
+        var state = bridging_schedule_buttons().Button("edit").Enabled;
+        var result_set_1 = compare_values(state, false, test_title);
+        result_set.push(result_set_1);
       
         Log_Off();
       }
@@ -408,3 +190,8 @@ function tc_bridging_delete_schedule_disabled_permissions()
     handle_failed_tests(suite_name, test_name);
   }
 }
+
+//CACUK-1127
+//--------------------------------------------------------------------------------
+
+
