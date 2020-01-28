@@ -59,7 +59,11 @@
 						<testParameters />
 						<children />
 					</testItem>
-					<testItem name="CACUK 1163" key="{33945B7A-01EA-41C2-9F3C-C0C1AD297935}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1163" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 1163" key="{33945B7A-01EA-41C2-9F3C-C0C1AD297935}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1163" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children />
+					</testItem>
+					<testItem name="CACUK 1176" key="{48142D66-DCC6-4117-AD61-0E897DAE5197}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1176" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>

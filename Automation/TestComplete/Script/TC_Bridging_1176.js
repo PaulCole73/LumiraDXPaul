@@ -26,7 +26,7 @@ function tc_bridging_edit_schedule_clerical_permissions()
     
     var nhs = get_patient_nhs();
   
-    var date = aqDateTime.Today();
+    var date = aqDateTime.AddDays(aqDateTime.Today(), 21);
     add_bridging_record(date, 1); 
     save_bridging_schedule();
     
@@ -40,7 +40,15 @@ function tc_bridging_edit_schedule_clerical_permissions()
       patient_search(nhs);
       view_bridging_schedule(1);
   
-      var state = bridging_schedule_buttons().Button("edit").Enabled;
+      var obj = process_object_exists("idStr", "Edit");
+      if(obj == true)
+      {
+        var state = bridging_schedule_buttons().Button("Edit").Enabled;
+      }
+      else
+      {
+        var state = "Button not displayed";
+      }
       var result_set_1 = compare_values(state, false, test_title);
       result_set.push(result_set_1);
       
@@ -72,7 +80,7 @@ function tc_bridging_edit_schedule_disabled_permissions()
     
     var nhs = get_patient_nhs();
   
-    var date = aqDateTime.Today();
+    var date = aqDateTime.AddDays(aqDateTime.Today(), 21);
     add_bridging_record(date, 1); 
     save_bridging_schedule();
     
@@ -88,7 +96,15 @@ function tc_bridging_edit_schedule_disabled_permissions()
         patient_search(nhs);
         view_bridging_schedule(1);
   
-        var state = bridging_schedule_buttons().Button("edit").Enabled;
+        var obj = process_object_exists("idStr", "Edit");
+        if(obj == true)
+        {
+          var state = bridging_schedule_buttons().Button("Edit").Enabled;
+        }
+        else
+        {
+          var state = "Button not displayed";
+        }
         var result_set_1 = compare_values(state, false, test_title);
         result_set.push(result_set_1);
       

@@ -581,9 +581,10 @@ function get_new_number_v5()
 {
   var wnd;
 
-  WaitSeconds(2);
+  WaitSeconds(1);
   TestedApps.NHSNumberGenerator.Run(1, true);
   Sys.WaitProcess("NHSNumberGenerator");
+  WaitSeconds(1);
 
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
   form.WinFormsObject("button1").ClickButton();
@@ -760,7 +761,6 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   {
     wait_time = 1;
   }
-  
   if(iterations == null || wait_time == "")
   {
     iterations = 20;
@@ -778,8 +778,8 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
     
     if(obj.Exists == false)
     {
-      Log.Message("--------------------- Slow performance. Waiting for object... ---------------------");
-      WaitSeconds(wait_time, "Waiting for object...");
+      Log.Message("--------------------- Slow performance. Waiting for " + obj_value + "... ---------------------");
+      WaitSeconds(wait_time, "Waiting for " + obj_value + "...");
     }
     else
     {
@@ -801,7 +801,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   while(is_obj_valid == false && counter < iterations);
   if(is_obj_valid == false)
   {
-    Log.Picture(Sys.Desktop, "------------------ Object Timeout ------------------");
+    Log.Picture(Sys.Desktop, "--------------------- " + obj_value + " Timed-out ---------------------");
   }
   return obj;
 }

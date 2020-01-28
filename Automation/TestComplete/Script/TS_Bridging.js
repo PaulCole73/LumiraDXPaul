@@ -7,6 +7,7 @@
 //USEUNIT TC_Bridging_1030
 //USEUNIT TC_Bridging_1032
 //USEUNIT TC_Bridging_1163
+//USEUNIT TC_Bridging_1176
 //--------------------------------------------------------------------------------
 //Suite of tests for Bridging
 //--------------------------------------------------------------------------------
@@ -115,4 +116,10 @@ function ts_bridging_cacuk_1163()
   tc_bridging_checkbox_selection_amend_lmwh();
   tc_bridging_inr_checkbox_selection_add_days();
   tc_bridging_inr_checkbox_selection_delete_days();
+}
+//--------------------------------------------------------------------------------
+function ts_bridging_cacuk_1176()
+{
+  tc_bridging_edit_schedule_clerical_permissions();
+  tc_bridging_edit_schedule_disabled_permissions();
 }
