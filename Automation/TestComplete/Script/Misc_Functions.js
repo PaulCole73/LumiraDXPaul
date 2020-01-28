@@ -12,9 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsAlderaan";
-var admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsTatooine";
+var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -395,6 +395,10 @@ function get_random_num_inrange(low, high)
     do
     {
       num =  Math.trunc(Math.random()*high);
+      if(num < low)
+      {
+        num = low;
+      }
     }
     while(num < low)
   }
@@ -782,26 +786,39 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
     }
     else
     {
-      Log.Message(obj.FullName);
-      Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
-      Log.Message("The object is enabled: " + obj.Enabled);
+      Log.Message(obj.Name + " is visible on screen: " + obj.VisibleOnScreen);
       obj.scrollIntoView();
       
       if(obj.VisibleOnScreen)
       {
         is_obj_valid = true;
-        Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
         Log.Message("Object: " + obj.Name + " found.");
       }
       else
       {
         Log.Message("--------------------- Slow performance. Object currently not visible... ---------------------");
-        WaitSeconds(wait_time, "Waiting for object...");
+        WaitSeconds(wait_time, "Waiting for " + obj.Name + "...");
       }
     }
   }
   while(is_obj_valid == false && counter < iterations);
   return obj;
+}
+//-----------------------------------------------------------------------------------
+function click_navigation_wrapper(object, obj_root, obj_property, obj_value, depth)
+{
+  //wait wrapper, this minimises timeouts
+  var counter = 0;
+  if(object != false) //check an object is returned, possible returns are "obj", "false", "number of failed searches"
+  {
+    do 
+    {
+      object.Click();
+      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 2);
+      counter++
+    }
+    while((new_obj.Exists == false || new_obj.VisibleOnScreen == false) && counter < 4);
+  }
 }
 
 

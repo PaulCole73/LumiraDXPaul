@@ -35,7 +35,7 @@
 	<config language="{90F89436-9452-4F95-9882-6B5210079F13}" />
 	<testItems key="{A5BC5C71-F805-4316-B6F5-D494E8E419AC}">
 		<children>
-			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -44,15 +44,15 @@
 						</testParameters>
 						<children />
 					</testItem>
-					<testItem name="CACUK 1030" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 1030" key="{1656A118-33FF-486D-8D59-B11DE896A645}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1030" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
-					<testItem name="CACUK 1032" key="{116B572A-4160-4A9D-81F5-60D37D412D3C}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1032" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 1032" key="{116B572A-4160-4A9D-81F5-60D37D412D3C}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1032" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
-					<testItem name="CACUK 1163" key="{33945B7A-01EA-41C2-9F3C-C0C1AD297935}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1163" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="CACUK 1163" key="{33945B7A-01EA-41C2-9F3C-C0C1AD297935}" group="False" enabled="True" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_bridging_cacuk_1163" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children />
 					</testItem>
@@ -1212,7 +1212,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Engage" key="{68D95A62-DA2D-4CD9-AEF1-7A8CA8847E54}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Engage" key="{68D95A62-DA2D-4CD9-AEF1-7A8CA8847E54}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{B8FF9343-EEE3-46AD-8A35-955F7AF993A1}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -1246,10 +1246,10 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine_V4" key="{57F5D929-A023-4BDB-A8FA-A7081602B372}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Tatooine_V4" key="{57F5D929-A023-4BDB-A8FA-A7081602B372}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
-					<testItem name="INRstar" key="{9A9DF8B8-09BE-44DD-BE7B-54E511660CEB}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="INRstar" key="{9A9DF8B8-09BE-44DD-BE7B-54E511660CEB}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{DC18A341-B2BB-4A37-814E-A77146730A87}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -1397,7 +1397,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Admin Dashboard" key="{913214EA-DFBE-4F51-AAD3-7B04696A53D6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+					<testItem name="Admin Dashboard" key="{913214EA-DFBE-4F51-AAD3-7B04696A53D6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{B41EC14F-4882-4542-B8FA-198AD8FAAA07}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">

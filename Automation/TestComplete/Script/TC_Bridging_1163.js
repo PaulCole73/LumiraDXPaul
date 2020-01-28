@@ -261,7 +261,7 @@ function tc_bridging_checkbox_max_warnings_dalteparin()
     for(var i = 0; i <= 3; i++)
     {
       text = get_bridging_warning_message(i);
-      result_set_1 = compare_values(text, msg_array[i], test_title);
+      result_set_1 = compare_values(text, msg_array[i], "Message 1: " + i);
       result_set.push(result_set_1);
     }
     
@@ -273,7 +273,7 @@ function tc_bridging_checkbox_max_warnings_dalteparin()
     for(var i = 0; i <= 2; i++)
     {
       text = get_bridging_warning_message(i);
-      result_set_1 = compare_values(text, msg_array[i+1], test_title);
+      result_set_1 = compare_values(text, msg_array[i+1], "Message 2: " + i);
       result_set.push(result_set_1);
     }
     
@@ -285,7 +285,7 @@ function tc_bridging_checkbox_max_warnings_dalteparin()
     for(var i = 0; i <= 1; i++)
     {
       text = get_bridging_warning_message(i);
-      result_set_1 = compare_values(text, msg_array[i+2], test_title);
+      result_set_1 = compare_values(text, msg_array[i+2], "Message 3: " + i);
       result_set.push(result_set_1);
     }
     
@@ -295,7 +295,7 @@ function tc_bridging_checkbox_max_warnings_dalteparin()
     save_bridging_schedule();
     
     text = get_bridging_warning_message(0);
-    result_set_1 = compare_values(text, msg_array[3], test_title);
+    result_set_1 = compare_values(text, msg_array[3], "Message 4: 0");
     result_set.push(result_set_1);
     
     populate_table_column("pre-op", "frequency", 3);
@@ -367,7 +367,7 @@ function tc_bridging_checkbox_warnings_inr_one_day_schedule()
     populate_table_column("post", "inr_dropdown", 1);
     save_bridging_schedule();
     result_set_1 = process_object_exists("idStr", "BridgingScheduleMessages");
-    result_set.push(results_checker_are_false(result_set_1));
+    result_set.push(compare_values(false, result_set_1, test_title));
     
     var results = results_checker_are_true(result_set);
     Log.Message(results);
@@ -500,7 +500,7 @@ function tc_bridging_inr_checkbox_selections_amended_procedure_date()
     procedure_data = update_bridging_array_dates(procedure_data, new_date, new_date_1, "+");
     post_data = update_bridging_array_dates(post_data, new_date, new_date_1, "+");
     
-    update_procedure_date(new_date);
+    update_procedure_date(new_date_1);
     
     preop_data_1 = get_table_column_data("pre-op", "all", 3);
     procedure_data_1 = get_table_column_data("procedure", "all", 1);
@@ -706,16 +706,19 @@ function tc_bridging_inr_checkbox_selection_add_days()
     result_set.push(result_set_1);
     
     add_bridging_table_rows(1, "pre-op");
+    populate_table_column("pre-op", "inr_checkbox", 1);
     list = bridging_schedule_preop_table().Cell(2, 2).Child(0).wItemList;
     result_set_1 = compare_values(expected_select_two, list, test_title);
     result_set.push(result_set_1);
     
     add_bridging_table_rows(1, "pre-op");
+    populate_table_column("pre-op", "inr_checkbox", 1);
     list = bridging_schedule_preop_table().Cell(2, 2).Child(0).wItemList;
     result_set_1 = compare_values(expected_select_one, list, test_title);
     result_set.push(result_set_1);
     
     add_bridging_table_rows(1, "pre-op");
+    populate_table_column("pre-op", "inr_checkbox", 1);
     list = bridging_schedule_preop_table().Cell(2, 2).Child(0).wItemList;
     result_set_1 = compare_values(expected_select_one, list, test_title);
     result_set.push(result_set_1);
@@ -743,20 +746,23 @@ function tc_bridging_inr_checkbox_selection_add_days()
     date = aqDateTime.AddDays(aqDateTime.Today(), -4);
     update_procedure_date(date);
     
-    populate_table_column("post", "inr_checkbox", 1);
-    list = bridging_schedule_post_discharge_table().Cell(1, 2).Child(0).wItemList;
-    result_set_1 = compare_values(expected_select_one, list, test_title);
-    result_set.push(result_set_1);
-    
-    add_bridging_table_rows(1, "post");
-    populate_table_column("post", "inr_checkbox", 2);
-    list = bridging_schedule_post_discharge_table().Cell(2, 2).Child(0).wItemList;
-    result_set_1 = compare_values(expected_select_one, list, test_title);
-    result_set.push(result_set_1);
-    
-    add_bridging_table_rows(1, "post");
     populate_table_column("post", "inr_checkbox", 3);
-    list = bridging_schedule_post_discharge_table().Cell(3, 2).Child(0).wItemList;
+    for(var i = 1; i < 4; i++)
+    {
+      list = bridging_schedule_post_discharge_table().Cell(i, 2).Child(0).wItemList;
+      result_set_1 = compare_values(expected_select_one, list, test_title);
+      result_set.push(result_set_1);
+    }
+    
+    add_bridging_table_rows(1, "post-discharge");
+    populate_table_column("post", "inr_checkbox", 4);
+    list = bridging_schedule_post_discharge_table().Cell(4, 2).Child(0).wItemList;
+    result_set_1 = compare_values(expected_select_one, list, test_title);
+    result_set.push(result_set_1);
+    
+    add_bridging_table_rows(1, "post-discharge");
+    populate_table_column("post", "inr_checkbox", 5);
+    list = bridging_schedule_post_discharge_table().Cell(5, 2).Child(0).wItemList;
     result_set_1 = compare_values(expected_select_two, list, test_title);
     result_set.push(result_set_1);
     

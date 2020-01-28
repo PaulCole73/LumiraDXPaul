@@ -325,7 +325,7 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
     switch(column_to_change)
     {
       case "inr_checkbox": 
-      table.Cell(i, 2).Child(1).Click();
+      table.Cell(i, 2).Child(1).ClickChecked(true);
       break;
       case "inr_dropdown":
       count = table.Cell(i, 2).Child(0).wItemCount - 1;
