@@ -9,13 +9,14 @@ function login(user_index, TestStepMode, reset_password)
   var counter = 0;
   var Mode = TestStepMode
   var INRstarV5 = INRstar_base(); 
+  Aliases.INRstarWindows.BrowserForm.SetFocus();
   
   do
   {
     INRstarV5.Refresh();
-    var page = INRstarV5.NativeWebObject.Find("idStr", "LogonPage");
+    var obj = wait_for_object(INRstarV5, "idStr", "LogonPage", 3, 1, 20);
   
-    if(page.Exists == true)
+    if(obj != false)
     {
       var main = INRstarV5.Panel("MainPage").Panel("main");  
       var login_area = main.Panel("LogonPage").Panel("LogonFormWrapper").Form("Logon").Panel("LoginArea");
@@ -80,10 +81,10 @@ function login(user_index, TestStepMode, reset_password)
       Log.Message("Login Page does not Exist...");
     }
   } 
-  while(page.Exists == false && counter < 3);
+  while(obj == false && counter < 3);
   
   var obj_root = INRstarV5;
-  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5, 10);
+  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
 }
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, is_password_reset, new_password)

@@ -1021,6 +1021,9 @@
 		<child name="TC_Bridging_935" key="{C35944AE-FBB2-4976-BCDF-851A2A6D4ACB}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
 			<data path="TC_Bridging_935.js" />
 		</child>
+		<child name="TC_Bridging_1176" key="{9EEFDA0B-9A8F-47A3-9EA2-F7FBCAEA9067}" type="Script Unit" typeId="{291CAE9C-4D20-4F33-8B5F-D48B587F3D65}" pluginName="Script">
+			<data path="TC_Bridging_1176.js" />
+		</child>
 	</children>
 	<folders>
 		<folder caption="1. Test Plans" description="A logical folder that is used to organize project items and elements." moniker="">
@@ -1441,6 +1444,7 @@
 				<ref key="{EAE8F324-8465-4F2E-A5D0-90C22A00D23B}" />
 				<ref key="{B4BDC917-8933-49A7-8C69-E99C1CACEAB2}" />
 				<ref key="{C35944AE-FBB2-4976-BCDF-851A2A6D4ACB}" />
+				<ref key="{9EEFDA0B-9A8F-47A3-9EA2-F7FBCAEA9067}" />
 			</references>
 		</folder>
 	</folders>

@@ -333,7 +333,7 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
       table.Cell(i, 2).Child(0).ClickItem(num);
       break;
       case "warf_checkbox": 
-      table.Cell(i, 3).Child(1).Click();
+      table.Cell(i, 3).Child(1).ClickChecked(true);
       break;
       case "warf_dropdown": 
       count = table.Cell(i, 3).Child(0).wItemCount - 1;
@@ -341,7 +341,7 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
       table.Cell(i, 3).Child(0).ClickItem(num);
       break;
       case "lmwh_checkbox": 
-      table.Cell(i, 4).Child(1).Click();
+      table.Cell(i, 4).Child(1).ClickChecked(true);
       break;
       case "lmwh_dropdown":
       table.Cell(i, 4).Child(0).ClickItem(1);
@@ -357,17 +357,17 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
       process_bridging_popup("Edit comments", "Update", content);
       break;
       case "all":
-      table.Cell(i, 2).Child(1).Click();
+      table.Cell(i, 2).Child(1).ClickChecked(true);
       count = table.Cell(i, 2).Child(0).wItemCount - 1;
       num = get_random_num_inrange(1, count);
       table.Cell(i, 2).Child(0).ClickItem(num);
       
-      table.Cell(i, 3).Child(1).Click();
+      table.Cell(i, 3).Child(1).ClickChecked(true);
       count = table.Cell(i, 3).Child(0).wItemCount - 1;
       num = get_random_num_inrange(1, count);
       table.Cell(i, 3).Child(0).ClickItem(num);
       
-      table.Cell(i, 4).Child(1).Click();
+      table.Cell(i, 4).Child(1).ClickChecked(true);
       table.Cell(i, 4).Child(0).ClickItem(1);
       
       count = table.Cell(i, 5).Child(0).wItemCount - 1;
