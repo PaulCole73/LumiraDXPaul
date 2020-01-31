@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Root signature="{AA2F3067-5C9B-4CCF-89D4-1F93CE1C510F}" version="12.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{AA2F3067-5C9B-4CCF-89D4-1F93CE1C510F}" version="14.0">
 	<children>
-		<child name="deans_regression_patients_home_page_xls" key="{948973BA-B1B6-4145-A6D5-BB55C0B830EF}" type="File" typeId="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" pluginName="Stores">
-			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="12.0" caption="deans_regression_patients_home_page_xls" ID="{948973BA-B1B6-4145-A6D5-BB55C0B830EF}" FileName="Files\deans_regression_patients_home_page.xls" Update="False" />
+		<child name="deans_regression_patients_home_page_xls" key="{948973BA-B1B6-4145-A6D5-BB55C0B830EF}">
+			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="14.0" caption="deans_regression_patients_home_page_xls" ID="{948973BA-B1B6-4145-A6D5-BB55C0B830EF}" FileName="Files\deans_regression_patients_home_page.xls" Update="False" />
 		</child>
-		<child name="INRstar_bat" key="{09603F95-1A61-4B33-9C44-A40428AC548D}" type="File" typeId="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" pluginName="Stores">
-			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="12.0" caption="INRstar_bat" ID="{09603F95-1A61-4B33-9C44-A40428AC548D}" FileName="Files\INRstar.bat" Update="False" />
+		<child name="INRstar_bat" key="{09603F95-1A61-4B33-9C44-A40428AC548D}">
+			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="14.0" caption="INRstar_bat" ID="{09603F95-1A61-4B33-9C44-A40428AC548D}" FileName="Files\INRstar.bat" Update="False" />
 		</child>
-		<child name="Excel_bat" key="{AF11F980-9955-4152-83FC-2361FEF1317E}" type="File" typeId="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" pluginName="Stores">
-			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="12.0" caption="Excel_bat" ID="{AF11F980-9955-4152-83FC-2361FEF1317E}" FileName="Files\Excel.bat" Update="False" />
+		<child name="Excel_bat" key="{AF11F980-9955-4152-83FC-2361FEF1317E}">
+			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="14.0" caption="Excel_bat" ID="{AF11F980-9955-4152-83FC-2361FEF1317E}" FileName="Files\Excel.bat" Update="False" />
 		</child>
 	</children>
-	<folders />
 </Root>

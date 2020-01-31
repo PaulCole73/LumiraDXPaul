@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Root signature="{9576DAFD-0ADD-41A8-9897-C72F150AF6BB}" version="12.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{9576DAFD-0ADD-41A8-9897-C72F150AF6BB}" version="14.0">
 	<children>
-		<child name="Test1" key="{0ADA1673-FFE1-4406-BF86-62B402F4B2C7}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
-			<data path="Test1.tcKDTest" />
-		</child>
-		<child name="Test2" key="{FC34806F-1159-4ED1-B177-DEDC11CB9972}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
-			<data path="Test2.tcKDTest" />
-		</child>
-		<child name="Test3" key="{23D6AF51-B6F3-4C31-B15C-C00592246279}" type="Keyword Test" typeId="{B9D9273E-7266-43E0-BF02-97F168593604}" pluginName="Keyword Testing">
-			<data path="Test3.tcKDTest" />
-		</child>
+		<child name="Test1" key="{0ADA1673-FFE1-4406-BF86-62B402F4B2C7}" path="Test1.tcKDTest" />
+		<child name="Test2" key="{FC34806F-1159-4ED1-B177-DEDC11CB9972}" path="Test2.tcKDTest" />
+		<child name="Test3" key="{23D6AF51-B6F3-4C31-B15C-C00592246279}" path="Test3.tcKDTest" />
 	</children>
-	<folders />
 </Root>

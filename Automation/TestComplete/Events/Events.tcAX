@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Root signature="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}" version="2" key="{78B47A72-ABB2-4987-B979-E4891B7767A0}" type="Events" typeId="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}">
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}" version="1400" key="{78B47A72-ABB2-4987-B979-E4891B7767A0}" typeId="{E7ABA87F-E873-4452-9921-6F4BAAEB2BCC}">
 	<config nodeName="Events" tlbHistory="&quot;TestComplete general events&quot;" />
 	<testData />
 	<data />
 	<children>
-		<child key="{5928235B-3BDA-440B-B11F-5D8A576842C9}" type="Event control" typeId="{8A98BAC4-2A89-4883-AAE7-F07337DF59D1}">
+		<child key="{5928235B-3BDA-440B-B11F-5D8A576842C9}">
 			<config nodeName="GeneralEvents" lastOpenedTLB="" generatedCLSID="{17B09A3F-6A44-4896-AFDD-9E66AB79CCD3}" generatedTLBKey="{916D8DD1-8A4A-4F5B-966B-8ACB37713EE3}" generatedEventsKey="{A6B3083E-A3E4-49B6-AAF8-B8BE7A3E83F5}" generatedTLBDesc="TestComplete GeneralEvents Control - 05/12/2019 15:59:03">
 				<eventInfo infoTLBVer="version.dll" infoGUID="{4C03E9F2-BB22-4E21-B2E7-E51B754FCBBA}" infoID="1610743820" infoControlName="General Events" infoEventName="OnTimeout" infoEventRealName="OnTimeout" infoDescription="Occurs when a timeout expires in a project or in a project suite." />
 				<eventInfo infoTLBVer="version.dll" infoGUID="{4C03E9F2-BB22-4E21-B2E7-E51B754FCBBA}" infoID="1610743819" infoControlName="General Events" infoEventName="OnOverlappingWindow" infoEventRealName="OnOverlappingWindow" infoDescription="Occurs when an overlapping window appears." />
@@ -27,5 +27,4 @@
 			<data />
 		</child>
 	</children>
-	<folders />
 </Root>

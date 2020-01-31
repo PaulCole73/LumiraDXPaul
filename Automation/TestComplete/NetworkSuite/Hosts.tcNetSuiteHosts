@@ -1,49 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE Nodes [
-
-<!ENTITY % NameValue "CDATA">
-<!ENTITY % PropType "(I|S|D|L|H|B)">
-<!ENTITY % VersionValue "CDATA">
-
-<!ELEMENT Prp (#PCDATA)>
-<!ELEMENT Node (Node|Prp)*>
-<!ELEMENT Nodes (Node)+>
-
-<!ATTLIST Nodes version CDATA "1">
-
-<!ATTLIST Node name CDATA #REQUIRED>
-
-<!ATTLIST Prp name CDATA #REQUIRED>
-<!ATTLIST Prp type CDATA #REQUIRED>
-<!ATTLIST Prp value CDATA #REQUIRED>
-]>
-<Nodes version="1">
-	<Node name="root">
-		<Node name="child list">
-			<Node name="tol_tst_offline">
-				<Node name="item data">
-					<Node name="settings"/>
-					<Prp name="address" type="S" value="192.168.190.8"/>
-					<Prp name="base path" type="S" value=""/>
-					<Prp name="caption" type="S" value="TOL_TST_OFFLINE"/>
-					<Prp name="domain" type="S" value="Development"/>
-					<Prp name="logonmode" type="I" value="2"/>
-					<Prp name="password" type="S" value="2E1D878CD74F6D10FDF497DD9CA9751EF4A9AE70E8B32D97F42C564DF4"/>
-					<Prp name="signature" type="S" value="{4C283132-D38F-4C25-B72C-75AD0D8A3093}"/>
-					<Prp name="source" type="S" value=""/>
-					<Prp name="user name" type="S" value="Dean.Lester"/>
-					<Prp name="version" type="S" value="12.0"/>
-				</Node>
-				<Prp name="index" type="I" value="0"/>
-				<Prp name="key" type="S" value="{1CD9018D-14C0-4909-97DD-17E6F68974C1}"/>
-				<Prp name="pluginname" type="S" value="Network Suite"/>
-				<Prp name="type" type="S" value="{4C283132-D38F-4C25-B72C-75AD0D8A3093}"/>
-				<Prp name="typename" type="S" value="Host"/>
-			</Node>
-		</Node>
-		<Node name="folders"/>
-		<Node name="settings"/>
-		<Prp name="signature" type="S" value="{1478418C-D916-49E9-8E78-BF4561C164F9}"/>
-		<Prp name="version" type="S" value="12.0"/>
-	</Node>
-</Nodes>
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{1478418C-D916-49E9-8E78-BF4561C164F9}" version="14.0">
+	<children>
+		<child name="TOL_TST_OFFLINE" key="{1CD9018D-14C0-4909-97DD-17E6F68974C1}">
+			<data signature="{4C283132-D38F-4C25-B72C-75AD0D8A3093}" version="14.0" caption="TOL_TST_OFFLINE" address="192.168.190.8" basePath="" userName="Dean.Lester" source="" domain="Development" logonMode="2" password="2E1D878CD74F6D10FDF497DD9CA9751EF4A9AE70E8B32D97F42C564DF4" />
+		</child>
+	</children>
+</Root>
