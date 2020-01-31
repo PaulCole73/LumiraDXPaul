@@ -247,9 +247,7 @@ function accept_patient_in_transfer_request_message(pat_name) //this and the bel
   Goto_Home();
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
   var link = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
   
   //In case the patient in question was the only one on the list
   if(link.Exists != true)

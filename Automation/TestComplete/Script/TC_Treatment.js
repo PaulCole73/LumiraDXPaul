@@ -1533,7 +1533,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
      
     login(15, "Shared");
     
-    var is_in_table = accept_transfer(messagename);
+    var is_in_table = accept_patient_in_transfer_request_message(messagename);
     
     if (is_in_table == true)
     {

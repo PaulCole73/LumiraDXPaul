@@ -759,7 +759,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   
   if(wait_time == null || wait_time == "")
   {
-    wait_time = 1;
+  wait_time = 1;
   }
   if(iterations == null || wait_time == "")
   {
@@ -769,11 +769,11 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   do
   {
     var is_obj_valid = false;
-    INRstarV5.Refresh();
-    obj_root.Refresh();
+    //INRstarV5.Refresh();    //parent objects may need to be refreshed outside of this function
+    //obj_root.Refresh();
     
     var root = obj_root;
-    var obj = root.FindChild(obj_property, obj_value, depth);
+    var obj = root.FindChild(obj_property, obj_value, depth, true);
     counter++;
     
     if(obj.Exists == false)
@@ -810,7 +810,7 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
 {
   //wait wrapper, this minimises timeouts
   var counter = 0;
-  if(object != false) //check an object is returned, possible returns are "obj", "false", "number of failed searches"
+  if(object.Exists)
   {
     do 
     {
@@ -906,10 +906,19 @@ function set_get_environment(env)
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
-  if(do_login == true)
-  {
-    login(5, "Shared");
-  }
-  add_patient("Generic", "Patient", "M", "Shared");
-  add_treatment_plan("W", dm, "", "Shared", "");
+  //for(var i = 0; i < 100; i++)
+  //{
+    if(do_login == true)
+    {
+      login(5, "Shared");
+    }
+    
+    add_patient("Generic", "Patient", "M", "Shared");
+    add_treatment_plan("W", dm, "", "Shared", "");
+    
+    //if(do_login == true)
+    //{
+      Log_Off();
+    //}
+  //}
 }

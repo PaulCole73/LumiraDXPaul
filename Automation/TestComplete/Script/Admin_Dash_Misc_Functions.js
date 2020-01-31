@@ -61,6 +61,9 @@ function set_admin_dash_url()
     case base + "Alderaan": 
     admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
     break;
+    case base + "Integration": 
+    admin_dash_url = "https://admin-integration.lumiradxcaresolutions.com/";
+    break;
     case base + "HothV4": 
     admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
     break;

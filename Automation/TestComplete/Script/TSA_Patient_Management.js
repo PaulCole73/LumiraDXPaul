@@ -521,6 +521,7 @@ function accept_transfer_with_warning(messagename)
   Log.Message("Patient was not found on the list")
 } 
 //--------------------------------------------------------------------------------
+/*
 function accept_transfer(messagename)
 {
   Goto_Home();
@@ -546,7 +547,7 @@ function accept_transfer(messagename)
   }
   Log.Message("Patient was not found on the list");
 } 
-
+*/
 //--------------------------------------------------------------------------------
 
 

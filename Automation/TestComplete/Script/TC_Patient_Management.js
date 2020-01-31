@@ -426,7 +426,7 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
     login(15, "Shared");
   
     //Accept the transfer
-    var result_set_1 = accept_transfer(messagename);
+    var result_set_1 = accept_patient_in_transfer_request_message(messagename);//accept_transfer(messagename);
     result_set.push(result_set_1);
   
     //Check the audit for accepting the transfer

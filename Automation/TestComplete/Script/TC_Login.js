@@ -43,10 +43,11 @@ function tc_log_off_inrstar()
 {
   try
   {
-    var test_title = 'Login - Log on to INRstar valid credentials'
+    var test_title = "Login - Log off INRstar";
     login(5, "Shared");
+    wait_for_object(INRstar_base(), "idStr", "LogoutLink", 5);
     Log_Off();
-    tsv_logoff_inrstar('2','Welcome to the INRstar anticoagulation monitoring system.'); 
+    tsv_logoff_inrstar("2", "Welcome to the INRstar anticoagulation monitoring system."); 
   }
   catch(e)
   {
