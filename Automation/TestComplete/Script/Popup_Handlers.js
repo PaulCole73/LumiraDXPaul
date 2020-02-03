@@ -229,12 +229,12 @@ function process_blue_popup()
   INRstarV5.Refresh();
   
   WaitSeconds(3);
-  var obj = INRstarV5.NativeWebObject.Find("idStr", "changeMessageDialog1");
+  var obj = INRstarV5.NativeWebObject.Find("idStr", "changeMessageDialog4");
   
   if(obj.Exists)
   {
     Log.Message("Blue popup displayed.");
     Log.Message("Clicking 'OK' button.");
-    obj.Panel("changeMessageDialog1Text").Panel(0).Panel(1).Button(0).Click();
+    obj.Panel("changeMessageDialog4Text").Panel(0).Panel(1).Button(0).Click();
   }
 }
