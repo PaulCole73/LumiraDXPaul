@@ -84,7 +84,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{9B459D66-1D5A-4BC3-B10C-682BC0CDC3A3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -325,7 +325,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{85A67BE8-AFD0-4B5E-B237-71137BF8BE6B}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -807,7 +807,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Staging" key="{3C83194B-70B7-4C90-AA43-178A4D0C7D9B}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+			<testItem name="Staging" key="{3C83194B-70B7-4C90-AA43-178A4D0C7D9B}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{E9E32144-A9E6-40B2-B4C7-E0491BDD86F3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
@@ -1009,6 +1009,38 @@
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
 									<param1 name="name" type="3" localVarName="" varType="8" value="staging_admin_dash_output" />
+								</testParameters>
+								<children />
+							</testItem>
+						</children>
+					</testItem>
+					<testItem name="Engage" key="{52189018-8484-4922-8DDE-CA20F5A84D6B}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+						<testParameters />
+						<children>
+							<testItem name="Setup" key="{89B97935-CE8E-43F4-BC6D-5DF8CFA5DAAB}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+								<testParameters>
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Engage" key="{21A0F1A4-6167-4528-95C2-A8DD91A93BE9}" group="False" enabled="True" testMoniker="{1B15472F-B752-4004-A991-EA62F33068D2}ts_master_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="Re-try Failed Tests" key="{1B759A1C-67C0-4047-B13D-A53829B0DDCF}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Close" key="{C9B6749E-E29B-4EF4-A468-6C8E29B547F3}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}close_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Email" key="{5C7E3914-20BD-468A-9612-ADAE01F3A79C}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="staging_engage_output" />
 								</testParameters>
 								<children />
 							</testItem>
