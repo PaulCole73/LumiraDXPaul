@@ -263,11 +263,12 @@ function accept_patient_in_transfer_request_message(pat_name) //this and the bel
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
     for (i=0; i<table.rowcount; i++)
     {
-      if(table.Cell(i, 0).contentText==pat_name)
+      if(table.Cell(i, 0).contentText == pat_name)
       { 
         //Click Accept button against patient and accept the transfer
         table.Cell(i, 6).scrollIntoView(true);    
         table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+        WaitSeconds(2); //can use wait for function for this popup
         process_popup("Please confirm to continue", "Confirm");
         return true;
       }

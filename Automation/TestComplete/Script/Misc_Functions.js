@@ -12,9 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsAlderaan";
-var admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsStaging";
+var admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -586,6 +586,7 @@ function get_new_number_v5()
   Sys.WaitProcess("NHSNumberGenerator");
   WaitSeconds(1);
 
+  Sys.Process("NHSNumberGenerator").WaitWinFormsObject("Form1", "Generate NHS Number", 5000);
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
   form.WinFormsObject("button1").ClickButton();
   wnd = form.WinFormsObject("textBox1").wText;
@@ -759,7 +760,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   
   if(wait_time == null || wait_time == "")
   {
-  wait_time = 1;
+    wait_time = 1;
   }
   if(iterations == null || wait_time == "")
   {
@@ -814,11 +815,12 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
   {
     do 
     {
+      INRstar_base().Refresh();
       object.Click();
-      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 2);
+      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 5);
       counter++
     }
-    while((new_obj.Exists == false || new_obj.VisibleOnScreen == false) && counter < 4);
+    while((new_obj.Exists == false && new_obj.VisibleOnScreen == false) && counter < 4);
   }
 }
 
@@ -906,19 +908,34 @@ function set_get_environment(env)
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
-  //for(var i = 0; i < 100; i++)
-  //{
+  for(var i = 0; i < 100; i++)
+  {
     if(do_login == true)
     {
       login(5, "Shared");
     }
-    
     add_patient("Generic", "Patient", "M", "Shared");
     add_treatment_plan("W", dm, "", "Shared", "");
     
-    //if(do_login == true)
-    //{
+    if(do_login == true)
+    {
       Log_Off();
-    //}
-  //}
+    }
+  }
+}
+function WorkWithFiles()
+{
+  /*
+  var notepad = Sys.Process("notepad");
+  var wndNotepad = notepad.Window("Notepad");
+
+  // Open a file in Notepad
+  wndNotepad.MainMenu.Click("File|Open...");
+  notepad.Window("#32770", "Open").OpenFile("Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\INRstarWindowsAlderaan");
+  
+  
+  aqFileSystem.CopyFile("Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\INRstarWindowsAlderaan", "\\\\DEVSRV1\\RedirectedFolders\\tom.simons\\Desktop\\my_config_file", true);
+  */
+  var is_existing = aqFileSystem.Exists("Q:\\Incident Management.pptx");
+  Log.Message(is_existing);
 }

@@ -422,6 +422,7 @@ function change_test_practice(prac_name)
   
   var test_loc_confirm_pop_up_buttons_path = warning_pop_up();
   test_loc_confirm_pop_up_buttons_path.Button(1).Click();
+  WaitSeconds(2);
 } 
 //--------------------------------------------------------------------------------
 function change_test_practice_with_warning(prac_name)
