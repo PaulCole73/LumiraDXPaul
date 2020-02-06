@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Root signature="{5238AF17-5FE2-48FF-8BCC-9803A975A4F4}" version="12.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{5238AF17-5FE2-48FF-8BCC-9803A975A4F4}" version="14.0">
 	<children>
-		<child name="WebTesting" key="{85477E88-43F4-45D5-A68E-3C2431E4B8EA}" type="Web Testing" typeId="{B205BEB2-E15D-463E-8F95-9AF50A3E8F46}" pluginName="Web Checkpoints">
-			<data path="WebTesting\WebTesting.tcWtc" />
-		</child>
-		<child name="Files" key="{1048C936-B76D-4C44-8CE2-A1FA86A31A15}" type="Files" typeId="{AA2F3067-5C9B-4CCF-89D4-1F93CE1C510F}" pluginName="Stores">
-			<data path="Files.tcFiles" />
-		</child>
-		<child name="Objects" key="{CF927AAA-6CB5-4977-A418-7EE544CC09FA}" type="Objects" typeId="{30501691-969F-4007-923F-BA4459E51E6A}" pluginName="Stores">
-			<data path="Objects.tcObjects" />
-		</child>
+		<child name="Files" key="{1048C936-B76D-4C44-8CE2-A1FA86A31A15}" type="Files" typeId="{AA2F3067-5C9B-4CCF-89D4-1F93CE1C510F}" pluginName="Stores" path="Files.tcFiles" />
+		<child name="Objects" key="{CF927AAA-6CB5-4977-A418-7EE544CC09FA}" type="Objects" typeId="{30501691-969F-4007-923F-BA4459E51E6A}" pluginName="Stores" path="Objects.tcObjects" />
+		<child name="WebTesting" key="{85477E88-43F4-45D5-A68E-3C2431E4B8EA}" type="Web Testing" typeId="{B205BEB2-E15D-463E-8F95-9AF50A3E8F46}" pluginName="Web Checkpoints" path="WebTesting\WebTesting.tcWtc" />
 	</children>
-	<folders />
 </Root>

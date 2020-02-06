@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Root signature="{90D101C8-80C7-48D4-9055-2E451B9BCD75}" version="1140" key="{1CDA66BB-6D71-4DA8-810D-DFAD03478222}" type="Tested Applications" typeId="{90D101C8-80C7-48D4-9055-2E451B9BCD75}">
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{90D101C8-80C7-48D4-9055-2E451B9BCD75}" version="1400" key="{1CDA66BB-6D71-4DA8-810D-DFAD03478222}" typeId="{90D101C8-80C7-48D4-9055-2E451B9BCD75}">
 	<config nodeName="TestedApps" />
 	<testData />
 	<data />
 	<children>
-		<child key="{0EAC781C-E4F1-4054-9482-64E424FCA0B3}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+		<child key="{0EAC781C-E4F1-4054-9482-64E424FCA0B3}">
 			<config nodeName="INRstarWindows" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="False">
 				<runModeParams activeRunMode="Simple">
 					<param name="RunAs" parameters="" workFolder="" userName="" password="" domain="" />
@@ -16,7 +16,7 @@
 			<testData />
 			<data />
 		</child>
-		<child key="{22732B03-06F9-4BEE-A38B-7F9836F3211D}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+		<child key="{22732B03-06F9-4BEE-A38B-7F9836F3211D}">
 			<config nodeName="NHSNumberGenerator" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="False">
 				<runModeParams activeRunMode="Simple">
 					<param name="RunAs" parameters="" workFolder="" userName="" password="" domain="" />
@@ -28,7 +28,7 @@
 			<testData />
 			<data />
 		</child>
-		<child key="{3926D3F1-76B1-4E0B-844E-B197EBE9EF2C}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+		<child key="{3926D3F1-76B1-4E0B-844E-B197EBE9EF2C}">
 			<config nodeName="notepad" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="False">
 				<runModeParams activeRunMode="Simple">
 					<param name="RunAs" parameters="" workFolder="" userName="" password="" domain="" />
@@ -40,7 +40,7 @@
 			<testData />
 			<data />
 		</child>
-		<child key="{42D4DEAD-9F8D-4615-B0E9-D5C3C0547C0F}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+		<child key="{42D4DEAD-9F8D-4615-B0E9-D5C3C0547C0F}">
 			<config nodeName="Disconnect" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="False">
 				<runModeParams activeRunMode="Simple">
 					<param name="RunAs" parameters="" workFolder="" userName="" password="" domain="" />
@@ -52,7 +52,7 @@
 			<testData />
 			<data />
 		</child>
-		<child key="{BA57EBC4-8303-4C76-BBED-E9D44AD58AD1}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+		<child key="{BA57EBC4-8303-4C76-BBED-E9D44AD58AD1}">
 			<config nodeName="Admin_Dashboard" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
 					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://admin-tatooine.lumiradxcaresolutions.com/" browserArguments="" />
@@ -61,7 +61,7 @@
 			<testData />
 			<data />
 		</child>
-		<child key="{67EFBFAD-DE0F-4634-8712-7C15DB1802FC}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+		<child key="{67EFBFAD-DE0F-4634-8712-7C15DB1802FC}">
 			<config nodeName="gmail" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
 					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://mail.google.com/mail/u/0/#inbox" browserArguments="" />
@@ -70,15 +70,14 @@
 			<testData />
 			<data />
 		</child>
-		<child key="{C0415C76-BAFA-4537-813C-E09E2638CC3F}" type="Tested Application" typeId="{FD30A383-63C2-4C25-948C-2595C0F81320}">
+		<child key="{C0415C76-BAFA-4537-813C-E09E2638CC3F}">
 			<config nodeName="Engage" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="Google Chrome" browserVersion="79.0 (All Users)" pageAddress="https://engage-tatooine.lumiradxcaresolutions.com/" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="67.0" pageAddress="https://engage-tatooine.lumiradxcaresolutions.com/" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
 			<data />
 		</child>
 	</children>
-	<folders />
 </Root>
