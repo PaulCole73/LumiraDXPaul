@@ -19,7 +19,7 @@
 				<children>
 					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
-							<param0 name="do_login" type="3" localVarName="" varType="11" value="False" />
+							<param0 name="do_login" type="3" localVarName="" varType="11" value="True" />
 							<param1 name="dm" type="3" localVarName="" varType="8" value="Coventry" />
 						</testParameters>
 						<children />
@@ -63,7 +63,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{9B459D66-1D5A-4BC3-B10C-682BC0CDC3A3}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
@@ -304,7 +304,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Tatooine" key="{63BC4EDE-CF09-47A3-BF27-8C7767C204D6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{85A67BE8-AFD0-4B5E-B237-71137BF8BE6B}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2200,6 +2200,247 @@
 					</testItem>
 				</children>
 			</testItem>
+			<testItem name="Coruscant" key="{45081804-B8BE-4637-9214-A46FAA2C2BE6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+				<testParameters />
+				<children>
+					<testItem name="INRstar" key="{E32A1A03-EE59-4F86-B977-A24C03B6D405}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<children>
+							<testItem name="Setup" key="{D679E617-FA07-4039-B0E9-7C7B6607A523}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsCoruscant" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Adverse_Events" key="{68EE2282-66CE-4848-B3BE-0A1A3CEA1733}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Bespoke_Letters" key="{CF44D528-5451-4781-88D7-A5A15F00C02A}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Bridging" key="{E4A57059-6A5B-4702-A2F9-04A7332D33EC}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Clinics_Appointments" key="{9B4DA824-976A-46AA-B758-EECE7FFA4233}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Demographics" key="{E38A0E96-A132-46FD-9630-A4DF383BF98D}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Diagnosis" key="{0EE5E1BA-4E53-4268-890E-F0EB058B19AB}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_External_Patient_Lookup" key="{D46FE734-54B4-4522-9DE3-344CCC2DE461}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_master_external_patient_lookup" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_External_Results_HL7" key="{317B12F8-33D0-4202-9431-05A4D8AA0A61}" group="False" enabled="True" testMoniker="{4B592C50-F943-446F-AE9E-14F564CED33B}ts_master_external_results_hl7" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Home_Page" key="{5AF56E90-630E-44F0-92DD-0E5F5338F7B7}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Loc_Management_Users" key="{14F71F85-9659-4EC6-9846-DFC1D55899F2}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Login_Page" key="{7C61686C-110F-4564-B1BC-79EB1ADFFE3C}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_NEQAS" key="{8F195717-C5EC-4D67-8908-D870714B29D1}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Notes" key="{E95ABB31-3D03-43F2-81A2-38DF32EBBBFF}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Options_IQC" key="{FDD62B1F-CC84-44E5-9FFF-D8490EB5D895}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Patient" key="{2EC16BD9-3C86-4900-97DE-2E81D6922861}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Patient_Management" key="{BF9D162B-DE21-4BBD-ACC9-D7315B98F7A6}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Patient_Tests_Due" key="{27B1AC52-7E94-49AA-9CB2-93A9EF85AC5F}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_PoCT" key="{E2D246FE-37BB-4259-8A7B-99645FC33A5A}" group="False" enabled="True" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_master_poct" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Reviews" key="{362696C4-5723-4D8C-B882-5657C0EDD8BB}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Treatment" key="{8505224C-C2F5-488E-9DB1-345FE1B9657D}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Treatment_Plan" key="{D4C0BAB2-D53F-4C41-89BD-35DBD66C9C2F}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="Re-try Failed Tests" key="{15931F4C-7C43-4C16-82DC-7DA7C3ABFF2B}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Email" key="{97DFC1F7-0AC7-4D89-BFAE-C20D81D4D334}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="coruscant_regression_output" />
+								</testParameters>
+								<children />
+							</testItem>
+						</children>
+					</testItem>
+					<testItem name="Admin Dashboard" key="{5987147D-731F-4062-A90F-C324B5EF536D}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<children>
+							<testItem name="Setup_1" key="{D9608A94-DABD-4FB4-BBB4-F4408B65964F}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsCoruscant" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_AD_Account_Management_1" key="{EBB1D8C2-0B29-4D56-838D-2EB93B430728}" group="False" enabled="True" testMoniker="{5876BC81-65BD-474C-8646-F2406979CD55}ts_master_admin_dash_account_management" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_AD_Banner_Message_1" key="{FF9C982C-2B27-4686-A102-FF01F34D7934}" group="False" enabled="True" testMoniker="{26324FE2-0AC8-49C0-BE25-6DF24FE3ABF6}ts_master_admin_dash_banner_message" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_AD_Feedback_1" key="{428D2BD8-D3A0-4AC8-ADE2-26818135D156}" group="False" enabled="True" testMoniker="{DC5503CC-632A-4A3A-B189-1F024ADC6D13}ts_master_admin_dash_feedback" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_AD_Login_1" key="{23A0F970-7A91-4034-BB83-7EE6D58BECBE}" group="False" enabled="True" testMoniker="{71A977BF-EA83-4B1D-9B08-1B39437FCA7F}ts_master_admin_dash_login" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_AD_Main_Page_1" key="{88B4E123-A0FA-47DE-BF9F-F48096062DE5}" group="False" enabled="True" testMoniker="{E789870B-20CD-4D53-8259-C8E2D2C597C2}ts_master_admin_dash_main_page" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="Re-try Failed Tests_1" key="{D35725B0-1DC0-4DE6-9F56-ECF83629FE4D}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Close_1" key="{3842722D-D7D6-4190-877D-9D78C3AE4A7D}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}close_admin_dash" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Email_1" key="{4A87A6D2-5094-4CD5-8A0C-71BD72D5599A}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="coruscant_admin_dash_output" />
+								</testParameters>
+								<children />
+							</testItem>
+						</children>
+					</testItem>
+					<testItem name="Engage" key="{BD06DF74-B175-424B-8196-365D8FDD8640}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<children>
+							<testItem name="Setup_1" key="{6F0A2A0B-14AC-4976-BFB1-71796CEC7B4D}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsCoruscant" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_Engage_1" key="{6861FD50-CFCF-4817-B977-D4889D7D7D7C}" group="False" enabled="True" testMoniker="{1B15472F-B752-4004-A991-EA62F33068D2}ts_master_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="Re-try Failed Tests_1" key="{3BFF37D4-2008-4FB7-AF82-FE7A3FBA3D39}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Close_1" key="{9C9CEAE5-D3A0-4EB0-9CF2-BE1D082D1BE9}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}close_engage" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Email_1" key="{B9F896ED-B855-4184-AA14-CF7B1F3B3045}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="coruscant_engage_output" />
+								</testParameters>
+								<children />
+							</testItem>
+						</children>
+					</testItem>
+				</children>
+			</testItem>
 		</children>
 	</testItems>
 	<variables key="{4B9173FC-9A59-474A-BB11-CB532AE3D687}">
@@ -2373,6 +2614,16 @@
 		<setting name="OpenApps_DbgAgent_StringLengthLimit" type="2" value="1024" />
 		<setting name="OpenApps_DbgAgent_UseStaticLibs" type="1" value="True" />
 		<setting name="OpenApps_EnableMultipleNamesForObjects" type="1" value="False" />
+		<setting name="OpenApps_FlashFlex_InstallFlashInjector" type="1" value="False" />
+		<setting name="OpenApps_FlashFlex_TrustedLocations" type="6" rowIndex="0" colIndex="1">
+			<columns>
+				<column type="1" enabled="True" />
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="True" val1="%PRODUCT_LOCATION%\Open Apps\Flex\FlashInjector.swf" />
+			</data>
+		</setting>
 		<setting name="OpenApps_MethodInvokeTimeout" type="2" value="3000" />
 		<setting name="OpenApps_MSAA_ListOfAcceptedWindows" type="6" rowIndex="11" colIndex="1">
 			<columns>
@@ -2395,19 +2646,23 @@
 			</data>
 		</setting>
 		<setting name="OpenApps_MSAA_TreeModel" type="1" value="False" />
-		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="9" colIndex="0">
+		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="13" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>
 			<data>
+				<row val0="NativeSlObject" />
+				<row val0="NativeWebObject" />
 				<row val0="NativeVBObject" />
 				<row val0="NativeDelphiObject" />
 				<row val0="NativeTextObject" />
 				<row val0="NativeJavaObject" />
 				<row val0="NativeClrObject" />
 				<row val0="NativeCPPObject" />
+				<row val0="NativeChromeObject" />
 				<row val0="NativeJavaFXObject" />
 				<row val0="NativeQtObject" />
+				<row val0="NativeFirefoxObject" />
 				<row val0="NativeUIAObject" />
 				<row val0="NativeMSAA" />
 			</data>
@@ -2441,6 +2696,143 @@
 			</data>
 		</setting>
 		<setting name="OpenApps_UseNativeObjectNames" type="1" value="True" />
+		<setting name="OpenApps_Web_AddCommentsForWaitMethod" type="1" value="False" />
+		<setting name="OpenApps_Web_CSSTransitionForPagePicture" type="1" value="True" />
+		<setting name="OpenApps_Web_CustomAttributes_AttributesForNameMapping" type="6" rowIndex="0" colIndex="1">
+			<columns>
+				<column type="1" enabled="True" />
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="True" val1="data-test-id" />
+				<row val0="True" val1="data-testid" />
+			</data>
+		</setting>
+		<setting name="OpenApps_Web_EnableSupportForWebComponents" type="1" value="True" />
+		<setting name="OpenApps_Web_ObjIdentification_DynamicIdentifiers" type="6" rowIndex="32" colIndex="9">
+			<columns>
+				<column type="2" enabled="True" />
+				<column type="2" enabled="True" />
+				<column type="1" enabled="True" />
+				<column type="1" enabled="True" />
+				<column type="5" enabled="True" />
+				<column type="5" enabled="True" />
+				<column type="5" enabled="True" />
+				<column type="5" enabled="True" />
+				<column type="5" enabled="True" />
+				<column type="2" enabled="True" />
+			</columns>
+			<data>
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="Yahoo! UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="0" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;yui-gen&quot;" val5="Wildcard" val6="yui-gen*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="0" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;yui_3_&quot;" val5="Wildcard" val6="*yui_3_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="jQuery UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="3" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;ui-id-&quot;" val5="Wildcard" val6="ui-id-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="Dojo toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="5" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;dijit_&quot;" val5="Wildcard" val6="dijit_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="Other" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="-1" val2="False" val3="True" val4="Do not use IDs containing GUID" val5="RegExp" val6="\h+-\h+-\h+-\h+-\h+" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove leading characters from IDs like &quot;c1114509959-searchform&quot;" val5="RegExp" val6="^[A-Za-z](\d\d\d\d\d+){[A-Za-z-]*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove trailing digits from IDs like &quot;unique-123456&quot;" val5="RegExp" val6="^{[A-Za-z-]+}(\d\d\d\d\d+)$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove digits from IDs like &quot;some_unique_123456_text&quot;" val5="RegExp" val6="^{[A-Za-z_]+}_(\d\d\d\d\d+){[A-Za-z_]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove digits from IDs like &quot;some_unique123456_text&quot;" val5="RegExp" val6="^{[A-Za-z_]+}(\d\d\d\d\d+){[A-Za-z_]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="ASP.NET" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="13" val1="-1" val2="False" val3="True" val4="Do not use IDs ending with a string like &quot;ctl00&quot;" val5="RegExp" val6="^(.*[-_$])?(ctl[0-9]+)$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="13" val1="-1" val2="False" val3="True" val4="Remove GUIDs and ctl00-like prefixes from Sharepoint IDs" val5="RegExp" val6="(.+?_(\h+_\h+_\h+_\h+_\h+))+(.*ctr?l[0-9]+)?[_$]?{.*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="13" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;ctl00_MainContent_username&quot;" val5="RegExp" val6=".*(ctl[0-9]+)(.*)[-_$]+{[^_0-9]+}{[_0-9]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="Sencha ExtJS" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-gen&quot;" val5="RegExp" val6="^(.*-)?ext-gen" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-comp&quot;" val5="RegExp" val6="^(.*-)?ext-comp" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;extdd-&quot;" val5="Wildcard" val6="extdd-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="-1" val2="False" val3="True" val4="Remove digits from IDs like &quot;treepicker-1038&quot; or &quot;treepicker-1038-inputEl&quot;" val5="RegExp" val6="^{[A-Za-z-]+}-{\d\d\d\d+}{.*}$" val7="$1$3" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="Sencha Touch" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="22" val1="-1" val2="False" val3="True" val4="Remove dynamic parts of Sencha Touch IDs" val5="RegExp" val6="^ext-{.*}-\d+$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="JavaServer Faces" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;_t14&quot;" val5="RegExp" val6="^{_t}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;j_id23&quot; or &quot;j_idt23&quot;" val5="RegExp" val6="^{j_idt?}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;frm:menuLinks:0:link&quot;" val5="RegExp" val6="(.+):{[^0-9]+}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;frm:menuLinks:3:link&quot;" val5="RegExp" val6="(.+):(.*)" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="Google Web Toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="29" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;gwt-uid-370_runButton&quot;" val5="RegExp" val6="^(gwt-uid-[0-9]+)(_{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="29" val1="-1" val2="False" val3="True" val4="Remove dynamic parts of Sencha GXT IDs" val5="RegExp" val6="^(x-((widget)|(auto))-.*[0-9]+)([-_]{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="-1" val2="True" val3="True" val4="Custom" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+			</data>
+		</setting>
+		<setting name="OpenApps_Web_ObjIdentification_IdentificationAttribute" type="6" rowIndex="0" colIndex="0">
+			<columns>
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="ID" />
+				<row val0="Name" />
+			</data>
+		</setting>
+		<setting name="OpenApps_Web_RecordTestedHost" type="5" value="" />
+		<setting name="OpenApps_Web_TestedHost" type="5" value="" />
+		<setting name="OpenApps_Web_TreeModel" type="6" rowIndex="3" colIndex="0">
+			<columns>
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="DOM" />
+				<row val0="Tag" />
+				<row val0="Hybrid" />
+				<row val0="Tree" />
+			</data>
+		</setting>
+		<setting name="OpenApps_Web_URLProcessing_DynamicParameters" type="6" rowIndex="0" colIndex="0">
+			<columns>
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="*" />
+			</data>
+		</setting>
+		<setting name="OpenApps_Web_URLProcessing_IgnoreDynamicURLParameters" type="1" value="True" />
+		<setting name="OpenApps_Web_UseCSSPixels" type="1" value="True" />
+		<setting name="OpenApps_Web_UseLegacyWebTestingFeatures" type="1" value="False" />
+		<setting name="OpenApps_Web_VirtBrowsers_AdvancedMode" type="1" value="True" />
+		<setting name="OpenApps_Web_VirtBrowsers_AutoLaunchWhenRecording" type="6" rowIndex="0" colIndex="0">
+			<columns>
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="None" />
+				<row val0="Apple iPad" />
+				<row val0="Apple iPhone 5/SE" />
+				<row val0="iPhone 6/7/8" />
+				<row val0="iPhone 6/7/8 Plus" />
+				<row val0="Apple iPhone X" />
+				<row val0="Google Pixel 2" />
+				<row val0="Samsung Galaxy Note 9" />
+				<row val0="Samsung Galaxy S9" />
+			</data>
+		</setting>
+		<setting name="OpenApps_Web_VirtBrowsers_List" type="6" rowIndex="7" colIndex="9">
+			<columns>
+				<column type="2" enabled="True" />
+				<column type="2" enabled="True" />
+				<column type="1" enabled="True" />
+				<column type="1" enabled="True" />
+				<column type="1" enabled="True" />
+				<column type="5" enabled="True" />
+				<column type="5" enabled="True" />
+				<column type="2" enabled="True" />
+				<column type="2" enabled="True" />
+				<column type="4" enabled="True" />
+			</columns>
+			<data>
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPad" val6="Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1" val7="1024" val8="768" val9="2" />
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 5/SE" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1" val7="320" val8="568" val9="2" />
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="iPhone 6/7/8" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1" val7="375" val8="667" val9="2" />
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="iPhone 6/7/8 Plus" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1" val7="414" val8="736" val9="3" />
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone X" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1" val7="375" val8="812" val9="3" />
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Google Pixel 2" val6="Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%s Mobile Safari/537.36" val7="411" val8="731" val9="2.625" />
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Samsung Galaxy Note 9" val6="Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36" val7="414" val8="846" val9="3.5" />
+				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Samsung Galaxy S9" val6="Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36" val7="360" val8="740" val9="4" />
+			</data>
+		</setting>
+		<setting name="OpenApps_Web_WebPageLoadingTimeout" type="2" value="60000" />
 		<setting name="OpenApps_WPF_CompositeControls" type="6" rowIndex="-1" colIndex="2">
 			<columns>
 				<column type="1" enabled="True" />
@@ -2614,148 +3006,6 @@
 		<setting name="ZFJ_Version" type="5" value="" />
 		<setting name="ZFJ_ZephyrAccessKey" type="5" value="" />
 		<setting name="ZFJ_ZephyrSecretKey" type="5" value="" />
-		<setting name="{0787AA13-4C49-418A-A688-B23BE9F226F4}" type="1" value="False" />
-		<setting name="{323FACDA-38E8-4C1B-B22C-99E0AB90EADC}" type="5" value="" />
-		<setting name="{33C0A94E-7F58-493C-BCCC-91685352F9B4}" type="6" rowIndex="0" colIndex="0">
-			<columns>
-				<column type="5" enabled="True" />
-			</columns>
-			<data>
-				<row val0="*" />
-			</data>
-		</setting>
-		<setting name="{40B91E08-D498-460E-B175-0E9FB75CB271}" type="1" value="True" />
-		<setting name="{542B9FA0-35EA-4C4D-BF0B-661005CB94E9}" type="2" value="60000" />
-		<setting name="{5B70169C-3929-4B5F-BC46-0FD984BECF45}" type="1" value="True" />
-		<setting name="{74CC9F3B-2E52-4B16-844A-9EE33532B51E}" type="1" value="False" />
-		<setting name="{7A29E7FF-985C-4095-9EEC-261B86F6AB0F}" type="1" value="True" />
-		<setting name="{7A4EE551-25FE-4C1A-8967-FA26B3C27AD7}" type="6" rowIndex="11" colIndex="9">
-			<columns>
-				<column type="2" enabled="True" />
-				<column type="2" enabled="True" />
-				<column type="1" enabled="True" />
-				<column type="1" enabled="True" />
-				<column type="1" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="2" enabled="True" />
-				<column type="2" enabled="True" />
-				<column type="4" enabled="True" />
-			</columns>
-			<data>
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPad" val6="Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="1024" val8="768" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 4" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="320" val8="480" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 5" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="320" val8="568" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 6" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="375" val8="667" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 6 Plus" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="414" val8="736" val9="3" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Blackberry Z30" val6="Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.0.9.2372 Mobile Safari/537.10+" val7="360" val8="640" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Google Nexus 6" val6="Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36" val7="412" val8="732" val9="3.5" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Google Nexus 7" val6="Mozilla/5.0 (Linux; Android 4.3; Nexus 7 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36" val7="960" val8="600" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Google Nexus 10" val6="Mozilla/5.0 (Linux; Android 4.3; Nexus 10 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36" val7="1280" val8="800" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Nokia Lumia 520" val6="Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)" val7="320" val8="533" val9="1.39999997615814" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Samsung Galaxy Note 3" val6="Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30" val7="360" val8="640" val9="3" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Samsung Galaxy S5" val6="Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36" val7="360" val8="640" val9="2" />
-			</data>
-		</setting>
-		<setting name="{829BC6CA-56D1-46A4-89B9-E15802964005}" type="1" value="False" />
-		<setting name="{95E3327A-7433-4A00-9257-6E9A4B4F1795}" type="6" rowIndex="0" colIndex="0">
-			<columns>
-				<column type="5" enabled="True" />
-			</columns>
-			<data>
-				<row val0="ID" />
-				<row val0="Name" />
-			</data>
-		</setting>
-		<setting name="{ABE9C069-5D2D-4FBA-B1B0-FF96C0F0B1F6}" type="6" rowIndex="3" colIndex="0">
-			<columns>
-				<column type="5" enabled="True" />
-			</columns>
-			<data>
-				<row val0="DOM" />
-				<row val0="Tag" />
-				<row val0="Hybrid" />
-				<row val0="Tree" />
-			</data>
-		</setting>
-		<setting name="{ACFF4EF1-2D8D-4A5B-A55F-6F64DF82662B}" type="6" rowIndex="0" colIndex="0">
-			<columns>
-				<column type="5" enabled="True" />
-			</columns>
-			<data>
-				<row val0="None" />
-				<row val0="Apple iPad" />
-				<row val0="Apple iPhone 4" />
-				<row val0="Apple iPhone 5" />
-				<row val0="Apple iPhone 6" />
-				<row val0="Apple iPhone 6 Plus" />
-				<row val0="Blackberry Z30" />
-				<row val0="Google Nexus 6" />
-				<row val0="Google Nexus 7" />
-				<row val0="Google Nexus 10" />
-				<row val0="Nokia Lumia 520" />
-				<row val0="Samsung Galaxy Note 3" />
-				<row val0="Samsung Galaxy S5" />
-			</data>
-		</setting>
-		<setting name="{BC2725AB-C90D-4761-BEB2-ABACE30FE554}" type="1" value="True" />
-		<setting name="{D852BFD9-D446-4748-906F-1FA580D41304}" type="6" rowIndex="0" colIndex="1">
-			<columns>
-				<column type="1" enabled="True" />
-				<column type="5" enabled="True" />
-			</columns>
-			<data>
-				<row val0="True" val1="%PRODUCT_LOCATION%\Open Apps\Flex\FlashInjector.swf" />
-			</data>
-		</setting>
-		<setting name="{DB42CEAB-BFC4-40DB-9F48-9197D35FB5E2}" type="6" rowIndex="30" colIndex="9">
-			<columns>
-				<column type="2" enabled="True" />
-				<column type="2" enabled="True" />
-				<column type="1" enabled="True" />
-				<column type="1" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="2" enabled="True" />
-			</columns>
-			<data>
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Yahoo! UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="0" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;yui-gen&quot;" val5="Wildcard" val6="yui-gen*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="0" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;yui_3_&quot;" val5="Wildcard" val6="*yui_3_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="jQuery UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="3" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;ui-id-&quot;" val5="Wildcard" val6="ui-id-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Dojo toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="5" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;dijit_&quot;" val5="Wildcard" val6="dijit_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Other" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="-1" val2="False" val3="True" val4="Do not use IDs containing GUID" val5="RegExp" val6="\h+-\h+-\h+-\h+-\h+" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove leading characters from IDs like &quot;c1114509959-searchform&quot;" val5="RegExp" val6="^[A-Za-z](\d\d\d\d\d+){[A-Za-z-]*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove trailing digits from IDs like &quot;unique-123456&quot;" val5="RegExp" val6="^{[A-Za-z-]+}(\d\d\d\d\d+)$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="ASP.NET" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="11" val1="-1" val2="False" val3="True" val4="Do not use IDs ending with a string like &quot;ctl00&quot;" val5="RegExp" val6="^(.*[-_$])?(ctl[0-9]+)$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="11" val1="-1" val2="False" val3="True" val4="Remove GUIDs and ctl00-like prefixes from Sharepoint IDs" val5="RegExp" val6="(.+?_(\h+_\h+_\h+_\h+_\h+))+(.*ctr?l[0-9]+)?[_$]?{.*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="11" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;ctl00_MainContent_username&quot;" val5="RegExp" val6=".*(ctl[0-9]+)(.*)[-_$]+{[^_0-9]+}{[_0-9]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Sencha ExtJS" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-gen&quot;" val5="RegExp" val6="^(.*-)?ext-gen" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-comp&quot;" val5="RegExp" val6="^(.*-)?ext-comp" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;extdd-&quot;" val5="Wildcard" val6="extdd-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Remove digits from IDs like &quot;treepicker-1038&quot; or &quot;treepicker-1038-inputEl&quot;" val5="RegExp" val6="^{[A-Za-z-]+}-{\d\d\d\d+}{.*}$" val7="$1$3" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Sencha Touch" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="20" val1="-1" val2="False" val3="True" val4="Remove dynamic parts of Sencha Touch IDs" val5="RegExp" val6="^ext-{.*}-\d+$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="JavaServer Faces" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;_t14&quot;" val5="RegExp" val6="^{_t}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;j_id23&quot; or &quot;j_idt23&quot;" val5="RegExp" val6="^{j_idt?}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;frm:menuLinks:0:link&quot;" val5="RegExp" val6="(.+):{[^0-9]+}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;frm:menuLinks:3:link&quot;" val5="RegExp" val6="(.+):(.*)" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Google Web Toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="27" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;gwt-uid-370_runButton&quot;" val5="RegExp" val6="^(gwt-uid-[0-9]+)(_{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="27" val1="-1" val2="False" val3="True" val4="Remove dynamic parts of Sencha GXT IDs" val5="RegExp" val6="^(x-((widget)|(auto))-.*[0-9]+)([-_]{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Custom" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-			</data>
-		</setting>
-		<setting name="{E47A2931-EE5D-42D2-8CB7-3796DE597AA1}" type="5" value="" />
 	</settings>
 	<analysis key="{DC72B6D0-D0FA-43A8-8479-0C44D6DF2ED4}" />
 	<scc key="{00000000-0000-0000-0000-000000000000}" name="">

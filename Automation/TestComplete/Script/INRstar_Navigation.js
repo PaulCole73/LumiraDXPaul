@@ -175,7 +175,7 @@ function Log_Off()
   var panelHeader = INRstarV5.Panel("MainPage").Panel("header");
   
   var obj = wait_for_object(panelHeader, "idStr", "LogoutLink", 3);
-  click_navigation_wrapper(obj, INRstarV5, "idStr", "LoginArea", 6);
+  click_navigation_wrapper(obj, INRstarV5, "idStr", "LogonPage", 3);
 }
 
 

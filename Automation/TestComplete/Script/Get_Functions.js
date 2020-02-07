@@ -636,6 +636,9 @@ function get_hl7_file_folder()
   
   switch(environment)
   {
+    case base + "Coruscant": 
+    folder_name = "Test_Coruscant HL7 Channel";
+    break;
     case base + "Hoth": 
     folder_name = "Test_Hoth HL7 Channel";
     break;
@@ -650,6 +653,9 @@ function get_hl7_file_folder()
     break;
     case base + "Integration": 
     folder_name = "Integration HL7 Channel";
+    break;
+    case base + "CoruscantV4": 
+    folder_name = "Test_Coruscant HL7 Channel";
     break;
     case base + "HothV4": 
     folder_name = "Test_Hoth HL7 Channel";
