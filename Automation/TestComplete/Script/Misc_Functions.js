@@ -811,16 +811,26 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
 {
   //wait wrapper, this minimises timeouts
   var counter = 0;
+  var is_valid_obj = false;
   if(object.Exists)
   {
     do 
     {
       INRstar_base().Refresh();
+      object.Refresh();
       object.Click();
-      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 5);
+      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 10);
       counter++
+      
+      if(new_obj.Exists)
+      {
+        if(new_obj.VisibleOnScreen)
+        {
+          is_valid_obj = true;
+        }
+      }
     }
-    while((new_obj.Exists == false && new_obj.VisibleOnScreen == false) && counter < 4);
+    while(is_valid_obj == false && counter < 4);
   }
 }
 
