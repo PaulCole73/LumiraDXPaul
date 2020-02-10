@@ -40,7 +40,9 @@ function external_lookup_search_for_patient(pat_nhs)
     table_data.push(aqString.Trim(temp));
   }
   
-  table.Cell(1, 0).Link("PatientLink").Click();
+  var obj = table.Cell(1, 0).Link("PatientLink"); //.Click();
+  var obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "PatientBannerContainer", 2);
   
   return table_data;
 }

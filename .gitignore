@@ -338,3 +338,6 @@ syntax: glob
 *.tcLS
 *.tcCfgExtender
 *.tcLogs
+
+#ignore mds file
+INRstar.mds

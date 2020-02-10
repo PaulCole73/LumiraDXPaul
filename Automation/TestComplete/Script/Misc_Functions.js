@@ -12,9 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsStaging";
-var admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsAlderaan";
+var admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -710,7 +710,7 @@ function change_environments(new_config_file_name) //Q:\Development and Testing\
   environment = new_config_file_name;
   var sys_path = Sys.Process("INRstarWindows").Path;
   var config_path = sys_path + ".config";
-  var base_path = "Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\" + new_config_file_name;
+  var base_path = "C:\\Automation\\" + new_config_file_name;
   
   set_get_environment(new_config_file_name);
   
@@ -932,20 +932,4 @@ function setup_generic_patient(do_login, dm)
       Log_Off();
     }
   }
-}
-function WorkWithFiles()
-{
-  /*
-  var notepad = Sys.Process("notepad");
-  var wndNotepad = notepad.Window("Notepad");
-
-  // Open a file in Notepad
-  wndNotepad.MainMenu.Click("File|Open...");
-  notepad.Window("#32770", "Open").OpenFile("Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\INRstarWindowsAlderaan");
-  
-  
-  aqFileSystem.CopyFile("Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\INRstarWindowsAlderaan", "\\\\DEVSRV1\\RedirectedFolders\\tom.simons\\Desktop\\my_config_file", true);
-  */
-  var is_existing = aqFileSystem.Exists("Q:\\Incident Management.pptx");
-  Log.Message(is_existing);
 }

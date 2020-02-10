@@ -80,7 +80,7 @@ function edit_all_patient_demographics(gender)
   // Set the Treatment Date
   var w_yr = aqString.SubString(date,7,2);
   
-  var w_yr_amended = w_yr + aqConvert.IntToStr(Math.floor(Math.random()*9)+1) + aqConvert.IntToStr(Math.floor(Math.random()*9));
+  var w_yr_amended = w_yr + aqConvert.IntToStr(Math.floor(Math.random()*9)+1) + aqConvert.IntToStr(Math.floor(Math.random()*8));
   
   patient_edit_demographics_form_pat_details_path.Panel(5).Image("calendar_png").Click();
       
