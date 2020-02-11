@@ -47,7 +47,7 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
   f_end.Text = "16:00";
   WaitSeconds(1);
    
-  add_clinic_form().Table(0).Cell(4, 1).Table("SlotLength_ET").Cell(0, 0).Table("SlotLength").Cell(0, 2).Click();
+  add_clinic_form().Table(0).Cell(4, 1).Table("SlotLength_ET").Cell(0, 0).Table("SlotLength").Cell(0, 1).Click();
   select_clinic_time_slot().Cell(1, 0).Click();
   
   if(is_recurring == true)

@@ -12,9 +12,9 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsAlderaan";
-var admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+var environment = "INRstarWindowsTatooine";
+var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
+var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -762,7 +762,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   {
     wait_time = 1;
   }
-  if(iterations == null || wait_time == "")
+  if(iterations == null || iterations == "")
   {
     iterations = 20;
   }

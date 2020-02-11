@@ -22,7 +22,7 @@ function process_popup(header, button)
   {
     if(environment == "INRstarWindowsTatooine")
     {
-      WaitSeconds(10);
+      WaitSeconds(1);
     }
     else
     {

@@ -8,6 +8,7 @@ function Goto_Client(name)
   WaitSeconds(3, "Waiting for account management tab...");
   
   admin_dash_search_client_box().Text = name;
+  admin_dash_search_client_box().Keys("[F2]");
   WaitSeconds(3, "Waiting for search box...");
   
   if(name == "St. O'  455 & QRNR Prison")

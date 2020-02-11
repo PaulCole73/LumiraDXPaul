@@ -79,8 +79,8 @@ function Goto_Options_Location_Management()
   Goto_Options(); 
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  panelMCP.Panel(0).Link("LocationManagementTab").Click();
-  WaitSeconds(1, "Waiting for Location Management tab...");
+  var obj = wait_for_object(panelMCP, "idStr", "LocationManagementTab", 2);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "LocationTabContent", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Options / EQC
@@ -99,8 +99,8 @@ function Goto_Options_PoCT()
   Goto_Options(); 
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  panelMCP.Panel(0).Link("PoCTTab").Click();
-  WaitSeconds(1, "Waiting for PoCT tab...");
+  var obj = wait_for_object(panelMCP, "idStr", "PoCTTab", 2);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "LocationsPoCTTable", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Options / PoCT / Edit

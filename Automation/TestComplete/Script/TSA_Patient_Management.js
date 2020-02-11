@@ -387,6 +387,7 @@ function change_reg_practice(prac_name)
       break;
     }
   }
+  WaitSeconds(1);
   var obj_root = patient_management_base().Panel("PatientManagementDetailsWrapper");
   wait_for_object(obj_root, "idStr", "WizardRegisteredLocationStep3Container", 1, 1);
   
