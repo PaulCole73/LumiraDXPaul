@@ -69,8 +69,8 @@ function Goto_Admin_IQC()
   Goto_Options();
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  panelMCP.Panel(0).Link("IQCTab").Click();
-  WaitSeconds(1, "Waiting for ICQ tab...");
+  var obj = wait_for_object(panelMCP, "idStr", "IQCTab", 2);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "IQCWrapper", 2);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Options / Location Management
@@ -89,8 +89,8 @@ function Goto_Options_EQC()
   Goto_Options(); 
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  panelMCP.Panel(0).Link("EQCTab").Click();
-  WaitSeconds(1, "Waiting for EQC tab...");
+  var obj = wait_for_object(panelMCP, "idStr", "EQCTab", 2);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "EQCWrapper", 2);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Options / PoCT
