@@ -172,7 +172,6 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   
   //This was taken out to do the warning pop up
   var text = process_alternate_popup("Please acknowledge", "Confirm"); 
-  
   return text;
 }
 //--------------------------------------------------------------------------------
