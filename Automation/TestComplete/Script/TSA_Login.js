@@ -70,8 +70,6 @@ function login(user_index, TestStepMode, reset_password)
   
       var text = process_popup("Important Information", "Do Not Show Again");
       process_popup("Email Address", "Cancel");
-  
-      return text;
     }
     else
     {
@@ -84,6 +82,7 @@ function login(user_index, TestStepMode, reset_password)
   
   var obj_root = INRstarV5;
   wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5, 10);
+  return text;
 }
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, is_password_reset, new_password)
@@ -111,6 +110,7 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
   
   process_popup("Important Information", "Do Not Show Again");
+  WaitSeconds(2);
   process_popup("Email Address", "Cancel");
   
   var obj_root = INRstar_base();
