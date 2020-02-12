@@ -705,7 +705,7 @@ function restart_INRstar()
   Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Maximize();
 }
 //-----------------------------------------------------------------------------------
-function change_environments(new_config_file_name) //Q:\Development and Testing\Testing\EnvironmentConfigs - config files can be found here
+function change_environments(new_config_file_name) //C:\Automation\ - config files should be 
 {
   environment = new_config_file_name;
   var sys_path = Sys.Process("INRstarWindows").Path;
@@ -819,7 +819,7 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
       INRstar_base().Refresh();
       object.Refresh();
       object.Click();
-      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 10);
+      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 30);
       counter++
       
       if(new_obj.Exists)
@@ -828,6 +828,14 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
         {
           is_valid_obj = true;
         }
+        else
+        {
+          Log.Message("Attempt: " + counter + ". Object not visible.")
+        }
+      }
+      else
+      {
+        Log.Message("Attempt: " + counter + ". Object does not exist.")
       }
     }
     while(is_valid_obj == false && counter < 4);

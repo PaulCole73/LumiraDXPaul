@@ -582,10 +582,11 @@ function get_overdue_patient(patient_name)
   {
     home_page_messages_path.Link("OverduePatientHeaderLink").Click();
     var table = wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
-    //var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
+    WaitSeconds(2);
     
     for(var i = 1; i < table.rowCount; i++)
     {
+      table.Cell(i, 0).scrollIntoView();
       if(table.Cell(i, 0).contentText == patient_name)
       {
         WaitSeconds(2, "Waiting to scroll...");
