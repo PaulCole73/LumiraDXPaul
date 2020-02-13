@@ -1424,7 +1424,7 @@
 						<children>
 							<testItem name="Setup" key="{E1160D16-5323-4B8A-8A05-0817CCE8A96F}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters>
-									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsIntegration" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1469,7 +1469,7 @@
 							<testItem name="Email" key="{4381EC52-B758-4D77-9078-DF435F556E22}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan_admin_dash_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="integration_admin_dash_output" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1480,7 +1480,7 @@
 						<children>
 							<testItem name="Setup" key="{99E0C709-E820-4855-8409-3028CE67E2EB}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters>
-									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
+									<param0 name="env_url" type="3" localVarName="" varType="8" value="INRstarWindowsIntegration" />
 								</testParameters>
 								<children />
 							</testItem>
@@ -1501,7 +1501,7 @@
 							<testItem name="Email" key="{38E03B7A-EF7A-489F-944C-3F470F175912}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-									<param1 name="name" type="3" localVarName="" varType="8" value="alderaan_engage_output" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="integration_engage_output" />
 								</testParameters>
 								<children />
 							</testItem>

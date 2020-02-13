@@ -81,8 +81,11 @@ function login(user_index, TestStepMode, reset_password)
   } 
   while(obj == false && counter < 3);
   
-  var obj_root = INRstarV5;
-  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
+  if(aqString.Find(username, "disable") == -1)
+  {
+    var obj_root = INRstarV5;
+    wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
+  }
   
   return text;
 }
@@ -110,12 +113,13 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   
   WaitSeconds(2);
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
-  WaitSeconds(2);
+  
+  var obj_root = INRstar_base();
+  wait_for_object(obj_root, "idStr", "modalDialogBox", 1);
   
   process_popup("Important Information", "Do Not Show Again");
   process_popup("Email Address", "Cancel");
   
-  var obj_root = INRstar_base();
   wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5);
 }
 

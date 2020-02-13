@@ -340,7 +340,7 @@
 				<child name="TC_AD_Main_Page" key="{BA4AEF97-6657-449E-BE9F-3FEE77C69464}" path="TC_AD_Main_Page.js" />
 			</folder>
 			<folder name="3. Test Step Actions">
-				<child name="TSA_Account_Management" key="{49674F76-DA46-4508-A57D-94EC61EF1775}" path="TSA_Account_Management.js" />
+				<child name="TSA_AD_Account_Management" key="{49674F76-DA46-4508-A57D-94EC61EF1775}" path="TSA_AD_Account_Management.js" />
 				<child name="TSA_AD_Login" key="{4561D0BC-A857-40D8-9E8B-057A6A0A881F}" path="TSA_AD_Login.js" />
 				<child name="TSA_AD_Feedback" key="{16B55C8C-E00F-4B57-A462-100C5B091EC9}" path="TSA_AD_Feedback.js" />
 				<child name="TSA_AD_Banner_Message" key="{FA573A03-D464-4873-BE01-11125707D610}" path="TSA_AD_Banner_Message.js" />
