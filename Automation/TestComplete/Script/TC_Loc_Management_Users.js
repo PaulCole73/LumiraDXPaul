@@ -97,12 +97,18 @@ function tc_users_manage_change_permissions_to_read_only()
     
     var patient_tab = base.Panel("main").Panel("MainContentPanel").Panel("ManagePatients").Panel("PatientTab");
     var tab_name = new Array();
-    tab_name = patient_tab.QuerySelectorAll("li.disabled");
+    //tab_name = patient_tab.QuerySelectorAll("li.disabled");
+    var tab_list = patient_tab.contentText;
+   aqString.ListSeparator = "\n";
+   for(var i = 0; i < aqString.GetListLength(tab_list); i++)
+   {
+     tab_name.push(aqString.GetListItem(tab_list,i));
+   }
     
     result_set_1 = false;
     for(var i = 0; i < tab_name.length; i++)
     {
-      if(tab_name[i].contentText == "Add Patient")
+      if(tab_name[i] == "Add Patient")
       {
         result_set_1 = true;
       }
