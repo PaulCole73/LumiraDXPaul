@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------------
 
 //GLOBAL VARIABLES
-var environment = "INRstarWindowsAlderaan";
+var environment = "INRstarWindowsTatooine";
 var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
 var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
 
@@ -841,7 +841,22 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
     while(is_valid_obj == false && counter < 4);
   }
 }
+//-----------------------------------------------------------------------------------
+function move_mouse_sequence(value, per_iterations)
+{
+  var move_val = get_random_num_inrange(0, value);
+  var move_direction = get_random_num_inrange(0, 2);
+  if(move_direction < 1)
+  {
+    move_direction = -1;
+  }
+  var move_amount = move_val * move_direction;
 
+  if(value % per_iterations  == 0)
+  {
+    LLPlayer.MouseMove(move_amount, 1, 1);
+  }
+}
 
 
 
@@ -926,13 +941,13 @@ function set_get_environment(env)
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
-  for(var i = 0; i < 100; i++)
+  for(var i = 30; i < 50; i++)
   {
     if(do_login == true)
     {
       login(5, "Shared");
     }
-    add_patient("Generic", "Patient", "M", "Shared");
+    add_patient("Engage" + i, "Incident", "M", "Shared");
     add_treatment_plan("W", dm, "", "Shared", "");
     
     if(do_login == true)

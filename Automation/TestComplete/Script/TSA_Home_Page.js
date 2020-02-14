@@ -586,11 +586,10 @@ function get_overdue_patient(patient_name)
     
     for(var i = 1; i < table.rowCount; i++)
     {
-      table.Cell(i, 0).scrollIntoView();
+      table.Cell(i, 1).scrollIntoView();
+      move_mouse_sequence(i, 300);
       if(table.Cell(i, 0).contentText == patient_name)
       {
-        WaitSeconds(2, "Waiting to scroll...");
-        table.Cell(i, 0).scrollIntoView(true);
         WaitSeconds(2, "Waiting to click...");
         table.Cell(i, 0).Click();
         return true;

@@ -19,7 +19,7 @@
 				<children>
 					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
-							<param0 name="do_login" type="3" localVarName="" varType="11" value="True" />
+							<param0 name="do_login" type="3" localVarName="" varType="11" value="False" />
 							<param1 name="dm" type="3" localVarName="" varType="8" value="Coventry" />
 						</testParameters>
 						<children />
