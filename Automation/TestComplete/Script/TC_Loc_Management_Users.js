@@ -93,6 +93,7 @@ function tc_users_manage_change_permissions_to_read_only()
     
     Goto_Patient_Search();
     var obj = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("ManagePatients").Panel("PatientTab").Link("AddPatientDetailsTab"); 
+
     
     result_set_1 = false;
     if(obj.onclick == null)

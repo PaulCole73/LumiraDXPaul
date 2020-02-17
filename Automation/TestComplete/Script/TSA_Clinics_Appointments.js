@@ -290,6 +290,7 @@ function tsa_clinic_confirm_default_ntd()
   treatment_appointment_buttons().Button("MakeAppointment").Click();
     
   var panel = clinic_schedule_container();
+
   var format_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a, %d-%b");
   var obj = panel.FindChild("contentText", format_date);
   

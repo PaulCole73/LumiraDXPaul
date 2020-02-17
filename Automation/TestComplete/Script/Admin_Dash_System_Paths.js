@@ -96,7 +96,8 @@ function admin_dash_edit_client_form()
 //------------------------------------------------------------------------
 function admin_dash_add_location_admin_form()
 {
-  var base = admin_dash_base();
+  var base = admin_dash_base();tc_account_management_add_a_new_client
+
   var content = base.Panel("MainPage").Fieldset("DashboardContent").Panel("main").Panel("MainContentPanel")
 }
 //------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 //USEUNIT Popup_Handlers
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function login(user_index, TestStepMode, reset_password)  
+function login(user_index, TestStepMode, reset_password)
 {
   Log.LockEvents(0);
   var counter = 0;
@@ -15,15 +15,15 @@ function login(user_index, TestStepMode, reset_password)
   {
     INRstarV5.Refresh();
     var obj = wait_for_object(INRstarV5, "idStr", "LogonPage", 3, 1, 20);
-  
+
     if(obj != false)
     {
-      var main = INRstarV5.Panel("MainPage").Panel("main");  
+      var main = INRstarV5.Panel("MainPage").Panel("main");
       var login_area = main.Panel("LogonPage").Panel("LogonFormWrapper").Form("Logon").Panel("LoginArea");
       var login_details = new Array();
       var password = "";
       var username = "";
-  
+ 
       login_details = get_login_details();
       if(user_index != null)
       {
@@ -41,16 +41,16 @@ function login(user_index, TestStepMode, reset_password)
           password = reset_password;
         }
       }
-  
+ 
       if(Mode == "Shared")
-      { 
+      {
         login_area.Panel("LoginInput").Panel(0).Textbox("Username").Text = username;
         login_area.Panel("LoginInput").Panel(1).Passwordbox("Password").Text = password;
         login_area.Panel(0).SubmitButton("LoginButton").Click();
       }
       else if (Mode == "")
-      { 
-        // Click the button 
+      {
+        // Click the button
         login_area.Panel(0).SubmitButton("LoginButton").Click();
       }
       else if (Mode == "password_reset_section")
@@ -61,14 +61,14 @@ function login(user_index, TestStepMode, reset_password)
       else if (Mode == "password_reset_email_code")
       {
         //Entering the username to reset
-        var INRstarV5 = set_system_login_page(); 
+        var INRstarV5 = set_system_login_page();
         var login_area_reset = INRstarV5.Panel("MainPage").Panel("main").Panel("ResetPasswordWrapper").Form("ResetPassword").Panel("LoginArea");
         login_area_reset.Panel("ResetArea").Panel(0).Textbox("Username").Text = login_details[user_index];
-                  
-        // Click the button 
+                 
+        // Click the button
         var reset_code_button = login_area_reset.Panel("ResetArea").Panel(1).SubmitButton("submitButton").Click();
       }
-  
+ 
       var text = process_popup("Important Information", "Do Not Show Again");
       process_popup("Email Address", "Cancel");
     }
@@ -78,6 +78,16 @@ function login(user_index, TestStepMode, reset_password)
       WaitSeconds(10, "Waiting for Logon page to exist.");
       Log.Message("Login Page does not Exist...");
     }
+  }
+  while(obj == false && counter < 3);
+ 
+  if(aqString.Find(username, "disable") == -1)
+  {
+    var obj_root = INRstarV5;
+    wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
+  }
+ 
+  return text;
   } 
   while(obj == false && counter < 3);
   
@@ -113,12 +123,14 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   
   WaitSeconds(2);
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
-  
+
   var obj_root = INRstar_base();
   wait_for_object(obj_root, "idStr", "modalDialogBox", 1);
-  
+
   process_popup("Important Information", "Do Not Show Again");
+  WaitSeconds(2);
   process_popup("Email Address", "Cancel");
+  WaitSeconds(2);
   
   wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5);
 }

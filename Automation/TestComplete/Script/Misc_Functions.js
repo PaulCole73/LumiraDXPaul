@@ -11,10 +11,12 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 
-//GLOBAL VARIABLES
+
+//Setup environment variable either from cmd line or default
 var environment = "INRstarWindowsTatooine";
-var admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
-var engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+var environmentname = 'Tatooine';
+var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
+var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -938,6 +940,51 @@ function set_get_environment(env)
     environment = env;
   }
 }
+//-----------------------------------------------------------------------------------
+function setup_automation_from_parameter()
+{
+  Log.LockEvents(0);
+  reset_tests_array();
+  //Setup environment variable either from cmd line or default
+  var environmentname = "";
+  var environment = "";
+  var count_CL_Parameters = BuiltIn.ParamCount();
+  Log.Message(count_CL_Parameters);
+  var static_String_Env = "env=";
+  var currentTestEnv = "",arr_TC_Parameter = null;
+      
+  if(count_CL_Parameters > 3)//This part is for running from Test Complete/Execute Commandline
+  {
+        for(var a = 0 ; a <= count_CL_Parameters ; a++)
+        {
+              if(aqString.Find(BuiltIn.ParamStr(a),static_String_Env,0,true) != -1)
+              {
+                    currentTestEnv = BuiltIn.ParamStr(a);
+                    Log.Message(currentTestEnv);
+                    arr_TC_Parameter = currentTestEnv.split("=");
+                    if((arr_TC_Parameter != null) && (arr_TC_Parameter.length == 2))
+                    {
+                          environmentname = aqString.Remove(currentTestEnv, 0, 4);
+                          environment = "INRstarWindows" + environmentname;
+                          Log.Message("Command Line environment " + environment)
+                          break;
+                    }
+                    else
+                    {
+                          throw "Environment Name not found"  
+                    }                   
+              }
+        }
+  }
+  else//This part is for running from Test Complete/Execute manually
+  {
+  environment = "INRstarWindowsTatooine";
+  environmentname = 'Tatooine';
+  }
+  Log.Message("Final check " + environmentname);
+  var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
+  var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
+  change_environments(environment);
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
