@@ -11,14 +11,12 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 
-//GLOBAL VARIABLES
 
 //Setup environment variable either from cmd line or default
-  var environment = "INRstarWindowsTatooine";
-  var environmentname = 'Tatooine';
-  var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
-  var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
-
+var environment = "INRstarWindowsTatooine";
+var environmentname = 'Tatooine';
+var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
+var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
@@ -590,6 +588,7 @@ function get_new_number_v5()
   Sys.WaitProcess("NHSNumberGenerator");
   WaitSeconds(1);
 
+  Sys.Process("NHSNumberGenerator").WaitWinFormsObject("Form1", "Generate NHS Number", 5000);
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
   form.WinFormsObject("button1").ClickButton();
   wnd = form.WinFormsObject("textBox1").wText;
@@ -708,12 +707,12 @@ function restart_INRstar()
   Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").Maximize();
 }
 //-----------------------------------------------------------------------------------
-function change_environments(new_config_file_name) //Q:\Development and Testing\Testing\EnvironmentConfigs - config files can be found here
+function change_environments(new_config_file_name) //C:\Automation\ - config files should be 
 {
   environment = new_config_file_name;
   var sys_path = Sys.Process("INRstarWindows").Path;
   var config_path = sys_path + ".config";
-  var base_path = "Q:\\Development and Testing\\Testing\\EnvironmentConfigs\\" + new_config_file_name;
+  var base_path = "C:\\Automation\\" + new_config_file_name;
   
   set_get_environment(new_config_file_name);
   
@@ -765,7 +764,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   {
     wait_time = 1;
   }
-  if(iterations == null || wait_time == "")
+  if(iterations == null || iterations == "")
   {
     iterations = 20;
   }
@@ -773,11 +772,11 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   do
   {
     var is_obj_valid = false;
-    INRstarV5.Refresh();
-    obj_root.Refresh();
+    //INRstarV5.Refresh();    //parent objects may need to be refreshed outside of this function
+    //obj_root.Refresh();
     
     var root = obj_root;
-    var obj = root.FindChild(obj_property, obj_value, depth);
+    var obj = root.FindChild(obj_property, obj_value, depth, true);
     counter++;
     
     if(obj.Exists == false)
@@ -814,18 +813,52 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
 {
   //wait wrapper, this minimises timeouts
   var counter = 0;
-  if(object != false) //check an object is returned, possible returns are "obj", "false", "number of failed searches"
+  var is_valid_obj = false;
+  if(object.Exists)
   {
     do 
     {
+      INRstar_base().Refresh();
+      object.Refresh();
       object.Click();
-      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 2);
+      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 30);
       counter++
+      
+      if(new_obj.Exists)
+      {
+        if(new_obj.VisibleOnScreen)
+        {
+          is_valid_obj = true;
+        }
+        else
+        {
+          Log.Message("Attempt: " + counter + ". Object not visible.")
+        }
+      }
+      else
+      {
+        Log.Message("Attempt: " + counter + ". Object does not exist.")
+      }
     }
-    while((new_obj.Exists == false || new_obj.VisibleOnScreen == false) && counter < 4);
+    while(is_valid_obj == false && counter < 4);
   }
 }
+//-----------------------------------------------------------------------------------
+function move_mouse_sequence(value, per_iterations)
+{
+  var move_val = get_random_num_inrange(0, value);
+  var move_direction = get_random_num_inrange(0, 2);
+  if(move_direction < 1)
+  {
+    move_direction = -1;
+  }
+  var move_amount = move_val * move_direction;
 
+  if(value % per_iterations  == 0)
+  {
+    LLPlayer.MouseMove(move_amount, 1, 1);
+  }
+}
 
 
 
@@ -955,10 +988,18 @@ function setup_automation_from_parameter()
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
-  if(do_login == true)
+  for(var i = 30; i < 50; i++)
   {
-    login(5, "Shared");
+    if(do_login == true)
+    {
+      login(5, "Shared");
+    }
+    add_patient("Engage" + i, "Incident", "M", "Shared");
+    add_treatment_plan("W", dm, "", "Shared", "");
+    
+    if(do_login == true)
+    {
+      Log_Off();
+    }
   }
-  add_patient("Generic", "Patient", "M", "Shared");
-  add_treatment_plan("W", dm, "", "Shared", "");
 }

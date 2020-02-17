@@ -178,7 +178,7 @@ function check_patient_in_transfer_request_message(pat_name) //this and the belo
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
   WaitSeconds(2);
-  var link = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
+  var link = wait_for_object(INRstarV5, "Name", "Link(\"TransferredPatientHeaderLink\")", 10);
   //var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
   
   //In case the patient in question was the only one on the list
@@ -192,8 +192,8 @@ function check_patient_in_transfer_request_message(pat_name) //this and the belo
     WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
     
+    wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 2);
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
-
     for (var i = 0; i < table.rowcount; i++)
     {
       if(table.Cell(i, 0).contentText == pat_name)
@@ -213,7 +213,7 @@ function check_patient_not_in_transfer_request_message(pat_name)
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
   WaitSeconds(2);
-  var link = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
+  var link = wait_for_object(INRstarV5, "Name", "Link(\"TransferredPatientHeaderLink\")", 10);
   //var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPateintHeaderLink");
   
   //In case the patient in question was the only one on the list
@@ -227,8 +227,8 @@ function check_patient_not_in_transfer_request_message(pat_name)
     WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
     
+    wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 2);
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
-
     for (var i = 0; i < table.rowcount; i++)
     {
       if(table.Cell(i, 0).contentText != pat_name)
@@ -247,9 +247,7 @@ function accept_patient_in_transfer_request_message(pat_name) //this and the bel
   Goto_Home();
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
-  var link = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
+  var link = wait_for_object(INRstarV5, "Name", "Link(\"TransferredPatientHeaderLink\")", 10);
   
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
@@ -262,14 +260,16 @@ function accept_patient_in_transfer_request_message(pat_name) //this and the bel
     WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
     
+    wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 2);
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
     for (i=0; i<table.rowcount; i++)
     {
-      if(table.Cell(i, 0).contentText==pat_name)
+      if(table.Cell(i, 0).contentText == pat_name)
       { 
         //Click Accept button against patient and accept the transfer
         table.Cell(i, 6).scrollIntoView(true);    
         table.Cell(i, 6).Button("AcceptChangePatientTestingLocation").Click(); 
+        WaitSeconds(2); //can use wait for function for this popup
         process_popup("Please confirm to continue", "Confirm");
         return true;
       }
@@ -285,7 +285,7 @@ function decline_patient_in_transfer_request_message(pat_name)
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
   WaitSeconds(2);
-  var link = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
+  var link = wait_for_object(INRstarV5, "Name", "Link(\"TransferredPatientHeaderLink\")", 10);
   //var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
   
   //In case the patient in question was the only one on the list
@@ -299,6 +299,7 @@ function decline_patient_in_transfer_request_message(pat_name)
     WaitSeconds(2);
     home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
     
+    wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 2);
     var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
     for (var i = 0; i < table.rowcount; i++)
     {
@@ -516,6 +517,7 @@ function check_overdue_non_warfarin_review_message(pat_name)
   {
     WaitSeconds(2);
     home_page_messages_path.Link("OverdueReviewPatientHeaderLink").Click();
+    wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReviewReportTable", 2);
     var table = home_page_messages_path.Panel("OverdueReviewPatients").Table("PatientOverdueReviewReportTable");
 
     for (var i = 0; i < table.rowcount; i++)
@@ -580,14 +582,14 @@ function get_overdue_patient(patient_name)
   {
     home_page_messages_path.Link("OverduePatientHeaderLink").Click();
     var table = wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
-    //var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
+    WaitSeconds(2);
     
     for(var i = 1; i < table.rowCount; i++)
     {
+      table.Cell(i, 1).scrollIntoView();
+      move_mouse_sequence(i, 300);
       if(table.Cell(i, 0).contentText == patient_name)
       {
-        WaitSeconds(2, "Waiting to scroll...");
-        table.Cell(i, 0).scrollIntoView(true);
         WaitSeconds(2, "Waiting to click...");
         table.Cell(i, 0).Click();
         return true;

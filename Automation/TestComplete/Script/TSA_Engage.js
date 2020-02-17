@@ -61,10 +61,11 @@ function sign_in_engage(email_address)
 //--------------------------------------------------------------------------------
 function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
 {
+  WaitSeconds(1);
   if((is_box_1_ticked == null && is_box_2_ticked == null) || (is_box_1_ticked == true && is_box_2_ticked == true) )
   {
     var obj_root = engage_base().Panel(0).Panel(0).Panel(0).Panel(1);
-    wait_for_object(obj_root, "idStr", "button_home_questionnaire_submit", 6);
+    wait_for_object(obj_root, "idStr", "button__home_questionnaire_submit", 6);
   
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();

@@ -387,6 +387,7 @@ function change_reg_practice(prac_name)
       break;
     }
   }
+  WaitSeconds(1);
   var obj_root = patient_management_base().Panel("PatientManagementDetailsWrapper");
   wait_for_object(obj_root, "idStr", "WizardRegisteredLocationStep3Container", 1, 1);
   
@@ -403,7 +404,8 @@ function change_test_practice(prac_name)
 
   pat_management_test_practice_search_path.Select("SearchType").ClickItem("Name");
   pat_management_test_practice_search_path.Textbox("SearchCriteria").Text = prac_name;
-  pat_management_test_practice_search_path.SubmitButton("Search").Click()
+  var obj = pat_management_test_practice_search_path.SubmitButton("Search");
+  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "LocationResults", 5);
  
   var test_practice_table_path = test_practice_table();
   var row_count = test_practice_table_path.rowcount;
@@ -422,6 +424,7 @@ function change_test_practice(prac_name)
   
   var test_loc_confirm_pop_up_buttons_path = warning_pop_up();
   test_loc_confirm_pop_up_buttons_path.Button(1).Click();
+  WaitSeconds(2);
 } 
 //--------------------------------------------------------------------------------
 function change_test_practice_with_warning(prac_name)
@@ -521,6 +524,7 @@ function accept_transfer_with_warning(messagename)
   Log.Message("Patient was not found on the list")
 } 
 //--------------------------------------------------------------------------------
+/*
 function accept_transfer(messagename)
 {
   Goto_Home();
@@ -546,7 +550,7 @@ function accept_transfer(messagename)
   }
   Log.Message("Patient was not found on the list");
 } 
-
+*/
 //--------------------------------------------------------------------------------
 
 

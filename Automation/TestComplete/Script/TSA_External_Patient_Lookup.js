@@ -6,10 +6,7 @@
 function external_lookup_search_for_patient(pat_nhs)
 {
   Goto_External_Patient_Lookup();
-  
   var registered = process_external_lookup_popup();
-  
-  Log.Message(registered);
   
   if (registered == "")
   
@@ -40,7 +37,9 @@ function external_lookup_search_for_patient(pat_nhs)
     table_data.push(aqString.Trim(temp));
   }
   
-  table.Cell(1, 0).Link("PatientLink").Click();
+  var obj = table.Cell(1, 0).Link("PatientLink"); //.Click();
+  var obj_root = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "PatientBannerContainer", 2);
   
   return table_data;
 }

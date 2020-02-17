@@ -39,7 +39,7 @@ function add_bridging_record(procedure_date, drug_index)
 {
   Goto_Create_Bridging_Record();
   
-  bridging_schedule_form().Panel("ProcedureDetailsContent").Panel(2).Select("ProcedureDetails_TreatmentType").ClickItem(1);
+  bridging_schedule_form().Panel("ProcedureDetailsContent").Panel(2).Select("ProcedureDetails_TreatmentType_Id").ClickItem(1);
   bridging_schedule_form().Panel("ProcedureDetailsContent").Panel(3).Select("ProcedureDetails_LMWH").ClickItem(drug_index);
   
   var date_path = bridging_schedule_form().Panel("BridgingScheduleDetails");

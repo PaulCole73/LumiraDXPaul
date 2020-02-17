@@ -246,7 +246,6 @@ function tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unl
     tp_drop_down_path.ClickItem(1);
   
     result_set_1 = tp_banner_warning_checker('This treatment plan ended');
-    banner_checker_includes
     result_set.push(result_set_1);
   
     //Validate all the results sets are true

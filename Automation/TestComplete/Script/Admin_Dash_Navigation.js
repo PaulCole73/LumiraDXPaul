@@ -7,7 +7,7 @@ function Goto_Client(name)
   admin_dash_navigation().Link("AccountManagementLink").Click();
   WaitSeconds(3, "Waiting for account management tab...");
   
-  admin_dash_search_client_box().text = name;
+  admin_dash_search_client_box().Text = name;
   admin_dash_search_client_box().Keys("[F2]");
   WaitSeconds(3, "Waiting for search box...");
   

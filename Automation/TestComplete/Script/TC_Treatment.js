@@ -469,11 +469,9 @@ function tc_treatment_add_a_new_maintenance_low_inr()
     add_patient('Regression', 'mainteance_low', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
-    add_pending_maintenance_treatment_pop_up_checker('1.9',aqConvert.StrToDate(aqDateTime.Today()));
-  
-    result_set = new Array(); 
-  
-    var actual_error_mess = process_alternate_popup("Please acknowledge", "Confirm");
+    
+    var result_set = new Array(); 
+    var actual_error_mess = add_pending_maintenance_treatment("1.9", aqConvert.StrToDate(aqDateTime.Today()), "", "poct");
     var expected_error_mess = "Low INR warning: Patient may be at increased risk of thromboembolic events until INR is back in-range." + 
                      " Consult clinical lead for advice about the use of LMWH for very low INR if clinically appropriate.";      
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
@@ -508,7 +506,6 @@ function tc_treatment_add_a_new_maintenance_high_inr()
 {
   try
   {
-    //this test currently fails in hoth - because the dosing warning message has been changed
     var test_title = 'Treatment - Add a new maintenance high INR';
     login(5, "Shared");
     
@@ -518,11 +515,9 @@ function tc_treatment_add_a_new_maintenance_high_inr()
     add_patient('Regression', 'mainteance_high', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
-    add_pending_maintenance_treatment_pop_up_checker("4.0",aqConvert.StrToDate(aqDateTime.Today()));
-  
-    var result_set = new Array();
     
-    var actual_error_mess = process_alternate_popup("Please acknowledge", "Confirm");
+    var result_set = new Array(); 
+    var actual_error_mess = add_pending_maintenance_treatment("4.0", aqConvert.StrToDate(aqDateTime.Today()), "", "poct");
     var expected_error_mess = dosing_data[0];
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
     result_set.push(result_set_1);
@@ -1533,7 +1528,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
      
     login(15, "Shared");
     
-    var is_in_table = accept_transfer(messagename);
+    var is_in_table = accept_patient_in_transfer_request_message(messagename);
     
     if (is_in_table == true)
     {

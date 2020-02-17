@@ -65,7 +65,7 @@ function tc_clinics_make_appointment_today_for_overdue_patient()
     result_set_1 = tsa_clinic_confirm_default_ntd();
     result_set.push(result_set_1);
     
-    tsa_clinic_make_appointment(clinic_name);
+    tsa_clinic_make_appointment(clinic_name, clinic_date);
     
     result_set_1 = validate_top_patient_audit(test_title, "Created Appointment");
     result_set.push(result_set_1);

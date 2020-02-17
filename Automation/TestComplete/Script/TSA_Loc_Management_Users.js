@@ -144,8 +144,8 @@ function reset_user_password(username)
   var details_path = location_management_user_details_tab();
   var full_name = details_path.Panel("Fullname").Label("Fullname_DetachedLabel").innerText;
   
-  var reset_pass_button = details_path.Panel(0).Button("ResetPasswordLink").Click();
-  
+  var obj = wait_for_object(details_path, "idStr", "ResetPasswordLink", 2);
+  click_navigation_wrapper(obj, INRstar_base(), "idStr", "modalDialogBox", 2);
   var password_text = process_popup("Reset Password", "OK");
   
   var user_data = new Array();

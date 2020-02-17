@@ -49,6 +49,9 @@ function set_admin_dash_url()
   
   switch(environment)
   {
+    case base + "Coruscant": 
+    admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
+    break;
     case base + "Hoth": 
     admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
     break;
@@ -60,6 +63,12 @@ function set_admin_dash_url()
     break;
     case base + "Alderaan": 
     admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+    break;
+    case base + "Integration": 
+    admin_dash_url = "https://admin-integration.lumiradxcaresolutions.com/";
+    break;
+    case base + "CoruscantV4": 
+    admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
     break;
     case base + "HothV4": 
     admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";

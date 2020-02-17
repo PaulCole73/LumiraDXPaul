@@ -91,27 +91,14 @@ function tc_users_manage_change_permissions_to_read_only()
     Log_Off();
     log_in_new_user(username, new_pass);
     
-    //this should be a function with parameters of: path, query selector, text
-    var base = INRstar_base().Panel("MainPage");
-    base.Panel("header").Link("MainPatientLink").Click();
-    
-    var patient_tab = base.Panel("main").Panel("MainContentPanel").Panel("ManagePatients").Panel("PatientTab");
-    var tab_name = new Array();
-    //tab_name = patient_tab.QuerySelectorAll("li.disabled");
-    var tab_list = patient_tab.contentText;
-   aqString.ListSeparator = "\n";
-   for(var i = 0; i < aqString.GetListLength(tab_list); i++)
-   {
-     tab_name.push(aqString.GetListItem(tab_list,i));
-   }
+    Goto_Patient_Search();
+    var obj = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("ManagePatients").Panel("PatientTab").Link("AddPatientDetailsTab"); 
+
     
     result_set_1 = false;
-    for(var i = 0; i < tab_name.length; i++)
+    if(obj.onclick == null)
     {
-      if(tab_name[i] == "Add Patient")
-      {
-        result_set_1 = true;
-      }
+      result_set_1 = true;
     }
     result_set.push(result_set_1);
     

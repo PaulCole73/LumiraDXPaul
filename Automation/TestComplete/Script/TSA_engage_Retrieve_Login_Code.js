@@ -34,8 +34,8 @@ function get_engage_login_code() //in progress
   
   delete_engage_code_email();
   
-  //TestedApps.gmail.Terminate();
-  Sys.Process("iexplore").Terminate();
+  TestedApps.gmail.Terminate();
+  //Sys.Process("iexplore").Terminate();
   WaitSeconds(2, "Waiting for application to close...");
   
   return code;

@@ -202,16 +202,16 @@ function banner_checker_includes(exp_err_mess)
   var patient_banner_yellow_bar_path = patient_banner_yellow_bar();
   var actual_err_mess = patient_banner_yellow_bar_path.contentText; 
    
-     if (actual_err_mess.includes(exp_err_mess))
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
-        return false;
-        }
+  if (actual_err_mess.includes(exp_err_mess))
+  {
+    Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
+    return true; 
+  } 
+  else 
+  {
+    Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
+    return false;
+  }
 } 
 //--------------------------------------------------------------------------------
 //this return an array of key labels from the patient summary tab

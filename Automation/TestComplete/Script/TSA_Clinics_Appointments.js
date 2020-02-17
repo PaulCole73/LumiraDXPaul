@@ -41,12 +41,11 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
   }
   WaitSeconds(1);
   f_name.Text = name;
-  WaitSeconds(1);
-  f_start.Click();
-  WaitSeconds(1);
-  f_start.Text = "12:00";
-  WaitSeconds(1);
-  f_end.Text = "16:00";
+  WaitSeconds(2);
+  f_start.Focus();
+  f_start.value = "12:00";
+  WaitSeconds(2);
+  f_end.value = "16:00";
   WaitSeconds(1);
    
   add_clinic_form().Table(0).Cell(4, 1).Table("SlotLength_ET").Cell(0, 0).Table("SlotLength").Cell(0, 1).Click();
@@ -291,28 +290,21 @@ function tsa_clinic_confirm_default_ntd()
   treatment_appointment_buttons().Button("MakeAppointment").Click();
     
   var panel = clinic_schedule_container();
-  var tab_name = new Array();
-  var tab_list = panel.contentText;
-  //var selector = "div.NextTestDate";
-  aqString.ListSeparator = "\n";
-  for(var i = 0; i < aqString.GetListLength(tab_list); i++)
-  {
-    tab_name.push(aqString.GetListItem(tab_list,i));
-  }
-  //tab_name = panel.querySelectorAll(selector);
-  //tab_name = INRstarV5.NativeWebObject.Find("innerText", "
+
   var format_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a, %d-%b");
-    
+  var obj = panel.FindChild("contentText", format_date);
+  
   var result_set_1 = false;
-  for(var i = 0; i < tab_name.length; i++)
+  if(obj.Exists)
   {
-    if(tab_name[i] == format_date)
+    var val = obj.innerHTML;
+    var class_val = aqString.Find(val, "class=NextTestDate");
+    if(class_val != -1)
     {
       result_set_1 = true;
-      break;
     }
   }
-  
+    
   var close = INRstar_base().Panel(3).Panel(1).Panel(0).Button(0).TextNode(0);
   close.Click();
   

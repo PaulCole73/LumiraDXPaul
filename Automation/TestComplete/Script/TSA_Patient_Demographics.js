@@ -80,7 +80,7 @@ function edit_all_patient_demographics(gender)
   // Set the Treatment Date
   var w_yr = aqString.SubString(date,7,2);
   
-  var w_yr_amended = w_yr + aqConvert.IntToStr(Math.floor(Math.random()*9)+1) + aqConvert.IntToStr(Math.floor(Math.random()*9));
+  var w_yr_amended = w_yr + aqConvert.IntToStr(Math.floor(Math.random()*9)+1) + aqConvert.IntToStr(Math.floor(Math.random()*8));
   
   patient_edit_demographics_form_pat_details_path.Panel(5).Image("calendar_png").Click();
       
@@ -244,10 +244,12 @@ function edit_all_patient_demographics(gender)
   }    
 
   var save_button = patient_edit_demographics_form_buttons();
-  save_button.SubmitButton("UpdatePatientDetails").Click();
+  var obj = save_button.SubmitButton("UpdatePatientDetails");
   
-  obj_root = patient_demographics_tab_demographics();
-  wait_for_object(obj_root, "Name", "TextNode(0)", 1);
+  click_navigation_wrapper(obj, INRstarV5, "idStr", "MainContentPanel", 3);
+  
+  obj_root = main_patient_tab();
+  wait_for_object(obj_root, "idStr", "PatientDetails", 3);
 } 
 //--------------------------------------------------------------------------------
 function edit_patient_dob_to_be_under_18(months)
