@@ -244,10 +244,12 @@ function edit_all_patient_demographics(gender)
   }    
 
   var save_button = patient_edit_demographics_form_buttons();
-  save_button.SubmitButton("UpdatePatientDetails").Click();
+  var obj = save_button.SubmitButton("UpdatePatientDetails");
   
-  obj_root = patient_demographics_tab_demographics();
-  wait_for_object(obj_root, "Name", "TextNode(0)", 1);
+  click_navigation_wrapper(obj, INRstarV5, "idStr", "MainContentPanel", 3);
+  
+  obj_root = main_patient_tab();
+  wait_for_object(obj_root, "idStr", "PatientDetails", 3);
 } 
 //--------------------------------------------------------------------------------
 function edit_patient_dob_to_be_under_18(months)
