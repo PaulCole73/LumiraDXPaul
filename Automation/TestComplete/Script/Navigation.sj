@@ -448,26 +448,6 @@ function Goto_Admin_IQC_Add()
   }
 }
 //-------------------------------------------------------------------------------
-// Navigate to Options / PoCT
-function Goto_Options_add_PoCT()
-{
-  try
-  {
-    Goto_Options(); 
-    var INRstarV5 = INRstar_base();
-    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    
-    panelMCP.Panel(0).Link("PoCTTab").Click();
-    panelMCP.Panel("AdminContent").Panel(0).Panel(1).Button("AddPoCTBatch").Click();
-
-    WaitSeconds(1,"");
-  }
-  catch(exception)
-  {
-    Log.Error("Exception", exception.description);
-  }
-}
-//-------------------------------------------------------------------------------
 // Navigate to Options / Letter Management / New
 /*function Goto_Options_Letter_Management()
 {

@@ -19,6 +19,7 @@
   var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
+
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
@@ -398,6 +399,10 @@ function get_random_num_inrange(low, high)
     do
     {
       num =  Math.trunc(Math.random()*high);
+      if(num < low)
+      {
+        num = low;
+      }
     }
     while(num < low)
   }
@@ -580,16 +585,14 @@ function get_new_number_v5()
 {
   var wnd;
 
-  WaitSeconds(2);
+  WaitSeconds(1);
   TestedApps.NHSNumberGenerator.Run(1, true);
-  WaitSeconds(2);
+  Sys.WaitProcess("NHSNumberGenerator");
+  WaitSeconds(1);
 
   form = Sys.Process("NHSNumberGenerator").WinFormsObject("Form1");
-  WaitSeconds(2);
   form.WinFormsObject("button1").ClickButton();
-
   wnd = form.WinFormsObject("textBox1").wText;
-
   form.Close();
   return wnd;
 }
@@ -760,12 +763,11 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   
   if(wait_time == null || wait_time == "")
   {
-    wait_time = 3;
+    wait_time = 1;
   }
-  
   if(iterations == null || wait_time == "")
   {
-    iterations = 5;
+    iterations = 20;
   }
 
   do
@@ -780,29 +782,48 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
     
     if(obj.Exists == false)
     {
-      Log.Message("--------------------- Slow performance. Waiting for object... ---------------------","",500);
-      WaitSeconds(wait_time, "Waiting for object...");
+      Log.Message("--------------------- Slow performance. Waiting for " + obj_value + "... ---------------------");
+      WaitSeconds(wait_time, "Waiting for " + obj_value + "...");
     }
     else
     {
-      Log.Message(obj.FullName);
-      Log.Message("The object is visible on screen: " + obj.VisibleOnScreen);
-      Log.Message("The object is enabled: " + obj.Enabled);
+      Log.Message(obj.Name + " is visible on screen: " + obj.VisibleOnScreen);
       obj.scrollIntoView();
       
       if(obj.VisibleOnScreen)
       {
         is_obj_valid = true;
+        Log.Message("Object: " + obj.Name + " found.");
       }
       else
       {
         Log.Message("--------------------- Slow performance. Object currently not visible... ---------------------");
-        WaitSeconds(wait_time, "Waiting for object...");
+        WaitSeconds(wait_time, "Waiting for " + obj.Name + "...");
       }
     }
   }
   while(is_obj_valid == false && counter < iterations);
+  if(is_obj_valid == false)
+  {
+    Log.Picture(Sys.Desktop, "--------------------- " + obj_value + " Timed-out ---------------------");
+  }
   return obj;
+}
+//-----------------------------------------------------------------------------------
+function click_navigation_wrapper(object, obj_root, obj_property, obj_value, depth)
+{
+  //wait wrapper, this minimises timeouts
+  var counter = 0;
+  if(object != false) //check an object is returned, possible returns are "obj", "false", "number of failed searches"
+  {
+    do 
+    {
+      object.Click();
+      var new_obj = wait_for_object(obj_root, obj_property, obj_value, depth, 1, 2);
+      counter++
+    }
+    while((new_obj.Exists == false || new_obj.VisibleOnScreen == false) && counter < 4);
+  }
 }
 
 
@@ -931,4 +952,13 @@ function setup_automation_from_parameter()
   var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
   change_environments(environment);
+//-----------------------------------------------------------------------------------
+function setup_generic_patient(do_login, dm)
+{
+  if(do_login == true)
+  {
+    login(5, "Shared");
+  }
+  add_patient("Generic", "Patient", "M", "Shared");
+  add_treatment_plan("W", dm, "", "Shared", "");
 }

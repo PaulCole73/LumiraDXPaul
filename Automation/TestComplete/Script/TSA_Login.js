@@ -8,14 +8,14 @@ function login(user_index, TestStepMode, reset_password)
   Log.LockEvents(0);
   var counter = 0;
   var Mode = TestStepMode
-  var INRstarV5 = INRstar_base();
+  var INRstarV5 = INRstar_base(); 
   Aliases.INRstarWindows.BrowserForm.SetFocus();
- 
+  
   do
   {
     INRstarV5.Refresh();
     var obj = wait_for_object(INRstarV5, "idStr", "LogonPage", 3, 1, 20);
- 
+
     if(obj != false)
     {
       var main = INRstarV5.Panel("MainPage").Panel("main");
@@ -88,6 +88,11 @@ function login(user_index, TestStepMode, reset_password)
   }
  
   return text;
+  } 
+  while(obj == false && counter < 3);
+  
+  var obj_root = INRstarV5;
+  wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
 }
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, is_password_reset, new_password)
@@ -113,8 +118,8 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   
   WaitSeconds(2);
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
-  WaitSeconds(5);
-  
+
+  WaitSeconds(5);  
   process_popup("Important Information", "Do Not Show Again");
   WaitSeconds(2);
   process_popup("Email Address", "Cancel");

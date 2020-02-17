@@ -325,25 +325,31 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
     switch(column_to_change)
     {
       case "inr_checkbox": 
-      table.Cell(i, 2).Child(1).Click();
+      table.Cell(i, 2).Child(1).ClickChecked(true);
       break;
       case "inr_dropdown":
-      table.Cell(i, 2).Child(0).ClickItem(2);
+      count = table.Cell(i, 2).Child(0).wItemCount - 1;
+      num = get_random_num_inrange(1, count);
+      table.Cell(i, 2).Child(0).ClickItem(num);
       break;
       case "warf_checkbox": 
-      table.Cell(i, 3).Child(1).Click();
+      table.Cell(i, 3).Child(1).ClickChecked(true);
       break;
       case "warf_dropdown": 
-      table.Cell(i, 3).Child(0).ClickItem(2);
+      count = table.Cell(i, 3).Child(0).wItemCount - 1;
+      num = get_random_num_inrange(1, count);
+      table.Cell(i, 3).Child(0).ClickItem(num);
       break;
       case "lmwh_checkbox": 
-      table.Cell(i, 4).Child(1).Click();
+      table.Cell(i, 4).Child(1).ClickChecked(true);
       break;
       case "lmwh_dropdown":
       table.Cell(i, 4).Child(0).ClickItem(1);
       break;
       case "frequency":
-      table.Cell(i, 5).Child(0).ClickItem(1);
+      count = table.Cell(i, 5).Child(0).wItemCount - 1;
+      num = get_random_num_inrange(1, count);
+      table.Cell(i, 5).Child(0).ClickItem(num);
       break;
       case "comments":
       table.Cell(i, 6).Child(0).Click();
@@ -351,17 +357,17 @@ function populate_table_column(table_type, column_to_change, number_of_rows)
       process_bridging_popup("Edit comments", "Update", content);
       break;
       case "all":
-      table.Cell(i, 2).Child(1).Click();
+      table.Cell(i, 2).Child(1).ClickChecked(true);
       count = table.Cell(i, 2).Child(0).wItemCount - 1;
       num = get_random_num_inrange(1, count);
       table.Cell(i, 2).Child(0).ClickItem(num);
       
-      table.Cell(i, 3).Child(1).Click();
+      table.Cell(i, 3).Child(1).ClickChecked(true);
       count = table.Cell(i, 3).Child(0).wItemCount - 1;
       num = get_random_num_inrange(1, count);
       table.Cell(i, 3).Child(0).ClickItem(num);
       
-      table.Cell(i, 4).Child(1).Click();
+      table.Cell(i, 4).Child(1).ClickChecked(true);
       table.Cell(i, 4).Child(0).ClickItem(1);
       
       count = table.Cell(i, 5).Child(0).wItemCount - 1;
@@ -563,9 +569,46 @@ function validate_columns_match(table_type, number_of_rows, array, array_of_colu
   Log.Message(results);
   return results;
 }
+//--------------------------------------------------------------------------------
+function save_bridging_schedule()
+{
+  bridging_schedule_save_button().Click();
+  process_popup("Please confirm the bridging schedule", "Confirm");
+}
+//--------------------------------------------------------------------------------
+function view_bridging_schedule(item_position)
+{
+  Goto_Bridging_Tab();
+  var button = bridging_summary_schedule_table().Cell(item_position, 6).Button("View");
+  var state = button.Enabled;
+  
+  if(state == true)
+  {
+    button.Click();
+  }
+  
+  return state;
+}
+//--------------------------------------------------------------------------------
+function get_bridging_warning_message(message_index)
+{
+  var obj_root = patient_treatment_bridging_tab();
+  wait_for_object(obj_root, "idStr", "BridgingScheduleMessages", 4);
 
-
-
+  var banner = bridging_schedule_warning_banner();
+  var warning;
+  
+  if(message_index == "all")
+  {
+    warning = banner.innerText;
+  }
+  else
+  {
+    warning = banner.TextNode(message_index).innerText;
+  }
+  
+  return warning;
+}
 
 
 

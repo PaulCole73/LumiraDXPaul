@@ -63,13 +63,14 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
 {
   if((is_box_1_ticked == null && is_box_2_ticked == null) || (is_box_1_ticked == true && is_box_2_ticked == true) )
   {
-    var obj_root = engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
-    wait_for_object(obj_root, "idStr", "button__home_questionnaire_submit", 3);
+    var obj_root = engage_base().Panel(0).Panel(0).Panel(0).Panel(1);
+    wait_for_object(obj_root, "idStr", "button_home_questionnaire_submit", 6);
   
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    WaitSeconds(2);
     var text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Agreements Complete", "OK");
     return text;
   }
@@ -84,6 +85,7 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
       engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     }
     engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    WaitSeconds(2);
     text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Incomplete Agreements", "OK");
     return text;
   }
@@ -151,6 +153,13 @@ function submit_INR_with_answers(INR, match, dose, medication, bleeding, missed)
   //missed dose - missed should be 0 for Yes or 1 for No
   engage_submit_INR.Panel(5).Panel(0).Panel("question_radio_objectobject_").Panel(1).Panel(0).Label(missed).TextNode(0).Click();
   //submit button
+  
+  var current_secs = aqDateTime.GetSeconds(aqDateTime.Now());;
+  if(current_secs > 50)
+  {
+    WaitSeconds(11);
+  }
+  var submit_time = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
   engage_submit_INR.Panel(7).Button("button_home_anticoagulation_questionnaire_submit").Click();
   
   wait_for_object(engage_base(), "className", "PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", 3);
@@ -162,7 +171,7 @@ function submit_INR_with_answers(INR, match, dose, medication, bleeding, missed)
   }
   else if (match ==0)
   {
-    return_data = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
+    return_data = submit_time;
     process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "INR Test Complete", "OK");
   }
   WaitSeconds(2);

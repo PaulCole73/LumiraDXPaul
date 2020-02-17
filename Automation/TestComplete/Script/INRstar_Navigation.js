@@ -13,15 +13,14 @@ function Goto_Home()
 {
   var INRstarV5 = INRstar_base();
   var obj_root = INRstarV5.Panel("MainPage").Panel("header");
-  wait_for_object(INRstarV5, "idStr", "HomeLink", 3, 3);
-  
-  WaitSeconds(2, "Waiting...");
-  var obj = obj_root.Link("HomeLink").Click();
-  
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3, 3);
+  if(obj != false)
+  {
+    obj.Click();
+  }
   obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   wait_for_object(obj_root, "idStr", "UserMessagesTabLink", 2);
-  
-  WaitSeconds(2, "Waiting for ready state...");
+  WaitSeconds(1);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Options 
@@ -176,11 +175,12 @@ function Goto_Manage_User(username)
 // Log Off
 function Log_Off()
 {
-  WaitSeconds(3, "Waiting for Log Off button...");
   var INRstarV5 = INRstar_base();
   var panelHeader = INRstarV5.Panel("MainPage").Panel("header");
-  var panelLoginStatus = panelHeader.Panel("logindisplay").Panel("LoginStatus");
-  panelLoginStatus.Link("LogoutLink").Click();   
+  var obj_root = panelHeader.Panel("logindisplay").Panel("LoginStatus");
+  
+  var obj = wait_for_object(obj_root, "idStr", "LogoutLink", 1);
+  click_navigation_wrapper(obj, INRstarV5, "idStr", "LogonPage", 3); 
 }
 
 
@@ -208,11 +208,10 @@ function Log_Off()
 // Navigate to Patient Search
 function Goto_Patient_Search()
 {
-  WaitSeconds(3);
   var INRstarV5 = INRstar_base();
-  panel = INRstarV5.Panel("MainPage");
-  panel.Panel("header").Link("MainPatientLink").Click();
-  WaitSeconds(2, "Waiting at Patient Tab...");
+  var obj_root = INRstarV5;
+  var obj = wait_for_object(obj_root, "idStr", "MainPatientLink", 3);
+  click_navigation_wrapper(obj, obj_root, "idStr", "searchCriteria", 5);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Search
@@ -226,11 +225,13 @@ function Goto_External_Patient_Lookup()
 // Navigate to Add Patient
 function Goto_Add_Patient()
 {
-  Goto_Patient_Search() 
+  Goto_Patient_Search(); 
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel")
-  panelMCP.Panel("ManagePatients").Panel("PatientTab").Link("AddPatientDetailsTab").Click();
-  WaitSeconds(1, "Waiting at Add Patient...");
+  var obj_root = panelMCP.Panel("ManagePatients").Panel("PatientTab");
+  
+  var obj = wait_for_object(obj_root, "idStr", "AddPatientDetailsTab", 1, 1, 20);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "EditPatientContactDetails", 6);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Tests Due
@@ -251,12 +252,10 @@ function Goto_Patient_Demographics()
   var panelPR = panelMCP.Panel("PatientRecord");
   
   var obj_root = panelPR.Panel("PatientTab")
+  
+  //object wait wrapper, waits for obj 1 to be available and performs action until obj 2 is available
   var obj = wait_for_object(obj_root, "idStr", "PatientDemographicsTab", 1);
-  if(obj != false)
-  {
-    obj.Click();
-  }
-  WaitSeconds(3, "Waiting to go to Demographics tab...");
+  click_navigation_wrapper(obj, panelPR, "idStr", "PatientDetails", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Edit Patient Demographics
@@ -274,11 +273,10 @@ function Goto_Patient_Management()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientRecord");
-  panelMCP.Panel("PatientTab").Link("PatientManagementTab").Click();
-  //WaitSeconds(1, "Waiting at Patient Management tab...");
+  var obj_root = panelMCP.Panel("PatientTab");
   
-  var obj_root = panelMCP.Panel("PatientMainTabContent");
-  wait_for_object(obj_root, "idStr", "PatientManagementWrapper", 1, 2);
+  var obj = wait_for_object(obj_root, "idStr", "PatientManagementTab", 1); 
+  click_navigation_wrapper(obj, panelMCP.Panel("PatientMainTabContent"), "idStr", "PatientStatus_DetachedLabel_Label", 5)
 }
 //-------------------------------------------------------------------------------
 // Navigate to suspend screen
@@ -321,49 +319,41 @@ function Goto_Recently_Viewed()
 //===============================================================================
 function Goto_Patient_Treatments_Tab()
 {
-  WaitSeconds(3);
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
-  WaitSeconds(3, "Waiting to go to Treatment Plan...");
+  var obj_root = panelMCP.Panel("PatientRecord").Panel("PatientTab");
+  var obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTab", 1);
+  if(obj != false)
+  {
+    obj.Click();
+  }
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan
 function Goto_Patient_Treatment_Plan()
 {
-  var counter = 0;
-  var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var obj_root = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  
-  var obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTab", 1);
-  if(obj != false)
-  {
-    obj.Click();
-  }
-  
-  WaitSeconds(3, "Waiting to go to Treatment Plan...");
+  Goto_Patient_Treatments_Tab();
   var panelPMTC = main_patient_tab();
   obj_root = panelPMTC.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
-  
   var obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTab", 1);
   if(obj != false)
   {
     obj.Click();
   }
-  
-  WaitSeconds(3, "Waiting to go to Treatment Plan...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan Add - If no prior treatment plan exists as the path will be different otherwise
 function Goto_Patient_Treatment_Plan_Add()
 {
   Goto_Patient_Treatment_Plan();
-  change_treatment_plan_buttons().Panel(0).Button("AddPatientTreatmentPlanLink").Click();
-  
+  var obj_root = change_treatment_plan_buttons(); 
+  var obj = wait_for_object(obj_root, "idStr", "AddPatientTreatmentPlanLink", 2);
+  if(obj != false)
+  {
+    obj.Click();
+  }
   process_popup("Confirmation Required", "Confirm");
-  
-  WaitSeconds(1, "Waiting to go to Add Treatment Plan...");
+  wait_for_object(main_patient_tab(), "idStr", "AddTreatmentPlanForm", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan Add - If a treatment plan exists
@@ -459,19 +449,29 @@ function Goto_Patient_Treatment()
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
-  WaitSeconds(4, "Waiting for Treatment plan tab...");
-  panelPT.Link("PatientTreatmentPlanTab").Click();
-
-  WaitSeconds(4, "Waiting at Treatment tab...");
+  var obj = wait_for_object(panelPT, "idStr", "PatientTreatmentPlanTab", 1, 1, 20);
   
-  patient_clinical_tab().Link("TreatmentItem").Click();
-  WaitSeconds(4, "Waiting for Treatments...");
+  if(obj != false)
+  {
+    obj.Click();
+  }
+
+  var obj_root = main_patient_tab();
+  var obj = wait_for_object(obj_root, "idStr", "TreatmentPlanSubTab", 1, 1, 20);
+  obj = wait_for_object(obj, "idStr", "PatientTreatmentPlanTabSubMenu", 1, 1, 20);
+  obj = wait_for_object(obj, "idStr", "TreatmentItem", 1, 1, 20);
+  
+  if(obj != false)
+  {
+    obj.Click();
+  }
+  
+  WaitSeconds(2, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
 function Goto_Add_Historical()
 {
-  WaitSeconds(2, "Waiting before creating historic...");
   Goto_Patient_Treatment();
   var button_id = "AddHistoricalTreatment";
   process_button_exists(button_id);
@@ -495,12 +495,6 @@ function Goto_Add_Treatment_Comment()
 // Navigate to Patient Treatment Plan Reviews
 function Goto_Patient_Treatment_Plan_Review()
 {
-  /*
-  var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientTreatmentPlanTab").Click();
-  WaitSeconds(3, "Waiting to go to Treatment Plan...");
-  */
   Goto_Patient_Treatments_Tab();
   
   var panelPR = main_patient_tab();
@@ -543,11 +537,12 @@ function Goto_Patient_Adverse_Events()
 // Navigate to Patient / Audit
 function Goto_Patient_Audit()
 {
-  WaitSeconds(1);
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  panelMCP.Panel("PatientRecord").Panel("PatientTab").Link("PatientAuditTraiTab").Click();
-  WaitSeconds(1);
+  var obj_root = panelMCP.Panel("PatientRecord");
+  
+  var obj = wait_for_object(obj_root.Panel("PatientTab"), "idStr", "PatientAuditTraiTab", 1); //object select, navigation wrapper
+  click_navigation_wrapper(obj, obj_root, "idStr", "AuditTrailTable", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to system / Audit
@@ -559,11 +554,7 @@ function Goto_System_Audit()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   
   var obj = wait_for_object(panelMCP, "idStr", "AuditTab", 2, 1);
-  if(obj.Exists)
-  {
-    obj.Click();
-  }
-  WaitSeconds(1);
+  click_navigation_wrapper(obj, panelMCP, "idStr", "AuditTrailTable", 3);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Treatment / Audit
@@ -659,9 +650,7 @@ function Goto_Bridging_Tab()
 //-------------------------------------------------------------------------------
 function Goto_Create_Bridging_Record()
 {
-  Goto_Patient_Treatments_Tab();
-  WaitSeconds(1);
-  patient_clinical_tab().Link("PatientBridgingTab").Click();
+  Goto_Bridging_Tab()
   patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").Click();
   WaitSeconds(1, "Waiting to go to bridging form...");
 }

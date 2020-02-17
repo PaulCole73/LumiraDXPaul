@@ -506,7 +506,7 @@ function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
 {
   try
   {
-    var test_title = "Engage - Disenroll Patient from Engage (confirm non-completed task >= today are deleted)";
+    var test_title = "Engage - Move NTD Backwards (10 day review to 7 day review = no change to schedule)";
     login(7, "Shared");
     
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
@@ -559,7 +559,7 @@ function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Engage";
-    var test_name = "tc_move_ntb_back_from_ten_to_seven_days_schedules_unchanged";
+    var test_name = "tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged";
     handle_failed_tests(suite_name, test_name);
     restart_engage();
   }
@@ -660,7 +660,7 @@ function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Engage";
-    var test_name = "tc_move_ntb_back_from_seven_to_six_days_schedules_changed";
+    var test_name = "tc_move_ntd_back_from_seven_to_six_days_schedules_changed";
     handle_failed_tests(suite_name, test_name);
     restart_engage();
   }
@@ -758,7 +758,7 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Engage";
-    var test_name = "tc_move_ntb_forward_from_five_to_seven_days_schedules_changed";
+    var test_name = "tc_move_ntd_forward_from_five_to_seven_days_schedules_changed";
     handle_failed_tests(suite_name, test_name);
     restart_engage();
   }

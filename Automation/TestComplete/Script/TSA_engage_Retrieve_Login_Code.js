@@ -34,7 +34,8 @@ function get_engage_login_code() //in progress
   
   delete_engage_code_email();
   
-  TestedApps.gmail.Terminate();
+  //TestedApps.gmail.Terminate();
+  Sys.Process("iexplore").Terminate();
   WaitSeconds(2, "Waiting for application to close...");
   
   return code;
@@ -48,7 +49,9 @@ function delete_engage_code_email()
   gmail_account_top_email().ClickR();
   WaitSeconds(2);
   
-  gmail_account_delete_button().Click();
+  var base = gmail_account_main();
+  var button = wait_for_object(base, "contentText", "Delete", 5, 3);
+  button.Click();
   
   WaitSeconds(2);
 }

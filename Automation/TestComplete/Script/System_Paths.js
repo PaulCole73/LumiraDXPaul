@@ -217,14 +217,22 @@ function patient_clinical_tab()
 /////////////////////  Patient / Treatment Plan  /////////////////////////
 //------------------------------------------------------------------------
 //General Path
-function main_patient_tab()
+function patient_record_tab() //high level obj
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent");
+  var panelPR = panelMCP.Panel("PatientRecord");
   
   return panelPR;
 }
+//------------------------------------------------------------------------
+function main_patient_tab()
+{
+  var panelPR = patient_record_tab().Panel("PatientMainTabContent");
+  
+  return panelPR;
+}
+//------------------------------------------------------------------------
 function tp_drop_down()
 {
   var INRstarV5 = INRstar_base();
@@ -908,7 +916,7 @@ function bridging_schedule_form()
 function bridging_schedule_buttons()
 {
   var tab = patient_treatment_bridging_tab();
-  var panel = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel(0);
+  var panel = tab.Form("BridgingForm").Panel(0);
   
   return panel;
 }
@@ -951,6 +959,22 @@ function bridging_schedule_save_button()
   var button = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel(0).SubmitButton("SaveBridgingRecord");
   
   return button;
+}
+//------------------------------------------------------------------------
+function bridging_summary_schedule_table()
+{
+  var tab = patient_treatment_bridging_tab();
+  var table = tab.Panel("BridgingRecords").Table("BridgingRecordsTable");
+  
+  return table;
+}
+//------------------------------------------------------------------------
+function bridging_schedule_warning_banner()
+{
+  var tab = patient_treatment_bridging_tab();
+  var banner = tab.Panel("BridgingTabContent").Form("BridgingForm").Panel("Schedules").Panel("BridgingScheduleMessages");
+  
+  return banner;
 }
 //------------------------------------------------------------------------
 //////////////////////////  Summary  ///////////////////////////////////
