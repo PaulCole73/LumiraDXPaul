@@ -1,70 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE Nodes [
-
-<!ENTITY % NameValue "CDATA">
-<!ENTITY % PropType "(I|S|D|L|H|B)">
-<!ENTITY % VersionValue "CDATA">
-
-<!ELEMENT Prp (#PCDATA)>
-<!ELEMENT Node (Node|Prp)*>
-<!ELEMENT Nodes (Node)+>
-
-<!ATTLIST Nodes version CDATA "1">
-
-<!ATTLIST Node name CDATA #REQUIRED>
-
-<!ATTLIST Prp name CDATA #REQUIRED>
-<!ATTLIST Prp type CDATA #REQUIRED>
-<!ATTLIST Prp value CDATA #REQUIRED>
-]>
-<Nodes version="1">
-	<Node name="root">
-		<Node name="child list">
-			<Node name="job1">
-				<Node name="item data">
-					<Node name="child list">
-						<Node name="task1">
-							<Node name="item data">
-								<Node name="settings"/>
-								<Prp name="action after run" type="I" value="0"/>
-								<Prp name="active" type="B" value="-1"/>
-								<Prp name="caption" type="S" value="Task1"/>
-								<Prp name="copy remote log mode" type="I" value="1"/>
-								<Prp name="host" type="S" value="{00000000-0000-0000-0000-000000000000}"/>
-								<Prp name="host timeout" type="I" value="3"/>
-								<Prp name="instances" type="I" value="1"/>
-								<Prp name="previous instance mode" type="I" value="0"/>
-								<Prp name="project path" type="S" value=""/>
-								<Prp name="remote application" type="I" value="1"/>
-								<Prp name="signature" type="S" value="{23C4D44E-8AC2-4667-BAFD-DAD89D94804E}"/>
-								<Prp name="tag" type="S" value=""/>
-								<Prp name="test" type="S" value=""/>
-								<Prp name="version" type="S" value="12.0"/>
-							</Node>
-							<Prp name="index" type="I" value="0"/>
-							<Prp name="key" type="S" value="{640FE5DE-01CB-4FEC-B206-472A2D125E51}"/>
-							<Prp name="pluginname" type="S" value="Network Suite"/>
-							<Prp name="type" type="S" value="{23C4D44E-8AC2-4667-BAFD-DAD89D94804E}"/>
-							<Prp name="typename" type="S" value="Task"/>
-						</Node>
-					</Node>
-					<Node name="folders"/>
-					<Node name="settings"/>
-					<Prp name="active" type="B" value="-1"/>
-					<Prp name="caption" type="S" value="Job1"/>
-					<Prp name="signature" type="S" value="{E2AF080E-4F10-4DAC-8897-101FF5509E65}"/>
-					<Prp name="version" type="S" value="12.0"/>
-				</Node>
-				<Prp name="index" type="I" value="0"/>
-				<Prp name="key" type="S" value="{F4A288F2-76BB-45D4-B95D-6F939EE4270E}"/>
-				<Prp name="pluginname" type="S" value="Network Suite"/>
-				<Prp name="type" type="S" value="{E2AF080E-4F10-4DAC-8897-101FF5509E65}"/>
-				<Prp name="typename" type="S" value="Job"/>
-			</Node>
-		</Node>
-		<Node name="folders"/>
-		<Node name="settings"/>
-		<Prp name="signature" type="S" value="{54BD767E-85A4-491D-A3B2-EC88685BF3C8}"/>
-		<Prp name="version" type="S" value="12.0"/>
-	</Node>
-</Nodes>
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{54BD767E-85A4-491D-A3B2-EC88685BF3C8}" version="14.0">
+	<children>
+		<child name="Job1" key="{F4A288F2-76BB-45D4-B95D-6F939EE4270E}">
+			<data signature="{E2AF080E-4F10-4DAC-8897-101FF5509E65}" version="14.0" caption="Job1" active="True">
+				<children>
+					<child name="Task1" key="{640FE5DE-01CB-4FEC-B206-472A2D125E51}">
+						<data signature="{23C4D44E-8AC2-4667-BAFD-DAD89D94804E}" version="14.0" caption="Task1" active="True" actionAfterRun="0" remoteApplication="1" copyRemoteLogMode="1" projectPath="" tag="" host="{00000000-0000-0000-0000-000000000000}" test="" previousInstanceMode="0" instances="1" hostTimeout="3" />
+					</child>
+				</children>
+			</data>
+		</child>
+	</children>
+</Root>

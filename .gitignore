@@ -12,6 +12,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# User-specific project file
+INRstar.mds
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

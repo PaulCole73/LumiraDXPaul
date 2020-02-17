@@ -42,12 +42,14 @@ function tsa_add_a_clinic(name, date, is_recurring, is_end_by, end_by_date)
   WaitSeconds(1);
   f_name.Text = name;
   WaitSeconds(1);
+  f_start.Click();
+  WaitSeconds(1);
   f_start.Text = "12:00";
   WaitSeconds(1);
   f_end.Text = "16:00";
   WaitSeconds(1);
    
-  add_clinic_form().Table(0).Cell(4, 1).Table("SlotLength_ET").Cell(0, 0).Table("SlotLength").Cell(0, 2).Click();
+  add_clinic_form().Table(0).Cell(4, 1).Table("SlotLength_ET").Cell(0, 0).Table("SlotLength").Cell(0, 1).Click();
   select_clinic_time_slot().Cell(1, 0).Click();
   
   if(is_recurring == true)
@@ -290,13 +292,21 @@ function tsa_clinic_confirm_default_ntd()
     
   var panel = clinic_schedule_container();
   var tab_name = new Array();
-  tab_name = panel.QuerySelectorAll("div.NextTestDate");
+  var tab_list = panel.contentText;
+  //var selector = "div.NextTestDate";
+  aqString.ListSeparator = "\n";
+  for(var i = 0; i < aqString.GetListLength(tab_list); i++)
+  {
+    tab_name.push(aqString.GetListItem(tab_list,i));
+  }
+  //tab_name = panel.querySelectorAll(selector);
+  //tab_name = INRstarV5.NativeWebObject.Find("innerText", "
   var format_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a, %d-%b");
     
   var result_set_1 = false;
   for(var i = 0; i < tab_name.length; i++)
   {
-    if(tab_name[i].contentText == format_date)
+    if(tab_name[i] == format_date)
     {
       result_set_1 = true;
       break;
