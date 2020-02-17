@@ -953,7 +953,7 @@ function setup_automation_from_parameter()
   var static_String_Env = "env=";
   var currentTestEnv = "",arr_TC_Parameter = null;
       
-  if(count_CL_Parameters > 3)//This part is for running from Test Complete/Execute Commandline
+  if(count_CL_Parameters > 3) //This part is for running from Test Complete/Execute Commandline
   {
         for(var a = 0 ; a <= count_CL_Parameters ; a++)
         {
@@ -976,15 +976,16 @@ function setup_automation_from_parameter()
               }
         }
   }
-  else//This part is for running from Test Complete/Execute manually
+  else //This part is for running from Test Complete/Execute manually
   {
-  environment = "INRstarWindowsTatooine";
-  environmentname = 'Tatooine';
+    environment = "INRstarWindowsTatooine";
+    environmentname = "Tatooine";
   }
   Log.Message("Final check " + environmentname);
   var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
   change_environments(environment);
+}
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
