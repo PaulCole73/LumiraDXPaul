@@ -410,9 +410,9 @@ function change_test_practice(prac_name)
   var test_practice_table_path = test_practice_table();
   var row_count = test_practice_table_path.rowcount;
  
-  for(i=1; i<row_count; i++) 
+  for(var i = 1; i < row_count; i++) 
   {
-    if(test_practice_table_path.Cell(i, 0).contentText==prac_name)
+    if(test_practice_table_path.Cell(i, 0).contentText == prac_name)
     {           
       test_practice_table_path.Cell(i, 0).Label("Name_DetachedLabel").Click(); 
       break;

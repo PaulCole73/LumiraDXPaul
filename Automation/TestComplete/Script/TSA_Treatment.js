@@ -161,15 +161,11 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   var save_button_pre_schedule = treatment_buttons_pre_schedule();
   save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
   
-  //  WaitSeconds(2)
   handle_no_poct("non_induct");
   process_popup("PoCT Batch Expired", "Confirm");
-   
   WaitSeconds(1);   
-   
   // Click the Confirm button in the confirm window
   process_popup("Please confirm that the following is correct", "Confirm");
-  
   //This was taken out to do the warning pop up
   var text = process_alternate_popup("Please acknowledge", "Confirm"); 
   return text;
