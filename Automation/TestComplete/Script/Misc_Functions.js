@@ -805,6 +805,10 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   if(is_obj_valid == false)
   {
     Log.Picture(Sys.Desktop, "--------------------- " + obj_value + " Timed-out ---------------------");
+    if(obj_value == "LogonPage")
+    {
+      restart_INRstar();
+    }
   }
   return obj;
 }
