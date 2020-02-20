@@ -150,10 +150,12 @@ function dose_patient_external_result(table_position, text_index)
   var text;
   if(text_index == null || text_index == 0)
   {
+    wait_for_object(INRstar_base(), "idStr", "modalDialogBox", 2);
     text = process_popup("Historic Treatment", "OK");
   }
   else if(text_index == 1)
   {
+    wait_for_object(INRstar_base(), "idStr", "modalDialogBox", 2);
     text = process_popup("Please confirm", "Confirm");
   }
   

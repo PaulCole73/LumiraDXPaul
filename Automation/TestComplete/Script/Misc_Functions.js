@@ -13,8 +13,8 @@
 
 
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsAlderaan";
-var environmentname = "Alderaan";
+var environment = "INRstarWindowsCoruscant";
+var environmentname = "Coruscant";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -993,7 +993,7 @@ function setup_automation_from_parameter()
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
-  for(var i = 30; i < 50; i++)
+  for(var i = 50; i < 60; i++)
   {
     if(do_login == true)
     {
