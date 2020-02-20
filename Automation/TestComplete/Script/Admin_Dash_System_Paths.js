@@ -73,6 +73,7 @@ function admin_dash_new_client_button()
 function admin_dash_search_client_box()
 {
   var base = admin_dash_base();
+  wait_for_object(admin_dash_add_location_admin_form(), "idStr", "searchbox", 3)
   var search_box = base.Panel("MainPage").Fieldset("DashboardContent").Panel("main").Panel("MainContentPanel").Panel(0).Panel(0).Textbox("searchbox")
   
   return search_box;
@@ -96,9 +97,10 @@ function admin_dash_edit_client_form()
 //------------------------------------------------------------------------
 function admin_dash_add_location_admin_form()
 {
-  var base = admin_dash_base();tc_account_management_add_a_new_client
-
-  var content = base.Panel("MainPage").Fieldset("DashboardContent").Panel("main").Panel("MainContentPanel")
+  var base = admin_dash_base();
+  var content = base.Panel("MainPage").Fieldset("DashboardContent").Panel("main").Panel("MainContentPanel");
+  
+  return content;
 }
 //------------------------------------------------------------------------
 function admin_dash_client_details()

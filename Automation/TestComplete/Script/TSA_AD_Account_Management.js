@@ -136,7 +136,9 @@ function update_a_user(client_name, username, edit_type)
   else if(edit_type == "reset password")
   {
     table.cell(user_index, 2).Button("Reset_Password").Click();
+    wait_for_object(admin_dash_base(), "idStr", "modalDialogBox", 2);
     process_admin_dash_popup("Confirmation Required", "Confirm");
+    wait_for_object(admin_dash_base(), "idStr", "modalDialogBox", 2);
     var text = process_admin_dash_popup("Reset Password", "OK");
     
     var words = new Array();

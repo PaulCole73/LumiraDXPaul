@@ -59,8 +59,6 @@ function Goto_Bespoke_Letter(letter_name)
   {
     return false;
   }
-  
-  item.Refresh();
 }
 //-------------------------------------------------------------------------------
 // Navigate to Admin / IQC 

@@ -1,4 +1,4 @@
-//USEUNIT TSA_External_Results_HL7
+﻿//USEUNIT TSA_External_Results_HL7
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_external_results_hl7_message_todays_date_patient_match()

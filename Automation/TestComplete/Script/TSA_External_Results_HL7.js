@@ -3,7 +3,7 @@
 //USEUNIT Misc_Functions
 //USEUNIT Popup_Handlers
 //--------------------------------------------------------------------------------
-function create_hl7_message(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr)
+function create_hl7_message(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr, msg_format)
 {
   var file = "C:\\Automation\\hl7\\hl7.txt"; 
   var file_exists = aqFile.Exists(file);
@@ -11,30 +11,51 @@ function create_hl7_message(datetime, patientID, patientNHS, surname, firstname,
   {
     aqFile.Delete(file)
   }
-
-  var line1 = "MSH|^~\\&|iLABTP||||" + datetime + "||ORU^R01|32081737|T|2.4" + "\r\n";
-  var line2 = "PID|||100321^^^HISID^CPD~" + patientID + "^^^PAT^CPD~" + patientNHS + "^^^NHS^NH||" + surname + "^" + firstname + "||" + dob + "|" + gender + "|"
-              + "||" + addr1 + "^" + addr2 + "^" + addr3 + "^" + addr4 + "^" + postcode + "|||||||L6250726251|||||" + "\r\n";
-  var line3 = "PV1|1|NH|ZZZZ4^Virtual GP Practice|||||||||||||||||||ORC|SC|||||||||||TCON^Test Consultant^^^^^CC|||||||||||||||||" + "\r\n";
-  var line4 = "OBR|||P,15.0023433.D|PT^Prothrombin Time INR^HAE||" + datetime + "|" + datetime + "|||||||" + datetime + "|VB^^|F||||||||||||||||Stacy Burrows (Manager Section||||" + "\r\n";
-  var line5 = "OBX|1|NM|PT^Prothrombin Time||10.0 |s|||||F" + "\r\n";
-  var line6 = "NTE|1||" + "\r\n";
-  var line7 = "OBX|1|NM|INR^I.N.R.||" + inr + " ||||||F" + "\r\n";
-  var line8 = "NTE|1||" + "\r\n";
   
-  var temp = aqString.Concat(line1, line2);
-  temp = aqString.Concat(temp, line3);
-  temp = aqString.Concat(temp, line4);
-  temp = aqString.Concat(temp, line5);
-  temp = aqString.Concat(temp, line6);
-  temp = aqString.Concat(temp, line7);
-  temp = aqString.Concat(temp, line8);
+  if(msg_format == "Whiston" || msg_format == null)
+  {
+    var line1 = "MSH|^~\\&|iLABTP||||" + datetime + "||ORU^R01|32081737|T|2.4" + "\r\n";
+    var line2 = "PID|||100321^^^HISID^CPD~" + patientID + "^^^PAT^CPD~" + patientNHS + "^^^NHS^NH||" + surname + "^" + firstname + "||" + dob + "|" + gender + "|"
+                + "||" + addr1 + "^" + addr2 + "^" + addr3 + "^" + addr4 + "^" + postcode + "|||||||L6250726251|||||" + "\r\n";
+    var line3 = "PV1|1|NH|ZZZZ4^Virtual GP Practice|||||||||||||||||||ORC|SC|||||||||||TCON^Test Consultant^^^^^CC|||||||||||||||||" + "\r\n";
+    var line4 = "OBR|||P,15.0023433.D|PT^Prothrombin Time INR^HAE||" + datetime + "|" + datetime + "|||||||" + datetime + "|VB^^|F||||||||||||||||Stacy Burrows (Manager Section||||" + "\r\n";
+    var line5 = "OBX|1|NM|PT^Prothrombin Time||10.0 |s|||||F" + "\r\n";
+    var line6 = "NTE|1||" + "\r\n";
+    var line7 = "OBX|1|NM|INR^I.N.R.||" + inr + " ||||||F" + "\r\n";
+    var line8 = "NTE|1||" + "\r\n";
+    
+    var temp = aqString.Concat(line1, line2);
+    temp = aqString.Concat(temp, line3);
+    temp = aqString.Concat(temp, line4);
+    temp = aqString.Concat(temp, line5);
+    temp = aqString.Concat(temp, line6);
+    temp = aqString.Concat(temp, line7);
+    temp = aqString.Concat(temp, line8);
+  }
+  else if(msg_format == "Wolves")
+  {
+    var line1 = "MSH|^~\\&|TDR|38-1^LMX^RWHCC|HOST||20200219092100||ORU^R01^ORU_R01|TD0000091901|P|2.4|||AL|NE|||||" + "\r\n";
+    var line2 = "PID|1||" + patientNHS + "^^^^PATNUMBER~" + patientID + "^^^^ALTNUMBER||" + surname + "^" + firstname + "^^^Mr^^L||" + dob + "|" + gender + "|"
+                + "|id^|" + addr1 + "^^" + addr2 + "^" + addr3 + "||1234567890^^PH||||id^|" + patientID + "|||||||||||||||" + "\r\n";
+    var line3 = "PV1|1|O|WAR2||||||CHIT|100|||||||||" + patientID + "|||||||||||||||||||||||||20190917|20190917" + "\r\n";
+    var line4 = "ORC|RE|6441604|0027532264INRD|0027532264|CM||^^^20200210150000^^R||20200210150003|||CHIT|WAR2||20200210150000" + "\r\n";
+    var line5 = "OBR|1|6441604|0027532264INRD|INRD^P.T./I.N.R.(dosing)||" + datetime + "|" + datetime + "|||||||" + "\r\n";
+    var line6 = "OBX|1|NM|PT^Prothrombin Time|1|27|secs.|10 - 13|H|||F||||||||" + "\r\n";
+    var line7 = "OBX|2|NM|WPT^I.N.R. ........|1|" + inr + "||||||F||||||||" + "\r\n";
+    
+    var temp = aqString.Concat(line1, line2);
+    temp = aqString.Concat(temp, line3);
+    temp = aqString.Concat(temp, line4);
+    temp = aqString.Concat(temp, line5);
+    temp = aqString.Concat(temp, line6);
+    temp = aqString.Concat(temp, line7);
+  }
   
   aqFile.Create(file);
   aqFile.WriteToTextFile(file, temp, aqFile.ctUTF8);
 }
 //--------------------------------------------------------------------------------
-function setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr)
+function setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr, msg_format)
 {
   if(datetime == null || datetime == "")
   {
@@ -75,10 +96,10 @@ function setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstn
     patID = "";
   }
   
-  create_hl7_message(dt, patID, nhs, surname, firstname, dateofbirth, gen, addr1, addr2, addr3, addr4, postcode, inr)
+  create_hl7_message(dt, patID, nhs, surname, firstname, dateofbirth, gen, addr1, addr2, addr3, addr4, postcode, inr, msg_format)
 }
 //--------------------------------------------------------------------------------
-function generate_hl7_message(patient_data_array, datetime, inr)
+function generate_hl7_message(patient_data_array, datetime, inr, msg_format)
 {
   var patientID = patient_data_array[0];
   var patientNHS = patient_data_array[1];
@@ -101,7 +122,7 @@ function generate_hl7_message(patient_data_array, datetime, inr)
     var inr_val = inr;
   }
   
-  setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr_val);
+  setup_hl7_message_data(datetime, patientID, patientNHS, surname, firstname, dob, gender, addr1, addr2, addr3, addr4, postcode, inr_val, msg_format);
 }
 //--------------------------------------------------------------------------------
 function send_hl7_message()
@@ -147,9 +168,9 @@ function validate_hl7_buttons(button_id)
   
   if(patient_external_results_table().Cell(1, 0).innerText != "There are no new results")
   {
-      var table = patient_external_results_table().Cell(1, 4).Panel(0).Panel("Div1");
-      var button = table.FindChild("idStr", button_id);
-      var obj = button.Exists;
+    var table = patient_external_results_table().Cell(1, 4).Panel(0).Panel("Div1");
+    var button = table.FindChild("idStr", button_id);
+    var obj = button.Exists;
   }
   
   return obj;

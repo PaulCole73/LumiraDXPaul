@@ -140,7 +140,8 @@ function tc_external_patient_lookup_new_inr()
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_New_INR();
-    var item = new_inr_test_details().Panel("testDetails").Panel("poctDetails").Panel(2).Select("TestingMethod").wSelectedItem;
+    var obj = wait_for_object(new_inr_test_details(), "idStr", "TestingMethod", 4);
+    var item = obj.wSelectedItem;
     var box_state = new_inr_test_details().Fieldset("Options").Panel(0).Panel(0).Checkbox("UseForEQC").enabled;
     
     add_maintenance_treatment("2.5", aqConvert.StrToDate(aqDateTime.Today()));

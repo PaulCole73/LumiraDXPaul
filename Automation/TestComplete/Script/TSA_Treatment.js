@@ -227,8 +227,10 @@ function add_maintenance_treatment(inr, date)
   var w_day = aqString.SubString(date,0,2);
   var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
   var w_yr = aqString.SubString(date,6,4);
-      
-  test_info_pre_schedule_path.Panel("poctDetails").Panel(0).Image("calendar_png").Click();
+  
+  var obj = wait_for_object(test_info_pre_schedule_path, "name", "Image(\"calendar_png\")", 3);
+  obj.Click();
+  //test_info_pre_schedule_path.Panel("poctDetails").Panel(0).Image("calendar_png").Click();
       
   w_datepicker = INRstarV5.Panel("ui_datepicker_div");
   w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
