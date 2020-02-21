@@ -492,7 +492,7 @@ function tc_account_management_edit_treatment_location_license()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Create a Treatment Location";
+    var test_title = "Admin Dashboard - Account Management - Edit a Treatment Location License";
     login_admin_dash();
   
     var name = "Regression" + get_unique_number();

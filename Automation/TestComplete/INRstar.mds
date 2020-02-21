@@ -786,7 +786,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Coruscant" key="{45081804-B8BE-4637-9214-A46FAA2C2BE6}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Coruscant" key="{45081804-B8BE-4637-9214-A46FAA2C2BE6}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="INRstar" key="{E32A1A03-EE59-4F86-B977-A24C03B6D405}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
@@ -937,7 +937,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Admin Dashboard" key="{5987147D-731F-4062-A90F-C324B5EF536D}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="Admin Dashboard" key="{5987147D-731F-4062-A90F-C324B5EF536D}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{D9608A94-DABD-4FB4-BBB4-F4408B65964F}" group="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -3428,7 +3428,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />

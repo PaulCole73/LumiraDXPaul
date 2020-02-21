@@ -5,8 +5,8 @@
 function cancel_review()
 {
   var add_review_form_buttons_path = add_review_form_buttons();
-  add_review_form_buttons_path.Button("CancelWarfarinReviewLink").Click();
-  WaitSeconds(2, "Waiting for Treatments page...");
+  var obj = add_review_form_buttons_path.Button("CancelWarfarinReviewLink");
+  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "AnnualReviewWrapper", 3);
 } 
 //--------------------------------------------------------------------------------
 function add_warfarin_review_new_review_button()

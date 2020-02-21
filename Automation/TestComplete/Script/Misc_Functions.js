@@ -13,8 +13,8 @@
 
 
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsCoruscant";
-var environmentname = "Coruscant";
+var environment = "INRstarWindowsTatooine";
+var environmentname = "Tatooine";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -137,6 +137,11 @@ function checkArrays(arrA, arrB, mess)
 //-----------------------------------------------------------------------------------
 function validate_arrays_dont_match(arrA, arrB, mess)
 {
+  if(arrA.length == 0 || arrB.length == 0)
+  {
+    Log.Message("-------------------------------------- Empty Array. Please Check Validation --------------------------------------");
+  }
+
   if(arrA == null || arrB == null)
   {
     Log.Message("Fail - Data not found. Parameter value missing.");
@@ -158,7 +163,7 @@ function validate_arrays_dont_match(arrA, arrB, mess)
 //This is to test the data given only contains false as an answer
 function results_checker_are_false(result_set)
 {
-  for(var i=0;i<result_set.length;i++)
+  for(var i = 0; i < result_set.length; i++)
   {
     if(result_set[i] == true)
     { 
@@ -772,8 +777,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   do
   {
     var is_obj_valid = false;
-    //INRstarV5.Refresh();    //parent objects may need to be refreshed outside of this function
-    //obj_root.Refresh();
+    obj_root.Refresh();
     
     var root = obj_root;
     var obj = root.FindChild(obj_property, obj_value, depth, true);

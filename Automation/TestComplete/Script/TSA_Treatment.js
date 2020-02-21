@@ -251,10 +251,10 @@ function add_maintenance_treatment(inr, date)
        
   // Click the Confirm button in the confirm window
   process_popup("Please confirm that the following is correct", "Confirm");
-  WaitSeconds(1);
   
    //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();
+  wait_for_object(pending_treatment_buttons_path, "idStr", "DosingScheduleContent", 2);
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
 }
 //--------------------------------------------------------------------------------

@@ -92,6 +92,7 @@ function login(user_index, TestStepMode, reset_password, new_login)
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, is_password_reset, new_password)
 {
+  var INRstarV5 = INRstar_base();
   login(username, "Shared", current_pass, true);
   
   var login_details = new Array();
@@ -100,7 +101,9 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   if(is_password_reset == null || is_password_reset == false)
   {
     var panelMCP = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement").Click();
+    var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement");
+    
+    click_navigation_wrapper(eula_agree_button, INRstarV5, "idStr", "passwordExpiredPage", 3);
   }
   if(new_password == null)
   {
@@ -114,8 +117,11 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   WaitSeconds(2);
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
 
-  var obj_root = INRstar_base();
-  wait_for_object(obj_root, "idStr", "modalDialogBox", 1);
+  var obj_root = INRstarV5;
+  if(is_password_reset == null || is_password_reset == false)
+  {
+    wait_for_object(obj_root, "idStr", "modalDialogBox", 1);
+  }
 
   process_popup("Important Information", "Do Not Show Again");
   WaitSeconds(2);
