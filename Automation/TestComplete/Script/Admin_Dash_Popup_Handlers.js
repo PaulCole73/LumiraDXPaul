@@ -5,6 +5,8 @@
 //--------------------------------------------------------------------------------
 function process_admin_dash_popup(header, button)
 {
+  admin_dash_base().Refresh();
+  wait_for_object(admin_dash_base(), "idStr", "modalDialogBox", 2);
   var obj = admin_dash_base().NativeWebObject.Find("contentText", header);
   
   if (obj.Exists == false || obj.Height == 0)

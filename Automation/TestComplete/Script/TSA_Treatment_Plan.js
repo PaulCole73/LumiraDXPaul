@@ -122,6 +122,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       Log.Message("Non-Warfarin Drug");
       treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
       process_popup("Drug Confirmation Change", "OK");
+      wait_for_object(treatment_plan_area, "idStr", "TreatmentDuration", 2);
       treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
     }
       

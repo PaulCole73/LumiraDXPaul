@@ -93,7 +93,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Clinics_Appointments" key="{DF031614-15D4-42B1-BA4F-955B7D70DE77}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="TS_Clinics_Appointments" key="{DF031614-15D4-42B1-BA4F-955B7D70DE77}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
@@ -334,7 +334,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Clinics_Appointments" key="{54590F1F-942E-4123-860D-9EF78A045BD2}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="TS_Clinics_Appointments" key="{54590F1F-942E-4123-860D-9EF78A045BD2}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
@@ -511,7 +511,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Engage" key="{5FDF27CD-0A0E-4D30-90D3-DA2DF02E3954}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="Engage" key="{5FDF27CD-0A0E-4D30-90D3-DA2DF02E3954}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="Setup" key="{C84E7F4A-84B2-4579-8C9A-DC06F6A5C918}" group="False" enabled="True" testMoniker="{8DBBC935-809E-4484-B76C-4DD998B594F2}setup_automation_engage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -816,7 +816,7 @@
 								</testParameters>
 								<children />
 							</testItem>
-							<testItem name="TS_Clinics_Appointments" key="{9B4DA824-976A-46AA-B758-EECE7FFA4233}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="TS_Clinics_Appointments" key="{9B4DA824-976A-46AA-B758-EECE7FFA4233}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters>
 									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 								</testParameters>
@@ -3428,7 +3428,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />
