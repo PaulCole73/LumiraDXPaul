@@ -985,6 +985,7 @@ function setup_automation_from_parameter()
   var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
   change_environments(environment);
+}
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {

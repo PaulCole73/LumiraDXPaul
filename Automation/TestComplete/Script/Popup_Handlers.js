@@ -245,3 +245,28 @@ function process_blue_popup()
     obj.Panel("changeMessageDialog4Text").Panel(0).Panel(1).Button(0).Click();
   }
 }
+//-------------------------------------------------------------------------------
+function process_multi_blue_popup()
+{
+  //This is to be used with the new code developed in CACUKTEAM2-472
+  var INRstarV5 = INRstar_base();
+  INRstarV5.Refresh();
+  
+  WaitSeconds(3);
+  objArray = new Array ();
+  //var bluePopUpCount = INRstarV5.Panel("MainPage").FindAllChildren("className", "changeMessageButton",2);
+  objArray = INRstarV5.NativeWebObject.FindAll("className", "changeMessageButton");
+  
+  //if(obj.Exists)
+  if(objArray.length > 0)
+  {
+    for (i = 0; i < objArray.length; i++)
+    Log.Message("Blue popup number " + i + " displayed.");
+    Log.Message("Clicking 'OK' button.");
+    objArray[i].Click();
+  }
+  else
+  {
+    Log.Message("Blue popup not displayed.");
+  }
+}

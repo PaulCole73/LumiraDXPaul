@@ -86,17 +86,6 @@ function login(user_index, TestStepMode, reset_password)
     var obj_root = INRstarV5;
     wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
   }
- 
-  return text;
-  } 
-  while(obj == false && counter < 3);
-  
-  if(aqString.Find(username, "disable") == -1)
-  {
-    var obj_root = INRstarV5;
-    wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
-  }
-  
   return text;
 }
 //--------------------------------------------------------------------------------
