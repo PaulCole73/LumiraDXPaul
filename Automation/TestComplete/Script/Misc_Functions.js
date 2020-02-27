@@ -13,8 +13,8 @@
 
 
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsTatooine";
-var environmentname = "Tatooine";
+var environment = "INRstarWindowsAlderaan";
+var environmentname = "Alderaan";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 

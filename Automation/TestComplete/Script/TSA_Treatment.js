@@ -359,7 +359,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
         
     historic_treatment_form.Panel(0).SubmitButton("Save").Click();
-    WaitSeconds(2, "Waiting to save...");
+    wait_for_object(INRstarV5, "idStr", "modalDialogBox", 2);
 
     // Click confirm panel
     process_popup("Please confirm treatment date", "Confirm");
