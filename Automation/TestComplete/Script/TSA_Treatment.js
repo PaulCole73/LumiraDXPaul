@@ -161,17 +161,14 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   var save_button_pre_schedule = treatment_buttons_pre_schedule();
   save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
   
-  //  WaitSeconds(2)
+  //handle bunch of popups
   handle_no_poct("non_induct");
   process_popup("PoCT Batch Expired", "Confirm");
-   
-  WaitSeconds(1);   
-   
-  // Click the Confirm button in the confirm window
   process_popup("Please confirm that the following is correct", "Confirm");
+  var text = process_alternate_popup("Please acknowledge", "Confirm");
   
-  //This was taken out to do the warning pop up
-  var text = process_alternate_popup("Please acknowledge", "Confirm"); 
+  wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
+  
   return text;
 }
 //--------------------------------------------------------------------------------
@@ -231,8 +228,10 @@ function add_maintenance_treatment(inr, date)
   var w_day = aqString.SubString(date,0,2);
   var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
   var w_yr = aqString.SubString(date,6,4);
-      
-  test_info_pre_schedule_path.Panel("poctDetails").Panel(0).Image("calendar_png").Click();
+  
+  var obj = wait_for_object(test_info_pre_schedule_path, "name", "Image(\"calendar_png\")", 3);
+  obj.Click();
+  //test_info_pre_schedule_path.Panel("poctDetails").Panel(0).Image("calendar_png").Click();
       
   w_datepicker = INRstarV5.Panel("ui_datepicker_div");
   w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
@@ -253,10 +252,10 @@ function add_maintenance_treatment(inr, date)
        
   // Click the Confirm button in the confirm window
   process_popup("Please confirm that the following is correct", "Confirm");
-  WaitSeconds(1);
   
    //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();
+  wait_for_object(pending_treatment_buttons_path, "idStr", "DosingScheduleContent", 2);
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
 }
 //--------------------------------------------------------------------------------
@@ -360,7 +359,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
         
     historic_treatment_form.Panel(0).SubmitButton("Save").Click();
-    WaitSeconds(2, "Waiting to save...");
+    wait_for_object(INRstarV5, "idStr", "modalDialogBox", 2);
 
     // Click confirm panel
     process_popup("Please confirm treatment date", "Confirm");

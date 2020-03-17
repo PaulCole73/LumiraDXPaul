@@ -122,6 +122,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       Log.Message("Non-Warfarin Drug");
       treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
       process_popup("Drug Confirmation Change", "OK");
+      wait_for_object(treatment_plan_area, "idStr", "TreatmentDuration", 2);
       treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
     }
       
@@ -131,11 +132,11 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     process_popup("You will need to add an historical treatment", "OK");
     var popup_msg = process_popup("Saving this treatment plan will cancel all future appointments", "OK");   
     
-    WaitSeconds(0.5);
+    WaitSeconds(1);
     if (drug == 'W' || drug == "Warfarin") //this whole function needs condensing and re-structuring //not priority
     { 
       var obj_root = main_patient_tab();
-      wait_for_object(obj_root, "idStr", "PatientTreatmentHistoryTable", 7, 1, 20);
+      wait_for_object(obj_root, "idStr", "PatientTreatmentHistoryTable", 8);
     }
     return popup_msg;       
   }

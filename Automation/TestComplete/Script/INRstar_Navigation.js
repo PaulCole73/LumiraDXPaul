@@ -59,8 +59,6 @@ function Goto_Bespoke_Letter(letter_name)
   {
     return false;
   }
-  
-  item.Refresh();
 }
 //-------------------------------------------------------------------------------
 // Navigate to Admin / IQC 
@@ -318,10 +316,8 @@ function Goto_Patient_Treatments_Tab()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var obj_root = panelMCP.Panel("PatientRecord").Panel("PatientTab");
   var obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTab", 1);
-  if(obj.Exists)
-  {
-    obj.Click();
-  }
+  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "TreatmentPlanListWrapper", 2);
+  
   WaitSeconds(0.5);
 }
 //-------------------------------------------------------------------------------
@@ -446,20 +442,13 @@ function Goto_Patient_Treatment()
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
   var obj = wait_for_object(panelPT, "idStr", "PatientTreatmentPlanTab", 1);
   
-  if(obj.Exists)
-  {
-    obj.Click();
-  }
-
   var obj_root = main_patient_tab();
-  var obj = wait_for_object(obj_root, "idStr", "TreatmentPlanSubTab", 1);
-  obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTabSubMenu", 2);
+  click_navigation_wrapper(obj, obj_root, "idStr", "TreatmentPlanSubTab", 1);
+
+  wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTabSubMenu", 2);
   obj = wait_for_object(obj_root, "idStr", "TreatmentItem", 3);
-  
-  if(obj.Exists)
-  {
-    obj.Click();
-  }
+ 
+  click_navigation_wrapper(obj, obj_root, "idStr", "PatientTreatmentWrapper", 3);
   
   WaitSeconds(1, "Waiting for Treatments...");
 }

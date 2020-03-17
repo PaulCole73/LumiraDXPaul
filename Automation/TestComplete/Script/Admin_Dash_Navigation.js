@@ -21,6 +21,7 @@ function Goto_Client(name)
   do
   {
     admin_dash_base().Refresh();
+    admin_dash_search_client_box().Keys("[F2]");
     var obj = admin_dash_base().FindChild("Name", "Link(" + counter + ")", 0); 
     if(obj.Exists)
     {

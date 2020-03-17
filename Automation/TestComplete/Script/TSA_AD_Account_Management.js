@@ -136,7 +136,9 @@ function update_a_user(client_name, username, edit_type)
   else if(edit_type == "reset password")
   {
     table.cell(user_index, 2).Button("Reset_Password").Click();
+    wait_for_object(admin_dash_base(), "idStr", "modalDialogBox", 2);
     process_admin_dash_popup("Confirmation Required", "Confirm");
+    wait_for_object(admin_dash_base(), "idStr", "modalDialogBox", 2);
     var text = process_admin_dash_popup("Reset Password", "OK");
     
     var words = new Array();
@@ -230,7 +232,8 @@ function edit_client_location(client_name, location_name, new_loc_name)
   admin_dash_client_details().Panel(1).Button("ManageLocation").Click();
   
   var container = admin_dash_location_details();
-  container.Panel(19).Button("EditLocationDetailsLink").Click();
+  var obj = container.Panel(19).Button("EditLocationDetailsLink");
+  click_navigation_wrapper(obj, container, "idStr", "EditLocationForm", 1);
   
   container.Form("EditLocationForm").Panel(0).Textbox("Name").innerText = new_loc_name;
   container.Form("EditLocationForm").Panel(1).Select("LocationType").ClickItem(5);

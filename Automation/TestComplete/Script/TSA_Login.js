@@ -3,7 +3,7 @@
 //USEUNIT Popup_Handlers
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function login(user_index, TestStepMode, reset_password)
+function login(user_index, TestStepMode, reset_password, new_login)
 {
   Log.LockEvents(0);
   var counter = 0;
@@ -80,18 +80,8 @@ function login(user_index, TestStepMode, reset_password)
     }
   }
   while(obj == false && counter < 3);
- 
-  if(aqString.Find(username, "disable") == -1)
-  {
-    var obj_root = INRstarV5;
-    wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
-  }
- 
-  return text;
-  } 
-  while(obj == false && counter < 3);
   
-  if(aqString.Find(username, "disable") == -1)
+  if(aqString.Find(username, "disable") == -1 && new_login != true)
   {
     var obj_root = INRstarV5;
     wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);
@@ -102,7 +92,8 @@ function login(user_index, TestStepMode, reset_password)
 //--------------------------------------------------------------------------------
 function log_in_new_user(username, current_pass, is_password_reset, new_password)
 {
-  login(username, "Shared", current_pass);
+  var INRstarV5 = INRstar_base();
+  login(username, "Shared", current_pass, true);
   
   var login_details = new Array();
   login_details = get_login_details();
@@ -110,7 +101,9 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   if(is_password_reset == null || is_password_reset == false)
   {
     var panelMCP = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement").Click();
+    var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement");
+    
+    click_navigation_wrapper(eula_agree_button, INRstarV5, "idStr", "passwordExpiredPage", 3);
   }
   if(new_password == null)
   {
@@ -124,8 +117,11 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   WaitSeconds(2);
   password_expired_form().Panel(3).SubmitButton("Update_Password").Click();
 
-  var obj_root = INRstar_base();
-  wait_for_object(obj_root, "idStr", "modalDialogBox", 1);
+  var obj_root = INRstarV5;
+  if(is_password_reset == null || is_password_reset == false)
+  {
+    wait_for_object(obj_root, "idStr", "modalDialogBox", 1);
+  }
 
   process_popup("Important Information", "Do Not Show Again");
   WaitSeconds(2);

@@ -48,7 +48,9 @@ function copy_a_bespoke_letter(letter_name)
   Goto_Options_Letter_Management();
   Goto_Bespoke_Letter(letter_name);
   
-  letter_management_template_buttons().Button("CopyButton").Click();
+  var button = letter_management_template_buttons().Button("CopyButton");
+  button.scrollIntoView();
+  button.Click();
   var name = process_bespoke_letters_popup("Copy Letter", "Create");
   letter_management_editor_buttons().Button("SaveButton").Click();
   
@@ -63,7 +65,9 @@ function rename_a_bespoke_letter(letter_name)
   var unique = get_unique_number();
   var name = "Regression: " + unique;
   
-  letter_management_template_buttons().Button("RenameButton").Click();
+  var button = letter_management_template_buttons().Button("RenameButton");
+  button.scrollIntoView();
+  button.Click();
   letter_editor_panel().Panel("LetterTemplatePropertiesPanel").Panel(0).Textbox("Name").value = name;
   letter_management_editor_buttons().Button("SaveButton").Click();
   
@@ -92,14 +96,17 @@ function rename_bespoke_letter_editable_fields(letter_name)
 {
   Goto_Options_Letter_Management();
   Goto_Bespoke_Letter(letter_name);
-  letter_management_template_buttons().Button("RenameButton").Click();
+  var button = letter_management_template_buttons().Button("RenameButton");
+  button.scrollIntoView();
+  button.Click();
   
+  var temp;
   var content = new Array();  
   var is_perms_editable = false;
   
   for(var i = 1; i <= 7; i++)
   {
-    var temp = letter_management_permissions_field().panel(i).Child(0).enabled;
+    temp = letter_management_permissions_field().panel(i).Child(0).enabled;
     if(temp)
     {
       is_perms_editable = true;
@@ -107,11 +114,11 @@ function rename_bespoke_letter_editable_fields(letter_name)
     }
   }
   
-  var temp = letter_editor_panel().Panel("LetterTemplatePropertiesPanel").Panel(0).Textbox("Name").isContentEditable;
+  temp = letter_editor_panel().Panel("LetterTemplatePropertiesPanel").Panel(0).Textbox("Name").isContentEditable;
   content.push(temp);
-  var temp = letter_editor_panel().Panel("LetterTemplatePropertiesPanel").Panel(1).Textarea("Description").isContentEditable;
+  temp = letter_editor_panel().Panel("LetterTemplatePropertiesPanel").Panel(1).Textarea("Description").isContentEditable;
   content.push(temp);
-  var temp = letter_editor_panel().Panel("ContentTextEditor").Panel(1).Panel(0).isContentEditable;
+  temp = letter_editor_panel().Panel("ContentTextEditor").Panel(1).Panel(0).isContentEditable;
   content.push(temp);
   content.push(is_perms_editable);
   

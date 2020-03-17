@@ -651,6 +651,9 @@ function get_hl7_file_folder()
     case base + "Alderaan": 
     folder_name = "Test_Alderaan HL7 Channel";
     break;
+    case base + "Naboo": 
+    folder_name = "Test_Naboo HL7 Channel Wolves";
+    break;
     case base + "Integration": 
     folder_name = "Integration HL7 Channel";
     break;

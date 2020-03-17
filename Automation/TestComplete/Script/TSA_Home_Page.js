@@ -7,9 +7,7 @@ function check_patient_on_refer_list(pat_name)
   Goto_Home();
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
   var link = wait_for_object(INRstarV5, "idStr", "ReferredPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "ReferredPatientHeaderLink");
   
   //Check message exists
   if(link.Exists != true)
@@ -19,9 +17,9 @@ function check_patient_on_refer_list(pat_name)
   }
   else
   {
-    WaitSeconds(2);
     home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
-    var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
+    var table = wait_for_object(home_page_messages_path, "idStr", "ReferredPatientReportTable", 3);
+    //var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
   
     for (i=0; i<table.rowcount; i++)
     {
@@ -41,7 +39,6 @@ function check_patient_not_on_refer_list(pat_name)
   var home_page_messages_path = home_page_messages(); 
   var INRstarV5 = INRstar_base();
   var link = wait_for_object(INRstarV5, "idStr", "ReferredPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "ReferredPatientHeaderLink");
   
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
@@ -51,9 +48,9 @@ function check_patient_not_on_refer_list(pat_name)
   } 
   else
   {
-    WaitSeconds(2);
     home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
-    var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
+    var table = wait_for_object(home_page_messages_path, "idStr", "ReferredPatientReportTable", 3);
+    //var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
   
     for (var i = 0; i < table.rowcount; i++)
     {
@@ -72,9 +69,7 @@ function check_patient_on_overdue_INR_list(pat_name)
   Goto_Home();
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
   var link = wait_for_object(INRstarV5, "idStr", "OverduePatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "OverduePatientHeaderLink");
   
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
@@ -84,10 +79,8 @@ function check_patient_on_overdue_INR_list(pat_name)
   }
   else
   {
-    WaitSeconds(2); 
     home_page_messages_path.Link("OverduePatientHeaderLink").Click();
     var table = wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
-    //var table = home_page_messages_path.Panel("OverduePatients").Table("PatientOverdueReportTable");
   
     for (var i = 0; i < table.rowcount; i++)
     {
@@ -324,7 +317,6 @@ function acknowledge_declined_patient_in_message(pat_name)
   var INRstarV5 = INRstar_base();
   WaitSeconds(2);
   var link = wait_for_object(INRstarV5, "idStr", "DeclinedPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "DeclinedPatientHeaderLink");
   
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
@@ -334,9 +326,8 @@ function acknowledge_declined_patient_in_message(pat_name)
   }
   else
   {
-    WaitSeconds(2);
     home_page_messages_path.Link("DeclinedPatientHeaderLink").Click();
-    
+    wait_for_object(home_page_messages_path, "idStr", "TransferDeclinedTable", 2);
     var table = home_page_messages_path.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
     for (var i = 0; i < table.rowcount; i++)
     {
@@ -358,9 +349,7 @@ function check_patient_not_in_decline_patient_transfer_request_message(pat_name)
   Goto_Home();
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
   var link = wait_for_object(INRstarV5, "idStr", "DeclinedPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "DeclinedPatientHeaderLink");
   
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
@@ -370,10 +359,9 @@ function check_patient_not_in_decline_patient_transfer_request_message(pat_name)
   }
   else
   {
-    WaitSeconds(2);
     home_page_messages_path.Link("DeclinedPatientHeaderLink").Click();
     var table = home_page_messages_path.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
-
+    wait_for_object(home_page_messages_path, "idStr", "TransferDeclinedTable", 2);
     for (var i = 0; i < table.rowcount; i++)
     {
       if(table.Cell(i, 0).contentText != pat_name)
@@ -393,11 +381,8 @@ function check_patient_in_transfer_request_not_accepted_message(pat_name)
   Goto_Home();
   var home_page_messages_path = home_page_messages();
   var INRstarV5 = INRstar_base();
-  WaitSeconds(1);
   var link = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
   var link_2 = wait_for_object(INRstarV5, "ObjectIdentifier", "TransferredPatientHeaderLink_2", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
-  //var link_2 = INRstarV5.NativeWebObject.Find("ObjectIdentifier", "TransferredPatientHeaderLink_2");
   
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
