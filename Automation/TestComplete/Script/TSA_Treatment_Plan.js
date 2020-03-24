@@ -16,12 +16,12 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp new tp, activate patient tp and not first tp
   //Also it may skip the got to if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
   
-  if(tp_start_mode=='')
+  if(tp_start_mode == "")
   {
     Goto_Patient_Treatment_Plan_Add(); 
     var treatment_plan_area = add_treatment_plan_main_section_path();
   }
-  if(tp_start_mode=='2')
+  if(tp_start_mode == "2")
   {
     Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
     var treatment_plan_area = add_treatment_plan_main_section_path();
