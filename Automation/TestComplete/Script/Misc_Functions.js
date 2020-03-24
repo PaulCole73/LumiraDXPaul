@@ -11,10 +11,9 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 
-
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsAlderaan";
-var environmentname = "Alderaan";
+var environment = "INRstarWindowsHothV4";
+var environmentname = "hoth";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -572,14 +571,48 @@ function exception_occured(a, b) //randomly required 2 parameters
   Options.Run.Timeout = 0; //rush through test at erroro.");
 }
 //-----------------------------------------------------------------------------------
-function setup_automation(new_config_file_name)
+function setup_automation(new_config_file_name,locale)
 {
+  language = locale;
   Log.LockEvents(0);
   reset_tests_array();
   change_environments(new_config_file_name);
 }
-
 //-----------------------------------------------------------------------------------
+function get_string_translation(translation_word)
+{
+ var lookup_column;
+ var row_value;
+ 
+ switch(language)
+ {
+   case "English":
+   lookup_column = 0;
+   break;
+   case "Italian":
+   lookup_column = 1;
+   break;
+   case "Spanish":
+   lookup_column = 2;
+   break;
+   default:
+   Log.Message("You didn't pass in a language I recognise you passed in " + language);
+   break;
+ }
+ 
+ var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
+ 
+ while (!driver.EOF())
+    {
+     if (driver.Value(0) == translation_word)
+     {
+       row_value = driver.Value(lookup_column);
+     }     
+      driver.Next();      
+    }
+  DDT.CloseDriver(DDT.CurrentDriver.Name);
+  return row_value;
+}
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
