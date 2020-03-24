@@ -40,7 +40,9 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   
     if (start_date=='')
     {
-      datepicker.Panel(0).Panel(0).Select(1).ClickItem("2017");
+      var year = aqConvert.DateTimeToFormatStr(aqDateTime.AddMonths(aqDateTime.Today(), -24), "%Y"); 
+    
+      datepicker.Panel(0).Panel(0).Select(1).ClickItem(year);
       datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jun");        
       datepicker.Table(0).Cell(3, 3).Link(0).Click();
     }

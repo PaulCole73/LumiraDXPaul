@@ -52,6 +52,9 @@ function set_admin_dash_url()
     case base + "Coruscant": 
     admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
     break;
+    case base + "Coruscant2": 
+    admin_dash_url = "https://admin-coruscant2.lumiradxcaresolutions.com/";
+    break;
     case base + "Hoth": 
     admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
     break;
@@ -69,6 +72,9 @@ function set_admin_dash_url()
     break;
     case base + "CoruscantV4": 
     admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
+    break;
+    case base + "Coruscant2V4": 
+    admin_dash_url = "https://admin-coruscant2.lumiradxcaresolutions.com/";
     break;
     case base + "HothV4": 
     admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";

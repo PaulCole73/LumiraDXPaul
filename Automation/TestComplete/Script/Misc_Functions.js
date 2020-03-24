@@ -13,8 +13,8 @@
 
 
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsTatooine";
-var environmentname = "Tatooine";
+var environment = "INRstarWindowsCoruscant";
+var environmentname = "Coruscant";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -836,6 +836,7 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
       {
         if(new_obj.VisibleOnScreen)
         {
+          Log.Message("--------- Reached new page after click. ---------")
           is_valid_obj = true;
         }
         else

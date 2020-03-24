@@ -49,7 +49,10 @@ function set_engage_url()
   switch(environment)
   {
     case base + "Coruscant": 
-    admin_dash_url = "https://engage-coruscant.lumiradxcaresolutions.com/";
+    engage_url = "https://engage-coruscant.lumiradxcaresolutions.com/";
+    break;
+    case base + "Coruscant2": 
+    engage_url = "https://engage-coruscant2.lumiradxcaresolutions.com/";
     break;
     case base + "Hoth": 
     engage_url = "https://engage-hoth.lumiradxcaresolutions.com/";
@@ -68,6 +71,9 @@ function set_engage_url()
     //break;
     case base + "CoruscantV4": 
     admin_dash_url = "https://engage-coruscant.lumiradxcaresolutions.com/";
+    break;
+    case base + "Coruscant2V4": 
+    admin_dash_url = "https://engage-coruscant2.lumiradxcaresolutions.com/";
     break;
     case base + "HothV4": 
     engage_url = "https://engage-hoth.lumiradxcaresolutions.com/";

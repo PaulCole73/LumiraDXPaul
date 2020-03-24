@@ -73,7 +73,7 @@
 		<child key="{C0415C76-BAFA-4537-813C-E09E2638CC3F}">
 			<config nodeName="Engage" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="chrome" browserVersion="" pageAddress="https://engage-alderaan.lumiradxcaresolutions.com/" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="Google Chrome" browserVersion="80.0 (All Users)" pageAddress="https://engage-coruscant.lumiradxcaresolutions.com/" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
