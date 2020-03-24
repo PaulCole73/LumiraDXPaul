@@ -17,6 +17,8 @@ var environmentname = "hoth";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
+var language = "Italian";
+
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
@@ -869,6 +871,7 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
       {
         if(new_obj.VisibleOnScreen)
         {
+          Log.Message("--------- Reached new page after click. ---------")
           is_valid_obj = true;
         }
         else
@@ -1020,7 +1023,7 @@ function setup_automation_from_parameter()
   else //This part is for running from Test Complete/Execute manually
   {
     environment = "INRstarWindowsTatooine";
-    environmentname = "Tatooine";
+    environmentname = "Tatooine";test
   }
   Log.Message("Final check " + environmentname);
   var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
@@ -1030,18 +1033,18 @@ function setup_automation_from_parameter()
 //-----------------------------------------------------------------------------------
 function setup_generic_patient(do_login, dm)
 {
-  for(var i = 50; i < 60; i++)
-  {
+  //for(var i = 50; i < 60; i++)
+  //{
     if(do_login == true)
     {
       login(5, "Shared");
     }
-    add_patient("Engage" + i, "Incident", "M", "Shared");
+    add_patient("generic", "testing", "M", "Shared");
     add_treatment_plan("W", dm, "", "Shared", "");
     
     if(do_login == true)
     {
       Log_Off();
     }
-  }
+  //}
 }
