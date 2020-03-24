@@ -1996,7 +1996,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Net 4.0 Client" key="{5E72C684-6C98-4C05-9AD9-0096F16163BA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Net 4.0 Client" key="{5E72C684-6C98-4C05-9AD9-0096F16163BA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Alderaan_Net4" key="{1A531187-C3C1-4E8B-B457-C8D4CAB6F271}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
