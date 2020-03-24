@@ -16,12 +16,12 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp new tp, activate patient tp and not first tp
   //Also it may skip the got to if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
   
-  if(tp_start_mode=='')
+  if(tp_start_mode == "")
   {
     Goto_Patient_Treatment_Plan_Add(); 
     var treatment_plan_area = add_treatment_plan_main_section_path();
   }
-  if(tp_start_mode=='2')
+  if(tp_start_mode == "2")
   {
     Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan();
     var treatment_plan_area = add_treatment_plan_main_section_path();
@@ -40,7 +40,9 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   
     if (start_date=='')
     {
-      datepicker.Panel(0).Panel(0).Select(1).ClickItem("2017");
+      var year = aqConvert.DateTimeToFormatStr(aqDateTime.AddMonths(aqDateTime.Today(), -24), "%Y"); 
+    
+      datepicker.Panel(0).Panel(0).Select(1).ClickItem(year);
       datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jun");        
       datepicker.Table(0).Cell(3, 3).Link(0).Click();
     }
