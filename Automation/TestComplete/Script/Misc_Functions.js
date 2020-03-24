@@ -838,6 +838,7 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
       {
         if(new_obj.VisibleOnScreen)
         {
+          Log.Message("--------- Reached new page after click. ---------")
           is_valid_obj = true;
         }
         else
