@@ -18,6 +18,8 @@ var environmentname = "Alderaan";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
+var language = "Italian";
+
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
@@ -1011,42 +1013,4 @@ function setup_generic_patient(do_login, dm)
       Log_Off();
     }
   //}
-
-//-----------------------------------------------------------------------------------
-function get_string_translation(string_value) //function to translate hard coded strings
-{
-  var lookup_column;
-  var row_value; 
-
-  switch(language)
-  {
-    case "English": 
-    lookup_column = 0;
-    break;
-    case "Italian": 
-    lookup_column = 1;
-    break;
-    case "Spanish": 
-    lookup_column = 2;
-    break;
-    default:
-    lookup_column = 0;
-    break;
-  }
-  
-  var driver = DDT.ExcelDriver("C:\\Automation\\exceltest.xlsx", "Sheet1");
-  
-  while(!driver.EOF())
-  {
-    if(driver.value(0) == string_value)
-    {
-      row_value = driver.Value(lookup_column);
-      Log.Message(row_value);
-    }
-    
-    driver.Next();
-  }
-  DDT.CloseDriver(DDT.CurrentDriver.Name);
-  
-  return row_value; 
 }
