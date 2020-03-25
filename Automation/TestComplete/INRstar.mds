@@ -3231,13 +3231,19 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{8A2DA839-765A-4AAC-860C-FFA081B46DC4}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{8A2DA839-765A-4AAC-860C-FFA081B46DC4}" group="False" enabled="False" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bridging_1" key="{7BAC1A5A-3128-47E1-A481-A526059B59E3}" group="False" enabled="False" testMoniker="{FC96634B-B107-4D6F-ABF5-A2C35ECDC9C0}ts_master_bridging" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{2EA04A51-05EA-42DA-A31E-1E220629E311}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Login_Page_1" key="{D5CC0F43-F87F-4BAF-BA17-FBA758418158}" group="False" enabled="False" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3285,19 +3291,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page_1" key="{D5CC0F43-F87F-4BAF-BA17-FBA758418158}" group="False" enabled="False" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-										</testParameters>
-										<children />
-									</testItem>
 									<testItem name="TS_NEQAS_1" key="{BE696901-B725-4D92-AF14-ADB9CEEAFFFE}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Notes_1" key="{2EA04A51-05EA-42DA-A31E-1E220629E311}" group="False" enabled="False" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
