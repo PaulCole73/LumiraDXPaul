@@ -17,10 +17,10 @@ function tc_add_a_new_adverse_event()
     
     //Create the array of results for the final check to ensure steps pass the test
     var result_set = new Array()
-    var result_set_1 = compare_values(get_string_translation2("The adverse event was successfully added"), adverse_confirmation_banner, test_title);
+    var result_set_1 = compare_values(get_string_translation("The adverse event was successfully added"), adverse_confirmation_banner, test_title);
     result_set.push(result_set_1);
   
-    result_set_1 = validate_top_patient_audit(test_title, "Add Adverse Event");
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("Add Adverse Event"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -50,7 +50,7 @@ function tc_delete_adverse_event()
     add_adverse_event();
     delete_adverse_event();
   
-    var results = validate_top_patient_audit(test_title, "Delete Adverse Event");
+    var results = validate_top_patient_audit(test_title,get_string_translation("Delete Adverse Event"));
     results_checker(results, test_title)
   
     Log_Off();  

@@ -12,8 +12,8 @@
 //-----------------------------------------------------------------------------------
 
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsHothV4";
-var environmentname = "hoth";
+var environment = "INRstarWindowsStagingItalyV4";
+var environmentname = "italy-endor";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -608,12 +608,12 @@ function get_string_translation(translation_word)
     {
      if (driver.Value(0) == translation_word)
      {
-       row_value = driver.Value(lookup_column);
+       row_value = driver.Value(lookup_column);  
+       DDT.CloseDriver(DDT.CurrentDriver.Name);
+       return row_value;     
      }     
-      driver.Next();      
+        driver.Next();
     }
-  DDT.CloseDriver(DDT.CurrentDriver.Name);
-  return row_value;
 }
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
@@ -762,7 +762,7 @@ function change_environments(new_config_file_name) //C:\Automation\ - config fil
   
   restart_INRstar();
   
-  WaitSeconds(30);
+  WaitSeconds(5);
 }
 //-----------------------------------------------------------------------------------
 function open_file_in_notepad(path)

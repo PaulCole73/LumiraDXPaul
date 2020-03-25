@@ -2,12 +2,12 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function add_patient(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, pat_no)  
+function add_patient(p_surname, p_firstname, gender, TestStepMode, nhs_num, pat_no)  
 {
-  add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, "1975", pat_no);
+  add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_num, "1975", pat_no);
 }
 
-function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, dobyr, pat_no)  
+function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_num, dobyr, pat_no)  
 {
   var Mode = TestStepMode
 
@@ -39,16 +39,18 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     {
       panelEPD.Panel(0).Textbox("PatientNumber").Text = pat_no;
     }
-
-    if (p_gender == "M" || p_gender == "m")
+       
+    //Italy has removed the option for Ms and Miss 
+    //If we want to add in the other titles to click then add new function when required     
+    if (gender == "M" || gender == "m")
     {
-      panelEPD.Panel(2).Select("Title").ClickItem("Mr");
+      panelEPD.Panel(2).Select("Title").ClickItem(get_string_translation("Mr"));
     }
     else
     {
-      panelEPD.Panel(2).Select("Title").ClickItem("Mrs");
+      panelEPD.Panel(2).Select("Title").ClickItem(get_string_translation("Mrs"));
     }
-                
+             
     if (p_surname == "")
     {
       panelEPD.Panel(3).Textbox("Surname").Text = "No_Name_Given" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
@@ -69,7 +71,7 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     panelEPD.Panel(5).Image("calendar_png").Click();
     
     var w_datepicker = INRstarV5.Panel("ui_datepicker_div");
-    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jan");
+    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(get_string_translation("Jan"));
     w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(dobyr);
     w_datepicker.Table(0).Cell(3, 3).Link(0).Click();
 
@@ -80,13 +82,27 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     panelEPCD.Panel(2).Textbox("ThirdLineAddress").Text = "";
     panelEPCD.Panel(3).Textbox("Town").Text = "Manchester";
     panelEPCD.Panel(4).Textbox("County").Text = "Granadaland";
-    panelEPCD.Panel(5).Textbox("Postcode").Text = "CO12 1LW";
     
+    //Need to add this back in at some point but it is now goign to be doing different validation for Italy so blanking out for now
+    panelEPCD.Panel(5).Textbox("Postcode").Text = "";
+    
+    var guid = new_guid(15);
+    
+    switch(language)   
+    {
+    case language: "Italian"
+    panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
+    panelEPCD.Panel(8).Textbox("Mobile").Text = "07111 225588";    
+    panelEPCD.Panel(9).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
+    break;
+    case language: "English"
     panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
     panelEPCD.Panel(7).Textbox("Mobile").Text = "07111 225588";
-
-    var guid = new_guid(15);
-    panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
+    panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";  
+    break;
+    default:
+    Log.Warning("YOu didn't pass in a language I recognise you passed in " + language)
+    }
     
     var button_area = add_patient_demographics_buttons_system_path()
     var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
@@ -261,6 +277,10 @@ function check_summary_tab_image(patient_nhs)
 }
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+
 
 
 
