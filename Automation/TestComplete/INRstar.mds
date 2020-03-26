@@ -3237,7 +3237,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{2EA04A51-05EA-42DA-A31E-1E220629E311}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{2EA04A51-05EA-42DA-A31E-1E220629E311}" group="False" enabled="False" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Patient" key="{9B353C1A-9ACF-48A4-B666-A879C4343E67}" group="False" enabled="False" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3298,12 +3304,6 @@
 										<children />
 									</testItem>
 									<testItem name="TS_Options_IQC_1" key="{8EED97D0-EF09-4CB5-81F6-034A5D5D04F2}" group="False" enabled="False" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_1" key="{9B353C1A-9ACF-48A4-B666-A879C4343E67}" group="False" enabled="False" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3923,7 +3923,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />
