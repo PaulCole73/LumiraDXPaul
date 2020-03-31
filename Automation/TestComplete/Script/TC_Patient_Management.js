@@ -22,16 +22,16 @@ function tc_patient_deactivate_a_patient()
     result_set.push(result_set_1);
   
     //Checking the yellow banner message for deactivation
-    process_popup("De-Activating a patient", "Confirm");
-    result_set_1 = deactivating_patient_banner_warning_checker('Deactivating this patient will archive all existing treatment information and will cancel any unsaved treatment results.');
+    process_popup(get_string_translation("De-Activating a patient"), get_string_translation("Confirm"));
+    result_set_1 = deactivating_patient_banner_warning_checker(get_string_translation(('Deactivating this patient will archive all existing treatment information and will cancel any unsaved treatment results.')));
     result_set.push(result_set_1);
   
     //Checking the red error when you dont select a reason
     patient_management_deactivate_form().Panel(1).SubmitButton("Confirm").Click();
-    result_set_1 = deactivating_patient_banner_error_checker('Please select the reason for deactivation');
+    result_set_1 = deactivating_patient_banner_error_checker(get_string_translation(('Please select the reason for deactivation')));
     result_set.push(result_set_1);
   
-    var expected_text = "The patient has been successfully deactivated";
+    var expected_text = get_string_translation("The patient has been successfully deactivated");
     var text = deactivate_patient();
     
     //Check the confirmation banner is displayed
@@ -39,7 +39,7 @@ function tc_patient_deactivate_a_patient()
     result_set.push(result_set_1);
   
     //Check the patient audit is written
-    result_set_1 = validate_top_patient_audit(test_title,"Deactivate Patient");
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("Deactivate Patient"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true

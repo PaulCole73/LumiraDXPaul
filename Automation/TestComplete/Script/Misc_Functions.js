@@ -644,6 +644,7 @@ function get_string_translation(translation_word)
    }     
    driver.Next();
  }
+ Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//

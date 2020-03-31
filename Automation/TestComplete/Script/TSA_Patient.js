@@ -170,7 +170,7 @@ function popup_warning_checker(exp_err_mess)
        } 
         else 
         {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
+        Log.Warning('Message was displayed but the text did not match the expected result it was this //' + actual_err_mess + "// but this is what was expected //" + exp_err_mess + "//")
         return false;
         }
 } 

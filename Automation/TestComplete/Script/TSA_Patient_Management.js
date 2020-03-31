@@ -14,7 +14,7 @@ function deactivate_patient()
   WaitSeconds(1);  
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
   pat_managment_tab_status_buttons_path.Button("De_activatePatientButton").Click();
-  process_popup("De-Activating a patient", "Confirm");
+  process_popup(get_string_translation("De-Activating a patient"), get_string_translation("Confirm"));
  
   var patient_management_deactivate_form_path = patient_management_deactivate_form();
   patient_management_deactivate_form_path.Panel("DeactivatingReason").Panel("DeactivatingReasonList").Select("InactiveReason").ClickItem(5);
@@ -47,7 +47,7 @@ function deactivating_patient_banner_warning_checker(exp_err_mess)
         Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
         return true; 
        } 
-        else Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
+        else Log.Warning('Message was displayed but the text did not match the expected result it was //' + actual_err_mess + " // This is the expected //" + exp_err_mess + " //")
         return false;
   }
 } 
@@ -132,8 +132,13 @@ function check_deactivate_warning()
  var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
  pat_managment_tab_status_buttons_path.Button("De_activatePatientButton").Click();
  
- var wording_check = popup_warning_checker('De-activating a patient should only be done if they have completed their treatment and are no longer taking anticoagulant drugs.' +
- '\nIt should not be done if the patient is simply going to be away for a period of time (eg on holiday or admitted to hospital etc).')
+ var word1 = get_string_translation("De-activating a patient should only be done if they have completed their treatment and are no longer taking anticoagulant drugs.")
+ Log.Message(word1);
+ var word2 = get_string_translation("It should not be done if the patient is simply going to be away for a period of time (eg on holiday or admitted to hospital etc).")
+ Log.Message(word2);
+ var wording_check = popup_warning_checker(word1 + "\n" + word2);
+// var wording_check = popup_warning_checker('De-activating a patient should only be done if they have completed their treatment and are no longer taking anticoagulant drugs.' +
+// '\nIt should not be done if the patient is simply going to be away for a period of time (eg on holiday or admitted to hospital etc).')
  
  Log.Message(wording_check)
  
