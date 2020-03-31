@@ -15,7 +15,7 @@ function tc_add_a_new_warfarin_review()
     add_treatment_plan('W','Manual','','Shared','');
     add_warfarin_review_new_review_button();
   
-    var results = validate_top_patient_audit(test_title, "New review created");
+    var results = validate_top_patient_audit(test_title, get_string_translation("New review created"));
     results_checker(results, test_title);
   
     Log_Off();
@@ -45,7 +45,7 @@ function tc_add_a_non_warfarin_review_with_some_test_measurements_for_Creatinine
     var result_set = new Array();
     var result_set_1 = checkArrays(review_data_before, review_data_after, test_title);
     result_set.push(result_set_1);
-    result_set_1 = validate_top_patient_audit(test_title, "New review created");
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("New review created"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true

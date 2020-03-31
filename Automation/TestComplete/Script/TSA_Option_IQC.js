@@ -25,18 +25,18 @@ function add_iqc_result()
   datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
   select_day(w_day, datepicker);
   
-  options_iqc_form_path.Panel(3).Select("LowerBound").ClickItem('0.8');
-  options_iqc_form_path.Panel(4).Select("UpperBound").ClickItem('4.8');
-  options_iqc_form_path.Panel(5).Select("Result").ClickItem('2.5'); 
+  options_iqc_form_path.Panel(3).Select("LowerBound").ClickItem(get_string_translation('0.8'));
+  options_iqc_form_path.Panel(4).Select("UpperBound").ClickItem(get_string_translation('4.8'));
+  options_iqc_form_path.Panel(5).Select("Result").ClickItem(get_string_translation('2.5')); 
   options_iqc_form_path.Panel(6).Textbox("MachineId").Text = "Mac_" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
   
   //Add the data to array so I can compare after it has been saved
   var date = options_iqc_form_path.Panel(0).Textbox("Date").Text;
   var batch_number = options_iqc_form_path.Panel(1).Textbox("BatchNumber").Text;
   var expiry_date = options_iqc_form_path.Panel(2).Textbox("ExpiryDate").Text;
-  var lower_inr = '0.8'
-  var upper_inr = '4.8'
-  var inr = '2.5'
+  var lower_inr = get_string_translation('0.8');
+  var upper_inr = get_string_translation('4.8');
+  var inr = get_string_translation('2.5');
   var machine_id = options_iqc_form_path.Panel(6).Textbox("MachineId").Text;
   
   var data = new Array()
@@ -92,18 +92,18 @@ function edit_iqc_result()
   select_day(w_day, datepicker);
   
   //Other fields
-  options_iqc_form_edit_path.Panel(3).Select("LowerBound").ClickItem('0.9');
-  options_iqc_form_edit_path.Panel(4).Select("UpperBound").ClickItem('4.9');
-  options_iqc_form_edit_path.Panel(5).Select("Result").ClickItem('2.6'); 
+  options_iqc_form_edit_path.Panel(3).Select("LowerBound").ClickItem(get_string_translation('0.9'));
+  options_iqc_form_edit_path.Panel(4).Select("UpperBound").ClickItem(get_string_translation('4.9'));
+  options_iqc_form_edit_path.Panel(5).Select("Result").ClickItem(get_string_translation('2.6')); 
   options_iqc_form_edit_path.Panel(6).Textbox("MachineId").Text = "Mac_" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
   
   //Add the data to array so I can compare after it has been saved
   var date = options_iqc_form_edit_path.Panel(0).Textbox("Date").Text;
   var batch_number = options_iqc_form_edit_path.Panel(1).Textbox("BatchNumber").Text;
   var expiry_date = options_iqc_form_edit_path.Panel(2).Textbox("ExpiryDate").Text;
-  var lower_inr = '0.9'
-  var upper_inr = '4.9'
-  var inr = '2.6'
+  var lower_inr = get_string_translation('0.9');
+  var upper_inr = get_string_translation('4.9');
+  var inr = get_string_translation('2.6');
   var machine_id = options_iqc_form_edit_path.Panel(6).Textbox("MachineId").Text;
   
   var data = new Array()
@@ -126,7 +126,7 @@ function delete_iqc_result()
   var delete_button = options_iqc_table_path.Cell(1, 8).Button("DeleteIQC");
   
   delete_button.Click();
-  process_popup("Confirmation Required", "Confirm");
+  process_popup(get_string_translation("Confirmation Required"),get_string_translation("Confirm"));
   
   WaitSeconds(2)
 }
@@ -135,7 +135,7 @@ function delete_iqc_result_if_exists()
 {
   Goto_Admin_IQC();
   var iqc_table_path = options_iqc_table();
-  if(iqc_table_path.Cell(1, 0).contentText != "There are no IQCs recorded")
+  if(iqc_table_path.Cell(1, 0).contentText != get_string_translation("There are no IQCs recorded"))
   {
     var options_iqc_table_path = options_iqc_table();
     var delete_button = options_iqc_table_path.Cell(1, 8).Button("DeleteIQC");
@@ -143,7 +143,7 @@ function delete_iqc_result_if_exists()
     while(delete_button.Exists == true)
     {
       delete_button.Click();
-      process_popup("Confirmation Required", "Confirm");
+      process_popup(get_string_translation("Confirmation Required"),get_string_translation("Confirm"));
       WaitSeconds(2);
     } 
   } 

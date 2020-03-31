@@ -11,14 +11,14 @@ function tsv_logoff_inrstar(teststep, testdata)
     var INRstarV5 = INRstar_base();
     var login_error_box = INRstarV5.Panel("MainPage").Panel("main").Panel("LogonPage").Panel("LogonFormWrapper").Form("Logon").Panel("LoginArea").Panel("Logon").TextNode(0);           
     var error_mess = login_error_box.contentText;
-       
-    if (data == error_mess)
-    {
-      Log.Checkpoint('Login - Log off INRstar');                 
+          
+    if (data == error_mess)  
+    {  
+      Log.Checkpoint('Login - Log on to INRstar with no credentials');
     }
     else
     {
-      Log.Warning('Login - Log off INRstar'); 
+      Log.Warning('Login - Log on to INRstar with no credentials');                    
     }
   }         
   else if(test == 2) 
@@ -27,14 +27,14 @@ function tsv_logoff_inrstar(teststep, testdata)
     var login_welcome_mess = INRstarV5.Panel("MainPage").Panel("main").Panel("LogonPage").Panel("LogonFormWrapper").Form("Logon").Panel("Disclaimer").TextNode("Welcome");
     var welcome_mess = login_welcome_mess.contentText;
     
-    if (data == welcome_mess)  
+    if (data == welcome_mess)
     {
       Log.Message(welcome_mess);
-      Log.Checkpoint('Login - Log on to INRstar with no credentials');
+      Log.Checkpoint('Login - Log off INRstar');                 
     }
     else
     {
-      Log.Warning('Login - Log on to INRstar with no credentials');                    
+      Log.Warning('Login - Log off INRstar'); 
     }
   }
 }

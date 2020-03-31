@@ -12,7 +12,7 @@ function tc_add_a_new_iqc_result()
    
     var data_added_array = add_iqc_result();
     var data_saved_array = get_iqc_data();
-    var results = checkArrays(data_added_array, data_saved_array, 'Options/IQC -  Add a new IQC Result');
+    var results = checkArrays(data_added_array, data_saved_array, test_title);
     results_checker(results, test_title); 
   
     Log_Off();
@@ -37,7 +37,7 @@ function tc_edit_iqc_result()
   
     var edited_data = edit_iqc_result();
     var data_after_edit = get_iqc_data();
-    var results = checkArrays(edited_data, data_after_edit, 'Options/IQC -  Edit a new IQC Result');
+    var results = checkArrays(edited_data, data_after_edit, test_title);
     results_checker(results, test_title); 
   
     Log_Off();
@@ -63,7 +63,7 @@ function tc_delete_iqc_result()
     delete_iqc_result();
   
     var result_set = new Array();
-    var result_set_1 = validate_top_system_audit(test_title, "IQC Deleted");
+    var result_set_1 = validate_top_system_audit(test_title, (get_string_translation("IQC Deleted")));
     result_set.push(result_set_1);
   
     var results = results_checker_are_true(result_set);
@@ -80,4 +80,3 @@ function tc_delete_iqc_result()
   } 
 } 
 //------------------------------------------
-

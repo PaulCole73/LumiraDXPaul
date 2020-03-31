@@ -69,8 +69,8 @@ function login(user_index, TestStepMode, reset_password, new_login)
         var reset_code_button = login_area_reset.Panel("ResetArea").Panel(1).SubmitButton("submitButton").Click();
       }
  
-      var text = process_popup("Important Information", "Do Not Show Again");
-      process_popup("Email Address", "Cancel");
+      var text = process_popup(get_string_translation("Important Information"),"Do Not Show Again");
+      process_popup(get_string_translation("Email Address"), get_string_translation("Cancel"));
     }
     else
     {
@@ -81,7 +81,7 @@ function login(user_index, TestStepMode, reset_password, new_login)
   }
   while(obj == false && counter < 3);
   
-  if(aqString.Find(username, "disable") == -1 && new_login != true)
+  if(aqString.Find(username, "disable") == -1 && new_login != true && Mode == "Shared")
   {
     var obj_root = INRstarV5;
     wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 1, 30);

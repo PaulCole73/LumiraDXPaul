@@ -13,10 +13,10 @@ function tc_diagnosis_add_new_diagnosis()
     var result_set = new Array();
     
     var diagnosis_name = add_diagnosis();
-    var result_set_1 = validate_diagnosis(diagnosis_name);
+    var result_set_1 = check_diagnosis_in_list(diagnosis_name);
     result_set.push(result_set_1);
     
-    var result_set_1 = validate_top_system_audit(test_title, "Added Diagnosis");
+    var result_set_1 = validate_top_system_audit(test_title, get_string_translation("Added Diagnosis"));
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set); 
@@ -42,20 +42,25 @@ function tc_diagnosis_edit_diagnosis()
     
     var original_data = new Array();
     var edited_data = new Array();
-    
-    var diagnosis_name = add_diagnosis();
-    orginal_data = get_diagnosis_details(diagnosis_name);
-    var edited_name = edit_diagnosis(diagnosis_name);
-    edited_data = get_diagnosis_details(edited_name);
-    
     var result_set = new Array();
-    var is_false = compare_values(original_data, edited_data, test_title);
-    var result_set_1 = results_checker_are_false(is_false);
+  
+    var diagnosis_name = add_diagnosis();
+    var new_name = "Edited - " + get_unique_number();
+
+    var edited_data = edit_diagnosis(diagnosis_name,new_name);
+    data_after_edit = get_diagnosis_details(new_name);  
+    Log.Message("This is the data after saving " + data_after_edit);
+    var results = checkArrays(edited_data, data_after_edit, test_title);
+
+    var result_set_1 = results_checker_are_true(results);
+    result_set.push(result_set_1);
+    Log.Message(result_set_1);
+    
+    result_set_1 = validate_top_system_audit(test_title, get_string_translation("Edit Diagnosis"));
+    Log.Message(result_set_1);
     result_set.push(result_set_1);
     
-    result_set_1 = validate_top_system_audit(test_title, "Edit Diagnosis");
-    result_set.push(result_set_1);
-    
+    Log.Message(result_set);
     var results = results_checker_are_true(result_set); 
     results_checker(results, test_title); 
   
@@ -78,18 +83,23 @@ function tc_diagnosis_delete_diagnosis()
     login(9, "Shared");
     
     var diagnosis_name = add_diagnosis();
-    
+    var diagnosis_list_count_before_delete = get_diagnosis_count();  
     delete_diagnosis(diagnosis_name);
-    
+    var diagnosis_list_count_after_delete = get_diagnosis_count(); 
+     
     var result_set = new Array();
-    var is_false = validate_diagnosis(diagnosis_name);
-    var result_set_1 = results_checker_are_false(is_false);
+    var is_diagnosis_available = check_diagnosis_in_list(diagnosis_name);
+    var result_set_1 = results_checker_is_false(is_diagnosis_available);
     result_set.push(result_set_1);
     
-    result_set_1 = validate_top_system_audit(test_title, "Delete Diagnosis");
+    var result_set_1 = (diagnosis_list_count_before_delete == diagnosis_list_count_after_delete + 1) ? true : false ;
+    result_set.push(result_set_1);
+    
+    result_set_1 = validate_top_system_audit(test_title,get_string_translation("Delete Diagnosis"));
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set); 
+    Log.Message(result_set);
     results_checker(results, test_title); 
   
     Log_Off();

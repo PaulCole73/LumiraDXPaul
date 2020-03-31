@@ -44,7 +44,7 @@ function Goto_Options_Letter_Management()
   options_letter_management().Click();
   WaitSeconds(1, "Going to Letter Management...");
 }
-//-----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 // Navigate to Specific Letter
 function Goto_Bespoke_Letter(letter_name)
 {
