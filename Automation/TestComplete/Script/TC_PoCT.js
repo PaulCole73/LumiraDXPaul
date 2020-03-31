@@ -41,7 +41,7 @@ function tc_add_a_new_poct()
     handle_failed_tests(suite_name, test_name);
   }
 } 
-//-------------------------------
+//--------------------------------------------------------------------------------
 function tc_edit_a_new_poct_batch()
 {
   try
@@ -85,4 +85,4 @@ function tc_edit_a_new_poct_batch()
     handle_failed_tests(suite_name, test_name);
   }
 } 
-//-------------------------------
+//--------------------------------------------------------------------------------
