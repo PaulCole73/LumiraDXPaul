@@ -75,8 +75,10 @@ function tc_patient_reactivate_a_patient()
 
     //Check the confirmation banner is displayed
     var text = reactivate_patient("W", "Coventry", "");
-    var expected_text = "This patient has successfully been reactivated, you will now need to enter the current warfarin dose and " 
-                        + "review period before using the system to calculate a new warfarin dose."
+    
+    var part_1_expected_text = get_string_translation("This patient has successfully been reactivated, you will now need to enter the current warfarin dose");
+    var part_2_expected_text = get_string_translation("and review period before using the system to calculate a new warfarin dose.");
+    var expected_text = (part_1_expected_text + " " + part_2_expected_text);
     result_set_1 = compare_values(text, expected_text, test_title);
     result_set.push(result_set_1);
   
@@ -86,7 +88,7 @@ function tc_patient_reactivate_a_patient()
     result_set_1 = button_checker(button, "disabled", "Patient - Re-activate a patient checking the view all treatment button");
     result_set.push(result_set_1);
   
-    result_set_1 = validate_top_patient_audit(test_title, "Activate Patient");
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("Activate Patient"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -159,15 +161,13 @@ function tc_patient_suspend_a_patient()
     var result_set_1 = check_suspend_errors()
     result_set.push(result_set_1);
   
-    var expiry_date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (+7))); 
-    var text = suspend_patient();
-    var expected_text = "The patient has been successfully suspended with reason of On holiday, until " + aqConvert.DateTimeToFormatStr(expiry_date, "%A %d-%B-%Y" + ".");
-  
-    //Check the confirmation banner is displayed
-    result_set_1 = compare_values(text, expected_text, test_title);
+    var actual_text = suspend_patient();
+    
+   //Check the confirmation banner is displayed
+    result_set_1 = data_contains_checker(actual_text, get_string_translation("The patient has been successfully suspended"), test_title);
     result_set.push(result_set_1);
   
-    result_set_1 = validate_top_patient_audit(test_title, "Suspend Patient");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Suspend Patient"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -195,8 +195,7 @@ function tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in
     login(5, "Shared");
     add_patient('Regression', 'suspend_limit', 'M', 'Shared'); 
 
-    var result_set = new Array();
-  
+    var result_set = new Array(); 
     Goto_Patient_Suspend();
   
     //Set the variables for the active day check this is the day before the date becomes inactive
@@ -244,16 +243,19 @@ function tc_patient_unsuspend_a_patient()
     
     suspend_patient();
     var text = unsuspend_patient();
-    var expected_text = "The patient has been successfully unsuspended." +
-    "\nThe patient may have been treated elsewhere during the suspension period. For warfarin patients please ensure that any recent" +
-    " INR results and warfarin doses are entered as historical treatments. For non-warfarin patients you should ensure review information is up to date.";
+    
+    var part_1_expected_text = get_string_translation("The patient has been successfully unsuspended.")
+    var part_2_expected_text = get_string_translation("The patient may have been treated elsewhere during the suspension period.")
+    var part_3_expected_text = get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments.")
+    var part_4_expected_text = get_string_translation("For non-Warfarin patients you should ensure review information is up to date.")  
+    var expected_text = (part_1_expected_text + "\n" + part_2_expected_text + " " + part_3_expected_text + " " + part_4_expected_text)
     
     //Check the confirmation banner is displayed
     var result_set = new Array();
     var result_set_1 = compare_values(text, expected_text, test_title);
     result_set.push(result_set_1);
   
-    result_set_1 = validate_top_patient_audit(test_title, "Unsuspend Patient");
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("Unsuspend Patient"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -282,7 +284,7 @@ function tc_patient_change_the_patients_registered_practice()
     add_patient("Regression", "Registered_practice", "M", "Shared"); 
   
     var reg_prac = "Deans Regression Testing Location 2";
-    var expected_text = "The patient(s) registered practice has been successfully changed.";
+    var expected_text = get_string_translation(("The patient(s) registered practice has been successfully changed."));
     var text = change_reg_practice(reg_prac);
   
     //Check the confirmation banner is displayed
@@ -295,7 +297,7 @@ function tc_patient_change_the_patients_registered_practice()
     result_set_1 = compare_values(reg_prac, reg_prac_after, test_title);
     result_set.push(result_set_1);
   
-    result_set_1 = validate_top_patient_audit(test_title, "Changed patient's registered practice");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Changed patient's registered practice"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -323,12 +325,12 @@ function tc_transfer_a_patient_who_has_a_pending_treatment()
     login(5, "Shared");
     add_patient('Regression', 'Transfer_pending', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
-    add_pending_manual_treatment('2.5','Lab','2.0','7 Days');
+    add_pending_manual_treatment('2.5','Lab','2.0','7');
   
     //Check the error pop up is displayed
     var result = check_transfer_test_location_errors();
   
-      //Pass in the result
+    //Pass in the result
     results_checker(result,test_title); 
   
     var pop_up_buttons_path = ok_error_pop_up_buttons();
@@ -353,8 +355,8 @@ function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_exist
   
     //Adding the patient that is the duplicate at test location
     login(5, "Shared");
-    add_patient('Regression', 'Transfer_inactive_patient', 'M', 'Shared'); 
-    var nhs_num_one = get_patient_nhs();
+    add_patient('Regression', 'Transfer_inactive_patient', 'M', 'Shared');
+    var nhs_num_one = get_patient_nhs();         
     deactivate_patient();
     Log_Off();
   
@@ -430,7 +432,7 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
     result_set.push(result_set_1);
   
     //Check the audit for accepting the transfer
-    result_set_1 = validate_top_patient_audit(test_title, "Transfer patient testing location accepted");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Transfer patient testing location accepted"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -524,7 +526,7 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
   
     //Check the patient is now not on the overdue list
     result_set_1 = get_overdue_patient(patient_name);
-    result_set.push(results_checker_are_false(result_set_1));
+    result_set.push(results_checker_is_false(result_set_1));
   
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set);

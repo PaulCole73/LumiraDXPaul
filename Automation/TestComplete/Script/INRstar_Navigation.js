@@ -583,9 +583,7 @@ function Goto_Change_Registered_Location()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
   panelPT.Link("PatientManagementTab").Click();
-    
   var pat_managment_tab_preferences_buttons_path = pat_managment_tab_preferences_buttons();
-    
   pat_managment_tab_preferences_buttons_path.Button("ChangePatientLocationLink").Click();
 }
 //-------------------------------------------------------------------------------

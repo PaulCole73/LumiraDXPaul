@@ -66,7 +66,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     { 
       WaitSeconds(1)
       treatment_plan_area.Panel(2).Select("DrugId").ClickItem(get_string_translation("Warfarin"));
-        
+      
       process_popup(get_string_translation("Drug Confirmation Change"), "OK");
           
       //proces the pop-ups

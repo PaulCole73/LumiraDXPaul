@@ -25,7 +25,6 @@ var language = "Italian";
 //Compares 2 values returns true if they match
 function compare_values(data_1, data_2, test_mess)
 {
-
   if(data_1 == null || data_2 == null)
   {
     Log.Message("Fail - Data not found. Parameter value missing.");
@@ -199,7 +198,7 @@ function results_checker_is_false(result_set)
 {
     if(result_set == true)
     { 
-      Log.Message("Found a true")
+      Log.Message("Found a true answer should have been false")
       return false;
     }  
   return true;
@@ -647,6 +646,14 @@ function get_string_translation(translation_word)
  Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
+
+function testing()
+{
+  
+var test = (get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
+//var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
+Log.Message(test)
+}
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//

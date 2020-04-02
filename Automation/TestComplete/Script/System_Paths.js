@@ -1,4 +1,5 @@
-﻿//------------------------------------------------------------------------
+﻿//USEUNIT Misc_Functions
+//------------------------------------------------------------------------
 function INRstar_base()
 {
   Sys.WaitProcess("INRstarWindows", 5000);
@@ -1748,10 +1749,28 @@ function pat_managment_tab_preferences_buttons()
   var INRstarV5 = INRstar_base(); 
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPR = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientManagementWrapper"); 
-  var preferences_buttons = panelPR.Panel("PatientManagementDetailsWrapper").Panel("PatientPreferences").Panel(0);
   
+  if(language=="English")
+  {
+   var preferences_buttons = panelPR.Panel("PatientManagementDetailsWrapper").Panel("PatientPreferences").Panel(0);
+  }
+  else
+  {
+    var preferences_buttons = panelPR.Panel(1);
+  }
+    
   return preferences_buttons;
 }   
+//------------------------------------------------------------------------
+function pat_managment_tab_preferences_buttons_italy()
+{
+  var INRstarV5 = INRstar_base(); 
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var preferences_buttons = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientManagementWrapper")
+  .Panel(1); 
+  
+  return preferences_buttons;
+}  
 //------------------------------------------------------------------------
 function pop_up_warning_message()
 {

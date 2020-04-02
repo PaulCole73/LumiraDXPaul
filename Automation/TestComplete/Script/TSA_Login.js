@@ -69,7 +69,7 @@ function login(user_index, TestStepMode, reset_password, new_login)
         var reset_code_button = login_area_reset.Panel("ResetArea").Panel(1).SubmitButton("submitButton").Click();
       }
  
-      var text = process_popup(get_string_translation("Important Information"),"Do Not Show Again");
+      var text = process_popup(get_string_translation(("Important Information"),(get_string_translation("Do Not Show Again"))));
       process_popup(get_string_translation("Email Address"), get_string_translation("Cancel"));
     }
     else
@@ -125,7 +125,7 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
 
   process_popup("Important Information", "Do Not Show Again");
   WaitSeconds(2);
-  process_popup("Email Address", "Cancel");
+  process_popup("Email Address",get_string_translation("Cancel"));
   WaitSeconds(2);
   
   wait_for_object(obj_root, "idStr", "MainContentPanel", 5, 5);

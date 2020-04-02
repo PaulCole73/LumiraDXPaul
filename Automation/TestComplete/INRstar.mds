@@ -3218,7 +3218,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Staging_Net4_Italian" key="{B5A9B43B-13EE-4267-9D2A-8410A39702F1}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="Staging_Net4_Italian" key="{B5A9B43B-13EE-4267-9D2A-8410A39702F1}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="INRstar" key="{F9B127AE-9785-4F77-A0B6-65142DF1281C}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -3279,9 +3279,9 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Management_1" key="{FB47D10F-3B36-4241-9C77-B3449A03B487}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management_1" key="{FB47D10F-3B36-4241-9C77-B3449A03B487}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
 										</testParameters>
 										<children />
 									</testItem>

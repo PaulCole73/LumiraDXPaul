@@ -19,25 +19,33 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
   {
     var panelEPD = patient_area.Panel("EditPatientDetails");
     
-    if(nhs_num == null || nhs_num == "")
+    //Italy has different nhs number rules so not populating
+    if(language == "English")
     {
-      if(nhs_num == " ")
+      if(nhs_num == null || nhs_num == "")
       {
+        if(nhs_num == " ")
+        {
         
+        }
+        else
+        {
+          var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
+        }
       }
-      else
+      else 
       {
-        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
+        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
       }
-    }
-    else 
-    {
-      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
     }
     
     if(pat_no != null)
     {
       panelEPD.Panel(0).Textbox("PatientNumber").Text = pat_no;
+    }
+    else if(language != "English")
+    {
+      panelEPD.Panel(0).Textbox("PatientNumber").Text = new_guid(20);
     }
        
     //Italy has removed the option for Ms and Miss 
@@ -83,7 +91,7 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
     panelEPCD.Panel(3).Textbox("Town").Text = "Manchester";
     panelEPCD.Panel(4).Textbox("County").Text = "Granadaland";
     
-    //Need to add this back in at some point but it is now goign to be doing different validation for Italy so blanking out for now
+    //Need to add this back in at some point but it is now going to be doing different validation for Italy so blanking out for now
     panelEPCD.Panel(5).Textbox("Postcode").Text = "";
     
     var guid = new_guid(15);
@@ -101,7 +109,7 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
     panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";  
     break;
     default:
-    Log.Warning("YOu didn't pass in a language I recognise you passed in " + language)
+    Log.Warning("You didn't pass in a language I recognise you passed in " + language)
     }
     
     var button_area = add_patient_demographics_buttons_system_path()
