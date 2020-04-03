@@ -162,7 +162,7 @@ function get_top_poct_data()
   var poct_table_path = options_poct_table();
   var data_array = new Array();
  
-  for(var i = 0; i < 3; i++) 
+ for(var i = 0; i < 3; i++) 
   {
     if(i == 2)
     {
@@ -171,6 +171,36 @@ function get_top_poct_data()
     else 
     {
       var data = poct_table_path.Cell(1, i).contentText;
+    } 
+    data_array.push(data);
+  }
+  return data_array;
+} 
+//--------------------------------------------------------------------------------
+function get_poct_data_by_batch(batch_num)
+{
+  var poct_table_path = options_poct_table();
+  var row_count = poct_table_path.rowcount;
+  var data_array = new Array();
+  var row_num;
+  
+  for(var i = 0; i < poct_table_path.rowcount; i++) 
+  {
+    if(batch_num == poct_table_path.Cell(i, 0).contentText)
+    {
+      var row_num = poct_table_path.rowcount[i];
+    }
+  } 
+  
+  for(var i = 0; i < 3; i++) 
+  {
+    if(i == 2)
+    {
+      var data = poct_table_path.Cell(row_num, i).Checkbox("isActive").checked;
+    }
+    else 
+    {
+      var data = poct_table_path.Cell(row_num, i).contentText;
     } 
     data_array.push(data);
   }

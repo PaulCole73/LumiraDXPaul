@@ -186,7 +186,7 @@ function results_checker_are_false(result_set)
   {
     if(result_set[i] == true)
     { 
-      Log.Message("Found a true")
+      Log.Message("Found a true answer should have all been false")
       return false;
     }  
   }
@@ -777,6 +777,16 @@ function reset_folder()
 //-----------------------------------------------------------------------------------
 function restart_INRstar()
 {
+  WaitSeconds(2);
+  //if you are logged in then log off first
+  var INRstarV5 = INRstar_base();
+  var login_link = INRstarV5.NativeWebObject.Find("idStr", "LogoutLink");
+  if (login_link.Exists == true)
+  {
+    login_link.Click();
+  }
+  WaitSeconds(2);
+
   var path = Sys.Process("INRstarWindows").Path;
   Log.Message(path);
   Sys.Process("INRstarWindows").Terminate();

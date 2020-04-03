@@ -175,11 +175,6 @@ function Log_Off()
   var obj = wait_for_object(panelHeader, "idStr", "LogoutLink", 3);
   click_navigation_wrapper(obj, INRstarV5, "idStr", "LogonPage", 3);
 }
-
-
-
-
-
 //===============================================================================
 //===============================================================================
 //                     Old "Navigate Patient" Functions                        //

@@ -44,7 +44,7 @@ function ts_master_patient_management_italy(send_mail)
   //no self testing but leaving it here incase we decide to do it
   //tc_patient_amend_a_patient_to_be_a_manual_self_tester();
   
-  //Come back to need to get the fiscale code stuff working
+  //Come back to need to get the fiscale code stuff working this is mammoth as you need to generate codes based on italian cities and also the demographics has a 2 way validation
   //tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_existing_inactive_patient_at_the_destination_location(); 
   //tc_reactivate_a_potential_duplicate_patient();
 

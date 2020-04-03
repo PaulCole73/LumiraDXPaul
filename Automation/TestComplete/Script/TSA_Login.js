@@ -67,10 +67,9 @@ function login(user_index, TestStepMode, reset_password, new_login)
                  
         // Click the button
         var reset_code_button = login_area_reset.Panel("ResetArea").Panel(1).SubmitButton("submitButton").Click();
-      }
- 
-      var text = process_popup(get_string_translation(("Important Information"),(get_string_translation("Do Not Show Again"))));
-      process_popup(get_string_translation("Email Address"), get_string_translation("Cancel"));
+      } 
+      var text = process_popup(get_string_translation("Important Information"),(get_string_translation("Do Not Show Again")));
+      process_email_popup(get_string_translation("Email Address"), get_string_translation("Confirm"));    
     }
     else
     {

@@ -10,14 +10,13 @@ function tc_find_a_patient()
     var test_title = 'Patient Search - Find a patient'
     login(5, "Shared");
     add_patient('Regression', 'find_a_patient', 'M', 'Shared'); 
-    var pat_nhs = get_patient_nhs();
-    patient_search(pat_nhs);
-  
-    var banner_path = patient_banner_blue_bar();
-    var banner_nhs = banner_path.Panel(3).Panel(0).Label("NHSNumber_DetachedLabel").contentText;
-  
+    var pat_name = get_patient_surname();
+    patient_search(pat_name);
+    
+    var pat_name_currently_loaded = get_patient_surname();
+    
     var result_set = new Array();
-    var result_set_1 = compare_values(pat_nhs, banner_nhs, test_title);
+    var result_set_1 = compare_values(pat_name, pat_name_currently_loaded, test_title);
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
