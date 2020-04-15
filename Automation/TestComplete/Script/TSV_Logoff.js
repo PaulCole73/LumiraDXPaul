@@ -1,6 +1,5 @@
 ﻿//USEUNIT System_Paths
 //--------------------------------------------------------------------------------
-
 function tsv_logoff_inrstar(teststep, testdata) 
 {      
   var test = teststep;
@@ -14,13 +13,17 @@ function tsv_logoff_inrstar(teststep, testdata)
           
     if (data == error_mess)  
     {  
-      Log.Checkpoint('Login - Log on to INRstar with no credentials');
+      //Log.Checkpoint('Login - Log on to INRstar with no credentials');
+      return true;
     }
     else
     {
-      Log.Warning('Login - Log on to INRstar with no credentials');                    
+      //Log.Warning('Login - Log on to INRstar with no credentials'); 
+      return false;                   
     }
   }         
+  
+  
   else if(test == 2) 
   {
     var INRstarV5 = INRstar_base();         

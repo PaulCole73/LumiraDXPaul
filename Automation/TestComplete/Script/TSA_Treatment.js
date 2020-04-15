@@ -364,6 +364,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     }   
     
     historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(get_string_translation(target));
+    //Once full run done on UK and Italy then remove
     //historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(aqConvert.FloatToStr(get_string_translation(target)));
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
         

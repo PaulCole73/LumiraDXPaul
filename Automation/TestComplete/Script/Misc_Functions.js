@@ -306,7 +306,7 @@ function validate_top_system_audit(test_case_title, w_data)
   }
   else 
   {
-    Log.Message(test_case_title + "Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
     return false;
   }
 }
@@ -375,12 +375,12 @@ function validate_more_info_top_system_audit(w_data)
 
   if(wt_row.includes(w_data))
   {
-    Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
+    Log.Message('Audit data found // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
     return true;
   }
   else 
   {
-    Log.Message("Audit data not found " + wt_row + "\r\n\r\n" + "This is what I am looking for // " + w_data);
+    Log.Message("Audit data not found // " + wt_row + "// - This is what I am looking for // " + w_data + ' //');
     return false;
   }
 }
@@ -637,7 +637,8 @@ function get_string_translation(translation_word)
  {
    if (driver.Value(0) == translation_word)
    {
-     row_value = driver.Value(lookup_column);  
+     row_value = driver.Value(lookup_column);  tsv_logoff_inrstar
+
      DDT.CloseDriver(DDT.CurrentDriver.Name);
      return row_value;     
    }     
@@ -649,8 +650,10 @@ function get_string_translation(translation_word)
 
 function testing()
 {
-  
-var test = (get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
+ var test = "Account Enabled " + get_string_translation("changed from") + "[" + get_string_translation("True") + "]" 
+ + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".";
+                                                       
+//var test = (get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
 //var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
 Log.Message(test)
 }
@@ -868,22 +871,22 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
     
     if(obj.Exists == false)
     {
-      Log.Message("--------------------- Slow performance. Waiting for " + obj_value + "... ---------------------");
+      //Log.Message("--------------------- Slow performance. Waiting for " + obj_value + "... ---------------------");
       WaitSeconds(wait_time, "Waiting for " + obj_value + "...");
     }
     else
     {
-      Log.Message(obj.Name + " is visible on screen: " + obj.VisibleOnScreen);
+     // Log.Message(obj.Name + " is visible on screen: " + obj.VisibleOnScreen);
       obj.scrollIntoView();
       
       if(obj.VisibleOnScreen)
       {
         is_obj_valid = true;
-        Log.Message("Object: " + obj.Name + " found.");
+        //Log.Message("Object: " + obj.Name + " found.");
       }
       else
       {
-        Log.Message("--------------------- Slow performance. Object currently not visible... ---------------------");
+        //Log.Message("--------------------- Slow performance. Object currently not visible... ---------------------");
         WaitSeconds(wait_time, "Waiting for " + obj.Name + "...");
       }
     }
@@ -891,7 +894,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   while(is_obj_valid == false && counter < iterations);
   if(is_obj_valid == false)
   {
-    Log.Picture(Sys.Desktop, "--------------------- " + obj_value + " Timed-out ---------------------");
+    //Log.Picture(Sys.Desktop, "--------------------- " + obj_value + " Timed-out ---------------------");
     if(obj_value == "LogonPage")
     {
       restart_INRstar();
@@ -919,17 +922,17 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
       {
         if(new_obj.VisibleOnScreen)
         {
-          Log.Message("--------- Reached new page after click. ---------")
+          //Log.Message("--------- Reached new page after click. ---------")
           is_valid_obj = true;
         }
         else
         {
-          Log.Message("Attempt: " + counter + ". Object not visible.")
+          //Log.Message("Attempt: " + counter + ". Object not visible.")
         }
       }
       else
       {
-        Log.Message("Attempt: " + counter + ". Object does not exist.")
+        //Log.Message("Attempt: " + counter + ". Object does not exist.")
       }
     }
     while(is_valid_obj == false && counter < 4);
