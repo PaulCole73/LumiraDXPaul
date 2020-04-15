@@ -15,6 +15,10 @@ function tc_add_a_new_poct()
     batch_numbers = get_poct_batch_numbers();
     var data_added_array = tsa_poct_create_poct_batch(batch_numbers);
     var data_saved_array = get_top_poct_data();
+
+//  Need to get the poct by name as they are now ordered differently   
+//  var batch_num = data_added_array[0];
+//  var data_saved_array = get_poct_data_by_batch(batch_num);
   
     var result_set = new Array()
     var result_set_1 = checkArrays(data_added_array, data_saved_array, 'Options/PoCT - Add a new PoCT batch');
@@ -41,7 +45,7 @@ function tc_add_a_new_poct()
     handle_failed_tests(suite_name, test_name);
   }
 } 
-//-------------------------------
+//--------------------------------------------------------------------------------
 function tc_edit_a_new_poct_batch()
 {
   try
@@ -85,4 +89,4 @@ function tc_edit_a_new_poct_batch()
     handle_failed_tests(suite_name, test_name);
   }
 } 
-//-------------------------------
+//--------------------------------------------------------------------------------

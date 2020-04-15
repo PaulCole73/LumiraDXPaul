@@ -12,7 +12,7 @@ function tc_add_a_new_note()
     add_patient('Regression', 'add_note', 'M', 'Shared'); 
     add_a_new_note();
   
-    var results = validate_top_patient_audit(test_title, "Add Note");
+    var results = validate_top_patient_audit(test_title,get_string_translation("Add Note"));
     results_checker(results, test_title);
   
     Log_Off();

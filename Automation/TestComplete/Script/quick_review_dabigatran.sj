@@ -26,7 +26,7 @@ function quick_review_dabigatran(INRstarV5)
     var panelRHSP = form.Panel("RHSPanel")
     
     Log.Message("Adding New Review");
-
+    
     // Set Review Date 
     w_days_ago = aqConvert.IntToStr(Math.floor(Math.random()*3)) * 7;
     w_review_date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (w_days_ago * -1))); 

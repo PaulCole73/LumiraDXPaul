@@ -43,7 +43,8 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       var year = aqConvert.DateTimeToFormatStr(aqDateTime.AddMonths(aqDateTime.Today(), -24), "%Y"); 
     
       datepicker.Panel(0).Panel(0).Select(1).ClickItem(year);
-      datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jun");        
+      WaitSeconds(2);
+      datepicker.Panel(0).Panel(0).Select(0).ClickItem(get_string_translation("Jun"));        
       datepicker.Table(0).Cell(3, 3).Link(0).Click();
     }
     else
@@ -57,16 +58,16 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       select_day(w_day, datepicker);
     }
       
-    treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem("Atrial fibrillation");
+    treatment_plan_area.Panel(1).Select("DiagnosisSelected").ClickItem(get_string_translation("Atrial fibrillation"));
       
     var buttons_path = add_treatment_plan_button();
       
     if (drug == 'W' || drug == "Warfarin")
     { 
       WaitSeconds(1)
-      treatment_plan_area.Panel(2).Select("DrugId").ClickItem("Warfarin");
-        
-      process_popup("Drug Confirmation Change", "OK");
+      treatment_plan_area.Panel(2).Select("DrugId").ClickItem(get_string_translation("Warfarin"));
+      
+      process_popup(get_string_translation("Drug Confirmation Change"), "OK");
           
       //proces the pop-ups
       //process_button(INRstarV5, "Is this patient currently taking Warfarin?", "No");
@@ -77,55 +78,61 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       }
       else
       {
-        var treatment_plan_warfarin_details_path = add_treatment_plan_warfarin_details();
-          
+        var treatment_plan_warfarin_details_path = add_treatment_plan_warfarin_details();          
         if (dm == 'Coventry')
         {
-          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Coventry Maintenance");
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem(get_string_translation("Coventry Maintenance"));
         }
         if (dm == 'Hillingdon')
         {
-          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Hillingdon Maintenance");
+          //If you are using italian locale then this will select Coventry as Hillingdon is not available in Italy
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem(get_string_translation("Hillingdon Maintenance"));
         }
         if (dm == 'Tait')
         {
-          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Tait");
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem(get_string_translation("Induction Slow Tait"));
         }
         if (dm == 'Oates')
         {
-          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Slow Oates");
+          //If you are using italian locale then this will select Tait is not available in Italy
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem(get_string_translation("Induction Slow Oates"));
         }
         if (dm == 'Fast')
         {
-          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Induction Fast Fennerty Gedge");
+          //If you are using italian locale then this will select Tait is not available in Italy
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem(get_string_translation("Induction Fast Fennerty Gedge"));
         }
         if (dm == 'Manual')
         {
-          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem("Manual Dosing");
+          treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").ClickItem(get_string_translation("Manual Dosing"));
         }
-        var item_val = treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").value;
-        process_popup("More information - " + item_val, "Ok");
+        //amended .value to .wText to see if this fixed the translation issues
+        var item_val = treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").wText;
+        process_popup(get_string_translation(("More information")) + " - " + item_val, "Ok");
 
         treatment_plan_warfarin_details_path.Panel(1).Select("TestingMethod").ClickItem("PoCT");
-        treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 Days");
+        treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 " + get_string_translation("Days"));
           
         var tablet_selection_path = add_treatment_plan_tablet_selection();
-                                     
+        
+        if(language == "English")
+        {                             
         tablet_selection_path.Panel(1).Checkbox("Tablets_Use5").ClickChecked(true);
         tablet_selection_path.Panel(2).Checkbox("Tablets_Use3").ClickChecked(true);
         tablet_selection_path.Panel(3).Checkbox("Tablets_Use1").ClickChecked(true);
         tablet_selection_path.Panel(4).Checkbox("Tablets_UseHalf").ClickChecked(true);
         tablet_selection_path.Panel(5).Checkbox("Tablets_UseSplit").ClickChecked(true);
+        }
       }
     }
       
     if (drug != 'W' && drug != "Warfarin")
     {
       Log.Message("Non-Warfarin Drug");
-      treatment_plan_area.Panel(2).Select("DrugId").ClickItem(drug);
-      process_popup("Drug Confirmation Change", "OK");
+      treatment_plan_area.Panel(2).Select("DrugId").ClickItem(get_string_translation(drug));
+      process_popup(get_string_translation(("Drug Confirmation Change")), "OK");
       wait_for_object(treatment_plan_area, "idStr", "TreatmentDuration", 2);
-      treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(td);
+      treatment_plan_area.Panel(3).Select("TreatmentDuration").ClickItem(get_string_translation(td));
     }
       
     WaitSeconds(1.5, "Waiting for treatment details...");
@@ -235,7 +242,7 @@ function edit_treatment_plan_diagnosis()
   } 
   Log.Message('This is data before amendment = // ' + data_before + ' //' + ' this is data after amendment = ' + '// ' + data_after + ' //')
   
-  edit_treatment_plan.Panel(2).Select("DrugId").ClickItem('Warfarin');
+  edit_treatment_plan.Panel(2).Select("DrugId").ClickItem(get_string_translation('Warfarin'));
   
   var buttons = edit_treatment_plan_button_path();       
   buttons.Button("UpdatePatientTreatmentPlan").Click();

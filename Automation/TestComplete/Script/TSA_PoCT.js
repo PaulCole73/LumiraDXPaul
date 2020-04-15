@@ -23,7 +23,16 @@ function tsa_poct_create_poct_batch(batch_numbers, batches_to_add)
 
   for(var i = 1; i <= batches_to_add; i++)
   {
+    //This will change when we implement the deactivate poct batches button then I think there will be one path
+    if(language == "English")
+    {
     var add_poct_button = options_poct_buttons().Panel(1).Button("AddPoCTBatch").Click();
+    }
+    else 
+    {
+    var add_poct_button = options_poct_buttons().Panel(1).Panel(0).Button("AddPoCTBatch").Click();  
+    }
+
     var batch_no_textbox = options_poct_form().Panel(0).Textbox("BatchNumber");
     var options_poct_form_path = options_poct_form(); 
   
@@ -61,7 +70,15 @@ function tsa_poct_create_poct_batch(batch_numbers, batches_to_add)
     
     poct_details.push(batch_text, expiry_date, active);
     
-    options_poct_form().Panel(3).SubmitButton("SubmitNewPoCTBatchDetails").Click();
+    //This is another change not yet implemented within LIVE so retaining the original path for uk regression probably will change once we get the new code released
+    if(language == "English")
+    {
+      options_poct_form().Panel(3).SubmitButton("SubmitNewPoCTBatchDetails").Click();   
+    }
+    else 
+    {
+      options_poct_form().Panel(2).SubmitButton("SubmitNewPoCTBatchDetails").Click();   
+    }
     
     return poct_details;
   }
@@ -145,7 +162,7 @@ function get_top_poct_data()
   var poct_table_path = options_poct_table();
   var data_array = new Array();
  
-  for(var i = 0; i < 3; i++) 
+ for(var i = 0; i < 3; i++) 
   {
     if(i == 2)
     {
@@ -154,6 +171,36 @@ function get_top_poct_data()
     else 
     {
       var data = poct_table_path.Cell(1, i).contentText;
+    } 
+    data_array.push(data);
+  }
+  return data_array;
+} 
+//--------------------------------------------------------------------------------
+function get_poct_data_by_batch(batch_num)
+{
+  var poct_table_path = options_poct_table();
+  var row_count = poct_table_path.rowcount;
+  var data_array = new Array();
+  var row_num;
+  
+  for(var i = 0; i < poct_table_path.rowcount; i++) 
+  {
+    if(batch_num == poct_table_path.Cell(i, 0).contentText)
+    {
+      var row_num = poct_table_path.rowcount[i];
+    }
+  } 
+  
+  for(var i = 0; i < 3; i++) 
+  {
+    if(i == 2)
+    {
+      var data = poct_table_path.Cell(row_num, i).Checkbox("isActive").checked;
+    }
+    else 
+    {
+      var data = poct_table_path.Cell(row_num, i).contentText;
     } 
     data_array.push(data);
   }

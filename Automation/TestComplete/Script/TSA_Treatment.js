@@ -91,7 +91,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
   var new_inr_test_info_path = new_inr_test_details();
 
    // Select the passed-in INR value
-   inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
+   inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
 
    // Testing Method
    inr_test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
@@ -101,16 +101,23 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    handle_PoCT(new_inr_test_details_path);
       
    // Dose
-   inr_test_info_path.Panel(0).Select("Dose").ClickItem(dose);
+   inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
        
    // Review
-   inr_test_info_path.Panel(2).Select("Review").ClickItem(review);
+   if (review != "1")
+    {
+      inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Days"));
+    }
+    else
+    {
+      inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
+    }
        
    var save_button_pre_schedule = treatment_buttons_pre_schedule();
    save_button_pre_schedule.SubmitButton("SubmitManualDose").Click();
-   process_popup("PoCT Batch Expired", "Confirm");
    
-   process_popup("Please confirm that the following is correct", "Confirm");
+   process_popup(get_string_translation("PoCT Batch Expired"),get_string_translation("Confirm"));   
+   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
    WaitSeconds(2);
 }
 //--------------------------------------------------------------------------------
@@ -328,7 +335,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
 {
     var INRstarV5 = INRstar_base();
     Goto_Add_Historical();
-    process_popup("Please Confirm", "Confirm");
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
     var historic_treatment_form = historic_treatment_path();
     
@@ -344,26 +351,28 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
     select_day(w_day, w_datepicker);
 
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 1).Select("INR").ClickItem(inr);
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 2).Select("Dose").ClickItem(dose);
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 3).Select("Omits").ClickItem(omits + " Days");
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 1).Select("INR").ClickItem(get_string_translation(inr));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 2).Select("Dose").ClickItem(get_string_translation(dose));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 3).Select("Omits").ClickItem(omits + " " + get_string_translation("Days"));
     if (review != "1")
     {
-      historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " Days");
+      historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " " + get_string_translation("Days"));
     }
     else
     {
-      historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " Day");
-    }
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(aqConvert.FloatToStr(target));
+      historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
+    }   
+    
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(get_string_translation(target));
+    //historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(aqConvert.FloatToStr(get_string_translation(target)));
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
         
     historic_treatment_form.Panel(0).SubmitButton("Save").Click();
     wait_for_object(INRstarV5, "idStr", "modalDialogBox", 2);
 
     // Click confirm panel
-    process_popup("Please confirm treatment date", "Confirm");
-    process_popup("Please confirm that the following is correct", "Confirm");
+    process_popup(get_string_translation("Please confirm treatment date"), get_string_translation("Confirm"));
+    process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
     
     WaitSeconds(5, "Waiting for Add Historic...");
 }
@@ -465,10 +474,10 @@ function handle_PoCT(main_path)
    //Check if the batch field is on screen
    var poct_batch_field = main_path.contentText;
    
-   if(poct_batch_field.includes('Enter pre-treatment INR test information'))
+   if(poct_batch_field.includes(get_string_translation('Enter pre-treatment INR test information')))
    {
      // Check PoCT
-     if(poct_batch_field.includes('PoCT Batch'))
+     if(poct_batch_field.includes(get_string_translation('PoCT Batch')))
      {
            //var field_enabled = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").Enabled;
            var field_enabled = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").Enabled;
@@ -478,7 +487,7 @@ function handle_PoCT(main_path)
            var testing_method = inr_test_info_path.Panel(2).Select("TestingMethod").wText;
            
            var batch = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").wText;
-           if(batch=='~Select PoCT Batch' && field_enabled == true && testing_method == 'PoCT')
+           if(batch==get_string_translation('~Select PoCT Batch') && field_enabled == true && testing_method == 'PoCT')
            {
              //inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").ClickItem(1);
              inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);
@@ -490,19 +499,18 @@ function handle_PoCT(main_path)
      }
    }       
    
-   if(poct_batch_field.includes('Enter new INR test information'))
+   if(poct_batch_field.includes(get_string_translation('Enter new INR test information')))
    {
      // Check PoCT
-     if(poct_batch_field.includes('PoCT Batch'))
+     if(poct_batch_field.includes(get_string_translation('PoCT Batch')))
      {
            var field_enabled = inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").Enabled;
            
            //Added for Instrument changes and the PoCT selector not being disabled when selecting 'Lab' as testing method           
-           var testing_method = inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel(2).Select("TestingMethod").wText;
-           
+           var testing_method = inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel(2).Select("TestingMethod").wText;          
            var batch = inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").wText;
            
-           if(batch=='~Select PoCT Batch' && field_enabled == true && testing_method == 'PoCT')
+           if(batch==get_string_translation('~Select PoCT Batch') && field_enabled == true && testing_method == 'PoCT')
            {
              inr_test_info_path.Panel("testDetails").Panel("poctDetails").Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);
              //inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);

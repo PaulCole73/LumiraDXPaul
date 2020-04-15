@@ -11,10 +11,9 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 
-
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsAlderaan";
-var environmentname = "Alderaan";
+var environment = "INRstarWindowsStagingItalyV4";
+var environmentname = "italy-endor";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -41,6 +40,24 @@ function compare_values(data_1, data_2, test_mess)
     Log.Message("Fail - Data doesn't match test failed - " + test_mess + " //" + data_1 + "//" + data_2 + "//");
     return false;
   }
+}
+//-----------------------------------------------------------------------------------
+//Compares 2 values returns true if they dont match
+function compare_values_dont_match(data_1,data_2,test_mess)
+{
+ if (data_1 == null || data_2 == null)
+      {
+        Log.Warning("Data not found");
+        return false;
+      } 
+ 
+  if (data_1 != data_2)
+  {
+  return true;
+  }
+   else 
+   Log.Message("Data matches test should fail - " + test_mess + " //" + data_1 + "//" + data_2 + "//");
+   return false;
 }
 //-----------------------------------------------------------------------------------
 function table_contains_checker(actual_array, expected_data, test_mess)
@@ -162,19 +179,30 @@ function validate_arrays_dont_match(arrA, arrB, mess)
   return true;
 }
 //-----------------------------------------------------------------------------------
-//This is to test the data given only contains false as an answer
+//This is to test the data given only contains false as an answer for multiple results
 function results_checker_are_false(result_set)
 {
   for(var i = 0; i < result_set.length; i++)
   {
     if(result_set[i] == true)
     { 
-      Log.Message("Found a true")
+      Log.Message("Found a true answer should have all been false")
       return false;
     }  
   }
   return true;
 }   
+//-----------------------------------------------------------------------------------
+//This is to test the data given only contains false as an answer for a single result
+function results_checker_is_false(result_set)
+{
+    if(result_set == true)
+    { 
+      Log.Message("Found a true answer should have been false")
+      return false;
+    }  
+  return true;
+}  
 //-----------------------------------------------------------------------------------
 //This is to test the data given only contains true as an answer
 function results_checker_are_true(result_set)
@@ -520,18 +548,18 @@ function set_month(p_m)
   //Note - input month must be in numeric format   
   var wa_Mth = new Array(13);                   
   wa_Mth[0] = "";
-  wa_Mth[1] = "Jan";
-  wa_Mth[2] = "Feb";
-  wa_Mth[3] = "Mar";
-  wa_Mth[4] = "Apr";
-  wa_Mth[5] = "May";
-  wa_Mth[6] = "Jun";
-  wa_Mth[7] = "Jul";
-  wa_Mth[8] = "Aug";
-  wa_Mth[9] = "Sep";
-  wa_Mth[10] = "Oct";
-  wa_Mth[11] = "Nov";
-  wa_Mth[12] = "Dec";
+  wa_Mth[1] = get_string_translation("Jan");
+  wa_Mth[2] = get_string_translation("Feb");
+  wa_Mth[3] = get_string_translation("Mar");
+  wa_Mth[4] = get_string_translation("Apr");
+  wa_Mth[5] = get_string_translation("May");
+  wa_Mth[6] = get_string_translation("Jun");
+  wa_Mth[7] = get_string_translation("Jul");
+  wa_Mth[8] = get_string_translation("Aug");
+  wa_Mth[9] = get_string_translation("Sep");
+  wa_Mth[10] = get_string_translation("Oct");
+  wa_Mth[11] = get_string_translation("Nov");
+  wa_Mth[12] = get_string_translation("Dec");
   
   var w_Month = wa_Mth[p_m];
   
@@ -574,15 +602,58 @@ function exception_occured(a, b) //randomly required 2 parameters
   Options.Run.Timeout = 0; //rush through test at erroro.");
 }
 //-----------------------------------------------------------------------------------
-function setup_automation(new_config_file_name)
+function setup_automation(new_config_file_name,locale)
 {
+  language = locale;
   Log.LockEvents(0);
   reset_tests_array();
   change_environments(new_config_file_name);
 }
+//-----------------------------------------------------------------------------------
+function get_string_translation(translation_word)
+{
+ var lookup_column;
+ var row_value;
+ 
+ switch(language)
+ {
+   case "English":
+   lookup_column = 0;
+   break;
+   case "Italian":
+   lookup_column = 1;
+   break;
+   case "Spanish":
+   lookup_column = 2;
+   break;
+   default:
+   Log.Message("You didn't pass in a language I recognise you passed in " + language);
+   break;
+ }
+ 
+ var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
+ 
+ while (!driver.EOF())
+ {
+   if (driver.Value(0) == translation_word)
+   {
+     row_value = driver.Value(lookup_column);  
+     DDT.CloseDriver(DDT.CurrentDriver.Name);
+     return row_value;     
+   }     
+   driver.Next();
+ }
+ Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
+}
+//-----------------------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
+function testing()
+{
+  
+var test = (get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
+//var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
+Log.Message(test)
+}
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//
@@ -706,6 +777,16 @@ function reset_folder()
 //-----------------------------------------------------------------------------------
 function restart_INRstar()
 {
+  WaitSeconds(2);
+  //if you are logged in then log off first
+  var INRstarV5 = INRstar_base();
+  var login_link = INRstarV5.NativeWebObject.Find("idStr", "LogoutLink");
+  if (login_link.Exists == true)
+  {
+    login_link.Click();
+  }
+  WaitSeconds(2);
+
   var path = Sys.Process("INRstarWindows").Path;
   Log.Message(path);
   Sys.Process("INRstarWindows").Terminate();
@@ -729,7 +810,7 @@ function change_environments(new_config_file_name) //C:\Automation\ - config fil
   
   restart_INRstar();
   
-  WaitSeconds(30);
+  WaitSeconds(5);
 }
 //-----------------------------------------------------------------------------------
 function open_file_in_notepad(path)

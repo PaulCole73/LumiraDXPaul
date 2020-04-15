@@ -44,7 +44,7 @@ function Goto_Options_Letter_Management()
   options_letter_management().Click();
   WaitSeconds(1, "Going to Letter Management...");
 }
-//-----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 // Navigate to Specific Letter
 function Goto_Bespoke_Letter(letter_name)
 {
@@ -175,11 +175,6 @@ function Log_Off()
   var obj = wait_for_object(panelHeader, "idStr", "LogoutLink", 3);
   click_navigation_wrapper(obj, INRstarV5, "idStr", "LogonPage", 3);
 }
-
-
-
-
-
 //===============================================================================
 //===============================================================================
 //                     Old "Navigate Patient" Functions                        //
@@ -583,9 +578,7 @@ function Goto_Change_Registered_Location()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
   panelPT.Link("PatientManagementTab").Click();
-    
   var pat_managment_tab_preferences_buttons_path = pat_managment_tab_preferences_buttons();
-    
   pat_managment_tab_preferences_buttons_path.Button("ChangePatientLocationLink").Click();
 }
 //-------------------------------------------------------------------------------

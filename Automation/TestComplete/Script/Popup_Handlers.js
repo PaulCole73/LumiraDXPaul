@@ -230,6 +230,37 @@ function process_bridging_popup(header, button, content)
   }
 }
 //-------------------------------------------------------------------------------
+function process_email_popup(header, button)
+{
+  WaitSeconds(1);
+  var INRstarV5 = INRstar_base();
+  
+  var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
+  if (wbx.Exists == false || wbx.Height == 0)
+  { 
+    Log.Message(header + " box not displayed");
+    return;
+  }
+
+  Log.Message(header + " box displayed");
+  INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Textbox("emailAddress").Text = "test@lumiradx.com";
+  INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(1).Textbox("confirmEmailAddress").Text = "test@lumiradx.com";
+    
+  var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", button, "BUTTON");
+  if (wb_Ok.Exists == false || wb_Ok.Height == 0)
+  {
+    Log.Message(header + " - " + button + " button not found");
+    return;
+  }
+  else
+  {
+    Log.Message("Clicking " + header + " - " + button + " button");
+    Sys.HighlightObject(wb_Ok, 2);
+    wb_Ok.Click();
+    return;
+  }
+}
+//-------------------------------------------------------------------------------
 function process_blue_popup()
 {
   var INRstarV5 = INRstar_base();

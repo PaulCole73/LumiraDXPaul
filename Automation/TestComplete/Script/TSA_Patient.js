@@ -2,12 +2,12 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function add_patient(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, pat_no)  
+function add_patient(p_surname, p_firstname, gender, TestStepMode, nhs_num, pat_no)  
 {
-  add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, "1975", pat_no);
+  add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_num, "1975", pat_no);
 }
 
-function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nhs_num, dobyr, pat_no)  
+function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_num, dobyr, pat_no)  
 {
   var Mode = TestStepMode
 
@@ -19,36 +19,46 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
   {
     var panelEPD = patient_area.Panel("EditPatientDetails");
     
-    if(nhs_num == null || nhs_num == "")
+    //Italy has different nhs number rules so not populating
+    if(language == "English")
     {
-      if(nhs_num == " ")
+      if(nhs_num == null || nhs_num == "")
       {
+        if(nhs_num == " ")
+        {
         
+        }
+        else
+        {
+          var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
+        }
       }
-      else
+      else 
       {
-        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
+        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
       }
-    }
-    else 
-    {
-      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
     }
     
     if(pat_no != null)
     {
       panelEPD.Panel(0).Textbox("PatientNumber").Text = pat_no;
     }
-
-    if (p_gender == "M" || p_gender == "m")
+    else if(language != "English")
     {
-      panelEPD.Panel(2).Select("Title").ClickItem("Mr");
+      panelEPD.Panel(0).Textbox("PatientNumber").Text = new_guid(20);
+    }
+       
+    //Italy has removed the option for Ms and Miss 
+    //If we want to add in the other titles to click then add new function when required     
+    if (gender == "M" || gender == "m")
+    {
+      panelEPD.Panel(2).Select("Title").ClickItem(get_string_translation("Mr"));
     }
     else
     {
-      panelEPD.Panel(2).Select("Title").ClickItem("Mrs");
+      panelEPD.Panel(2).Select("Title").ClickItem(get_string_translation("Mrs"));
     }
-                
+             
     if (p_surname == "")
     {
       panelEPD.Panel(3).Textbox("Surname").Text = "No_Name_Given" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
@@ -69,7 +79,7 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     panelEPD.Panel(5).Image("calendar_png").Click();
     
     var w_datepicker = INRstarV5.Panel("ui_datepicker_div");
-    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem("Jan");
+    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(get_string_translation("Jan"));
     w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(dobyr);
     w_datepicker.Table(0).Cell(3, 3).Link(0).Click();
 
@@ -80,13 +90,27 @@ function add_patient_extended(p_surname, p_firstname, p_gender, TestStepMode, nh
     panelEPCD.Panel(2).Textbox("ThirdLineAddress").Text = "";
     panelEPCD.Panel(3).Textbox("Town").Text = "Manchester";
     panelEPCD.Panel(4).Textbox("County").Text = "Granadaland";
-    panelEPCD.Panel(5).Textbox("Postcode").Text = "CO12 1LW";
     
+    //Need to add this back in at some point but it is now going to be doing different validation for Italy so blanking out for now
+    panelEPCD.Panel(5).Textbox("Postcode").Text = "";
+    
+    var guid = new_guid(15);
+    
+    switch(language)   
+    {
+    case language: "Italian"
+    panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
+    panelEPCD.Panel(8).Textbox("Mobile").Text = "07111 225588";    
+    panelEPCD.Panel(9).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
+    break;
+    case language: "English"
     panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
     panelEPCD.Panel(7).Textbox("Mobile").Text = "07111 225588";
-
-    var guid = new_guid(15);
-    panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
+    panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";  
+    break;
+    default:
+    Log.Warning("You didn't pass in a language I recognise you passed in " + language)
+    }
     
     var button_area = add_patient_demographics_buttons_system_path()
     var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
@@ -105,8 +129,7 @@ function patient_search(data)
   
   patient_search_screen_path.Textbox("searchCriteria").Text = data;
   patient_search_screen_path.SubmitButton("Search").Click();
-  WaitSeconds(1);
-  
+   
   var results_table = patient_search_screen_results_table();
   results_table.Cell(1, 0).Link("PatientLink").Click();
   
@@ -154,7 +177,7 @@ function popup_warning_checker(exp_err_mess)
        } 
         else 
         {
-        Log.Warning('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
+        Log.Warning('Message was displayed but the text did not match the expected result it was this //' + actual_err_mess + "// but this is what was expected //" + exp_err_mess + "//")
         return false;
         }
 } 
@@ -261,6 +284,10 @@ function check_summary_tab_image(patient_nhs)
 }
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+
 
 
 

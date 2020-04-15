@@ -468,18 +468,17 @@ function tc_edit_treatment_plan_change_diagnosis()
     add_patient('Regression', 'Edit_tp_diagnosis', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
   
-    var clinical_details_before_edit = get_treatment_plan_single_field('diagnosis');
-  
+    var clinical_details_before_edit = get_treatment_plan_single_field('diagnosis');    
     edit_treatment_plan_diagnosis();
-  
     var clinical_details_after_edit = get_treatment_plan_single_field('diagnosis');
   
     var result_set = new Array();
-    var result_set_1 = compare_values(clinical_details_before_edit, clinical_details_after_edit, test_title);
-    result_set_1 = results_checker_are_false(result_set_1);
+    
+    var result_set_1 = compare_values_dont_match(clinical_details_before_edit, clinical_details_after_edit, test_title);
+    //result_set_1 = results_checker_is_false(result_set_1); This can be removed once I can test currently blocked due to the buttons being moved
     result_set.push(result_set_1);
   
-    result_set_1 = validate_top_patient_audit(test_title, "Edit Treatment Plan Details");
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("Edit Treatment Plan Details"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true

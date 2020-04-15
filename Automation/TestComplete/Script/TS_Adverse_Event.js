@@ -24,8 +24,5 @@ function ts_staging_regression_adverse_event()
   
   email_and_archive(true, "ts_adverse_event_regression");
 }
-
-
-
 //General Suites
 //--------------------------------------------------------------------------------

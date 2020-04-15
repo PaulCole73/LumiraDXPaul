@@ -20,16 +20,14 @@ function add_diagnosis()
   return name;
 }
 //-----------------------------------------------------------------------------------
-function edit_diagnosis(diagnosis_name)
+function edit_diagnosis(diagnosis_name, new_name)
 {
   Goto_Options_Diagnosis();
   var list = options_diagnosis_list();
-  var name = "Edited - " + get_unique_number();
   
   list.ClickItem(diagnosis_name);
-  diagnosis_details().Panel(3).Button("Edit").Click();
-  
-  edit_diagnosis_details().Panel(0).Textbox("Name").innerText = name;
+  diagnosis_details().Panel(3).Button("Edit").Click(); 
+  edit_diagnosis_details().Panel(0).Textbox("Name").innerText = new_name;
   
   var drop_down_num = edit_diagnosis_details().Panel(1).Select("TargetINR").wSelectedItem;
   if(drop_down_num != 1)
@@ -53,41 +51,43 @@ function edit_diagnosis(diagnosis_name)
   }
   edit_diagnosis_details().Panel(2).Select("TreatmentDuration").ClickItem(drop_down_num);
   
+  //Save the data into an array before clicking save
+  var name = edit_diagnosis_details().Panel(0).Textbox("Name").wText;
+  var target = edit_diagnosis_details().Panel(1).Select("TargetINR").wText;
+  var treatment_duration = edit_diagnosis_details().Panel(2).Select("TreatmentDuration").wText;
+  var data = new Array();
+  
+  data.push(name,target,treatment_duration);
+  Log.Message(data + " This is the data being passed back before saving on edit");
+  
   edit_diagnosis_details().Panel(3).SubmitButton("UpdateDiagnosis").Click();
   
-  return name;
+  return data;
 }
 //-----------------------------------------------------------------------------------
 function delete_diagnosis(diagnosis_name)
 {
   Goto_Options_Diagnosis();
   options_diagnosis_list().ClickItem(diagnosis_name);
-  
   diagnosis_details().Panel(3).Button("DeleteDiagnosis").Click();
-  
-  process_popup("Confirmation Required", "Confirm");
+  process_popup(get_string_translation("Confirmation Required"),get_string_translation("Confirm"));
 }
 //-----------------------------------------------------------------------------------
-function validate_diagnosis(diagnosis_name)
+function check_diagnosis_in_list(diagnosis_name)
 {
   Goto_Options_Diagnosis();
   var list = options_diagnosis_list();
-  var is_diagnosis_valid = false;             
+  var count = list.wItemCount;           
   
-  for(var i = 1; i < list.wItemCount; i++)
+   for(var i = 0; i < count; i++)
   {
-    if(list.wItem(i) == diagnosis_name)
+    if(list.wItem(i) == diagnosis_name) 
     {
-      is_diagnosis_valid = true;
+      Log.Message("This was the one it found  = " + list.wItem(i) + " // This is what is was looking for = " + diagnosis_name)
+      return true;
     }
   }
-  
-  if(is_diagnosis_valid == true)
-  {
-    return true;
-  }
-  else
-  {
+    Log.Message("The diagnosis was not found on the list")
     return false;
-  }
 }
+//-----------------------------------------------------------------------------------
