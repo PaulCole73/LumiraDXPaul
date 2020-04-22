@@ -637,7 +637,7 @@ function get_string_translation(translation_word)
  {
    if (driver.Value(0) == translation_word)
    {
-     row_value = driver.Value(lookup_column);  tsv_logoff_inrstar
+     row_value = driver.Value(lookup_column);
 
      DDT.CloseDriver(DDT.CurrentDriver.Name);
      return row_value;     
