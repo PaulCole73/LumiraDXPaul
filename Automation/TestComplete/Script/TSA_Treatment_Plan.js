@@ -87,13 +87,11 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       }
       
       if(language == "English")
-     {
+      {
         var is_reusing = process_popup(get_string_translation("New Warfarin Treatment Plan"), get_string_translation(prev_plan_action));
         process_popup(get_string_translation("Is this patient currently taking Warfarin?"), get_string_translation(prev_plan_action));
       }
 
-      //logic here for use prev need to skip over if not using prev
-      //if (is_reusing != "" && prev_plan_action == "Yes")
       if (prev_plan_action == "Yes" || prev_plan_action == true)
       {
         {
