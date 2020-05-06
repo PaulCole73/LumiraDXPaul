@@ -241,7 +241,7 @@ function goto_patient_clinic_tab_appointment_name(name, weeks_ahead)
       Log.Message("Clinic Found.");
       for(var j = 0; j <= 24; j++)
       {
-        var box = clinic_patients_appointments_container().FindChild("contentText", "Appts:" + j + "/24" + "\n" + name);
+        var box = clinic_patients_appointments_container().FindChild("contentText", get_string_translation("Appts:") + j + "/24" + "\n" + name);
         if(box.Exists == true)
         {
           Log.Message("Appointment Found.");
@@ -327,7 +327,7 @@ function tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date
   var close = INRstar_base().Panel(3).Panel(1).Panel(0).Button(0).TextNode(0);
   var popup_msg = "";
 
-  var popup_button = INRstar_base().NativeWebObject.Find("innerHTML", "Select This Clinic");
+  var popup_button = INRstar_base().NativeWebObject.Find("innerHTML", get_string_translation("Select This Clinic"));
   if(popup_button.Exists == true && popup_button.VisibleOnScreen == true)
   {
     popup_button.Click();
@@ -336,16 +336,16 @@ function tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date
     clinic_make_appointment_container().Panel("selectionLayer").Panel("appointmentsScheduler_commonControlsBlock_selectionDiv").Click(700, 20);
     clinic_make_appointment_container().Table("appointmentsScheduler_containerBlock_vertTable").Cell(1, 1).ClickR(700, 20);
     
-    popup_button = INRstar_base().NativeWebObject.Find("innerHTML", "Make Appointment");
+    popup_button = INRstar_base().NativeWebObject.Find("innerHTML", get_string_translation("Make Appointment"));
     if(popup_button.Exists == true && popup_button.VisibleOnScreen == true)
     {
       popup_button.Click();
       WaitSeconds(4);
-      popup_msg = process_clinic_popup("Authorisation Required", "Authorise");
+      popup_msg = process_clinic_popup(get_string_translation("Authorisation Required"), get_string_translation("Authorise"));
     }
   }
   
-  var popup_msg_1 = process_clinic_popup("Confirmation Required", "Confirm");
+  var popup_msg_1 = process_clinic_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
   WaitSeconds(4);
   close.Click();
   

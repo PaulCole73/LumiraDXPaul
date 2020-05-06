@@ -566,6 +566,54 @@ function set_month(p_m)
   return w_Month;
 }
 //-----------------------------------------------------------------------------------
+function set_italian_long_month(month)
+{
+ var long_month;  
+
+ switch(month)
+ {
+    case "Jan":
+    long_month = "gennaio";
+    break;
+    case "Feb":
+    long_month = "febbraio";
+    break;  
+    case "Mar":
+    long_month = "marzo";
+    break;  
+    case "Apr":
+    long_month = "aprile";
+    break;  
+    case "May":
+    long_month = "maggio";
+    break;  
+    case "Jun":
+    long_month = "giugno";
+    break;  
+    case "Jul":
+    long_month = "luglio";
+    break;  
+    case "Aug":
+    long_month = "agosto";
+    break;  
+    case "Sep":
+    long_month = "settembre";
+    break;  
+    case "Oct":
+    long_month = "ottobre";
+    break;  
+    case "Nov":
+    long_month = "novembre";
+    break;
+    case "Dec":
+    long_month = "dicembre";
+    break;    
+    default:
+    Log.Message("Couldn't  find the month you were looking for");    
+ }                  
+  return long_month;
+}
+//-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
 {
   var INRstarV5 = INRstar_base();
@@ -647,13 +695,15 @@ function get_string_translation(translation_word)
  Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
-
-function testing()
+//Just to quickly test things in the translation file
+function testing_translation()
 {
- var test = "Account Enabled " + get_string_translation("changed from") + "[" + get_string_translation("True") + "]" 
- + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".";
-                                                       
-//var test = (get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
+var test = get_string_translation("Please ensure that this patient has discontinued their warfarin treatment and has an INR" +
+     " less or equal to 3.0 (stroke prevention) or 2.5(DVT/PE) before commencing this treatment plan. Consult product literature for details");   
+
+// var test = "Account Enabled " + get_string_translation("changed from") + "[" + get_string_translation("True") + "]" 
+// + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".";
+
 //var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
 Log.Message(test)
 }

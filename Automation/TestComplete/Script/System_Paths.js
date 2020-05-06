@@ -25,7 +25,7 @@ function set_system_login_page_inrstar_base()
 {
   var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
   var INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
-
+  
   return INRstar;
 } 
 //------------------------------------------------------------------------

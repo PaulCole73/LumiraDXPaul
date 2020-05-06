@@ -25,13 +25,12 @@ function tc_neqas_add_new_from_eqc()
     var batch_reference = tsa_neqas_add_eqc_result(batch_numbers[0], "2.5", "~Select INR");
     
     row_data = get_eqc_table_row(batch_reference);
-    row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, 
-                                                "NEQAS", batch_numbers[0], "2.5", "", "No Value");
+    row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, "NEQAS", batch_numbers[0], "2.5", "", "No Value");
     
     var result_set_1 = checkArrays(row_data, row_data_1);
     result_set.push(result_set_1);
     
-    result_set_1 = validate_top_system_audit(test_title, "Added EQC Result");
+    result_set_1 = validate_top_system_audit(test_title,get_string_translation("Added EQC Result"));
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -70,14 +69,13 @@ function tc_neqas_add_new_from_eqc_with_multiple_active_batches()
         
       row_data = get_eqc_table_row(batch_reference);
       row_data_1.length = 0;
-      row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, 
-                                                  "NEQAS", batch_numbers[i], "2.5", "", "No Value");
+      row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, "NEQAS", batch_numbers[i], "2.5", "", "No Value");
                                                 
       var result_set_1 = checkArrays(row_data, row_data_1);
       result_set.push(result_set_1);
     }
     
-    result_set_1 = validate_top_system_audit(test_title, "Added EQC Result");
+    result_set_1 = validate_top_system_audit(test_title,get_string_translation("Added EQC Result"));
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -113,8 +111,7 @@ function tc_neqas_edit_existing_add_external_inr()
     var batch_reference = tsa_neqas_add_eqc_result(batch_numbers[0], "2.5", "~Select INR");
         
     row_data = get_eqc_table_row(batch_reference);
-    row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, 
-                                                "NEQAS", batch_numbers[0], "2.5", "", "No Value");
+    row_data_1.push(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), batch_reference, "NEQAS", batch_numbers[0], "2.5", "", "No Value");
                                                 
     var result_set_1 = checkArrays(row_data, row_data_1);
     result_set.push(result_set_1);                                            

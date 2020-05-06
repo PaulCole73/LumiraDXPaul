@@ -34,7 +34,7 @@ function add_pending_fast_induction_treatment(inr, TestStepMode)
 function add_fast_induction_treatment(inr)
 {
   var INRstarV5 = INRstar_base();    
- 
+  var inr = get_string_translation(inr);
   Goto_Patient_New_INR();  // Pre_Treatment INR
     
   var risk_factors = fast_induction_risk_factors_path(); 
@@ -57,6 +57,30 @@ function add_fast_induction_treatment(inr)
   
   var pending_treatment_buttons_path = pending_treatment_buttons();
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+}
+//--------------------------------------------------------------------------------
+function add_induction_slow_treatment(inr)
+{
+  var INRstarV5 = INRstar_base();    
+  var inr = get_string_translation(inr);
+  Goto_Patient_New_INR();  // Pre_Treatment INR
+    
+  var pre_treatment_info = pre_treatment_info_induction_path()
+     
+  pre_treatment_info.Panel(1).Select("INR").ClickItem(inr);
+  WaitSeconds(2);    
+  pre_treatment_info.Panel(2).Select("TestingMethod").ClickItem('PoCT');
+     
+  // PoCT special handling due to all the things this can be set to and a bug
+  handle_PoCT(pre_treatment_info);
+     
+  var buttons = pre_treatment_induction_buttons_path();
+  buttons.SubmitButton("CalculateWarfarinDose").Click();
+  
+  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
+  var pending_treatment_buttons_path = pending_treatment_buttons();
+  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+
 }
 //--------------------------------------------------------------------------------
 function add_pending_induction_slow_treatment(inr,TestStepMode)
@@ -480,27 +504,34 @@ function handle_PoCT(main_path)
      // Check PoCT
      if(poct_batch_field.includes(get_string_translation('PoCT Batch')))
      {
-           //var field_enabled = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").Enabled;
-           var field_enabled = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").Enabled;
-           //var batch = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").wText;
+        //changed to for induction/italy ??
+        var field_enabled = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").Enabled;
+        //Was this before is this normal inr ?
+        //var field_enabled = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").Enabled;
            
-           //Added for Instrument changes and the PoCT selector not being disabled when selecting 'Lab' as testing method           
-           var testing_method = inr_test_info_path.Panel(2).Select("TestingMethod").wText;
-           
-           var batch = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").wText;
-           if(batch==get_string_translation('~Select PoCT Batch') && field_enabled == true && testing_method == 'PoCT')
-           {
-             //inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").ClickItem(1);
-             inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);
-           }  
+        //Added for Instrument changes and the PoCT selector not being disabled when selecting 'Lab' as testing method           
+        var testing_method = inr_test_info_path.Panel(2).Select("TestingMethod").wText;
+                      
+        //chnaged to for induction/italy ??
+        var batch = inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").wText;
+        //Was this before is this normal inr ?
+        //var batch = inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").wText;
+
+          if(batch==get_string_translation('~Select PoCT Batch') && field_enabled == true && testing_method == 'PoCT')
+          {
+          //changed to this again for induction/italy??
+          inr_test_info_path.Panel(3).Select("MedicalDeviceStripBatchNo").ClickItem(1);
+          //Was this before is this normal inr ?
+          //inr_test_info_path.Panel("BatchDetailsWrapper").Select("MedicalDeviceStripBatchNo").ClickItem(1);
+          }  
             else          
             {
-             Log.Message('Field was incorrectly disabled due to existing bug, changed to lab but didn\'t remove the PoCT field from UI');           
+            Log.Message("Field was incorrectly disabled due to existing bug, changed to lab but didn't remove the PoCT field from UI");           
             } 
      }
    }       
    
-   if(poct_batch_field.includes(get_string_translation('Enter new INR test information')))
+   if(poct_batch_field.includes(get_string_translation("Enter new INR test information")))
    {
      // Check PoCT
      if(poct_batch_field.includes(get_string_translation('PoCT Batch')))

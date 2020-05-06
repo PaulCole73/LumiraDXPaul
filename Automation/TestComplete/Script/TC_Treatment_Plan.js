@@ -20,11 +20,12 @@ function tc_treatment_plan_add_first_manual_treatment_plan()
     result_set = new Array();
   
     //Check the confirmation banner is displayed
-    var result_set_1 = banner_checker('The patient\'s dosing method is currently set to : Manual Dosing')
+    //var result_set_1 = banner_checker('The patient\'s dosing method is currently set to : Manual Dosing')
+    var result_set_1 = banner_checker(get_string_translation("The patient's dosing method is currently set to :") + " " + get_string_translation("Manual Dosing"));
     result_set.push(result_set_1);
   
     //Check the audit for adding the tp
-    result_set_1 = validate_top_patient_audit(test_title, "Add Treatment Plan Details");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add Treatment Plan Details"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -54,7 +55,7 @@ function tc_treatment_plan_add_first_maintenance_treatment_plan()
     add_treatment_plan('W','Coventry','','Shared','');
   
     //Check the audit for adding the tp
-    var results = validate_top_patient_audit(test_title, "Add Treatment Plan Details");
+    var results = validate_top_patient_audit(test_title, get_string_translation("Add Treatment Plan Details"));
     
     //Pass in the result
     results_checker(results, test_title); 
@@ -81,8 +82,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_b
     Goto_Patient_Treatment_Plan();
   
     var button = new_treatment_plan_button_path().enabled;
-  
-    var results = button_checker(button, "disabled", test_title);
+    var results = button_checker(button,"disabled", test_title);
   
     //Pass in the result
     results_checker(results,test_title); 
@@ -104,22 +104,22 @@ function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_a
   { 
     var test_title = "Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient";
     login(5, "Shared");
-    add_patient("Regression", "New_tp_induct_pat", "M", "Shared"); 
-    add_treatment_plan("W", "Fast", "", "Shared", "");
-    add_fast_induction_treatment('1.0');
+    add_patient("Regression", "New_tp_induct_pat", "M", "Shared");
+    add_treatment_plan("W", "Tait", "", "Shared", "");
+    add_induction_slow_treatment('1.0');
   
     var result_set = new Array();
 
     Goto_Patient_Treatment_Plan();
     new_treatment_plan_button_path().Click();
-    process_popup("Confirmation Required", "Confirm");
-    var popup_msg = process_popup("New treatment plan will invalidate Induction protocol", "OK");
-    var result_set_1 = compare_values(popup_msg, "This patient is currently on an Induction protocol. Creating a new treatment plan will invalidate the Induction protocol"); 
+    process_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
+    var popup_msg = process_popup(get_string_translation("New treatment plan will invalidate Induction protocol"),"OK");
+    var result_set_1 = compare_values(popup_msg, get_string_translation("This patient is currently on an Induction protocol. Creating a new treatment plan will invalidate the Induction protocol")); 
     result_set.push(result_set_1);
 
     add_treatment_plan("W", "Manual", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2");
 
-    result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("New Treatment Plan"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -149,7 +149,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yel
     add_patient('Regression', 'New_tp_induct_pat', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
   
-    result = banner_checker_includes('The patient\'s dosing method is currently set to : Induction');
+    result = banner_checker_includes(get_string_translation("The patient's dosing method is currently set to :")  + " " + get_string_translation("Induction"));
   
     //Pass in the result
     results_checker(result,test_title); 
@@ -245,7 +245,7 @@ function tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unl
     var tp_drop_down_path = tp_drop_down();
     tp_drop_down_path.ClickItem(1);
   
-    result_set_1 = tp_banner_warning_checker('This treatment plan ended');
+    result_set_1 = tp_banner_warning_checker(get_string_translation("This treatment plan ended on the"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -380,11 +380,11 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_a_non_warfarin_drug_chec
   }  
 } 
 //----------------------------------------
-function tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algorithm()
+function tc_edit_treatment_plan_change_dosing_method_to_another_algorithm()
 {
   try
   {  
-    var test_title = 'Edit treatment plan - Change Dosing Method to another maintenance algorithm'
+    var test_title = 'Edit treatment plan - Change Dosing Method to another algorithm'
     login(5, "Shared");
     add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
@@ -392,13 +392,13 @@ function tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algo
   
     var result_set = new Array();
   
-    var result_set_1 = edit_treatment_plan('Hillingdon');;
+    var result_set_1 = edit_treatment_plan('Manual');
     result_set.push(result_set_1);
   
     result_set_1 = get_treatment_plan_single_field('dm');
     result_set.push(result_set_1); 
 
-    result_set_1 = validate_top_patient_audit(test_title,'Edit Treatment Plan Details');
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation('Edit Treatment Plan Details'));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -413,7 +413,7 @@ function tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algo
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment_Plan";
-    var test_name = "tc_edit_treatment_plan_change_dosing_method_to_another_maintenance_algorithm";
+    var test_name = "tc_edit_treatment_plan_change_dosing_method_to_another_algorithm";
     handle_failed_tests(suite_name, test_name);
   }  
 } 
@@ -439,7 +439,7 @@ function tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_de
     var result_set_1 = validate_arrays_dont_match(clinical_details_before_edit, clinical_details_after_edit, test_title);
     result_set.push(result_set_1);
   
-    result_set_1 = validate_top_patient_audit(test_title, "Edit Treatment Plan Details");
+    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("Edit Treatment Plan Details"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -470,6 +470,7 @@ function tc_edit_treatment_plan_change_diagnosis()
   
     var clinical_details_before_edit = get_treatment_plan_single_field('diagnosis');    
     edit_treatment_plan_diagnosis();
+    WaitSeconds(2);
     var clinical_details_after_edit = get_treatment_plan_single_field('diagnosis');
   
     var result_set = new Array();
@@ -498,11 +499,11 @@ function tc_edit_treatment_plan_change_diagnosis()
   }
 } 
 //----------------------------------------
-function tc_treatment_plan_add_second_treatment_using_previous()
+function tc_treatment_plan_add_a_new_treatment_plan_after_a_treatment_has_been_added_selecting_yes_to_using_previous()
 {
   try
   {
-    var test_title = 'Treatment Plan - Add a New Treatment Using Previous Plan Details';
+    var test_title = 'Treatment Plan - Add a new treatment plan after a treatment has been added selecting yes to using previous';
 		login(5, "Shared");
     add_patient('Regression', 'Use_Previous', 'M', 'Shared');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
@@ -516,18 +517,20 @@ function tc_treatment_plan_add_second_treatment_using_previous()
     current_values = get_treatment_row_key_values(0, "current");
     add_treatment_plan('W', 'Manual', date, 'Shared', '2', '', true);
     
-    if(process_object_exists("contentText", "Treatments from previous plan"))
+    if(process_object_exists("contentText", get_string_translation("Treatments from previous plan")))
     {
       previous_values = get_treatment_row_key_values(0, "previous");
     }
     
     var result_set_1 = checkArrays(current_values, previous_values, "Compare Treatment Rows");
     result_set.push(result_set_1);
-    result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("New Treatment Plan"));
     result_set.push(result_set_1);
-    result_set_1 = validate_more_info_top_patient_audit("Is Treatment Plan In Use? set to [True]");
+    result_set_1 = validate_more_info_top_patient_audit(get_string_translation("Is Treatment Plan In Use?") + " " + get_string_translation("set to") + " [" + 
+                                                        get_string_translation("True") + "]");
     result_set.push(result_set_1);
-    result_set_1 = validate_more_info_top_patient_audit("Are Previous Treatment Plan's Treatments Relevant? set to [1]");                                           
+    result_set_1 = validate_more_info_top_patient_audit(get_string_translation("Are Previous Treatment Plan’s Treatments Relevant?") + " " 
+                                                        + get_string_translation("set to") + " " + "[1]");                                            
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -540,7 +543,7 @@ function tc_treatment_plan_add_second_treatment_using_previous()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment_Plan";
-    var test_name = "tc_treatment_plan_add_second_treatment_using_previous";
+    var test_name = "tc_treatment_plan_add_a_new_treatment_plan_after_a_treatment_has_been_added_selecting_yes_to_using_previous";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -557,30 +560,51 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
-    add_patient('Regression', 'Use_Previous', 'M', 'Shared');
+    add_patient('Regression', 'Future_Appointment', 'M', 'Shared');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "7", "2.5");
     
     Log.Message(clinic_name);
     Log.Message(clinic_date);
     tsa_clinic_make_appointment(clinic_name, clinic_date);
-    
+     
     var date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
     var msg = add_treatment_plan("Warfarin", "Manual", date, "Shared", "2", "", false);
     
+    //This will need to become something better also (it's yucky) once I get another method/test that requires it
     clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%A %d-%B-%Y");
-    var expected_msg = "This patient has the following booked appointment(s):" + "\r\n\r\n"
-                        + clinic_date + " at 12:10 [INR Test]" + "\r\n\r\n" + "All appointments will be cancelled.";
-    clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%d-%b-%Y");
+    var clinic_day = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%A");
+    var clinic_day_num = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%d");
+    var clinic_month = set_italian_long_month(aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%B"));
+    var clinic_year = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%Y");
     
-    var result_set_1 = compare_values(aqString.Trim(msg, aqString.stAll), aqString.Trim(expected_msg, aqString.stAll));
+    //Way too much happening here now needs to be in a test step but not got enough time right now
+    if(language == "Italian")
+    {
+      var expected_msg = get_string_translation("This patient has the following booked appointment(s):") + "\r\n\r\n"
+      + get_string_translation(clinic_day) + " " + clinic_day_num + "-" + clinic_month + "-" + clinic_year + " " + get_string_translation("at")
+      + " " + "12:10" + " (" + get_string_translation("INR Test") + ")" + "\r\n\r\n" 
+      + get_string_translation("All appointments will be cancelled.");
+    }
+      else
+      {
+       var expected_msg = ("This patient has the following booked appointment(s):") + "\r\n\r\n"
+                          + clinic_date + " at 12:10" + "[INR Test]" + "\r\n\r\n" 
+                          + ("All appointments will be cancelled.");
+      }
+     
+    //Setting back to short month for the audit check                     
+    var clinic_month = (aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%B"));
+    
+    var result_set_1 = compare_values(aqString.Trim(msg, aqString.stAll), aqString.Trim(expected_msg, aqString.stAll),test_title);
     result_set.push(result_set_1); 
     
-    result_set_1 = validate_top_patient_audit(test_title, "New Treatment Plan");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("New Treatment Plan"));
     result_set.push(result_set_1);
     
-    result_set_1 = validate_more_info_top_patient_audit("Appointment record [" + clinic_date 
-                                                + "] was updated. Status changed from [Booked] to [Cancelled]");
+    result_set_1 = validate_more_info_top_patient_audit("Appointment " + get_string_translation("record") + " [" + clinic_day_num + "-" + get_string_translation(clinic_month) + "-" + clinic_year +"] " 
+                                                         + get_string_translation("was updated") + ". "  + get_string_translation("Status") + " " + get_string_translation("changed from") 
+                                                         + " [" + get_string_translation("Booked") + "]" + get_string_translation("to") + " [" + get_string_translation("Cancelled") + "]");
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);

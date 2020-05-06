@@ -147,8 +147,7 @@ function reset_user_password(username)
   
   var obj = wait_for_object(details_path, "idStr", "ResetPasswordLink", 2);
   click_navigation_wrapper(obj, INRstar_base(), "idStr", "modalDialogBox", 2);
-  var password_text = process_popup(get_string_translation("Reset Password"), get_string_translation("OK"));
-  //var password_text = process_popup("Reimpostare password", "OK");
+  var password_text = process_popup(get_string_translation("Reset Password"), "OK");
   
   var length = password_text.length;
   var new_length = length - 8;
