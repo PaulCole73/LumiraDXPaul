@@ -347,7 +347,7 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
 {
   Goto_Patient_Treatment_Plan();
   var current_drug = clinical_tp_details().Panel(3).Label("DrugName_DetachedLabel").innerText;
-  if(current_drug != "Warfarin")
+  if(current_drug != get_string_translation("Warfarin"))
   {
     main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(0).Button("AddPatientTreatmentPlanLink").Click();
   }
@@ -356,8 +356,8 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
     main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(1).Button("AddPatientTreatmentPlanLink").Click();
   }
     
-  process_popup("Confirmation Required", "Confirm");
-  process_popup("New treatment plan will invalidate Induction protocol", "OK");
+  process_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
+  process_popup(get_string_translation("New treatment plan will invalidate Induction protocol"),"OK");
   WaitSeconds(1, "Waiting to go to Add Treatment Plan...");
 }
 //-------------------------------------------------------------------------------

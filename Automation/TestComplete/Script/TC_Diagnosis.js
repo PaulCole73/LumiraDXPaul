@@ -40,7 +40,6 @@ function tc_diagnosis_edit_diagnosis()
     var test_title = "Diagnosis - Edit a diagnosis";
     login(9, "Shared");
     
-    var original_data = new Array();
     var edited_data = new Array();
     var result_set = new Array();
   

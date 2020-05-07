@@ -32,7 +32,6 @@ function ts_master_patient_italy(send_mail)
   
   email_and_archive(send_mail, "ts_patient_master");
 }
-
 //--------------------------------------------------------------------------------
 //regression suites are used for specific regression runs
 function ts_staging_regression_patient()

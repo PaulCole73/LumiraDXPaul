@@ -68,6 +68,8 @@ function tsa_neqas_set_poct_active_batches(no_batches_to_set)
 function tsa_neqas_add_eqc_result(poct_batch, int_inr, ext_inr)
 {
   Goto_Options_EQC();
+  var poct_inr = get_string_translation(int_inr);
+  var external_inr = get_string_translation(ext_inr);
     
   options_eqc_form_buttons().Panel(0).Button("AddEQA").Click();
 
@@ -79,9 +81,9 @@ function tsa_neqas_add_eqc_result(poct_batch, int_inr, ext_inr)
   
   options_eqc_edit_form_buttons().Panel(4).Select("NPTBatchNumber").ClickItem(poct_batch);
   
-  options_eqc_edit_form_buttons().Panel(5).Select("InternalINR").ClickItem(int_inr);
+  options_eqc_edit_form_buttons().Panel(5).Select("InternalINR").ClickItem(poct_inr);
 
-  options_eqc_edit_form_buttons().Panel(6).Select("ExternalINR").ClickItem(ext_inr);
+  options_eqc_edit_form_buttons().Panel(6).Select("ExternalINR").ClickItem(external_inr);
     
   options_eqc_edit_form_buttons().Panel(7).SubmitButton("AddEQCResult").Click();
   
@@ -111,10 +113,10 @@ function tsa_neqas_delete_entries()
   
   do
   {
-    if(table_data.Cell(1,0).contentText != "There are no EQCs recorded")
+    if(table_data.Cell(1,0).contentText != get_string_translation("There are no EQCs recorded"))
     {
       var button = options_eqc_form_buttons().Table("LocationsEQCTable").Cell(row_count - 1, 7).Button("DeleteIQC").Click();
-      process_popup("Confirmation Required", "Confirm");
+      process_popup(get_string_translation("Confirmation Required"),get_string_translation("Confirm"));
       
       row_count -= 1;
     }

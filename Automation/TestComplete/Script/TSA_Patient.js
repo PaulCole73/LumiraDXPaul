@@ -214,7 +214,7 @@ function banner_checker(exp_err_mess)
   } 
   else 
   {
-    Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
+    Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_err_mess + " // And I was looking for //" + exp_err_mess);
     return false;
   }
 } 
@@ -232,7 +232,7 @@ function banner_checker_includes(exp_err_mess)
   } 
   else 
   {
-    Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_err_mess)
+    Log.Message('Message was displayed but the text did not match the expected result it was ' + actual_err_mess + " // And I was looking for //" + exp_err_mess);
     return false;
   }
 } 

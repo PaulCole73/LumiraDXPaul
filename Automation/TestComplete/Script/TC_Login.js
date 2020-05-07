@@ -27,7 +27,10 @@ function tc_log_on_to_inrstar_no_credentials()
   {
     var test_title = 'Login - Log on to INRstar no credentials'
     login("", "");
-    tsv_logoff_inrstar('1',get_string_translation('The login details are incorrect, please re-enter'));
+    
+    var results = tsv_logoff_inrstar('1',get_string_translation("The login details are incorrect, please re-enter"));
+    results_checker(results, test_title);
+  
   }
   catch(e)
   {

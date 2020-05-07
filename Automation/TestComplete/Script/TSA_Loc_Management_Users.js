@@ -137,19 +137,23 @@ function reset_user_permissions_to_readonly(username)
   var permission_update_button = permissions_panel.Panel(0).SubmitButton("Update").Click();
 }
 //--------------------------------------------------------------------------------
+//function reset_user_password()
 function reset_user_password(username)
 {
   Goto_Manage_User(username);
-  
   var details_path = location_management_user_details_tab();
   var full_name = details_path.Panel("Fullname").Label("Fullname_DetachedLabel").innerText;
   
   var obj = wait_for_object(details_path, "idStr", "ResetPasswordLink", 2);
   click_navigation_wrapper(obj, INRstar_base(), "idStr", "modalDialogBox", 2);
-  var password_text = process_popup("Reset Password", "OK");
+  var password_text = process_popup(get_string_translation("Reset Password"), "OK");
+  
+  var length = password_text.length;
+  var new_length = length - 8;
+  var new_password = aqString.SubString(password_text, new_length, 8);
   
   var user_data = new Array();
-  user_data.push(full_name, password_text);
+  user_data.push(full_name, new_password);
   
   return user_data;
 }
@@ -161,17 +165,18 @@ function disable_user_account(username)
   var details_path = location_management_user_details_tab();
   var disable_user_button = details_path.Panel(0).Button("DisableUserAccountLink").Click();
   
-  var popup_text = process_popup("Confirmation Required", "Confirm");
+  var popup_text = process_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
   
   return popup_text;
 }
 //--------------------------------------------------------------------------------
 function enable_user_account(username)
 {
-  var disabled_user = username + " (disabled)";
+  var disabled_user = username + " (" + get_string_translation("disabled") + ")";
 
   Goto_Manage_User(disabled_user);
   
   var details_path = location_management_user_details_tab();
   var enable_user_button = details_path.Panel(0).Button("EnableUserAccountLink").Click();
 }
+//--------------------------------------------------------------------------------

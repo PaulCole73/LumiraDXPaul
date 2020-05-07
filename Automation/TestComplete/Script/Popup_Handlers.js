@@ -11,7 +11,8 @@
 //-------------------------------------------------------------------------------
 // Process Popup
 //Test complete can cache objects on find calls
-//this improves optimisation but can cause issues when checking object properties
+//this improves optimisation but can cause issues
+//when checking object properties
 //when checking, check additional properties, height/visible updates dynamically
 function process_popup(header, button)
 {
@@ -32,13 +33,14 @@ function process_popup(header, button)
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
   if (wbx.Exists == false || wbx.Height == 0)
   { 
-    Log.Message("'" + header + "' box not displayed");
+    //Log.Message("'" + header + "' box not displayed");
     return "";
   }
   else
   { 
     Log.Message("'" + header + "' box displayed");
     var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", button, "BUTTON");
+    
     if (wb_Ok.Exists == false || wb_Ok.Height == 0)
     {
       Log.Message("'" + header + "' "+ button +" button not found");
@@ -51,7 +53,7 @@ function process_popup(header, button)
       Sys.HighlightObject(wb_Ok, 2);
       wb_Ok.Click();
       return text;
-    }
+      }
   }
 }
 //-------------------------------------------------------------------------------
@@ -238,11 +240,11 @@ function process_email_popup(header, button)
   var wbx = INRstarV5.NativeWebObject.Find("innerText", header);
   if (wbx.Exists == false || wbx.Height == 0)
   { 
-    Log.Message(header + " box not displayed");
+    //Log.Message(header + " box not displayed");
     return;
   }
 
-  Log.Message(header + " box displayed");
+  //Log.Message(header + " box displayed");
   INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(0).Textbox("emailAddress").Text = "test@lumiradx.com";
   INRstarV5.Panel(3).Panel("modalDialogBox").Panel("Email").Panel(1).Textbox("confirmEmailAddress").Text = "test@lumiradx.com";
     
@@ -254,7 +256,7 @@ function process_email_popup(header, button)
   }
   else
   {
-    Log.Message("Clicking " + header + " - " + button + " button");
+    //Log.Message("Clicking " + header + " - " + button + " button");
     Sys.HighlightObject(wb_Ok, 2);
     wb_Ok.Click();
     return;

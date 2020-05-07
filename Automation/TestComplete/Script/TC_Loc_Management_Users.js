@@ -15,7 +15,7 @@ function tc_users_add_a_new_user()
     var username = add_new_user("add", "user", "add", new_pass);
     
     var result_set = new Array();
-    var result_set_1 = validate_top_system_audit(test_title, "Add User");
+    var result_set_1 = validate_top_system_audit(test_title,get_string_translation("Add User"));
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
@@ -48,7 +48,7 @@ function tc_users_manage_user_permissions()
     manage_user_permissions(username, "clerical 1");
     
     var result_set = new Array();
-    var result_set_1 = validate_top_system_audit(test_title, "Edit user permissions");
+    var result_set_1 = validate_top_system_audit(test_title, get_string_translation("Edit user permissions"));
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
@@ -77,15 +77,15 @@ function tc_users_manage_change_permissions_to_read_only()
     var new_pass = get_login_details(21);
     var username = add_new_user("read", "only", "read", new_pass);
     
-    manage_user_permissions(username, "clerical 1");
-    
+    manage_user_permissions(username, "clerical 1");    
     reset_user_permissions_to_readonly(username);
     
     var result_set = new Array();
-    var result_set_1 = validate_top_system_audit(test_title, "Edit user permissions");
+    var result_set_1 = validate_top_system_audit(test_title,get_string_translation("Edit user permissions"));
     result_set.push(result_set_1);
     
-    result_set_1 = validate_more_info_top_system_audit("Role changed from [Clerical 1] to deleted.");
+    result_set_1 = validate_more_info_top_system_audit(get_string_translation("Role changed from") + " [" + get_string_translation("Clerical 1") + "] " 
+                                                       + get_string_translation("to deleted") + ".");
     result_set.push(result_set_1);
     
     Log_Off();
@@ -93,8 +93,7 @@ function tc_users_manage_change_permissions_to_read_only()
     
     Goto_Patient_Search();
     var obj = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("ManagePatients").Panel("PatientTab").Link("AddPatientDetailsTab"); 
-
-    
+  
     result_set_1 = false;
     if(obj.onclick == null)
     {
@@ -129,23 +128,31 @@ function tc_users_reset_user_password()
     var username = add_new_user("reset", "password", "reset", new_pass);
     
     var user_data = reset_user_password(username);
-    var new_password = aqString.SubString(user_data[1], 51, 8);
+    var new_password = user_data[1];
     
     var result_set = new Array();
-    var result_set_1 = validate_top_system_audit(test_title, "Reset Password");
+    var result_set_1 = validate_top_system_audit(test_title, get_string_translation("Reset Password"));
     result_set.push(result_set_1);
     
-    result_set_1 = validate_more_info_top_system_audit("User record ["+ user_data[0] +"] was updated.");
+    result_set_1 = validate_more_info_top_system_audit("User" + " " + (get_string_translation("record") + " ["+ user_data[0] +"] " + get_string_translation("was updated") + "."));
     result_set.push(result_set_1);
     
     Log_Off();
     
     login(username, "Shared", new_password);
     
-    var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
+    if(language == "English")
+    {
+      var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
+    }
+     else
+     {
+       var expected_text = "ITALIAN END USER PROGRAM LICENCE AGREEMENT";
+     }
+     
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;
     
-    result_set_1 = compare_values(expected_text, header_text, "Confirm License Page Appears");
+    result_set_1 = compare_values(expected_text, header_text,"Confirm License Page Appears");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
@@ -177,23 +184,17 @@ function tc_users_disable_user()
     var text = disable_user_account(username);
     
     var result_set = new Array();
-    var result_set_1 = validate_top_system_audit(test_title, "Disable User");
+    var result_set_1 = validate_top_system_audit(test_title, get_string_translation("Disable User"));
     result_set.push(result_set_1);
     
-    result_set_1 = validate_more_info_top_system_audit("Account Enabled changed from [True] to [False].");
+    result_set_1 = validate_more_info_top_system_audit(get_string_translation("Account Enabled") + " " + get_string_translation("changed from") + " [" + get_string_translation("True") + "]" 
+                                                       + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".");
     result_set.push(result_set_1);
     
     Log_Off();
     
     login(username, "Shared", new_pass);
-    
-    var logon_page_path = log_on_form().Panel("LoginArea").Panel("Logon");
-    
-    result_set_1 = false;
-    if(logon_page_path.Exists == true)
-    {
-      result_set_1 = true;
-    }
+    var result_set_1 = tsv_logoff_inrstar('1',get_string_translation("The login details are incorrect, please re-enter"));
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
@@ -224,17 +225,26 @@ function tc_users_enable_user()
     enable_user_account(username);
     
     var result_set = new Array();
-    var result_set_1 = validate_top_system_audit(test_title, "Enable User");
+    var result_set_1 = validate_top_system_audit(test_title, get_string_translation("Enable User"));
     result_set.push(result_set_1);
     
-    result_set_1 = validate_more_info_top_system_audit("Account Enabled changed from [False] to [True].");
+    result_set_1 = validate_more_info_top_system_audit(get_string_translation("Account Enabled") + " " + get_string_translation("changed from") + " [" + get_string_translation("False") + "]" 
+                                                       + get_string_translation("to") + " [" + get_string_translation("True") + "]" + ".");
     result_set.push(result_set_1);
     
     Log_Off();
     
     login(username, "Shared", new_pass);
     
-    var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
+    if(language == "English")
+    {
+      var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
+    }
+     else
+     {
+       var expected_text = "ITALIAN END USER PROGRAM LICENCE AGREEMENT";
+     }
+     
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;
     
     result_set_1 = compare_values(expected_text, header_text, "Confirm License Page Appears");

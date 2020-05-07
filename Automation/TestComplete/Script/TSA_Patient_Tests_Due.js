@@ -7,8 +7,6 @@ function get_tests_due_patient(name)
 {
   Goto_Tests_Due();
   WaitSeconds(1); 
-  var is_patient_in_list = false; 
- 
   var tests_due_table_path = tests_due_table();
  
   for(var i = 1; i < tests_due_table_path.rowcount; i++) 
@@ -16,18 +14,14 @@ function get_tests_due_patient(name)
     var data = tests_due_table_path.Cell(i, 0).Link("PatientLink").contentText;
     if (data == name)
     {
-      is_patient_in_list = true;
+      Log.Message("This is who I was looking for \\" + name + " \\This is who I found \\" + data + " \\")
+      return true;
     } 
-  }
-  
-  if(is_patient_in_list == true)
-  {
-    return true;
-  }
-  else
-  {
-    Log.Warning('Patient ' + name + ' was not found on the tests due list')
-    return false;
+      else
+        {
+        Log.Warning('Patient ' + name + ' was not found on the tests due list')
+        return false;
+        }
   }
 }
 //--------------------------------------------------------------------------------

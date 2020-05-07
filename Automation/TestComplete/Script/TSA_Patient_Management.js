@@ -159,7 +159,6 @@ function reactivate_patient(drug, dm, start_date)
       var year = aqConvert.DateTimeToFormatStr(aqDateTime.AddMonths(aqDateTime.Today(), -24), "%Y"); 
     
       datepicker.Panel(0).Panel(0).Select(1).ClickItem(year);
-      WaitSeconds(2);
       datepicker.Panel(0).Panel(0).Select(0).ClickItem(get_string_translation("Jun"));        
       datepicker.Table(0).Cell(3, 3).Link(0).Click();
     }

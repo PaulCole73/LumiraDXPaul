@@ -306,7 +306,7 @@ function validate_top_system_audit(test_case_title, w_data)
   }
   else 
   {
-    Log.Message(test_case_title + "Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
     return false;
   }
 }
@@ -375,12 +375,12 @@ function validate_more_info_top_system_audit(w_data)
 
   if(wt_row.includes(w_data))
   {
-    Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
+    Log.Message('Audit data found // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
     return true;
   }
   else 
   {
-    Log.Message("Audit data not found " + wt_row + "\r\n\r\n" + "This is what I am looking for // " + w_data);
+    Log.Message("Audit data not found // " + wt_row + "// - This is what I am looking for // " + w_data + ' //');
     return false;
   }
 }
@@ -566,6 +566,54 @@ function set_month(p_m)
   return w_Month;
 }
 //-----------------------------------------------------------------------------------
+function set_italian_long_month(month)
+{
+ var long_month;  
+
+ switch(month)
+ {
+    case "Jan":
+    long_month = "gennaio";
+    break;
+    case "Feb":
+    long_month = "febbraio";
+    break;  
+    case "Mar":
+    long_month = "marzo";
+    break;  
+    case "Apr":
+    long_month = "aprile";
+    break;  
+    case "May":
+    long_month = "maggio";
+    break;  
+    case "Jun":
+    long_month = "giugno";
+    break;  
+    case "Jul":
+    long_month = "luglio";
+    break;  
+    case "Aug":
+    long_month = "agosto";
+    break;  
+    case "Sep":
+    long_month = "settembre";
+    break;  
+    case "Oct":
+    long_month = "ottobre";
+    break;  
+    case "Nov":
+    long_month = "novembre";
+    break;
+    case "Dec":
+    long_month = "dicembre";
+    break;    
+    default:
+    Log.Message("Couldn't  find the month you were looking for");    
+ }                  
+  return long_month;
+}
+//-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
 {
   var INRstarV5 = INRstar_base();
@@ -637,7 +685,8 @@ function get_string_translation(translation_word)
  {
    if (driver.Value(0) == translation_word)
    {
-     row_value = driver.Value(lookup_column);  
+     row_value = driver.Value(lookup_column);
+
      DDT.CloseDriver(DDT.CurrentDriver.Name);
      return row_value;     
    }     
@@ -646,11 +695,15 @@ function get_string_translation(translation_word)
  Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
-
-function testing()
+//Just to quickly test things in the translation file
+function testing_translation()
 {
-  
-var test = (get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
+var test = get_string_translation("Please ensure that this patient has discontinued their warfarin treatment and has an INR" +
+     " less or equal to 3.0 (stroke prevention) or 2.5(DVT/PE) before commencing this treatment plan. Consult product literature for details");   
+
+// var test = "Account Enabled " + get_string_translation("changed from") + "[" + get_string_translation("True") + "]" 
+// + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".";
+
 //var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
 Log.Message(test)
 }
@@ -868,22 +921,22 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
     
     if(obj.Exists == false)
     {
-      Log.Message("--------------------- Slow performance. Waiting for " + obj_value + "... ---------------------");
+      //Log.Message("--------------------- Slow performance. Waiting for " + obj_value + "... ---------------------");
       WaitSeconds(wait_time, "Waiting for " + obj_value + "...");
     }
     else
     {
-      Log.Message(obj.Name + " is visible on screen: " + obj.VisibleOnScreen);
+     // Log.Message(obj.Name + " is visible on screen: " + obj.VisibleOnScreen);
       obj.scrollIntoView();
       
       if(obj.VisibleOnScreen)
       {
         is_obj_valid = true;
-        Log.Message("Object: " + obj.Name + " found.");
+        //Log.Message("Object: " + obj.Name + " found.");
       }
       else
       {
-        Log.Message("--------------------- Slow performance. Object currently not visible... ---------------------");
+        //Log.Message("--------------------- Slow performance. Object currently not visible... ---------------------");
         WaitSeconds(wait_time, "Waiting for " + obj.Name + "...");
       }
     }
@@ -891,7 +944,7 @@ function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, it
   while(is_obj_valid == false && counter < iterations);
   if(is_obj_valid == false)
   {
-    Log.Picture(Sys.Desktop, "--------------------- " + obj_value + " Timed-out ---------------------");
+    //Log.Picture(Sys.Desktop, "--------------------- " + obj_value + " Timed-out ---------------------");
     if(obj_value == "LogonPage")
     {
       restart_INRstar();
@@ -919,17 +972,17 @@ function click_navigation_wrapper(object, obj_root, obj_property, obj_value, dep
       {
         if(new_obj.VisibleOnScreen)
         {
-          Log.Message("--------- Reached new page after click. ---------")
+          //Log.Message("--------- Reached new page after click. ---------")
           is_valid_obj = true;
         }
         else
         {
-          Log.Message("Attempt: " + counter + ". Object not visible.")
+          //Log.Message("Attempt: " + counter + ". Object not visible.")
         }
       }
       else
       {
-        Log.Message("Attempt: " + counter + ". Object does not exist.")
+        //Log.Message("Attempt: " + counter + ". Object does not exist.")
       }
     }
     while(is_valid_obj == false && counter < 4);
