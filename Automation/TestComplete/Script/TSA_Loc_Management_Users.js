@@ -141,7 +141,6 @@ function reset_user_permissions_to_readonly(username)
 function reset_user_password(username)
 {
   Goto_Manage_User(username);
-  var username = "reset_password";
   var details_path = location_management_user_details_tab();
   var full_name = details_path.Panel("Fullname").Label("Fullname_DetachedLabel").innerText;
   

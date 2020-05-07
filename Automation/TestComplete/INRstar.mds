@@ -3291,7 +3291,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan_1" key="{29D7B81F-1AD4-49BE-8F62-57EA8D0FFAA0}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_Plan" key="{29D7B81F-1AD4-49BE-8F62-57EA8D0FFAA0}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>

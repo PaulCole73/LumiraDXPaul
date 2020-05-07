@@ -93,10 +93,8 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       }
 
       if (prev_plan_action == "Yes" || prev_plan_action == true)
-      {
-        {
+      {     
           Log.Message("Treatment uses previous details, save and exiting...");
-        }
       } 
         else
             {

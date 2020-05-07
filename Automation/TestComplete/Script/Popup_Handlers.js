@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------
 // Process Popup
 //Test complete can cache objects on find calls
-//this improves optimisation but can cause issues add_treatment_plan
+//this improves optimisation but can cause issues
 //when checking object properties
 //when checking, check additional properties, height/visible updates dynamically
 function process_popup(header, button)
