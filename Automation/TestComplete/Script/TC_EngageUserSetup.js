@@ -29,7 +29,7 @@ function tc_engage_DDD_user_setup(iterations)
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "7");
     
     var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics(language);
+    var patient_demographics = get_patient_demographics();
     var email_address = patient_demographics[19];
     var dob = patient_demographics[5]; //DD/MM/YYYY
     format_dob = aqConvert.DateTimeToFormatStr(dob, "%d/%m/%Y");
