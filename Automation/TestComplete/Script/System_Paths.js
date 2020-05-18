@@ -1100,7 +1100,7 @@ function ddd_initial_enrol_button_path()
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelEM = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("EngageMarketing");
-  var ddd_enrol_button = panelEM.Table("ProgrammesTable").Cell(0, 1).Panel(1).Button("ProgramEnrolButton_Digital_dosing_diary");
+  var ddd_enrol_button = panelEM.Table("ProgrammesTable").Cell(0, 0).Panel(1).Button("ProgramEnrolButton_Digital_dosing_diary");
     
   return ddd_enrol_button;
 }

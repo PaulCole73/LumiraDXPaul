@@ -382,5 +382,8 @@
 			<child name="TC_Bridging_935" key="{C35944AE-FBB2-4976-BCDF-851A2A6D4ACB}" path="TC_Bridging_935.js" />
 			<child name="TC_Bridging_1176" key="{9EEFDA0B-9A8F-47A3-9EA2-F7FBCAEA9067}" path="TC_Bridging_1176.js" />
 		</folder>
+		<folder name="NonFunctionalSetup">
+			<child name="TC_EngageUserSetup" key="{E6409914-8221-40F3-859F-435EBB1F8192}" path="TC_EngageUserSetup.js" />
+		</folder>
 	</children>
 </Root>

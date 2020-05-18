@@ -14,8 +14,9 @@ function log_off_engage()
   WaitSeconds(2, "Waiting to log off...");
 }
 //--------------------------------------------------------------------------------
-function register_engage(email_address)
+function register_engage(email_address,format_dob)
 {
+  //TestedApps.engage.Run();
   Sys.Browser("chrome").BrowserWindow(0).Maximize();
   Sys.Browser("chrome").BrowserWindow(0).SetFocus();  
 
@@ -25,17 +26,20 @@ function register_engage(email_address)
   //enter email into email box
   engage_username_register().SetText(email_address);
   WaitSeconds(2);
+  engage_dob_register().SetText(format_dob);
+  //close the date picker
+  engage_close_dob_entry().Click();
   engage_send_code_register().Click();
   WaitSeconds(2);
       
   //request code from engage
   var code = get_engage_login_code();
   
-  process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "It's on its way", "OK");
+  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV",get_string_translation("It's on its way"), "OK");
   WaitSeconds(2);
   //enter received code into ID box 
   engage_code_register().SetText(code);
-  engage_next_button_register().Click();
+  engage_submit_button_register().Click();
   WaitSeconds(2);
     
   //set password for engage
@@ -45,7 +49,7 @@ function register_engage(email_address)
   engage_password_confirm_button().Click();
   WaitSeconds(2);
   
-  process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Your password has been reset", "OK");
+  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", get_string_translation("Your password has been reset"), "OK");
   WaitSeconds(2);
 }
 //--------------------------------------------------------------------------------
@@ -64,30 +68,30 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
   WaitSeconds(1);
   if((is_box_1_ticked == null && is_box_2_ticked == null) || (is_box_1_ticked == true && is_box_2_ticked == true) )
   {
-    var obj_root = engage_base().Panel(0).Panel(0).Panel(0).Panel(1);
-    wait_for_object(obj_root, "idStr", "button__home_questionnaire_submit", 6);
+    var obj_root = engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1);
+    wait_for_object(obj_root, "idStr", "button__engage_home_questionnaire_submit", 6);
   
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_engage_home_questionnaire_submit").Click();
     WaitSeconds(2);
-    var text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Agreements Complete", "OK");
+    var text = process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Agreements Complete", "OK");
     return text;
   }
   else
   {
     if(is_box_1_ticked == true)
     {
-      engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+      engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     }
     if(is_box_2_ticked == true)
     {
-      engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+      engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
     }
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_home_questionnaire_submit").Click();
+    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_engage_home_questionnaire_submit").Click();
     WaitSeconds(2);
-    text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Incomplete Agreements", "OK");
+    text = process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Incomplete Agreements", "OK");
     return text;
   }
   

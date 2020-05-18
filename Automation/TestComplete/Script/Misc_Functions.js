@@ -12,12 +12,21 @@
 //-----------------------------------------------------------------------------------
 
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsStagingItalyV4";
-var environmentname = "italy-endor";
-var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
-var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
-
 var language = "Italian";
+
+var environment = "INRstarWindowsIt-dev1";
+var environmentname = "it-dev1";
+var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
+
+if (language == "English")
+{
+  var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
+}
+
+else 
+{
+  var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
+}
 
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
