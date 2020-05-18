@@ -428,11 +428,11 @@ function add_manual_treatment(date, inr, dose, review, tm)
   test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
   if(review != "1")
   {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + get_string_translation(" Days"));
+    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Days"));
   }
   else
   {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + get_string_translation(" Day"));
+    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
   }
   test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
