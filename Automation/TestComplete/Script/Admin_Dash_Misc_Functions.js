@@ -70,6 +70,9 @@ function set_admin_dash_url()
     case base + "Integration": 
     admin_dash_url = "https://admin-integration.lumiradxcaresolutions.com/";
     break;
+    case base + "ItalyDev1": 
+    admin_dash_url = "https://admin-it-dev1.caresolutions.lumiradx.com/";
+    break;
     case base + "CoruscantV4": 
     admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
     break;

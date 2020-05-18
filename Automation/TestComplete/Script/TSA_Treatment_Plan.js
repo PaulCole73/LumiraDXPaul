@@ -130,7 +130,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
               }
               //amended .value to .wText to see if this fixed the translation issues
               var item_val = treatment_plan_warfarin_details_path.Panel(0).Select("DosingMethod").wText;
-              process_popup(get_string_translation(("More information")) + " - " + item_val, get_string_translation("Ok"));
+              process_popup(get_string_translation(("More information")) + " - " + item_val, "Ok");
 
               treatment_plan_warfarin_details_path.Panel(1).Select("TestingMethod").ClickItem("PoCT");
               treatment_plan_warfarin_details_path.Panel(2).Select("MaxReview").ClickItem("70 " + get_string_translation("Days"));
