@@ -26,7 +26,6 @@ function register_engage(email_address,format_dob)
   //enter email into email box
   engage_username_register().SetText(email_address);
   WaitSeconds(2);
-  //engage_dob_register().Click();
   engage_dob_register().SetText(format_dob);
   //close the date picker
   engage_close_dob_entry().Click();
@@ -36,7 +35,6 @@ function register_engage(email_address,format_dob)
   //request code from engage
   var code = get_engage_login_code();
   
-  //process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", get_string_translation("It's on its way"), "OK");
   process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV",get_string_translation("It's on its way"), "OK");
   WaitSeconds(2);
   //enter received code into ID box 
