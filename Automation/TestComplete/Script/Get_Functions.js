@@ -43,7 +43,7 @@ function get_patient_surname()
 }
 //-----------------------------------------------------------------------------------
 //gets all of the patient demographics
-function get_patient_demographics(language)
+function get_patient_demographics()
 {
   Goto_Patient_Demographics();
   var patient_demographics_tab_path = patient_demographics_tab_demographics();
