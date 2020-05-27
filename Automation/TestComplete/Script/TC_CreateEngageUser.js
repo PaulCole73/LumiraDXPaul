@@ -2,16 +2,26 @@
 //USEUNIT TSA_Patient
 //USEUNIT Failed_Test_Handlers
 //USEUNIT engage_System_Paths
-//USEUNIT TSA_Clinics_Appointments
-//USEUNIT TSA_External_Results_HL7
 //USEUNIT System_Paths
+//USEUNIT Tested_Apps
+//USEUNIT Misc_Functions
+//USEUNIT TC_Engage
+//--------------------------------------------------------------------------------
+function ts_master_create_engage_user(send_mail)
+{
+  reset_folder();
+  
+  tc_create_patient_enrolled_onto_engage()
+ 
+  email_and_archive(send_mail, "ts_create_engage_master");
+}
 //--------------------------------------------------------------------------------
 function tc_create_patient_enrolled_onto_engage()
 {
   
-var iterations = 1
+var iterations = 5
 
-for(i = 2 ; i <= iterations ; i++)
+for(i = 0 ; i <= iterations ; i++)
         { 
           tc_engage_DDD_user_setup(i);
         }
@@ -34,6 +44,7 @@ function tc_engage_DDD_user_setup(iterations)
     //write email address to output file
     var w_outfile = "C:\\Automation\\engageUsernames.csv"
     aqFile.WriteToTextFile(w_outfile, email_address + "\r\n", aqFile.ctANSI, false);
+    WaitSeconds(2);
     var dob = patient_demographics[5]; //DD/MM/YYYY
     format_dob = aqConvert.DateTimeToFormatStr(dob, "%d/%m/%Y");
     

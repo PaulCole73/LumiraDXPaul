@@ -64,7 +64,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Net 2.0 Client" key="{D6B9F5AF-E805-4376-9FFC-D1C287216850}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Net 2.0 Client" key="{D6B9F5AF-E805-4376-9FFC-D1C287216850}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Alderaan" key="{8A3FC114-B447-49D3-A6DC-619945EC6FA3}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2124,8 +2124,10 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Create_engage_Users" key="{EBC1FDB4-D11C-45AC-84E3-93DD655445CE}" group="False" enabled="True" testMoniker="{E6409914-8221-40F3-859F-435EBB1F8192}tc_create_patient_enrolled_onto_engage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters />
+									<testItem name="TS_Create_engage_Users" key="{EBC1FDB4-D11C-45AC-84E3-93DD655445CE}" group="False" enabled="True" testMoniker="{E6409914-8221-40F3-859F-435EBB1F8192}ts_master_create_engage_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
 										<children />
 									</testItem>
 									<testItem name="Re-try Failed Tests_1_1" key="{32786A42-FE07-422A-BF51-64060CC37B89}" group="False" enabled="False" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2145,7 +2147,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Net 4.0 Client" key="{5E72C684-6C98-4C05-9AD9-0096F16163BA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Net 4.0 Client" key="{5E72C684-6C98-4C05-9AD9-0096F16163BA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Alderaan_Net4" key="{1A531187-C3C1-4E8B-B457-C8D4CAB6F271}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
