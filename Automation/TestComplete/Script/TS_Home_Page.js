@@ -15,7 +15,7 @@ function ts_master_homepage(send_mail)
   tc_home_page_view_overdue_inr_test_message();
   //tc_home_page_view_exceeded_suspension_period_message();
   //tc_home_page_unsuspend_patient_through_message();
-  //tc_home_page_view_patient_transfer_request();
+//  tc_home_page_view_patient_transfer_request();
 //  tc_home_page_accept_patient_transfer_request();
 //  tc_home_page_decline_patient_transfer_request();
 //  tc_home_page_view_patient_transfer_requests_not_yet_accepted();
