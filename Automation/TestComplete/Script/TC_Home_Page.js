@@ -53,7 +53,7 @@ function tc_home_page_view_exceeded_suspension_period_message()
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     suspend_patient_days(0);
     
@@ -61,10 +61,10 @@ function tc_home_page_view_exceeded_suspension_period_message()
     var result_set_1 = check_patient_on_exceed_suspension_period_list(message_name)
     result_set.push(result_set_1);
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
     //Check the audit
-    var result_set_1 = validate_top_patient_audit(test_title, "Suspend Patient");
+    var result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Suspend Patient"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -94,7 +94,7 @@ function tc_home_page_unsuspend_patient_through_message()
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     suspend_patient_days(0);
@@ -105,21 +105,21 @@ function tc_home_page_unsuspend_patient_through_message()
     result_set.push(result_set_1);
 
     //Warning dialogue confirmation
-    var expected_message = 'The patient(s) have been successfully unsuspended.' +
-    'The patient(s) may have been treated elsewhere during the suspension period. ' +
-    'For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments. ' +
-    'For non-warfarin patients you should ensure review information is up to date.';
+    var expected_message = get_string_translation("The patient(s) have been successfully unsuspended.") +
+    get_string_translation("The patient(s) may have been treated elsewhere during the suspension period.") + " " +
+    get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.")  + " " +
+    get_string_translation("For non-warfarin patients you should ensure review information is up to date.");
      
     //Get warning message text
-    var warning_message = process_popup("Unsuspend Patients","OK");
+    var warning_message = process_popup(get_string_translation("Unsuspend Patients"),"OK");
     
     result_set_1 = compare_values(warning_message, expected_message, test_title);
     result_set.push(result_set_1);
  
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Unsuspend Patient");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Unsuspend Patient"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -148,7 +148,7 @@ function tc_home_page_view_patient_transfer_request()
     add_patient('Regression', 'Transfer_request', 'M', 'Shared');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
@@ -168,12 +168,12 @@ function tc_home_page_view_patient_transfer_request()
     //Login to original location
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
-    process_popup('Please Confirm', 'Confirm');
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Requested change of patient's testing practice");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Requested change of patient's testing practice"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -202,7 +202,7 @@ function tc_home_page_accept_patient_transfer_request()
     add_patient('Regression', 'Accept_transfer_request', 'M', 'Shared');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
   
     //Transfer the testing location
@@ -227,7 +227,7 @@ function tc_home_page_accept_patient_transfer_request()
     result_set.push(result_set_1);
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Transfer patient testing location accepted");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Transfer patient testing location accepted"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -330,7 +330,7 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
     
     patient_search(pat_nhs);
     
-    process_popup('Please Confirm', 'Confirm');
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
     //Check the audit
     result_set_1 = validate_top_patient_audit(test_title, "Requested change of patient's testing practice");

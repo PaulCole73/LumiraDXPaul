@@ -707,13 +707,9 @@ function get_string_translation(translation_word)
 //Just to quickly test things in the translation file
 function testing_translation()
 {
-var test = get_string_translation("Please ensure that this patient has discontinued their warfarin treatment and has an INR" +
-     " less or equal to 3.0 (stroke prevention) or 2.5(DVT/PE) before commencing this treatment plan. Consult product literature for details");   
+var test = get_string_translation("Unsuspend Patient");   
 
-// var test = "Account Enabled " + get_string_translation("changed from") + "[" + get_string_translation("True") + "]" 
-// + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".";
 
-//var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
 Log.Message(test)
 }
 //---------------------------------------------------------------------------------//
