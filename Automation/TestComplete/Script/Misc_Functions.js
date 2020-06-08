@@ -667,6 +667,29 @@ function setup_automation(new_config_file_name,locale)
   change_environments(new_config_file_name);
 }
 //-----------------------------------------------------------------------------------
+function get_inr_char(language)
+//because INR value of 2.4 is represented as 2,4 in Italy, return either . or ,
+{
+  var inr_char;
+  switch(language)
+ {
+   case "English":
+   inr_char = ".";
+   break;
+   case "Italian":
+   inr_char = ",";
+   break;
+   case "Spanish":
+   inr_char = ".";
+   break;
+   default:
+   Log.Message("You didn't pass in a language I recognise you passed in " + language);
+   break;
+ }
+ return inr_char;
+}
+//-----------------------------------------------------------------------------------
+
 function get_string_translation(translation_word)
 {
  var lookup_column;
