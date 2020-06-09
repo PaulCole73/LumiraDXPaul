@@ -636,7 +636,6 @@ function tc_treatment_refer_a_treatment()
   try
   {
     var test_title = 'Treatment - Refer a treatment'
-    var inr_char = get_inr_char(language);
     
     login(5, "Shared");
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
@@ -645,7 +644,7 @@ function tc_treatment_refer_a_treatment()
     
     WaitSeconds(6);
     
-    add_pending_maintenance_treatment("2" + inr_char + "0",(aqDateTime.Today()));
+    add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
   
     //Get all the patient details
     //var pat_nhs = get_patient_nhs();

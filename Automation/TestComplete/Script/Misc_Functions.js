@@ -265,6 +265,27 @@ function validate_top_patient_audit(test_case_title, w_data)
   }
 }
 //-----------------------------------------------------------------------------------
+//Checking bottom audit on the patient tab
+function validate_bottom_patient_audit(test_case_title, w_data)
+{  
+  Goto_Patient_Audit();
+  var patient_audit_path = patient_audit()
+  var first_row_entry = patient_audit_path.RowCount -1;
+  var audit_data = patient_audit_path.Cell(first_row_entry, 1).innerText;
+
+  if(audit_data == w_data)
+  {
+    Log.Message(test_case_title + "- Audit was written");
+    return true;
+  }
+  else 
+  {
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + " This is the actual audit // " 
+                                + audit_data + " // This is the expected audit // " + w_data + " //");
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
 //Checking specific audit on the patient tab
 function validate_specific_entry_patient_audit(item_no, data, title)
 {  
@@ -667,29 +688,6 @@ function setup_automation(new_config_file_name,locale)
   change_environments(new_config_file_name);
 }
 //-----------------------------------------------------------------------------------
-function get_inr_char(language)
-//because INR value of 2.4 is represented as 2,4 in Italy, return either . or ,
-{
-  var inr_char;
-  switch(language)
- {
-   case "English":
-   inr_char = ".";
-   break;
-   case "Italian":
-   inr_char = ",";
-   break;
-   case "Spanish":
-   inr_char = ".";
-   break;
-   default:
-   Log.Message("You didn't pass in a language I recognise you passed in " + language);
-   break;
- }
- return inr_char;
-}
-//-----------------------------------------------------------------------------------
-
 function get_string_translation(translation_word)
 {
  var lookup_column;

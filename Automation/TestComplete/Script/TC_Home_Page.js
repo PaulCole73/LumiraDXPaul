@@ -358,13 +358,12 @@ function tc_home_page_view_patient_with_incomplete_treatment()
   try 
   {
     var test_title = "Home Page - View the 'Patient with incomplete treatment'"
-    var inr_char = get_inr_char(language);
     
     login(5, "Shared");
     add_patient('Regression', 'Incomplete_treatment', 'M', 'Shared');
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "7", "2.5");
-    add_pending_maintenance_treatment("2" + inr_char + "4", aqConvert.StrToDate(aqDateTime.Today()));
+    add_pending_maintenance_treatment(get_string_translation("2.4"), aqConvert.StrToDate(aqDateTime.Today()));
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -411,19 +410,10 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
-    result_set = new Array();
+    //result_set = new Array();
     
     //Check the patient shows on the home page message for No Diagnosis
-    var result_set_1 = check_patient_with_no_diagnosis_or_tp_message(message_name)
-    result_set.push(result_set_1);
-    
-    patient_search(message_name);
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add Patient"));
-    result_set.push(result_set_1);
-		
-    //Validate the results sets is True
-    var results = results_checker_are_true(result_set);
+    var results = check_patient_with_no_diagnosis_or_tp_message(message_name)
 		
     //Pass in the result
     results_checker(results, test_title);
