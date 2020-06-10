@@ -642,7 +642,7 @@ function tc_treatment_refer_a_treatment()
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     
-    WaitSeconds(6);
+    //WaitSeconds(6);
     
     add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
   

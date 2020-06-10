@@ -246,21 +246,29 @@ function results_checker(result_set, test_case)
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
 //Checking top audit on the patient tab
-function validate_top_patient_audit(test_case_title, w_data)
+function validate_top_patient_audit(test_case_title, audit_action)
 {  
   Goto_Patient_Audit();
   var patient_audit_path = patient_audit()
   var audit_data = patient_audit_path.Cell(1, 1).innerText;
-
-  if(audit_data == w_data)
+  
+  if(audit_data == null || audit_action == null)
   {
-    Log.Message(test_case_title + "- Audit was written");
+    Log.Message("Fail - Data not found / Parameter value missing.");
+    Log.Message("Actual Audit: " + audit_data + "-------------- Expected Audit: " + audit_action);
+    return false;
+  } 
+
+  if(audit_data == audit_action)
+  {
+    Log.Message(test_case_title + " Test Passed - Patient audit record was found " + " This is the actual audit // " 
+                                + audit_data + " // This is the expected audit // " + audit_action + " //");
     return true;
   }
   else 
   {
     Log.Message(test_case_title + " Test Failed - Patient audit record not found " + " This is the actual audit // " 
-                                + audit_data + " // This is the expected audit // " + w_data + " //");
+                                + audit_data + " // This is the expected audit // " + audit_action + " //");
     return false;
   }
 }
@@ -324,19 +332,19 @@ function validate_more_info_specific_entry_patient_audit(item_no, data, title)
 }
 //-----------------------------------------------------------------------------------
 //Checking top audit on the system audit
-function validate_top_system_audit(test_case_title, w_data)
+function validate_top_system_audit(test_case_title, audit_action)
 {  
   Goto_System_Audit();
   var audit_data = system_audit().Cell(1, 1).innerText;
 
-  if (audit_data == w_data)
+  if (audit_data == audit_action)
   {
     Log.Message(test_case_title + " - Correct Top Audit");
     return true;
   }
   else 
   {
-    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + audit_action);
     return false;
   }
 }
