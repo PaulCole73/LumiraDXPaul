@@ -411,7 +411,7 @@ function change_test_practice(prac_name)
  
   var pat_management_test_practice_search_path = pat_management_test_practice_search();
 
-  pat_management_test_practice_search_path.Select("SearchType").ClickItem("Name");
+  pat_management_test_practice_search_path.Select("SearchType").ClickItem(get_string_translation("Name"));
   pat_management_test_practice_search_path.Textbox("SearchCriteria").Text = prac_name;
   var obj = pat_management_test_practice_search_path.SubmitButton("Search");
   click_navigation_wrapper(obj, main_patient_tab(), "idStr", "LocationResults", 5);

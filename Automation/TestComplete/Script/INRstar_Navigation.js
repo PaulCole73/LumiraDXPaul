@@ -425,7 +425,7 @@ function Goto_Patient_New_INR()
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
   panelPPT.Panel("TreatmentButtonsContainer").Fieldset("TreatmentButtons").Button("NewINR").Click();
   
-  process_alternate_popup("Please acknowledge", "Confirm", 1);
+  process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"), 1);
   process_blue_popup();
 }
 //-------------------------------------------------------------------------------

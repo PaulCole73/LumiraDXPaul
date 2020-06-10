@@ -53,7 +53,7 @@ function tc_home_page_view_exceeded_suspension_period_message()
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     suspend_patient_days(0);
     
@@ -61,10 +61,10 @@ function tc_home_page_view_exceeded_suspension_period_message()
     var result_set_1 = check_patient_on_exceed_suspension_period_list(message_name)
     result_set.push(result_set_1);
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
     //Check the audit
-    var result_set_1 = validate_top_patient_audit(test_title, "Suspend Patient");
+    var result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Suspend Patient"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -94,7 +94,7 @@ function tc_home_page_unsuspend_patient_through_message()
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     suspend_patient_days(0);
@@ -105,21 +105,21 @@ function tc_home_page_unsuspend_patient_through_message()
     result_set.push(result_set_1);
 
     //Warning dialogue confirmation
-    var expected_message = 'The patient(s) have been successfully unsuspended.' +
-    'The patient(s) may have been treated elsewhere during the suspension period. ' +
-    'For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments. ' +
-    'For non-warfarin patients you should ensure review information is up to date.';
+    var expected_message = get_string_translation("The patient(s) have been successfully unsuspended.") +
+    get_string_translation("The patient(s) may have been treated elsewhere during the suspension period.") + " " +
+    get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.")  + " " +
+    get_string_translation("For non-warfarin patients you should ensure review information is up to date.");
      
     //Get warning message text
-    var warning_message = process_popup("Unsuspend Patients","OK");
+    var warning_message = process_popup(get_string_translation("Unsuspend Patients"),"OK");
     
     result_set_1 = compare_values(warning_message, expected_message, test_title);
     result_set.push(result_set_1);
  
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Unsuspend Patient");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Unsuspend Patient"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -148,7 +148,7 @@ function tc_home_page_view_patient_transfer_request()
     add_patient('Regression', 'Transfer_request', 'M', 'Shared');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
@@ -168,12 +168,12 @@ function tc_home_page_view_patient_transfer_request()
     //Login to original location
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
-    process_popup('Please Confirm', 'Confirm');
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Requested change of patient's testing practice");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Requested change of patient's testing practice"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -202,7 +202,7 @@ function tc_home_page_accept_patient_transfer_request()
     add_patient('Regression', 'Accept_transfer_request', 'M', 'Shared');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
   
     //Transfer the testing location
@@ -227,7 +227,7 @@ function tc_home_page_accept_patient_transfer_request()
     result_set.push(result_set_1);
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Transfer patient testing location accepted");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Transfer patient testing location accepted"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -256,7 +256,7 @@ function tc_home_page_decline_patient_transfer_request()
     add_patient('Regression', 'Decline_transfer_request', 'M', 'Shared');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
@@ -286,8 +286,8 @@ function tc_home_page_decline_patient_transfer_request()
     result_set.push(result_set_1);
     
     //Check the audit
-    patient_search(pat_nhs);
-    result_set_1 = validate_top_patient_audit(test_title, "Transfer patient testing location declined Acknowledged");
+    patient_search(message_name);
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Transfer patient testing location declined Acknowledged"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -316,7 +316,7 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
     add_patient('Regression', 'Not_accepted_transfer', 'M', 'Shared');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
@@ -328,12 +328,12 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
     var result_set_1 = check_patient_in_transfer_request_not_accepted_message(message_name)
     result_set.push(result_set_1);
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
-    process_popup('Please Confirm', 'Confirm');
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Requested change of patient's testing practice");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Requested change of patient's testing practice"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -358,14 +358,15 @@ function tc_home_page_view_patient_with_incomplete_treatment()
   try 
   {
     var test_title = "Home Page - View the 'Patient with incomplete treatment'"
+    
     login(5, "Shared");
     add_patient('Regression', 'Incomplete_treatment', 'M', 'Shared');
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "7", "2.5");
-    add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
+    add_pending_maintenance_treatment(get_string_translation("2.4"), aqConvert.StrToDate(aqDateTime.Today()));
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     var result_set = new Array();
@@ -374,10 +375,10 @@ function tc_home_page_view_patient_with_incomplete_treatment()
     var result_set_1 = check_patient_with_incomplete_treatment_message(message_name)
     result_set.push(result_set_1);
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Add New INR");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add New INR"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -406,22 +407,13 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
     add_patient('Regression', 'No_diagnosis', 'M', 'Shared');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
-    result_set = new Array();
+    //result_set = new Array();
     
     //Check the patient shows on the home page message for No Diagnosis
-    var result_set_1 = check_patient_with_no_diagnosis_or_tp_message(message_name)
-    result_set.push(result_set_1);
-    
-    patient_search(pat_nhs);
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Add Patient");
-    result_set.push(result_set_1);
-		
-    //Validate the results sets is True
-    var results = results_checker_are_true(result_set);
+    var results = check_patient_with_no_diagnosis_or_tp_message(message_name)
 		
     //Pass in the result
     results_checker(results, test_title);
@@ -447,7 +439,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -7)),'Shared','','Indefinite');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     var result_set = new Array();
@@ -456,9 +448,9 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
     var result_set_1 = check_overdue_non_warfarin_review_message(message_name)
     result_set.push(result_set_1);
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Add Treatment Plan Details");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add Treatment Plan Details"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -489,7 +481,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
     add_non_warfarin_review('','Y',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -1)),'65','100');
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
     var result_set = new Array();
@@ -497,9 +489,9 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
     var result_set_1 = check_patient_not_on_overdue_non_warfarin_review_message(message_name)
     result_set.push(result_set_1);
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "New review created");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("New review created"));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -537,22 +529,22 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
     var result_set = new Array();
     
     //Check warning message displayed on change of review date
-    var expected_message = "The patient's next review details have been successfully updated."
+    var expected_message = get_string_translation("The patient's next review details have been successfully updated.")
     var warning_message = get_next_review_date_warning();
     var result_set_1 = compare_values(warning_message, expected_message, test_title);
     result_set.push(result_set_1);
     
     //Get the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
         
     //Check the patient does not shows on the home page message for Overdue non-warfarin review 
     result_set_1 = check_patient_not_on_overdue_non_warfarin_review_message(message_name)
     result_set.push(result_set_1);
     
-    patient_search(pat_nhs);
+    patient_search(message_name);
     //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, "Changed Next Review Date - Face-to-face.");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Changed Next Review Date - Face-to-face."));
     result_set.push(result_set_1);
 		
     //Validate the results sets is True

@@ -636,17 +636,18 @@ function tc_treatment_refer_a_treatment()
   try
   {
     var test_title = 'Treatment - Refer a treatment'
+    
     login(5, "Shared");
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     
-    WaitSeconds(6);
+    //WaitSeconds(6);
     
-    add_pending_maintenance_treatment("2.0",(aqDateTime.Today()));
+    add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
   
     //Get all the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     Goto_Patient_Treatment();
   
@@ -658,10 +659,10 @@ function tc_treatment_refer_a_treatment()
     var result_set_1 = check_patient_on_refer_list(message_name)
     result_set.push(result_set_1);
   
-    patient_search(pat_nhs);
+    patient_search(message_name);
     //Check the audit
     Goto_Suggested_Treatment_Audit();
-    result_set_1 = validate_top_treatment_audit('Treatment Referred');
+    result_set_1 = validate_top_treatment_audit(get_string_translation("Treatment Referred"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true

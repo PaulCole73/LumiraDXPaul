@@ -194,9 +194,9 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   
   //handle bunch of popups
   handle_no_poct("non_induct");
-  process_popup("PoCT Batch Expired", "Confirm");
-  process_popup("Please confirm that the following is correct", "Confirm");
-  var text = process_alternate_popup("Please acknowledge", "Confirm");
+  process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
+  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
+  var text = process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"));
   
   wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
   

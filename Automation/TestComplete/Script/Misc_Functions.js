@@ -246,11 +246,40 @@ function results_checker(result_set, test_case)
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
 //Checking top audit on the patient tab
-function validate_top_patient_audit(test_case_title, w_data)
+function validate_top_patient_audit(test_case_title, audit_action)
 {  
   Goto_Patient_Audit();
   var patient_audit_path = patient_audit()
   var audit_data = patient_audit_path.Cell(1, 1).innerText;
+  
+  if(audit_data == null || audit_action == null)
+  {
+    Log.Message("Fail - Data not found / Parameter value missing.");
+    Log.Message("Actual Audit: " + audit_data + "-------------- Expected Audit: " + audit_action);
+    return false;
+  } 
+
+  if(audit_data == audit_action)
+  {
+    Log.Message(test_case_title + " Test Passed - Patient audit record was found " + " This is the actual audit // " 
+                                + audit_data + " // This is the expected audit // " + audit_action + " //");
+    return true;
+  }
+  else 
+  {
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + " This is the actual audit // " 
+                                + audit_data + " // This is the expected audit // " + audit_action + " //");
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
+//Checking bottom audit on the patient tab
+function validate_bottom_patient_audit(test_case_title, w_data)
+{  
+  Goto_Patient_Audit();
+  var patient_audit_path = patient_audit()
+  var first_row_entry = patient_audit_path.RowCount -1;
+  var audit_data = patient_audit_path.Cell(first_row_entry, 1).innerText;
 
   if(audit_data == w_data)
   {
@@ -303,19 +332,19 @@ function validate_more_info_specific_entry_patient_audit(item_no, data, title)
 }
 //-----------------------------------------------------------------------------------
 //Checking top audit on the system audit
-function validate_top_system_audit(test_case_title, w_data)
+function validate_top_system_audit(test_case_title, audit_action)
 {  
   Goto_System_Audit();
   var audit_data = system_audit().Cell(1, 1).innerText;
 
-  if (audit_data == w_data)
+  if (audit_data == audit_action)
   {
     Log.Message(test_case_title + " - Correct Top Audit");
     return true;
   }
   else 
   {
-    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + audit_action);
     return false;
   }
 }
@@ -707,13 +736,9 @@ function get_string_translation(translation_word)
 //Just to quickly test things in the translation file
 function testing_translation()
 {
-var test = get_string_translation("Please ensure that this patient has discontinued their warfarin treatment and has an INR" +
-     " less or equal to 3.0 (stroke prevention) or 2.5(DVT/PE) before commencing this treatment plan. Consult product literature for details");   
+var test = get_string_translation("Unsuspend Patient");   
 
-// var test = "Account Enabled " + get_string_translation("changed from") + "[" + get_string_translation("True") + "]" 
-// + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".";
 
-//var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
 Log.Message(test)
 }
 //---------------------------------------------------------------------------------//

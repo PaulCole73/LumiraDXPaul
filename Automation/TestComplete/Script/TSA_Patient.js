@@ -116,6 +116,7 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
     var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
       
     save_button.Click();
+    //process_popup(get_string_translation("Unable to synchronize with the LumiraDX instrument"), get_string_translation("Close"));
   }
   
   var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
