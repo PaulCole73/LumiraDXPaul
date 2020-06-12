@@ -8,8 +8,8 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   var INRstarV5 = INRstar_base();
   
   
-  //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp new tp, activate patient tp and not first tp
-  //Also it may skip the got to if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
+  //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp: new tp, activate patient tp and not first tp
+  //Also it may skip the goto if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
   
   if(tp_start_mode == "")
   {

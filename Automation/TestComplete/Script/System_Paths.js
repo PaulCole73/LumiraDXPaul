@@ -68,17 +68,6 @@ function tests_due_table()
   return tests_due_table_path;
 }
 //------------------------------------------------------------------------
-//////////////////////////  Home Page  ///////////////////////////////////
-//------------------------------------------------------------------------
-function home_page_messages()
-{
-  var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
-   
-  return list;
-}
-//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //////////////////////////  Feedback Tab  ////////////////////////////////
 //------------------------------------------------------------------------
@@ -98,6 +87,80 @@ function feedback_tab_textarea()
   
   return area;
 }
+
+//------------------------------------------------------------------------
+//////////////////////////  Home Page  ///////////////////////////////////
+//------------------------------------------------------------------------
+function home_page_messages()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
+   
+  return list;
+}
+//------------------------------------------------------------------------
+//////////////////////////  Home Page Overdue List ///////////////////////
+//------------------------------------------------------------------------
+function home_page_overdue_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("OverduePatients").Table("PatientOverdueReportTable")
+   
+  return table;
+}
+//------------------------------------------------------------------------
+////////////////  Home Page Transfer Request List Table //////////////////
+//------------------------------------------------------------------------
+function home_page_transfer_request_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("TransferredPatients").Table("TransferredTable")
+   
+  return table;
+}
+//------------------------------------------------------------------------
+/////////  Home Page Transfer Not Yet Been Accepted List Table ///////////
+//------------------------------------------------------------------------
+function home_page_transfer_not_yet_been_accepted_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("TransferRequestPatients").Table("TransferRequestTable")
+   
+  return table;
+}
+//------------------------------------------------------------------------
+///////////////////  Home Page Suspension List Table /////////////////////
+//------------------------------------------------------------------------
+function home_page_suspension_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable")
+   
+  return table;
+}
+
+//------------------------------------------------------------------------
+////////// Home Page Suspension List Unsuspend button ////////////////////
+//------------------------------------------------------------------------
+function home_page_suspension_table_unsuspend_button()
+{
+  var list = home_page_messages()
+  var button = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Panel(0).SubmitButton("UnsuspendLink")
+   
+  return button;
+}
+//------------------------------------------------------------------------
+////////// Home Page Exceeded Treatment End_Date List Table  /////////////
+//------------------------------------------------------------------------
+function home_page_exceeded_treatment_end_date_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("ExceededPatients").Table("PatientExceededReportTable")
+   
+  return table;
+}
+//-------------------------------------------------------------------------------
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Demographics  /////////////////////////
 //------------------------------------------------------------------------

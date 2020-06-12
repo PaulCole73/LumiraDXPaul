@@ -43,14 +43,13 @@ function check_patient_not_on_refer_list(pat_name)
   //In case the patient in question was the only one on the list
   if(link.Exists != true)
   {
-    Log.Message("Home page message not displayed so must have been the only patient on the list");
+    Log.Message("Home page message not displayed so must have previously been the only patient on the list");
     return true;
   } 
   else
   {
     home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
     var table = wait_for_object(home_page_messages_path, "idStr", "ReferredPatientReportTable", 3);
-    //var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
   
     for (var i = 0; i < table.rowcount; i++)
     {
@@ -66,138 +65,171 @@ function check_patient_not_on_refer_list(pat_name)
 //--------------------------------------------------------------------------------
 function check_patient_on_overdue_INR_list(pat_name)
 {
-  Goto_Home();
-  var home_page_messages_path = home_page_messages();
-  var INRstarV5 = INRstar_base();
-  var link = wait_for_object(INRstarV5, "idStr", "OverduePatientHeaderLink", 10);
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Overdue_List(); // from INRstar_Navigation
   
-  //In case the patient in question was the only one on the list
-  if(link.Exists != true)
-  {
-    Log.Message("Home page message not displayed");
-    return false;
-  }
-  else
-  {
-    home_page_messages_path.Link("OverduePatientHeaderLink").Click();
-    var table = wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
+  // Get the path of the table
+  var table = home_page_overdue_table(); // from System_paths
   
-    for (var i = 0; i < table.rowcount; i++)
-    {
-      if(table.Cell(i, 0).contentText == pat_name)
-      {     
-        return true;
-      }
-    } 
-    Log.Message("Patient not found " + pat_name)
-    return false; 
-  }
+  // Now that we have table - Pass it on together with the column 0 to check sort order, return result
+  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
 }
 //--------------------------------------------------------------------------------
-function check_patient_on_exceed_suspension_period_list(pat_name) //consolidate this with below function
+function check_overdue_sort_order_of_home_page_list()
+{ 
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Overdue_List(); // from INRstar_Navigation
+  
+  // Get the path of the table
+  var table = home_page_overdue_table(); // from System_paths
+  
+  // Now that we have table - Pass it on together with the column number 7, to check sort order, return result
+  return check_sort_order_of_table(table, 7) // from Misc_Functions
+}
+//--------------------------------------------------------------------------------
+function check_date_sort_order_of_suspension_home_page_list() 
+{  
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Suspension_List(); // from INRstar_Navigation
+  
+  // Get the path of the table
+  var table = home_page_suspension_table(); // from System_paths
+  
+  // Now that we have table - Pass it on together with the column number, to check sort order, return result
+  return check_date_sort_order_of_table(table, 4) // from Misc_Functions
+
+}
+//--------------------------------------------------------------------------------
+function check_date_sort_order_of_exceeded_treatment_end_date_list() 
+{  
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Exceeded_Treatment_End_Date_List(); // from INRstar_Navigation
+  
+  // Get the path of the table
+  var table = home_page_exceeded_treatment_end_date_table(); // from System_paths
+  
+  // Now that we have table - Pass it on together with the column number, to check sort order, return result
+  return check_date_sort_order_of_table(table, 5) // from Misc_Functions
+
+}
+//--------------------------------------------------------------------------------
+function check_patient_on_suspension_list(pat_name) 
 {
-  Goto_Home();
-  WaitSeconds(2);
-  var home_page_messages_path = home_page_messages();
-  var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
-  var link = wait_for_object(INRstarV5, "idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink");
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Suspension_List(); // from INRstar_Navigation
   
-  //In case the patient in question was the only one on the list
-  if(link.Exists != true)
-  {
-    Log.Message('Home page message not displayed');
-    return false;
-  }
-  else
-  {
-    WaitSeconds(2); 
-    home_page_messages_path.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink").Click();
-    var table = home_page_messages_path.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable");
+  // Get the path of the table
+  var table = home_page_suspension_table(); // from System_paths
   
-    for (var i = 0; i < table.rowcount; i++)
-    {
-      if(table.Cell(i, 0).contentText == pat_name)
-      {     
-        return true;
-      }
-    } 
-    Log.Message("Patient not found " + pat_name)
-    return false;
-  }
+  // Check table for patient within column 0
+  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+}
+//--------------------------------------------------------------------------------
+function check_patient_on_exceeded_treatment_end_date_list(pat_name) 
+{
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Exceeded_Treatment_End_Date_List(); // from INRstar_Navigation
+  
+  // Get the path of the table
+  var table = home_page_exceeded_treatment_end_date_table(); // from System_paths
+  
+  // Check table for patient within column 0
+  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
 }
 //--------------------------------------------------------------------------------
 function unsuspend_patient_on_exceed_suspension_period_list(pat_name)
 {
-  Goto_Home();
-  var home_page_messages_path = home_page_messages();
-  var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
-  var link = wait_for_object(INRstarV5, "idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink");
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Suspension_List(); // from INRstar_Navigation
   
-  //In case the patient in question was the only one on the list
-  if(link.Exists != true)
-  {
-    Log.Message('Home page message not displayed');
-    return false;
-  }
-  else
-  {
-    home_page_messages_path.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink").Click();
-    var table = home_page_messages_path.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable");
+   // Get the path of the table
+  var table = home_page_suspension_table(); // from System_paths
   
-    for (var i = 0; i < table.rowcount; i++)
-    {
-      if(table.Cell(i, 0).contentText == pat_name)
-      { 
-        //Click checkbox against patient and then Unsuspend button
-        table.Cell(i, 5).scrollIntoView(true);    
-        table.Cell(i, 5).Checkbox("patients").ClickChecked(true);
-        home_page_messages_path.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Panel(0).SubmitButton("UnsuspendLink").Click();
-        return true;
-      }
+  // Unsuspend patient - start by cycling through table to find patient
+  for (var i = 0; i < table.rowcount; i++)
+  {
+    if(table.Cell(i, 0).contentText == pat_name)
+    { 
+      //Click checkbox against patient
+      table.Cell(i, 5).scrollIntoView(true);    
+      table.Cell(i, 5).Checkbox("patients").ClickChecked(true);
+      
+      //Select Unsuspend button
+      home_page_suspension_table_unsuspend_button().Click();
+      
+      return true;
     }
+  }
      
-    Log.Message("Patient not found " + pat_name)
-    return false;
-  } 
+  Log.Warning("Patient not found " + pat_name)
+  return false;
+
 }
 //--------------------------------------------------------------------------------
-function check_patient_in_transfer_request_message(pat_name) //this and the below function + possibly 2 below that could be consolidated
+function Check_home_page_header_showing(link_header)
 {
-  Goto_Home();
-  var home_page_messages_path = home_page_messages();
-  var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
-  var link = wait_for_object(INRstarV5, "Name", "Link(\"TransferredPatientHeaderLink\")", 10);
-  //var link = INRstarV5.NativeWebObject.Find("idStr", "TransferredPatientHeaderLink");
+  // Get the homepage path
+  var home_page_messages_path = home_page_messages();  
   
-  //In case the patient in question was the only one on the list
+  // look for specified link_header within homepath
+  var link = wait_for_object(home_page_messages_path, "Name", "Link(\""+ link_header +"\")", 10);
+  
+  //In case the link header in question is not on the list
   if(link.Exists != true)
   {
-    Log.Message("Home page message not displayed");
-    return false;
+    Log.Message ('Problem: Link header ' + link_header + ' is NOT shown on home page')
+    return false
   }
-  else
-  {
-    WaitSeconds(2);
-    home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
-    
-    wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 2);
-    var table = home_page_messages_path.Panel("TransferredPatients").Table("TransferredTable");
-    for (var i = 0; i < table.rowcount; i++)
-    {
-      if(table.Cell(i, 0).contentText == pat_name)
-      { 
-        //Click checkbox against patient and then Unsuspend button    
-        return true;
-      }
-    }
-    Log.Message("Patient was not found on the list");
-    return false;
-  }
+  Log.Message ('Link header ' + link_header + ' is correctly shown on home page')
+  return true
+}
+//--------------------------------------------------------------------------------
+function check_home_page_displays_transfer_request_message()
+{
+  // Go to the homepage
+  Goto_Home();
+  
+  // Check the header - patient transfer request(s) to Accept or Decline message is showing 
+  return Check_home_page_header_showing("TransferredPatientHeaderLink");
+  
+}
+//--------------------------------------------------------------------------------
+function check_home_page_displays_not_yet_been_accepted_message()
+{
+  // Go to the homepage
+  Goto_Home();
+  
+  // Check the header - patient transfer request(s) not yet been accepted message is showing 
+  return Check_home_page_header_showing("TransferredPatientHeaderLink_2");
+  
+}
+function dothis()
+{
+  check_patient_in_transfer_not_yet_been_accepted_list("REGRESSION_115, Transfer_request_686")
+}
+//--------------------------------------------------------------------------------
+function check_patient_in_transfer_request_list(pat_name)
+{
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Transfer_Request_List(); // from INRstar_Navigation
+  
+   // Get the path of the table
+  var table = home_page_transfer_request_table(); // from System_paths
+  
+  // Check table for patient within column 0
+  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+} 
+//--------------------------------------------------------------------------------
+function check_patient_in_transfer_not_yet_been_accepted_list(pat_name)
+{
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Transfer_Not_Yet_Been_Accepted_List(); // from INRstar_Navigation
+  
+   // Get the path of the table
+  var table = home_page_transfer_not_yet_been_accepted_table(); // from System_paths
+  
+  // Check table for patient within column 0
+  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_not_in_transfer_request_message(pat_name)

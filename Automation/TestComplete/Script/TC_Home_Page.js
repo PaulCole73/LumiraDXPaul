@@ -8,22 +8,73 @@
 //USEUNIT Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function tc_home_page_view_overdue_inr_test_message()
+function tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page()
 {
   try
   {
-    var test_title = "Home Page - View the 'Overdue an INR test' message"
+    var test_title = "Home Page - View the 'Overdue an INR test' message on the home page"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Overdue_INR_message', 'M', 'Shared');
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
     var message_name = get_patient_fullname();
-  
-    var result_set = new Array(); 
-  
+    
+    //Prepare results vessel
+    var result_set = new Array();
+    
     //Check patient on the overdue INR test list
     var result_set_1 = check_patient_on_overdue_INR_list(message_name)
+    result_set.push(result_set_1);
+    
+    //Check patients are listed with most overdue at top
+    var result_set_1 = check_overdue_sort_order_of_home_page_list()
+    result_set.push(result_set_1);
+    
+    //Validate the results sets is True
+    var results = results_checker_are_true(result_set);
+    
+    //Pass in the result
+    results_checker(results, test_title);
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//-------------------------------------------------------------------------------- 
+function tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message()
+{
+  try
+  {
+    var test_title = "Home Page - View the 'Patient exceeded their treatment end date' message"
+    
+    //Setup test scenario
+    login(5, "Shared");
+    add_patient('Regression', 'Exceed_suspension_period', 'M', 'Shared');
+    //add_treatment_plan('W','Manual','aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -35))','Shared','');
+    add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -35)),'Shared','','4 Weeks');
+  
+    //Get the patient details
+    //var pat_nhs = get_patient_nhs();
+    var message_name = get_patient_fullname();
+    
+    //Initialise test array
+    var result_set = new Array();
+    
+    //Check Patient exists on list
+    var result_set_1 = check_patient_on_exceeded_treatment_end_date_list(message_name)
+    result_set.push(result_set_1);
+    
+    //Check patients are listed with most overdue at top
+    var result_set_1 = check_date_sort_order_of_exceeded_treatment_end_date_list()
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -38,16 +89,18 @@ function tc_home_page_view_overdue_inr_test_message()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_overdue_inr_test_message";
+    var test_name = "tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message";
     handle_failed_tests(suite_name, test_name); 
   } 
 }
 //-------------------------------------------------------------------------------- 
-function tc_home_page_view_exceeded_suspension_period_message()
+function tc_home_page_view_the_exceeded_suspension_period_message()
 {
   try
   {
     var test_title = "Home Page - View the 'Exceeded suspension period' message"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Exceed_suspension_period', 'M', 'Shared');
     add_treatment_plan('W','Manual','','Shared','');
@@ -55,20 +108,12 @@ function tc_home_page_view_exceeded_suspension_period_message()
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
+    
+    // Suspend Patient days
     suspend_patient_days(0);
     
-    var result_set = new Array();
-    var result_set_1 = check_patient_on_exceed_suspension_period_list(message_name)
-    result_set.push(result_set_1);
-    
-    patient_search(message_name);
-    
-    //Check the audit
-    var result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Suspend Patient"));
-    result_set.push(result_set_1);
-		
-    //Validate the results sets is True
-    var results = results_checker_are_true(result_set);
+    //Check Patient exists on list
+    var results = check_patient_on_suspension_list(message_name)
 		
     //Pass in the result
     results_checker(results, test_title);
@@ -79,16 +124,18 @@ function tc_home_page_view_exceeded_suspension_period_message()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_exceeded_suspension_period_message";
+    var test_name = "tc_home_page_view_the_exceeded_suspension_period_message";
     handle_failed_tests(suite_name, test_name); 
-  } 
+  }
 }
 //-------------------------------------------------------------------------------- 
-function tc_home_page_unsuspend_patient_through_message()
+function tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home_page_button()
 {
   try
   {
-    var test_title = "Home Page - Unsuspend patient through message"
+    var test_title = "Home Page - Unsuspend Button, patient can be unsuspended using the home page button"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Unsuspend_message', 'M', 'Shared');
     add_treatment_plan('W','Manual','','Shared','');
@@ -97,9 +144,12 @@ function tc_home_page_unsuspend_patient_through_message()
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
+    // Suspend Patient days
     suspend_patient_days(0);
-    var result_set = new Array(); 
-  
+    
+    //Initialise test array
+    var result_set = new Array();
+    
     //Unsuspend the patient in the list
     var result_set_1 = unsuspend_patient_on_exceed_suspension_period_list(message_name);
     result_set.push(result_set_1);
@@ -113,9 +163,11 @@ function tc_home_page_unsuspend_patient_through_message()
     //Get warning message text
     var warning_message = process_popup(get_string_translation("Unsuspend Patients"),"OK");
     
+    //Check expected message and warning message match
     result_set_1 = compare_values(warning_message, expected_message, test_title);
     result_set.push(result_set_1);
  
+    //Search for the patient 
     patient_search(message_name);
     
     //Check the audit
@@ -134,16 +186,18 @@ function tc_home_page_unsuspend_patient_through_message()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_unsuspend_patient_through_message";
+    var test_name = "tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home_page_button";
     handle_failed_tests(suite_name, test_name);
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_view_patient_transfer_request()
+function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Patient transfer requests'"
+    var test_title = "Home Page - View the 'Patient transfer requests to Accept or Decline'"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Transfer_request', 'M', 'Shared');
     
@@ -153,23 +207,30 @@ function tc_home_page_view_patient_transfer_request()
     
     //Transfer the testing location
     change_test_practice('Deans Regression Testing Location 2');
-    Log_Off();
     
-    //Login to transfered testing location
+    //Logoff and then Login to transfered testing location
+    Log_Off();
     login(15, "Shared");
 
+    //Initialise test array
     var result_set = new Array();
     
     //Check the patient transfer shows on the home page message
-    var result_set_1 = check_patient_in_transfer_request_message(message_name)
+    var result_set_1 = check_home_page_displays_transfer_request_message()
     result_set.push(result_set_1);
-    Log_Off();
     
-    //Login to original location
+    //Check the patient transfer shows on the home page message
+    var result_set_1 = check_patient_in_transfer_request_list(message_name)
+    result_set.push(result_set_1);
+    
+    //Logoff and then Login to original location
+    Log_Off();
     login(5, "Shared");
     
+    //Search for the patient 
     patient_search(message_name);
     
+    //Acknowledge pop-up
     process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
     //Check the audit
@@ -188,7 +249,7 @@ function tc_home_page_view_patient_transfer_request()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_patient_transfer_request";
+    var test_name = "tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -307,13 +368,15 @@ function tc_home_page_decline_patient_transfer_request()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
+function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_message()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Patient transfer requests not accepted'"
+    var test_title = "Home Page - View the 'Patient transfer requests not yet accepted' message"
+    
+    //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Not_accepted_transfer', 'M', 'Shared');
+    add_patient('Regression', 'Transfer_request', 'M', 'Shared');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -321,19 +384,16 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
     
     //Transfer the testing location
     change_test_practice('Deans Regression Testing Location 2');
-    
+
+    //Initialise test array
     var result_set = new Array();
     
-    //Check the patient transfer shows on the home page message
-    var result_set_1 = check_patient_in_transfer_request_not_accepted_message(message_name)
+    //Check the patient transfer request unaccepted message header shows on the home page
+    var result_set_1 = check_home_page_displays_not_yet_been_accepted_message()
     result_set.push(result_set_1);
     
-    patient_search(message_name);
-    
-    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
-    
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Requested change of patient's testing practice"));
+    //Check the patient transfer shows on the home page message
+    var result_set_1 = check_patient_in_transfer_not_yet_been_accepted_list(message_name)
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -348,7 +408,7 @@ function tc_home_page_view_patient_transfer_requests_not_yet_accepted()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_patient_transfer_requests_not_yet_accepted";
+    var test_name = "tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_message";
     handle_failed_tests(suite_name, test_name);
   }
 }

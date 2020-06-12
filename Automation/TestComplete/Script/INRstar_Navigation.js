@@ -12,11 +12,136 @@
 function Goto_Home()
 {
   var INRstarV5 = INRstar_base();
-  var obj_root = INRstarV5.Panel("MainPage").Panel("header");
+  //var obj_root = INRstarV5.Panel("MainPage").Panel("header");
   var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
   
   obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page Overdue List
+function Goto_Home_Page_Overdue_List()
+{
+  //Visit Home Page
+  var INRstarV5 = INRstar_base();
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+  
+  //Click Message panel
+  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  
+  //Grab generic home page path - wait for desired link
+  var home_page_messages_path = home_page_messages();
+  var menu_header = wait_for_object(INRstarV5, "idStr", "OverduePatientHeaderLink", 10);
+  
+  //Shout & fail if desired link not present
+  check_menu_header_exists(menu_header);
+  
+  //Click desired link
+  home_page_messages_path.Link("OverduePatientHeaderLink").Click();
+  
+  //Wait for table to appear
+  wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page transfer request List
+function Goto_Home_Page_Transfer_Request_List()
+{
+  //Visit Home Page
+  var INRstarV5 = INRstar_base();
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+  
+  //Click Message panel
+  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  
+  //Grab generic home page path - wait for desired link
+  var home_page_messages_path = home_page_messages();
+  var menu_header = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
+  
+  //Shout & fail if desired link not present
+  check_menu_header_exists(menu_header);
+  
+  //Click desired link
+  home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
+  
+  //Wait for table to appear
+  wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 3);
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page transfer not yet been accepted List
+function Goto_Home_Page_Transfer_Not_Yet_Been_Accepted_List()
+{
+  //Visit Home Page
+  var INRstarV5 = INRstar_base();
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+  
+  //Click Message panel
+  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  
+  //Grab generic home page path - wait for desired link
+  var home_page_messages_path = home_page_messages();
+  var menu_header = wait_for_object(INRstarV5, "namePropStr", "ViewTransferRequest", 10);
+  
+  //Shout & fail if desired link not present
+  check_menu_header_exists(menu_header);
+  
+  //Click desired link
+  home_page_messages_path.Link("TransferredPatientHeaderLink_2").Click();
+  
+  //Wait for table to appear
+  wait_for_object(home_page_messages_path, "idStr", "TransferRequestTable", 3);
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page Suspension List
+function Goto_Home_Page_Suspension_List()
+{
+  //Visit Home Page
+  var INRstarV5 = INRstar_base();
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+  
+  //Click Message panel
+  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  
+  //Grab generic home page path - wait for desired link
+  var home_page_messages_path = home_page_messages();
+  var menu_header = wait_for_object(INRstarV5, "idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink", 10);
+  
+  //Shout & fail if desired link not present
+  check_menu_header_exists(menu_header);
+  
+  //Click desired link
+  home_page_messages_path.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink").Click();
+  
+  //Wait for table to appear
+  wait_for_object(home_page_messages_path, "idStr", "ExceededSuspendedPatientReportTable", 3);
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page Exceeded Treatment End date List
+function Goto_Home_Page_Exceeded_Treatment_End_Date_List()
+{
+  //Visit Home Page
+  var INRstarV5 = INRstar_base();
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+  
+  //Click Message panel
+  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  
+  //Grab generic home page path - wait for desired link
+  var home_page_messages_path = home_page_messages();
+  var menu_header = wait_for_object(INRstarV5, "idStr", "ExceededPatientsHeaderLink", 10);
+  
+  //Shout & fail if desired link not present
+  check_menu_header_exists(menu_header);
+  
+  //Click desired link
+  home_page_messages_path.Link("ExceededPatientsHeaderLink").Click();
+  
+  //Wait for table to appear
+  wait_for_object(home_page_messages_path, "idStr", "PatientExceededReportTable", 3);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Options 
@@ -592,6 +717,8 @@ function Goto_Change_Testing_Location()
     
   var pat_managment_tab_preferences_buttons_path = pat_managment_tab_preferences_buttons();
   pat_managment_tab_preferences_buttons_path.Button("EditPatientTestingSectionLink").Click();
+  
+  wait_for_object(panelMCP, "idStr", "SearchTestingLocations", 3);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Pending Treatment  / Audit
