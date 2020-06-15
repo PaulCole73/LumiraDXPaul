@@ -2,35 +2,40 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
+function check_top_patient_audit(test_title, pat_name, search_text)
+{
+    //Search for patient
+    patient_search(pat_name);
+    
+    //Acknowledge pop-up if it is shown
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
+       
+    //Check for search_text within audit
+    return validate_top_patient_audit(test_title, get_string_translation(search_text));
+}
+//--------------------------------------------------------------------------------
+function check_top_suggested_treatment_audit(pat_name, search_text)
+{
+    //Search for patient
+    patient_search(pat_name);
+    
+    //Goto the audit for the patient
+    Goto_Suggested_Treatment_Audit();
+    
+    //Check for search_text within audit
+    return validate_top_treatment_audit(get_string_translation(search_text));
+}
+//--------------------------------------------------------------------------------
 function check_patient_on_refer_list(pat_name)
 {
-  Goto_Home();
-  var home_page_messages_path = home_page_messages();
-  var INRstarV5 = INRstar_base();
-  var link = wait_for_object(INRstarV5, "idStr", "ReferredPatientHeaderLink", 10);
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Referred_Patient_List(); // from INRstar_Navigation
   
-  //Check message exists
-  if(link.Exists != true)
-  {
-    Log.Message('Home page message not displayed');
-    return false;
-  }
-  else
-  {
-    home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
-    var table = wait_for_object(home_page_messages_path, "idStr", "ReferredPatientReportTable", 3);
-    //var table = home_page_messages_path.Panel("ReferredPatients").Table("ReferredPatientReportTable");
+  // Get the path of the table
+  var table = home_page_referred_patient_table(); // from System_paths
   
-    for (i=0; i<table.rowcount; i++)
-    {
-      if(table.Cell(i, 0).contentText==pat_name)
-      {     
-        return true;
-      }
-    } 
-    Log.Message("Patient not found " + pat_name)
-    return false; 
-  }
+  // Now that we have table - Pass it on together with the column 0 to check sort order, return result
+  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
 }
 //--------------------------------------------------------------------------------
 function check_patient_not_on_refer_list(pat_name)
@@ -203,10 +208,6 @@ function check_home_page_displays_not_yet_been_accepted_message()
   return Check_home_page_header_showing("TransferredPatientHeaderLink_2");
   
 }
-function dothis()
-{
-  check_patient_in_transfer_not_yet_been_accepted_list("REGRESSION_115, Transfer_request_686")
-}
 //--------------------------------------------------------------------------------
 function check_patient_in_transfer_request_list(pat_name)
 {
@@ -230,6 +231,30 @@ function check_patient_in_transfer_not_yet_been_accepted_list(pat_name)
   
   // Check table for patient within column 0
   return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+} 
+//--------------------------------------------------------------------------------
+function check_patient_in_incomplete_treatment_list(pat_name)
+{
+  // Navigate to the list table and wait for it to appear
+  Goto_Home_Page_Incomplete_Treatment_List(); // from INRstar_Navigation
+  
+   // Get the path of the table
+  var table = home_page_incomplete_treatment_table(); // from System_paths
+  
+  // Check table for patient within column 0
+  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+} 
+//--------------------------------------------------------------------------------
+function refer_pending_treatment()
+{
+  // Navigate to patient treatment
+  Goto_Patient_Treatment(); // from INRstar_Navigation
+  
+  // Get the path of the refer pending treatment button
+  var button_path = refer_pending_treat_button();
+  
+  // Select the refer pending treatment button
+  button_path.Click();
 } 
 //--------------------------------------------------------------------------------
 function check_patient_not_in_transfer_request_message(pat_name)
@@ -443,39 +468,6 @@ function check_patient_in_transfer_request_not_accepted_message(pat_name)
         return true;
       }
     }
-    return false; 
-  }
-} 
-//--------------------------------------------------------------------------------
-function check_patient_with_incomplete_treatment_message(pat_name)
-{
-  Goto_Home();
-  var home_page_messages_path = home_page_messages();
-  var INRstarV5 = INRstar_base();
-  WaitSeconds(2);
-  var link = INRstarV5.NativeWebObject.Find("contentText", get_string_translation("*patient(s) with incomplete treatment.*"));
-  
-  //In case the patient in question was the only one on the list
-  if(link.Exists != true)
-  {
-    Log.Message('Home page message not displayed');
-    return false;
-  }
-  else
-  {
-    WaitSeconds(2);
-    home_page_messages_path.Link(0).Click();
-    var table = home_page_messages_path.Panel("IncompleteTreatments").Table("IncompleteTreatmentsTable");
-
-    for (var i = 0; i < table.rowcount; i++)
-    {
-      if(table.Cell(i, 0).contentText == pat_name)
-      { 
-      //Click checkbox against patient and then Unsuspend button    
-      return true;
-      }
-    }
-    Log.Message('Patient was not found on the list')
     return false; 
   }
 } 

@@ -110,12 +110,33 @@ function home_page_overdue_table()
   return table;
 }
 //------------------------------------------------------------------------
+///////////////////  Home Page Referred Patient List ////////////////////
+//------------------------------------------------------------------------
+function home_page_referred_patient_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("ReferredPatients").Table("ReferredPatientReportTable")
+   
+  return table;
+}
+//------------------------------------------------------------------------
 ////////////////  Home Page Transfer Request List Table //////////////////
 //------------------------------------------------------------------------
 function home_page_transfer_request_table()
 {
   var list = home_page_messages()
   var table = list.Panel("TransferredPatients").Table("TransferredTable")
+   
+  return table;
+}
+
+//------------------------------------------------------------------------
+///////////////////  Home Page Incomplete treatment List /////////////////
+//------------------------------------------------------------------------
+function home_page_incomplete_treatment_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("IncompleteTreatments").Table("IncompleteTreatmentsTable");
    
   return table;
 }
@@ -738,9 +759,9 @@ function cancel_pending_treat_button()
 function refer_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
+  var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
   
-  return cancel_button_path;
+  return refer_button_path;
 }
 //------------------------------------------------------------------------
 function sugg_war_dose_button()

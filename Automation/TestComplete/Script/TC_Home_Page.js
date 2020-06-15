@@ -166,12 +166,9 @@ function tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home
     //Check expected message and warning message match
     result_set_1 = compare_values(warning_message, expected_message, test_title);
     result_set.push(result_set_1);
- 
-    //Search for the patient 
-    patient_search(message_name);
     
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Unsuspend Patient"));
+    //Check the audit for Unsuspend Patient
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Unsuspend Patient");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -227,14 +224,18 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     Log_Off();
     login(5, "Shared");
     
-    //Search for the patient 
-    patient_search(message_name);
+//    //Search for the patient 
+//    patient_search(message_name);
+//    
+//    //Acknowledge pop-up
+//    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
+//    
+//    //Check the audit
+//    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Requested change of patient's testing practice"));
+//    result_set.push(result_set_1);
     
-    //Acknowledge pop-up
-    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
-    
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Requested change of patient's testing practice"));
+    //Check the audit for Requested change of patient's testing practice
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Requested change of patient's testing practice");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -413,12 +414,59 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_view_patient_with_incomplete_treatment()
+function tc_home_page_view_the_patients_referred_to_you_for_further_action_message()
+{
+  try
+  {
+    var test_title = "Home Page - View the 'Patients referred to you for further action' message"
+    
+    //Setup test scenario
+    login(5, "Shared");
+    add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
+    add_treatment_plan('W','Coventry','','Shared','');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");    
+    add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
+    refer_pending_treatment(); 
+  
+    //Get the patient details
+    //var pat_nhs = get_patient_nhs();
+    var message_name = get_patient_fullname();
+  
+    //Initialise test array
+    var result_set = new Array();
+    
+    //Check patient on the referred list
+    var result_set_1 = check_patient_on_refer_list(message_name)
+    result_set.push(result_set_1);
+    
+    //Check the audit for Treatment Referred
+    var result_set_1 = check_top_suggested_treatment_audit(message_name, "Treatment Referred");
+    result_set.push(result_set_1);
+      
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set);
+       
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off(); 
+  } 
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Home_Page";
+    var test_name = "tc_home_page_view_the_patients_referred_to_you_for_further_action_message";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_home_page_view_the_patients_with_incomplete_treatment_message()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Patient with incomplete treatment'"
+    var test_title = "Home Page - View the 'Patient with incomplete treatment' message"
     
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Incomplete_treatment', 'M', 'Shared');
     add_treatment_plan('W','Hillingdon','','Shared','');
@@ -429,16 +477,15 @@ function tc_home_page_view_patient_with_incomplete_treatment()
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
+    //Initialise test array
     var result_set = new Array();
     
     //Check the patient incomplete treatment shows on the home page message
-    var result_set_1 = check_patient_with_incomplete_treatment_message(message_name)
+    var result_set_1 = check_patient_in_incomplete_treatment_list(message_name)
     result_set.push(result_set_1);
     
-    patient_search(message_name);
-    
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add New INR"));
+    //Check the audit for Add New INR
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Add New INR");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -453,7 +500,7 @@ function tc_home_page_view_patient_with_incomplete_treatment()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_patient_with_incomplete_treatment";
+    var test_name = "tc_home_page_view_the_patients_with_incomplete_treatment_message";
     handle_failed_tests(suite_name, test_name);
   }
 }

@@ -44,6 +44,31 @@ function Goto_Home_Page_Overdue_List()
   wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
 }
 //-------------------------------------------------------------------------------
+//Navigate to Home Page Refer List
+function Goto_Home_Page_Referred_Patient_List()
+{
+  //Visit Home Page
+  var INRstarV5 = INRstar_base();
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+  
+  //Click Message panel
+  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  
+  //Grab generic home page path - wait for desired link
+  var home_page_messages_path = home_page_messages();
+  var menu_header = wait_for_object(INRstarV5, "idStr", "ReferredPatientHeaderLink", 10);
+  
+  //Shout & fail if desired link not present
+  check_menu_header_exists(menu_header);
+  
+  //Click desired link
+  home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
+  
+  //Wait for table to appear
+  wait_for_object(home_page_messages_path, "idStr", "ReferredPatientReportTable", 3);
+}
+//-------------------------------------------------------------------------------
 //Navigate to Home Page transfer request List
 function Goto_Home_Page_Transfer_Request_List()
 {
@@ -92,6 +117,32 @@ function Goto_Home_Page_Transfer_Not_Yet_Been_Accepted_List()
   
   //Wait for table to appear
   wait_for_object(home_page_messages_path, "idStr", "TransferRequestTable", 3);
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page incomplete treatment List
+function Goto_Home_Page_Incomplete_Treatment_List()
+{
+ 
+  //Visit Home Page
+  var INRstarV5 = INRstar_base();
+  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+  
+  //Click Message panel
+  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  
+  //Grab generic home page path - wait for desired link
+  var home_page_messages_path = home_page_messages();
+  var menu_header = wait_for_object(INRstarV5, "contentText", get_string_translation("*patient(s) with incomplete treatment.*"), 3);
+  
+  //Shout & fail if desired link not present
+  check_menu_header_exists(menu_header);
+  
+  //Click desired link
+  home_page_messages_path.Link(0).Click();
+  
+  //Wait for table to appear
+  wait_for_object(home_page_messages_path, "idStr", "IncompleteTreatmentsTable", 3);
 }
 //-------------------------------------------------------------------------------
 //Navigate to Home Page Suspension List
@@ -569,6 +620,8 @@ function Goto_Patient_Treatment()
   obj = wait_for_object(obj_root, "idStr", "TreatmentItem", 3);
  
   click_navigation_wrapper(obj, obj_root, "idStr", "PatientTreatmentWrapper", 3);
+  
+  //should we have a wait_for here?
   
   WaitSeconds(1, "Waiting for Treatments...");
 }

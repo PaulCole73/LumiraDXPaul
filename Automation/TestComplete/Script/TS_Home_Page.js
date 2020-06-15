@@ -16,15 +16,13 @@ function ts_master_homepage(send_mail)
 //  tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message(); //done
 //  tc_home_page_view_the_exceeded_suspension_period_message(); //done
 //  tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline(); //done
-//  tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_message(); done
+//  tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_message(); // done
+//  tc_home_page_view_the_patients_referred_to_you_for_further_action_message(); //done
 
-
-//  tc_treatment_refer_a_treatment(); //Same test as Home Page - View the 'Patients referred to you for further action' message // replace 
-
-//  tc_home_page_view_patient_with_incomplete_treatment();
+  tc_home_page_view_the_patients_with_incomplete_treatment_message(); //done
 //  tc_home_page_view_patient_with_no_diagnosis_or_tp();
 
-//  tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home_page_button() //done
+// tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home_page_button() //done
 
 //  tc_home_page_accept_patient_transfer_request(); //do audit check
 //  tc_home_page_decline_patient_transfer_request(); //do audit check
