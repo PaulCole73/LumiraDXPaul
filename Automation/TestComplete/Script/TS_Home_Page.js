@@ -23,7 +23,7 @@ function ts_master_homepage(send_mail)
 //  
 //  tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home_page_button(); 
 tc_home_page_accept_button_transfer_can_be_accepted_on_home_page(); 
-//  tc_home_page_decline_button_transfer_can_be_declined_on_home_page(); 
+ tc_home_page_decline_button_transfer_can_be_declined_on_home_page(); 
 //  
 //  tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_but_no_doac_review(); 
 //  tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_with_a_review_and_a_next_review_date_that_is_not_overdue(); 

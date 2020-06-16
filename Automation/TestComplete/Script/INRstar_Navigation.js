@@ -23,6 +23,38 @@ function Goto_Home()
 function Goto_Home_Page_Overdue_List()
 {
   //Visit Home Page
+  Goto_Home();
+  
+  //Get the system path of the home page messages section
+  var home_page_messages_path = home_page_messages();
+
+  //Get the system path of the link we are looking for
+  var link_header = home_page_overdue_link();
+  
+  //Get the texth of the link we are looking for
+  var link_text = home_page_overdue_link_text()
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_idStr_object(link_text);
+    
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
+  }
+  
+  //return true or false whether link is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page Overdue List
+function Goto_Home_Page_Overdue_List_2()
+{
+  //Visit Home Page
   var INRstarV5 = INRstar_base();
   var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
   

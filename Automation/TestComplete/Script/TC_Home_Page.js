@@ -26,11 +26,11 @@ function tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page()
     var result_set = new Array();
     
     //Check patient on the overdue INR test list
-    var result_set_1 = check_patient_on_overdue_INR_list(message_name)
+    var result_set_1 = check_patient_on_overdue_INR_list(message_name);
     result_set.push(result_set_1);
     
     //Check patients are listed with most overdue at top
-    var result_set_1 = check_overdue_sort_order_of_home_page_list()
+    var result_set_1 = check_overdue_sort_order_of_home_page_list();
     result_set.push(result_set_1);
     
     //Validate the results sets is True
@@ -70,11 +70,11 @@ function tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message
     var result_set = new Array();
     
     //Check Patient exists on list
-    var result_set_1 = check_patient_on_exceeded_treatment_end_date_list(message_name)
+    var result_set_1 = check_patient_on_exceeded_treatment_end_date_list(message_name);
     result_set.push(result_set_1);
     
     //Check patients are listed with most overdue at top
-    var result_set_1 = check_date_sort_order_of_exceeded_treatment_end_date_list()
+    var result_set_1 = check_date_sort_order_of_exceeded_treatment_end_date_list();
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -113,7 +113,7 @@ function tc_home_page_view_the_exceeded_suspension_period_message()
     suspend_patient_days(0);
     
     //Check Patient exists on list
-    var results = check_patient_on_suspension_list(message_name)
+    var results = check_patient_on_suspension_list(message_name);
 		
     //Pass in the result
     results_checker(results, test_title);
@@ -203,12 +203,15 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     //Initialise test array
     var result_set = new Array();
     
+    // Goto Home Page
+    Goto_Home();
+    
     //Check the patient transfer message shows on the home page 
-    var result_set_1 = check_home_page_displays_transfer_request_message()
-    result_set.push(result_set_1);
+    var result_set_1 = check_home_page_header_showing_by_name_object("TransferredPatientHeaderLink");
+    result_set.push(result_set_1); 
     
     //Check the patient transfer shows on the home page message
-    var result_set_1 = check_patient_in_transfer_request_list(message_name)
+    var result_set_1 = check_patient_in_transfer_request_list(message_name);
     result_set.push(result_set_1);
     
     //Logoff and then Login to original location
@@ -262,11 +265,11 @@ function tc_home_page_accept_button_transfer_can_be_accepted_on_home_page()
     var result_set = new Array();
 	
 	  //Check can select accept patient transfer button on home page transfer list
-    var result_set_1 = check_can_accept_patient_in_transfer_request(message_name)
+    var result_set_1 = check_can_accept_patient_in_transfer_request(message_name);
     result_set.push(result_set_1);
     
     //Check patient registered practice shows correct location
-    var result_set_1 = check_patient_registered_practice(message_name, test_prac, test_title)
+    var result_set_1 = check_patient_registered_practice(message_name, test_prac, test_title);
     result_set.push(result_set_1);
     
     //Check the audit for Transfer patient testing location accepted
@@ -316,10 +319,10 @@ function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
     var result_set = new Array();
 	
 	  //Decline patient transfer button on home page transfer list
-    check_can_decline_patient_in_transfer_request(message_name)
+    check_can_decline_patient_in_transfer_request(message_name);
     
     //Check the patient transfer removed on the home page transfer list
-    var result_set_1 = check_patient_not_in_transfer_request_list(message_name)
+    var result_set_1 = check_patient_not_in_transfer_request_list(message_name);
     result_set.push(result_set_1);
     
     //Logoff and then Login to original testing location - to confirm decline at source
@@ -327,11 +330,11 @@ function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
     login(5, "Shared");
     
     //Check patient is shown on declined transfer list
-    var result_set_1 = check_patient_in_declined_transfer_list(message_name)
+    var result_set_1 = check_patient_in_declined_transfer_list(message_name);
     result_set.push(result_set_1);
     
     //Check confirming acknowledgement of declined transfer removes patient from declined transfer list
-    var result_set_1 = acknowledge_declined_patient_in_message(message_name)
+    var result_set_1 = acknowledge_declined_patient_in_message(message_name);
     result_set.push(result_set_1);
     
     //Check the audit for Transfer patient testing location accepted
@@ -375,12 +378,15 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
     //Initialise test array
     var result_set = new Array();
     
+    // Goto Home Page
+    Goto_Home();
+    
     //Check the patient transfer request unaccepted message header shows on the home page
-    var result_set_1 = check_home_page_displays_not_yet_been_accepted_message()
+    var result_set_1 = check_home_page_header_showing_by_name_object("TransferredPatientHeaderLink_2");
     result_set.push(result_set_1);
     
     //Check the patient transfer shows on the home page message
-    var result_set_1 = check_patient_in_transfer_not_yet_been_accepted_list(message_name)
+    var result_set_1 = check_patient_in_transfer_not_yet_been_accepted_list(message_name);
     result_set.push(result_set_1);
 		
     //Validate the results sets is True

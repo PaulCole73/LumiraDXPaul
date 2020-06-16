@@ -102,6 +102,19 @@ function home_page_messages()
 //------------------------------------------------------------------------
 //////////////////////////  Home Page Overdue List ///////////////////////
 //------------------------------------------------------------------------
+function home_page_overdue_link_text()
+{  
+  return "OverduePatientHeaderLink"
+}
+//-------------------
+function home_page_overdue_link()
+{  
+  var list = home_page_messages()
+  var link = list.Link("OverduePatientHeaderLink")
+   
+  return link;
+}
+//-------------------
 function home_page_overdue_table()
 {
   var list = home_page_messages()

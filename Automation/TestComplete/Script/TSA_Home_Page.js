@@ -81,15 +81,34 @@ function check_date_sort_order_of_exceeded_treatment_end_date_list()
   
   // Now that we have table - Pass it on together with the column number, to check sort order, return result
   return check_date_sort_order_of_table(table, 5) // from Misc_Functions
-
 }
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 //--------------       Checking home page messages / headers   -------------------
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-function Check_home_page_header_showing(link_header)
-{
+// Use this to search for header link by idStr object
+function check_home_page_header_showing_by_idStr_object(link_header)
+{  
+  // Get the homepage base
+  var INRstarV5 = INRstar_base();  
+  
+  // look for specified link_header within homepath
+  var link = wait_for_object(INRstarV5, "idStr", link_header, 10);
+  
+  //In case the link header in question is not on the list
+  if(link.Exists != true)
+  {
+    Log.Message ('Problem: Link header ' + link_header + ' is NOT shown on home page')
+    return false
+  }
+  Log.Message ('Link header ' + link_header + ' is correctly shown on home page')
+  return true
+}
+//--------------------------------------------------------------------------------
+// Use this to search for header link by Name object
+function check_home_page_header_showing_by_name_object(link_header)
+{  
   // Get the homepage path
   var home_page_messages_path = home_page_messages();  
   
@@ -106,27 +125,6 @@ function Check_home_page_header_showing(link_header)
   return true
 }
 //--------------------------------------------------------------------------------
-function check_home_page_displays_transfer_request_message()
-{
-  // Go to the homepage
-  Goto_Home();
-  
-  // Check the header - patient transfer request(s) to Accept or Decline message is showing 
-  return Check_home_page_header_showing("TransferredPatientHeaderLink");
-  
-}
-//--------------------------------------------------------------------------------
-function check_home_page_displays_not_yet_been_accepted_message()
-{
-  // Go to the homepage
-  Goto_Home();
-  
-  // Check the header - patient transfer request(s) not yet been accepted message is showing 
-  return Check_home_page_header_showing("TransferredPatientHeaderLink_2");
-  
-}
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
 //--------------       Checking patient exists within tables   -------------------
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
@@ -139,7 +137,7 @@ function check_patient_on_suspension_list(pat_name)
   var table = home_page_suspension_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 }
 //--------------------------------------------------------------------------------
 function check_patient_on_exceeded_treatment_end_date_list(pat_name) 
@@ -151,7 +149,7 @@ function check_patient_on_exceeded_treatment_end_date_list(pat_name)
   var table = home_page_exceeded_treatment_end_date_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 }
 //--------------------------------------------------------------------------------
 function check_patient_on_refer_list(pat_name)
@@ -163,7 +161,7 @@ function check_patient_on_refer_list(pat_name)
   var table = home_page_referred_patient_table(); // from System_paths
   
   // Now that we have table - Pass it on together with the column 0 to check sort order, return result
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 }
 //--------------------------------------------------------------------------------
 function check_patient_on_overdue_INR_list(pat_name)
@@ -175,7 +173,7 @@ function check_patient_on_overdue_INR_list(pat_name)
   var table = home_page_overdue_table(); // from System_paths
   
   // Now that we have table - Pass it on together with the column 0 to check sort order, return result
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 }
 //--------------------------------------------------------------------------------
 function check_patient_in_transfer_request_list(pat_name)
@@ -187,7 +185,7 @@ function check_patient_in_transfer_request_list(pat_name)
   var table = home_page_transfer_request_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_in_declined_transfer_list(pat_name)
@@ -199,7 +197,7 @@ function check_patient_in_declined_transfer_list(pat_name)
   var table = home_page_declined_transfer_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_not_in_transfer_request_list(pat_name)
@@ -211,7 +209,7 @@ function check_patient_not_in_transfer_request_list(pat_name)
   var table = home_page_transfer_request_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_does_not_exist_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_does_not_exist_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_in_transfer_not_yet_been_accepted_list(pat_name)
@@ -223,7 +221,7 @@ function check_patient_in_transfer_not_yet_been_accepted_list(pat_name)
   var table = home_page_transfer_not_yet_been_accepted_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_in_incomplete_treatment_list(pat_name)
@@ -235,7 +233,7 @@ function check_patient_in_incomplete_treatment_list(pat_name)
   var table = home_page_incomplete_treatment_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_in_overdue_non_warfarin_review_list(pat_name)
@@ -247,7 +245,7 @@ function check_patient_in_overdue_non_warfarin_review_list(pat_name)
   var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_in_no_diagnosis_or_treatment_plan_message(pat_name)
@@ -259,7 +257,7 @@ function check_patient_in_no_diagnosis_or_treatment_plan_message(pat_name)
   var table = home_page_no_diagnosis_or_treatment_table(); // from System_paths
   
   // Check table for patient within column 0
-  return check_patient_exists_in_table_within_column(0,table,pat_name) //0 = column to check
+  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
@@ -277,12 +275,12 @@ function check_patient_not_in_decline_patient_transfer_request_list(pat_name)
     var table = home_page_declined_transfer_table(); // from System_paths 
     
     // Check table for patient within column 0
-    return check_patient_does_not_exist_in_table_within_column(0,table,pat_name) //0 = column to check
+    return check_patient_does_not_exist_in_table_within_column(0,table,pat_name); //0 = column to check
   }
   // otherwise if the table cannot be seen this check is a pass (since we are checking patient isn't on it)
   else 
   {
-    Log.Message("Success: Table does not exist - so unable to check that patient doesn't exist")
+    Log.Message("Success: Table does not exist - so unable to check that patient doesn't exist");
     return true
   }
 } 
@@ -298,12 +296,12 @@ function check_patient_not_on_overdue_non_warfarin_review_list(pat_name)
     var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
     
     // Check table for patient within column 0
-    return check_patient_does_not_exist_in_table_within_column(0,table,pat_name) //0 = column to check
+    return check_patient_does_not_exist_in_table_within_column(0,table,pat_name); //0 = column to check
   }
   // otherwise if the table cannot be seen this check is a pass (since we are checking patient isn't on it)
   else 
   {
-    Log.Message("Success: Table does not exist - so unable to check that patient doesn't exist")
+    Log.Message("Success: Table does not exist - so unable to check that patient doesn't exist");
     return true
   }
 } 
@@ -345,10 +343,10 @@ function acknowledge_declined_patient_in_message(pat_name)
   var table = home_page_declined_transfer_table(); // from System_paths
   
   // Acknowledge declined patient in table
-  can_acknowledge_patient_declined_from_table(table,pat_name) // from TSA
+  can_acknowledge_patient_declined_from_table(table,pat_name); // from TSA
   
   // Check patient not in list
-  return check_patient_not_in_decline_patient_transfer_request_list(pat_name)
+  return check_patient_not_in_decline_patient_transfer_request_list(pat_name);
 } 
 //--------------------------------------------------------------------------------
 function unsuspend_patient_on_exceed_suspension_period_list(pat_name)
@@ -360,7 +358,7 @@ function unsuspend_patient_on_exceed_suspension_period_list(pat_name)
   var table = home_page_suspension_table(); // from System_paths
   
   // Unsuspend patient - start by cycling through table to find patient
-  return can_unsuspend_patient_from_table(table,pat_name)
+  return can_unsuspend_patient_from_table(table,pat_name);
 }
 //--------------------------------------------------------------------------------
 function can_unsuspend_patient_from_table(table,pat_name)
@@ -455,7 +453,7 @@ function refer_pending_treatment()
 function check_next_review_date_warning(test_title)
 {
     //Specify expected warning message
-    var expected_message = get_string_translation("The patient's next review details have been successfully updated.")
+    var expected_message = get_string_translation("The patient's next review details have been successfully updated.");
     
     //Grab Actual warning message 
     var warning_message = get_next_review_date_warning();
@@ -525,7 +523,7 @@ function check_delay_day_of_patient_in_overdue_non_warfarin_review_list(delay_da
   var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
   
   // Now that we have table - Pass on the expected_value(delay_day), table, column_to_check, patient, patient_name_column return result
-  return check_value_of_specified_cell_in_table_for_patient(delay_day, table, 7, pat_name, 0) // 
+  return check_value_of_specified_cell_in_table_for_patient(delay_day, table, 7, pat_name, 0); // 
 }
 //--------------------------------------------------------------------------------
 function get_urgent_patient_message_text(patient_nhs) //this is used by code outside of the homepage functionality
@@ -593,7 +591,7 @@ function accept_patient_in_transfer_request_message(pat_name) //this is used by 
         return true;
       }
     }
-    Log.Message('Patient was not found on the list')
+    Log.Message('Patient was not found on the list');
     return false;
   }
 } 
