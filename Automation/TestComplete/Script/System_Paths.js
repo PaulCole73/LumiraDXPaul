@@ -121,7 +121,7 @@ function home_page_referred_patient_table()
 }
 //------------------------------------------------------------------------
 ////////////////  Home Page Transfer Request List Table //////////////////
-//------------------------------------------------------------------------
+//------------------------------------------------------------------------home_page_declined_transfer_table
 function home_page_transfer_request_table()
 {
   var list = home_page_messages()
@@ -129,7 +129,26 @@ function home_page_transfer_request_table()
    
   return table;
 }
-
+//------------------------------------------------------------------------
+////////////////  Home Page Declined Transfer List Table //////////////////
+//------------------------------------------------------------------------
+function home_page_declined_transfer_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable")
+   
+  return table;
+}
+//------------------------------------------------------------------------
+////////  Home Page No Diagnosis or Treatment List Table /////////////////
+//------------------------------------------------------------------------
+function home_page_no_diagnosis_or_treatment_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("PatientsWithNoDiagnosis").Table("PatientWithNoDiagnosisReportTable");
+   
+  return table;
+}
 //------------------------------------------------------------------------
 ///////////////////  Home Page Incomplete treatment List /////////////////
 //------------------------------------------------------------------------
@@ -137,6 +156,16 @@ function home_page_incomplete_treatment_table()
 {
   var list = home_page_messages()
   var table = list.Panel("IncompleteTreatments").Table("IncompleteTreatmentsTable");
+   
+  return table;
+}
+//------------------------------------------------------------------------
+//////////////  Home Page Overdue Non Warfarin Review List ///////////////
+//------------------------------------------------------------------------
+function home_page_overdue_non_warfarin_review_table()
+{
+  var list = home_page_messages()
+  var table = list.Panel("OverdueReviewPatients").Table("PatientOverdueReviewReportTable");
    
   return table;
 }
@@ -1827,6 +1856,14 @@ function pat_managment_tab_status_buttons()
   
   return status_buttons;
 }   
+//------------------------------------------------------------------------
+function registered_practice_field()
+{
+  var care_team_path = patient_management_care_team();
+  var registered_practice = care_team_path.Panel(0).Label("TestingSectionId_DetachedLabel").innerText;
+  
+  return registered_practice;
+}
 //------------------------------------------------------------------------
 function pat_managment_tab_preferences_buttons()
 {

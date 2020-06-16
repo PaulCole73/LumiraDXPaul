@@ -153,18 +153,9 @@ function tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home
     //Unsuspend the patient in the list
     var result_set_1 = unsuspend_patient_on_exceed_suspension_period_list(message_name);
     result_set.push(result_set_1);
-
-    //Warning dialogue confirmation
-    var expected_message = get_string_translation("The patient(s) have been successfully unsuspended.") +
-    get_string_translation("The patient(s) may have been treated elsewhere during the suspension period.") + " " +
-    get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.")  + " " +
-    get_string_translation("For non-warfarin patients you should ensure review information is up to date.");
-     
-    //Get warning message text
-    var warning_message = process_popup(get_string_translation("Unsuspend Patients"),"OK");
     
-    //Check expected message and warning message match
-    result_set_1 = compare_values(warning_message, expected_message, test_title);
+    //Check the Unsuspend warning appears as expected
+    var result_set_1 = check_unsuspend_warning_dialog_content();
     result_set.push(result_set_1);
     
     //Check the audit for Unsuspend Patient
@@ -212,7 +203,7 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     //Initialise test array
     var result_set = new Array();
     
-    //Check the patient transfer shows on the home page message
+    //Check the patient transfer message shows on the home page 
     var result_set_1 = check_home_page_displays_transfer_request_message()
     result_set.push(result_set_1);
     
@@ -223,16 +214,6 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     //Logoff and then Login to original location
     Log_Off();
     login(5, "Shared");
-    
-//    //Search for the patient 
-//    patient_search(message_name);
-//    
-//    //Acknowledge pop-up
-//    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
-//    
-//    //Check the audit
-//    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Requested change of patient's testing practice"));
-//    result_set.push(result_set_1);
     
     //Check the audit for Requested change of patient's testing practice
     var result_set_1 = check_top_patient_audit(test_title, message_name, "Requested change of patient's testing practice");
@@ -255,41 +236,41 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_accept_patient_transfer_request()
+function tc_home_page_accept_button_transfer_can_be_accepted_on_home_page()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Accept patient transfer requests'"
+    var test_title = "Home Page - Accept button, transfer can be accepted on home page"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Accept_transfer_request', 'M', 'Shared');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
-  
-    //Transfer the testing location
-    var test_prac = 'Deans Regression Testing Location 2';
-    change_test_practice(test_prac);
-    Log_Off();
     
-    //Login to transfered testing location
+    //Transfer the testing location
+    var test_prac = "Deans Regression Testing Location 2";
+    change_test_practice(test_prac);
+    
+    //Logoff and then Login to transfered testing location
+    Log_Off();
     login(15, "Shared");
 
+    //Initialise test array
     var result_set = new Array();
-    
-    //Check the patient transfer shows on the home page message
-    var result_set_1 = accept_patient_in_transfer_request_message(message_name)
+	
+	  //Check can select accept patient transfer button on home page transfer list
+    var result_set_1 = check_can_accept_patient_in_transfer_request(message_name)
     result_set.push(result_set_1);
     
-    //Patient Management Testing Location check
-    Goto_Patient_Management();
-    var care_team_path = patient_management_care_team();
-    var pat_testing_location = care_team_path.Panel(0).Label("TestingSectionId_DetachedLabel").innerText;
-    result_set_1 = compare_values(pat_testing_location, test_prac, test_title);
+    //Check patient registered practice shows correct location
+    var result_set_1 = check_patient_registered_practice(message_name, test_prac, test_title)
     result_set.push(result_set_1);
     
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Transfer patient testing location accepted"));
+    //Check the audit for Transfer patient testing location accepted
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location accepted");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -304,16 +285,18 @@ function tc_home_page_accept_patient_transfer_request()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_accept_patient_transfer_request";
+    var test_name = "tc_home_page_accept_button_transfer_can_be_accepted_on_home_page";
     handle_failed_tests(suite_name, test_name); 
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_decline_patient_transfer_request()
+function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Decline patient transfer'";
+    var test_title = "Home Page - Decline button, transfer can be declined on home page";
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Decline_transfer_request', 'M', 'Shared');
     
@@ -322,34 +305,37 @@ function tc_home_page_decline_patient_transfer_request()
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
-    change_test_practice('Deans Regression Testing Location 2');
-    Log_Off();
+    var test_prac = "Deans Regression Testing Location 2";
+    change_test_practice(test_prac);
     
-    //Login to transfered testing location
+    //Logoff and then Login to transfered testing location
+    Log_Off();
     login(15, "Shared");
 
+    //Initialise test array
     var result_set = new Array();
+	
+	  //Decline patient transfer button on home page transfer list
+    check_can_decline_patient_in_transfer_request(message_name)
     
-    //Decline the patient transfer on the home page message
-    var result_set_1 = decline_patient_in_transfer_request_message(message_name)
+    //Check the patient transfer removed on the home page transfer list
+    var result_set_1 = check_patient_not_in_transfer_request_list(message_name)
     result_set.push(result_set_1);
     
-    //Check the patient transfer removed on the home page message
-    result_set_1 = check_patient_not_in_transfer_request_message(message_name)
-    result_set.push(result_set_1);
+    //Logoff and then Login to original testing location - to confirm decline at source
     Log_Off();
-    
-    //Login to Sending location to Acknowledge declined transfer
     login(5, "Shared");
-    result_set_1 = acknowledge_declined_patient_in_message(message_name)
-    result_set.push(result_set_1);
-        
-    result_set_1 = check_patient_not_in_decline_patient_transfer_request_message(message_name)
+    
+    //Check patient is shown on declined transfer list
+    var result_set_1 = check_patient_in_declined_transfer_list(message_name)
     result_set.push(result_set_1);
     
-    //Check the audit
-    patient_search(message_name);
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Transfer patient testing location declined Acknowledged"));
+    //Check confirming acknowledgement of declined transfer removes patient from declined transfer list
+    var result_set_1 = acknowledge_declined_patient_in_message(message_name)
+    result_set.push(result_set_1);
+    
+    //Check the audit for Transfer patient testing location accepted
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location declined Acknowledged");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -364,7 +350,7 @@ function tc_home_page_decline_patient_transfer_request()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_decline_patient_transfer_request";
+    var test_name = "tc_home_page_decline_button_transfer_can_be_declined_on_home_page";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -483,10 +469,6 @@ function tc_home_page_view_the_patients_with_incomplete_treatment_message()
     //Check the patient incomplete treatment shows on the home page message
     var result_set_1 = check_patient_in_incomplete_treatment_list(message_name)
     result_set.push(result_set_1);
-    
-    //Check the audit for Add New INR
-    var result_set_1 = check_top_patient_audit(test_title, message_name, "Add New INR");
-    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -505,11 +487,13 @@ function tc_home_page_view_the_patients_with_incomplete_treatment_message()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_view_patient_with_no_diagnosis_or_tp()
+function tc_home_page_view_the_patients_with_no_diagnosis_or_treatment_plan_message()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Patient with no diagnosis or TP'"
+    var test_title = "Home Page - View the 'Patients with no diagnosis or treatment plan' message"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'No_diagnosis', 'M', 'Shared');
     
@@ -517,10 +501,8 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
-    //result_set = new Array();
-    
     //Check the patient shows on the home page message for No Diagnosis
-    var results = check_patient_with_no_diagnosis_or_tp_message(message_name)
+    var results = check_patient_in_no_diagnosis_or_treatment_plan_message(message_name)
 		
     //Pass in the result
     results_checker(results, test_title);
@@ -531,16 +513,18 @@ function tc_home_page_view_patient_with_no_diagnosis_or_tp()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_patient_with_no_diagnosis_or_tp";
+    var test_name = "tc_home_page_view_the_patients_with_no_diagnosis_or_treatment_plan_message";
     handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
+function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_but_no_doac_review()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP but no DOAC review"
+    var test_title = "Home Page - Table contents, Overdue a non wafarin review patient with a DOAC treatment plan but no DOAC review"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Overdue_non_warf_review', 'M', 'Shared');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -7)),'Shared','','Indefinite');
@@ -549,17 +533,21 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
+    //Initialise test array
     var result_set = new Array();
     
     //Check the patient shows on the home page message for Overdue non-warfarin review
-    var result_set_1 = check_overdue_non_warfarin_review_message(message_name)
+    var result_set_1 = check_patient_in_overdue_non_warfarin_review_list(message_name)
     result_set.push(result_set_1);
     
-    patient_search(message_name);
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add Treatment Plan Details"));
+    //Check patients are listed with most overdue at top
+    var result_set_1 = check_non_warfarin_review_sort_order_of_home_page_list()
     result_set.push(result_set_1);
-		
+    
+    //Check days overdue for patient is 7 - since this reflecs treatment plan
+    var result_set_1 = check_delay_day_of_patient_in_overdue_non_warfarin_review_list("7", message_name)
+    result_set.push(result_set_1);
+    
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
 		
@@ -572,16 +560,18 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_but_no_review";
+    var test_name = "tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_but_no_doac_review";
     handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_overdue()
+function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_with_a_review_and_a_next_review_date_that_is_not_overdue()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP and review, not overdue"
+    var test_title = "Home Page - Table contents, Overdue a non wafarin review patient with a DOAC treatment plan, with a review and a next review date that is not overdue"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -150)),'Shared','','Indefinite');
@@ -591,14 +581,11 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     
+    //Initialise test array
     var result_set = new Array();
-    //Check the patient does not shows on the home page message for Overdue non-warfarin review 
-    var result_set_1 = check_patient_not_on_overdue_non_warfarin_review_message(message_name)
-    result_set.push(result_set_1);
     
-    patient_search(message_name);
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("New review created"));
+    //Check the patient does not shows on the home page message for Overdue non-warfarin review 
+    var result_set_1 = check_patient_not_on_overdue_non_warfarin_review_list(message_name)
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -613,45 +600,40 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_ov
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_and_review_not_overdue";
+    var test_name = "tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_with_a_review_and_a_next_review_date_that_is_not_overdue";
     handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
+function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_without_a_review_and_a_next_review_date_that_is_not_overdue()
 {
   try 
   {
-    var test_title = "Home Page - View the 'Overdue a non warfarin review' - with TP and review, not overdue"
+    var test_title = "Home Page - Table contents, Overdue a non wafarin review patient with a DOAC treatment plan, without a review and a next review date that is not overdue"
+    
+    //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
     add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite');
     
     //Click cancel on the new review and set future date for next review
-    var add_review_form_path = add_review_form();
-    add_review_form_path.Panel(0).Panel("AnnualReviewAddActions").Button("CancelWarfarinReviewLink").click();
+    cancel_review();
     Goto_Patient_Treatment_Plan_Review();
     edit_next_review_date(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 7)));
-    
-    var result_set = new Array();
-    
-    //Check warning message displayed on change of review date
-    var expected_message = get_string_translation("The patient's next review details have been successfully updated.")
-    var warning_message = get_next_review_date_warning();
-    var result_set_1 = compare_values(warning_message, expected_message, test_title);
-    result_set.push(result_set_1);
-    
+        
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
+    
+    //Initialise test array
+    var result_set = new Array();
         
     //Check the patient does not shows on the home page message for Overdue non-warfarin review 
-    result_set_1 = check_patient_not_on_overdue_non_warfarin_review_message(message_name)
+    var result_set_1 = check_patient_not_on_overdue_non_warfarin_review_list(message_name)
     result_set.push(result_set_1);
     
-    patient_search(message_name);
-    //Check the audit
-    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Changed Next Review Date - Face-to-face."));
+    //Check the audit for Changed Next Review Date - Face-to-face.
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Changed Next Review Date - Face-to-face.");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -666,7 +648,7 @@ function tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Home_Page";
-    var test_name = "tc_home_page_view_overdue_non_warfarin_review_with_tp_and_not_overdue";
+    var test_name = "tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a_doac_treatment_plan_without_a_review_and_a_next_review_date_that_is_not_overdue";
     handle_failed_tests(suite_name, test_name); 
   }
 }

@@ -216,6 +216,23 @@ function check_patient_exists_in_table_within_column(column,table,pat_name)
   Log.Warning("Patient not found " + pat_name)
   return false;
 }
+//-----------------------------------------------------------------------------------
+//This is to test that a patient does not exist in a specified column of a table
+function check_patient_does_not_exist_in_table_within_column(column,table,pat_name)
+{
+   for (var i = 0; i < table.rowcount; i++)
+    {
+      if(table.Cell(i, column).contentText == pat_name)
+      {    
+        Log.Warning("Patient " + pat_name + " was incorrectly found in table ")
+        return false;
+      }
+    }
+    Log.Message("Patient " + pat_name + " was successfully NOT found in table ")
+    return true;
+}
+//----------------------------------------------------------------------------------
+
 //This is to test the data given only contains false as an answer for a single result
 function results_checker_is_false(result_set)
 {
@@ -793,6 +810,28 @@ function get_english_translation(translation_word)
  Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
+// Pass in the expected_value, table, column_number and patient_name it will return the result of true if found
+function check_value_of_specified_cell_in_table_for_patient(expected_value, table, column_number, pat_name, pat_name_column)
+{
+   for (i=0; i<table.rowcount; i++)
+    {
+      if(table.Cell(i, pat_name_column).contentText == pat_name)
+      { 
+        table.Cell(i, column_number).scrollIntoView(true);    
+        var value_in_cell = table.Cell(i, column_number).contentText 
+          if (value_in_cell == expected_value)
+          {
+            Log.Message("Success - Table contains: " + expected_value + " in column:" + column_number + " for patient: " + pat_name)
+            return true
+          }
+        Log.Warning("Fail - Table should contain: " + expected_value + " in column:" + column_number + " for patient: " + pat_name)
+        return false;
+      }
+    }
+    Log.Warning("Patient: " + pat_name + "was not found in the table")
+    return false;
+}
+//-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//
@@ -1296,8 +1335,13 @@ function check_menu_header_exists(menu_header)
 {
 if(menu_header.Exists != true)
   {
-    Log.Warning("Home page message with value ' + menu_header + 'not displayed");
+    Log.Message("Home page message with value not displayed");
     return false;
+  }
+else
+  {
+  Log.Message("Home page message displayed");
+  return true
   }
 }
 //-------------------------------------------------------------------------------- 
