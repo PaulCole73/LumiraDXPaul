@@ -187,7 +187,7 @@ function tc_users_disable_user()
     var result_set_1 = validate_top_system_audit(test_title, get_string_translation("Disable User"));
     result_set.push(result_set_1);
     
-    result_set_1 = validate_more_info_top_system_audit(get_string_translation("Account Enabled") + " " + get_string_translation("changed from") + " [" + get_string_translation("True") + "]" 
+    result_set_1 = validate_more_info_top_system_audit(get_string_translation("Account Enabled") + " " + get_string_translation("changed from") + " [" + get_string_translation("True") + "] " 
                                                        + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".");
     result_set.push(result_set_1);
     
@@ -228,7 +228,7 @@ function tc_users_enable_user()
     var result_set_1 = validate_top_system_audit(test_title, get_string_translation("Enable User"));
     result_set.push(result_set_1);
     
-    result_set_1 = validate_more_info_top_system_audit(get_string_translation("Account Enabled") + " " + get_string_translation("changed from") + " [" + get_string_translation("False") + "]" 
+    result_set_1 = validate_more_info_top_system_audit(get_string_translation("Account Enabled") + " " + get_string_translation("changed from") + " [" + get_string_translation("False") + "] " 
                                                        + get_string_translation("to") + " [" + get_string_translation("True") + "]" + ".");
     result_set.push(result_set_1);
     

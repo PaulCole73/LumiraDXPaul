@@ -272,6 +272,9 @@ function edit_treatment_plan_diagnosis()
   edit_treatment_plan.Panel(1).Select("DiagnosisSelected").ClickItem((Math.random()*20)+1);
   var data_after = edit_treatment_plan.Panel(1).Select("DiagnosisSelected").wText;
   
+  //Some inconsistent behavior here I think it is timing so putting this in remove at your peril
+  WaitSeconds(2);
+  
   //Check data is now different
   while (data_before==data_after)
   {

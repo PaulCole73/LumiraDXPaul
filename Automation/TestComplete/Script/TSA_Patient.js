@@ -96,20 +96,17 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
     
     var guid = new_guid(15);
     
-    switch(language)   
+    if(language == "Italian")   
     {
-    case language: "Italian"
-    panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
-    panelEPCD.Panel(8).Textbox("Mobile").Text = "07111 225588";    
-    panelEPCD.Panel(9).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
-    break;
-    case language: "English"
-    panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
-    panelEPCD.Panel(7).Textbox("Mobile").Text = "07111 225588";
-    panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";  
-    break;
-    default:
-    Log.Warning("You didn't pass in a language I recognise you passed in " + language)
+      panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
+      panelEPCD.Panel(8).Textbox("Mobile").Text = "07111 225588";    
+      panelEPCD.Panel(9).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
+    }
+    if(language == "English")  
+    {
+      panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
+      panelEPCD.Panel(7).Textbox("Mobile").Text = "07111 225588";
+      panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";  
     }
     
     var button_area = add_patient_demographics_buttons_system_path()

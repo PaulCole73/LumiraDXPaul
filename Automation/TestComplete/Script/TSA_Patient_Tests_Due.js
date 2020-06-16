@@ -17,11 +17,8 @@ function get_tests_due_patient(name)
       Log.Message("This is who I was looking for \\" + name + " \\This is who I found \\" + data + " \\")
       return true;
     } 
-      else
-        {
-        Log.Warning('Patient ' + name + ' was not found on the tests due list')
-        return false;
-        }
   }
+  Log.Warning('Patient ' + name + ' was not found on the tests due list')
+  return false;
 }
 //--------------------------------------------------------------------------------
