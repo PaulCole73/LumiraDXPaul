@@ -514,7 +514,7 @@ function check_patient_registered_practice(message_name, expected_registered_pra
   return compare_values(listed_registered_practice, expected_registered_practice, test_title);
 }
 //--------------------------------------------------------------------------------
-function get_overdue_patient(patient_name)
+function get_overdue_patient(patient_name) //this is used by code outside of the homepage functionality
 {
   // Navigate to the list table and wait for it to appear
   Goto_Home_Page_Overdue_List(); // from INRstar_Navigation if(link.Exists == true)

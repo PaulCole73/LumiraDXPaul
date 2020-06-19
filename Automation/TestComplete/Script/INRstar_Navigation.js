@@ -258,7 +258,7 @@ function Goto_Home_Page_Overdue_Non_Warfarin_Review_List()
 //Navigate to Home Page Suspension List
 function Goto_Home_Page_Suspension_List()
 {
-   //Visit Home Page
+  //Visit Home Page
   Goto_Home();
   
   //Check if the link is present
@@ -889,7 +889,7 @@ function Goto_Change_Testing_Location()
   var pat_managment_tab_preferences_buttons_path = pat_managment_tab_preferences_buttons();
   pat_managment_tab_preferences_buttons_path.Button("EditPatientTestingSectionLink").Click();
   
-  wait_for_object(panelMCP, "idStr", "SearchTestingLocations", 3);
+  wait_for_object(panelMCP, "idStr", "SearchTestingLocations", 7);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Pending Treatment  / Audit
