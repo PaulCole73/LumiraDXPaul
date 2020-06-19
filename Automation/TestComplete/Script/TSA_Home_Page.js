@@ -88,7 +88,7 @@ function check_date_sort_order_of_exceeded_treatment_end_date_list()
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 
-function check_home_page_header_showing_by_path(link_header)
+function check_home_page_header_showing_by_name(link_header)
 {  
   // Get the home_page_messages_path base  
   var home_page_messages_path = home_page_messages();

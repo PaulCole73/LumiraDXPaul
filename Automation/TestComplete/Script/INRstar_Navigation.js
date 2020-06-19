@@ -26,7 +26,7 @@ function Goto_Home_Page_Overdue_List()
   Goto_Home();
   
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_path("OverduePatientHeaderLink")
+  var link_present = check_home_page_header_showing_by_name("OverduePatientHeaderLink")
     
   //Perform actions if link - present 
   if (link_present == true)
@@ -55,7 +55,7 @@ function Goto_Home_Page_Referred_Patient_List()
   Goto_Home();
   
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_path("ReferredPatientHeaderLink");
+  var link_present = check_home_page_header_showing_by_name("ReferredPatientHeaderLink");
   
   //Perform actions if link - present 
   if (link_present == true)
@@ -84,7 +84,7 @@ function Goto_Home_Page_Declined_Transfer_List()
   Goto_Home();
   
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_path("DeclinedPatientHeaderLink");
+  var link_present = check_home_page_header_showing_by_name("DeclinedPatientHeaderLink");
   
   //Perform actions if link - present 
   if (link_present == true)
@@ -174,7 +174,7 @@ function Goto_Home_Page_No_Diagnosis_Or_Treatment_List()
   Goto_Home();
   
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_path("PatientsWithNoDiagnosisHeaderLink");
+  var link_present = check_home_page_header_showing_by_name("PatientsWithNoDiagnosisHeaderLink");
   
   //Perform actions if link - present 
   if (link_present == true)
@@ -233,7 +233,7 @@ function Goto_Home_Page_Overdue_Non_Warfarin_Review_List()
   Goto_Home();
   
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_path("OverdueReviewPatientHeaderLink");
+  var link_present = check_home_page_header_showing_by_name("OverdueReviewPatientHeaderLink");
   
   //Perform actions if link - present 
   if (link_present == true)
@@ -262,7 +262,7 @@ function Goto_Home_Page_Suspension_List()
   Goto_Home();
   
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_path("ExceededSuspendedPatientsViewModelPatientHeaderLink");
+  var link_present = check_home_page_header_showing_by_name("ExceededSuspendedPatientsViewModelPatientHeaderLink");
   
   //Perform actions if link - present 
   if (link_present == true)
@@ -291,7 +291,7 @@ function Goto_Home_Page_Exceeded_Treatment_End_Date_List()
   Goto_Home();
   
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_path("ExceededPatientsHeaderLink");
+  var link_present = check_home_page_header_showing_by_name("ExceededPatientsHeaderLink");
   
   //Perform actions if link - present 
   if (link_present == true)
