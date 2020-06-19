@@ -1023,7 +1023,6 @@ function WaitSeconds(seconds, p_text)
 //-----------------------------------------------------------------------------------
 function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, iterations)
 {
-  var INRstarV5 = INRstar_base();
   var counter = 0;
   
   if(wait_time == null || wait_time == "")
@@ -1270,9 +1269,13 @@ function check_row_count_more_than_one(rowcount)
 {
   if(rowcount < 3) //Header row counts as one row, we need two or more entries beside this
     {
-      Log.Warning("Fail - Data table not large enough to check sort order. only 1 entry exists");
+      Log.Message("Data table not large enough to check sort order. only 1 entry exists");
       return false;
     }
+  else 
+  {
+  return true;
+  }
 }
 //-------------------------------------------------------------------------------- 
 function check_sort_order_of_table(table, sort_order_cell)  //check_table_in_desc_order
@@ -1280,54 +1283,61 @@ function check_sort_order_of_table(table, sort_order_cell)  //check_table_in_des
   var rowcount = table.rowcount;
   
   // we need at least two entries in table to test
-  check_row_count_more_than_one(rowcount)
+  var is_table_large_enough = check_row_count_more_than_one(rowcount)
     
-  for(var i = 1; i < rowcount; i++)
+  if (is_table_large_enough == true)
   {
-    cell_content = parseInt(table.Cell(i,sort_order_cell).contentText); // grab cell contents, convert to integer
-        
-    if (i > 1) //skip for first row since nothing to compare against
+    for(var i = 1; i < rowcount; i++)
     {
-      if (cell_content > last_value) //Check if cell_content is higher than previous entry
+      cell_content = parseInt(table.Cell(i,sort_order_cell).contentText); // grab cell contents, convert to integer
+        
+      if (i > 1) //skip for first row since nothing to compare against
       {
-         Log.Warning("Fail - Sort order of list is NOT highest at top");
-         Log.Warning("Cell reference " + i + "," + sort_order_cell + "  has a value of " + cell_content)
-         Log.Warning("Where as entry above this, has a value of " + last_value);
-         return false;
+        if (cell_content > last_value) //Check if cell_content is higher than previous entry
+        {
+           Log.Warning("Fail - Sort order of list is NOT highest at top");
+           Log.Warning("Cell reference " + i + "," + sort_order_cell + "  has a value of " + cell_content)
+           Log.Warning("Where as entry above this, has a value of " + last_value);
+           return false;
          
+        }
       }
+      last_value = cell_content;
     }
-    last_value = cell_content;
+    Log.Message("The entries are ordered correctly (from the highest to lowest)");
   }
-  Log.Message("The entries are ordered correctly (from the highest to lowest)");
   return true;
 }
 //-------------------------------------------------------------------------------- 
 function check_date_sort_order_of_table(table, sort_order_cell)
 {
   var rowcount = table.rowcount;
-  // we need at least two entries in table to test
-  check_row_count_more_than_one(rowcount)
   
-  for(var i = 1; i < rowcount; i++)
+  // we need at least two entries in table to test
+  var is_table_large_enough = check_row_count_more_than_one(rowcount)
+    
+  if (is_table_large_enough == true)
   {
-    date_string = table.Cell(i,sort_order_cell).contentText; // Get date string from cell in table
-    date_unix = get_unix_date_number_from_dd_mmm_yyyy(date_string); // translate and convert date into unix format
-        
-    if (i > 1) //skip for first row since nothing to compare against
+    for(var i = 1; i < rowcount; i++)
     {
-      if (date_unix < previous_date_unix) //Check if UNIX date number higher than previous entry - if so fail
+      date_string = table.Cell(i,sort_order_cell).contentText; // Get date string from cell in table
+      date_unix = get_unix_date_number_from_dd_mmm_yyyy(date_string); // translate and convert date into unix format
+        
+      if (i > 1) //skip for first row since nothing to compare against
       {
-         Log.Warning("Fail - Sort order of due list is NOT oldest at top");
-         Log.Warning("Cell reference " + i + "," + sort_order_cell + "  has a value of " + date_string)
-         Log.Warning("Where as entry above this, has a value of " + previous_date);
-         return false;
+        if (date_unix < previous_date_unix) //Check if UNIX date number higher than previous entry - if so fail
+        {
+           Log.Warning("Fail - Sort order of due list is NOT oldest at top");
+           Log.Warning("Cell reference " + i + "," + sort_order_cell + "  has a value of " + date_string)
+           Log.Warning("Where as entry above this, has a value of " + previous_date);
+           return false;
+        }
       }
+      previous_date_unix = date_unix;
+      previous_date = date_string;
     }
-    previous_date_unix = date_unix;
-    previous_date = date_string;
+    Log.Message("The entries are ordered correctly (from the oldest to the most recent)");
   }
-  Log.Message("The entries are ordered correctly (from the oldest to the most recent)");
   return true;
 }
 //--------------------------------------------------------------------------------

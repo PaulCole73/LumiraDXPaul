@@ -91,6 +91,15 @@ function feedback_tab_textarea()
 //------------------------------------------------------------------------
 //////////////////////////  Home Page  ///////////////////////////////////
 //------------------------------------------------------------------------
+function home_page_button_link()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("header")
+  var link = panelMCP.Link("HomeLink")
+   
+  return link;
+}
+//------------------------------------------------------------------------
 function home_page_messages()
 {
   var INRstarV5 = INRstar_base();
@@ -102,43 +111,46 @@ function home_page_messages()
 //------------------------------------------------------------------------
 //////////////////////////  Home Page Overdue List ///////////////////////
 //------------------------------------------------------------------------
-function home_page_overdue_link_text()
-{  
-  return "OverduePatientHeaderLink"
-}
-//-------------------
 function home_page_overdue_link()
 {  
-  var list = home_page_messages()
-  var link = list.Link("OverduePatientHeaderLink")
+  var list = home_page_messages();
+  var link = list.Link("OverduePatientHeaderLink");
    
   return link;
 }
 //-------------------
 function home_page_overdue_table()
 {
-  var list = home_page_messages()
-  var table = list.Panel("OverduePatients").Table("PatientOverdueReportTable")
+  var list = home_page_messages();
+  var table = list.Panel("OverduePatients").Table("PatientOverdueReportTable");
    
   return table;
 }
 //------------------------------------------------------------------------
 ///////////////////  Home Page Referred Patient List ////////////////////
 //------------------------------------------------------------------------
+function home_page_referred_patient_link()
+{  
+  var list = home_page_messages();
+  var link = list.Link("ReferredPatientHeaderLink"); 
+   
+  return link;
+}
+//-------------------
 function home_page_referred_patient_table()
 {
-  var list = home_page_messages()
-  var table = list.Panel("ReferredPatients").Table("ReferredPatientReportTable")
+  var list = home_page_messages();
+  var table = list.Panel("ReferredPatients").Table("ReferredPatientReportTable");
    
   return table;
 }
 //------------------------------------------------------------------------
-////////////////  Home Page Transfer Request List Table //////////////////
-//------------------------------------------------------------------------home_page_declined_transfer_table
+////////////////  Home Page Transferred Request List Table //////////////////
+//------------------------------------------------------------------------
 function home_page_transfer_request_table()
 {
-  var list = home_page_messages()
-  var table = list.Panel("TransferredPatients").Table("TransferredTable")
+  var list = home_page_messages();
+  var table = list.Panel("TransferredPatients").Table("TransferredTable");
    
   return table;
 }
@@ -147,48 +159,80 @@ function home_page_transfer_request_table()
 //------------------------------------------------------------------------
 function home_page_declined_transfer_table()
 {
-  var list = home_page_messages()
-  var table = list.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable")
+  var list = home_page_messages();
+  var table = list.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
    
   return table;
+}
+//-------------------
+function home_page_declined_transfer_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("DeclinedPatientHeaderLink"); 
+   
+  return link;
 }
 //------------------------------------------------------------------------
 ////////  Home Page No Diagnosis or Treatment List Table /////////////////
 //------------------------------------------------------------------------
 function home_page_no_diagnosis_or_treatment_table()
 {
-  var list = home_page_messages()
+  var list = home_page_messages();
   var table = list.Panel("PatientsWithNoDiagnosis").Table("PatientWithNoDiagnosisReportTable");
    
   return table;
+}
+//------------------
+function home_page_no_diagnosis_or_treatment_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("PatientsWithNoDiagnosisHeaderLink");
+   
+  return link;
 }
 //------------------------------------------------------------------------
 ///////////////////  Home Page Incomplete treatment List /////////////////
 //------------------------------------------------------------------------
 function home_page_incomplete_treatment_table()
 {
-  var list = home_page_messages()
+  var list = home_page_messages();
   var table = list.Panel("IncompleteTreatments").Table("IncompleteTreatmentsTable");
    
   return table;
+}
+//------------------
+function home_page_incomplete_treatment_link()
+{
+  var list = home_page_messages();
+  var link = list.Link(0); //Not ideal but its all we have
+   
+  return link;
 }
 //------------------------------------------------------------------------
 //////////////  Home Page Overdue Non Warfarin Review List ///////////////
 //------------------------------------------------------------------------
 function home_page_overdue_non_warfarin_review_table()
 {
-  var list = home_page_messages()
+  var list = home_page_messages();
   var table = list.Panel("OverdueReviewPatients").Table("PatientOverdueReviewReportTable");
    
   return table;
+}
+//-------------------
+function home_page_overdue_non_warfarin_review_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("OverdueReviewPatientHeaderLink");
+   
+  return link;
 }
 //------------------------------------------------------------------------
 /////////  Home Page Transfer Not Yet Been Accepted List Table ///////////
 //------------------------------------------------------------------------
 function home_page_transfer_not_yet_been_accepted_table()
 {
-  var list = home_page_messages()
-  var table = list.Panel("TransferRequestPatients").Table("TransferRequestTable")
+  var list = home_page_messages();
+  var table = list.Panel("TransferRequestPatients").Table("TransferRequestTable");
    
   return table;
 }
@@ -197,19 +241,26 @@ function home_page_transfer_not_yet_been_accepted_table()
 //------------------------------------------------------------------------
 function home_page_suspension_table()
 {
-  var list = home_page_messages()
-  var table = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable")
+  var list = home_page_messages();
+  var table = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable");
    
   return table;
 }
-
+//-------------------
+function home_page_exceed_suspended_patients_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink"); 
+   
+  return link;
+}
 //------------------------------------------------------------------------
 ////////// Home Page Suspension List Unsuspend button ////////////////////
 //------------------------------------------------------------------------
 function home_page_suspension_table_unsuspend_button()
 {
-  var list = home_page_messages()
-  var button = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Panel(0).SubmitButton("UnsuspendLink")
+  var list = home_page_messages();
+  var button = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Panel(0).SubmitButton("UnsuspendLink");
    
   return button;
 }
@@ -218,10 +269,18 @@ function home_page_suspension_table_unsuspend_button()
 //------------------------------------------------------------------------
 function home_page_exceeded_treatment_end_date_table()
 {
-  var list = home_page_messages()
-  var table = list.Panel("ExceededPatients").Table("PatientExceededReportTable")
+  var list = home_page_messages();
+  var table = list.Panel("ExceededPatients").Table("PatientExceededReportTable");
    
   return table;
+}
+//--------------------
+function home_page_exceeded_treatment_end_date_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("ExceededPatientsHeaderLink"); 
+   
+  return link;
 }
 //-------------------------------------------------------------------------------
 //------------------------------------------------------------------------

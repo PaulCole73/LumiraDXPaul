@@ -12,7 +12,7 @@
 function Goto_Home()
 {
   var INRstarV5 = INRstar_base();
-  //var obj_root = INRstarV5.Panel("MainPage").Panel("header");
+  var obj_root = INRstarV5.Panel("MainPage").Panel("header");
   var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
   
   obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
@@ -25,21 +25,18 @@ function Goto_Home_Page_Overdue_List()
   //Visit Home Page
   Goto_Home();
   
-  //Get the system path of the home page messages section
-  var home_page_messages_path = home_page_messages();
-
-  //Get the system path of the link we are looking for
-  var link_header = home_page_overdue_link();
-  
-  //Get the texth of the link we are looking for
-  var link_text = home_page_overdue_link_text()
-  
   //Check if the link is present
-  var link_present = check_home_page_header_showing_by_idStr_object(link_text);
+  var link_present = check_home_page_header_showing_by_path("OverduePatientHeaderLink")
     
   //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_overdue_link();
+  
     //Click desired link
     link_header.Click();
   
@@ -47,63 +44,30 @@ function Goto_Home_Page_Overdue_List()
     wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
   }
   
-  //return true or false whether link is present
+  //return true or false whether link and therefore table was present
   return link_present
 }
 //-------------------------------------------------------------------------------
-//Navigate to Home Page Overdue List
-function Goto_Home_Page_Overdue_List_2()
-{
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
-  
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
-  
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "idStr", "OverduePatientHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
-  if (link_present == true)
-  {
-    //Click desired link
-    home_page_messages_path.Link("OverduePatientHeaderLink").Click();
-  
-    //Wait for table to appear
-    wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
-  }
-  
-  //Return true or false pending if link (and therfore table) is present
-  return link_present
-}
-//-------------------------------------------------------------------------------
-//Navigate to Home Page Refer List
+//Navigate to Home Page Refer List 
 function Goto_Home_Page_Referred_Patient_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_path("ReferredPatientHeaderLink");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "idStr", "ReferredPatientHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_referred_patient_link();
+  
     //Click desired link
-    home_page_messages_path.Link("ReferredPatientHeaderLink").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "ReferredPatientReportTable", 3);
@@ -116,25 +80,24 @@ function Goto_Home_Page_Referred_Patient_List()
 //Navigate to Home Page declined transfer List
 function Goto_Home_Page_Declined_Transfer_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_path("DeclinedPatientHeaderLink");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "idStr", "DeclinedPatientHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+      
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_declined_transfer_link();
+  
     //Click desired link
-    home_page_messages_path.Link("DeclinedPatientHeaderLink").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "TransferDeclinedTable", 3);
@@ -144,28 +107,27 @@ function Goto_Home_Page_Declined_Transfer_List()
   return link_present
 }
 //-------------------------------------------------------------------------------
-//Navigate to Home Page transfer request List
+//Navigate to Home Page transfer request List to accept or decline
 function Goto_Home_Page_Transfer_Request_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_namePropStr_object("ViewTransferredPatients");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "idStr", "TransferredPatientHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
-  {
+  {  
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+    
+    //Get the system path of the link we are looking for
+    var INRstarV5 = INRstar_base();  
+    var link_header = wait_for_object(INRstarV5, "namePropStr", "ViewTransferredPatients", 10);
+  
     //Click desired link
-    home_page_messages_path.Link("TransferredPatientHeaderLink").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 3);
@@ -175,28 +137,27 @@ function Goto_Home_Page_Transfer_Request_List()
   return link_present
 }
 //-------------------------------------------------------------------------------
-//Navigate to Home Page transfer not yet been accepted List
+//Navigate to Home Page transfer not yet been accepted List 
 function Goto_Home_Page_Transfer_Not_Yet_Been_Accepted_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_namePropStr_object("ViewTransferRequest");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "namePropStr", "ViewTransferRequest", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var INRstarV5 = INRstar_base();  
+    var link_header = wait_for_object(INRstarV5, "namePropStr", "ViewTransferRequest", 10);
+  
     //Click desired link
-    home_page_messages_path.Link("TransferredPatientHeaderLink_2").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "TransferRequestTable", 3);
@@ -209,29 +170,27 @@ function Goto_Home_Page_Transfer_Not_Yet_Been_Accepted_List()
 //Navigate to Home Page No Diagnosis Or Treatment List
 function Goto_Home_Page_No_Diagnosis_Or_Treatment_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_path("PatientsWithNoDiagnosisHeaderLink");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "idStr", "PatientsWithNoDiagnosisHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_no_diagnosis_or_treatment_link();
+  
     //Click desired link
-    home_page_messages_path.Link("PatientsWithNoDiagnosisHeaderLink").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "PatientWithNoDiagnosisReportTable", 3);
-   }
+  }
   
   //Return true or false pending if link (and therfore table) is present
   return link_present
@@ -240,26 +199,24 @@ function Goto_Home_Page_No_Diagnosis_Or_Treatment_List()
 //Navigate to Home Page incomplete treatment List
 function Goto_Home_Page_Incomplete_Treatment_List()
 {
- 
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name_object("(0)"); 
+  // Not ideal but there is no proper locator for this
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "contentText", get_string_translation("*patient(s) with incomplete treatment.*"), 3);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_incomplete_treatment_link();
+  
     //Click desired link
-    home_page_messages_path.Link(0).Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "IncompleteTreatmentsTable", 3);
@@ -272,25 +229,23 @@ function Goto_Home_Page_Incomplete_Treatment_List()
 //Navigate to Home Page Overdue Non Warfarin Review List
 function Goto_Home_Page_Overdue_Non_Warfarin_Review_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_path("OverdueReviewPatientHeaderLink");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages(); 
-  var menu_header = wait_for_object(INRstarV5, "idStr", "OverdueReviewPatientHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_overdue_non_warfarin_review_link();
+  
     //Click desired link
-    home_page_messages_path.Link("OverdueReviewPatientHeaderLink").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReviewReportTable", 3);
@@ -303,25 +258,23 @@ function Goto_Home_Page_Overdue_Non_Warfarin_Review_List()
 //Navigate to Home Page Suspension List
 function Goto_Home_Page_Suspension_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_path("ExceededSuspendedPatientsViewModelPatientHeaderLink");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "idStr", "ExceededSuspendedPatientsViewModelPatientHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_exceed_suspended_patients_link();
+  
     //Click desired link
-    home_page_messages_path.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "ExceededSuspendedPatientReportTable", 3);
@@ -334,25 +287,23 @@ function Goto_Home_Page_Suspension_List()
 //Navigate to Home Page Exceeded Treatment End date List
 function Goto_Home_Page_Exceeded_Treatment_End_Date_List()
 {
-  //Visit Home Page
-  var INRstarV5 = INRstar_base();
-  var obj = wait_for_object(INRstarV5, "idStr", "HomeLink", 3);
+   //Visit Home Page
+  Goto_Home();
   
-  //Click Message panel
-  obj_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_path("ExceededPatientsHeaderLink");
   
-  //Grab generic home page path - wait for desired link
-  var home_page_messages_path = home_page_messages();
-  var menu_header = wait_for_object(INRstarV5, "idStr", "ExceededPatientsHeaderLink", 10);
-  
-  //Shout if desired link not present
-  var link_present = check_menu_header_exists(menu_header);
-  
+  //Perform actions if link - present 
   if (link_present == true)
   {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_exceeded_treatment_end_date_link();
+  
     //Click desired link
-    home_page_messages_path.Link("ExceededPatientsHeaderLink").Click();
+    link_header.Click();
   
     //Wait for table to appear
     wait_for_object(home_page_messages_path, "idStr", "PatientExceededReportTable", 3);

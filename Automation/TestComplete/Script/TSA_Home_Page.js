@@ -87,41 +87,78 @@ function check_date_sort_order_of_exceeded_treatment_end_date_list()
 //--------------       Checking home page messages / headers   -------------------
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
+
+function check_home_page_header_showing_by_path(link_header)
+{  
+  // Get the home_page_messages_path base  
+  var home_page_messages_path = home_page_messages();
+  
+  // Check link exists wait for 4 seconds
+  var link = home_page_messages_path.WaitChild("Link(\""+ link_header +"\")", 4000).Exists
+
+  if (link == false)
+  {
+    Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
+    return false
+  }
+  Log.Message ('Link header ' + link_header + ' is shown on home page')
+  return true
+}
+//--------------------------------------------------------------------------------
 // Use this to search for header link by idStr object
 function check_home_page_header_showing_by_idStr_object(link_header)
 {  
-  // Get the homepage base
+  // Get the INRstarV5 base
   var INRstarV5 = INRstar_base();  
   
-  // look for specified link_header within homepath
+  // look for specified link_header idstr within INRstarV5
   var link = wait_for_object(INRstarV5, "idStr", link_header, 10);
   
   //In case the link header in question is not on the list
   if(link.Exists != true)
   {
-    Log.Message ('Problem: Link header ' + link_header + ' is NOT shown on home page')
+    Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
     return false
   }
-  Log.Message ('Link header ' + link_header + ' is correctly shown on home page')
+  Log.Message ('Link header ' + link_header + ' is shown on home page')
   return true
 }
 //--------------------------------------------------------------------------------
 // Use this to search for header link by Name object
 function check_home_page_header_showing_by_name_object(link_header)
 {  
-  // Get the homepage path
-  var home_page_messages_path = home_page_messages();  
+  // Get the INRstarV5 base
+  var INRstarV5 = INRstar_base();  
   
-  // look for specified link_header within homepath
-  var link = wait_for_object(home_page_messages_path, "Name", "Link(\""+ link_header +"\")", 10);
+  // look for specified link_header idstr within INRstarV5
+  var link = wait_for_object(INRstarV5, "Name", "Link(\""+ link_header +"\")", 10);
   
   //In case the link header in question is not on the list
   if(link.Exists != true)
   {
-    Log.Message ('Problem: Link header ' + link_header + ' is NOT shown on home page')
+    Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
     return false
   }
-  Log.Message ('Link header ' + link_header + ' is correctly shown on home page')
+  Log.Message ('Link header ' + link_header + ' is shown on home page')
+  return true
+}
+//--------------------------------------------------------------------------------
+// Use this to search for header link by namePropStr object
+function check_home_page_header_showing_by_namePropStr_object(link_header)
+{  
+  // Get the INRstarV5 base
+  var INRstarV5 = INRstar_base();  
+  
+  // look for specified link_header idstr within INRstarV5
+  var link = wait_for_object(INRstarV5, "namePropStr", link_header, 10);
+  
+  //In case the link header in question is not on the list
+  if(link.Exists != true)
+  {
+    Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
+    return false
+  }
+  Log.Message ('Link header ' + link_header + ' is shown on home page')
   return true
 }
 //--------------------------------------------------------------------------------
@@ -198,18 +235,6 @@ function check_patient_in_declined_transfer_list(pat_name)
   
   // Check table for patient within column 0
   return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
-} 
-//--------------------------------------------------------------------------------
-function check_patient_not_in_transfer_request_list(pat_name)
-{
-  // Navigate to the list table and wait for it to appear
-  Goto_Home_Page_Transfer_Request_List(); // from INRstar_Navigation
-  
-   // Get the path of the table
-  var table = home_page_transfer_request_table(); // from System_paths
-  
-  // Check table for patient within column 0
-  return check_patient_does_not_exist_in_table_within_column(0,table,pat_name); //0 = column to check
 } 
 //--------------------------------------------------------------------------------
 function check_patient_in_transfer_not_yet_been_accepted_list(pat_name)

@@ -59,7 +59,6 @@ function tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message
     //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Exceed_suspension_period', 'M', 'Shared');
-    //add_treatment_plan('W','Manual','aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -35))','Shared','');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -35)),'Shared','','4 Weeks');
   
     //Get the patient details
@@ -159,7 +158,7 @@ function tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home
     result_set.push(result_set_1);
     
     //Check the audit for Unsuspend Patient
-    var result_set_1 = check_top_patient_audit(test_title, message_name, "Unsuspend Patient");
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Unsuspend Patient"); //Not working in England
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -194,7 +193,7 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
-    change_test_practice('Deans Regression Testing Location 2');
+    change_test_practice("LDxCS-Test-AutoTest2");
     
     //Logoff and then Login to transfered testing location
     Log_Off();
@@ -207,7 +206,7 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     Goto_Home();
     
     //Check the patient transfer message shows on the home page 
-    var result_set_1 = check_home_page_header_showing_by_name_object("TransferredPatientHeaderLink");
+    var result_set_1 = check_home_page_header_showing_by_namePropStr_object("ViewTransferredPatients");
     result_set.push(result_set_1); 
     
     //Check the patient transfer shows on the home page message
@@ -254,7 +253,7 @@ function tc_home_page_accept_button_transfer_can_be_accepted_on_home_page()
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
-    var test_prac = "Deans Regression Testing Location 2";
+    var test_prac = "LDxCS-Test-AutoTest2";
     change_test_practice(test_prac);
     
     //Logoff and then Login to transfered testing location
@@ -308,7 +307,7 @@ function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
-    var test_prac = "Deans Regression Testing Location 2";
+    var test_prac = "LDxCS-Test-AutoTest2";
     change_test_practice(test_prac);
     
     //Logoff and then Login to transfered testing location
@@ -322,7 +321,7 @@ function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
     check_can_decline_patient_in_transfer_request(message_name);
     
     //Check the patient transfer removed on the home page transfer list
-    var result_set_1 = check_patient_not_in_transfer_request_list(message_name);
+    var result_set_1 = check_patient_not_in_decline_patient_transfer_request_list(message_name);
     result_set.push(result_set_1);
     
     //Logoff and then Login to original testing location - to confirm decline at source
@@ -373,7 +372,7 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
     var message_name = get_patient_fullname();
     
     //Transfer the testing location
-    change_test_practice('Deans Regression Testing Location 2');
+    change_test_practice('LDxCS-Test-AutoTest2');
 
     //Initialise test array
     var result_set = new Array();
@@ -382,7 +381,7 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
     Goto_Home();
     
     //Check the patient transfer request unaccepted message header shows on the home page
-    var result_set_1 = check_home_page_header_showing_by_name_object("TransferredPatientHeaderLink_2");
+    var result_set_1 = check_home_page_header_showing_by_namePropStr_object("ViewTransferRequest");
     result_set.push(result_set_1);
     
     //Check the patient transfer shows on the home page message
@@ -418,7 +417,6 @@ function tc_home_page_view_the_patients_referred_to_you_for_further_action_messa
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");    
     add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
-    refer_pending_treatment(); 
   
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -426,6 +424,9 @@ function tc_home_page_view_the_patients_referred_to_you_for_further_action_messa
   
     //Initialise test array
     var result_set = new Array();
+    
+    //refer the pendinf treatment
+    refer_pending_treatment(); 
     
     //Check patient on the referred list
     var result_set_1 = check_patient_on_refer_list(message_name)
