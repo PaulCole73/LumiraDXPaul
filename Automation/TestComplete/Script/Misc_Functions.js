@@ -810,26 +810,19 @@ function get_english_translation(translation_word)
  Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
-// Pass in the expected_value, table, column_number and patient_name it will return the result of true if found
-function check_value_of_specified_cell_in_table_for_patient(expected_value, table, column_number, pat_name, pat_name_column)
+// Pass in the table, overdue_days_column and patient_name - scan and return the overdue_days value for that patient
+function get_patients_actual_overdue_from_table(table, overdue_days_column, pat_name)
 {
    for (i=0; i<table.rowcount; i++)
     {
-      if(table.Cell(i, pat_name_column).contentText == pat_name)
+      if(table.Cell(i, 0).contentText == pat_name)
       { 
-        table.Cell(i, column_number).scrollIntoView(true);    
-        var value_in_cell = table.Cell(i, column_number).contentText 
-          if (value_in_cell == expected_value)
-          {
-            Log.Message("Success - Table contains: " + expected_value + " in column:" + column_number + " for patient: " + pat_name)
-            return true
-          }
-        Log.Warning("Fail - Table should contain: " + expected_value + " in column:" + column_number + " for patient: " + pat_name)
-        return false;
+        overdue_days = table.Cell(i, overdue_days_column).contentText;
+        return overdue_days;
       }
     }
-    Log.Warning("Patient: " + pat_name + "was not found in the table")
-    return false;
+    Log.Warning("Patient: " + pat_name + " was not found in the table")
+    return "Patient not Found in table";
 }
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//

@@ -6,7 +6,7 @@
 //-------------------------       Checking audits   ------------------------------
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-function check_top_patient_audit(test_title, pat_name, search_text)
+function check_top_patient_audit(test_title, pat_name, expected_search_text)
 {
     //Search for patient
     patient_search(pat_name);
@@ -15,10 +15,10 @@ function check_top_patient_audit(test_title, pat_name, search_text)
     process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
        
     //Check for search_text within audit
-    return validate_top_patient_audit(test_title, get_string_translation(search_text));
+    return validate_top_patient_audit(test_title, get_string_translation(expected_search_text));
 }
 //--------------------------------------------------------------------------------
-function check_top_suggested_treatment_audit(pat_name, search_text)
+function check_top_suggested_treatment_audit(pat_name, expected_search_text)
 {
     //Search for patient
     patient_search(pat_name);
@@ -27,7 +27,7 @@ function check_top_suggested_treatment_audit(pat_name, search_text)
     Goto_Suggested_Treatment_Audit();
     
     //Check for search_text within audit
-    return validate_top_treatment_audit(get_string_translation(search_text));
+    return validate_top_treatment_audit(get_string_translation(expected_search_text));
 }
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
@@ -478,28 +478,28 @@ function refer_pending_treatment()
 function check_next_review_date_warning(test_title)
 {
     //Specify expected warning message
-    var expected_message = get_string_translation("The patient's next review details have been successfully updated.");
+    var expected_warning_message = get_string_translation("The patient's next review details have been successfully updated.");
     
     //Grab Actual warning message 
-    var warning_message = get_next_review_date_warning();
+    var actual_warning_message = get_next_review_date_warning();
     
     //Compare expected with warning
-    return compare_values(warning_message, expected_message, test_title);
+    return compare_values(actual_warning_message, expected_warning_message, test_title);
 }
 //--------------------------------------------------------------------------------
 function check_unsuspend_warning_dialog_content(test_title)
 {
     //Specify expected warning message
-    var expected_message = get_string_translation("The patient(s) have been successfully unsuspended.") +
+    var expected_warning_message = get_string_translation("The patient(s) have been successfully unsuspended.") +
     get_string_translation("The patient(s) may have been treated elsewhere during the suspension period.") + " " +
     get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.")  + " " +
     get_string_translation("For non-warfarin patients you should ensure review information is up to date.");
      
     //Get warning message text
-    var warning_message = process_popup(get_string_translation("Unsuspend Patients"),"OK");
+    var actual_warning_message = process_popup(get_string_translation("Unsuspend Patients"),"OK");
     
     //Compare expected with warning
-    return compare_values(warning_message, expected_message, test_title);
+    return compare_values(actual_warning_message, expected_warning_message, test_title);
 }
 //--------------------------------------------------------------------------------
 function check_patient_registered_practice(message_name, expected_registered_practice, test_title)
@@ -507,11 +507,11 @@ function check_patient_registered_practice(message_name, expected_registered_pra
   // Navigate to patient management
   Goto_Patient_Management(); // from INRstar_Navigation
   
-  //Extract the listed registered practice
-  var listed_registered_practice = registered_practice_field(); // from System_paths
+  //Extract the Actual registered practice
+  var actual_registered_practice = registered_practice_field(); // from System_paths
   
   //Check the practice is correct
-  return compare_values(listed_registered_practice, expected_registered_practice, test_title);
+  return compare_values(actual_registered_practice, expected_registered_practice, test_title);
 }
 //--------------------------------------------------------------------------------
 function get_overdue_patient(patient_name) //this is used by code outside of the homepage functionality
@@ -539,7 +539,7 @@ function get_overdue_patient(patient_name) //this is used by code outside of the
   WaitSeconds(4, "Waiting to go to patient...");
 }
 //--------------------------------------------------------------------------------
-function check_delay_day_of_patient_in_overdue_non_warfarin_review_list(delay_day, pat_name)
+function check_overdue_days_of_patient_in_overdue_non_warfarin_review_list(expected_overdue_days, pat_name, test_title)
 { 
   // Navigate to the list table and wait for it to appear
   Goto_Home_Page_Overdue_Non_Warfarin_Review_List(); // from INRstar_Navigation
@@ -547,8 +547,32 @@ function check_delay_day_of_patient_in_overdue_non_warfarin_review_list(delay_da
    // Get the path of the table
   var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
   
-  // Now that we have table - Pass on the expected_value(delay_day), table, column_to_check, patient, patient_name_column return result
-  return check_value_of_specified_cell_in_table_for_patient(delay_day, table, 7, pat_name, 0); // 
+  // Now Pass in the table, overdue_days_column and patient_name - extract the overdue_days value
+  actual_overdue_days = get_patients_actual_overdue_from_table(table, 7, pat_name); 
+  
+  // Compare actual and expected and return the result as true/false
+  return compare_values(expected_overdue_days, actual_overdue_days, test_title);
+}
+//--------------------------------------------------------------------------------
+function check_overdue_non_warfarin_review_list_contents(pat_name, test_title)
+{ 
+  // Navigate to the overdue non warfarin review list table and wait for it to appear
+  Goto_Home_Page_Overdue_Non_Warfarin_Review_List(); // from INRstar_Navigation
+  
+  // Get the path of the table
+  var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
+  
+  // Initialise arrays
+  var expected_table_content,actual_table_content = new Array();
+  
+  // Grab the actual data from table (store in an array)
+  var actual_table_content = get_patients_column_data_from_overdue_non_warfarin_review_table(table, pat_name); 
+    
+  // Grab the expected data from the patient demographics and the treatments page (store in an array)
+  var expected_table_content = get_patient_demographics_and_treatment_for_overdue_non_warfarin_review_table_comparison(pat_name);
+  
+  // Compare actual and expected and return the result as true/false
+  return checkArrays(expected_table_content, actual_table_content, test_title);
 }
 //--------------------------------------------------------------------------------
 function get_urgent_patient_message_text(patient_nhs) //this is used by code outside of the homepage functionality

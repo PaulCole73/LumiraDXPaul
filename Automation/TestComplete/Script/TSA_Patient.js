@@ -130,6 +130,8 @@ function patient_search(data)
   
   patient_search_screen_path.Textbox("searchCriteria").Text = data;
   patient_search_screen_path.SubmitButton("Search").Click();
+  
+  WaitSeconds(1, "Wait after patient search...");
    
   var results_table = patient_search_screen_results_table();
   results_table.Cell(1, 0).Link("PatientLink").Click();
