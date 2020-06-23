@@ -19,6 +19,300 @@ function Goto_Home()
   click_navigation_wrapper(obj, obj_root, "idStr", "UserMessagesTabLink", 2);
 }
 //-------------------------------------------------------------------------------
+//Navigate to Home Page Overdue List
+function Goto_Home_Page_Overdue_List()
+{
+  //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name("OverduePatientHeaderLink")
+    
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_overdue_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReportTable", 3);
+  }
+  
+  //return true or false whether link and therefore table was present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page Refer List 
+function Goto_Home_Page_Referred_Patient_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name("ReferredPatientHeaderLink");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_referred_patient_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "ReferredPatientReportTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page declined transfer List
+function Goto_Home_Page_Declined_Transfer_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name("DeclinedPatientHeaderLink");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+      
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_declined_transfer_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "TransferDeclinedTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page transfer request List to accept or decline
+function Goto_Home_Page_Transfer_Request_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_namePropStr_object("ViewTransferredPatients");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {  
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+    
+    //Get the system path of the link we are looking for
+    var INRstarV5 = INRstar_base();  
+    var link_header = wait_for_object(INRstarV5, "namePropStr", "ViewTransferredPatients", 10);
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "TransferredTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page transfer not yet been accepted List 
+function Goto_Home_Page_Transfer_Not_Yet_Been_Accepted_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_namePropStr_object("ViewTransferRequest");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var INRstarV5 = INRstar_base();  
+    var link_header = wait_for_object(INRstarV5, "namePropStr", "ViewTransferRequest", 10);
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "TransferRequestTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page No Diagnosis Or Treatment List
+function Goto_Home_Page_No_Diagnosis_Or_Treatment_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name("PatientsWithNoDiagnosisHeaderLink");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+  
+    //Get the system path of the link we are looking for
+    var link_header = home_page_no_diagnosis_or_treatment_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "PatientWithNoDiagnosisReportTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page incomplete treatment List
+function Goto_Home_Page_Incomplete_Treatment_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name_object("(0)"); 
+  // Not ideal but there is no proper locator for this
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_incomplete_treatment_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "IncompleteTreatmentsTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//------------------------------------------------------------------------------
+//Navigate to Home Page Overdue Non Warfarin Review List
+function Goto_Home_Page_Overdue_Non_Warfarin_Review_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name("OverdueReviewPatientHeaderLink");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_overdue_non_warfarin_review_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "PatientOverdueReviewReportTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page Suspension List
+function Goto_Home_Page_Suspension_List()
+{
+  //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name("ExceededSuspendedPatientsViewModelPatientHeaderLink");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_exceed_suspended_patients_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "ExceededSuspendedPatientReportTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Home Page Exceeded Treatment End date List
+function Goto_Home_Page_Exceeded_Treatment_End_Date_List()
+{
+   //Visit Home Page
+  Goto_Home();
+  
+  //Check if the link is present
+  var link_present = check_home_page_header_showing_by_name("ExceededPatientsHeaderLink");
+  
+  //Perform actions if link - present 
+  if (link_present == true)
+  {
+    //Get the system path of the home page messages section
+    var home_page_messages_path = home_page_messages();
+
+    //Get the system path of the link we are looking for
+    var link_header = home_page_exceeded_treatment_end_date_link();
+  
+    //Click desired link
+    link_header.Click();
+  
+    //Wait for table to appear
+    wait_for_object(home_page_messages_path, "idStr", "PatientExceededReportTable", 3);
+  }
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
 // Navigate to Options 
 function Goto_Options()
 {
@@ -197,7 +491,7 @@ function Log_Off()
 function Goto_Patient_Search()
 {
   var INRstarV5 = INRstar_base();
-  var obj_root = INRstarV5;
+  var obj_root = INRstarV5
   var obj = wait_for_object(obj_root, "idStr", "MainPatientLink", 3);
   click_navigation_wrapper(obj, obj_root, "idStr", "searchCriteria", 5);
 }
@@ -445,6 +739,8 @@ function Goto_Patient_Treatment()
  
   click_navigation_wrapper(obj, obj_root, "idStr", "PatientTreatmentWrapper", 3);
   
+  //should we have a wait_for here?
+  
   WaitSeconds(1, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
@@ -592,6 +888,8 @@ function Goto_Change_Testing_Location()
     
   var pat_managment_tab_preferences_buttons_path = pat_managment_tab_preferences_buttons();
   pat_managment_tab_preferences_buttons_path.Button("EditPatientTestingSectionLink").Click();
+  
+  wait_for_object(panelMCP, "idStr", "SearchTestingLocations", 7);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Pending Treatment  / Audit

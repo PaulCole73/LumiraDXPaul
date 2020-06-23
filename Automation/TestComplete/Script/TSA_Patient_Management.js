@@ -407,7 +407,7 @@ function change_reg_practice(prac_name)
 function change_test_practice(prac_name)
 {
   Goto_Change_Testing_Location();
-  WaitSeconds(2);
+  //WaitSeconds(2);
  
   var pat_management_test_practice_search_path = pat_management_test_practice_search();
 
