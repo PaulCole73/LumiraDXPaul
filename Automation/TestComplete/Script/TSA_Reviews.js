@@ -115,6 +115,7 @@ function get_review_tab_data()
 //--------------------------------------------------------------------------------
 function edit_next_review_date(next_rev_date)
 {
+  Goto_Patient_Treatment_Plan_Review();
   var review_next_date_data_path = review_tab_edit_next_date_data();
   var INRstarV5 = INRstar_base();
   
