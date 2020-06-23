@@ -663,40 +663,40 @@ function set_italian_long_month(month)
 
  switch(month)
  {
-    case "Jan":
+    case "January":
     long_month = "gennaio";
     break;
-    case "Feb":
+    case "February":
     long_month = "febbraio";
     break;  
-    case "Mar":
+    case "March":
     long_month = "marzo";
     break;  
-    case "Apr":
+    case "April":
     long_month = "aprile";
     break;  
     case "May":
     long_month = "maggio";
     break;  
-    case "Jun":
+    case "June":
     long_month = "giugno";
     break;  
-    case "Jul":
+    case "July":
     long_month = "luglio";
     break;  
-    case "Aug":
+    case "August":
     long_month = "agosto";
     break;  
-    case "Sep":
+    case "September":
     long_month = "settembre";
     break;  
-    case "Oct":
+    case "October":
     long_month = "ottobre";
     break;  
-    case "Nov":
+    case "November":
     long_month = "novembre";
     break;
-    case "Dec":
+    case "December":
     long_month = "dicembre";
     break;    
     default:

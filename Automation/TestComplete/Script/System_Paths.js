@@ -860,7 +860,7 @@ function cancel_pending_treat_button()
 function refer_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
+  var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Button("ReferPendingTreatment");
   
   return refer_button_path;
 }

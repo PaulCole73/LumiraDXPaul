@@ -604,10 +604,19 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     //Setting back to short month for the audit check                     
     var clinic_month = (aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%b"));
 
+    if(language == "Italian")
+    {
     //Added in space here Italy build is going to fail as spaces missing - string_translation("Booked") + "] "
     result_set_1 = validate_more_info_top_patient_audit("Appointment " + get_string_translation("record") + " [" + clinic_day_num + "-" + get_string_translation(clinic_month) + "-" + clinic_year +"] " 
                                                          + get_string_translation("was updated") + ". "  + get_string_translation("Status") + " " + get_string_translation("changed from") 
+                                                         + " [" + get_string_translation("Booked") + "]" + get_string_translation("to") + " [" + get_string_translation("Cancelled") + "]");
+    }
+    else
+    {
+    result_set_1 = validate_more_info_top_patient_audit("Appointment " + get_string_translation("record") + " [" + clinic_day_num + "-" + get_string_translation(clinic_month) + "-" + clinic_year +"] " 
+                                                         + get_string_translation("was updated") + ". "  + get_string_translation("Status") + " " + get_string_translation("changed from") 
                                                          + " [" + get_string_translation("Booked") + "] " + get_string_translation("to") + " [" + get_string_translation("Cancelled") + "]");
+    }
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
