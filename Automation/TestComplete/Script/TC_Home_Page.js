@@ -30,8 +30,8 @@ function tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page()
     result_set.push(result_set_1);
     
     //Check patients are listed with most overdue at top
-    var result_set_2 = check_overdue_sort_order_of_home_page_list();
-    result_set.push(result_set_2);
+    var result_set_1 = check_overdue_sort_order_of_home_page_list();
+    result_set.push(result_set_1);
     
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -73,8 +73,8 @@ function tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message
     result_set.push(result_set_1);
     
     //Check patients are listed with most overdue at top
-    var result_set_2 = check_date_sort_order_of_exceeded_treatment_end_date_list();
-    result_set.push(result_set_2);
+    var result_set_1 = check_date_sort_order_of_exceeded_treatment_end_date_list();
+    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -154,12 +154,12 @@ function tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home
     result_set.push(result_set_1);
     
     //Check the Unsuspend warning appears as expected
-    var result_set_2 = check_unsuspend_warning_dialog_content();
-    result_set.push(result_set_2);
+    var result_set_1 = check_unsuspend_warning_dialog_content();
+    result_set.push(result_set_1);
     
     //Check the audit for Unsuspend Patient
-    var result_set_3 = check_top_patient_audit(test_title, message_name, "Unsuspend Patient"); //Not working in England
-    result_set.push(result_set_3);
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Unsuspend Patient"); //Not working in England
+    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -210,16 +210,16 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     result_set.push(result_set_1); 
     
     //Check the patient transfer shows on the home page message
-    var result_set_2 = check_patient_in_transfer_request_list(message_name);
-    result_set.push(result_set_2);
+    var result_set_1 = check_patient_in_transfer_request_list(message_name);
+    result_set.push(result_set_1);
     
     //Logoff and then Login to original location
     Log_Off();
     login(5, "Shared");
     
     //Check the audit for Requested change of patient's testing practice
-    var result_set_3 = check_top_patient_audit(test_title, message_name, "Requested change of patient's testing practice");
-    result_set.push(result_set_3);
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Requested change of patient's testing practice");
+    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -268,12 +268,12 @@ function tc_home_page_accept_button_transfer_can_be_accepted_on_home_page()
     result_set.push(result_set_1);
     
     //Check patient registered practice shows correct location
-    var result_set_2 = check_patient_registered_practice(message_name, test_prac, test_title);
-    result_set.push(result_set_2);
+    var result_set_1 = check_patient_registered_practice(message_name, test_prac, test_title);
+    result_set.push(result_set_1);
     
     //Check the audit for Transfer patient testing location accepted
-    var result_set_3 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location accepted");
-    result_set.push(result_set_3);
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location accepted");
+    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -329,16 +329,16 @@ function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
     login(5, "Shared");
     
     //Check patient is shown on declined transfer list
-    var result_set_2 = check_patient_in_declined_transfer_list(message_name);
-    result_set.push(result_set_2);
+    var result_set_1 = check_patient_in_declined_transfer_list(message_name);
+    result_set.push(result_set_1);
     
     //Check confirming acknowledgement of declined transfer removes patient from declined transfer list
-    var result_set_3 = acknowledge_declined_patient_in_message(message_name);
-    result_set.push(result_set_3);
+    var result_set_1 = acknowledge_declined_patient_in_message(message_name);
+    result_set.push(result_set_1);
     
     //Check the audit for Transfer patient testing location accepted
-    var result_set_4 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location declined Acknowledged");
-    result_set.push(result_set_4);
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location declined Acknowledged");
+    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -385,8 +385,8 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
     result_set.push(result_set_1);
     
     //Check the patient transfer shows on the home page message
-    var result_set_2 = check_patient_in_transfer_not_yet_been_accepted_list(message_name);
-    result_set.push(result_set_2);
+    var result_set_1 = check_patient_in_transfer_not_yet_been_accepted_list(message_name);
+    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -433,8 +433,8 @@ function tc_home_page_view_the_patients_referred_to_you_for_further_action_messa
     result_set.push(result_set_1);
     
     //Check the audit for Treatment Referred
-    var result_set_2 = check_top_suggested_treatment_audit(message_name, "Treatment Referred");
-    result_set.push(result_set_2);
+    var result_set_1 = check_top_suggested_treatment_audit(message_name, "Treatment Referred");
+    result_set.push(result_set_1);
       
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set);
@@ -534,6 +534,8 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     //Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Overdue_non_warf_review', 'M', 'Shared');
+    
+    //Note: we are specifying 7 as the days overdue for the treatment plan, this gets used later on 
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -7)),'Shared','','Indefinite');
     
     //Get the patient details
@@ -548,16 +550,12 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     result_set.push(result_set_1);
     
     //Check patients are listed with most overdue at top
-    var result_set_2 = check_non_warfarin_review_sort_order_of_home_page_list()
-    result_set.push(result_set_2);
-    
-    //Check days overdue for patient is 7 - since this reflecs treatment plan
-    var result_set_3 = check_overdue_days_of_patient_in_overdue_non_warfarin_review_list("7", message_name, test_title)
-    result_set.push(result_set_3);
+    var result_set_1 = check_non_warfarin_review_sort_order_of_home_page_list()
+    result_set.push(result_set_1);
     
     //Check the content of the table-list is correct 
-    var result_set_4 = check_overdue_non_warfarin_review_list_contents(message_name, test_title)
-    result_set.push(result_set_4);
+    var result_set_1 = check_overdue_non_warfarin_review_list_contents("7", message_name, test_title)
+    result_set.push(result_set_1);
     
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);
@@ -644,8 +642,8 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     result_set.push(result_set_1);
     
     //Check the audit for Changed Next Review Date - Face-to-face.
-    var result_set_2 = check_top_patient_audit(test_title, message_name, "Changed Next Review Date - Face-to-face.");
-    result_set.push(result_set_2);
+    var result_set_1 = check_top_patient_audit(test_title, message_name, "Changed Next Review Date - Face-to-face.");
+    result_set.push(result_set_1);
 		
     //Validate the results sets is True
     var results = results_checker_are_true(result_set);

@@ -810,21 +810,6 @@ function get_english_translation(translation_word)
  Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
-// Pass in the table, overdue_days_column and patient_name - scan and return the overdue_days value for that patient
-function get_patients_actual_overdue_from_table(table, overdue_days_column, pat_name)
-{
-   for (i=0; i<table.rowcount; i++)
-    {
-      if(table.Cell(i, 0).contentText == pat_name)
-      { 
-        overdue_days = table.Cell(i, overdue_days_column).contentText;
-        return overdue_days;
-      }
-    }
-    Log.Warning("Patient: " + pat_name + " was not found in the table")
-    return "Patient not Found in table";
-}
-//-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//

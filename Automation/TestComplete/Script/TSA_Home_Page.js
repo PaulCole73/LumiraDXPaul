@@ -539,22 +539,7 @@ function get_overdue_patient(patient_name) //this is used by code outside of the
   WaitSeconds(4, "Waiting to go to patient...");
 }
 //--------------------------------------------------------------------------------
-function check_overdue_days_of_patient_in_overdue_non_warfarin_review_list(expected_overdue_days, pat_name, test_title)
-{ 
-  // Navigate to the list table and wait for it to appear
-  Goto_Home_Page_Overdue_Non_Warfarin_Review_List(); // from INRstar_Navigation
-  
-   // Get the path of the table
-  var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
-  
-  // Now Pass in the table, overdue_days_column and patient_name - extract the overdue_days value
-  actual_overdue_days = get_patients_actual_overdue_from_table(table, 7, pat_name); 
-  
-  // Compare actual and expected and return the result as true/false
-  return compare_values(expected_overdue_days, actual_overdue_days, test_title);
-}
-//--------------------------------------------------------------------------------
-function check_overdue_non_warfarin_review_list_contents(pat_name, test_title)
+function check_overdue_non_warfarin_review_list_contents(expected_overdue_days, pat_name, test_title)
 { 
   // Navigate to the overdue non warfarin review list table and wait for it to appear
   Goto_Home_Page_Overdue_Non_Warfarin_Review_List(); // from INRstar_Navigation
@@ -563,13 +548,13 @@ function check_overdue_non_warfarin_review_list_contents(pat_name, test_title)
   var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
   
   // Initialise arrays
-  var expected_table_content,actual_table_content = new Array();
+  var expected_table_content, actual_table_content = new Array();
   
   // Grab the actual data from table (store in an array)
   var actual_table_content = get_patients_column_data_from_overdue_non_warfarin_review_table(table, pat_name); 
     
   // Grab the expected data from the patient demographics and the treatments page (store in an array)
-  var expected_table_content = get_patient_demographics_and_treatment_for_overdue_non_warfarin_review_table_comparison(pat_name);
+  var expected_table_content = get_patient_demographics_and_treatment_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days);
   
   // Compare actual and expected and return the result as true/false
   return checkArrays(expected_table_content, actual_table_content, test_title);
