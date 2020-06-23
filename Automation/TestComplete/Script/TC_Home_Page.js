@@ -158,7 +158,7 @@ function tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home
     result_set.push(result_set_1);
     
     //Check the audit for Unsuspend Patient
-    var result_set_1 = check_top_patient_audit(test_title, message_name, "Unsuspend Patient"); //Not working in England
+    var result_set_1 = validate_top_patient_audit_with_patient_search(test_title, message_name, "Unsuspend Patient"); //Not working in England
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -202,13 +202,6 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     //Initialise test array
     var result_set = new Array();
     
-    // Goto Home Page
-    Goto_Home();
-    
-    //Check the patient transfer message shows on the home page 
-    var result_set_1 = check_home_page_header_showing_by_namePropStr_object("ViewTransferredPatients");
-    result_set.push(result_set_1); 
-    
     //Check the patient transfer shows on the home page message
     var result_set_1 = check_patient_in_transfer_request_list(message_name);
     result_set.push(result_set_1);
@@ -218,7 +211,7 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     login(5, "Shared");
     
     //Check the audit for Requested change of patient's testing practice
-    var result_set_1 = check_top_patient_audit(test_title, message_name, "Requested change of patient's testing practice");
+    var result_set_1 = validate_top_patient_audit_with_patient_search(test_title, message_name, "Requested change of patient's testing practice");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -272,7 +265,7 @@ function tc_home_page_accept_button_transfer_can_be_accepted_on_home_page()
     result_set.push(result_set_1);
     
     //Check the audit for Transfer patient testing location accepted
-    var result_set_1 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location accepted");
+    var result_set_1 = validate_top_patient_audit_with_patient_search(test_title, message_name, "Transfer patient testing location accepted");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -337,7 +330,7 @@ function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
     result_set.push(result_set_1);
     
     //Check the audit for Transfer patient testing location accepted
-    var result_set_1 = check_top_patient_audit(test_title, message_name, "Transfer patient testing location declined Acknowledged");
+    var result_set_1 = validate_top_patient_audit_with_patient_search(test_title, message_name, "Transfer patient testing location declined Acknowledged");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True
@@ -365,7 +358,7 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Transfer_request', 'M', 'Shared');
+    add_patient('Regression', 'Not_accepted_transfer', 'M', 'Shared');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -376,13 +369,6 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
 
     //Initialise test array
     var result_set = new Array();
-    
-    // Goto Home Page
-    Goto_Home();
-    
-    //Check the patient transfer request unaccepted message header shows on the home page
-    var result_set_1 = check_home_page_header_showing_by_namePropStr_object("ViewTransferRequest");
-    result_set.push(result_set_1);
     
     //Check the patient transfer shows on the home page message
     var result_set_1 = check_patient_in_transfer_not_yet_been_accepted_list(message_name);
@@ -433,7 +419,7 @@ function tc_home_page_view_the_patients_referred_to_you_for_further_action_messa
     result_set.push(result_set_1);
     
     //Check the audit for Treatment Referred
-    var result_set_1 = check_top_suggested_treatment_audit(message_name, "Treatment Referred");
+    var result_set_1 = validate_top_suggested_treatment_audit_with_patient_search(message_name, "Treatment Referred");
     result_set.push(result_set_1);
       
     //Validate all the results sets are true
@@ -627,7 +613,6 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     
     //Click cancel on the new review and set future date for next review
     cancel_review();
-    Goto_Patient_Treatment_Plan_Review();
     edit_next_review_date(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 7)));
         
     //Get the patient details
@@ -642,7 +627,7 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     result_set.push(result_set_1);
     
     //Check the audit for Changed Next Review Date - Face-to-face.
-    var result_set_1 = check_top_patient_audit(test_title, message_name, "Changed Next Review Date - Face-to-face.");
+    var result_set_1 = validate_top_patient_audit_with_patient_search(test_title, message_name, "Changed Next Review Date - Face-to-face.");
     result_set.push(result_set_1);
 		
     //Validate the results sets is True

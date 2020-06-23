@@ -3,34 +3,6 @@
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-//-------------------------       Checking audits   ------------------------------
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
-function check_top_patient_audit(test_title, pat_name, expected_search_text)
-{
-    //Search for patient
-    patient_search(pat_name);
-    
-    //Acknowledge pop-up if it is shown
-    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
-       
-    //Check for search_text within audit
-    return validate_top_patient_audit(test_title, get_string_translation(expected_search_text));
-}
-//--------------------------------------------------------------------------------
-function check_top_suggested_treatment_audit(pat_name, expected_search_text)
-{
-    //Search for patient
-    patient_search(pat_name);
-    
-    //Goto the audit for the patient
-    Goto_Suggested_Treatment_Audit();
-    
-    //Check for search_text within audit
-    return validate_top_treatment_audit(get_string_translation(expected_search_text));
-}
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
 //-------------------------       Checking sort orders   -------------------------
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
@@ -43,7 +15,7 @@ function check_overdue_sort_order_of_home_page_list()
   var table = home_page_overdue_table(); // from System_paths
   
   // Now that we have table - Pass it on together with the column number 7, to check sort order, return result
-  return check_sort_order_of_table(table, 7) // from Misc_Functions
+  return check_sort_order_of_table(table, 7); // from Misc_Functions
 }
 //--------------------------------------------------------------------------------
 function check_non_warfarin_review_sort_order_of_home_page_list()
@@ -55,7 +27,7 @@ function check_non_warfarin_review_sort_order_of_home_page_list()
   var table = home_page_overdue_non_warfarin_review_table(); // from System_paths 
   
   // Now that we have table - Pass it on together with the column number 7, to check sort order, return result
-  return check_sort_order_of_table(table, 7) // from Misc_Functions
+  return check_sort_order_of_table(table, 7); // from Misc_Functions
 }
 //--------------------------------------------------------------------------------
 function check_date_sort_order_of_suspension_home_page_list() 
@@ -67,8 +39,7 @@ function check_date_sort_order_of_suspension_home_page_list()
   var table = home_page_suspension_table(); // from System_paths
   
   // Now that we have table - Pass it on together with the column number, to check sort order, return result
-  return check_date_sort_order_of_table(table, 4) // from Misc_Functions
-
+  return check_date_sort_order_of_table(table, 4); // from Misc_Functions
 }
 //--------------------------------------------------------------------------------
 function check_date_sort_order_of_exceeded_treatment_end_date_list() 
@@ -80,7 +51,7 @@ function check_date_sort_order_of_exceeded_treatment_end_date_list()
   var table = home_page_exceeded_treatment_end_date_table(); // from System_paths
   
   // Now that we have table - Pass it on together with the column number, to check sort order, return result
-  return check_date_sort_order_of_table(table, 5) // from Misc_Functions
+  return check_date_sort_order_of_table(table, 5); // from Misc_Functions
 }
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
@@ -96,6 +67,7 @@ function check_home_page_header_showing_by_name(link_header)
   // Check link exists wait for 4 seconds
   var link = home_page_messages_path.WaitChild("Link(\""+ link_header +"\")", 4000).Exists
 
+  // Cannot use check_menu_header_exists(link) 
   if (link == false)
   {
     Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
@@ -114,14 +86,8 @@ function check_home_page_header_showing_by_idStr_object(link_header)
   // look for specified link_header idstr within INRstarV5
   var link = wait_for_object(INRstarV5, "idStr", link_header, 10);
   
-  //In case the link header in question is not on the list
-  if(link.Exists != true)
-  {
-    Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
-    return false
-  }
-  Log.Message ('Link header ' + link_header + ' is shown on home page')
-  return true
+  // Return the result of the check
+  return check_menu_header_exists(link);
 }
 //--------------------------------------------------------------------------------
 // Use this to search for header link by Name object
@@ -133,14 +99,8 @@ function check_home_page_header_showing_by_name_object(link_header)
   // look for specified link_header idstr within INRstarV5
   var link = wait_for_object(INRstarV5, "Name", "Link(\""+ link_header +"\")", 10);
   
-  //In case the link header in question is not on the list
-  if(link.Exists != true)
-  {
-    Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
-    return false
-  }
-  Log.Message ('Link header ' + link_header + ' is shown on home page')
-  return true
+  // Return the result of the check
+  return check_menu_header_exists(link);
 }
 //--------------------------------------------------------------------------------
 // Use this to search for header link by namePropStr object
@@ -152,14 +112,8 @@ function check_home_page_header_showing_by_namePropStr_object(link_header)
   // look for specified link_header idstr within INRstarV5
   var link = wait_for_object(INRstarV5, "namePropStr", link_header, 10);
   
-  //In case the link header in question is not on the list
-  if(link.Exists != true)
-  {
-    Log.Message ('Link header ' + link_header + ' is NOT shown on home page')
-    return false
-  }
-  Log.Message ('Link header ' + link_header + ' is shown on home page')
-  return true
+  // Return the result of the check
+  return check_menu_header_exists(link);
 }
 //--------------------------------------------------------------------------------
 //--------------       Checking patient exists within tables   -------------------
@@ -554,7 +508,7 @@ function check_overdue_non_warfarin_review_list_contents(expected_overdue_days, 
   var actual_table_content = get_patients_column_data_from_overdue_non_warfarin_review_table(table, pat_name); 
     
   // Grab the expected data from the patient demographics and the treatments page (store in an array)
-  var expected_table_content = get_patient_demographics_and_treatment_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days);
+  var expected_table_content = get_patient_details_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days);
   
   // Compare actual and expected and return the result as true/false
   return checkArrays(expected_table_content, actual_table_content, test_title);

@@ -119,7 +119,7 @@ function get_patient_demographics()
 } 
 //-----------------------------------------------------------------------------------
 // Gets pat_num, nhs_num, born and tel from demographics and drug & date from treatments - returns array
-function get_patient_demographics_and_treatment_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days)
+function get_patient_details_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days)
 {
   //Search for patient
   patient_search(pat_name);

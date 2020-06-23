@@ -275,6 +275,30 @@ function results_checker(result_set, test_case)
 //---------------------------------------------------------------------------------//
 //                            Audit Functions                                      //
 //---------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------
+function validate_top_patient_audit_with_patient_search(test_title, pat_name, expected_search_text)
+{
+    //Search for patient
+    patient_search(pat_name);
+    
+    //Acknowledge pop-up if it is shown
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
+       
+    //Check for search_text within audit
+    return validate_top_patient_audit(test_title, get_string_translation(expected_search_text));
+}
+//--------------------------------------------------------------------------------
+function validate_top_suggested_treatment_audit_with_patient_search(pat_name, expected_search_text)
+{
+    //Search for patient
+    patient_search(pat_name);
+    
+    //Goto the audit for the patient
+    Goto_Suggested_Treatment_Audit();
+    
+    //Check for search_text within audit
+    return validate_top_treatment_audit(get_string_translation(expected_search_text));
+}
 //-----------------------------------------------------------------------------------
 //Checking top audit on the patient tab
 function validate_top_patient_audit(test_case_title, audit_action)
