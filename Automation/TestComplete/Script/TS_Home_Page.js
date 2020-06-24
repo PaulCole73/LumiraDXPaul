@@ -12,12 +12,12 @@ function ts_master_homepage(send_mail)
 {
   reset_folder();
 
-//  tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page();
-//  tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message(); 
-//  tc_home_page_view_the_exceeded_suspension_period_message(); 
-//
-//  tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline(); 
-//  tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_message();
+  tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page();
+  tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message(); 
+  tc_home_page_view_the_exceeded_suspension_period_message(); 
+
+  tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline(); 
+  tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_message();
   tc_home_page_view_the_patients_referred_to_you_for_further_action_message();
 
   tc_home_page_view_the_patients_with_incomplete_treatment_message(); 
