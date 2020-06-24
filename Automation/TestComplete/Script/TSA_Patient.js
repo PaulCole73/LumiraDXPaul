@@ -90,6 +90,7 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
     panelEPCD.Panel(2).Textbox("ThirdLineAddress").Text = "";
     panelEPCD.Panel(3).Textbox("Town").Text = "Manchester";
     panelEPCD.Panel(4).Textbox("County").Text = "Granadaland";
+    panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
     
     //Need to add this back in at some point but it is now going to be doing different validation for Italy so blanking out for now
     panelEPCD.Panel(5).Textbox("Postcode").Text = "";
@@ -98,13 +99,11 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
     
     if(language == "Italian")   
     {
-      panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
       panelEPCD.Panel(8).Textbox("Mobile").Text = "07111 225588";    
       panelEPCD.Panel(9).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";
     }
     if(language == "English")  
     {
-      panelEPCD.Panel(6).Textbox("Phone").Text = "01209 710999";
       panelEPCD.Panel(7).Textbox("Mobile").Text = "07111 225588";
       panelEPCD.Panel(8).Textbox("Email").Text = "AutomationLumira+" + guid + "@gmail.com";  
     }
