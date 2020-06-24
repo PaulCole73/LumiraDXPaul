@@ -857,10 +857,19 @@ function cancel_pending_treat_button()
   return cancel_button_path;
 }
 //------------------------------------------------------------------------
+//-- Notice two different button paths pending which region you are in
 function refer_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
+  
+  if (language == "Italian")
+  {
+    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Button("ReferPendingTreatment");
+  }
+  else
+  {
+    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
+  }
   
   return refer_button_path;
 }

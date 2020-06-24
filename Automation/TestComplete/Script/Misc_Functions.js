@@ -10,12 +10,10 @@
 //Add functions (in current style) if they are missing from here
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
-
 //Setup environment variable either from cmd line or default
-var language = "Italian";
-
-var environment = "INRstarWindowsIt-dev1";
-var environmentname = "it-dev1";
+var language = "English";
+var environment = "INRstarWindowsStaging";
+var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 
 if (language == "English")
@@ -27,7 +25,6 @@ else
 {
   var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
 }
-
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
@@ -261,6 +258,7 @@ function results_checker_are_true(result_set)
 //This is to test the result set of a test case and return pass or fail
 function results_checker(result_set, test_case)
 {
+  Log.Message("This is the result set \\" + result_set);
   if(result_set == true)
   {
     Log.Checkpoint(test_case);
@@ -431,7 +429,7 @@ function validate_more_info_top_patient_audit(w_data)
 
   if(wt_row.includes(w_data))
   {
-    Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
+    Log.Message('Found the audit - This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
     return true;
   }
   else 
@@ -665,40 +663,40 @@ function set_italian_long_month(month)
 
  switch(month)
  {
-    case "Jan":
+    case "January":
     long_month = "gennaio";
     break;
-    case "Feb":
+    case "February":
     long_month = "febbraio";
     break;  
-    case "Mar":
+    case "March":
     long_month = "marzo";
     break;  
-    case "Apr":
+    case "April":
     long_month = "aprile";
     break;  
     case "May":
     long_month = "maggio";
     break;  
-    case "Jun":
+    case "June":
     long_month = "giugno";
     break;  
-    case "Jul":
+    case "July":
     long_month = "luglio";
     break;  
-    case "Aug":
+    case "August":
     long_month = "agosto";
     break;  
-    case "Sep":
+    case "September":
     long_month = "settembre";
     break;  
-    case "Oct":
+    case "October":
     long_month = "ottobre";
     break;  
-    case "Nov":
+    case "November":
     long_month = "novembre";
     break;
-    case "Dec":
+    case "December":
     long_month = "dicembre";
     break;    
     default:
@@ -791,7 +789,7 @@ function get_string_translation(translation_word)
 //Just to quickly test things in the translation file
 function testing_translation()
 {
-var test = get_string_translation("Unsuspend Patient");   
+var test = get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.");   
 
 
 Log.Message(test)

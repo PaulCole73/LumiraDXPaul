@@ -18,7 +18,7 @@ function ts_master_homepage(send_mail)
 
   tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline(); 
   tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_message();
-  tc_home_page_view_the_patients_referred_to_you_for_further_action_message(); // has issues in england
+  tc_home_page_view_the_patients_referred_to_you_for_further_action_message();
 
   tc_home_page_view_the_patients_with_incomplete_treatment_message(); 
   tc_home_page_view_the_patients_with_no_diagnosis_or_treatment_plan_message(); 

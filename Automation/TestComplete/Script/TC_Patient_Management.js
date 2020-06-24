@@ -127,7 +127,7 @@ function tc_patient_amend_a_patient_to_be_a_manual_self_tester()
     //Change to self tester
     add_manual_self_test_group();
   
-    result_set_1 = validate_more_info_top_patient_audit('INR Self Tester set to [True');
+    result_set_1 = validate_more_info_top_patient_audit('INR Self Tester set to [True]');
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -246,8 +246,8 @@ function tc_patient_unsuspend_a_patient()
     
     var part_1_expected_text = get_string_translation("The patient has been successfully unsuspended.")
     var part_2_expected_text = get_string_translation("The patient may have been treated elsewhere during the suspension period.")
-    var part_3_expected_text = get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments.")
-    var part_4_expected_text = get_string_translation("For non-Warfarin patients you should ensure review information is up to date.")  
+    var part_3_expected_text = get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.")
+    var part_4_expected_text = get_string_translation("For non-warfarin patients you should ensure review information is up to date.")  
     var expected_text = (part_1_expected_text + "\n" + part_2_expected_text + " " + part_3_expected_text + " " + part_4_expected_text)
     
     //Check the confirmation banner is displayed
