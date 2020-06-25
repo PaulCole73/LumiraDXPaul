@@ -5,7 +5,8 @@
 //--------------------------------------------------------------------------------
 function add_pending_fast_induction_treatment(inr, TestStepMode)
 {
-  var INRstarV5 = INRstar_base();    
+  var INRstarV5 = INRstar_base();
+  var inr = get_string_translation(inr);    
  
   if(TestStepMode == 'Shared')
   {
@@ -24,9 +25,10 @@ function add_pending_fast_induction_treatment(inr, TestStepMode)
      
     var buttons = pre_treatment_induction_buttons_path();
     buttons.SubmitButton("CalculateWarfarinDose").Click();
-    process_popup("PoCT Batch Expired", "Confirm");
     
-    process_popup("Please confirm that the following is correct", "Confirm");
+    process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
+    
+    process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
     //process_confirm_INR(INRstarV5);
   }
 }
@@ -53,10 +55,9 @@ function add_fast_induction_treatment(inr)
   buttons.SubmitButton("CalculateWarfarinDose").Click();
   process_popup("PoCT Batch Expired", "Confirm");
   
-  process_popup("Please confirm that the following is correct", "Confirm");
+  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   
-  var pending_treatment_buttons_path = pending_treatment_buttons();
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+  save_inr_button().Click();
 }
 //--------------------------------------------------------------------------------
 function add_induction_slow_treatment(inr)
@@ -78,14 +79,14 @@ function add_induction_slow_treatment(inr)
   buttons.SubmitButton("CalculateWarfarinDose").Click();
   
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
-  var pending_treatment_buttons_path = pending_treatment_buttons();
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+  save_inr_button().Click();
 
 }
 //--------------------------------------------------------------------------------
-function add_pending_induction_slow_treatment(inr,TestStepMode)
+function add_pending_induction_slow_treatment(inr, TestStepMode)
 {
   var INRstarV5 = INRstar_base();    
+  var inr = get_string_translation(inr);
  
   if(TestStepMode == 'Shared')
   {
@@ -103,7 +104,7 @@ function add_pending_induction_slow_treatment(inr,TestStepMode)
     var buttons = pre_treatment_induction_buttons_path();
     buttons.SubmitButton("CalculateWarfarinDose").Click();
     
-    process_popup("Please confirm that the following is correct", "Confirm");
+    process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   }
 }
 //--------------------------------------------------------------------------------
@@ -113,9 +114,10 @@ function add_pending_manual_treatment(inr, tm, dose, review)
   Goto_Patient_New_INR();
   var inr_test_info_path = treatment_inr_test_info_path();
   var new_inr_test_info_path = new_inr_test_details();
+  var inr = get_string_translation(inr);
 
    // Select the passed-in INR value
-   inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
+   inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
 
    // Testing Method
    inr_test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
@@ -148,6 +150,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
 function add_pending_maintenance_treatment(inr, date, selftest, test_method)
 {
   var INRstarV5 = INRstar_base();
+  var inr = get_string_translation(inr);
   Goto_Patient_New_INR();
   
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
@@ -206,6 +209,7 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
 function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
 {
   var INRstarV5 = INRstar_base();
+  var inr = get_string_translation(inr);
   Goto_Patient_New_INR();
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
   var treatment_inr_test_options_path = treatment_inr_test_options();
@@ -245,7 +249,7 @@ function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
   WaitSeconds(1);   
    
   // Click the Confirm button in the confirm window but not the yellow warning
-  process_popup("Please confirm that the following is correct", "Confirm");
+  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
 }
 //--------------------------------------------------------------------------------
 function add_maintenance_treatment(inr, date)
@@ -282,17 +286,19 @@ function add_maintenance_treatment(inr, date)
   process_popup("PoCT Batch Expired", "Confirm");
        
   // Click the Confirm button in the confirm window
-  process_popup("Please confirm that the following is correct", "Confirm");
+  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   
    //Save the INR
   var pending_treatment_buttons_path = pending_treatment_buttons();
   wait_for_object(pending_treatment_buttons_path, "idStr", "DosingScheduleContent", 2);
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+  
+  save_inr_button().Click();
 }
 //--------------------------------------------------------------------------------
 function add_override_treatment(inr,date,p_review)
 {
   var INRstarV5 = INRstar_base();
+  var inr = get_string_translation(inr);
   Goto_Patient_New_INR();
   var test_info_pre_schedule_path = new_inr_test_details();
   var treatment_options = test_info_pre_schedule_path.Fieldset("Options");
@@ -324,7 +330,7 @@ function add_override_treatment(inr,date,p_review)
   process_popup("PoCT Batch Expired", "Confirm");
        
   //Click the Confirm button in the confirm window
-  process_popup("Please confirm that the following is correct", "Confirm");
+  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   //process_confirm_INR(INRstarV5);
   
   //Click override
@@ -351,8 +357,7 @@ function add_override_treatment(inr,date,p_review)
   WaitSeconds(1,"Waiting for Override to complete");
   
   //Save the INR
-  var pending_treatment_buttons_path = pending_treatment_buttons();
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+  save_inr_button().Click();
 }
 //-----------------------------------------------------------------------------------
 function add_historic_treatment(date,inr,dose,omits,review,target)
@@ -405,6 +410,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
 function add_manual_treatment(date, inr, dose, review, tm)
 {
   var INRstarV5 = INRstar_base();
+  var inr = get_string_translation(inr);
   Goto_Patient_New_INR();
   var test_info_path = treatment_inr_test_info_path()
   
@@ -434,7 +440,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
   {
     test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
   }
-  test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
+  test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
    
   var treatment_button_path = treatment_buttons_pre_schedule();
@@ -445,12 +451,11 @@ function add_manual_treatment(date, inr, dose, review, tm)
   var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", get_string_translation("Confirm"));
   wbt_Confirm.Click();
   
-  process_popup("Insert Confirmation", get_string_translation("Confirm"));
+  process_popup(get_string_translation("Insert Confirmation"), get_string_translation("Confirm"));
   WaitSeconds(2, "Saving the Treatment...");  
   
   //Save the INR
-  var pending_treatment_buttons_path = pending_treatment_buttons();
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
+  save_inr_button().Click();
 }
 //--------------------------------------------------------------------------------
 function delete_treatment()

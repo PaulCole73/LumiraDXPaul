@@ -749,54 +749,6 @@ function set_italian_long_month(month)
   return long_month;
 }
 //-----------------------------------------------------------------------------------
-function set_italian_short_month(month)
-{
- var short_month;  
-
- switch(month)
- {
-    case "Jan":
-    short_month = "gen";
-    break;
-    case "Feb":
-    short_month = "feb";
-    break;  
-    case "Mar":
-    short_month = "mar";
-    break;  
-    case "Apr":
-    short_month = "apr";
-    break;  
-    case "May":
-    short_month = "mag";
-    break;  
-    case "Jun":
-    short_month = "giu";
-    break;  
-    case "Jul":
-    short_month = "lug";
-    break;  
-    case "Aug":
-    short_month = "ago";
-    break;  
-    case "Sep":
-    short_month = "set";
-    break;  
-    case "Oct":
-    short_month = "ott";
-    break;  
-    case "Nov":
-    short_month = "nov";
-    break;
-    case "Dec":
-    short_month = "dic";
-    break;    
-    default:
-    Log.Message("Couldn't find the month: " + short_month + " you were looking for");    
- }                  
-  return short_month;
-}
-//-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
 {
   var INRstarV5 = INRstar_base();
@@ -1350,17 +1302,18 @@ function setup_automation_from_parameter()
 //-------------------------------------------------------------------------------
 function get_date_with_days_from_today_dd_mmm_yyyy(days) // will return either 12-mag-2020 or 12-May-2020 pending language
 {
+  //Calculate the date using the supplled offset (days) then return the English date in format eg: 12-May-2020
   date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(days)), "%d-%b-%Y");
   
+  //If the language is italian go off and convert the short month text to italian
   if (language == "Italian")
   {
-    italian_short_month = set_italian_short_month(date.slice(3,6));
+    italian_short_month = get_string_translation(date.slice(3,6));
     date = date.slice(0,2) + '-' + italian_short_month + '-' + date.slice(7,11)
   }
 
   return date;
 }
-//----aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(-7)), "%d-%b-%Y");
 //-------------------------------------------------------------------------------
 function get_todays_date_in_dd_mmm_yyyy() // will return either 12-mag-2020 or 12-May-2020 pending language
 {
@@ -1368,7 +1321,7 @@ function get_todays_date_in_dd_mmm_yyyy() // will return either 12-mag-2020 or 1
   
   if (language == "Italian")
   {
-    italian_short_month = set_italian_short_month(todays_date.slice(3,6));
+    italian_short_month = get_string_translation(todays_date.slice(3,6));
     todays_date = todays_date.slice(0,2) + '-' + italian_short_month + '-' + todays_date.slice(7,11)
   }
 

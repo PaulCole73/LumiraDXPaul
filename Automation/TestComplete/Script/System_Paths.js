@@ -836,7 +836,15 @@ function pending_treatment_buttons()
 function save_inr_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  
+  if (language == "Italian")
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("AcceptPendingTreatment");
+  }
+  else
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  }
   
   return save_inr_button_path;
 }  

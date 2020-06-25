@@ -18,7 +18,7 @@ function tc_treatment_add_a_historic_treatment()
     login(5, "Shared");
     add_patient('Regression', 'Add_historic', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2,0", "2,0", "0", "7", "2,5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
     var result_set = new Array(); 
     var treatment_data = new Array();
@@ -64,17 +64,18 @@ function tc_treatment_add_a_manual_INR()
 
     var result_set = new Array(); 
     var treatment_data = new Array();
-    var formatted_inr_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(-3)), "%d-%b-%Y");
-    var formatted_ntd = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(+4)), "%d-%b-%Y");
+    
+    var formatted_inr_date = get_date_with_days_from_today_dd_mmm_yyyy(-3);
+    var formatted_ntd = get_date_with_days_from_today_dd_mmm_yyyy(+4);
   
     treatment_data.push(formatted_inr_date, "2.0", "2.5", "", "0", "7", "", formatted_ntd, "-");
     var treatment_row = get_treatment_row(0);
   
-    var result_set_1 = checkArrays(treatment_data, treatment_row, test_title);
+    var result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, test_title);
     result_set.push(result_set_1);
   
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit(test_title, "Add Manual Treatment");
+    var result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add Manual Treatment"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -110,26 +111,30 @@ function tc_treatment_manual_dosing_permissions()
     var result_set_1 = button_checker(button, 'disabled', 'Testing cl2 level user cannot click new inr for manual dosing');
     result_set.push(result_set_1);
   
-    var pat_nhs = get_patient_nhs();
+    //Get the patient details
+    //var pat_nhs = get_patient_nhs();
+    var patient_fullname = get_patient_fullname();
+    
     Log_Off();
     login(5, "Shared");
-    patient_search(pat_nhs);
-    add_pending_manual_treatment('2.5','Lab','2.0','7 Days');
+    patient_search(patient_fullname);
+    add_pending_manual_treatment('2.5','Lab','2.0','7');
+    
     Log_Off();
     login(4, "Shared");
-    patient_search(pat_nhs);
+    patient_search(patient_fullname);
   
     var save_inr_button_path = save_inr_button();
     button = save_inr_button_path.enabled;
-  
-    result_set_1 = button_checker(button,'disabled','Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
+    
+    var result_set_1 = button_checker(button, 'disabled', 'Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
     
     //Pass in the result
-    results_checker(results,test_title); 
+    results_checker(results, test_title); 
   
     Log_Off(); 
   } 
@@ -158,10 +163,13 @@ function tc_treatment_induction_dosing_permissions()
     var result_set_1 = button_checker(button, "enabled", "Testing cl3 level user can see new inr button enabled for induction dosing");
     result_set.push(result_set_1);
   
-    var pat_nhs = get_patient_nhs();
+    //Get the patient details
+    //var pat_nhs = get_patient_nhs();
+    var patient_fullname = get_patient_fullname();
+    
     Log_Off();
     login(4, "Shared");
-    patient_search(pat_nhs);
+    patient_search(patient_fullname);
   
     button = save_inr_button().enabled;
     result_set_1 = button_checker(button, "disabled", "Testing cl2 level user cannot click new inr for induction dosing");
@@ -169,7 +177,7 @@ function tc_treatment_induction_dosing_permissions()
     
     Log_Off();
     login(3, "Shared");
-    patient_search(pat_nhs);
+    patient_search(patient_fullname);
   
     button = save_inr_button().enabled;
     result_set_1 = button_checker(button, "disabled", "Testing cl1 level user cannot click new inr for induction dosing");
@@ -208,7 +216,7 @@ function tc_treatment_add_a_treatment_comment()
     result_set = new Array(); 
   
     //Check the audit for adding the treatment
-    var result_set_1 = validate_more_info_top_treatment_audit('Comments set to ['+ comment + ']');
+    var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Comments set to") + " [" + comment + "]");
     result_set.push(result_set_1);
   
     //Validate the results sets are true
@@ -1327,7 +1335,7 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
     var patient_nhs = get_patient_nhs();
-    add_pending_manual_treatment('2.6', 'PoCT', '2.9', '7 Days');
+    add_pending_manual_treatment('2.6', 'PoCT', '2.9', '7');
     
     var treatment_values = new Array();
     var summary_values = new Array();

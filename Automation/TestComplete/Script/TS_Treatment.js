@@ -11,11 +11,11 @@ function ts_master_treatment(send_mail)
 {
   reset_folder();
   
-  tc_treatment_add_a_historic_treatment();
+//  tc_treatment_add_a_historic_treatment();
 //  tc_treatment_add_a_manual_INR();
 //  tc_treatment_manual_dosing_permissions();
 //  tc_treatment_induction_dosing_permissions();
-//  tc_treatment_add_a_treatment_comment();
+  tc_treatment_add_a_treatment_comment();
 //  tc_treatment_add_a_new_maintenance_in_range_inr();
 //  tc_treatment_add_a_historical_treatment_to_an_induction_patient(); //This kept giving warning then worked when run on its own looks like timing again
 //  tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol();
