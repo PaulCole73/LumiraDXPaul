@@ -2141,7 +2141,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Net 4.0 Client" key="{5E72C684-6C98-4C05-9AD9-0096F16163BA}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Net 4.0 Client" key="{5E72C684-6C98-4C05-9AD9-0096F16163BA}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Alderaan_Net4" key="{1A531187-C3C1-4E8B-B457-C8D4CAB6F271}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
@@ -3367,7 +3367,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{8A2DA839-765A-4AAC-860C-FFA081B46DC4}" group="False" enabled="False" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{8A2DA839-765A-4AAC-860C-FFA081B46DC4}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3439,7 +3439,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page_1" key="{CC700112-F0ED-43FB-B4BB-35CB0E31C375}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page_1" key="{CC700112-F0ED-43FB-B4BB-35CB0E31C375}" group="False" enabled="False" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>

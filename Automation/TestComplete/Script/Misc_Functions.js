@@ -11,8 +11,8 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "English";
-var environment = "INRstarWindowsStaging";
+var language = "Italian";
+var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -156,6 +156,50 @@ function checkArrays(arrA, arrB, mess)
       Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
       return false;
     }
+  }
+  return true;
+}
+//--------------------------------------------------------------------------
+//This allows checking of arrays that may contain 2,0 instead of 2.0 for an INR
+function checkArrays_containing_inr_values(arrA, arrB, mess)
+{
+  if(arrA == null || arrB == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  
+  if(arrA.length !== arrB.length) 
+  {
+    Log.Message(mess + "//" + arrA + "//" + arrB + "//");
+    return false;
+  }
+  for(var i = 0; i < arrA.length; i++)
+  {    
+    // If one field in the array doesn't match
+    if(arrA[i] != arrB[i])
+    { 
+        // And if the language is italian
+        if (language = "Italian")
+        {
+          // Replace any full stops with a comma so 2.0 becomes 2,0 for both fields
+          var new_arrA = arrA[i].replace(".", ",");
+          var new_arrB = arrB[i].replace(".", ",");
+          
+          // Now check if the modified fields match
+          if(new_arrA != new_arrB)
+          {
+            // If they don't its a fail
+            Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
+            return false;
+          }
+        }
+        else
+        {
+          Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
+          return false;
+        }
+    } 
   }
   return true;
 }
@@ -703,6 +747,54 @@ function set_italian_long_month(month)
     Log.Message("Couldn't  find the month you were looking for");    
  }                  
   return long_month;
+}
+//-----------------------------------------------------------------------------------
+function set_italian_short_month(month)
+{
+ var short_month;  
+
+ switch(month)
+ {
+    case "Jan":
+    short_month = "gen";
+    break;
+    case "Feb":
+    short_month = "feb";
+    break;  
+    case "Mar":
+    short_month = "mar";
+    break;  
+    case "Apr":
+    short_month = "apr";
+    break;  
+    case "May":
+    short_month = "mag";
+    break;  
+    case "Jun":
+    short_month = "giu";
+    break;  
+    case "Jul":
+    short_month = "lug";
+    break;  
+    case "Aug":
+    short_month = "ago";
+    break;  
+    case "Sep":
+    short_month = "set";
+    break;  
+    case "Oct":
+    short_month = "ott";
+    break;  
+    case "Nov":
+    short_month = "nov";
+    break;
+    case "Dec":
+    short_month = "dic";
+    break;    
+    default:
+    Log.Message("Couldn't find the month: " + short_month + " you were looking for");    
+ }                  
+  return short_month;
 }
 //-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
@@ -1254,6 +1346,33 @@ function setup_automation_from_parameter()
   var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
   change_environments(environment);
+}
+//-------------------------------------------------------------------------------
+function get_date_with_days_from_today_dd_mmm_yyyy(days) // will return either 12-mag-2020 or 12-May-2020 pending language
+{
+  date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(days)), "%d-%b-%Y");
+  
+  if (language == "Italian")
+  {
+    italian_short_month = set_italian_short_month(date.slice(3,6));
+    date = date.slice(0,2) + '-' + italian_short_month + '-' + date.slice(7,11)
+  }
+
+  return date;
+}
+//----aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(-7)), "%d-%b-%Y");
+//-------------------------------------------------------------------------------
+function get_todays_date_in_dd_mmm_yyyy() // will return either 12-mag-2020 or 12-May-2020 pending language
+{
+  todays_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y");
+  
+  if (language == "Italian")
+  {
+    italian_short_month = set_italian_short_month(todays_date.slice(3,6));
+    todays_date = todays_date.slice(0,2) + '-' + italian_short_month + '-' + todays_date.slice(7,11)
+  }
+
+  return todays_date;
 }
 //-----------------------------------------------------------------------------------
 function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/may/2020

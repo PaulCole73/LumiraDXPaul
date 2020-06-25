@@ -18,21 +18,21 @@ function tc_treatment_add_a_historic_treatment()
     login(5, "Shared");
     add_patient('Regression', 'Add_historic', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2,0", "2,0", "0", "7", "2,5");
   
     var result_set = new Array(); 
     var treatment_data = new Array();
-    var formatted_inr_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(-7)), "%d-%b-%Y");
-    var formatted_ntd = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y");
+    var inr_date = get_date_with_days_from_today_dd_mmm_yyyy(-7);
+    var todays_date = get_todays_date_in_dd_mmm_yyyy();
   
-    treatment_data.push(formatted_inr_date, "2.0", "2.0", "", "0", "7", "", formatted_ntd, "-"); 
+    treatment_data.push(inr_date, "2.0", "2.0", "", "0", "7", "", todays_date, "-"); 
     var treatment_row = get_treatment_row(0);
   
-    var result_set_1 = checkArrays(treatment_data, treatment_row, test_title);
+    var result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, test_title);
     result_set.push(result_set_1);
   
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit(test_title, "Add Historical Treatment");
+    var result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add Historical Treatment"));
     result_set.push(result_set_1);
  
     //Validate all the results sets are true
