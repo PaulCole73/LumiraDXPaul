@@ -15,17 +15,17 @@ function ts_master_treatment(send_mail)
 //  tc_treatment_add_a_manual_INR();
 //  tc_treatment_manual_dosing_permissions();
 //  tc_treatment_induction_dosing_permissions();
-  tc_treatment_add_a_treatment_comment();
+//  tc_treatment_add_a_treatment_comment();
 //  tc_treatment_add_a_new_maintenance_in_range_inr();
-//  tc_treatment_add_a_historical_treatment_to_an_induction_patient(); //This kept giving warning then worked when run on its own looks like timing again
+//  tc_treatment_add_a_historical_treatment_to_an_induction_patient();
 //  tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol();
 //  tc_treatment_user_cannot_override_an_induction_result();
-//  tc_treatment_adding_a_result_earlier_than_last_recorded_result(); //Come back to failing looks like timing again
-//  tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when_on_maintenance();
-//  tc_treatment_add_a_new_maintenance_low_inr();
-//  tc_treatment_add_a_new_maintenance_high_inr();
-//  tc_treatment_out_of_range_maintenance_permissions();
-//  tc_treatment_delete_the_last_treatment();
+//  tc_treatment_adding_a_result_earlier_than_last_recorded_result();
+//  tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when_on_maintenance(); // Think this needs an additional check to ensure save INR button cannot be selected 
+//  tc_treatment_add_a_new_maintenance_low_inr(); // This test is correct but keeps failing CL2 user cannot select save INR button!
+//  tc_treatment_add_a_new_maintenance_high_inr(); // This test is correct but keeps failing CL2 user cannot select save INR button!
+//  tc_treatment_out_of_range_maintenance_permissions(); // This test is correct but keeps failing CL2 user cannot select save INR button!
+  tc_treatment_delete_the_last_treatment();
 //  tc_treatment_refer_a_treatment();
 //  tc_treatment_authorise_a_referral();
 //  tc_treatment_dosing_under_12_years_old();

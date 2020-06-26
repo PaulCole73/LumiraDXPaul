@@ -14,20 +14,27 @@ function tc_treatment_add_a_historic_treatment()
 {
   try
   {
-    var test_title = 'Treatment - Add a historic treatment'
+    var test_title = 'Treatment - Add a historic treatment';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Add_historic', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-  
+    
+    // Initialise Test Results array
     var result_set = new Array(); 
     var treatment_data = new Array();
-    var inr_date = get_date_with_days_from_today_dd_mmm_yyyy(-7);
-    var todays_date = get_todays_date_in_dd_mmm_yyyy();
-  
-    treatment_data.push(inr_date, "2.0", "2.0", "", "0", "7", "", todays_date, "-"); 
+    
+    //Setup and record expected data
+    var formatted_inr_date = get_date_with_days_from_today_dd_mmm_yyyy(-7);
+    var formatted_ntd = get_todays_date_in_dd_mmm_yyyy();
+    treatment_data.push(formatted_inr_date, "2.0", "2.0", "", "0", "7", "", formatted_ntd, "-");
+    
+    //Get the actual data 
     var treatment_row = get_treatment_row(0);
   
+    //Compare the expected vs the actual data
     var result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, test_title);
     result_set.push(result_set_1);
   
@@ -56,21 +63,27 @@ function tc_treatment_add_a_manual_INR()
 {
   try
   {
-    var test_title = 'Treatment - Add a manual INR'
+    var test_title = 'Treatment - Add a manual INR';
+    
+    // Setup test scenario
     login(7, "Shared");
     add_patient('Regression', 'Manual_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'2.0','2.5','7');
-
+    
+    // Initialise Test Results array
     var result_set = new Array(); 
     var treatment_data = new Array();
     
+    //Setup and record expected data
     var formatted_inr_date = get_date_with_days_from_today_dd_mmm_yyyy(-3);
     var formatted_ntd = get_date_with_days_from_today_dd_mmm_yyyy(+4);
-  
     treatment_data.push(formatted_inr_date, "2.0", "2.5", "", "0", "7", "", formatted_ntd, "-");
+
+    //Get the actual data
     var treatment_row = get_treatment_row(0);
   
+    //Compare the expected vs the actual data
     var result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, test_title);
     result_set.push(result_set_1);
   
@@ -99,34 +112,38 @@ function tc_treatment_manual_dosing_permissions()
 {
   try
   {
-    var test_title = 'Treatment - Manual dosing permissions'
+    var test_title = 'Treatment - Manual dosing permissions';
+    
+    // Setup test scenario
     login(4, "Shared");
     add_patient('Regression', 'Manual_permissions', 'M', 'Shared'); 
     add_treatment_plan('W','Manual','','Shared','');
- 
-    var result_set = new Array(); 
-    var new_inr_button = new_inr_button_path();
-    var button = new_inr_button.enabled;
-
-    var result_set_1 = button_checker(button, 'disabled', 'Testing cl2 level user cannot click new inr for manual dosing');
-    result_set.push(result_set_1);
-  
+    
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
     var patient_fullname = get_patient_fullname();
     
+    // Initialise Test Results array
+    var result_set = new Array(); 
+  
+    // Check to ensure button is disabled for cl2 level user
+    var button = new_inr_button_path().enabled;
+    var result_set_1 = button_checker(button, 'disabled', 'Testing cl2 level user cannot click new inr for manual dosing');
+    result_set.push(result_set_1);
+  
+    // Login as high level user and add pending manual treatment
     Log_Off();
     login(5, "Shared");
     patient_search(patient_fullname);
     add_pending_manual_treatment('2.5','Lab','2.0','7');
     
+    // login as cl2 level user
     Log_Off();
     login(4, "Shared");
     patient_search(patient_fullname);
   
-    var save_inr_button_path = save_inr_button();
-    button = save_inr_button_path.enabled;
-    
+    // Check to ensure button is disabled for cl2 level user
+    var button = save_inr_button().enabled;
     var result_set_1 = button_checker(button, 'disabled', 'Testing cl2 level user cannot click save inr on pending treatment for manual dosing');
     result_set.push(result_set_1);
   
@@ -151,36 +168,44 @@ function tc_treatment_induction_dosing_permissions()
 {
   try
   {
-    var test_title = 'Treatment - Induction dosing permissions'
+    var test_title = 'Treatment - Induction dosing permissions';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'Induction_permissions', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
     add_pending_induction_slow_treatment('1.2','Shared');
     
-    result_set = new Array(); 
-  
-    var button = save_inr_button().enabled;
-    var result_set_1 = button_checker(button, "enabled", "Testing cl3 level user can see new inr button enabled for induction dosing");
-    result_set.push(result_set_1);
-  
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
     var patient_fullname = get_patient_fullname();
     
+    // Initialise Test Results array
+    var result_set = new Array(); 
+  
+    // Check to ensure button is enabled for cl3 level user
+    var button = save_inr_button().enabled;
+    var result_set_1 = button_checker(button, "enabled", "Testing cl3 level user can see new inr button enabled for induction dosing");
+    result_set.push(result_set_1);
+    
+    // Login as cl2 level user
     Log_Off();
     login(4, "Shared");
     patient_search(patient_fullname);
   
-    button = save_inr_button().enabled;
-    result_set_1 = button_checker(button, "disabled", "Testing cl2 level user cannot click new inr for induction dosing");
+    // Check to ensure button is disabled for cl2 level user
+    var button2 = save_inr_button().enabled;
+    var result_set_1 = button_checker(button2, "disabled", "Testing cl2 level user cannot click new inr for induction dosing");
     result_set.push(result_set_1);
     
+    // Login as cl1 level user
     Log_Off();
     login(3, "Shared");
     patient_search(patient_fullname);
   
-    button = save_inr_button().enabled;
-    result_set_1 = button_checker(button, "disabled", "Testing cl1 level user cannot click new inr for induction dosing");
+    // Check to ensure button is disabled for cl1 level user
+    var button3 = save_inr_button().enabled;
+    var result_set_1 = button_checker(button3, "disabled", "Testing cl1 level user cannot click new inr for induction dosing");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
@@ -205,17 +230,19 @@ function tc_treatment_add_a_treatment_comment()
   try
   {
     var test_title = 'Treatment - Add a treatment comment'
+    
+    // Setup test scenario
     login(4, "Shared");
     add_patient('Regression', 'Treatment_comment', 'M', 'Shared'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-  
-    var comment = "regression testing comments field"
+    var comment = "regression testing comments field";
     add_treatment_comment(comment);
+        
+    // Initialise Test Results array
+    var result_set = new Array(); 
   
-    result_set = new Array(); 
-  
-    //Check the audit for adding the treatment
+    //Check the audit for comment
     var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Comments set to") + " [" + comment + "]");
     result_set.push(result_set_1);
   
@@ -242,27 +269,32 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
   try
   {
     var test_title = 'Treatment - Add a new Maintenance in-range INR';
+    
+    // Setup test scenario
     login(4, "Shared");
     add_patient('Regression', 'treatment_inrange', 'M', 'Shared'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     add_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.Today()));
-  
-    var result_set = new Array(); 
+    
+    // Setup and record expected data
+    var formatted_inr_date = get_todays_date_in_dd_mmm_yyyy();
+    var formatted_ntd = get_date_with_days_from_today_dd_mmm_yyyy(+14);
     var treatment_data = new Array();
-    var formatted_inr_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y");
-  
-    var formatted_ntd = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(+14)), "%d-%b-%Y");
     treatment_data.push(formatted_inr_date, "2.5", "2.0", "2.0", "0", "14", "14", formatted_ntd, "-");
-  
-    //Get the treatment data from the treatment table
-    var treatment_row = get_treatment_row(1);
-  
-    var result_set_1 = checkArrays(treatment_data, treatment_row, test_title);
+      
+    //Get the actual treatment data from the treatment table
+    var treatment_row = get_treatment_row(0, "pending");
+        
+    // Initialise Test Results array
+    var result_set = new Array(); 
+    
+    // Comparse the actual and expected data 
+    var result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, test_title);
     result_set.push(result_set_1);
   
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit(test_title, "Add New INR");
+    var result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add New INR"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -287,14 +319,19 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
   try
   {
     var test_title = 'Treatment - Add a historical treatment to an induction patient';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'historic_induction', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
     click_historic_button();
   
+    // Initialise Test Results array
     var result_set = new Array(); 
-    var actual_warn_mess = process_popup("Please Confirm", "Confirm");
-    var expected_warn_mess = "Adding a historical treatment to this patient will remove them from this induction protocol. The patient must be treated by manual dosing.";
+    
+    // Check warning message content
+    var actual_warn_mess = process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
+    var expected_warn_mess = get_string_translation("Adding a historical treatment to this patient will remove them from this induction protocol. The patient must be treated by manual dosing.");
     var result_set_1 = compare_values(actual_warn_mess, expected_warn_mess, test_title); 
     result_set.push(result_set_1);
   
@@ -302,7 +339,7 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
   
     //Check the yellow banner message
     WaitSeconds(6);
-    result_set_1 = banner_checker("The patient's dosing method is currently set to : No Protocol");
+    var result_set_1 = banner_checker(get_string_translation("The patient's dosing method is currently set to :") + " " + get_string_translation("No Protocol"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -327,23 +364,28 @@ function tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol()
   try
   {
     var test_title = 'Treatment - No treatment can be added to a patient on no protocol';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'no_protocol_pat', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
-  
-    result_set = new Array(); 
-
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
+    //Navigate to relevant page to perform checks
     Goto_Patient_New_INR();
+    
+    // Initialise Test Results array
+    var result_set = new Array(); 
+    
+    //Check red banner message content
     var actual_error_mess = get_treatment_error_banner();
-    var expected_error_mess = "The patient currently has no dosing method, you will need to update their treatment plan details before you can dose the patient."; 
+    var expected_error_mess = get_string_translation("The patient currently has no dosing method, you will need to update their treatment plan details before you can dose the patient."); 
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title); 
     result_set.push(result_set_1);
    
-    var sugg_war_dose_button_path = sugg_war_dose_button();
-    var button = sugg_war_dose_button_path.enabled;
-    result_set_1 = button_checker(button, "disabled", test_title);
+    //Check button is disabled
+    var button = sugg_war_dose_button().enabled;
+    var result_set_1 = button_checker(button, "disabled", test_title);
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -368,14 +410,17 @@ function tc_treatment_user_cannot_override_an_induction_result()
   try
   {
     var test_title = 'Treatment - user cannot override an induction result';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'override_induction', 'M', 'Shared'); 
     add_treatment_plan('W','Oates','','Shared','');
-  
-    result_set = new Array(); 
-  
     add_pending_induction_slow_treatment('1.0','Shared')
   
+    // Initialise Test Results array
+    result_set = new Array(); 
+  
+    // Check button is disabled
     var button = override_button().enabled;
     var result_set_1 = button_checker(button, "disabled", "Treatment - user cannot override an induction result");
     result_set.push(result_set_1);
@@ -402,16 +447,20 @@ function tc_treatment_adding_a_result_earlier_than_last_recorded_result()
   try
   {
     var test_title = 'Treatment - Adding a result earlier than last recorded result';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'treatment_dated_before', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))))
   
-    result_set = new Array(); 
+    // Initialise Test Results array
+    result_set = new Array();  
   
+    //Check banner message is as expected
     var actual_error_mess = get_treatment_error_banner();
-    var expected_error_mess = "You cannot add a treatment with a date that is older than the patient's latest treatment date.";
+    var expected_error_mess = get_string_translation("You cannot add a treatment with a date that is older than the patient's latest treatment date.");
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title); 
     result_set.push(result_set_1);
   
@@ -437,17 +486,21 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
   try
   {
     var test_title = 'Treatment - User is unable to add two treatments for the same day when on maintenance';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'treatment_same_day', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))))
   
+    // Initialise Test Results array
     result_set = new Array(); 
   
+    // Check Red Banner content
     var actual_error_mess = get_treatment_error_banner();
-    var expected_error_mess = "This patient already has an INR result recorded on this date. It is not possible to enter more" +
-                             " than one INR result on the same day unless the patient is being dosed manually.";
+    var expected_error_mess = get_string_translation("This patient already has an INR result recorded on this date. It is not possible to enter more" +
+        " than one INR result on the same day unless the patient is being dosed manually.");
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);   
     result_set.push(result_set_1);
   
@@ -468,29 +521,39 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
   }
 } 
 //--------------------------------------------------------------------------------
-function tc_treatment_add_a_new_maintenance_low_inr()
+function tc_treatment_add_a_new_maintenance_low_inr() // This test is actually failing
 {
   try
   {
     var test_title = 'Treatment - Add a new maintenance low INR';
+    
+    // Setup test scenario
     login(5, "Shared");
     add_patient('Regression', 'mainteance_low', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     
-    var result_set = new Array(); 
+    // Initialise Test Results array
+    result_set = new Array();
+    
+    // Get actual warning messgage 
     var actual_error_mess = add_pending_maintenance_treatment("1.9", aqConvert.StrToDate(aqDateTime.Today()), "", "poct");
-    var expected_error_mess = "Low INR warning: Patient may be at increased risk of thromboembolic events until INR is back in-range." + 
-                     " Consult clinical lead for advice about the use of LMWH for very low INR if clinically appropriate.";      
-    var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
+    
+    //Finish saving the INR
+    save_inr_button().Click() // This test is actually failing here - also worth noting that audit passes despite this not working
+    
+    // Check first half of message is correct and present
+    var expected_error_mess1 = get_string_translation("Low INR warning: Patient may be at increased risk of thromboembolic events until INR is back in-range.");      
+    var result_set_1 = data_contains_checker(actual_error_mess, expected_error_mess1, test_title);  
+    result_set.push(result_set_1);
+    
+     // Check second half of message is correct and present
+    var expected_error_mess2 = get_string_translation("Consult clinical lead for advice about the use of LMWH for very low INR if clinically appropriate.");      
+    var result_set_1 = data_contains_checker(actual_error_mess, expected_error_mess2, test_title);  
     result_set.push(result_set_1);
   
-    //Finish saving the treatment
-    var pending_treatment_buttons_path = pending_treatment_buttons();
-    pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
-  
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit(test_title, "Add New INR");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add New INR"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -510,32 +573,41 @@ function tc_treatment_add_a_new_maintenance_low_inr()
   }
 } 
 //--------------------------------------------------------------------------------
-function tc_treatment_add_a_new_maintenance_high_inr()
+function tc_treatment_add_a_new_maintenance_high_inr() // This test is actually failing
 {
   try
   {
     var test_title = 'Treatment - Add a new maintenance high INR';
-    login(5, "Shared");
     
-    var dosing_data = new Array();
-    dosing_data = get_dosing_settings_data(3);
-    
+    // Setup test scenario
+    login(5, "Shared");    
     add_patient('Regression', 'mainteance_high', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     
-    var result_set = new Array(); 
+    //Get all the patient details
+    //var pat_nhs = get_patient_nhs();
+    var message_name = get_patient_fullname();
+    
+    // Initialise Test Results array
+    var result_set = new Array();
+    
+    // Get the Actual data/errror
     var actual_error_mess = add_pending_maintenance_treatment("4.0", aqConvert.StrToDate(aqDateTime.Today()), "", "poct");
+    
+    //Finish saving the INR
+    save_inr_button().Click() // This test is actually failing here - also worth noting that audit passes despite this not working
+    
+    // Get Expected data into an array field
+    var dosing_data = new Array();
+    dosing_data = get_dosing_settings_data(3);
     var expected_error_mess = dosing_data[0];
+    
     var result_set_1 = compare_values(actual_error_mess, expected_error_mess, test_title);  
     result_set.push(result_set_1);
   
-    //Finish saving the treatment
-    var pending_treatment_buttons_path = pending_treatment_buttons();
-    pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
-  
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit(test_title, "Add New INR");
+    var result_set_1 = validate_top_patient_audit_with_patient_search(test_title, message_name, "Add New INR")
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -555,38 +627,46 @@ function tc_treatment_add_a_new_maintenance_high_inr()
   }
 } 
 //--------------------------------------------------------------------------------
-function tc_treatment_out_of_range_maintenance_permissions()
+function tc_treatment_out_of_range_maintenance_permissions() // This test is actually failing
 {
   try
   {
-    var test_title = 'Treatment - Out of Range maintenance permissions'
-    login(4, "Shared");
+    var test_title = 'Treatment - Out of Range maintenance permissions';
+    
+    // Setup test scenario
+    login(4, "Shared"); 
     add_patient('Regression', 'out_of_range_permissions', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment('5.0',(aqDateTime.Today()));
  
-    result_set = new Array(); 
+    // Initialise Test Results array
+    var result_set = new Array();
   
-    var button = save_inr_button().enabled;
-    var result_set_1 = button_checker(button, "enabled", "Testing cl2 level user can click save inr button for out of range treatment");
+    // Check button is enabled for Cl2 user
+    var button1 = save_inr_button().enabled; // This test is actually failing here
+    var result_set_1 = button_checker(button1, "enabled", "Testing cl2 level user can click save inr button for out of range treatment");
     result_set.push(result_set_1);
+    
+    //Get all the patient details
+    //var pat_nhs = get_patient_nhs();
+    var message_name = get_patient_fullname();
   
-    var pat_nhs = get_patient_nhs();
-    Log_Off();
-  
+    // Log on as a Cl1 level user and search for the user
+    Log_Off(); 
     login(3, "Shared");
-    patient_search(pat_nhs);
-  
-    button = save_inr_button().enabled;
-    result_set_1 = button_checker(button, "disabled", "Testing cl1 level user cannot click save inr button for out of range treatment");
+    patient_search(message_name);
+    
+    // Check button is disabled for Cl1 user  
+    var button2 = save_inr_button().enabled;
+    var result_set_1 = button_checker(button2, "disabled", "Testing cl1 level user cannot click save inr button for out of range treatment");
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set);
     
     //Pass in the result
-    results_checker(results,test_title); 
+    results_checker(results, test_title); 
   
     Log_Off(); 
   } 
@@ -619,7 +699,7 @@ function tc_treatment_delete_the_last_treatment()
     result_set.push(result_set_1);
   
     //Check the audit for adding the treatment
-    result_set_1 = validate_top_patient_audit(test_title, "Treatment Deleted");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Treatment Deleted"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -814,19 +894,19 @@ function tc_treatment_add_multiple_historic_treatments()
 
     treatment_data.push(format_date, "2.4", "1.9", "", "1", "7", "", format_date_1, "-");
     treatment_row = get_treatment_row(0);
-    var result_set_1 = checkArrays(treatment_row, treatment_data, "checking historic entry 1");
+    var result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, "checking historic entry 1");
     result_set.push(result_set_1);
     treatment_data.length = 0;
     
     treatment_data.push(format_date, "2.2", "2.2", "", "0", "7", "", format_date_1, "-"); 
     treatment_row = get_treatment_row(1);
-    result_set_1 = checkArrays(treatment_row, treatment_data, "checking historic entry 2");
+    result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, "checking historic entry 2");
     result_set.push(result_set_1);
     treatment_data.length = 0;
     
     treatment_data.push(format_date, "2.5", "2.0", "", "1", "7", "", format_date_1, "-"); 
     treatment_row = get_treatment_row(2);
-    result_set_1 = checkArrays(treatment_row, treatment_data, "checking historic entry 3");
+    result_set_1 = checkArrays_containing_inr_values(treatment_row, treatment_data, "checking historic entry 3");
     result_set.push(result_set_1);
     treatment_data.length = 0;
     
@@ -1027,7 +1107,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 		override_finish_buttons.Button("OverrideAccept").Click();
 		
 	  //find the pop up window in the screen
-    output_message = process_popup("Please confirm", "Confirm"); 
+    output_message = process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
@@ -1043,7 +1123,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
     result_set.push(result_set_1);
     
     //compare original values, with changed values
-		result_set_1 = checkArrays(expected_values, override_values, test_title);
+		result_set_1 = checkArrays_containing_inr_values(expected_values, override_values, test_title);
     result_set_1 = results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
     
@@ -1107,7 +1187,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
     result_set.push(result_set_1);
 		
 		//check arrays are same length but values do not match
-		result_set_1 = checkArrays(expected_values, override_values, test_title);
+		result_set_1 = checkArrays_containing_inr_values(expected_values, override_values, test_title);
     result_set_1 = results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
 		
@@ -1227,7 +1307,7 @@ function tc_treatment_maintenance_save_override_treatment()
 		override_values = get_treatment_row_key_values(1);
 		
 		//check arrays are same length but values do not match
-		result_set_1 = checkArrays(expected_values, override_values, test_title);
+		result_set_1 = checkArrays_containing_inr_values(expected_values, override_values, test_title);
     result_set_1 = results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
 		
@@ -1358,7 +1438,7 @@ function tc_treatment_manual_mutliple_historic_summary_check()
     result_set.push(result_set_1);
     
     //Check the arrays are the same size + values match
-		result_set_1 = checkArrays(treatment_values, summary_values, test_title);
+		result_set_1 = checkArrays_containing_inr_values(treatment_values, summary_values, test_title);
 		result_set.push(result_set_1);
     
     //Check the arrays are the same size + values match
@@ -1590,7 +1670,7 @@ function tc_treatment_add_treatment_for_self_tester()
     result_set_1 = validate_more_info_specific_entry_patient_audit(2, "INR Self Tester set to [True].", test_title);
     result_set.push(result_set_1);
     
-    result_set_1 = validate_top_patient_audit(test_title, "Add Manual Treatment");
+    result_set_1 = validate_top_patient_audit(test_title, get_string_translation("Add Manual Treatment"));
     result_set.push(result_set_1);
     
     result_set_1 = validate_more_info_top_patient_audit("Self Tested set to [True].");

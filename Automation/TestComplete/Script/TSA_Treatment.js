@@ -274,25 +274,22 @@ function add_maintenance_treatment(inr, date)
   select_day(w_day, w_datepicker);
       
   // Select the passed-in INR value
-  var ws_INR = aqConvert.FloatToStr(inr);
+  var ws_INR = aqConvert.FloatToStr(inr); 
+  ws_INR = get_string_translation(ws_INR);
   Log.Message("INR is " + ws_INR);
   test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
   
+  // Select the Testing Method as Lab
   test_info_pre_schedule_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem("Lab");
   
   var save_button_pre_schedule = treatment_buttons_pre_schedule();
   save_button_pre_schedule.SubmitButton("CalculateWarfarinDose").Click();
   
-  process_popup("PoCT Batch Expired", "Confirm");
+  // Click the Confirm button in the confirm window
+  process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
        
   // Click the Confirm button in the confirm window
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
-  
-   //Save the INR
-  var pending_treatment_buttons_path = pending_treatment_buttons();
-  wait_for_object(pending_treatment_buttons_path, "idStr", "DosingScheduleContent", 2);
-  
-  save_inr_button().Click();
 }
 //--------------------------------------------------------------------------------
 function add_override_treatment(inr,date,p_review)

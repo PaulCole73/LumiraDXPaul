@@ -3367,7 +3367,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{8A2DA839-765A-4AAC-860C-FFA081B46DC4}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{8A2DA839-765A-4AAC-860C-FFA081B46DC4}" group="False" enabled="False" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3451,7 +3451,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_1" key="{85391BD5-4968-46AA-A08B-05409C531727}" group="False" enabled="False" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_1" key="{85391BD5-4968-46AA-A08B-05409C531727}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>

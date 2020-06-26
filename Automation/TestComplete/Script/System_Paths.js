@@ -852,10 +852,17 @@ function save_inr_button()
 function override_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
   
+  if (language == "Italian")
+  {
+    var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("OverridePendingTreatment");
+  }
+  else
+  {
+    var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
+  }
   return override_button_path;
-} 
+}
 //------------------------------------------------------------------------
 function cancel_pending_treat_button()
 {
