@@ -30,9 +30,9 @@ function ts_master_treatment(send_mail)
 //  tc_treatment_authorise_a_referral();
 //  tc_treatment_dosing_under_12_years_old();
 //  tc_treatment_add_multiple_historic_treatments();
-  tc_treatment_create_maintenance_use_alternate_schedules(); // This is up to what Andy has managed to Italianise
+//  tc_treatment_create_maintenance_use_alternate_schedules(); 
 //  tc_treatment_maintenance_starting_algorithm_for_unstable_patient(); 
-//  tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent(); 
+  tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent(); // This is up to what Andy has managed to Italianise
 //  tc_treatment_maintenance_overriding_dose_and_review_period();
 //  tc_treatment_maintenance_save_override_treatment();
 //  tc_treatment_drag_and_drop_schedule_days();

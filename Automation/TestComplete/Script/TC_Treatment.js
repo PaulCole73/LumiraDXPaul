@@ -1028,9 +1028,7 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 		dosing_schedule = get_pending_suggested_treatment_schedule(0);
 		
 		//Check the arrays are the same size, but values DON'T match
-    //var do_arrays_match = checkArrays(dosing_schedule, dosing_schedule_1, test_title);
-    // Notice presence of ! char - it swaps true/false outcome of checkarray
-    var result_set_1 = !checkArrays(dosing_schedule, dosing_schedule_1, test_title);
+    var result_set_1 = checkArrays(dosing_schedule, dosing_schedule_1, test_title);
 		result_set.push(result_set_1);
 		
 		//Validate the results sets are false
@@ -1058,28 +1056,40 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 	try
 	{
 		var test_title = 'Treatment tab - Starting Algorithm for Unstable Patient';
+    
+    // Setup test scenario
 		login(5, "Shared");
 		add_patient('Regression', 'Unstable_Patient', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-4))), "2.3", "1.2", "0", "4", "2.5");
-		
-		Goto_Patient_New_INR();
-		
+    
+    // Initialise Test Results arrays
     var result_set = new Array();
-		var expected_error = "To use this algorithm safely patients should be established on warfarin and have an interval between " +
-                                  "the last 2 INR tests of at least 7 days. This patient does not currently meet this criterion."
 		
-		//get the message from the new INR page banner
+    // Navigate to enter a new INR
+    Goto_Patient_New_INR();
+    process_popup(get_string_translation("This patient has recently started Warfarin. Please confirm that they are appropriately stable for a maintenance algorithm"), +
+      get_string_translation("Confirm"));
+		
+    // Get the expected message
+    var expected_error_text = get_string_translation("To use this algorithm safely patients should be established on Warfarin and have an interval between " +
+      "the last 2 INR tests of at least 7 days. This patient does not currently meet this criterion.")
+		
+		// Get the actual message from the new INR page banner
 		var error_banner_path = treatment_banner_error_message();
-    var error_message_text = error_banner_path.TextNode(0).innerText;   
+    var actual_message_text = error_banner_path.TextNode(0).innerText;
+    
+    // Check the expected message and actual message match
+		var result_set_1 = compare_values(actual_message_text, expected_error_text, test_title);
+    result_set.push(result_set_1);
+    
+    // Is the Calculate Warfarin Dose button enabled
+    var suggest_dose_button = treatment_buttons_pre_schedule().SubmitButton("CalculateWarfarinDose").enabled;   
 
-		var suggest_dose_button = treatment_buttons_pre_schedule().SubmitButton("CalculateWarfarinDose").enabled;
+		// Ensure that the Calculate Warfarin Dose button is not enabled
     var result_set_1 = results_checker_are_false(suggest_dose_button);
     result_set.push(result_set_1);
 		
-		//check the values match
-		result_set_1 = compare_values(error_message_text, expected_error, test_title);
-    result_set.push(result_set_1);
 		var results = results_checker_are_true(result_set);
 		results_checker(results, test_title);
 	    
@@ -1100,61 +1110,62 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 	try
 	{
 		var test_title = 'Treatment - Overriding Greater than 20%';
+    
+    // Setup test scenario
 		login(5, "Shared");
 		add_patient('Regression', 'Overriding_Twenty', 'M', 'Shared');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "1.3", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
 		
-		var new_dose = "3.0";
-		var new_review_days = "21 Days";
+		var new_dose = get_string_translation("3.0");
+		var new_review_days = "21 " + get_string_translation("Days");
 		var result_set = new Array();
-		var expected_values = new Array();
-		var override_values = new Array();
+		var original_values = new Array();
+		var overriden_values = new Array();
    
-    //add current values to array to check
-		expected_values = get_treatment_row_key_values(0, "pending");
-		
-    //setup for test part 2
-		var expected_message = "Dose change from 1.3mg/day to 3.0mg/day is greater than 20%. Please confirm that the new dose is appropriate."
-		var output_message;
+    // Add original values from treatment table to an array - for checking later
+		original_values = get_treatment_row_key_values(0, "pending");
     
-		//click the override button
-		var override_button_path = override_button();
-		override_button_path.Click();
+		// Click the override button
+		override_button().Click();
 		
-		//update dose drop down value, save new dose drop down value
-		var override_dose_path = treatment_override_field_container().Cell(1, 1).Select("Treatment_Dose").ClickItem(new_dose);
+		// Overide Dose settings
+		treatment_override_field_container().Cell(1, 1).Select("Treatment_Dose").ClickItem(new_dose);
+		treatment_override_field_container().Cell(1, 3).Select("Treatment_Review").ClickItem(new_review_days);
 		
-		//update review time drop down value, save new drop down value, save next review date value
-		var override_review_date_path = treatment_override_field_container().Cell(1, 3).Select("Treatment_Review").ClickItem(new_review_days);
+		// Click the save button - to save the overidden values
+		overide_accept_button().Click();
 		
-		//click the save button on override menu
-		var override_finish_buttons = override_finish_buttons_path();
-		override_finish_buttons.Button("OverrideAccept").Click();
-		
-	  //find the pop up window in the screen
-    output_message = process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
+	   // Specify the expected message to appear
+		var expected_message_content = get_string_translation("Dose change from 1.3mg/day to 3.0mg/day is greater than 20%. Please confirm that the new dose is appropriate.");
     
-    var save_inr_path = save_inr_button();
-    save_inr_path.Click();
+    // Extract the actual message from the pop up window
+    var actual_message_content = process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
     
-    //add new values to array
-		override_values = get_treatment_row_key_values(0, "pending");
-    
-    var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
-    var result_set_1 = compare_values(strikethrough, "line-through", test_title);
-    result_set.push(result_set_1);
-    strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
-    result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    // Check expected message content matches the actual
+    var result_set_1 = compare_values(expected_message_content, actual_message_content, test_title);
     result_set.push(result_set_1);
     
-    //compare original values, with changed values
-		result_set_1 = checkArrays_containing_inr_values(expected_values, override_values, test_title);
-    result_set_1 = results_checker_are_false(result_set_1);
+    // Save the INR 
+    handle_dosing_modification_required();
+    save_inr_button().Click();
+    
+    // Add the new (overidden) values to an array from treatment table 
+		overriden_values = get_treatment_row_key_values(0, "pending");
+    
+    // Compare original and overidden values from treatment table to ensure they don't match
+		var result_set_1 = checkArrays_containing_inr_values(original_values, overriden_values, test_title);
+    var result_set_1 = results_checker_are_false(result_set_1);
 		result_set.push(result_set_1);
     
-    result_set_1 = compare_values(expected_message, output_message, test_title);
+    // Check the overidden values are striked through
+    var strikethrough = treatment_table().Cell(1, 3).Panel(0).style.textdecoration;
+    var result_set_1 = compare_values(strikethrough, "line-through", test_title);
+    result_set.push(result_set_1);
+    
+    var strikethrough = treatment_table().Cell(1, 6).Panel(0).style.textdecoration;
+    var result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
 		
 		//Pass in the result

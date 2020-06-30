@@ -203,6 +203,10 @@ function checkArrays_containing_inr_values(arrA, arrB, mess)
   }
   return true;
 }
+function thisis()
+{
+  var override_dose_path = treatment_override_field_container().Cell(1, 1).Select("Treatment_Dose").ClickItem(3);
+}
 //-----------------------------------------------------------------------------------
 function validate_arrays_dont_match(arrA, arrB, mess)
 {

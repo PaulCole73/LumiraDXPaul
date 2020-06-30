@@ -886,6 +886,14 @@ function override_button()
   return override_button_path;
 }
 //------------------------------------------------------------------------
+function overide_accept_button()
+{
+  var override_finish_buttons = override_finish_buttons_path();
+	var override_accept_button_path = override_finish_buttons.Button("OverrideAccept")
+  
+  return override_accept_button_path;  
+}
+//------------------------------------------------------------------------
 function cancel_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
