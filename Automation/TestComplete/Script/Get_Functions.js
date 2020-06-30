@@ -402,7 +402,7 @@ function get_patient_banner_error_message()
 //-----------------------------------------------------------------------------------
 function get_pending_suggested_treatment_schedule(days)
 {
-  var schedulegrid = dosing_schedule_table().Fieldset(0).Fieldset("ScheduleGrid");
+  var schedulegrid = dosing_schedule_content().Fieldset(0).Fieldset("ScheduleGrid");
   
   //return schedule;
   var pending_schedule = new Array();

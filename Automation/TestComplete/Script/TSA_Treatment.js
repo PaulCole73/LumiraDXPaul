@@ -201,6 +201,9 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   var text = process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"));
   
+  // If an adjustment is required to tablet dosage breakdown - carry it out
+  handle_dosing_modification_required();
+  
   wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
   
   return text;
@@ -451,6 +454,9 @@ function add_manual_treatment(date, inr, dose, review, tm)
   process_popup(get_string_translation("Insert Confirmation"), get_string_translation("Confirm"));
   WaitSeconds(2, "Saving the Treatment...");  
   
+  // Handle any dosing mpodifications should they be needed.
+  handle_dosing_modification_required();
+  
   //Save the INR
   save_inr_button().Click();
 }
@@ -461,7 +467,7 @@ function delete_treatment()
   WaitSeconds(1);
   var treatment_buttons_path = inr_treatment_buttons();
   treatment_buttons_path.Button("DeleteLatestTreatment").Click();
-  var msg = process_popup("Confirmation Required", "Confirm");
+  var msg = process_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
   
   return msg;
 } 
@@ -589,6 +595,31 @@ function handle_no_poct(dose_method) //probably also needs changing
       buttons.SubmitButton("CalculateWarfarinDose").Click();
      }             
 }   
+//--------------------------------------------------------------------------------
+function handle_dosing_modification_required()
+{
+  // Get relevant paths  
+  var pending_treatment_path = patient_pending_treatment_path();
+  var dosing_schedule_content_path = dosing_schedule_content();
+  
+  // Check dosing modification table exists 
+  var is_table_present = pending_treatment_path.Find("idStr", "MoreScheduleGrid", 3).Exists;
+
+  // if the table exists handle it by selecting first suggested dosing modification 
+  if (is_table_present == true)
+  {
+     // Selecting first option listed in table
+    more_schedule_table().Cell(1, 2).Button("Use").Click();
+     
+    // Confirm Pop -up
+    process_popup(get_string_translation("Dose Change"), get_string_translation("Confirm"));
+    
+    // Wait for page to update before proceeding
+    dosing_schedule_content_path.WaitChild("Fieldset(0)", 4000); 
+  }
+  
+  return 
+}
 //--------------------------------------------------------------------------------
 function override_omits(days)
 {

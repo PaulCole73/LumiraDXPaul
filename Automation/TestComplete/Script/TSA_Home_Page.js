@@ -285,6 +285,27 @@ function check_patient_not_on_overdue_non_warfarin_review_list(pat_name)
   }
 } 
 //--------------------------------------------------------------------------------
+function check_patient_not_on_refer_list(pat_name)
+{
+  // Navigate to the list table and wait for it to appear
+  var can_see_table = Goto_Home_Page_Referred_Patient_List(); // from INRstar_Navigation
+  
+  // If the table can be seen - Get the path of the table and check it
+  if (can_see_table == true) 
+  {
+    var table = home_page_referred_patient_table(); // from System_paths 
+    
+    // Check table for patient within column 0
+    return check_patient_does_not_exist_in_table_within_column(0,table,pat_name); //0 = column to check
+  }
+  // otherwise if the table cannot be seen this check is a pass (since we are checking patient isn't on it)
+  else 
+  {
+    Log.Message("Success: Table does not exist - so unable to check that patient doesn't exist");
+    return true
+  }
+} 
+//--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 //-------------------    Actioning buttons within tables   ---------------------
 //--------------------------------------------------------------------------------
