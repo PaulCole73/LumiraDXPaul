@@ -92,5 +92,5 @@ function ts_permissions_new_inr_button()
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
-  
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
 }

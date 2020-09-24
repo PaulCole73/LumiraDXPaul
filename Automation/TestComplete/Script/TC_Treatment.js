@@ -2001,3 +2001,49 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
     handle_failed_tests(suite_name, test_name);
   }
 }
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for fast dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Fast", "M", "Shared");
+    add_treatment_plan('W','Fast','','Shared','');
+    add_fast_induction_treatment('1.0')
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log_Off();
+    }       
+    results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
