@@ -1804,9 +1804,10 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       result_set.push(result_set_1);
       var results = results_checker_are_true(result_set);
       
-      results_checker(results, test_title);
+
       Log_Off();
     }       
+      results_checker(results, test_title);
   }
   catch(e)
   {
@@ -1850,10 +1851,9 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       }
       result_set.push(result_set_1);
       var results = results_checker_are_true(result_set);
-      
-      results_checker(results, test_title);
       Log_Off();
     }       
+      results_checker(results, test_title);
   }
   catch(e)
   {
@@ -1897,10 +1897,9 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       }
       result_set.push(result_set_1);
       var results = results_checker_are_true(result_set);
-
-      results_checker(results, test_title);
       Log_Off();
     }       
+    results_checker(results, test_title);
   }
   catch(e)
   {
