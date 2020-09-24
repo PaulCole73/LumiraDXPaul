@@ -258,7 +258,7 @@ function results_checker_are_true(result_set)
 //This is to test the result set of a test case and return pass or fail
 function results_checker(result_set, test_case)
 {
-  Log.Message("This is the result set \\" + result_set);
+  Log.Message("This is the result set \\\ " + result_set);
   if(result_set == true)
   {
     Log.Checkpoint(test_case);

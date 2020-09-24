@@ -252,6 +252,16 @@ function get_patient_test_prac()
   
   return test_prac;
 } 
+//--------------------------------------------------------------------------------
+function get_new_inr_button_state()
+{
+  var state;
+  Goto_Patient_Treatment();
+  var new_inr_button = new_inr_button_path();
+  state = new_inr_button.enabled;
+  
+  return state;
+}
 //-----------------------------------------------------------------------------------
 //gets all data from specified table
 function get_treatment_row(row_num, table_type)

@@ -9,6 +9,7 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //USEUNIT Popup_Handlers
+//USEUNIT Get_Functions
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
 {
@@ -1768,3 +1769,148 @@ function cacuk432_bug_fix_single()
     handle_failed_tests(suite_name, test_name);
   }
 }
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for maintenance dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Coventry", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log.Message(result_set);
+      
+      results_checker(results, test_title);
+      Log_Off();
+    }       
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_maintenance_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for maintenance dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Hillingdon", "M", "Shared");
+    add_treatment_plan("W", "Hillingdon", "", "Shared", "");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log.Message(result_set);
+      
+      results_checker(results, test_title);
+      Log_Off();
+    }       
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_maintenance_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for maintenance dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Manual", "M", "Shared");
+    add_treatment_plan('W','Manual','','Shared','');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log.Message(result_set);
+      
+      results_checker(results, test_title);
+      Log_Off();
+    }       
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_maintenance_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------

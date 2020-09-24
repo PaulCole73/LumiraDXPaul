@@ -3504,7 +3504,7 @@
 		</data>
 	</variables>
 	<settings key="{5F7B2CD5-3048-4A58-B14C-6E60A48FE68C}">
-		<settingsVersion value="14.40" />
+		<settingsVersion value="14.30" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
