@@ -88,7 +88,7 @@ function ts_staging_regression_treatment()
 //--------------------------------------------------------------------------------
 function ts_permissions_new_inr_button()
 {
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_maintenance_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
   

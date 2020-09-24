@@ -1774,7 +1774,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
 {
   try
   {
-    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for maintenance dosing";
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for coventry dosing";
 		login(5, "Shared");
     add_patient("Regression", "Permissions Coventry", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
@@ -1803,7 +1803,6 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       }
       result_set.push(result_set_1);
       var results = results_checker_are_true(result_set);
-      Log.Message(result_set);
       
       results_checker(results, test_title);
       Log_Off();
@@ -1813,7 +1812,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
-    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_maintenance_dosing";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -1822,7 +1821,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
 {
   try
   {
-    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for maintenance dosing";
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for hillingdon dosing";
 		login(5, "Shared");
     add_patient("Regression", "Permissions Hillingdon", "M", "Shared");
     add_treatment_plan("W", "Hillingdon", "", "Shared", "");
@@ -1851,7 +1850,6 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       }
       result_set.push(result_set_1);
       var results = results_checker_are_true(result_set);
-      Log.Message(result_set);
       
       results_checker(results, test_title);
       Log_Off();
@@ -1861,7 +1859,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
-    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_maintenance_dosing";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -1870,7 +1868,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
 {
   try
   {
-    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for maintenance dosing";
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for manual dosing";
 		login(5, "Shared");
     add_patient("Regression", "Permissions Manual", "M", "Shared");
     add_treatment_plan('W','Manual','','Shared','');
@@ -1899,8 +1897,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       }
       result_set.push(result_set_1);
       var results = results_checker_are_true(result_set);
-      Log.Message(result_set);
-      
+
       results_checker(results, test_title);
       Log_Off();
     }       
@@ -1909,7 +1906,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
-    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_maintenance_dosing";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing";
     handle_failed_tests(suite_name, test_name);
   }
 }
