@@ -30,6 +30,7 @@ function add_pending_fast_induction_treatment(inr, TestStepMode)
     //process_confirm_INR(INRstarV5);
   }
 }
+
 //--------------------------------------------------------------------------------
 function add_fast_induction_treatment(inr)
 {

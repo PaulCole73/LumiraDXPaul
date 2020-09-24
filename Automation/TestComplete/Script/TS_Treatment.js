@@ -3,7 +3,6 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for treatments
 //--------------------------------------------------------------------------------
-
 //Master Suites
 //--------------------------------------------------------------------------------
 //master suites are used for organised test groups
@@ -83,10 +82,16 @@ function ts_staging_regression_treatment()
   
   email_and_archive(true, "ts_treatment_regression");
 }
-//-------------------------------------------------------------------------------- 
-
-
 
 //==============================================================================//
 //General Suites
 //--------------------------------------------------------------------------------
+function ts_permissions_new_inr_button()
+{
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();
+}
