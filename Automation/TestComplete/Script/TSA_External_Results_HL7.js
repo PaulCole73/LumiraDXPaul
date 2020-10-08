@@ -140,7 +140,7 @@ function send_hl7_message()
 //--------------------------------------------------------------------------------
 function dose_patient_external_result(table_position, text_index)
 {
-  Goto_Patient_Results();
+  Goto_External_Results();
   if(table_position == null)
   {
     table_position = 1;
@@ -164,7 +164,7 @@ function dose_patient_external_result(table_position, text_index)
 //--------------------------------------------------------------------------------
 function validate_hl7_buttons(button_id)
 {
-  Goto_Patient_Results();
+  Goto_External_Results();
   
   var obj;
   

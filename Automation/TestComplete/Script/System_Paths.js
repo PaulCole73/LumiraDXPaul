@@ -633,8 +633,6 @@ function edit_treatment_plan_button_path()
   return treatment_plan_button;
 } 
 //------------------------------------------------------------------------
-//////////////////////////  Treatment  ///////////////////////////////////
-//------------------------------------------------------------------------
 function treatment_appointment_buttons()
 {
   var INRstarV5 = INRstar_base();
@@ -968,6 +966,71 @@ function override_finish_buttons_path()
   
   return override_final_buttons;
 } 
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//////////////////////////  Patient Results //////////////////////////////
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function patient_own_external_results_table()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
+  var panelPTNIW = panelPPT.Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("ExternalResultsContent");
+  
+  var patient_external_results_table_path = panelPTNIW.Panel("PatientExternalResultsContainer").Panel("PatientExternalResultsTableWrapper").Panel(0);
+  var patient_external_results_table = patient_external_results_table_path.Table("PatientResultsTable")
+  
+  return patient_external_results_table;
+} 
+//------------------------------------------------------------------------
+function use_result_button_path_for_specific_row_of_patient_results(row)
+{
+    //Expects table to be present beforehand
+    var table = patient_own_external_results_table();
+    var button = table.Cell(row, 4).Panel(0).Panel("UserAction1").Button("Use_Result")
+    
+    return button;
+}
+//------------------------------------------------------------------------
+function archive_button_path_for_specific_row_of_patient_results(row)
+{
+    //Expects table to be present beforehand
+    var table = patient_own_external_results_table();
+    var button = table.Cell(row, 4).Panel(0).Panel("UserAction2").Button("Archive")
+    
+    return button;
+}
+//------------------------------------------------------------------------
+function discard_button_for_archived_result_confirmation_popup()
+{
+    var INRstarV5 = INRstar_base();
+    var button = INRstarV5.Panel(3).Panel(1).Panel(0).Button(1)
+    
+    return button;
+}
+//------------------------------------------------------------------------
+function cancel_button_for_archived_result_confirmation_popup()
+{
+    var INRstarV5 = INRstar_base();
+    var button = INRstarV5.Panel(3).Panel(1).Panel(0).Button(0)
+   
+    return button;
+}
+//------------------------------------------------------------------------
+function archive_reason_comments_for_archived_result_confirmation_popup()
+{
+    var INRstarV5 = INRstar_base();
+    var dialogBox = INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0);
+    var textbox = dialogBox.Form("AddArchiveCommentForm").Panel(0).Textarea("RejectionReason");
+   
+    return textbox;
+}
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+///////////////////////////////  Sorb  ///////////////////////////////////
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 function sorb_button_suggested_path()
 {
@@ -1491,13 +1554,22 @@ function patient_recently_viewed_table()
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /////////////////////  Options/Location Management  //////////////////////
-//------------------------------------------------------------------------
+//------------------------------------------------------------------------ 
 function location_management_main_container()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelLC = panelMCP.Panel("AdminContent").Panel("LocationContent");
   var main_container_path = panelLC.Panel(0).Panel("LocationTabContent");
+  
+  return main_container_path;
+}
+function location_management_details_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelLC = panelMCP.Panel("AdminContent").Panel("LocationContent");
+  var main_container_path = panelLC.Panel(0).Panel("LocationTab");
   
   return main_container_path;
 }
@@ -2337,8 +2409,18 @@ function clinic_move_calendar_backwards()
   return button;
 }
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 ////////////////////////  External Results / HL7  ////////////////////////
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function external_results_base_form_path()
+{
+  var INRstarV5 = INRstar_base();
+  var patient_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientContent");
+  var form = patient_content.Panel("ExternalResultsContent").Panel("WarfarinResultsContainer");
+  
+  return form;
+} 
 //------------------------------------------------------------------------
 function patient_results_tab()
 {
@@ -2351,10 +2433,8 @@ function patient_results_tab()
 //------------------------------------------------------------------------
 function patient_external_results_table()
 {
-  var INRstarV5 = INRstar_base();
-  var main_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var warf_container = main_content.Panel("PatientContent").Panel("ExternalResultsContent").Panel("WarfarinResultsContainer");
-  var table = warf_container.Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
+  var base_path = external_results_base_form_path();
+  var table = base_path.Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
   
   return table;
 }
@@ -2367,6 +2447,31 @@ function patient_INR_treatment_questions()
   return treatment_questions;
 }
 //------------------------------------------------------------------------
+function show_archived_results_checkbox()
+{
+  var path = external_results_base_form_path();
+  var checkbox = path.Panel("WarfarinResultsFilterContainer").Form("FilterForm").Panel(1).Panel(0).Checkbox("ShowRejectedResults")
+  
+  return checkbox;
+} 
+//------------------------------------------------------------------------
+function external_results_filter_button()
+{
+  var path = external_results_base_form_path();
+  var button = path.Panel("WarfarinResultsFilterContainer").Form("FilterForm").Panel(0).SubmitButton("Filter")
+  
+  return button;
+} 
+//------------------------------------------------------------------------
+function archive_button_path_for_specific_row_of_external_results(row)
+{
+    //Expects table to be present beforehand
+    var table = patient_external_results_table();
+    var button = table.Cell(row, 4).Panel(0).Panel("Div2").Button("ArchiveResult")
+    
+    return button;
+}
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /////////////////////////////  Loading Popup  ////////////////////////////
 //------------------------------------------------------------------------
@@ -2376,12 +2481,23 @@ function loading_popup_path()
   var INRstarV5 = INRstar_base();
   var obj = INRstarV5.Panel(1).Panel("loading");
 }
-
-
-
-
-
-
+//------------------------------------------------------------------------
+function dose_dropdown_path_on_new_inr()
+{
+  var inr_test_info_path = treatment_inr_test_info_path();
+  var dropdown = inr_test_info_path.Panel(0).Select("Dose")
+  
+  return dropdown;
+} 
+//------------------------------------------------------------------------
+function review_dropdown_path_on_new_inr()
+{
+  var inr_test_info_path = treatment_inr_test_info_path();
+  var dropdown = inr_test_info_path.Panel(2).Select("Review")
+  
+  return dropdown;
+} 
+//------------------------------------------------------------------------
 
 
 

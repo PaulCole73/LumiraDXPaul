@@ -744,6 +744,29 @@ function Goto_Patient_Treatment()
   WaitSeconds(1, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
+//Navigate to Patient Result table
+function Goto_Patient_Results_Table_Via_New_INR()
+{
+   //Goto New INR
+  Goto_Patient_New_INR();
+  
+  //Check if the link is present
+  var link_present = check_patient_results_table_header_showing_by_idStr_object(); 
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
+//Navigate to Patient Result from within NEW INR form
+function Goto_Patient_Results_Table_from_within_new_INR()
+{  
+  //Check if the link is present
+  var link_present = check_patient_results_table_header_showing_by_idStr_object(); 
+  
+  //Return true or false pending if link (and therfore table) is present
+  return link_present
+}
+//-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
 function Goto_Add_Historical()
 {
@@ -907,7 +930,7 @@ function Goto_Suggested_Treatment_Audit()
 // External Results / HL7 Navigation
 //===============================================================================
 //===============================================================================
-function Goto_Patient_Results()
+function Goto_External_Results()
 {
   Goto_Patient_Search();
   var obj_root = patient_search_screen();
@@ -932,3 +955,4 @@ function Goto_Create_Bridging_Record()
   patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").Click();
   WaitSeconds(1, "Waiting to go to bridging form...");
 }
+//-------------------------------------------------------------------------------

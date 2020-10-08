@@ -326,6 +326,34 @@ function validate_top_patient_audit(test_case_title, audit_action)
   }
 }
 //-----------------------------------------------------------------------------------
+//Checking top audit on the patient tab
+function validate_top_patient_audit_information_contains(test_case_title, audit_action)
+{  
+  Goto_Patient_Audit();
+  var patient_audit_path = patient_audit()
+  var audit_data = patient_audit_path.Cell(1, 3).innerText;
+  
+  if(audit_data == null || audit_action == null)
+  {
+    Log.Message("Fail - Data not found / Parameter value missing.");
+    Log.Message("Actual Audit: " + audit_data + "-------------- Expected Audit: " + audit_action);
+    return false;
+  } 
+
+  if(audit_data.includes(audit_action))
+  {
+    Log.Message(test_case_title + " Test Passed - Patient audit record was found " + " This is the actual audit // " 
+                                + audit_data + " // It successfully contained the following // " + audit_action + " //");
+    return true;
+  }
+  else 
+  {
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + " This is the actual audit // " 
+                                + audit_data + " // This is the expected audit // " + audit_action + " //");
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
 //Checking bottom audit on the patient tab
 function validate_bottom_patient_audit(test_case_title, w_data)
 {  
@@ -1129,11 +1157,28 @@ function move_mouse_sequence(value, per_iterations)
   }
 }
 
+//---------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------//
+//                                API Interactions                                 //
+//---------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------//
 
+function api_post(address, headers, body_payload)
+{
+  // Create the aqHttpRequest object
+  var aqHttpRequest = aqHttp.CreatePostRequest(address);
+ 
+  // Assign the headers from the incoming headers object 
+  for ( var property in headers )
+  {
+    aqHttpRequest.SetHeader(property, headers[property])
+  }
 
-//-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
+  // Send the request, create the aqHttpResponse object
+  var aqHttpResponse = aqHttpRequest.Send(body_payload)
+  
+  return aqHttpResponse;
+}
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                Needs Work                                       //
@@ -1264,7 +1309,72 @@ function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/ma
   
   return unix_number
 }
+//-----------------------------------------------------------------------------------
+ 
+function get_date_as_dd_mm_yyyy_from_unix(date) 
+{
+  var d = new Date(date);
+  
+  var year = d.getFullYear()
+  var month = d.getMonth()+1
+  var day = d.getDate()
+  
+  if (month < 10) {month = "0" + month};
+  if (day < 10) {day = "0" + day}
+  
+  new_date_format = (year + '-' + month + '-' + day);
+  return new_date_format
+}
 //-------------------------------------------------------------------------------- 
+function convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(date)
+{
+    var unix_date = get_unix_date_number_from_dd_mmm_yyyy(date)
+    var date_as_dd_mm_yyyy = get_date_as_dd_mm_yyyy_from_unix(unix_date) 
+    return date_as_dd_mm_yyyy
+}
+//--------------------------------------------------------------------------------
+function get_timestamps_for_now_object_with_changed_hours(operator, hours)
+{
+    //Get current Time 
+    var now = new Date(Date.now())
+    var timestamp = new Object();
+    
+    //Adjust by imported hours 
+    if      (operator == "+")  {now.setHours( now.getHours() +hours );}
+    else if (operator == "-")  {now.setHours( now.getHours() -hours );}
+    else    {Log.Warning('Invalid time adjustment operator');   return}
+    
+    //Break date down into vars
+    day = now.getDate();
+    month = now.getMonth()+1;
+    year = now.getFullYear();
+    hour = now.getHours();
+    minutes = "0" + now.getMinutes()
+    seconds = "0" + now.getSeconds()
+    shortmonth = set_month(month)
+    
+    //Adjust formating of date variables
+    if (month < 10) {month = "0" + month}
+    if (day < 10) {day = "0" + day}
+    if (hour < 10) {hour = "0" + hour}
+    minutes = minutes.substr(-2);
+    seconds = seconds.substr(-2);
+    
+    //Add the timestamp that is used by the CSP eg: 2020-09-30T15:42:42
+    timestamp.csp_payload = year+"-"+month+"-"+day+"T"+hour+":"+minutes+":"+seconds;
+       
+    //Add the timestamp with the short month text seen in INRstar patient Ext Results table eg: 31-Sep-2020 15:37:02
+    timestamp.inr_patient_results = day+"-"+shortmonth+"-"+year+" "+hour+":"+minutes+":"+seconds;
+    
+    //Add the timestamp with the short month text seen in INRstar General Ext Results table eg: 31/09/2020 15:37:02
+    timestamp.external_results = day+"/"+month+"/"+year+" "+hour+":"+minutes+":"+seconds;
+    
+    //Add the timestamp used in the historic treatments table eg: 02-Oct-2020
+    timestamp.historic_treatments = day+"-"+shortmonth+"-"+year;
+    
+    return timestamp
+}
+//--------------------------------------------------------------------------------
 function check_row_count_more_than_one(rowcount)
 {
   if(rowcount < 3) //Header row counts as one row, we need two or more entries beside this
@@ -1345,12 +1455,12 @@ function check_menu_header_exists(menu_header)
 {
 if(menu_header.Exists != true)
   {
-    Log.Message("Home page message with value not displayed");
+    Log.Message("Menu Header does not exist");
     return false;
   }
 else
   {
-  Log.Message("Home page message displayed");
+  Log.Message("Menu Header exists");
   return true
   }
 }

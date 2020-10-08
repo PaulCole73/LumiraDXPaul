@@ -28,6 +28,7 @@
 			<child name="TS_Bespoke_Letters" key="{68F36A03-0E9D-437B-B300-853D2F934D7D}" path="TS_Bespoke_Letters.js" />
 			<child name="TS_Diagnosis" key="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}" path="TS_Diagnosis.js" />
 			<child name="TS_External_Results_HL7" key="{4B592C50-F943-446F-AE9E-14F564CED33B}" path="TS_External_Results_HL7.js" />
+			<child name="TS_External_Results_CSP" key="{005D3F30-9298-494D-9ACB-9A2CD2F78625}" path="TS_External_Results_CSP.js" />
 		</folder>
 		<folder name="3. Test Cases">
 			<child name="TC_Login" key="{9F7E6A1D-3FE9-49F2-8827-CD5CBB932D00}" path="TC_Login.js" />
@@ -54,6 +55,7 @@
 			<child name="TC_Bespoke_Letters" key="{4B9BF730-2EB0-4E61-9C8A-321A2429984F}" path="TC_Bespoke_Letters.js" />
 			<child name="TC_Diagnosis" key="{7D2BD5A0-A2B9-4565-AF4A-6136928C5EED}" path="TC_Diagnosis.js" />
 			<child name="TC_External_Results_HL7" key="{E0F9F4CA-F5C4-45DC-A4D8-23B901B97C7B}" path="TC_External_Results_HL7.js" />
+			<child name="TC_External_Results_CSP" key="{5AC1236C-F48E-43B3-AA01-8F6910BFE75F}" path="TC_External_Results_CSP.js" />
 		</folder>
 		<folder name="5. Utlilities">
 			<child name="System_Paths" key="{3E644774-5830-45ED-B233-AEDA357E7355}" path="System_Paths.js" />
@@ -302,6 +304,7 @@
 			<child name="TSA_Bespoke_Letters" key="{FE9DD345-34FE-4416-8FD6-2A4C4D1349D7}" path="TSA_Bespoke_Letters.js" />
 			<child name="TSA_Diagnosis" key="{05EB5657-8347-4C4C-871C-472AF4EEB29D}" path="TSA_Diagnosis.js" />
 			<child name="TSA_External_Results_HL7" key="{3B715FD9-90AD-4F3E-95F4-9809F85E35DF}" path="TSA_External_Results_HL7.js" />
+			<child name="TSA_External_Results_CSP" key="{CCF88632-CA20-4C23-82A2-465AB4C78F33}" path="TSA_External_Results_CSP.js" />
 		</folder>
 		<folder name="4.1 Test Step Verification">
 			<child name="TSV_Login" key="{EA9DBBF6-53ED-43D4-B305-F40457FB2E30}" path="TSV_Login.js" />

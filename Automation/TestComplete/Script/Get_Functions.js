@@ -1,5 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
+//USEUNIT TSA_External_Results_CSP
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -14,6 +15,8 @@
 //                            Get Functions                                        //
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+
 //Returning an NHS of the current patient loaded
 function get_patient_nhs()
 {
@@ -22,6 +25,27 @@ function get_patient_nhs()
           
   return nhs_num;
 }
+
+//-----------------------------------------------------------------------------------
+//Returning details from demographics as an object
+function get_patient_details_object_from_demographics()
+{
+  var patient_details = new Object();
+  Goto_Patient_Demographics();  
+  
+  var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
+  
+  patient_details.firstname = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
+  patient_details.lastname = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+  patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
+  patient_details.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
+  patient_details.gender = patient_demographics_tab_demographics_path.Panel(7).Label("Gender_DetachedLabel").contentText.substring(0,1); //returns M or F
+  patient_details.fullname = patient_details.lastname + ', ' + patient_details.firstname
+  patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob)
+          
+  return patient_details;
+}
+//-----------------------------------------------------------------------------------
 //Returning firstname of the current patient loaded
 function get_patient_firstname()
 {
@@ -191,6 +215,169 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     }
     Log.Warning("Patient: " + pat_name + " was not found in the table")
     return false;
+}
+//--------------------------------------------------------------------------------
+function get_patients_external_results_from_specific_row_of_table(row, table_exists) 
+{
+  //If external result table exists grab values from it
+  if (table_exists == true) 
+  {
+    //Get the path of the external results table
+    var table = patient_own_external_results_table(); 
+    
+    //Check the specified row exists?
+      if (parseInt(row) < table.RowCount)
+      {
+        //if so grab results
+        var results = {
+          "test_timestamp"  : table.Cell(row, 1).contentText,
+          "source"          : table.Cell(row, 2).contentText,
+          "inr"             : table.Cell(row, 3).contentText}
+      }
+      else
+      {
+        //warn that specified row does not exist
+        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
+      }
+  }
+
+  else 
+  //Otherwise if the table cannot be seen this is a fail - we are expecting it
+  {
+    Log.Message("Failure Table does not exist - so unable to check for external results");
+    
+    //Store time and inr values that will fail comparison - store into an object
+    var results = { "test_timestamp"  :"No Ext Result Present",
+                    "source":"No Ext Result Present",
+                    "inr"   :"No Ext Result Present",}
+  }
+  
+  return results;
+}
+//--------------------------------------------------------------------------------
+function get_external_results_from_specific_row_of_table(row, table_exists) 
+{
+  //If external result table exists grab values from it
+  if (table_exists == true) 
+  {
+    //Get the path of the external results table
+    var table = patient_external_results_table(); 
+      
+    //Check the specified row exists?
+      if (parseInt(row) < table.RowCount)
+      {
+        //if so grab results
+        var results = {
+          "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
+          "inr"                    : table.Cell(row, 3).contentText}
+      }
+      else
+      {
+        //warn that specified row does not exist
+        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
+      }
+  }
+
+  else 
+  //Otherwise if the table cannot be seen this is a fail - we are expecting it
+  {
+    Log.Message("Failure Table does not exist - so unable to check for external results");
+    
+    //Store time and inr values that will fail comparison - store into an object
+    var results = { "blood_taken_timestamp"   :"No Ext Result Present",
+                    "inr"                     :"No Ext Result Present"}
+  }
+  
+  return results;
+}
+//--------------------------------------------------------------------------------
+function get_historic_treatment_object_from_specific_row_of_table(row) 
+{
+  //Goto Patient Treatments 
+  Goto_Patient_Treatment()
+  
+  //If treatment table exists grab values from it
+  if (treatment_table().Exists == true) 
+  {
+    //Get the path of the treatments table
+    var table = treatment_table(); 
+    
+    //Decrement row value since 0 is first entry
+    row--;
+    
+    //Check the specified row exists?
+      if (parseInt(row) < table.RowCount)
+      {
+        //if so grab results
+        var historic_treatment = {
+          "test_date"     : table.Cell(0, 0).contentText,
+          "inr"           : table.Cell(0, 1).contentText,
+          "dose"          : table.Cell(0, 2).contentText,
+          "suggested_dose": table.Cell(0, 3).contentText,
+          "omits"         : table.Cell(0, 4).contentText,
+          "review_days"   : table.Cell(0, 5).contentText}
+      }
+      else
+      {
+        //warn that specified row does not exist
+        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
+      }
+  }
+
+  else 
+  //Otherwise if the table cannot be seen this is a fail - we are expecting it
+  {
+    Log.Message("Failure Table does not exist - so unable to check for external results");
+    
+    //Store time and inr values that will fail comparison - store into an object
+    var historic_treatment = {
+          "test_date"     : "No Ext Result Present",
+          "inr"           : "No Ext Result Present",
+          "dose"          : "No Ext Result Present",
+          "suggested_dose": "No Ext Result Present",
+          "omits"         : "No Ext Result Present",
+          "review_days"   : "No Ext Result Present"}
+  }
+  
+  return historic_treatment;
+}
+//--------------------------------------------------------------------------------
+function get_pending_treatment_data_as_object_from_table() 
+{
+  //Goto Patient Treatments 
+  Goto_Patient_Treatment()
+  
+  //If treatment table exists grab values from it
+  if (pending_treatment_table().Exists == true) 
+  {
+    //Get the path of the treatments table
+    var table = pending_treatment_table(); 
+     
+    var pending_details = {
+      "test_date"     : table.Cell(0, 0).contentText,
+      "inr"           : table.Cell(0, 1).contentText,
+      "dose"          : table.Cell(0, 2).contentText,
+      "suggested_dose": table.Cell(0, 3).contentText,
+      "omits"         : table.Cell(0, 4).contentText,
+      "review_days"   : table.Cell(0, 5).contentText}
+  }
+
+  else 
+  //Otherwise if the table cannot be seen this is a fail - we are expecting it
+  {
+    Log.Message("Failure suggested/pending table does not exist - so unable to check for details");
+    
+    //Store time and inr values that will fail comparison - store into an object
+    var pending_details = { 
+        "test_date"     : "No treatment table Present",
+        "inr"           : "No treatment table Present",
+        "dose"          : "No treatment table Present",
+        "suggested_dose": "No treatment table Present",
+        "omits"         : "No treatment table Present",
+        "review_days"   : "No treatment table Present"}
+  }
+  
+  return pending_details;
 }
 //--------------------------------------------------------------------------------
 //gets the patients fullname
@@ -808,7 +995,7 @@ function get_hl7_file_folder()
 function get_hl7_patient_info(table_position)
 {
   WaitSeconds(5, "Waiting for table to update...");
-  Goto_Patient_Results();
+  Goto_External_Results();
   var patient_data = new Array();
 
   if(table_position == null)
@@ -854,4 +1041,20 @@ function get_hl7_patient_info(table_position)
   }
   
   return patient_data;
+}
+//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
+//                              Location Management                                //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_organization_id_from_current_location()
+{
+  Goto_Options_Location_Management();
+  var location_details_tab_path = location_management_details_tab();
+  var outer_html_of_tab = location_details_tab_path.outerHTML;
+  
+  var organizationId = outer_html_of_tab.match(/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/);
+  Log.Message("Location/Organisation ID of current location is: " + organizationId)
+  
+  return organizationId[0]
 }
