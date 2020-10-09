@@ -1003,22 +1003,6 @@ function archive_button_path_for_specific_row_of_patient_results(row)
     return button;
 }
 //------------------------------------------------------------------------
-function discard_button_for_archived_result_confirmation_popup()
-{
-    var INRstarV5 = INRstar_base();
-    var button = INRstarV5.Panel(3).Panel(1).Panel(0).Button(1)
-    
-    return button;
-}
-//------------------------------------------------------------------------
-function cancel_button_for_archived_result_confirmation_popup()
-{
-    var INRstarV5 = INRstar_base();
-    var button = INRstarV5.Panel(3).Panel(1).Panel(0).Button(0)
-   
-    return button;
-}
-//------------------------------------------------------------------------
 function archive_reason_comments_for_archived_result_confirmation_popup()
 {
     var INRstarV5 = INRstar_base();

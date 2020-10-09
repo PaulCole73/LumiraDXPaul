@@ -327,11 +327,11 @@ function validate_top_patient_audit(test_case_title, audit_action)
 }
 //-----------------------------------------------------------------------------------
 //Checking top audit on the patient tab
-function validate_top_patient_audit_information_contains(test_case_title, audit_action)
+function validate_patient_audit_information_contains(row, test_case_title, audit_action)
 {  
   Goto_Patient_Audit();
   var patient_audit_path = patient_audit()
-  var audit_data = patient_audit_path.Cell(1, 3).innerText;
+  var audit_data = patient_audit_path.Cell(row, 3).innerText;
   
   if(audit_data == null || audit_action == null)
   {

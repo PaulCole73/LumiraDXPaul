@@ -1,5 +1,6 @@
 ﻿//USEUNIT Tested_Apps
 //USEUNIT TC_Treatment
+//USEUNIT TC_External_Results_CSP
 //--------------------------------------------------------------------------------
 //Suite of tests for treatments
 //--------------------------------------------------------------------------------
@@ -11,7 +12,7 @@ function ts_master_treatment(send_mail)
   reset_folder();
   
 //  tc_treatment_add_a_historic_treatment();
-  tc_treatment_add_a_manual_INR();
+//  tc_treatment_add_a_manual_INR();
 //  tc_treatment_manual_dosing_permissions();
 //  tc_treatment_induction_dosing_permissions();
 //  tc_treatment_add_a_treatment_comment();
@@ -87,25 +88,34 @@ function ts_staging_regression_treatment()
 //==============================================================================//
 //General Suites
 //--------------------------------------------------------------------------------
-function ts_permissions_new_inr_button()
-{
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();
-}
+//function ts_permissions_new_inr_button()
+//{
+//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
+//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
+//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
+//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
+//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
+//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();
+//}
 //--------------------------------------------------------------------------------
 function ts_inr_test_results_received()
 {
   reset_folder();
   
-//  INR test results received: Archive Button - archiving two results in sequence, starting with oldest	
-//	INR test results received: Archive Button - archiving two results in sequence, starting with most recent	Andrew W.	Passed	
-//	INR test results received: Archive Button - archiving last result, removes patient result table	Andrew W.	Passed	
-//	INR test results received: Archive Button - archiving process can be cancelled if selected in error	Andrew W.	Passed	
-//  INR test results received: Archive Button - archiving process can be commented upon	Andrew W.	Passed	
-//  INR test results received: Archive Button - archived results can be obtained
-  
+  tc_inr_test_results_received_archive_button_archiving_two_results_in_sequence_starting_with_oldest();
+  tc_inr_test_results_received_archive_button_archiving_two_results_in_sequence_starting_with_most_recent();
+  tc_inr_test_results_received_archive_button_archiving_last_result_removes_patient_result_table();
+  tc_inr_test_results_received_archive_button_archiving_process_can_be_cancelled_if_selected_in_error();
+  tc_inr_test_results_received_archive_button_archiving_process_can_be_commented_upon();
+  tc_inr_test_results_received_archive_button_archived_results_can_be_obtained();
 }
+//--------------------------------------------------------------------------------
+//function ts_to_be_categorized()
+//{
+//  reset_folder();
+//  
+//  tc_external_results_from_csp_match_to_patient();
+//  tc_external_results_from_csp_most_recent_result_appears_at_bottom_of_table();
+//  tc_external_results_from_csp_matched_to_patient_do_not_appear_if_over_3_days_old();
+//  tc_external_results_from_csp_can_dose_a_manual_patient();
+//}

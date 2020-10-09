@@ -4,7 +4,7 @@
 //USEUNIT Get_Functions
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-function external_result_csp_payload_builder(patient_details, location_id, inr_result, blood_test_timestamp) 
+function json_body_data_instrument(patient_details, location_id, inr_result, blood_test_timestamp) 
 {
   //Formats: patient_details(object), location_id(GUID), inr_result(eg: "2.2"), blood_test_timestamp(eg: 2020-09-30T15:42:42)
   
@@ -76,7 +76,7 @@ function get_csp_url_from_the_inrstar_url()
 
 //--------------------------------------------------------------------------------
 
-function get_bearer_token_from_csp()
+function get_bearer_token_for_instrument()
 {
   //Obtain URL
   var address = get_csp_url_from_the_inrstar_url() + "/account/signin";
@@ -107,7 +107,7 @@ function get_bearer_token_from_csp()
 
 //--------------------------------------------------------------------------------
 
-function post_external_result_to_csp(token, body_payload)
+function post_external_result_instrument(token, body_payload)
 {
   //Obtain URL
   var address = get_csp_url_from_the_inrstar_url() + "/externalresults/observation";
@@ -127,17 +127,8 @@ function select_use_external_result_button_from_row(row, table_exists)
 { 
   if (table_exists == true) 
   {
-      //So now table exists does the row exist?
-      if (use_result_button_path_for_specific_row_of_patient_results(row).exists == true)
-      {
-        //if row and button exist click it
-        use_result_button_path_for_specific_row_of_patient_results(row).Click()
-      }
-      else
-      {
-        //warn that specified row does not exist
-        Log.Warning("Row number: " + row + " Does not exist in results table")
-      }
+      //Click the Use-result button on the specified row
+      use_result_button_path_for_specific_row_of_patient_results(row).Click()
   }
   else 
   {
@@ -146,25 +137,31 @@ function select_use_external_result_button_from_row(row, table_exists)
   }
 } 
 //--------------------------------------------------------------------------------
-function select_archive_button_on_patient_external_results_for_specific_row(row, table_exists)
+function archive_treatment(row, action, table_exists)
 {
-  
   if (table_exists == true) 
   {
-      //So now table exists does the row exist?
-      if (archive_button_path_for_specific_row_of_patient_results(row).exists == true)
-      {
-        //if row and button exist click it
-        archive_button_path_for_specific_row_of_patient_results(row).Click()
+    //Click the archive button on the specified row
+    archive_button_path_for_specific_row_of_patient_results(row).Click()
         
-        //Wait for popup before proceeding avoids timeouts down the line
-        wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);
-      }
-      else
-      {
-        //warn that specified row does not exist
-        Log.Warning("Row number: " + row + " Does not exist in results table")
-      }
+    //Wait for popup before proceeding avoids timeouts down the line
+    wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);
+        
+    //Pending the specified action (Discard/Cancel/Message) - handle the popup
+    if (action == "Discard" || action == "Cancel")
+    {
+        process_popup("Archive Reason", action);
+    }
+    else if (action == "Message")
+    {
+        var message = provide_archive_reason_after_archiving_result();
+        process_popup("Archive Reason", "Discard");  
+        return message
+    }
+    else 
+    {
+        Log.Message("Unable to: " + action + " an archived result, must pass in Discard, Cancel or Message")
+    }
   }
   else 
   {
@@ -173,27 +170,29 @@ function select_archive_button_on_patient_external_results_for_specific_row(row,
   }
 } 
 //--------------------------------------------------------------------------------
-function select_archive_button_on_external_results_for_specific_row(row, table_exists)
+function archive_test_result(row, action, table_exists)
 {
-  
   if (table_exists == true) 
   {
-       //Get the path of the external results table
-      var table = patient_external_results_table(); 
-      
-      //So now table exists does the row exist?
-      if (parseInt(row) < table.RowCount)
-      {
-        //if row and button exist click it
-        archive_button_path_for_specific_row_of_external_results(row).Click()
+      //Click the archive button on the specified row
+      archive_button_path_for_specific_row_of_external_results(row).Click()
         
-        //Wait for popup before proceeding avoids timeouts down the line
-        wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);
-      }
-      else
+      //Wait for popup before proceeding avoids timeouts down the line
+      wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);
+        
+      //Pending the specified action (Discard/Cancel/Message) - handle the popup
+      if (action == "Discard" || action == "Cancel")
       {
-        //warn that specified row does not exist
-        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
+          process_popup("Archive Reason", action);
+      }
+      else if (action == "Message")
+      {
+          provide_archive_reason_after_archiving_result();
+          process_popup("Archive Reason", "Discard");  
+      }
+      else 
+      {
+          Log.Message("Unable to: " + action + " an archived result, must pass in Discard, Cancel or Message")
       }
   }
   else 

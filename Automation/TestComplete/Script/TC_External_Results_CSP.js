@@ -18,9 +18,9 @@ function tc_external_results_from_csp_match_to_patient()
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -76,11 +76,11 @@ function tc_external_results_from_csp_most_recent_result_appears_at_bottom_of_ta
     var inr_test_timestamp2 = get_timestamps_for_now_object_with_changed_hours('-', 2);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    var body_data2 = external_result_csp_payload_builder(patient, location_id, "2.3", inr_test_timestamp2.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
-    post_external_result_to_csp(token, JSON.stringify(body_data2)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    var body_data2 = json_body_data_instrument(patient, location_id, "2.3", inr_test_timestamp2.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(token, JSON.stringify(body_data2)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -131,9 +131,9 @@ function tc_external_results_from_csp_matched_to_patient_do_not_appear_if_over_3
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 96);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -177,9 +177,9 @@ function tc_external_results_from_csp_can_dose_a_manual_patient()
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -252,7 +252,7 @@ function tc_external_results_from_csp_can_dose_a_manual_patient()
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_external_results_from_csp_archiving_last_result_removes_patient_result_table()
+function tc_inr_test_results_received_archive_button_archiving_last_result_removes_patient_result_table()
 {
   try
   {
@@ -266,9 +266,9 @@ function tc_external_results_from_csp_archiving_last_result_removes_patient_resu
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -278,8 +278,7 @@ function tc_external_results_from_csp_archiving_last_result_removes_patient_resu
     var table_exists = Check_if_patients_external_results_table_exists();
     
     //Select Archive result and discard 
-    select_archive_button_on_patient_external_results_for_specific_row(1, table_exists);
-    discard_button_for_archived_result_confirmation_popup().Click();
+    archive_treatment(1, "Discard", table_exists);
    
     //Check if table exists - goto will return true or false pending if present
     table_exists = Check_if_patients_external_results_table_exists();
@@ -289,6 +288,10 @@ function tc_external_results_from_csp_archiving_last_result_removes_patient_resu
     
     //Check that the table vanished after last result archived
     var result_set_1 = compare_values(false, table_exists, "Checking that table does not exist");
+    result_set.push(result_set_1);
+    
+    //Check the top audit information section includes rejection
+    var result_set_1 = validate_patient_audit_information_contains(1, test_title, "User Rejected");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -305,7 +308,7 @@ function tc_external_results_from_csp_archiving_last_result_removes_patient_resu
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_external_results_from_csp_archiving_two_results_in_sequence_starting_with_oldest()
+function tc_inr_test_results_received_archive_button_archiving_two_results_in_sequence_starting_with_oldest()
 {
   try
   {
@@ -318,15 +321,16 @@ function tc_external_results_from_csp_archiving_two_results_in_sequence_starting
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
-    var token = get_bearer_token_from_csp();
-    var inr_test_timestamp_oldest = get_timestamps_for_now_object_with_changed_hours('-', 3);
-    var body_data_oldest = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp_oldest.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data_oldest)); 
+    var token = get_bearer_token_for_instrument();
+    
+    var expected_older_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 3);
+    var body_data_older = json_body_data_instrument(patient, location_id, "2.2", expected_older_blood_taken_time.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data_older)); 
     
     //Post in most recent external results
-    var inr_test_timestamp_most_recent = get_timestamps_for_now_object_with_changed_hours('-', 2);
-    var body_data_most_recent = external_result_csp_payload_builder(patient, location_id, "2.5", inr_test_timestamp_most_recent.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data_most_recent)); 
+    var expected_newer_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 2);
+    var body_data_newer = json_body_data_instrument(patient, location_id, "2.5", expected_newer_blood_taken_time.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data_newer)); 
     
     //Add Treatment plan 
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -334,38 +338,40 @@ function tc_external_results_from_csp_archiving_two_results_in_sequence_starting
     //Goto New INR page - Check the patient result table is present - return true/false
     Goto_Patient_New_INR();
     var table_exists = Check_if_patients_external_results_table_exists();
+      
+    //Select Archive result and discard for oldest result which sits atop the table
+    var comments = archive_treatment(1, "Message", table_exists);
     
-    //Get external result info from table
-    var most_recent_result = get_patients_external_results_from_specific_row_of_table(2, table_exists);
-    var oldest_result = get_patients_external_results_from_specific_row_of_table(1, table_exists);
-    
-    //Select Archive result and discard for oldest result at top of table
-    select_archive_button_on_patient_external_results_for_specific_row(1, table_exists);
-    discard_button_for_archived_result_confirmation_popup().Click();
-    
-    //With table refreshed: Get results from remaining entry
-    var remaining_results = get_patients_external_results_from_specific_row_of_table(1, table_exists);
+    //Get results from remaining entry atop of table (newer)
+    var actual_result = get_patients_external_results_from_specific_row_of_table(1, table_exists);
     
     //Prepare result array
     var result_set = new Array();
     
-    //Check INR value in remaining test result matches the most recent result
-    var result_set_1 = compare_values(body_data_most_recent.resultValue, remaining_results.inr, "Checking INR value in remaining test result entry reflects the most recent result");
+    //Checking that the older of the two results entries now sits atop the table.
+    var result_set_1 = compare_values(expected_newer_blood_taken_time.inr_patient_results, actual_result.test_timestamp, "Checking: The older of the two results entries now sits atop the table."); 
     result_set.push(result_set_1);
     
-    //Check time value in remaining test result matches that of the most recent result
-    var result_set_1 = compare_values(inr_test_timestamp_most_recent.inr_patient_results, remaining_results.test_timestamp, "Checking timestamp value in remaining test result entry reflects the most recent result"); 
+    //The INR value from the older of the two results entries now sits atop the table.
+    var result_set_1 = compare_values(body_data_newer.resultValue, actual_result.inr, "Checking: The INR value from the older of the two results entries now sits atop the table.");
     result_set.push(result_set_1);
     
-    //Select Archive result & discard remianing (most recent) result
-    select_archive_button_on_patient_external_results_for_specific_row(1, table_exists);
-    discard_button_for_archived_result_confirmation_popup().Click();
+    //Select Archive result & discard remianing (newer) result which now sits atop the table
+    archive_treatment(1, "Discard", table_exists);
    
     //Check if table exists - goto will return true or false pending if present
     table_exists = Check_if_patients_external_results_table_exists();
     
     //Check that the table vanished after last result archived
     var result_set_1 = compare_values(false, table_exists, "Checking that table does not exist");
+    result_set.push(result_set_1);
+    
+    //Check the top audit information section includes rejection
+    var result_set_1 = validate_patient_audit_information_contains(1, test_title, "User Rejected");
+    result_set.push(result_set_1);
+    
+    //Check the second audit entry information section includes the comments
+    var result_set_1 = validate_patient_audit_information_contains(2, test_title, comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -382,7 +388,7 @@ function tc_external_results_from_csp_archiving_two_results_in_sequence_starting
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_external_results_from_csp_archiving_two_results_in_sequence_starting_with_most_recent()
+function tc_inr_test_results_received_archive_button_archiving_two_results_in_sequence_starting_with_most_recent()
 {
   try
   {
@@ -395,15 +401,15 @@ function tc_external_results_from_csp_archiving_two_results_in_sequence_starting
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
-    var token = get_bearer_token_from_csp();
-    var inr_test_timestamp_oldest = get_timestamps_for_now_object_with_changed_hours('-', 3);
-    var body_data_oldest = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp_oldest.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data_oldest)); 
+    var token = get_bearer_token_for_instrument();
+    var expected_older_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 3);
+    var body_data_older = json_body_data_instrument(patient, location_id, "2.2", expected_older_blood_taken_time.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data_older)); 
     
     //Post in most recent external results
-    var inr_test_timestamp_most_recent = get_timestamps_for_now_object_with_changed_hours('-', 2);
-    var body_data_most_recent = external_result_csp_payload_builder(patient, location_id, "2.5", inr_test_timestamp_most_recent.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data_most_recent)); 
+    var expected_newer_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 2);
+    var body_data_newer = json_body_data_instrument(patient, location_id, "2.5", expected_newer_blood_taken_time.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data_newer)); 
     
     //Add Treatment plan 
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -412,13 +418,8 @@ function tc_external_results_from_csp_archiving_two_results_in_sequence_starting
     Goto_Patient_New_INR();
     var table_exists = Check_if_patients_external_results_table_exists();
     
-    //Get external result info from table
-    var most_recent_result = get_patients_external_results_from_specific_row_of_table(2, table_exists);
-    var oldest_result = get_patients_external_results_from_specific_row_of_table(1, table_exists);
-    
     //Select Archive & discard result for most recent result at foot of table
-    select_archive_button_on_patient_external_results_for_specific_row(2, table_exists);
-    discard_button_for_archived_result_confirmation_popup().Click();
+    var comments = archive_treatment(2, "Message", table_exists);
     
     //Now that table has refreshed get the results from the only remaining entry
     var remaining_results = get_patients_external_results_from_specific_row_of_table(1, table_exists);
@@ -426,28 +427,35 @@ function tc_external_results_from_csp_archiving_two_results_in_sequence_starting
     //Prepare result array
     var result_set = new Array();
     
-    //Check INR value in remaining test result matches that of the oldest result
-    var result_set_1 = compare_values(body_data_oldest.resultValue, remaining_results.inr, "Checking INR value in remaining test result entry reflects the oldest result");
+    //Check the top audit information section includes rejection
+    var result_set_1 = compare_values(body_data_older.resultValue, remaining_results.inr, "Checking INR value in remaining test result entry reflects the oldest result");
     result_set.push(result_set_1);
     
     //Check time value in remaining test result matches that of the oldest result
-    var result_set_1 = compare_values(inr_test_timestamp_oldest.inr_patient_results, remaining_results.test_timestamp, "Checking timestamp value in remaining test result entry reflects the oldest result"); 
+    var result_set_1 = compare_values(expected_older_blood_taken_time.inr_patient_results, remaining_results.test_timestamp, "Checking timestamp value in remaining test result entry reflects the oldest result"); 
     result_set.push(result_set_1);
     
     //Select Archive & discard result for remianing (most recent) result
-    select_archive_button_on_patient_external_results_for_specific_row(1, table_exists);
-    discard_button_for_archived_result_confirmation_popup().Click();
+    archive_treatment(1, "Discard", table_exists);
    
-    //Check if table exists - Will return true or false pending if present
+    //Check if table exists - goto will return true or false pending if present
     table_exists = Check_if_patients_external_results_table_exists();
     
     //Check that the table vanished after last result archived
     var result_set_1 = compare_values(false, table_exists, "Checking that table does not exist");
     result_set.push(result_set_1);
     
+    //Check the top audit information section includes the comments
+    var result_set_1 = validate_patient_audit_information_contains(1, test_title, "User Rejected");
+    result_set.push(result_set_1);
+    
+    //Check the top audit information section includes the comments
+    var result_set_1 = validate_patient_audit_information_contains(2, test_title, comments);
+    result_set.push(result_set_1);
+    
     //Validate all the results sets are true & Pass in the result
     var results = results_checker_are_true(result_set);
-    results_checker(results,test_title); 
+    results_checker(results, test_title); 
     Log_Off(); 
   }
   catch(e)
@@ -459,7 +467,7 @@ function tc_external_results_from_csp_archiving_two_results_in_sequence_starting
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_external_results_from_csp_archiving_process_can_be_cancelled_if_selected_in_error()
+function tc_inr_test_results_received_archive_button_archiving_process_can_be_cancelled_if_selected_in_error()
 {
   try
   {
@@ -473,9 +481,9 @@ function tc_external_results_from_csp_archiving_process_can_be_cancelled_if_sele
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -485,8 +493,7 @@ function tc_external_results_from_csp_archiving_process_can_be_cancelled_if_sele
     var table_exists = Check_if_patients_external_results_table_exists();
     
     //Select Archive result and cancel 
-    select_archive_button_on_patient_external_results_for_specific_row(1, table_exists);
-    cancel_button_for_archived_result_confirmation_popup().Click();
+    archive_treatment(1, "Cancel", table_exists);
    
     //Check if table exists - goto will return true or false pending if present
     table_exists = Check_if_patients_external_results_table_exists();
@@ -519,7 +526,7 @@ function tc_external_results_from_csp_archiving_process_can_be_cancelled_if_sele
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_external_results_from_csp_archiving_process_can_be_commented_upon()
+function tc_inr_test_results_received_archive_button_archiving_process_can_be_commented_upon()
 {
   try
   {
@@ -533,9 +540,9 @@ function tc_external_results_from_csp_archiving_process_can_be_commented_upon()
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -544,16 +551,21 @@ function tc_external_results_from_csp_archiving_process_can_be_commented_upon()
     Goto_Patient_New_INR();
     var table_exists = Check_if_patients_external_results_table_exists();
     
-    //Select Archive result and cancel 
-    select_archive_button_on_patient_external_results_for_specific_row(1, table_exists);
-    var comments = provide_archive_reason_after_archiving_result();
-    discard_button_for_archived_result_confirmation_popup().Click();
+    //Select Archive result and add comments as it is discarded 
+    var comments = archive_treatment(1, "Message", table_exists);
+    
+    //Check the patient result table is present
+    var table_exists = Check_if_patients_external_results_table_exists();
     
     //Prepare result array
     var result_set = new Array();
     
+    //Check that the table vanished after last result archived
+    var result_set_1 = compare_values(false, table_exists, "Checking that table does not exist");
+    result_set.push(result_set_1);
+        
     //Check the top audit information section includes the comments
-    var result_set_1 = validate_top_patient_audit_information_contains(test_title, comments);
+    var result_set_1 = validate_patient_audit_information_contains(1, test_title, comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -570,7 +582,7 @@ function tc_external_results_from_csp_archiving_process_can_be_commented_upon()
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_external_results_from_csp_archived_results_can_be_obtained()
+function tc_inr_test_results_received_archive_button_archived_results_can_be_obtained()
 {
   try
   {
@@ -584,9 +596,9 @@ function tc_external_results_from_csp_archived_results_can_be_obtained()
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     
     //Post in external results
-    var token = get_bearer_token_from_csp();
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var token = get_bearer_token_for_instrument();
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -595,9 +607,8 @@ function tc_external_results_from_csp_archived_results_can_be_obtained()
     Goto_Patient_New_INR();
     var table_exists = Check_if_patients_external_results_table_exists();
     
-    //Select Archive result and cancel 
-    select_archive_button_on_patient_external_results_for_specific_row(1, table_exists);
-    discard_button_for_archived_result_confirmation_popup().Click();
+    //Select Archive result and add comments 
+    var comments = archive_treatment(1, "Message", table_exists);
     
     //Prepare result array
     var result_set = new Array();
@@ -620,6 +631,10 @@ function tc_external_results_from_csp_archived_results_can_be_obtained()
     
     //Check archived results being shown is true - label
     var result_set_1 = compare_values(archived_results.label, "Archived Result", "Checking that archived results are labelled appropriately");
+    result_set.push(result_set_1);
+    
+    //Check the top audit information section includes the comments
+    var result_set_1 = validate_patient_audit_information_contains(1, test_title, comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -651,13 +666,13 @@ function tc_external_results_from_csp_archiving_results_from_external_results_ta
     var inr_test_timestamp2 = get_timestamps_for_now_object_with_changed_hours('-', 2);
     
     //Post in two lots of external results - that way when we archive one = table still remains
-    var token = get_bearer_token_from_csp();
+    var token = get_bearer_token_for_instrument();
     
-    var body_data = external_result_csp_payload_builder(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data)); 
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data)); 
     
-    var body_data2 = external_result_csp_payload_builder(patient, location_id, "2.7", inr_test_timestamp2.csp_payload); 
-    post_external_result_to_csp(token, JSON.stringify(body_data2)); 
+    var body_data2 = json_body_data_instrument(patient, location_id, "2.7", inr_test_timestamp2.csp_payload); 
+    post_external_result_instrument(token, JSON.stringify(body_data2)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
@@ -677,8 +692,7 @@ function tc_external_results_from_csp_archiving_results_from_external_results_ta
     result_set.push(result_set_1);
        
     //Select Archive result and discard 
-    select_archive_button_on_external_results_for_specific_row(1, table_exists)
-    discard_button_for_archived_result_confirmation_popup().Click();
+    archive_test_result(1, "Discard", table_exists)
     
     //Re-Check if table exists - it should do since we posted in two results
     var table_exists = Check_if_external_results_table_exists();
