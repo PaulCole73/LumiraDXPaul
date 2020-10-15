@@ -452,6 +452,18 @@ function clinical_tp_details()
   return clinical_warfarin_details;
 }
 //------------------------------------------------------------------------
+function clinical_details_banner_bar()
+{
+    var INRstarV5 = INRstar_base();
+    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+    var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+    var panelPCD = panelPTC.Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails");
+    var form = panelPCD.Form("PatientEditTreatmentPlanForm");
+    var banner_bar = form.Panel("TreatmentPlanValidation");
+   
+  return banner_bar; 
+} 
+//------------------------------------------------------------------------
 function clinical_warfarin_details()
 {
   var INRstarV5 = INRstar_base();
@@ -770,15 +782,25 @@ function more_schedule_table()
   return schedule_table;
 }
 //------------------------------------------------------------------------
-function dosing_schedule_table()
+function dosing_schedule_content()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
-  var grid = panelPPT.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent");
+  var schedule_content = panelPPT.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent");
   
-  return grid;
+  return schedule_content;
+} 
+//------------------------------------------------------------------------
+function patient_pending_treatment_path()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
+  
+  return panelPPT;
 } 
 //------------------------------------------------------------------------
 function treatment_buttons_pre_schedule()
@@ -836,7 +858,15 @@ function pending_treatment_buttons()
 function save_inr_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  
+  if (language == "Italian")
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("AcceptPendingTreatment");
+  }
+  else
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  }
   
   return save_inr_button_path;
 }  
@@ -844,10 +874,25 @@ function save_inr_button()
 function override_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
   
+  if (language == "Italian")
+  {
+    var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("OverridePendingTreatment");
+  }
+  else
+  {
+    var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
+  }
   return override_button_path;
-} 
+}
+//------------------------------------------------------------------------
+function overide_accept_button()
+{
+  var override_finish_buttons = override_finish_buttons_path();
+	var override_accept_button_path = override_finish_buttons.Button("OverrideAccept")
+  
+  return override_accept_button_path;  
+}
 //------------------------------------------------------------------------
 function cancel_pending_treat_button()
 {
@@ -857,14 +902,13 @@ function cancel_pending_treat_button()
   return cancel_button_path;
 }
 //------------------------------------------------------------------------
-//-- Notice two different button paths pending which region you are in
 function refer_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
   
   if (language == "Italian")
   {
-    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Button("ReferPendingTreatment");
+    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("ReferPendingTreatment");
   }
   else
   {

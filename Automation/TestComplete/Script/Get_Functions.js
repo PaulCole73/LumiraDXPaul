@@ -412,7 +412,7 @@ function get_patient_banner_error_message()
 //-----------------------------------------------------------------------------------
 function get_pending_suggested_treatment_schedule(days)
 {
-  var schedulegrid = dosing_schedule_table().Fieldset(0).Fieldset("ScheduleGrid");
+  var schedulegrid = dosing_schedule_content().Fieldset(0).Fieldset("ScheduleGrid");
   
   //return schedule;
   var pending_schedule = new Array();
@@ -734,8 +734,10 @@ function get_dosing_settings_data(item_no)
   for(var i = 1; i < panel.ChildCount; i++)
   {
     var temp = panel.Child(i).innerText;
-    string_array = temp.split("[set at] "); 
+    string_array = temp.split("[" + get_string_translation("set at") + "] "); 
     dosing_data.push(aqString.Trim(string_array[1], 3));
+    Log.Message("string_array="+string_array);
+    Log.Message("dosing_data.push="+aqString.Trim(string_array[1], 3));
   }
   
   return dosing_data;
