@@ -1,6 +1,6 @@
 ﻿//USEUNIT Tested_Apps
 //USEUNIT TC_Treatment
-//USEUNIT TC_External_Results_CSP
+
 //--------------------------------------------------------------------------------
 //Suite of tests for treatments
 //--------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ function ts_master_treatment(send_mail)
 //  tc_treatment_manual_mutliple_historic_summary_check();
 //  tc_treatment_maintenance_override_privilege();
 //  tc_treatment_maintenance_cancel_pending();
-//  tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
+//  tc_treatment_maintenance_add_pending_treatment_with_pending_transfer();
   
   email_and_archive(send_mail, "ts_treatment_master");
 }
@@ -84,19 +84,26 @@ function ts_staging_regression_treatment()
   email_and_archive(true, "ts_treatment_regression");
 }
 
-
 //==============================================================================//
-//General Suites
-//--------------------------------------------------------------------------------
-//function ts_permissions_new_inr_button()
-//{
-//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
-//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
-//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
-//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
-//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
-//  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();
-//}
+function ts_master_new_inr()
+{
+//  ts_permissions_new_inr_button();
+  ts_inr_test_results_received();
+//  ts_to_be_categorized();
+}
+//==============================================================================//
+
+function ts_permissions_new_inr_button()
+{
+  reset_folder();
+    
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();
+}
 //--------------------------------------------------------------------------------
 function ts_inr_test_results_received()
 {
@@ -107,15 +114,19 @@ function ts_inr_test_results_received()
   tc_inr_test_results_received_archive_button_archiving_last_result_removes_patient_result_table();
   tc_inr_test_results_received_archive_button_archiving_process_can_be_cancelled_if_selected_in_error();
   tc_inr_test_results_received_archive_button_archiving_process_can_be_commented_upon();
+  tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();
   tc_inr_test_results_received_archive_button_archived_results_can_be_obtained();
 }
 //--------------------------------------------------------------------------------
-//function ts_to_be_categorized()
-//{
-//  reset_folder();
-//  
-//  tc_external_results_from_csp_match_to_patient();
-//  tc_external_results_from_csp_most_recent_result_appears_at_bottom_of_table();
-//  tc_external_results_from_csp_matched_to_patient_do_not_appear_if_over_3_days_old();
-//  tc_external_results_from_csp_can_dose_a_manual_patient();
-//}
+function ts_to_be_categorized()
+{
+  reset_folder();
+  
+  //These do not have corresponding tests in testrail yet, they were created to create a happy path
+  
+  tc_inr_test_results_received_from_instrument_match_to_patient();
+  tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table();
+  tc_inr_test_results_received_from_instrument_matched_to_patient_do_not_appear_if_over_3_days_old();
+  tc_inr_test_results_received_from_instrument_matched_to_patient_can_dose_a_manual_patient(); // Should work after Sprint 43
+  tc_inr_test_results_received_from_instrument_archiving_results_from_external_results_tab_is_possible();
+}

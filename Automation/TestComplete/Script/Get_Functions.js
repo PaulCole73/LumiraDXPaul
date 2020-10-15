@@ -1,6 +1,5 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
-//USEUNIT TSA_External_Results_CSP
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -286,6 +285,44 @@ function get_external_results_from_specific_row_of_table(row, table_exists)
     //Store time and inr values that will fail comparison - store into an object
     var results = { "blood_taken_timestamp"   :"No Ext Result Present",
                     "inr"                     :"No Ext Result Present"}
+  }
+  
+  return results;
+}
+//--------------------------------------------------------------------------------
+function get_external_results_from_specific_row_of_archived_table(row, table_exists) 
+{
+  //If external result table exists grab values from it
+  if (table_exists == true) 
+  {
+    //Get the path of the external results table
+    var table = patient_external_results_archived_table(); 
+      
+    //Check the specified row exists?
+      if (parseInt(row) < table.RowCount)
+      {
+        //if so grab results
+        var results = {
+          "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
+          "inr"                    : table.Cell(row, 3).contentText,
+          "label"                  : table.Cell(row, 4).Panel(0).Panel("DisplayArchivedResult").Button("linkButton").value}
+      }
+      else
+      {
+        //warn that specified row does not exist
+        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
+      }
+  }
+
+  else 
+  //Otherwise if the table cannot be seen this is a fail - we are expecting it
+  {
+    Log.Message("Failure Table does not exist - so unable to check for external results");
+    
+    //Store time and inr values that will fail comparison - store into an object
+    var results = { "blood_taken_timestamp"   :"No Ext Result Present",
+                    "inr"                     :"No Ext Result Present",
+                    "label"                   :"No Ext Result Present"}
   }
   
   return results;

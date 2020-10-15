@@ -2423,6 +2423,14 @@ function patient_external_results_table()
   return table;
 }
 //------------------------------------------------------------------------
+function patient_external_results_archived_table()
+{
+  var base_path = external_results_base_form_path();
+  var table = base_path.Panel("WarfarinResultsContainer").Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable")
+  
+  return table;
+}
+//------------------------------------------------------------------------
 function patient_INR_treatment_questions()
 {
   var main_content = pending_treatment_buttons();
