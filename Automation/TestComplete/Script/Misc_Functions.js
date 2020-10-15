@@ -11,8 +11,8 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "English";
-var environment = "INRstarWindowsStaging";
+var language = "Italian";
+var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -159,6 +159,54 @@ function checkArrays(arrA, arrB, mess)
   }
   return true;
 }
+//--------------------------------------------------------------------------
+//This allows checking of arrays that may contain 2,0 instead of 2.0 for an INR
+function checkArrays_containing_inr_values(arrA, arrB, mess)
+{
+  if(arrA == null || arrB == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  
+  if(arrA.length !== arrB.length) 
+  {
+    Log.Message(mess + "//" + arrA + "//" + arrB + "//");
+    return false;
+  }
+  for(var i = 0; i < arrA.length; i++)
+  {    
+    // If one field in the array doesn't match
+    if(arrA[i] != arrB[i])
+    { 
+        // And if the language is italian
+        if (language = "Italian")
+        {
+          // Replace any full stops with a comma so 2.0 becomes 2,0 for both fields
+          var new_arrA = arrA[i].replace(".", ",");
+          var new_arrB = arrB[i].replace(".", ",");
+          
+          // Now check if the modified fields match
+          if(new_arrA != new_arrB)
+          {
+            // If they don't its a fail
+            Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
+            return false;
+          }
+        }
+        else
+        {
+          Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
+          return false;
+        }
+    } 
+  }
+  return true;
+}
+function thisis()
+{
+  var override_dose_path = treatment_override_field_container().Cell(1, 1).Select("Treatment_Dose").ClickItem(3);
+}
 //-----------------------------------------------------------------------------------
 function validate_arrays_dont_match(arrA, arrB, mess)
 {
@@ -273,7 +321,7 @@ function results_checker(result_set, test_case)
 //---------------------------------------------------------------------------------//
 //                            Audit Functions                                      //
 //---------------------------------------------------------------------------------//
-//--------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
 function validate_top_patient_audit_with_patient_search(test_title, pat_name, expected_search_text)
 {
     //Search for patient
@@ -1299,6 +1347,34 @@ function setup_automation_from_parameter()
   var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
   change_environments(environment);
+}
+//-------------------------------------------------------------------------------
+function get_date_with_days_from_today_dd_mmm_yyyy(days) // will return either 12-mag-2020 or 12-May-2020 pending language
+{
+  //Calculate the date using the supplled offset (days) then return the English date in format eg: 12-May-2020
+  date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(days)), "%d-%b-%Y");
+  
+  //If the language is italian go off and convert the short month text to italian
+  if (language == "Italian")
+  {
+    italian_short_month = get_string_translation(date.slice(3,6));
+    date = date.slice(0,2) + '-' + italian_short_month + '-' + date.slice(7,11)
+  }
+
+  return date;
+}
+//-------------------------------------------------------------------------------
+function get_todays_date_in_dd_mmm_yyyy() // will return either 12-mag-2020 or 12-May-2020 pending language
+{
+  todays_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y");
+  
+  if (language == "Italian")
+  {
+    italian_short_month = get_string_translation(todays_date.slice(3,6));
+    todays_date = todays_date.slice(0,2) + '-' + italian_short_month + '-' + todays_date.slice(7,11)
+  }
+
+  return todays_date;
 }
 //-----------------------------------------------------------------------------------
 function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/may/2020
