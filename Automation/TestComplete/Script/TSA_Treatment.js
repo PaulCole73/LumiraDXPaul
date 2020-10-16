@@ -909,9 +909,9 @@ function select_use_external_result_button_from_row(row, table_exists)
   }
 } 
 //--------------------------------------------------------------------------------
-function archive_treatment(row, action, table_exists)
+function archive_treatment(row, action)
 {
-  if (table_exists == true) 
+  if (row != false) 
   {
     //Click the archive button on the specified row
     archive_button_path_for_specific_row_of_patient_results(row).Click()
@@ -938,7 +938,7 @@ function archive_treatment(row, action, table_exists)
   else 
   {
       //Warn that table doesn't exist
-      Log.Message("Failure Table does not exist - so unable to select archive button");
+      Log.Message("Failure Table row does not exist - so unable to select archive button");
   }
 } 
 //--------------------------------------------------------------------------------

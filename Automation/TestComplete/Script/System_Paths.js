@@ -1011,11 +1011,7 @@ function override_finish_buttons_path()
   return override_final_buttons;
 } 
 //------------------------------------------------------------------------
-//------------------------------------------------------------------------
-//////////////////////////  Patient Results //////////////////////////////
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-function patient_own_external_results_table()
+function inr_results_received_table()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
@@ -1032,7 +1028,7 @@ function patient_own_external_results_table()
 function use_result_button_path_for_specific_row_of_patient_results(row)
 {
     //Expects table to be present beforehand
-    var table = patient_own_external_results_table();
+    var table = inr_results_received_table();
     var button = table.Cell(row, 4).Panel(0).Panel("UserAction1").Button("Use_Result")
     
     return button;
@@ -1041,7 +1037,7 @@ function use_result_button_path_for_specific_row_of_patient_results(row)
 function archive_button_path_for_specific_row_of_patient_results(row)
 {
     //Expects table to be present beforehand
-    var table = patient_own_external_results_table();
+    var table = inr_results_received_table();
     var button = table.Cell(row, 4).Panel(0).Panel("UserAction2").Button("Archive")
     
     return button;

@@ -216,13 +216,44 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     return false;
 }
 //--------------------------------------------------------------------------------
-function get_patients_external_results_from_specific_row_of_table(row, table_exists) 
+function get_inr_results_received_with_timestamp(timestamp)
+{
+  //Check table exists before proceeding
+  var table_exists = Check_if_patients_external_results_table_exists(); 
+   
+  if (table_exists == true) 
+  {
+    //Get the path of the patient external results table
+    var table = inr_results_received_table(); 
+      
+      //Loop through each row of table
+      for (i=0; i<table.RowCount; i++)
+      {
+        //Check whether timestamp exists
+        if (table.Cell(i, 1).contentText == timestamp)
+        {
+           var results = {
+            "test_timestamp"         : table.Cell(i, 1).contentText,
+            "source"                 : table.Cell(i, 2).contentText,
+            "inr"                    : table.Cell(i, 3).contentText,
+            "row"                    : i
+            } 
+           return results
+        }
+      }
+      Log.Message("Table row containing timestamp does not exist");
+  }
+  var results = { "row" : false }
+  return results;
+}
+//--------------------------------------------------------------------------------
+function get_external_results_inr_results_received_by_row(row, table_exists) 
 {
   //If external result table exists grab values from it
   if (table_exists == true) 
   {
     //Get the path of the external results table
-    var table = patient_own_external_results_table(); 
+    var table = inr_results_received_table(); 
     
     //Check the specified row exists?
       if (parseInt(row) < table.RowCount)
@@ -254,7 +285,7 @@ function get_patients_external_results_from_specific_row_of_table(row, table_exi
   return results;
 }
 //--------------------------------------------------------------------------------
-function get_external_results_from_specific_row_of_table(row, table_exists) 
+function get_external_results_test_results_tab_by_row(row, table_exists) 
 {
   //If external result table exists grab values from it
   if (table_exists == true) 
@@ -290,7 +321,7 @@ function get_external_results_from_specific_row_of_table(row, table_exists)
   return results;
 }
 //--------------------------------------------------------------------------------
-function get_external_results_from_specific_row_of_archived_table(row, table_exists) 
+function get_external_results_test_results_tab_archived_results(row, table_exists) //need to identify by unique date time stamp
 {
   //If external result table exists grab values from it
   if (table_exists == true) 
