@@ -1023,24 +1023,6 @@ function inr_results_received_table()
   return patient_external_results_table;
 } 
 //------------------------------------------------------------------------
-function use_result_button_path_for_specific_row_of_patient_results(row)
-{
-    //Expects table to be present beforehand
-    var table = inr_results_received_table();
-    var button = table.Cell(row, 4).Panel(0).Panel("UserAction1").Button("Use_Result")
-    
-    return button;
-}
-//------------------------------------------------------------------------
-function archive_button_path_for_specific_row_of_patient_results(row)
-{
-    //Expects table to be present beforehand
-    var table = inr_results_received_table();
-    var button = table.Cell(row, 4).Panel(0).Panel("UserAction2").Button("Archive")
-    
-    return button;
-}
-//------------------------------------------------------------------------
 function archive_reason_comments_for_archived_result_confirmation_popup()
 {
     var INRstarV5 = INRstar_base();
@@ -2492,15 +2474,6 @@ function external_results_filter_button()
   
   return button;
 } 
-//------------------------------------------------------------------------
-function archive_button_path_for_specific_row_of_external_results(row)
-{
-    //Expects table to be present beforehand
-    var table = patient_external_results_table();
-    var button = table.Cell(row, 4).Panel(0).Panel("Div2").Button("ArchiveResult")
-    
-    return button;
-}
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /////////////////////////////  Loading Popup  ////////////////////////////

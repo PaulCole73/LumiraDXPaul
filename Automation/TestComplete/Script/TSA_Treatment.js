@@ -903,7 +903,8 @@ function select_use_external_result_button_from_row(row)
   if (row != false)  
   {
       //Click the Use-result button on the specified row
-      use_result_button_path_for_specific_row_of_patient_results(row).Click()
+      var table = inr_results_received_table();
+      var button = table.Cell(row, 4).Panel(0).Panel("UserAction1").Button("Use_Result").Click()
   }
   else 
   {
@@ -917,7 +918,8 @@ function archive_treatment(row, action)
   if (row != false) 
   {
     //Click the archive button on the specified row
-    archive_button_path_for_specific_row_of_patient_results(row).Click()
+    var table = inr_results_received_table();
+    var button = table.Cell(row, 4).Panel(0).Panel("UserAction2").Button("Archive").Click()
         
     //Wait for popup before proceeding avoids timeouts down the line
     wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);
