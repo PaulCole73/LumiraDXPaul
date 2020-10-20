@@ -2296,7 +2296,7 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
     var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Archive result and add comments as it is discarded 
-    var comments = archive_treatment(actual_results.row, "Message");
+    archive_treatment(actual_results.row, "Discard");
     
     //Prepare result array
     var result_set = new Array();
@@ -2334,23 +2334,19 @@ function tc_inr_test_results_received_from_instrument_archiving_results_from_ext
     add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
-    var inr_test_timestamp2 = get_timestamps_for_now_object_with_changed_hours('-', 2);
     
-    //Post in two lots of external results - that way when we archive one = table still remains    
+    //Post in an external result
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
     post_external_result_instrument(JSON.stringify(body_data)); 
     
-    var body_data2 = json_body_data_instrument(patient, location_id, "2.7", inr_test_timestamp2.csp_payload); 
-    post_external_result_instrument(JSON.stringify(body_data2)); 
-    
-    //Get latest result_data from table
+    //Get result_data from table
     var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results)
             
     //Prepare result array
     var result_set = new Array();
     
-    //Check latest result data reflects a posted results
-    var result_set_1 = compare_values(external_result.inr, body_data.resultValue, "Checking an expected entry in external results is present");
+    //Check latest result data reflects posted in result
+    var result_set_1 = compare_values(external_result.inr, body_data.resultValue, "Checking posted result is present in external results");
     result_set.push(result_set_1);
        
     //Select Archive result and discard with message - store message as comments 
