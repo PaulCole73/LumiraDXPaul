@@ -899,21 +899,6 @@ function post_external_result_instrument(body_payload)
   api_post(address, headers, body_payload)
 }
 //--------------------------------------------------------------------------------
-function select_use_external_result_button_from_row(row)
-{ 
-  if (row != false)  
-  {
-      //Click the Use-result button on the specified row
-      var table = inr_results_received_table();
-      var button = table.Cell(row, 4).Panel(0).Panel("UserAction1").Button("Use_Result").Click()
-  }
-  else 
-  {
-      //Warn that table doesn't exist
-      Log.Message("Failure Table does not exist - so unable to select use result");
-  }
-} 
-//--------------------------------------------------------------------------------
 function archive_treatment(row, action)
 {
   if (row != false) 
@@ -988,35 +973,45 @@ function add_manual_treatment_using_test_results(dose, review, timestamp)
   var external_result = get_inr_results_received_by_timestamp(timestamp);
     
   //Select Use Result button
-  select_use_external_result_button_from_row(external_result.row);
-    
-  var inr_test_info_path = treatment_inr_test_info_path();
-  
-  //Select Dose from dose dropdown
-  inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
-  
-  //Select Review from review dropdown
-  var days = "Days";
-  if (review == "1") 
+  if (external_result.row != false)  
   {
-    days = days.substring(0,4-1)
-  }
-  inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
+      //Click the Use-result button on the specified row
+      var table = inr_results_received_table();
+      var button = table.Cell(row, 4).Panel(0).Panel("UserAction1").Button("Use_Result").Click()
+    
+      var inr_test_info_path = treatment_inr_test_info_path();
+  
+      //Select Dose from dose dropdown
+      inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
+  
+      //Select Review from review dropdown
+      var days = "Days";
+      if (review == "1") 
+      {
+        days = days.substring(0,4-1)
+      }
+      inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
            
-  //Select Save
-  treatment_buttons_pre_schedule().SubmitButton("SubmitManualDose").Click();
+      //Select Save
+      treatment_buttons_pre_schedule().SubmitButton("SubmitManualDose").Click();
    
-  //Process Popups
-  process_popup(get_string_translation("PoCT Batch Expired"),get_string_translation("Confirm"));   
-  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
+      //Process Popups
+      process_popup(get_string_translation("PoCT Batch Expired"),get_string_translation("Confirm"));   
+      process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   
-  //Store the Dosage data into an object
-  var dose_data = new Object();
-  dose_data["dose"] = dose;
-  dose_data["review"] = review;
+      //Store the Dosage data into an object
+      var dose_data = new Object();
+      dose_data["dose"] = dose;
+      dose_data["review"] = review;
   
-  //Select Ok to confirm suggested treatment
-  save_inr_button().Click()
+      //Select Ok to confirm suggested treatment
+      save_inr_button().Click()
+  }
+  else 
+  {
+      //Warn that table doesn't exist
+      Log.Message("Failure Table row does not exist - so unable to select use result");
+  }
   
   return dose_data
 }
