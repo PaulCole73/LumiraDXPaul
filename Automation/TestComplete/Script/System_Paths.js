@@ -645,8 +645,6 @@ function edit_treatment_plan_button_path()
   return treatment_plan_button;
 } 
 //------------------------------------------------------------------------
-//////////////////////////  Treatment  ///////////////////////////////////
-//------------------------------------------------------------------------
 function treatment_appointment_buttons()
 {
   var INRstarV5 = INRstar_base();
@@ -1012,6 +1010,31 @@ function override_finish_buttons_path()
   
   return override_final_buttons;
 } 
+//------------------------------------------------------------------------
+function inr_results_received_table()
+{
+  var INRstarV5 = INRstar_base();
+  var panelPPT = INRstarV5.patient_pending_treatment_path()
+  var panelPTNIW = panelPPT.Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("ExternalResultsContent");
+  
+  var patient_external_results_table_path = panelPTNIW.Panel("PatientExternalResultsContainer").Panel("PatientExternalResultsTableWrapper").Panel(0);
+  var patient_external_results_table = patient_external_results_table_path.Table("PatientResultsTable")
+  
+  return patient_external_results_table;
+} 
+//------------------------------------------------------------------------
+function archive_reason_comments_for_archived_result_confirmation_popup()
+{
+    var INRstarV5 = INRstar_base();
+    var dialogBox = INRstarV5.Panel(3).Panel("modalDialogBox").Panel(0);
+    var textbox = dialogBox.Form("AddArchiveCommentForm").Panel(0).Textarea("RejectionReason");
+   
+    return textbox;
+}
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+///////////////////////////////  Sorb  ///////////////////////////////////
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 function sorb_button_suggested_path()
 {
@@ -1535,13 +1558,22 @@ function patient_recently_viewed_table()
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /////////////////////  Options/Location Management  //////////////////////
-//------------------------------------------------------------------------
+//------------------------------------------------------------------------ 
 function location_management_main_container()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelLC = panelMCP.Panel("AdminContent").Panel("LocationContent");
   var main_container_path = panelLC.Panel(0).Panel("LocationTabContent");
+  
+  return main_container_path;
+}
+function location_management_details_tab()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelLC = panelMCP.Panel("AdminContent").Panel("LocationContent");
+  var main_container_path = panelLC.Panel(0).Panel("LocationTab");
   
   return main_container_path;
 }
@@ -2381,8 +2413,18 @@ function clinic_move_calendar_backwards()
   return button;
 }
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 ////////////////////////  External Results / HL7  ////////////////////////
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+function external_results_base_form_path()
+{
+  var INRstarV5 = INRstar_base();
+  var patient_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel").Panel("PatientContent");
+  var form = patient_content.Panel("ExternalResultsContent").Panel("WarfarinResultsContainer");
+  
+  return form;
+} 
 //------------------------------------------------------------------------
 function patient_results_tab()
 {
@@ -2395,10 +2437,16 @@ function patient_results_tab()
 //------------------------------------------------------------------------
 function patient_external_results_table()
 {
-  var INRstarV5 = INRstar_base();
-  var main_content = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var warf_container = main_content.Panel("PatientContent").Panel("ExternalResultsContent").Panel("WarfarinResultsContainer");
-  var table = warf_container.Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
+  var base_path = external_results_base_form_path();
+  var table = base_path.Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
+  
+  return table;
+}
+//------------------------------------------------------------------------
+function patient_external_results_archived_table()
+{
+  var base_path = external_results_base_form_path();
+  var table = base_path.Panel("WarfarinResultsContainer").Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable")
   
   return table;
 }
@@ -2411,6 +2459,22 @@ function patient_INR_treatment_questions()
   return treatment_questions;
 }
 //------------------------------------------------------------------------
+function show_archived_results_checkbox()
+{
+  var path = external_results_base_form_path();
+  var checkbox = path.Panel("WarfarinResultsFilterContainer").Form("FilterForm").Panel(1).Panel(0).Checkbox("ShowRejectedResults")
+  
+  return checkbox;
+} 
+//------------------------------------------------------------------------
+function external_results_filter_button()
+{
+  var path = external_results_base_form_path();
+  var button = path.Panel("WarfarinResultsFilterContainer").Form("FilterForm").Panel(0).SubmitButton("Filter")
+  
+  return button;
+} 
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /////////////////////////////  Loading Popup  ////////////////////////////
 //------------------------------------------------------------------------
@@ -2421,11 +2485,7 @@ function loading_popup_path()
   var obj = INRstarV5.Panel(1).Panel("loading");
 }
 
-
-
-
-
-
+//------------------------------------------------------------------------
 
 
 

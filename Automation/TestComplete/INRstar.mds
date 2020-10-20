@@ -2873,7 +2873,7 @@
 					<testItem name="Coruscant_Net4" key="{435E8C7B-665D-4F2A-B4D1-C16D4F44D3B2}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="INRstar" key="{31FFB8F0-4605-4DAD-8026-4F11D9562E08}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="INRstar" key="{31FFB8F0-4605-4DAD-8026-4F11D9562E08}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="Setup" key="{E954B4D9-5D15-4CD6-B35B-06E4D077133A}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -3112,7 +3112,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Staging_Net4" key="{E4D3F2B8-7931-4D0C-95F9-5B7C9AD84806}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="Staging_Net4" key="{E4D3F2B8-7931-4D0C-95F9-5B7C9AD84806}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="INRstar" key="{86CF69C3-DD6D-478A-935D-CF95FBF448AE}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
@@ -3120,7 +3120,7 @@
 								<children>
 									<testItem name="Setup" key="{88818AE2-79F2-4CC5-B9FE-1E197019B5CF}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsStagingV4" />
+											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsDev1V4" />
 											<param1 name="locale" type="3" localVarName="" varType="8" value="English" />
 										</testParameters>
 										<children />
@@ -3173,7 +3173,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{EAA535B5-D44A-4330-BE18-D04C3CD4C04B}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{EAA535B5-D44A-4330-BE18-D04C3CD4C04B}" group="False" enabled="False" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3259,6 +3259,12 @@
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
 											<param1 name="name" type="3" localVarName="" varType="8" value="stagingNET4_regression_output" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_External_Results_CSP" key="{CE90535D-2C16-4972-84EB-62C3752B15D7}" group="False" enabled="True" testMoniker="{005D3F30-9298-494D-9ACB-9A2CD2F78625}ts_external_results_csp" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
 										</testParameters>
 										<children />
 									</testItem>
@@ -3354,13 +3360,13 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="Staging_Net4_Italian" key="{B5A9B43B-13EE-4267-9D2A-8410A39702F1}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="Staging_Net4_Italian" key="{B5A9B43B-13EE-4267-9D2A-8410A39702F1}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="INRstar" key="{F9B127AE-9785-4F77-A0B6-65142DF1281C}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="INRstar" key="{F9B127AE-9785-4F77-A0B6-65142DF1281C}" group="True" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="Setup" key="{651D3990-FB11-470C-B1DE-5424D368AB95}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="Setup" key="{651D3990-FB11-470C-B1DE-5424D368AB95}" group="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsStagingItalyV4" />
 											<param1 name="locale" type="3" localVarName="" varType="8" value="Italian" />
@@ -3451,7 +3457,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_1" key="{85391BD5-4968-46AA-A08B-05409C531727}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_1" key="{85391BD5-4968-46AA-A08B-05409C531727}" group="False" enabled="False" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3486,6 +3492,12 @@
 										</testParameters>
 										<children />
 									</testItem>
+									<testItem name="TS_External_Results_CSP" key="{53C4F18E-E26C-418E-BD93-D2DB7857688F}" group="False" enabled="False" testMoniker="{005D3F30-9298-494D-9ACB-9A2CD2F78625}ts_external_results_csp" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+										</testParameters>
+										<children />
+									</testItem>
 								</children>
 							</testItem>
 						</children>
@@ -3495,16 +3507,16 @@
 		</children>
 	</testItems>
 	<variables key="{4B9173FC-9A59-474A-BB11-CB532AE3D687}">
-		<data Version="3">
+		<data Version="4">
 			<Items>
-				<Variable Name="EnvironmentVal" Type="{123F0C0F-44B4-4BAF-B0E6-F3F89FD873B5}" Local="False">
-					<DefValue StrValue="49004E0052007300740061007200570069006E0064006F007700730041006C00640065007200610061006E00" />
+				<Variable Name="EnvironmentVal" Type="String" Local="False">
+					<DefValue StrValue="INRstarWindowsAlderaan" />
 				</Variable>
 			</Items>
 		</data>
 	</variables>
 	<settings key="{5F7B2CD5-3048-4A58-B14C-6E60A48FE68C}">
-		<settingsVersion value="14.30" />
+		<settingsVersion value="14.50" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
