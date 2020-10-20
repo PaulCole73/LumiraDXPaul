@@ -1746,13 +1746,11 @@ function tc_inr_test_results_received_from_instrument_match_to_patient()
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
-    //Add Treatment plan & goto New INR
+    //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared','');
-    Goto_Patient_New_INR();
     
     //Get external result that matches timestamp
     var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
@@ -1764,7 +1762,7 @@ function tc_inr_test_results_received_from_instrument_match_to_patient()
     var result_set_1 = compare_values(body_data.resultValue, actual_results.inr, "Checking INR values on table Matches incoming results");
     result_set.push(result_set_1);
     
-     //Check time value in table matches that of sent
+    //Check time value in table matches that of sent
     var result_set_1 = compare_values(inr_test_timestamp.inr_patient_results, actual_results.test_timestamp, "Checking Blood Taken Times on table Matches incoming results"); 
     result_set.push(result_set_1);
     
@@ -1801,31 +1799,22 @@ function tc_inr_test_results_received_from_instrument_most_recent_result_appears
     var inr_test_timestamp2 = get_timestamps_for_now_object_with_changed_hours('-', 2);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
     var body_data2 = json_body_data_instrument(patient, location_id, "2.3", inr_test_timestamp2.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
-    post_external_result_instrument(token, JSON.stringify(body_data2)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data2)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
     
-    //Goto New INR page - Check the patient result table is present - return true/false
-    Goto_Patient_New_INR();
-    var table_exists = Check_if_patients_external_results_table_exists();
-    
-    //Get external result info from second entry of table
-    var actual_results = get_external_results_inr_results_received_by_row(2, table_exists);
+    //Get row value of latest posted entry
+    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp2.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
     
-    //Check INR value in table matches that of sent
-    var result_set_1 = compare_values(body_data2.resultValue, actual_results.inr, "Checking INR values on bottom table entry matches latest incoming result");
-    result_set.push(result_set_1);
-    
-     //Check time value in table matches that of sent
-    var result_set_1 = compare_values(inr_test_timestamp2.inr_patient_results, actual_results.test_timestamp, "Checking Blood Taken Times on bottom table entry Matches latest incoming result"); 
+    //Check latest of posted entries appears at bottom of list
+    var result_set_1 = compare_values(2, actual_results.row, "Checking row value of most recently posted result reflects bottom of table containing 2 rows");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -1856,16 +1845,15 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_do_not_
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 96);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
     
     //Goto New INR page - Check the patient result table is present - return true/false
     Goto_Patient_New_INR();
-    var table_exists = Check_if_patients_external_results_table_exists();
+    var table_exists = Check_if_patients_inr_results_table_exists();
     
     //Prepare result array
     var result_set = new Array();
@@ -1902,22 +1890,20 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_can_dos
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
     
-    //Goto New INR page - Check the patient result table is present - return true/false
-    Goto_Patient_New_INR();
-    var table_exists = Check_if_patients_external_results_table_exists();
+    //Obtain external result info from table
+    var external_result = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Use Result button
-    select_use_external_result_button_from_row(1, table_exists);
+    select_use_external_result_button_from_row(external_result.row);
     
     //Dose the patient
-    var dose_data = add_manual_treatment_after_using_result("1.2", "7");
+    var dose_data = continue_adding_manual_treatment_after_using_result("1.2", "7");
     
     //Prepare result array
     var result_set = new Array();
@@ -1991,13 +1977,11 @@ function tc_inr_test_results_received_archive_button_archiving_last_result_remov
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
-    //Add Treatment plan & goto New INR
+    //Add Treatment plan 
     add_treatment_plan('W','Manual','','Shared','');
-    Goto_Patient_New_INR();
     
     //Get external result that matches timestamp
     var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
@@ -2006,7 +1990,7 @@ function tc_inr_test_results_received_archive_button_archiving_last_result_remov
     archive_treatment(actual_results.row, "Discard");
    
     //Check if table exists - goto will return true or false pending if present
-    table_exists = Check_if_patients_external_results_table_exists();
+    var table_exists = Check_if_patients_inr_results_table_exists();
     
     //Prepare result array
     var result_set = new Array();
@@ -2016,7 +2000,7 @@ function tc_inr_test_results_received_archive_button_archiving_last_result_remov
     result_set.push(result_set_1);
     
     //Check the top audit information section includes rejection
-    var result_set_1 = validate_patient_audit_information_contains(1, test_title, "User Rejected");
+    var result_set_1 = validate_more_info_top_patient_audit("User Rejected");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -2046,63 +2030,49 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
-    var token = get_bearer_token_for_instrument();
-    
     var expected_older_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 3);
     var body_data_older = json_body_data_instrument(patient, location_id, "2.2", expected_older_blood_taken_time.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data_older)); 
+    post_external_result_instrument(JSON.stringify(body_data_older)); 
     
     //Post in most recent external results
     var expected_newer_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 2);
     var body_data_newer = json_body_data_instrument(patient, location_id, "2.5", expected_newer_blood_taken_time.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data_newer)); 
+    post_external_result_instrument(JSON.stringify(body_data_newer)); 
     
-    //Add Treatment plan 
-    add_treatment_plan('W','Manual','','Shared',''); 
-
-    //Goto New INR page - Check the patient result table is present - return true/false
-    Goto_Patient_New_INR();
-    var table_exists = Check_if_patients_external_results_table_exists();
+    //Add Treatment plan
+    add_treatment_plan('W','Manual','','Shared','');
+    
+    //Get external result that matches timestamp of older posted result
+    var actual_results = get_inr_results_received_with_timestamp(expected_older_blood_taken_time.inr_patient_results);
       
-    //Select Archive result and discard for oldest result which sits atop the table
-    var comments = archive_treatment(1, "Message", table_exists);
+    //Select Archive result and discard for oldest result
+    archive_treatment(actual_results.row, "Discard");
     
-    //Get results from remaining entry atop of table (newer)
-    var actual_result = get_external_results_inr_results_received_by_row(1, table_exists);
+    //Get remaining result - newer
+    var remaining_results = read_inr_results_received_from_table_with_timestamp(expected_newer_blood_taken_time.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
     
-    //Checking that the older of the two results entries now sits atop the table.
-    var result_set_1 = compare_values(expected_newer_blood_taken_time.inr_patient_results, actual_result.test_timestamp, "Checking: The older of the two results entries now sits atop the table."); 
+    //Checking that there is only 2 rows left in the table (1 being the header row).
+    var result_set_1 = compare_values(2, remaining_results.row_count, "Checking: That there is only 2 rows left in the table (1 being the header row)"); 
     result_set.push(result_set_1);
     
-    //The INR value from the older of the two results entries now sits atop the table.
-    var result_set_1 = compare_values(body_data_newer.resultValue, actual_result.inr, "Checking: The INR value from the older of the two results entries now sits atop the table.");
+    //Checking that the remaining entry in the table reflects the newer of the posted results.
+    var result_set_1 = compare_values(expected_newer_blood_taken_time.inr_patient_results, remaining_results.test_timestamp, "Checking: The newer of the two results entries now sits atop the table."); 
     result_set.push(result_set_1);
     
-    //Select Archive result & discard remianing (newer) result which now sits atop the table
-    archive_treatment(1, "Discard", table_exists);
-   
-    //Check if table exists - goto will return true or false pending if present
-    table_exists = Check_if_patients_external_results_table_exists();
+    //Select Archive, Comment & discard result for remaining result - recording comments as we do so
+    var comments = archive_treatment(remaining_results.row, "Message");
     
-    //Check that the table vanished after last result archived
-    var result_set_1 = compare_values(false, table_exists, "Checking that table does not exist");
-    result_set.push(result_set_1);
-    
-    //Check the top audit information section includes rejection
-    var result_set_1 = validate_patient_audit_information_contains(1, test_title, "User Rejected");
-    result_set.push(result_set_1);
-    
-    //Check the second audit entry information section includes the comments
-    var result_set_1 = validate_patient_audit_information_contains(2, test_title, comments);
+    //Check the audit information section includes the comments
+    var result_set_1 = validate_more_info_top_patient_audit(comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title); 
-    Log_Off(); 
+    Log_Off();  
   }
   catch(e)
   {
@@ -2126,56 +2096,43 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
-    var token = get_bearer_token_for_instrument();
     var expected_older_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 3);
     var body_data_older = json_body_data_instrument(patient, location_id, "2.2", expected_older_blood_taken_time.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data_older)); 
+    post_external_result_instrument(JSON.stringify(body_data_older)); 
     
-    //Post in most recent external results
+    //Post in newer external results
     var expected_newer_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', 2);
     var body_data_newer = json_body_data_instrument(patient, location_id, "2.5", expected_newer_blood_taken_time.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data_newer)); 
+    post_external_result_instrument(JSON.stringify(body_data_newer)); 
     
-    //Add Treatment plan & goto New INR
+    //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared','');
-    Goto_Patient_New_INR();
     
-    //Get external result that matches timestamp of most recent posted result
+    //Get external result that matches timestamp of newer posted result
     var actual_results = get_inr_results_received_with_timestamp(expected_newer_blood_taken_time.inr_patient_results);
     
-    //Select Archive, Comment & discard result for most recent result - recording comments as we do so
-    var comments = archive_treatment(actual_results.row, "Message");
+    //Select Archive & discard result for newer result
+    archive_treatment(actual_results.row, "Discard");
     
     //Now that table has refreshed get the results for the oldest result
-    var remaining_results = get_inr_results_received_with_timestamp(expected_older_blood_taken_time.inr_patient_results);
+    var remaining_results = read_inr_results_received_from_table_with_timestamp(expected_older_blood_taken_time.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
     
-    //Check the top audit information section includes rejection
-    var result_set_1 = compare_values(body_data_older.resultValue, remaining_results.inr, "Checking INR value in remaining test result entry reflects the oldest result");
+    //Checking that there is only 2 rows left in the table (1 being the header row).
+    var result_set_1 = compare_values(2, remaining_results.row_count, "Checking: That there is only 2 rows left in the table (1 being the header row)"); 
     result_set.push(result_set_1);
     
-    //Check time value in remaining test result matches that of the oldest result
-    var result_set_1 = compare_values(expected_older_blood_taken_time.inr_patient_results, remaining_results.test_timestamp, "Checking timestamp value in remaining test result entry reflects the oldest result"); 
+    //Checking that the remaining entry in the table reflects the older of the posted results.
+    var result_set_1 = compare_values(expected_older_blood_taken_time.inr_patient_results, remaining_results.test_timestamp, "Checking: The older of the two results entries now sits atop the table."); 
     result_set.push(result_set_1);
     
-    //Select Archive & discard result for remianing (most recent) result
-    archive_treatment(remaining_results.row, "Discard");
-   
-    //Check if table exists - will return true or false pending if present
-    var table_exists = Check_if_patients_external_results_table_exists();
+    //Select Archive, Comment & discard result for remaining result - recording comments as we do so
+    var comments = archive_treatment(remaining_results.row, "Message");
     
-    //Check that the table vanished after last result archived
-    var result_set_1 = compare_values(false, table_exists, "Checking that table does not exist");
-    result_set.push(result_set_1);
-    
-    //Check the top row of audit information section includes the User Rejected text
-    var result_set_1 = validate_patient_audit_information_contains(1, test_title, "User Rejected");
-    result_set.push(result_set_1);
-    
-    //Check the second row of audit information section includes the comments
-    var result_set_1 = validate_patient_audit_information_contains(2, test_title, comments);
+    //Check the audit information section includes the comments
+    var result_set_1 = validate_more_info_top_patient_audit(comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -2206,13 +2163,11 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_ca
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
-    //Add Treatment plan & goto New INR
+    //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared','');
-    Goto_Patient_New_INR();
     
     //Get external result that matches timestamp
     var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
@@ -2221,17 +2176,13 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_ca
     archive_treatment(actual_results.row, "Cancel");
     
     //Extract data from external results
-    var remaining_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var remaining_results = read_inr_results_received_from_table_with_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
     
-     //Check INR value in table matches that of sent
-    var result_set_1 = compare_values(body_data.resultValue, remaining_results.inr, "Checking INR values on table Matches incoming results");
-    result_set.push(result_set_1);
-    
      //Check time value in table matches that of sent
-    var result_set_1 = compare_values(inr_test_timestamp.inr_patient_results, remaining_results.test_timestamp, "Checking Blood Taken Times on table Matches incoming results"); 
+    var result_set_1 = compare_values(inr_test_timestamp.inr_patient_results, remaining_results.test_timestamp, "Checking Blood Taken Times on table Matches incoming result"); 
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -2262,13 +2213,11 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_co
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
-    //Add Treatment plan & goto New INR
+    //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared','');
-    Goto_Patient_New_INR();
     
     //Get external result that matches timestamp
     var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
@@ -2276,18 +2225,11 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_co
     //Select Archive result and add comments as it is discarded - record comments
     var comments = archive_treatment(actual_results.row, "Message");
     
-    //Check the patient result table is present
-    var table_exists = Check_if_patients_external_results_table_exists();
-    
     //Prepare result array
     var result_set = new Array();
-    
-    //Check that the table vanished after last result archived
-    var result_set_1 = compare_values(false, table_exists, "Checking that table does not exist");
-    result_set.push(result_set_1);
         
     //Check the top audit information section includes the comments
-    var result_set_1 = validate_patient_audit_information_contains(1, test_title, comments);
+    var result_set_1 = validate_more_info_top_patient_audit(comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -2318,13 +2260,11 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_remov
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
-    //Add Treatment plan & goto New INR
+    //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared','');
-    Goto_Patient_New_INR();
     
     //Get external result that matches timestamp
     var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
@@ -2333,7 +2273,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_remov
     var comments = archive_treatment(actual_results.row, "Message");
     
     //Check the patient result table is present
-    var table_exists = Check_if_patients_external_results_table_exists();
+    var table_exists = Check_if_patients_inr_results_table_exists();
     
     //Prepare result array
     var result_set = new Array();
@@ -2343,7 +2283,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_remov
     result_set.push(result_set_1);
         
     //Check the top audit information section includes the comments
-    var result_set_1 = validate_patient_audit_information_contains(1, test_title, comments);
+    var result_set_1 = validate_more_info_top_patient_audit(comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -2374,45 +2314,26 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     
     //Post in external results
-    var token = get_bearer_token_for_instrument();
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
     
-    //Goto New INR page - Check the patient result table is present - return true/false
-    Goto_Patient_New_INR();
-    var table_exists = Check_if_patients_external_results_table_exists();
+    //Get external result that matches timestamp
+    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
     
-    //Select Archive result and add comments - record comments
-    var comments = archive_treatment(1, "Message", table_exists);
+    //Select Archive result and add comments as it is discarded 
+    var comments = archive_treatment(actual_results.row, "Message");
     
     //Prepare result array
     var result_set = new Array();
     
-    //Check the top audit information section includes the comments
-    var result_set_1 = validate_patient_audit_information_contains(1, test_title, comments);
-    result_set.push(result_set_1);
-    
-    //Navigate to External Results & check it exists
-    Goto_External_Results()
-    var table_exists = Check_if_external_results_table_exists();
-    
-    //Filter table and get info of latest entry
-    filter_external_results_to_show_archived(table_exists);
-    var archived_results = get_external_results_from_specific_row_of_archived_table(1, table_exists)
+    //Navigate to External Results & get latest archived
+    var archived_results = get_external_results_received_with_timestamp(inr_test_timestamp.external_results, "Archived")
     
     //Check archived results being shown is true - inr
     var result_set_1 = compare_values(archived_results.inr, body_data.resultValue, "Checking that archived INR result is obtainable");
-    result_set.push(result_set_1);
-    
-    //Check archived results being shown is true - timestamp
-    var result_set_1 = compare_values(archived_results.blood_taken_timestamp, inr_test_timestamp.external_results, "Checking that archived results blood taken timestamp is obtainable");
-    result_set.push(result_set_1);
-    
-    //Check archived results being shown is true - label
-    var result_set_1 = compare_values(archived_results.label, "Archived Result", "Checking that archived results are labelled appropriately");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result
@@ -2443,47 +2364,31 @@ function tc_inr_test_results_received_from_instrument_archiving_results_from_ext
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     var inr_test_timestamp2 = get_timestamps_for_now_object_with_changed_hours('-', 2);
     
-    //Post in two lots of external results - that way when we archive one = table still remains
-    var token = get_bearer_token_for_instrument();
-    
+    //Post in two lots of external results - that way when we archive one = table still remains    
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data)); 
+    post_external_result_instrument(JSON.stringify(body_data)); 
     
     var body_data2 = json_body_data_instrument(patient, location_id, "2.7", inr_test_timestamp2.csp_payload); 
-    post_external_result_instrument(token, JSON.stringify(body_data2)); 
-    
-    //Navigate to External Results & check it exists
-    Goto_External_Results()
-    var table_exists = Check_if_external_results_table_exists();
+    post_external_result_instrument(JSON.stringify(body_data2)); 
     
     //Get latest result_data from table
-    var external_result1 = get_external_results_test_results_tab_by_row(1, table_exists)
+    var external_result = get_external_results_received_with_timestamp(inr_test_timestamp.external_results)
             
     //Prepare result array
     var result_set = new Array();
     
-    //Check latest result data reflects the more recent of the posted results
-    var result_set_1 = compare_values(external_result1.blood_taken_timestamp, inr_test_timestamp2.external_results, "Checking the content of the latest entry in external results reflects the last posted result");
+    //Check latest result data reflects a posted results
+    var result_set_1 = compare_values(external_result.inr, body_data.resultValue, "Checking an expected entry in external results is present");
     result_set.push(result_set_1);
        
     //Select Archive result and discard with message - store message as comments 
-    var comments = archive_test_result(1, "Message", table_exists)
-    
-    //Re-Check if table exists - it should do since we posted in two results
-    var table_exists = Check_if_external_results_table_exists();
-    
-    //Get latest result_data from table
-    var external_result2 = get_external_results_test_results_tab_by_row(1, table_exists)
-    
-    //Check latest result data reflects the other posted result
-    var result_set_1 = compare_values(external_result2.blood_taken_timestamp, inr_test_timestamp.external_results, "Checking the content of the latest entry in external results reflects the remaining posted result");
-    result_set.push(result_set_1);
+    var comments = archive_test_result(external_result.row, "Message")
     
     //Search for patient
     patient_search(patient.fullname);
     
     //Check the top audit information section includes the comments
-    var result_set_1 = validate_patient_audit_information_contains(1, test_title, comments);
+    var result_set_1 = validate_more_info_top_patient_audit(comments);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result

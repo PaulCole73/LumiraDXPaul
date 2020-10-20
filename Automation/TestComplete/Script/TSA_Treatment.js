@@ -879,8 +879,11 @@ function get_bearer_token_for_instrument()
 
 //--------------------------------------------------------------------------------
 
-function post_external_result_instrument(token, body_payload)
+function post_external_result_instrument(body_payload)
 {
+  //Get Token
+  var token = get_bearer_token_for_instrument();
+  
   //Obtain URL
   var address = get_csp_url_from_the_inrstar_url() + "/externalresults/observation";
   
@@ -895,9 +898,9 @@ function post_external_result_instrument(token, body_payload)
   api_post(address, headers, body_payload)
 }
 //--------------------------------------------------------------------------------
-function select_use_external_result_button_from_row(row, table_exists)
+function select_use_external_result_button_from_row(row)
 { 
-  if (table_exists == true) 
+  if (row != false)  
   {
       //Click the Use-result button on the specified row
       use_result_button_path_for_specific_row_of_patient_results(row).Click()
@@ -905,7 +908,7 @@ function select_use_external_result_button_from_row(row, table_exists)
   else 
   {
       //Warn that table doesn't exist
-      Log.Message("Failure Table does not exist - so unable to check for external results");
+      Log.Message("Failure Table does not exist - so unable to select use result");
   }
 } 
 //--------------------------------------------------------------------------------
@@ -942,9 +945,9 @@ function archive_treatment(row, action)
   }
 } 
 //--------------------------------------------------------------------------------
-function archive_test_result(row, action, table_exists)
+function archive_test_result(row, action)
 {
-  if (table_exists == true) 
+  if (row != false)  
   {
       //Click the archive button on the specified row
       archive_button_path_for_specific_row_of_external_results(row).Click()
@@ -975,7 +978,7 @@ function archive_test_result(row, action, table_exists)
   }
 } 
 //--------------------------------------------------------------------------------
-function add_manual_treatment_after_using_result(dose, review)
+function continue_adding_manual_treatment_after_using_result(dose, review)
 {
   //Select Dose from dose dropdown
   dose_dropdown_path_on_new_inr().ClickItem(get_string_translation(dose));
@@ -1001,7 +1004,7 @@ function add_manual_treatment_after_using_result(dose, review)
 }
 //--------------------------------------------------------------------------------
 // Use when you expect the table - and want to be informed if not present
-function Check_if_patients_external_results_table_exists() 
+function Check_if_patients_inr_results_table_exists() 
 {
   //Check if the link for the table is present
   var is_table_present = check_patient_results_table_header_showing_by_idStr_object("PatientExternalResultsTableWrapper", 14); 
@@ -1048,24 +1051,39 @@ function provide_archive_reason_after_archiving_result()
   return comment
 }
 //--------------------------------------------------------------------------------
-function filter_external_results_to_show_archived(table_exists)
-{  
+function read_inr_results_received_from_table_with_timestamp(timestamp)
+{
+  //Check table exists before proceeding
+  var table_exists = Check_if_patients_inr_results_table_exists(); 
+   
   if (table_exists == true) 
   {
-      //Toggle the show archived checkbox
-      show_archived_results_checkbox().ClickChecked(true);
+    //Get the path of the patient external results table
+    var table = inr_results_received_table(); 
+      
+      //Loop through each row of table
+      for (i=0; i<table.RowCount; i++)
+      {
+        //Check whether timestamp exists
+        if (table.Cell(i, 1).contentText == timestamp)
+        {
+           var results = {
+            "test_timestamp"         : table.Cell(i, 1).contentText,
+            "source"                 : table.Cell(i, 2).contentText,
+            "inr"                    : table.Cell(i, 3).contentText,
+            "row"                    : i,
+            "row_count"              : table.RowCount
+            } 
+           return results
+        }
+      }
+      Log.Message("Table row containing timestamp does not exist");
+  }
   
-      //Press the filter button
-      external_results_filter_button().Click()
-  }
-  else 
-  {
-      //Warn that table doesn't exist
-      Log.Message("Failure Table does not exist - so unable to filter");
-  }
+  // If data is unobtainable we can prevent further checks - checking row is not false 
+  var results = {"row" : false, "row_count" : 0}
+  return results;
 }
-
-
 
 
 

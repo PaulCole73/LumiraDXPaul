@@ -218,11 +218,13 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
 //--------------------------------------------------------------------------------
 function get_inr_results_received_with_timestamp(timestamp)
 {
+  Goto_Patient_New_INR();
+  
   //Check table exists before proceeding
-  var table_exists = Check_if_patients_external_results_table_exists(); 
+  var table_exists = Check_if_patients_inr_results_table_exists(); 
    
   if (table_exists == true) 
-  {
+  {    
     //Get the path of the patient external results table
     var table = inr_results_received_table(); 
       
@@ -236,126 +238,62 @@ function get_inr_results_received_with_timestamp(timestamp)
             "test_timestamp"         : table.Cell(i, 1).contentText,
             "source"                 : table.Cell(i, 2).contentText,
             "inr"                    : table.Cell(i, 3).contentText,
-            "row"                    : i
+            "row"                    : i,
+            "row_count"              : table.RowCount
             } 
            return results
         }
       }
       Log.Message("Table row containing timestamp does not exist");
   }
-  var results = { "row" : false }
+  // If data is unobtainable we can prevent further checks - checking row is not false 
+  var results = {"row" : false, "row_count" : 0}
   return results;
 }
 //--------------------------------------------------------------------------------
-function get_external_results_inr_results_received_by_row(row, table_exists) 
+function get_external_results_received_with_timestamp(timestamp, archived)
 {
-  //If external result table exists grab values from it
-  if (table_exists == true) 
-  {
-    //Get the path of the external results table
-    var table = inr_results_received_table(); 
-    
-    //Check the specified row exists?
-      if (parseInt(row) < table.RowCount)
-      {
-        //if so grab results
-        var results = {
-          "test_timestamp"  : table.Cell(row, 1).contentText,
-          "source"          : table.Cell(row, 2).contentText,
-          "inr"             : table.Cell(row, 3).contentText}
-      }
-      else
-      {
-        //warn that specified row does not exist
-        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
-      }
-  }
-
-  else 
-  //Otherwise if the table cannot be seen this is a fail - we are expecting it
-  {
-    Log.Message("Failure Table does not exist - so unable to check for external results");
-    
-    //Store time and inr values that will fail comparison - store into an object
-    var results = { "test_timestamp"  :"No Ext Result Present",
-                    "source":"No Ext Result Present",
-                    "inr"   :"No Ext Result Present",}
-  }
+  Goto_External_Results();
   
-  return results;
-}
-//--------------------------------------------------------------------------------
-function get_external_results_test_results_tab_by_row(row, table_exists) 
-{
-  //If external result table exists grab values from it
+  //Check table exists before proceeding
+  var table_exists = Check_if_external_results_table_exists();
+   
   if (table_exists == true) 
   {
-    //Get the path of the external results table
-    var table = patient_external_results_table(); 
+    if (archived == "Archived" || archived == "Archived")
+    {
+      //Toggle the show archived checkbox
+      show_archived_results_checkbox().ClickChecked(true);
+  
+      //Press the filter button
+      external_results_filter_button().Click()
       
-    //Check the specified row exists?
-      if (parseInt(row) < table.RowCount)
-      {
-        //if so grab results
-        var results = {
-          "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
-          "inr"                    : table.Cell(row, 3).contentText}
-      }
-      else
-      {
-        //warn that specified row does not exist
-        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
-      }
-  }
-
-  else 
-  //Otherwise if the table cannot be seen this is a fail - we are expecting it
-  {
-    Log.Message("Failure Table does not exist - so unable to check for external results");
-    
-    //Store time and inr values that will fail comparison - store into an object
-    var results = { "blood_taken_timestamp"   :"No Ext Result Present",
-                    "inr"                     :"No Ext Result Present"}
-  }
-  
-  return results;
-}
-//--------------------------------------------------------------------------------
-function get_external_results_test_results_tab_archived_results(row, table_exists) //need to identify by unique date time stamp
-{
-  //If external result table exists grab values from it
-  if (table_exists == true) 
-  {
-    //Get the path of the external results table
-    var table = patient_external_results_archived_table(); 
+      //Get the path of the patient external results archived table
+      var table = patient_external_results_archived_table(); 
+    }
+    else
+    {    
+      //Get the path of the patient external results table
+      var table = patient_external_results_table();
+    }
       
-    //Check the specified row exists?
-      if (parseInt(row) < table.RowCount)
+    //Loop through each row of table
+    for (row=0; row<table.RowCount; row++)
+    {
+      //Check whether timestamp exists
+      if (table.Cell(row, 2).contentText == timestamp)
       {
-        //if so grab results
-        var results = {
-          "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
-          "inr"                    : table.Cell(row, 3).contentText,
-          "label"                  : table.Cell(row, 4).Panel(0).Panel("DisplayArchivedResult").Button("linkButton").value}
+         var results = {
+        "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
+        "inr"                    : table.Cell(row, 3).contentText,
+        "row"                    : row}
+         return results
       }
-      else
-      {
-        //warn that specified row does not exist
-        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
-      }
+    }
+    Log.Message("Table row containing timestamp does not exist");
   }
-
-  else 
-  //Otherwise if the table cannot be seen this is a fail - we are expecting it
-  {
-    Log.Message("Failure Table does not exist - so unable to check for external results");
-    
-    //Store time and inr values that will fail comparison - store into an object
-    var results = { "blood_taken_timestamp"   :"No Ext Result Present",
-                    "inr"                     :"No Ext Result Present",
-                    "label"                   :"No Ext Result Present"}
-  }
-  
+  // If data is unobtainable we can prevent further checks - checking row is not false 
+  var results = {"row" : false}
   return results;
 }
 //--------------------------------------------------------------------------------

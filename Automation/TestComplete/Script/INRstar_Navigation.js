@@ -744,29 +744,6 @@ function Goto_Patient_Treatment()
   WaitSeconds(1, "Waiting for Treatments...");
 }
 //-------------------------------------------------------------------------------
-//Navigate to Patient Result table
-function Goto_Patient_Results_Table_Via_New_INR()
-{
-   //Goto New INR
-  Goto_Patient_New_INR();
-  
-  //Check if the link is present
-  var link_present = check_patient_results_table_header_showing_by_idStr_object(); 
-  
-  //Return true or false pending if link (and therfore table) is present
-  return link_present
-}
-//-------------------------------------------------------------------------------
-//Navigate to Patient Result from within NEW INR form
-function Goto_Patient_Results_Table_from_within_new_INR()
-{  
-  //Check if the link is present
-  var link_present = check_patient_results_table_header_showing_by_idStr_object(); 
-  
-  //Return true or false pending if link (and therfore table) is present
-  return link_present
-}
-//-------------------------------------------------------------------------------
 // Navigate to Patient / Treatment Plan / INR Treatments / Add Historical Treatment
 function Goto_Add_Historical()
 {
@@ -782,8 +759,6 @@ function Goto_Add_Treatment_Comment()
   var comments_link = treatment_comment();
   comments_link.Cell(0, 9).Link(0).click();
 }
-
-
 //===============================================================================
 //===============================================================================
 // Reviews Navigation

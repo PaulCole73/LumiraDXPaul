@@ -374,34 +374,6 @@ function validate_top_patient_audit(test_case_title, audit_action)
   }
 }
 //-----------------------------------------------------------------------------------
-//Checking top audit on the patient tab
-function validate_patient_audit_information_contains(row, test_case_title, audit_action)
-{  
-  Goto_Patient_Audit();
-  var patient_audit_path = patient_audit()
-  var audit_data = patient_audit_path.Cell(row, 3).innerText;
-  
-  if(audit_data == null || audit_action == null)
-  {
-    Log.Message("Fail - Data not found / Parameter value missing.");
-    Log.Message("Actual Audit: " + audit_data + "-------------- Expected Audit: " + audit_action);
-    return false;
-  } 
-
-  if(audit_data.includes(audit_action))
-  {
-    Log.Message(test_case_title + " Test Passed - Patient audit record was found " + " This is the actual audit // " 
-                                + audit_data + " // It successfully contained the following // " + audit_action + " //");
-    return true;
-  }
-  else 
-  {
-    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + " This is the actual audit // " 
-                                + audit_data + " // This is the expected audit // " + audit_action + " //");
-    return false;
-  }
-}
-//-----------------------------------------------------------------------------------
 //Checking bottom audit on the patient tab
 function validate_bottom_patient_audit(test_case_title, w_data)
 {  
