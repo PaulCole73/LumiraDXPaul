@@ -1064,7 +1064,7 @@ function provide_archive_reason_after_archiving_result()
   return comment
 }
 //--------------------------------------------------------------------------------
-function read_inr_results_received_from_table_with_timestamp(timestamp)
+function read_inr_results_received_from_table_by_timestamp(timestamp)
 {
   //Check table exists before proceeding
   var table_exists = Check_if_patients_inr_results_table_exists(); 

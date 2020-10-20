@@ -1753,7 +1753,7 @@ function tc_inr_test_results_received_from_instrument_match_to_patient()
     add_treatment_plan('W','Manual','','Shared','');
     
     //Get external result that matches timestamp
-    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
@@ -1808,7 +1808,7 @@ function tc_inr_test_results_received_from_instrument_most_recent_result_appears
     add_treatment_plan('W','Manual','','Shared',''); 
     
     //Get row value of latest posted entry
-    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp2.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp2.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
@@ -1897,7 +1897,7 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_can_dos
     add_treatment_plan('W','Manual','','Shared',''); 
     
     //Obtain external result info from table
-    var external_result = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var external_result = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Use Result button
     select_use_external_result_button_from_row(external_result.row);
@@ -1911,8 +1911,8 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_can_dos
     //Prepare result array
     var result_set = new Array();
     
-    //Grab values from INR treatments table get_historic_treatment_with_timestamp
-    actual_results = get_treatment_with_timestamp(inr_test_timestamp.historic_treatments);
+    //Grab values from INR treatments table get_historic_treatment_by_timestamp
+    actual_results = get_treatment_by_timestamp(inr_test_timestamp.historic_treatments);
     
     //Check values from INR treatments table - inr
     var result_set_1 = compare_values(body_data.resultValue, actual_results.inr, "Checking INR result on historic treatment table Matches incoming results");
@@ -1965,7 +1965,7 @@ function tc_inr_test_results_received_archive_button_archiving_last_result_remov
     add_treatment_plan('W','Manual','','Shared','');
     
     //Get external result that matches timestamp
-    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Archive result and discard 
     archive_treatment(actual_results.row, "Discard");
@@ -2024,13 +2024,13 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     add_treatment_plan('W','Manual','','Shared','');
     
     //Get external result that matches timestamp of older posted result
-    var actual_results = get_inr_results_received_with_timestamp(expected_older_blood_taken_time.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(expected_older_blood_taken_time.inr_patient_results);
       
     //Select Archive result and discard for oldest result
     archive_treatment(actual_results.row, "Discard");
     
     //Get remaining result - newer
-    var remaining_results = read_inr_results_received_from_table_with_timestamp(expected_newer_blood_taken_time.inr_patient_results);
+    var remaining_results = read_inr_results_received_from_table_by_timestamp(expected_newer_blood_taken_time.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
@@ -2090,13 +2090,13 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     add_treatment_plan('W','Manual','','Shared','');
     
     //Get external result that matches timestamp of newer posted result
-    var actual_results = get_inr_results_received_with_timestamp(expected_newer_blood_taken_time.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(expected_newer_blood_taken_time.inr_patient_results);
     
     //Select Archive & discard result for newer result
     archive_treatment(actual_results.row, "Discard");
     
     //Now that table has refreshed get the results for the oldest result
-    var remaining_results = read_inr_results_received_from_table_with_timestamp(expected_older_blood_taken_time.inr_patient_results);
+    var remaining_results = read_inr_results_received_from_table_by_timestamp(expected_older_blood_taken_time.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
@@ -2151,13 +2151,13 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_ca
     add_treatment_plan('W','Manual','','Shared','');
     
     //Get external result that matches timestamp
-    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Archive result and cancel 
     archive_treatment(actual_results.row, "Cancel");
     
     //Extract data from external results
-    var remaining_results = read_inr_results_received_from_table_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var remaining_results = read_inr_results_received_from_table_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
@@ -2201,7 +2201,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_co
     add_treatment_plan('W','Manual','','Shared','');
     
     //Get external result that matches timestamp
-    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Archive result and add comments as it is discarded - record comments
     var comments = archive_treatment(actual_results.row, "Message");
@@ -2248,7 +2248,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_remov
     add_treatment_plan('W','Manual','','Shared','');
     
     //Get external result that matches timestamp
-    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Archive result and add comments as it is discarded 
     var comments = archive_treatment(actual_results.row, "Message");
@@ -2302,7 +2302,7 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
     add_treatment_plan('W','Manual','','Shared',''); 
     
     //Get external result that matches timestamp
-    var actual_results = get_inr_results_received_with_timestamp(inr_test_timestamp.inr_patient_results);
+    var actual_results = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
     
     //Select Archive result and add comments as it is discarded 
     var comments = archive_treatment(actual_results.row, "Message");
@@ -2311,7 +2311,7 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
     var result_set = new Array();
     
     //Navigate to External Results & get latest archived
-    var archived_results = get_external_results_received_with_timestamp(inr_test_timestamp.external_results, "Archived")
+    var archived_results = get_external_results_received_by_timestamp(inr_test_timestamp.external_results, "Archived")
     
     //Check archived results being shown is true - inr
     var result_set_1 = compare_values(archived_results.inr, body_data.resultValue, "Checking that archived INR result is obtainable");
@@ -2353,7 +2353,7 @@ function tc_inr_test_results_received_from_instrument_archiving_results_from_ext
     post_external_result_instrument(JSON.stringify(body_data2)); 
     
     //Get latest result_data from table
-    var external_result = get_external_results_received_with_timestamp(inr_test_timestamp.external_results)
+    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results)
             
     //Prepare result array
     var result_set = new Array();

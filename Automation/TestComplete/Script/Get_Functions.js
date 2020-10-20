@@ -216,7 +216,7 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     return false;
 }
 //--------------------------------------------------------------------------------
-function get_inr_results_received_with_timestamp(timestamp)
+function get_inr_results_received_by_timestamp(timestamp)
 {
   Goto_Patient_New_INR();
   
@@ -251,7 +251,7 @@ function get_inr_results_received_with_timestamp(timestamp)
   return results;
 }
 //--------------------------------------------------------------------------------
-function get_external_results_received_with_timestamp(timestamp, archived)
+function get_external_results_received_by_timestamp(timestamp, archived)
 {
   Goto_External_Results();
   
@@ -297,7 +297,7 @@ function get_external_results_received_with_timestamp(timestamp, archived)
   return results;
 }
 //--------------------------------------------------------------------------------
-function get_treatment_with_timestamp(timestamp) 
+function get_treatment_by_timestamp(timestamp) 
 {
   //Goto Patient Treatments 
   Goto_Patient_Treatment()
