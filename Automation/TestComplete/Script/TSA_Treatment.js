@@ -433,14 +433,15 @@ function add_manual_treatment(date, inr, dose, review, tm)
   select_day(w_day, w_datepicker);
 
   test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
-  if(review != "1")
+  
+  var days = "Days";
+  if (review == "1") 
   {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Days"));
+    //Changes days string to day if review = 1
+    days = days.substring(0,4-1)
   }
-  else
-  {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
-  }
+  inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
+
   test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
    
@@ -981,8 +982,14 @@ function archive_test_result(row, action)
   }
 } 
 //--------------------------------------------------------------------------------
-function continue_adding_manual_treatment_after_using_result(dose, review)
+function add_manual_treatment_using_test_results(dose, review, timestamp)
 {
+  //Obtain external result info from table
+  var external_result = get_inr_results_received_by_timestamp(timestamp);
+    
+  //Select Use Result button
+  select_use_external_result_button_from_row(external_result.row);
+    
   var inr_test_info_path = treatment_inr_test_info_path();
   
   //Select Dose from dose dropdown
@@ -990,7 +997,10 @@ function continue_adding_manual_treatment_after_using_result(dose, review)
   
   //Select Review from review dropdown
   var days = "Days";
-  if (review == "1") {days = days.substring(0,4-1)}
+  if (review == "1") 
+  {
+    days = days.substring(0,4-1)
+  }
   inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
            
   //Select Save
@@ -1004,6 +1014,9 @@ function continue_adding_manual_treatment_after_using_result(dose, review)
   var dose_data = new Object();
   dose_data["dose"] = dose;
   dose_data["review"] = review;
+  
+  //Select Ok to confirm suggested treatment
+  save_inr_button().Click()
   
   return dose_data
 }

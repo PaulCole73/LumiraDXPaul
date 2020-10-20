@@ -1896,17 +1896,8 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_can_dos
     //Add Treatment plan
     add_treatment_plan('W','Manual','','Shared',''); 
     
-    //Obtain external result info from table
-    var external_result = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
-    
-    //Select Use Result button
-    select_use_external_result_button_from_row(external_result.row);
-    
     //Dose the patient
-    var dose_data = continue_adding_manual_treatment_after_using_result("1.2", "7");
-    
-    //Select Ok to confirm suggested treatment
-    save_inr_button().Click()
+    var dose_data = add_manual_treatment_using_test_results("1.2", "7", inr_test_timestamp.inr_patient_results);
     
     //Prepare result array
     var result_set = new Array();
