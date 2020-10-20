@@ -950,7 +950,8 @@ function archive_test_result(row, action)
   if (row != false)  
   {
       //Click the archive button on the specified row
-      archive_button_path_for_specific_row_of_external_results(row).Click()
+      var table = patient_external_results_table();
+      var button = table.Cell(row, 4).Panel(0).Panel("Div2").Button("ArchiveResult").Click()
         
       //Wait for popup before proceeding avoids timeouts down the line
       wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);

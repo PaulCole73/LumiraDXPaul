@@ -297,7 +297,7 @@ function get_external_results_received_with_timestamp(timestamp, archived)
   return results;
 }
 //--------------------------------------------------------------------------------
-function get_historic_treatment_with_timestamp(timestamp) 
+function get_treatment_with_timestamp(timestamp) 
 {
   //Goto Patient Treatments 
   Goto_Patient_Treatment()
@@ -318,7 +318,7 @@ function get_historic_treatment_with_timestamp(timestamp)
         if (table.Cell(i, 0).contentText == timestamp)
         {
           //if so grab results
-          var historic_treatment = {
+          var treatment = {
             "test_date"     : table.Cell(i, 0).contentText,
             "inr"           : table.Cell(i, 1).contentText,
             "dose"          : table.Cell(i, 2).contentText,
@@ -326,15 +326,15 @@ function get_historic_treatment_with_timestamp(timestamp)
             "omits"         : table.Cell(i, 4).contentText,
             "review_days"   : table.Cell(i, 5).contentText,
             "row"           : i}
-          return historic_treatment
+          return treatment
         }
       }
       //warn that specified row does not exist
       Log.Message("Row number: " + i + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
 
   }
-  var historic_treatment = {"row" : false}  
-  return historic_treatment;
+  var treatment = {"row" : false}  
+  return treatment;
 }
 //--------------------------------------------------------------------------------
 //gets the patients fullname
