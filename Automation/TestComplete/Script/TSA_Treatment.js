@@ -983,13 +983,15 @@ function archive_test_result(row, action)
 //--------------------------------------------------------------------------------
 function continue_adding_manual_treatment_after_using_result(dose, review)
 {
+  var inr_test_info_path = treatment_inr_test_info_path();
+  
   //Select Dose from dose dropdown
-  dose_dropdown_path_on_new_inr().ClickItem(get_string_translation(dose));
+  inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
   
   //Select Review from review dropdown
   var days = "Days";
   if (review == "1") {days = days.substring(0,4-1)}
-  review_dropdown_path_on_new_inr().ClickItem(review + " " + get_string_translation(days));
+  inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
            
   //Select Save
   treatment_buttons_pre_schedule().SubmitButton("SubmitManualDose").Click();

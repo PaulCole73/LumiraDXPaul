@@ -2484,22 +2484,7 @@ function loading_popup_path()
   var INRstarV5 = INRstar_base();
   var obj = INRstarV5.Panel(1).Panel("loading");
 }
-//------------------------------------------------------------------------
-function dose_dropdown_path_on_new_inr()
-{
-  var inr_test_info_path = treatment_inr_test_info_path();
-  var dropdown = inr_test_info_path.Panel(0).Select("Dose")
-  
-  return dropdown;
-} 
-//------------------------------------------------------------------------
-function review_dropdown_path_on_new_inr()
-{
-  var inr_test_info_path = treatment_inr_test_info_path();
-  var dropdown = inr_test_info_path.Panel(2).Select("Review")
-  
-  return dropdown;
-} 
+
 //------------------------------------------------------------------------
 
 
