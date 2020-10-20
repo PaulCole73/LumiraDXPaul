@@ -1023,6 +1023,16 @@ function Check_if_external_results_table_exists()
   return is_table_present
 }
 //--------------------------------------------------------------------------------
+// Use when you expect the table - and want to be informed if not present
+function Check_if_treatment_table_exists() 
+{
+  //Check if the link for the table is present
+  var is_table_present = check_patient_results_table_header_showing_by_idStr_object("PatientTreatmentHistoryTable", 13); 
+  
+  //Return true or false pending if link (and therfore table) is present
+  return is_table_present
+}
+//--------------------------------------------------------------------------------
 function check_patient_results_table_header_showing_by_idStr_object(string)
 {  
   // Get the INRstarV5 base

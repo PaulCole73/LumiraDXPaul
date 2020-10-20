@@ -297,93 +297,44 @@ function get_external_results_received_with_timestamp(timestamp, archived)
   return results;
 }
 //--------------------------------------------------------------------------------
-function get_historic_treatment_object_from_specific_row_of_table(row) 
+function get_historic_treatment_with_timestamp(timestamp) 
 {
   //Goto Patient Treatments 
   Goto_Patient_Treatment()
   
+  //Check table exists before proceeding
+  var table_exists = Check_if_treatment_table_exists();
+  
   //If treatment table exists grab values from it
-  if (treatment_table().Exists == true) 
+  if (table_exists == true)  
   {
     //Get the path of the treatments table
     var table = treatment_table(); 
     
-    //Decrement row value since 0 is first entry
-    row--;
-    
-    //Check the specified row exists?
-      if (parseInt(row) < table.RowCount)
+    //Loop through each row of table
+      for (i=0; i<table.RowCount; i++)
       {
-        //if so grab results
-        var historic_treatment = {
-          "test_date"     : table.Cell(0, 0).contentText,
-          "inr"           : table.Cell(0, 1).contentText,
-          "dose"          : table.Cell(0, 2).contentText,
-          "suggested_dose": table.Cell(0, 3).contentText,
-          "omits"         : table.Cell(0, 4).contentText,
-          "review_days"   : table.Cell(0, 5).contentText}
+        //Check whether timestamp exists
+        if (table.Cell(i, 0).contentText == timestamp)
+        {
+          //if so grab results
+          var historic_treatment = {
+            "test_date"     : table.Cell(i, 0).contentText,
+            "inr"           : table.Cell(i, 1).contentText,
+            "dose"          : table.Cell(i, 2).contentText,
+            "suggested_dose": table.Cell(i, 3).contentText,
+            "omits"         : table.Cell(i, 4).contentText,
+            "review_days"   : table.Cell(i, 5).contentText,
+            "row"           : i}
+          return historic_treatment
+        }
       }
-      else
-      {
-        //warn that specified row does not exist
-        Log.Message("Row number: " + row + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
-      }
-  }
+      //warn that specified row does not exist
+      Log.Message("Row number: " + i + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
 
-  else 
-  //Otherwise if the table cannot be seen this is a fail - we are expecting it
-  {
-    Log.Message("Failure Table does not exist - so unable to check for external results");
-    
-    //Store time and inr values that will fail comparison - store into an object
-    var historic_treatment = {
-          "test_date"     : "No Ext Result Present",
-          "inr"           : "No Ext Result Present",
-          "dose"          : "No Ext Result Present",
-          "suggested_dose": "No Ext Result Present",
-          "omits"         : "No Ext Result Present",
-          "review_days"   : "No Ext Result Present"}
   }
-  
+  var historic_treatment = {"row" : false}  
   return historic_treatment;
-}
-//--------------------------------------------------------------------------------
-function get_pending_treatment_data_as_object_from_table() 
-{
-  //Goto Patient Treatments 
-  Goto_Patient_Treatment()
-  
-  //If treatment table exists grab values from it
-  if (pending_treatment_table().Exists == true) 
-  {
-    //Get the path of the treatments table
-    var table = pending_treatment_table(); 
-     
-    var pending_details = {
-      "test_date"     : table.Cell(0, 0).contentText,
-      "inr"           : table.Cell(0, 1).contentText,
-      "dose"          : table.Cell(0, 2).contentText,
-      "suggested_dose": table.Cell(0, 3).contentText,
-      "omits"         : table.Cell(0, 4).contentText,
-      "review_days"   : table.Cell(0, 5).contentText}
-  }
-
-  else 
-  //Otherwise if the table cannot be seen this is a fail - we are expecting it
-  {
-    Log.Message("Failure suggested/pending table does not exist - so unable to check for details");
-    
-    //Store time and inr values that will fail comparison - store into an object
-    var pending_details = { 
-        "test_date"     : "No treatment table Present",
-        "inr"           : "No treatment table Present",
-        "dose"          : "No treatment table Present",
-        "suggested_dose": "No treatment table Present",
-        "omits"         : "No treatment table Present",
-        "review_days"   : "No treatment table Present"}
-  }
-  
-  return pending_details;
 }
 //--------------------------------------------------------------------------------
 //gets the patients fullname

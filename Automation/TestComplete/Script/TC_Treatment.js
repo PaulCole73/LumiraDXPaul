@@ -1905,33 +1905,14 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_can_dos
     //Dose the patient
     var dose_data = continue_adding_manual_treatment_after_using_result("1.2", "7");
     
-    //Prepare result array
-    var result_set = new Array();
-    
-    //Grab values from Suggested Treatment & Schedule table
-    var actual_results = get_pending_treatment_data_as_object_from_table();
-    
-    //Check values from Suggested Treatment & Schedule table - inr
-    var result_set_1 = compare_values(body_data.resultValue, actual_results.inr, "Checking INR result on historic treatment table Matches incoming results");
-    result_set.push(result_set_1);
-    
-    //Check values from Suggested Treatment & Schedule table - dose
-    var result_set_1 = compare_values(dose_data.dose, actual_results.dose, "Checking INR dose on historic treatment table Matches incoming results");
-    result_set.push(result_set_1);
-    
-    //Check values from Suggested Treatment & Schedule table - review_days
-    var result_set_1 = compare_values(dose_data.review, actual_results.review_days, "Checking INR review_days on historic treatment table Matches incoming results");
-    result_set.push(result_set_1);
-    
-    //Check values from Suggested Treatment & Schedule table - test_date
-    var result_set_1 = compare_values(inr_test_timestamp.historic_treatments, actual_results.test_date, "Checking INR test_date on historic treatment table Matches incoming results");
-    result_set.push(result_set_1);
-    
     //Select Ok to confirm suggested treatment
     save_inr_button().Click()
     
-    //Grab values from INR treatments table
-    actual_results = get_historic_treatment_object_from_specific_row_of_table(1);
+    //Prepare result array
+    var result_set = new Array();
+    
+    //Grab values from INR treatments table get_historic_treatment_with_timestamp
+    actual_results = get_historic_treatment_with_timestamp(inr_test_timestamp.historic_treatments);
     
     //Check values from INR treatments table - inr
     var result_set_1 = compare_values(body_data.resultValue, actual_results.inr, "Checking INR result on historic treatment table Matches incoming results");
