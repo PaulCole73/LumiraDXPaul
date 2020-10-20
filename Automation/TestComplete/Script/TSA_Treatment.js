@@ -977,7 +977,7 @@ function add_manual_treatment_using_test_results(dose, review, timestamp)
   {
       //Click the Use-result button on the specified row
       var table = inr_results_received_table();
-      var button = table.Cell(row, 4).Panel(0).Panel("UserAction1").Button("Use_Result").Click()
+      var button = table.Cell(external_result.row, 4).Panel(0).Panel("UserAction1").Button("Use_Result").Click()
     
       var inr_test_info_path = treatment_inr_test_info_path();
   

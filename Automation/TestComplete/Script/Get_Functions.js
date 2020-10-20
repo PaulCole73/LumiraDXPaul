@@ -216,10 +216,7 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     return false;
 }
 //--------------------------------------------------------------------------------
-function dothis()
-{
-  get_inr_results_received_by_timestamp("20-Oct-2020 11:17:50"); 
-}
+
 function get_inr_results_received_by_timestamp(timestamp)
 {
   Goto_Patient_New_INR();

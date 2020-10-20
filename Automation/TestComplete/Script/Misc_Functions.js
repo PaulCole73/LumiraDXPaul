@@ -11,7 +11,7 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "Italian";
+var language = "English";
 var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";

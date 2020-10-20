@@ -1903,7 +1903,7 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_can_dos
     var result_set = new Array();
     
     //Grab values from INR treatments table get_historic_treatment_by_timestamp
-    actual_results = get_treatment_by_timestamp(inr_test_timestamp.historic_treatments);
+    var actual_results = get_treatment_by_timestamp(inr_test_timestamp.historic_treatments);
     
     //Check values from INR treatments table - inr
     var result_set_1 = compare_values(body_data.resultValue, actual_results.inr, "Checking INR result on historic treatment table Matches incoming results");
