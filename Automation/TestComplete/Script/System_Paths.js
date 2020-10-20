@@ -1013,8 +1013,7 @@ function override_finish_buttons_path()
 //------------------------------------------------------------------------
 function inr_results_received_table()
 {
-  var INRstarV5 = INRstar_base();
-  var panelPPT = INRstarV5.patient_pending_treatment_path()
+  var panelPPT = patient_pending_treatment_path();
   var panelPTNIW = panelPPT.Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("ExternalResultsContent");
   
   var patient_external_results_table_path = panelPTNIW.Panel("PatientExternalResultsContainer").Panel("PatientExternalResultsTableWrapper").Panel(0);
