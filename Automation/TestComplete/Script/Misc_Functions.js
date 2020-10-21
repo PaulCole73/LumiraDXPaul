@@ -10,15 +10,21 @@
 //Add functions (in current style) if they are missing from here
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
-
 //Setup environment variable either from cmd line or default
-var environment = "INRstarWindowsStagingItalyV4";
-var environmentname = "italy-endor";
+var language = "English";
+var environment = "INRstarWindowsStaging";
+var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
-var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 
-var language = "Italian";
+if (language == "English")
+{
+  var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
+}
 
+else 
+{
+  var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
+}
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
@@ -193,6 +199,37 @@ function results_checker_are_false(result_set)
   return true;
 }   
 //-----------------------------------------------------------------------------------
+//This is to test that a patient exists in a specified column of a table
+function check_patient_exists_in_table_within_column(column,table,pat_name)
+{
+  for (var i = 0; i < table.rowcount; i++)
+  {
+    if(table.Cell(i, column).contentText == pat_name)
+    {
+      Log.Message("Patient " + pat_name + " was successfully found in table ")
+      return true;
+    }
+  } 
+  Log.Warning("Patient not found " + pat_name)
+  return false;
+}
+//-----------------------------------------------------------------------------------
+//This is to test that a patient does not exist in a specified column of a table
+function check_patient_does_not_exist_in_table_within_column(column,table,pat_name)
+{
+   for (var i = 0; i < table.rowcount; i++)
+    {
+      if(table.Cell(i, column).contentText == pat_name)
+      {    
+        Log.Warning("Patient " + pat_name + " was incorrectly found in table ")
+        return false;
+      }
+    }
+    Log.Message("Patient " + pat_name + " was successfully NOT found in table ")
+    return true;
+}
+//----------------------------------------------------------------------------------
+
 //This is to test the data given only contains false as an answer for a single result
 function results_checker_is_false(result_set)
 {
@@ -221,6 +258,7 @@ function results_checker_are_true(result_set)
 //This is to test the result set of a test case and return pass or fail
 function results_checker(result_set, test_case)
 {
+  Log.Message("This is the result set - " + result_set);
   if(result_set == true)
   {
     Log.Checkpoint(test_case);
@@ -235,13 +273,66 @@ function results_checker(result_set, test_case)
 //---------------------------------------------------------------------------------//
 //                            Audit Functions                                      //
 //---------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------
+function validate_top_patient_audit_with_patient_search(test_title, pat_name, expected_search_text)
+{
+    //Search for patient
+    patient_search(pat_name);
+    
+    //Acknowledge pop-up if it is shown
+    process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
+       
+    //Check for search_text within audit
+    return validate_top_patient_audit(test_title, get_string_translation(expected_search_text));
+}
+//--------------------------------------------------------------------------------
+function validate_top_suggested_treatment_audit_with_patient_search(pat_name, expected_search_text)
+{
+    //Search for patient
+    patient_search(pat_name);
+    
+    //Goto the audit for the patient
+    Goto_Suggested_Treatment_Audit();
+    
+    //Check for search_text within audit
+    return validate_top_treatment_audit(get_string_translation(expected_search_text));
+}
 //-----------------------------------------------------------------------------------
 //Checking top audit on the patient tab
-function validate_top_patient_audit(test_case_title, w_data)
+function validate_top_patient_audit(test_case_title, audit_action)
 {  
   Goto_Patient_Audit();
   var patient_audit_path = patient_audit()
   var audit_data = patient_audit_path.Cell(1, 1).innerText;
+  
+  if(audit_data == null || audit_action == null)
+  {
+    Log.Message("Fail - Data not found / Parameter value missing.");
+    Log.Message("Actual Audit: " + audit_data + "-------------- Expected Audit: " + audit_action);
+    return false;
+  } 
+
+  if(audit_data == audit_action)
+  {
+    Log.Message(test_case_title + " Test Passed - Patient audit record was found " + " This is the actual audit // " 
+                                + audit_data + " // This is the expected audit // " + audit_action + " //");
+    return true;
+  }
+  else 
+  {
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + " This is the actual audit // " 
+                                + audit_data + " // This is the expected audit // " + audit_action + " //");
+    return false;
+  }
+}
+//-----------------------------------------------------------------------------------
+//Checking bottom audit on the patient tab
+function validate_bottom_patient_audit(test_case_title, w_data)
+{  
+  Goto_Patient_Audit();
+  var patient_audit_path = patient_audit()
+  var first_row_entry = patient_audit_path.RowCount -1;
+  var audit_data = patient_audit_path.Cell(first_row_entry, 1).innerText;
 
   if(audit_data == w_data)
   {
@@ -294,19 +385,19 @@ function validate_more_info_specific_entry_patient_audit(item_no, data, title)
 }
 //-----------------------------------------------------------------------------------
 //Checking top audit on the system audit
-function validate_top_system_audit(test_case_title, w_data)
+function validate_top_system_audit(test_case_title, audit_action)
 {  
   Goto_System_Audit();
   var audit_data = system_audit().Cell(1, 1).innerText;
 
-  if (audit_data == w_data)
+  if (audit_data == audit_action)
   {
     Log.Message(test_case_title + " - Correct Top Audit");
     return true;
   }
   else 
   {
-    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + w_data);
+    Log.Message(test_case_title + " Test Failed - Patient audit record not found " + audit_data + " - " + audit_action);
     return false;
   }
 }
@@ -338,7 +429,7 @@ function validate_more_info_top_patient_audit(w_data)
 
   if(wt_row.includes(w_data))
   {
-    Log.Message('This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
+    Log.Message('Found the audit - This is the row data // ' + wt_row + " // - This is what I am looking for // " + w_data + ' //');
     return true;
   }
   else 
@@ -572,40 +663,40 @@ function set_italian_long_month(month)
 
  switch(month)
  {
-    case "Jan":
+    case "January":
     long_month = "gennaio";
     break;
-    case "Feb":
+    case "February":
     long_month = "febbraio";
     break;  
-    case "Mar":
+    case "March":
     long_month = "marzo";
     break;  
-    case "Apr":
+    case "April":
     long_month = "aprile";
     break;  
     case "May":
     long_month = "maggio";
     break;  
-    case "Jun":
+    case "June":
     long_month = "giugno";
     break;  
-    case "Jul":
+    case "July":
     long_month = "luglio";
     break;  
-    case "Aug":
+    case "August":
     long_month = "agosto";
     break;  
-    case "Sep":
+    case "September":
     long_month = "settembre";
     break;  
-    case "Oct":
+    case "October":
     long_month = "ottobre";
     break;  
-    case "Nov":
+    case "November":
     long_month = "novembre";
     break;
-    case "Dec":
+    case "December":
     long_month = "dicembre";
     break;    
     default:
@@ -698,15 +789,49 @@ function get_string_translation(translation_word)
 //Just to quickly test things in the translation file
 function testing_translation()
 {
-var test = get_string_translation("Please ensure that this patient has discontinued their warfarin treatment and has an INR" +
-     " less or equal to 3.0 (stroke prevention) or 2.5(DVT/PE) before commencing this treatment plan. Consult product literature for details");   
+var test = get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.");   
 
-// var test = "Account Enabled " + get_string_translation("changed from") + "[" + get_string_translation("True") + "]" 
-// + get_string_translation("to") + " [" + get_string_translation("False") + "]" + ".";
 
-//var test = escape(get_string_translation("For Warfarin patients please ensure that any recent INR results and Warfarin doses are entered as historical treatments."));
 Log.Message(test)
 }
+//-----------------------------------------------------------------------------------
+function get_english_translation(translation_word)
+{
+ var origin_language;
+ var row_value;
+ 
+ switch(language)
+ {
+   case "English":
+   origin_language = 0;
+   break;
+   case "Italian":
+   origin_language = 1;
+   break;
+   case "Spanish":
+   origin_language = 2;
+   break;
+   default:
+   Log.Message("You didn't pass in a language I recognise you passed in " + language);
+   break;
+ }
+ 
+ var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
+ 
+ while (!driver.EOF())
+ {
+   if (driver.Value(origin_language) == translation_word)
+   {
+     row_value = driver.Value(0);
+
+     DDT.CloseDriver(DDT.CurrentDriver.Name);
+     return row_value;     
+   }     
+   driver.Next();
+ }
+ Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
+}
+//-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//
@@ -898,7 +1023,6 @@ function WaitSeconds(seconds, p_text)
 //-----------------------------------------------------------------------------------
 function wait_for_object(obj_root, obj_property, obj_value, depth, wait_time, iterations)
 {
-  var INRstarV5 = INRstar_base();
   var counter = 0;
   
   if(wait_time == null || wait_time == "")
@@ -1132,6 +1256,105 @@ function setup_automation_from_parameter()
   change_environments(environment);
 }
 //-----------------------------------------------------------------------------------
+function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/may/2020
+{
+  var english_month = get_english_translation(date.slice(3,6)) // need to get english month of foreign
+  var new_english_date = date.slice(0,2) + '/' + english_month + '/' + date.slice(7,11)
+  var unix_number = Date.parse(new_english_date)
+  
+  return unix_number
+}
+//-------------------------------------------------------------------------------- 
+function check_row_count_more_than_one(rowcount)
+{
+  if(rowcount < 3) //Header row counts as one row, we need two or more entries beside this
+    {
+      Log.Message("Data table not large enough to check sort order. only 1 entry exists");
+      return false;
+    }
+  else 
+  {
+  return true;
+  }
+}
+//-------------------------------------------------------------------------------- 
+function check_sort_order_of_table(table, sort_order_cell)  //check_table_in_desc_order
+{
+  var rowcount = table.rowcount;
+  
+  // we need at least two entries in table to test
+  var is_table_large_enough = check_row_count_more_than_one(rowcount)
+    
+  if (is_table_large_enough == true)
+  {
+    for(var i = 1; i < rowcount; i++)
+    {
+      cell_content = parseInt(table.Cell(i,sort_order_cell).contentText); // grab cell contents, convert to integer
+        
+      if (i > 1) //skip for first row since nothing to compare against
+      {
+        if (cell_content > last_value) //Check if cell_content is higher than previous entry
+        {
+           Log.Warning("Fail - Sort order of list is NOT highest at top");
+           Log.Warning("Cell reference " + i + "," + sort_order_cell + "  has a value of " + cell_content)
+           Log.Warning("Where as entry above this, has a value of " + last_value);
+           return false;
+         
+        }
+      }
+      last_value = cell_content;
+    }
+    Log.Message("The entries are ordered correctly (from the highest to lowest)");
+  }
+  return true;
+}
+//-------------------------------------------------------------------------------- 
+function check_date_sort_order_of_table(table, sort_order_cell)
+{
+  var rowcount = table.rowcount;
+  
+  // we need at least two entries in table to test
+  var is_table_large_enough = check_row_count_more_than_one(rowcount)
+    
+  if (is_table_large_enough == true)
+  {
+    for(var i = 1; i < rowcount; i++)
+    {
+      date_string = table.Cell(i,sort_order_cell).contentText; // Get date string from cell in table
+      date_unix = get_unix_date_number_from_dd_mmm_yyyy(date_string); // translate and convert date into unix format
+        
+      if (i > 1) //skip for first row since nothing to compare against
+      {
+        if (date_unix < previous_date_unix) //Check if UNIX date number higher than previous entry - if so fail
+        {
+           Log.Warning("Fail - Sort order of due list is NOT oldest at top");
+           Log.Warning("Cell reference " + i + "," + sort_order_cell + "  has a value of " + date_string)
+           Log.Warning("Where as entry above this, has a value of " + previous_date);
+           return false;
+        }
+      }
+      previous_date_unix = date_unix;
+      previous_date = date_string;
+    }
+    Log.Message("The entries are ordered correctly (from the oldest to the most recent)");
+  }
+  return true;
+}
+//--------------------------------------------------------------------------------
+function check_menu_header_exists(menu_header)
+{
+if(menu_header.Exists != true)
+  {
+    Log.Message("Home page message with value not displayed");
+    return false;
+  }
+else
+  {
+  Log.Message("Home page message displayed");
+  return true
+  }
+}
+//-------------------------------------------------------------------------------- 
 function setup_generic_patient(do_login, dm)
 {
   //for(var i = 50; i < 60; i++)

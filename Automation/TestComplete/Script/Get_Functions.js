@@ -50,6 +50,8 @@ function get_patient_demographics()
   
   var patient_data_array = new Array()
   
+  if(language=="English")
+  {
   //Demograhics Pane
   var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
   var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
@@ -76,7 +78,38 @@ function get_patient_demographics()
   var email = patient_demographics_tab_contact_address_path.Panel(3).Label("Email_DetachedLabel").contentText;
   
   patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, ethnicity, language, mar_status, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
+  }
   
+  else
+  {
+    //Demograhics Pane
+  var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
+  var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
+  var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
+  var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+  var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
+  var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
+  var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
+  var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
+  //var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
+  //var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
+  //var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
+  
+  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
+  
+  var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
+  var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
+  var line_3 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(1).Label("ThirdAddressLine_DetachedLabel").contentText;
+  var town = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(2).Label("FourthAddressLine_DetachedLabel").contentText;
+  var county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;
+  var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
+  var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
+  var mobile = patient_demographics_tab_contact_address_path.Panel(3).Label("Mobile_DetachedLabel").contentText;
+  var email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;
+  
+  patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
+  }
+
   for(var i = 0; i < patient_data_array.length; i++)
   {
     Log.Message("Array element: " + i + " is " + patient_data_array[i]);
@@ -85,6 +118,81 @@ function get_patient_demographics()
   return patient_data_array;  
 } 
 //-----------------------------------------------------------------------------------
+// Gets pat_num, nhs_num, born and tel from demographics and drug & date from treatments - returns array
+function get_patient_details_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days)
+{
+  //Search for patient
+  patient_search(pat_name);
+  
+  //Acknowledge pop-up if it is shown
+  process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
+    
+  //Navigate to Demographics Overview
+  Goto_Patient_Demographics();
+  
+  // Grab path of Demographics tab
+  var patient_demographics_tab_path = patient_demographics_tab_demographics();
+
+  //Extract basic required info from form
+  var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
+  var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
+  var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
+  
+  // Grab path of Demographics contacts tab
+  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
+
+  //Extract basic required contact info from form
+  var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
+  
+  //Navigate to treatment plan overview
+  Goto_Patient_Treatment_Plan()
+  
+  // Grab path of treatment plan overview
+  var patient_treatment_details_path = clinical_tp_details();
+  
+  // Extract treatment plan drug and date
+  var drug = patient_treatment_details_path.Panel(3).Label("DrugName_DetachedLabel").contentText;
+  var date = patient_treatment_details_path.Panel(0).Label("Start_DetachedLabel").contentText;
+  
+  // Initialise an array
+  var patient_data_array = new Array()
+  
+  // Store all extracted variables into array
+  patient_data_array.push(pat_name, pat_num, nhs_num, born, tel, drug, date, expected_overdue_days); 
+   
+  return patient_data_array;  
+} 
+//-----------------------------------------------------------------------------------
+// Gets pat_num, nhs_num, born, tel, drug, date and due_days from overdue non warfarin review list table - returns array
+function get_patients_column_data_from_overdue_non_warfarin_review_table(table, pat_name) 
+{
+   for (i=0; i<table.rowcount; i++)
+    {
+      if(table.Cell(i, 0).contentText == pat_name)
+      { 
+        // Grabbing pat_num, nhs_num, born, tel, drug, date, due_days
+        name =    table.Cell(i, 0).contentText;
+        drug =    table.Cell(i, 1).contentText;
+        born =    table.Cell(i, 2).contentText;
+        tel =     table.Cell(i, 3).contentText;
+        nhs_num = table.Cell(i, 4).contentText;
+        pat_num = table.Cell(i, 5).contentText;
+        date =    table.Cell(i, 6).contentText;
+        due_days =table.Cell(i, 7).contentText;
+        
+        // Initialise an array
+        var patient_data_array = new Array();
+  
+        // Store all extracted variables into array
+        patient_data_array.push(name, pat_num, nhs_num, born, tel, drug, date, due_days); 
+   
+        return patient_data_array;
+      }
+    }
+    Log.Warning("Patient: " + pat_name + " was not found in the table")
+    return false;
+}
+//--------------------------------------------------------------------------------
 //gets the patients fullname
 function get_patient_fullname()
 {
@@ -144,6 +252,16 @@ function get_patient_test_prac()
   
   return test_prac;
 } 
+//--------------------------------------------------------------------------------
+function get_new_inr_button_state()
+{
+  var state;
+  Goto_Patient_Treatment();
+  var new_inr_button = new_inr_button_path();
+  state = new_inr_button.enabled;
+  
+  return state;
+}
 //-----------------------------------------------------------------------------------
 //gets all data from specified table
 function get_treatment_row(row_num, table_type)

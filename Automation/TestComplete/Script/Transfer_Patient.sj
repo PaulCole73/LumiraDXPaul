@@ -23,7 +23,7 @@ function transfer_induction_regression()
   
   //Selecting location name, search, and confirm the transfer
   form.Panel("SearchTestingLocations").Panel("SearchContainerInnerContainer").Select("SearchType").ClickItem("Name");
-  form.Panel("SearchTestingLocations").Panel("SearchContainerInnerContainer").Textbox("SearchCriteria").Text = "Deans Regression Testing Location 2";
+  form.Panel("SearchTestingLocations").Panel("SearchContainerInnerContainer").Textbox("SearchCriteria").Text = "LDxCS-Test-AutoTest2";
   form.Panel("SearchTestingLocations").Panel("SearchContainerInnerContainer").SubmitButton("Search").Click();
   
   var locationtable = panelPMDW.Panel("ChangeTestingSectionContainer").Panel("LocationSearchResults").Table("LocationResults");

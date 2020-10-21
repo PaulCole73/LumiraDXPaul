@@ -71,7 +71,7 @@ function self_care_DDD(stage)
     stage_one_path.Panel(0).Checkbox("Program_Digital_dosing_diary_Phases_Stage_1_5_Content_Input").ClickChecked(true); 
     stage_one_path.Button("Program_Digital_dosing_diary_Phases_Stage_1_6_Content_Input").Click();
     WaitSeconds(8, "Waiting for the Email Confirmation box...");
-    process_popup("Email sent", "Ok");
+    process_popup(get_string_translation("Email sent"), "Ok");
   }
   else if(stage == "2")
   {

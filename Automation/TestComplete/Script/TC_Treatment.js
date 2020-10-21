@@ -9,6 +9,7 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //USEUNIT Popup_Handlers
+//USEUNIT Get_Functions
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
 {
@@ -636,17 +637,18 @@ function tc_treatment_refer_a_treatment()
   try
   {
     var test_title = 'Treatment - Refer a treatment'
+    
     login(5, "Shared");
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     
-    WaitSeconds(6);
+    //WaitSeconds(6);
     
-    add_pending_maintenance_treatment("2.0",(aqDateTime.Today()));
+    add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
   
     //Get all the patient details
-    var pat_nhs = get_patient_nhs();
+    //var pat_nhs = get_patient_nhs();
     var message_name = get_patient_fullname();
     Goto_Patient_Treatment();
   
@@ -658,10 +660,10 @@ function tc_treatment_refer_a_treatment()
     var result_set_1 = check_patient_on_refer_list(message_name)
     result_set.push(result_set_1);
   
-    patient_search(pat_nhs);
+    patient_search(message_name);
     //Check the audit
     Goto_Suggested_Treatment_Audit();
-    result_set_1 = validate_top_treatment_audit('Treatment Referred');
+    result_set_1 = validate_top_treatment_audit(get_string_translation("Treatment Referred"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -1519,7 +1521,8 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
     var expected_message = "This patient transfer cannot be accepted because they have a " + 
                             "pending treatment. Please contact their current testing location."
     
-    var practice_name = "Deans Regression Testing Location 2";
+    //var practice_name = "Deans Regression Testing Location 2"; NEEDS SETTING 
+    var practice_name = "LDxCS-Test-AutoTest2"
     change_test_practice(practice_name);
     
     add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
@@ -1764,6 +1767,284 @@ function cacuk432_bug_fix_single()
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
     var test_name = "cacuk432_bug_fix_single";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for coventry dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Coventry", "M", "Shared");
+    add_treatment_plan("W", "Coventry", "", "Shared", "");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      
+
+      Log_Off();
+    }       
+      results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for hillingdon dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Hillingdon", "M", "Shared");
+    add_treatment_plan("W", "Hillingdon", "", "Shared", "");
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log_Off();
+    }       
+      results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for manual dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Manual", "M", "Shared");
+    add_treatment_plan('W','Manual','','Shared','');
+    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log_Off();
+    }       
+    results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for tait dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Tait", "M", "Shared");
+    add_treatment_plan('W','Tait','','Shared','');
+    add_induction_slow_treatment('1.0')
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log_Off();
+    }       
+    results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for oates dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Oates", "M", "Shared");
+    add_treatment_plan('W','Oates','','Shared','');
+    add_induction_slow_treatment('1.0')
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log_Off();
+    }       
+    results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing()
+{
+  try
+  {
+    var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for fast dosing";
+		login(5, "Shared");
+    add_patient("Regression", "Permissions Fast", "M", "Shared");
+    add_treatment_plan('W','Fast','','Shared','');
+    add_fast_induction_treatment('1.0')
+    
+    var pat_nhs = get_patient_nhs();    
+    var result_set = new Array();
+    
+    Log_Off();
+    
+    for(var i = 0; i < 8; i++)
+    {
+      var state = "";
+    
+      login(i, "Shared");
+      patient_search(pat_nhs);
+      state = get_new_inr_button_state();
+      
+      if(i == 3 || i == 4 || i == 5 || i == 7)
+      {
+        result_set_1 = button_checker(state, "enabled", "Check " + i + " Permissions");
+      }
+      else
+      {
+        result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
+      }
+      result_set.push(result_set_1);
+      var results = results_checker_are_true(result_set);
+      Log_Off();
+    }       
+    results_checker(results, test_title);
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Treatment";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing";
     handle_failed_tests(suite_name, test_name);
   }
 }

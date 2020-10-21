@@ -24,7 +24,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
     var patient_data = new Array();
     var expected_note = "External Patient Lookup was used to view this patient. Reason: Patient present requiring treatment" 
                         + "\r\n" + "Comments: Test";
-    var exp_banner_msg = "The patient's recorded testing location is Deans Regression Testing Location"; //06925922205"; this limits testing to single environment because locations Id's vary
+    var exp_banner_msg = "The patient's recorded testing location is LDxCS-Test-AutoTest1"; //06925922205"; this limits testing to single environment because locations Id's vary
   
     var nhs = get_patient_nhs();
     patient_data = get_external_patient_lookup_data();

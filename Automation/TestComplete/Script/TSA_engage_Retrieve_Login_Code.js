@@ -28,8 +28,8 @@ function get_engage_login_code() //in progress
   var obj = Sys.Browser("iexplore").FindChild("Name", "Page(\"https://mail.google.com/mail/u/0/#inbox\")");
   var msg = obj.Panel(5).Panel(2).Panel(0).Panel(1).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Table(0).Cell(0, 0).innerText;
   
-  var code_pos = aqString.Find(msg, "Your code is ", 0, true);
-  var code = aqString.SubString(msg, code_pos + 13, 9);
+  var code_pos = aqString.Find(msg, "Your code is: ", 0, true);
+  var code = aqString.SubString(msg, code_pos + 18, 9);
   obj.Keys("[BS]");
   
   delete_engage_code_email();

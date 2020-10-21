@@ -30,6 +30,7 @@ function add_pending_fast_induction_treatment(inr, TestStepMode)
     //process_confirm_INR(INRstarV5);
   }
 }
+
 //--------------------------------------------------------------------------------
 function add_fast_induction_treatment(inr)
 {
@@ -194,9 +195,9 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   
   //handle bunch of popups
   handle_no_poct("non_induct");
-  process_popup("PoCT Batch Expired", "Confirm");
-  process_popup("Please confirm that the following is correct", "Confirm");
-  var text = process_alternate_popup("Please acknowledge", "Confirm");
+  process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
+  process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
+  var text = process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"));
   
   wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
   
@@ -425,27 +426,27 @@ function add_manual_treatment(date, inr, dose, review, tm)
   w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
   select_day(w_day, w_datepicker);
 
-  test_info_path.Panel(0).Select("Dose").ClickItem(dose);
+  test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
   if(review != "1")
   {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + " Days");
+    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Days"));
   }
   else
   {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + " Day");
+    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
   }
-  test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
+  test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
    
   var treatment_button_path = treatment_buttons_pre_schedule();
   treatment_button_path.SubmitButton("SubmitManualDose").Click();
-  process_popup("PoCT Batch Expired", "Confirm");
+  process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
   
   //Confirm the values
-  var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
+  var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", get_string_translation("Confirm"));
   wbt_Confirm.Click();
   
-  process_popup("Insert Confirmation", "Confirm");
+  process_popup("Insert Confirmation", get_string_translation("Confirm"));
   WaitSeconds(2, "Saving the Treatment...");  
   
   //Save the INR
