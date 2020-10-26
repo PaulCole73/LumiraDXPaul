@@ -11,7 +11,7 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "English";
+var language = "Italian";
 var environment = "INRstarWindowsStaging";
 var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
@@ -411,11 +411,13 @@ function validate_top_treatment_audit(w_data)
   if (wt_row == w_data)
   {
     Log.Message(wt_row + " - " + w_au_table.Cell(1,2).innerText);
+    INRstarV5.Panel(2).Panel(1).Panel(0).Button(0).Click();
     return true;
   }
   else
   {
     Log.Message("Treatment audit record not found : " + w_data);
+    INRstarV5.Panel(2).Panel(1).Panel(0).Button(0).Click();
     return false;
   }
   INRstarV5.Panel(2).Panel(1).Panel(0).Button(0).Click();
@@ -442,17 +444,20 @@ function validate_more_info_top_patient_audit(w_data)
 // Get the top treatment audit record more information
 function validate_more_info_top_treatment_audit(w_data)
 {  
+  var INRstarV5 = INRstar_base();
   Goto_Patient_Treatment_Audit();
   var wt_row = treatment_audit().Cell(1, 3).innerText;
 
   if(wt_row.includes(w_data))
   {
     Log.Message("This is the row data // " + wt_row + " // - This is what I am looking for // " + w_data + " //");
+    INRstarV5.Panel(2).Panel(1).Panel(0).Button(0).Click();
     return true;
   }
   else 
   {
     Log.Message("Audit data not found: " + wt_row + "\r\n\r\n" + "This is what I am looking for // " + w_data);
+    INRstarV5.Panel(2).Panel(1).Panel(0).Button(0).Click();
     return false;
   }
 }

@@ -84,7 +84,11 @@ function get_patient_demographics()
   {
     //Demograhics Pane
   var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
-  var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
+  
+  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
+  {
+    var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
+  }
   var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
   var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
@@ -107,7 +111,16 @@ function get_patient_demographics()
   var mobile = patient_demographics_tab_contact_address_path.Panel(3).Label("Mobile_DetachedLabel").contentText;
   var email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;
   
-  patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
+  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
+    {
+      //patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+      patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+    }
+  else
+    {
+      //patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+      patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+    }
   }
 
   for(var i = 0; i < patient_data_array.length; i++)

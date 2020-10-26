@@ -56,6 +56,15 @@ function password_expired_form()
   return form_path;
 }
 //------------------------------------------------------------------------
+// Home Page Version number 
+function home_page_version_number()
+{
+  var base = INRstar_base().Panel("MainPage").Panel("main");
+  var form_path = base.Panel(0).Panel("LogonFooter").Table(0).Cell(0, 0).Panel(0);
+  
+  return form_path;
+}
+//------------------------------------------------------------------------
 ///////////////////////  Patient / Tests Due  /////////////////////////
 //------------------------------------------------------------------------
 function tests_due_table()
@@ -818,7 +827,7 @@ function treatment_comment() //this is a duplicate, use treatment_table() as it 
 function treatment_comment_box()
 {
   var INRstarV5 = INRstar_base();
-  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").Textarea("Comments");
+  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").Textarea("SorbSafeComments");
   
   return treatment_comment_path;
 }
@@ -836,7 +845,15 @@ function pending_treatment_buttons()
 function save_inr_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  
+  if (language == "Italian")
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("AcceptPendingTreatment");
+  }
+  else
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  }
   
   return save_inr_button_path;
 }  
@@ -864,7 +881,7 @@ function refer_pending_treat_button()
   
   if (language == "Italian")
   {
-    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Button("ReferPendingTreatment");
+    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("ReferPendingTreatment");
   }
   else
   {

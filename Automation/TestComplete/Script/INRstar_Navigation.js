@@ -651,6 +651,7 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
   }
     
   process_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
+  process_popup(get_string_translation("New Warfarin Treatment Plan"), get_string_translation("Yes"));
   process_popup(get_string_translation("New treatment plan will invalidate Induction protocol"),"OK");
   WaitSeconds(1, "Waiting to go to Add Treatment Plan...");
 }
@@ -898,8 +899,9 @@ function Goto_Suggested_Treatment_Audit()
   var INRstarV5 = INRstar_base();
   Goto_Patient_Treatment();
   var pending_treatment_table_path = pending_treatment_table();
+  WaitSeconds(2);
   pending_treatment_table_path.Cell(0,10).Link("TreatmentInformationActionLink").Click();
-  
+  WaitSeconds(2);
   INRstarV5.Panel(2).Panel(1).Panel(0).Button(1).Click();
 }
 //===============================================================================

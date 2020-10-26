@@ -86,11 +86,11 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
         prev_plan_action = "Yes"
       }
       
-      if(language == "English")
-      {
+      //if(language == "English")
+      //{
         var is_reusing = process_popup(get_string_translation("New Warfarin Treatment Plan"), get_string_translation(prev_plan_action));
         process_popup(get_string_translation("Is this patient currently taking Warfarin?"), get_string_translation(prev_plan_action));
-      }
+      //}
 
       if (prev_plan_action == "Yes" || prev_plan_action == true)
       {     
@@ -335,7 +335,14 @@ function edit_all_fields_treatment_plan_with_treatment()
   //Dosing Method
   var data_before = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
   
-  treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*2)+1);
+  if (language =="English")
+  {
+    treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*2)+1);
+  }
+  else
+  {
+    treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*1)+1);
+  }
   var item_val = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
   process_popup(get_string_translation("More information") + " - " + item_val, get_string_translation("Ok"));
   var data_after = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
@@ -364,15 +371,15 @@ function edit_all_fields_treatment_plan_with_treatment()
   } 
   Log.Message('This is data before amendment = // ' + data_before + ' //' + ' this is data after amendment = ' + '// ' + data_after + ' //')
   
-  //Max Review
+  //Max Review amended Math.random()*69)+1 to *63)+7 as when it sets to 1 day review period the causes issues
   var data_before = treatment_plan_warfarin_details.Panel(2).Select("MaxReview").wText;
-  treatment_plan_warfarin_details.Panel(2).Select("MaxReview").ClickItem((Math.random()*69)+1);
+  treatment_plan_warfarin_details.Panel(2).Select("MaxReview").ClickItem((Math.random()*63)+7);
   var data_after = treatment_plan_warfarin_details.Panel(2).Select("MaxReview").wText;
   
   //Check data is now different
   while (data_before==data_after)
   {
-    treatment_plan_warfarin_details.Panel(2).Select("MaxReview").ClickItem((Math.random()*69)+1);
+    treatment_plan_warfarin_details.Panel(2).Select("MaxReview").ClickItem((Math.random()*63)+7);
     var data_after = treatment_plan_warfarin_details.Panel(2).Select("MaxReview").wText;
   } 
   Log.Message('This is data before amendment = // ' + data_before + ' //' + ' this is data after amendment = ' + '// ' + data_after + ' //')

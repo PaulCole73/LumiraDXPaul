@@ -54,6 +54,7 @@
 			<child name="TC_Bespoke_Letters" key="{4B9BF730-2EB0-4E61-9C8A-321A2429984F}" path="TC_Bespoke_Letters.js" />
 			<child name="TC_Diagnosis" key="{7D2BD5A0-A2B9-4565-AF4A-6136928C5EED}" path="TC_Diagnosis.js" />
 			<child name="TC_External_Results_HL7" key="{E0F9F4CA-F5C4-45DC-A4D8-23B901B97C7B}" path="TC_External_Results_HL7.js" />
+			<child name="TC_MultiTest" key="{ABDB4640-2B19-444D-A03D-5F4A5C6AEE28}" path="TC_MultiTest.js" />
 		</folder>
 		<folder name="5. Utlilities">
 			<child name="System_Paths" key="{3E644774-5830-45ED-B233-AEDA357E7355}" path="System_Paths.js" />

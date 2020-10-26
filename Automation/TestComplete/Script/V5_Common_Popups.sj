@@ -441,7 +441,7 @@ function process_Dose_change(INRstarV5)
   WaitSeconds(2,"");
   
   var INRstarV5 = set_system();
-  var w_hdg = "Dose change";
+  var w_hdg = get_string_translation("Dose change");
 //  process_confirm_sub(INRstarV5, w_hdg);
   
   // Find the Panel
@@ -454,7 +454,7 @@ function process_Dose_change(INRstarV5)
   {
      Log.Message("'" + w_hdg + "' box displayed");
      // Find the button
-     var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", "Confirm");
+     var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", get_string_translation("Confirm"));
 
      if (wbt_Confirm.Exists == false)
      {

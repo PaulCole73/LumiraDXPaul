@@ -460,7 +460,7 @@ function delete_treatment()
   WaitSeconds(1);
   var treatment_buttons_path = inr_treatment_buttons();
   treatment_buttons_path.Button("DeleteLatestTreatment").Click();
-  var msg = process_popup("Confirmation Required", "Confirm");
+  var msg = process_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
   
   return msg;
 } 
@@ -605,31 +605,36 @@ function override_omits(days)
 //--------------------------------------------------------------------------------
 function override_review(review)
 {
+//  var INRstarV5 = INRstar_base();
+//  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+//  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+//  var panelPTI = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment").Panel("PendingTreatmentInfo");
+//
+//  panelPTI.Panel(0).Button("OverridePendingTreatment").Click();
   var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-  var panelPTI = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment").Panel("PendingTreatmentInfo");
-
-  panelPTI.Panel(0).Button("OverridePendingTreatment").Click();
+  var pending_treatment_buttons_path = pending_treatment_buttons()
+  var override_pending_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Find("idStr","OverridePendingTreatment",5);
+  //pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
+  override_pending_button_path.Click();
         
-  var formEPT = panelPTI.form("EditPendingTreatmentForm");
-               
+  //var formEPT = panelPTI.form("EditPendingTreatmentForm");
+  var treatment_override_field_container_path = treatment_override_field_container();             
   // Set Review period
-  var w_vselect = formEPT.Table("OverrideSuggestedTreatmentTable").Cell(1, 3).Select("Treatment_Review");
+  var w_vselect = treatment_override_field_container_path.Cell(1, 3).Select("Treatment_Review");
   
   if (review>1)
   {
-  w_vselect.ClickItem(review + " Days");
+  w_vselect.ClickItem(review + get_string_translation(" Days"));
   } 
     else if (p_review=1)
      {
-     w_vselect.ClickItem(review + " Day");
+     w_vselect.ClickItem(review + get_string_translation(" Day"));
      }
   
   // Click 'ok'
-  formEPT.panel(0).Button("OverrideAccept").Click();
-
-  // -- End of Override section
+  //formEPT.panel(0).Button("OverrideAccept").Click();
+  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Form("EditPendingTreatmentForm").Panel(0).Button("OverrideAccept").Click();
+  process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
   WaitSeconds(1,"Waiting for Override to complete");
 }
 //--------------------------------------------------------------------------------
@@ -637,13 +642,15 @@ function override_dose(dose)
 {
   var INRstarV5 = INRstar_base();
   var pending_treatment_buttons_path = pending_treatment_buttons()
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
+  var override_pending_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr","OverridePendingTreatment",5);
+  //pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
+  override_pending_button_path.Click();
                
   var treatment_override_field_container_path = treatment_override_field_container();
-  treatment_override_field_container_path.Cell(1, 1).Select("Treatment_Dose").ClickItem(dose);
+  treatment_override_field_container_path.Cell(1, 1).Select("Treatment_Dose").ClickItem(get_string_translation(dose));
 
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Form("EditPendingTreatmentForm").Panel(0).Button("OverrideAccept").Click();
-  process_popup("Please Confirm", "Confirm");
+  process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
   WaitSeconds(1,"Waiting for Override to complete");
 } 
 //--------------------------------------------------------------------------------
