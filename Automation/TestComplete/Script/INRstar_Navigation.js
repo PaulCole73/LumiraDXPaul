@@ -760,8 +760,6 @@ function Goto_Add_Treatment_Comment()
   var comments_link = treatment_comment();
   comments_link.Cell(0, 9).Link(0).click();
 }
-
-
 //===============================================================================
 //===============================================================================
 // Reviews Navigation
@@ -909,7 +907,7 @@ function Goto_Suggested_Treatment_Audit()
 // External Results / HL7 Navigation
 //===============================================================================
 //===============================================================================
-function Goto_Patient_Results()
+function Goto_External_Results()
 {
   Goto_Patient_Search();
   var obj_root = patient_search_screen();
@@ -934,3 +932,4 @@ function Goto_Create_Bridging_Record()
   patient_treatment_bridging_tab().Panel(0).Button("New_Bridging_Record").Click();
   WaitSeconds(1, "Waiting to go to bridging form...");
 }
+//-------------------------------------------------------------------------------

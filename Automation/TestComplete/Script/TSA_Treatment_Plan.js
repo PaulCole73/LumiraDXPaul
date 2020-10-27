@@ -214,8 +214,9 @@ function edit_treatment_plan(dm)
   var more_info = process_popup(get_string_translation("More information") + " - " + item_val, get_string_translation("Ok"));
   //var more_info = process_more_information(INRstarV5);  
 
-  var buttons = edit_treatment_plan_button_path();       
-  buttons.Button("UpdatePatientTreatmentPlan").Click();
+  // Select the Update Patient Treatment Plan button
+  var button_path = edit_treatment_plan_button_path();
+  button_path.Button("UpdatePatientTreatmentPlan").Click();
   
   return more_info;  
 }
