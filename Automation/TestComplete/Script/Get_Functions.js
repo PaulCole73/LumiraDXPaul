@@ -14,6 +14,8 @@
 //                            Get Functions                                        //
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+
 //Returning an NHS of the current patient loaded
 function get_patient_nhs()
 {
@@ -22,6 +24,27 @@ function get_patient_nhs()
           
   return nhs_num;
 }
+
+//-----------------------------------------------------------------------------------
+//Returning details from demographics as an object
+function get_patient_details_object_from_demographics()
+{
+  var patient_details = new Object();
+  Goto_Patient_Demographics();  
+  
+  var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
+  
+  patient_details.firstname = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
+  patient_details.lastname = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+  patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
+  patient_details.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
+  patient_details.gender = patient_demographics_tab_demographics_path.Panel(7).Label("Gender_DetachedLabel").contentText.substring(0,1); //returns M or F
+  patient_details.fullname = patient_details.lastname + ', ' + patient_details.firstname
+  patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob)
+          
+  return patient_details;
+}
+//-----------------------------------------------------------------------------------
 //Returning firstname of the current patient loaded
 function get_patient_firstname()
 {
@@ -84,11 +107,12 @@ function get_patient_demographics()
   {
     //Demograhics Pane
   var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
-  
+
   if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
   {
     var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
   }
+
   var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
   var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
@@ -204,6 +228,127 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     }
     Log.Warning("Patient: " + pat_name + " was not found in the table")
     return false;
+}
+//--------------------------------------------------------------------------------
+function get_inr_results_received_by_timestamp(timestamp)
+{
+  Goto_Patient_New_INR();
+  
+  //Check table exists before proceeding
+  var table_exists = Check_if_patients_inr_results_table_exists(); 
+   
+  if (table_exists == true) 
+  {    
+    //Get the path of the patient external results table
+    var table = inr_results_received_table(); 
+      
+      //Loop through each row of table
+      for (i=0; i<table.RowCount; i++)
+      {
+        //Check whether timestamp exists
+        if (table.Cell(i, 1).contentText == timestamp)
+        {
+           var results = {
+            "test_timestamp"         : table.Cell(i, 1).contentText,
+            "source"                 : table.Cell(i, 2).contentText,
+            "inr"                    : table.Cell(i, 3).contentText,
+            "row"                    : i,
+            "row_count"              : table.RowCount
+            } 
+           return results
+        }
+      }
+      Log.Message("Table row containing timestamp does not exist");
+  }
+  // If data is unobtainable we can prevent further checks - checking row is not false 
+  var results = {"row" : false, "row_count" : 0}
+  return results;
+}
+//--------------------------------------------------------------------------------
+function get_external_results_received_by_timestamp(timestamp, archived)
+{
+  Goto_External_Results();
+  
+  //Check table exists before proceeding
+  var table_exists = Check_if_external_results_table_exists();
+   
+  if (table_exists == true) 
+  {
+    if (archived == "Archived" || archived == "Archived")
+    {
+      //Toggle the show archived checkbox
+      show_archived_results_checkbox().ClickChecked(true);
+  
+      //Press the filter button
+      external_results_filter_button().Click()
+      
+      //Get the path of the patient external results archived table
+      var table = patient_external_results_archived_table(); 
+    }
+    else
+    {    
+      //Get the path of the patient external results table
+      var table = patient_external_results_table();
+    }
+      
+    //Loop through each row of table
+    for (row=0; row<table.RowCount; row++)
+    {
+      //Check whether timestamp exists
+      if (table.Cell(row, 2).contentText == timestamp)
+      {
+         var results = {
+        "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
+        "inr"                    : table.Cell(row, 3).contentText,
+        "row"                    : row}
+         return results
+      }
+    }
+    Log.Message("Table row containing timestamp does not exist");
+  }
+  // If data is unobtainable we can prevent further checks - checking row is not false 
+  var results = {"row" : false}
+  return results;
+}
+//--------------------------------------------------------------------------------
+function get_treatment_by_timestamp(timestamp) 
+{
+  //Goto Patient Treatments 
+  Goto_Patient_Treatment()
+  
+  //Check table exists before proceeding
+  var table_exists = Check_if_treatment_table_exists();
+  
+  //If treatment table exists grab values from it
+  if (table_exists == true)  
+  {
+    //Get the path of the treatments table
+    var table = treatment_table(); 
+    
+    //Loop through each row of table
+      for (i=0; i<table.RowCount; i++)
+      {
+        //Check whether timestamp exists
+        if (table.Cell(i, 0).contentText == timestamp)
+        {
+          //if so grab results
+          var treatment = {
+            "test_date"     : table.Cell(i, 0).contentText,
+            "inr"           : table.Cell(i, 1).contentText,
+            "dose"          : table.Cell(i, 2).contentText,
+            "suggested_dose": table.Cell(i, 3).contentText,
+            "omits"         : table.Cell(i, 4).contentText,
+            "review_days"   : table.Cell(i, 5).contentText,
+            "row"           : i}
+          return treatment
+        }
+      }
+      //warn that specified row does not exist
+      Log.Message("Row number: " + i + " Does not exist in results table, table has a rowcount of: " + table.RowCount)
+
+  }
+  var treatment = {"row" : false}  
+  return treatment;
 }
 //--------------------------------------------------------------------------------
 //gets the patients fullname
@@ -425,7 +570,7 @@ function get_patient_banner_error_message()
 //-----------------------------------------------------------------------------------
 function get_pending_suggested_treatment_schedule(days)
 {
-  var schedulegrid = dosing_schedule_table().Fieldset(0).Fieldset("ScheduleGrid");
+  var schedulegrid = dosing_schedule_content().Fieldset(0).Fieldset("ScheduleGrid");
   
   //return schedule;
   var pending_schedule = new Array();
@@ -747,8 +892,10 @@ function get_dosing_settings_data(item_no)
   for(var i = 1; i < panel.ChildCount; i++)
   {
     var temp = panel.Child(i).innerText;
-    string_array = temp.split("[set at] "); 
+    string_array = temp.split("[" + get_string_translation("set at") + "] "); 
     dosing_data.push(aqString.Trim(string_array[1], 3));
+    Log.Message("string_array="+string_array);
+    Log.Message("dosing_data.push="+aqString.Trim(string_array[1], 3));
   }
   
   return dosing_data;
@@ -831,7 +978,7 @@ function get_hl7_file_folder()
 function get_hl7_patient_info(table_position)
 {
   WaitSeconds(5, "Waiting for table to update...");
-  Goto_Patient_Results();
+  Goto_External_Results();
   var patient_data = new Array();
 
   if(table_position == null)
@@ -877,4 +1024,20 @@ function get_hl7_patient_info(table_position)
   }
   
   return patient_data;
+}
+//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
+//                              Location Management                                //
+//---------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------
+function get_organization_id_from_current_location()
+{
+  Goto_Options_Location_Management();
+  var location_details_tab_path = location_management_details_tab();
+  var outer_html_of_tab = location_details_tab_path.outerHTML;
+  
+  var organizationId = outer_html_of_tab.match(/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/);
+  Log.Message("Location/Organisation ID of current location is: " + organizationId)
+  
+  return organizationId[0]
 }

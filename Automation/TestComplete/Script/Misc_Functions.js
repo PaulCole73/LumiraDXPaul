@@ -11,8 +11,9 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "Italian";
-var environment = "INRstarWindowsStaging";
+
+var language = "English";
+var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -159,6 +160,54 @@ function checkArrays(arrA, arrB, mess)
   }
   return true;
 }
+//--------------------------------------------------------------------------
+//This allows checking of arrays that may contain 2,0 instead of 2.0 for an INR
+function checkArrays_containing_inr_values(arrA, arrB, mess)
+{
+  if(arrA == null || arrB == null)
+  {
+    Log.Message("Fail - Data not found. Parameter value missing.");
+    return false;
+  }
+  
+  if(arrA.length !== arrB.length) 
+  {
+    Log.Message(mess + "//" + arrA + "//" + arrB + "//");
+    return false;
+  }
+  for(var i = 0; i < arrA.length; i++)
+  {    
+    // If one field in the array doesn't match
+    if(arrA[i] != arrB[i])
+    { 
+        // And if the language is italian
+        if (language = "Italian")
+        {
+          // Replace any full stops with a comma so 2.0 becomes 2,0 for both fields
+          var new_arrA = arrA[i].replace(".", ",");
+          var new_arrB = arrB[i].replace(".", ",");
+          
+          // Now check if the modified fields match
+          if(new_arrA != new_arrB)
+          {
+            // If they don't its a fail
+            Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
+            return false;
+          }
+        }
+        else
+        {
+          Log.Message("This is actual: " + arrA[i] + " -- This is the expected: " + arrB[i])
+          return false;
+        }
+    } 
+  }
+  return true;
+}
+function thisis()
+{
+  var override_dose_path = treatment_override_field_container().Cell(1, 1).Select("Treatment_Dose").ClickItem(3);
+}
 //-----------------------------------------------------------------------------------
 function validate_arrays_dont_match(arrA, arrB, mess)
 {
@@ -273,7 +322,7 @@ function results_checker(result_set, test_case)
 //---------------------------------------------------------------------------------//
 //                            Audit Functions                                      //
 //---------------------------------------------------------------------------------//
-//--------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------//
 function validate_top_patient_audit_with_patient_search(test_title, pat_name, expected_search_text)
 {
     //Search for patient
@@ -1134,11 +1183,28 @@ function move_mouse_sequence(value, per_iterations)
   }
 }
 
+//---------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------//
+//                                API Interactions                                 //
+//---------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------//
 
+function api_post(address, headers, body_payload)
+{
+  // Create the aqHttpRequest object
+  var aqHttpRequest = aqHttp.CreatePostRequest(address);
+ 
+  // Assign the headers from the incoming headers object 
+  for ( var property in headers )
+  {
+    aqHttpRequest.SetHeader(property, headers[property])
+  }
 
-//-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
+  // Send the request, create the aqHttpResponse object
+  var aqHttpResponse = aqHttpRequest.Send(body_payload)
+  
+  return aqHttpResponse;
+}
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                Needs Work                                       //
@@ -1260,6 +1326,34 @@ function setup_automation_from_parameter()
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
   change_environments(environment);
 }
+//-------------------------------------------------------------------------------
+function get_date_with_days_from_today_dd_mmm_yyyy(days) // will return either 12-mag-2020 or 12-May-2020 pending language
+{
+  //Calculate the date using the supplled offset (days) then return the English date in format eg: 12-May-2020
+  date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(days)), "%d-%b-%Y");
+  
+  //If the language is italian go off and convert the short month text to italian
+  if (language == "Italian")
+  {
+    italian_short_month = get_string_translation(date.slice(3,6));
+    date = date.slice(0,2) + '-' + italian_short_month + '-' + date.slice(7,11)
+  }
+
+  return date;
+}
+//-------------------------------------------------------------------------------
+function get_todays_date_in_dd_mmm_yyyy() // will return either 12-mag-2020 or 12-May-2020 pending language
+{
+  todays_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y");
+  
+  if (language == "Italian")
+  {
+    italian_short_month = get_string_translation(todays_date.slice(3,6));
+    todays_date = todays_date.slice(0,2) + '-' + italian_short_month + '-' + todays_date.slice(7,11)
+  }
+
+  return todays_date;
+}
 //-----------------------------------------------------------------------------------
 function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/may/2020
 {
@@ -1269,7 +1363,71 @@ function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/ma
   
   return unix_number
 }
+//----------------------------------------------------------------------------------- 
+function get_date_as_dd_mm_yyyy_from_unix(date) 
+{
+  var d = new Date(date);
+  
+  var year = d.getFullYear()
+  var month = d.getMonth()+1
+  var day = d.getDate()
+  
+  if (month < 10) {month = "0" + month};
+  if (day < 10) {day = "0" + day}
+  
+  new_date_format = (year + '-' + month + '-' + day);
+  return new_date_format
+}
 //-------------------------------------------------------------------------------- 
+function convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(date)
+{
+    var unix_date = get_unix_date_number_from_dd_mmm_yyyy(date)
+    var date_as_dd_mm_yyyy = get_date_as_dd_mm_yyyy_from_unix(unix_date) 
+    return date_as_dd_mm_yyyy
+}
+//--------------------------------------------------------------------------------
+function get_timestamps_for_now_object_with_changed_hours(operator, hours)
+{
+    //Get current Time 
+    var now = new Date(Date.now())
+    var timestamp = new Object();
+    
+    //Adjust by imported hours 
+    if      (operator == "+")  {now.setHours( now.getHours() +hours );}
+    else if (operator == "-")  {now.setHours( now.getHours() -hours );}
+    else    {Log.Warning('Invalid time adjustment operator');   return}
+    
+    //Break date down into vars
+    day = now.getDate();
+    month = now.getMonth()+1;
+    year = now.getFullYear();
+    hour = now.getHours();
+    minutes = "0" + now.getMinutes()
+    seconds = "0" + now.getSeconds()
+    shortmonth = set_month(month)
+    
+    //Adjust formating of date variables
+    if (month < 10) {month = "0" + month}
+    if (day < 10) {day = "0" + day}
+    if (hour < 10) {hour = "0" + hour}
+    minutes = minutes.substr(-2);
+    seconds = seconds.substr(-2);
+    
+    //Add the timestamp that is used by the CSP eg: 2020-09-30T15:42:42
+    timestamp.csp_payload = year+"-"+month+"-"+day+"T"+hour+":"+minutes+":"+seconds;
+       
+    //Add the timestamp with the short month text seen in INRstar patient Ext Results table eg: 31-Sep-2020 15:37:02
+    timestamp.inr_patient_results = day+"-"+shortmonth+"-"+year+" "+hour+":"+minutes+":"+seconds;
+    
+    //Add the timestamp with the short month text seen in INRstar General Ext Results table eg: 31/09/2020 15:37:02
+    timestamp.external_results = day+"/"+month+"/"+year+" "+hour+":"+minutes+":"+seconds;
+    
+    //Add the timestamp used in the historic treatments table eg: 02-Oct-2020
+    timestamp.historic_treatments = day+"-"+shortmonth+"-"+year;
+    
+    return timestamp
+}
+//--------------------------------------------------------------------------------
 function check_row_count_more_than_one(rowcount)
 {
   if(rowcount < 3) //Header row counts as one row, we need two or more entries beside this
@@ -1350,12 +1508,12 @@ function check_menu_header_exists(menu_header)
 {
 if(menu_header.Exists != true)
   {
-    Log.Message("Home page message with value not displayed");
+    Log.Message("Menu Header does not exist");
     return false;
   }
 else
   {
-  Log.Message("Home page message displayed");
+  Log.Message("Menu Header exists");
   return true
   }
 }
