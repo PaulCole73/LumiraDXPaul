@@ -11,13 +11,8 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-<<<<<<< HEAD
 var language = "Italian";
 var environment = "INRstarWindowsStaging";
-=======
-var language = "English";
-var environment = "INRstarWindowsStagingItalyV4";
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
 var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -326,11 +321,7 @@ function results_checker(result_set, test_case)
 //---------------------------------------------------------------------------------//
 //                            Audit Functions                                      //
 //---------------------------------------------------------------------------------//
-<<<<<<< HEAD
-//--------------------------------------------------------------------------------
-=======
 //---------------------------------------------------------------------------------//
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
 function validate_top_patient_audit_with_patient_search(test_title, pat_name, expected_search_text)
 {
     //Search for patient
@@ -1371,19 +1362,7 @@ function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/ma
   
   return unix_number
 }
-//-----------------------------------------------------------------------------------
-<<<<<<< HEAD
-function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/may/2020
-{
-  var english_month = get_english_translation(date.slice(3,6)) // need to get english month of foreign
-  var new_english_date = date.slice(0,2) + '/' + english_month + '/' + date.slice(7,11)
-  var unix_number = Date.parse(new_english_date)
-  
-  return unix_number
-}
-//-------------------------------------------------------------------------------- 
-=======
- 
+//----------------------------------------------------------------------------------- 
 function get_date_as_dd_mm_yyyy_from_unix(date) 
 {
   var d = new Date(date);
@@ -1448,7 +1427,6 @@ function get_timestamps_for_now_object_with_changed_hours(operator, hours)
     return timestamp
 }
 //--------------------------------------------------------------------------------
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
 function check_row_count_more_than_one(rowcount)
 {
   if(rowcount < 3) //Header row counts as one row, we need two or more entries beside this
@@ -1529,20 +1507,12 @@ function check_menu_header_exists(menu_header)
 {
 if(menu_header.Exists != true)
   {
-<<<<<<< HEAD
-    Log.Message("Home page message with value not displayed");
-=======
     Log.Message("Menu Header does not exist");
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
     return false;
   }
 else
   {
-<<<<<<< HEAD
-  Log.Message("Home page message displayed");
-=======
   Log.Message("Menu Header exists");
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
   return true
   }
 }

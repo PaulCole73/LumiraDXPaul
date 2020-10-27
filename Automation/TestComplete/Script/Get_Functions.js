@@ -107,15 +107,12 @@ function get_patient_demographics()
   {
     //Demograhics Pane
   var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
-<<<<<<< HEAD
-  
+
   if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
   {
     var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
   }
-=======
-  var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
+
   var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
   var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
@@ -127,7 +124,6 @@ function get_patient_demographics()
   //var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
   
   var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
-<<<<<<< HEAD
   
   var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
   var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
@@ -149,20 +145,6 @@ function get_patient_demographics()
       //patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
       patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
     }
-=======
-  
-  var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
-  var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
-  var line_3 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(1).Label("ThirdAddressLine_DetachedLabel").contentText;
-  var town = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(2).Label("FourthAddressLine_DetachedLabel").contentText;
-  var county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;
-  var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
-  var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
-  var mobile = patient_demographics_tab_contact_address_path.Panel(3).Label("Mobile_DetachedLabel").contentText;
-  var email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;
-  
-  patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
   }
 
   for(var i = 0; i < patient_data_array.length; i++)
@@ -171,7 +153,7 @@ function get_patient_demographics()
   }
    
   return patient_data_array;  
-} 
+}
 //-----------------------------------------------------------------------------------
 // Gets pat_num, nhs_num, born and tel from demographics and drug & date from treatments - returns array
 function get_patient_details_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days)
@@ -248,9 +230,6 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     return false;
 }
 //--------------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
-
 function get_inr_results_received_by_timestamp(timestamp)
 {
   Goto_Patient_New_INR();
@@ -372,7 +351,6 @@ function get_treatment_by_timestamp(timestamp)
   return treatment;
 }
 //--------------------------------------------------------------------------------
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
 //gets the patients fullname
 function get_patient_fullname()
 {

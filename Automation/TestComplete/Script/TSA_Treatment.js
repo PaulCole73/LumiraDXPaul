@@ -201,13 +201,9 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   var text = process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"));
-<<<<<<< HEAD
-=======
-  
+ 
   // If an adjustment is required to tablet dosage breakdown - carry it out
-  handle_dosing_modification_required();
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
-  
+  handle_dosing_modification_required();  
   wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
   
   return text;
@@ -436,17 +432,6 @@ function add_manual_treatment(date, inr, dose, review, tm)
   select_day(w_day, w_datepicker);
 
   test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
-<<<<<<< HEAD
-  if(review != "1")
-  {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Days"));
-  }
-  else
-  {
-    test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
-  }
-  test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
-=======
   
   var days = "Days";
   if (review == "1") 
@@ -455,9 +440,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
     days = days.substring(0,4-1)
   }
   inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
-
-  test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
+  test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
    
   var treatment_button_path = treatment_buttons_pre_schedule();
@@ -468,11 +451,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
   var wbt_Confirm = INRstarV5.NativeWebObject.Find("innerText", get_string_translation("Confirm"));
   wbt_Confirm.Click();
   
-<<<<<<< HEAD
-  process_popup("Insert Confirmation", get_string_translation("Confirm"));
-=======
   process_popup(get_string_translation("Insert Confirmation"), get_string_translation("Confirm"));
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
   WaitSeconds(2, "Saving the Treatment...");  
   
   // Handle any dosing mpodifications should they be needed.

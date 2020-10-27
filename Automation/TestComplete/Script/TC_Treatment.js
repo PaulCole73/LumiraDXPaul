@@ -751,56 +751,26 @@ function tc_treatment_refer_a_treatment()
 {
   try
   {
-<<<<<<< HEAD
-    var test_title = 'Treatment - Refer a treatment'
-    
-=======
     var test_title = 'Treatment - Refer a treatment';
     
     // Setup test scenario
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
     login(5, "Shared");
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
     var patient_fullname = get_patient_fullname();
     add_treatment_plan('W','Coventry','','Shared','');
-<<<<<<< HEAD
-    add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
-    
-    //WaitSeconds(6);
-    
-    add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
-  
-    //Get all the patient details
-    //var pat_nhs = get_patient_nhs();
-    var message_name = get_patient_fullname();
-    Goto_Patient_Treatment();
-  
-    //Refer
-    var refer_button_path = refer_pending_treat_button().Click();
-  
-    var result_set = new Array(); 
-=======
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");    
     add_pending_maintenance_treatment("2.0",(aqDateTime.Today()));
     refer_pending_treat_button().Click();
   
     // Initialise Test Results array
     var result_set = new Array();
-    
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
+
     //Check patient on the referred list
     var result_set_1 = check_patient_on_refer_list(patient_fullname)
     result_set.push(result_set_1);
   
-<<<<<<< HEAD
-    patient_search(message_name);
-    //Check the audit
-    Goto_Suggested_Treatment_Audit();
-    result_set_1 = validate_top_treatment_audit(get_string_translation("Treatment Referred"));
-=======
     //Goto_Suggested_Treatment_Audit();
-    var result_set_1 = validate_top_suggested_treatment_audit_with_patient_search(patient_fullname, "Treatment Referred")
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
+    var result_set_1 = validate_top_suggested_treatment_audit_with_patient_search(patient_fullname, get_string_translation("Treatment Referred"));
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -2843,9 +2813,4 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
     var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing";
     handle_failed_tests(suite_name, test_name);
   }
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589

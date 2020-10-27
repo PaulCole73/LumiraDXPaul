@@ -73,12 +73,9 @@ function set_admin_dash_url()
     case base + "ItalyDev1": 
     admin_dash_url = "https://admin-it-dev1.caresolutions.lumiradx.com/";
     break;
-<<<<<<< HEAD
     case base + "ItalyPreProd1": 
     admin_dash_url = "https://admin-it-preprod1.caresolutions.lumiradx.com/";
     break;
-=======
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
     case base + "CoruscantV4": 
     admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
     break;

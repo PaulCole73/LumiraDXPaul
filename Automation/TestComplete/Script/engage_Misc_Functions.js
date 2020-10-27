@@ -69,12 +69,9 @@ function set_engage_url()
     case base + "It-dev1": 
     engage_url = "https://engage-it-dev1.caresolutions.lumiradx.com/";
     break;
-<<<<<<< HEAD
     case base + "ItalyPreProd1": 
     admin_dash_url = "https://admin-it-preprod1.caresolutions.lumiradx.com/";
     break;
-=======
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
     //case base + "Integration": 
     //engage_url = "https://engage-integration.lumiradxcaresolutions.com/";
     //break;

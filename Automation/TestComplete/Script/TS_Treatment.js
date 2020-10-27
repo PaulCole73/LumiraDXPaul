@@ -85,12 +85,6 @@ function ts_staging_regression_treatment()
 }
 
 //==============================================================================//
-<<<<<<< HEAD
-//General Suites
-//--------------------------------------------------------------------------------
-function ts_permissions_new_inr_button()
-{
-=======
 function ts_master_new_inr()
 {
   ts_permissions_new_inr_button();
@@ -102,17 +96,13 @@ function ts_master_new_inr()
 function ts_permissions_new_inr_button()
 {
   reset_folder();
-    
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
+
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();
-<<<<<<< HEAD
-}
-=======
 }
 //--------------------------------------------------------------------------------
 function ts_inr_test_results_received()
@@ -139,4 +129,4 @@ function ts_to_be_categorized()
   tc_inr_test_results_received_from_instrument_matched_to_patient_can_dose_a_manual_patient();
   tc_inr_test_results_received_from_instrument_archiving_results_from_external_results_tab_is_possible();
 }
->>>>>>> 92e82ad89d3eb9f38e737effcd4f8428cb820589
+

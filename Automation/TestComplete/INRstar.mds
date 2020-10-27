@@ -2007,8 +2007,8 @@
 			</testItem>
 		</children>
 	</testItems>
-	<variables key="{0F5476E1-8781-4FD8-B24B-2A5FB62BC7E6}" />
-	<settings key="{80684F71-A981-40E6-BEA5-875D48EC1FA4}">
+	<variables key="{03CFB189-E5E2-441E-8185-EE6B3C7D530F}" />
+	<settings key="{9EC6F82B-D6DD-490E-9D09-84A23DE3D088}">
 		<settingsVersion value="14.70" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
@@ -2566,11 +2566,11 @@
 		<setting name="ZFJ_ZephyrAccessKey" type="5" value="" />
 		<setting name="ZFJ_ZephyrSecretKey" type="5" value="" />
 	</settings>
-	<analysis key="{DA9A6EA2-B5F7-4CC1-8CDC-1039E6A91E9D}" />
+	<analysis key="{D4C06BFD-9525-42DC-AA61-3E6D2B5276C1}" />
 	<scc key="{00000000-0000-0000-0000-000000000000}" name="">
 		<data />
 	</scc>
-	<issueTracking key="{4EC0FB01-681F-47A3-A651-F48CBEE4AE2F}">
+	<issueTracking key="{036C0C57-4622-49B7-823E-4C617C33E778}">
 		<Templates>
 			<Template Id="{1EB17ADF-E4EB-404D-97DC-AD758A1E8C1D}" ConnectionId="{00000000-0000-0000-0000-000000000000}" Description="This template is used by TestComplete&apos;s Log subsystem to post test results to an issue-tracking system. You can also use it at your desire." Name="CreateWorkItem" IsSystem="True" ItemTypeName="" ProjectName="" IsEditing="False" ItemId="">
 				<Fields>
