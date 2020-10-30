@@ -10,7 +10,7 @@ function ts_master_treatment_plan(send_mail)
 {
   reset_folder();
   
-  tc_treatment_plan_add_first_manual_treatment_plan();
+//  tc_treatment_plan_add_first_manual_treatment_plan();
   tc_treatment_plan_add_first_maintenance_treatment_plan(); 
   tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yellow_banner_is_displayed();
   tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_added_induction_patient();
