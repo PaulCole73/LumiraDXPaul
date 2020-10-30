@@ -262,7 +262,7 @@ function check_self_test_warning()
   var patient_management_groups_path = patient_management_groups();
   patient_management_groups_path.Panel(3).Checkbox("SelfTester").ClickChecked(true);
 
-  var wording_check = popup_warning_checker(get_string_translation(('I confirm that this patient has received sufficient training and is competent to perform INR self-testing.')));
+  var wording_check = popup_warning_checker('I confirm that this patient has received sufficient training and is competent to perform INR self-testing.');
     
   var manual_self_testing_pop_up_buttons_path = ok_error_pop_up_buttons();
   manual_self_testing_pop_up_buttons_path.Button(0).TextNode(0).Click();
@@ -407,7 +407,7 @@ function change_reg_practice(prac_name)
 function change_test_practice(prac_name)
 {
   Goto_Change_Testing_Location();
-  WaitSeconds(2);
+  //WaitSeconds(2);
  
   var pat_management_test_practice_search_path = pat_management_test_practice_search();
 

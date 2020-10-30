@@ -8,8 +8,8 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
   var INRstarV5 = INRstar_base();
   
   
-  //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp new tp, activate patient tp and not first tp
-  //Also it may skip the got to if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
+  //If its your first tp for the patient then leave as '' when calling the function, there are 3 different forms for tp: new tp, activate patient tp and not first tp
+  //Also it may skip the goto if I just want to add treatment plan info and I am already in the treatment plan page as I have had to bypass some warning pop ups
   
   if(tp_start_mode == "")
   {
@@ -214,8 +214,9 @@ function edit_treatment_plan(dm)
   var more_info = process_popup(get_string_translation("More information") + " - " + item_val, get_string_translation("Ok"));
   //var more_info = process_more_information(INRstarV5);  
 
-  var buttons = edit_treatment_plan_button_path();       
-  buttons.Button("UpdatePatientTreatmentPlan").Click();
+  // Select the Update Patient Treatment Plan button
+  var button_path = edit_treatment_plan_button_path();
+  button_path.Button("UpdatePatientTreatmentPlan").Click();
   
   return more_info;  
 }
@@ -271,6 +272,9 @@ function edit_treatment_plan_diagnosis()
   var data_before = edit_treatment_plan.Panel(1).Select("DiagnosisSelected").wText;
   edit_treatment_plan.Panel(1).Select("DiagnosisSelected").ClickItem((Math.random()*20)+1);
   var data_after = edit_treatment_plan.Panel(1).Select("DiagnosisSelected").wText;
+  
+  //Some inconsistent behavior here I think it is timing so putting this in remove at your peril
+  WaitSeconds(2);
   
   //Check data is now different
   while (data_before==data_after)

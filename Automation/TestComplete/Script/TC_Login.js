@@ -8,7 +8,7 @@ function tc_log_on_to_inrstar_valid_credentials()
   {
     var test_title = 'Login - Log on to INRstar valid credentials'   
     login(5, "Shared");
-    tsv_login_inrstar("1", "cl3 @ Deans Regression Testing Location");
+    tsv_login_inrstar("1", "cl3@auto1 @ LDxCS-Test-AutoTest1");
     
     Log_Off();
   }

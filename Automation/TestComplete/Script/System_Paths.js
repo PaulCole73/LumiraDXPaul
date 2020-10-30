@@ -11,7 +11,7 @@ function INRstar_base()
   return INRstar;
 } 
 //------------------------------------------------------------------------
-// Main page at login  area
+// Main page at login area - what is this can it be removed?
 function set_system_login_page_coruscant()
 {
   var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
@@ -68,17 +68,6 @@ function tests_due_table()
   return tests_due_table_path;
 }
 //------------------------------------------------------------------------
-//////////////////////////  Home Page  ///////////////////////////////////
-//------------------------------------------------------------------------
-function home_page_messages()
-{
-  var INRstarV5 = INRstar_base();
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
-   
-  return list;
-}
-//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //////////////////////////  Feedback Tab  ////////////////////////////////
 //------------------------------------------------------------------------
@@ -98,6 +87,202 @@ function feedback_tab_textarea()
   
   return area;
 }
+
+//------------------------------------------------------------------------
+//////////////////////////  Home Page  ///////////////////////////////////
+//------------------------------------------------------------------------
+function home_page_button_link()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("header")
+  var link = panelMCP.Link("HomeLink")
+   
+  return link;
+}
+//------------------------------------------------------------------------
+function home_page_messages()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var list = panelMCP.Panel("UserTabContent").Panel("UserMessages").Panel("UserClinicalReports")
+   
+  return list;
+}
+//------------------------------------------------------------------------
+//////////////////////////  Home Page Overdue List ///////////////////////
+//------------------------------------------------------------------------
+function home_page_overdue_link()
+{  
+  var list = home_page_messages();
+  var link = list.Link("OverduePatientHeaderLink");
+   
+  return link;
+}
+//-------------------
+function home_page_overdue_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("OverduePatients").Table("PatientOverdueReportTable");
+   
+  return table;
+}
+//------------------------------------------------------------------------
+///////////////////  Home Page Referred Patient List ////////////////////
+//------------------------------------------------------------------------
+function home_page_referred_patient_link()
+{  
+  var list = home_page_messages();
+  var link = list.Link("ReferredPatientHeaderLink"); 
+   
+  return link;
+}
+//-------------------
+function home_page_referred_patient_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("ReferredPatients").Table("ReferredPatientReportTable");
+   
+  return table;
+}
+//------------------------------------------------------------------------
+////////////////  Home Page Transferred Request List Table //////////////////
+//------------------------------------------------------------------------
+function home_page_transfer_request_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("TransferredPatients").Table("TransferredTable");
+   
+  return table;
+}
+//------------------------------------------------------------------------
+////////////////  Home Page Declined Transfer List Table //////////////////
+//------------------------------------------------------------------------
+function home_page_declined_transfer_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("TransferDeclinedPatients").Table("TransferDeclinedTable");
+   
+  return table;
+}
+//-------------------
+function home_page_declined_transfer_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("DeclinedPatientHeaderLink"); 
+   
+  return link;
+}
+//------------------------------------------------------------------------
+////////  Home Page No Diagnosis or Treatment List Table /////////////////
+//------------------------------------------------------------------------
+function home_page_no_diagnosis_or_treatment_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("PatientsWithNoDiagnosis").Table("PatientWithNoDiagnosisReportTable");
+   
+  return table;
+}
+//------------------
+function home_page_no_diagnosis_or_treatment_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("PatientsWithNoDiagnosisHeaderLink");
+   
+  return link;
+}
+//------------------------------------------------------------------------
+///////////////////  Home Page Incomplete treatment List /////////////////
+//------------------------------------------------------------------------
+function home_page_incomplete_treatment_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("IncompleteTreatments").Table("IncompleteTreatmentsTable");
+   
+  return table;
+}
+//------------------
+function home_page_incomplete_treatment_link()
+{
+  var list = home_page_messages();
+  var link = list.Link(0); //Not ideal but its all we have
+   
+  return link;
+}
+//------------------------------------------------------------------------
+//////////////  Home Page Overdue Non Warfarin Review List ///////////////
+//------------------------------------------------------------------------
+function home_page_overdue_non_warfarin_review_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("OverdueReviewPatients").Table("PatientOverdueReviewReportTable");
+   
+  return table;
+}
+//-------------------
+function home_page_overdue_non_warfarin_review_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("OverdueReviewPatientHeaderLink");
+   
+  return link;
+}
+//------------------------------------------------------------------------
+/////////  Home Page Transfer Not Yet Been Accepted List Table ///////////
+//------------------------------------------------------------------------
+function home_page_transfer_not_yet_been_accepted_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("TransferRequestPatients").Table("TransferRequestTable");
+   
+  return table;
+}
+//------------------------------------------------------------------------
+///////////////////  Home Page Suspension List Table /////////////////////
+//------------------------------------------------------------------------
+function home_page_suspension_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Table("ExceededSuspendedPatientReportTable");
+   
+  return table;
+}
+//-------------------
+function home_page_exceed_suspended_patients_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("ExceededSuspendedPatientsViewModelPatientHeaderLink"); 
+   
+  return link;
+}
+//------------------------------------------------------------------------
+////////// Home Page Suspension List Unsuspend button ////////////////////
+//------------------------------------------------------------------------
+function home_page_suspension_table_unsuspend_button()
+{
+  var list = home_page_messages();
+  var button = list.Panel("ExceededSuspendedPatients").Form("UnsuspendForm").Panel(0).SubmitButton("UnsuspendLink");
+   
+  return button;
+}
+//------------------------------------------------------------------------
+////////// Home Page Exceeded Treatment End_Date List Table  /////////////
+//------------------------------------------------------------------------
+function home_page_exceeded_treatment_end_date_table()
+{
+  var list = home_page_messages();
+  var table = list.Panel("ExceededPatients").Table("PatientExceededReportTable");
+   
+  return table;
+}
+//--------------------
+function home_page_exceeded_treatment_end_date_link()
+{
+  var list = home_page_messages();
+  var link = list.Link("ExceededPatientsHeaderLink"); 
+   
+  return link;
+}
+//-------------------------------------------------------------------------------
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Demographics  /////////////////////////
 //------------------------------------------------------------------------
@@ -266,6 +451,18 @@ function clinical_tp_details()
   
   return clinical_warfarin_details;
 }
+//------------------------------------------------------------------------
+function clinical_details_banner_bar()
+{
+    var INRstarV5 = INRstar_base();
+    var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+    var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+    var panelPCD = panelPTC.Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails");
+    var form = panelPCD.Form("PatientEditTreatmentPlanForm");
+    var banner_bar = form.Panel("TreatmentPlanValidation");
+   
+  return banner_bar; 
+} 
 //------------------------------------------------------------------------
 function clinical_warfarin_details()
 {
@@ -585,15 +782,25 @@ function more_schedule_table()
   return schedule_table;
 }
 //------------------------------------------------------------------------
-function dosing_schedule_table()
+function dosing_schedule_content()
 {
   var INRstarV5 = INRstar_base();
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
-  var grid = panelPPT.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent");
+  var schedule_content = panelPPT.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent");
   
-  return grid;
+  return schedule_content;
+} 
+//------------------------------------------------------------------------
+function patient_pending_treatment_path()
+{
+  var INRstarV5 = INRstar_base();
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
+  
+  return panelPPT;
 } 
 //------------------------------------------------------------------------
 function treatment_buttons_pre_schedule()
@@ -633,7 +840,7 @@ function treatment_comment() //this is a duplicate, use treatment_table() as it 
 function treatment_comment_box()
 {
   var INRstarV5 = INRstar_base();
-  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").Textarea("Comments");
+  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").Textarea("SorbSafeComments");
   
   return treatment_comment_path;
 }
@@ -651,7 +858,17 @@ function pending_treatment_buttons()
 function save_inr_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  
+  /*if (language == "Italian")
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("AcceptPendingTreatment");
+  }
+  else
+  {
+    var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
+  }*/
+  
+  var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr", "AcceptPendingTreatment", 4);
   
   return save_inr_button_path;
 }  
@@ -659,15 +876,35 @@ function save_inr_button()
 function override_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
+  
+  /* This seems bad going forward, should these paths use a find method, otherwise if we change paths in any future projects this could get out of hand?
+  if (language == "Italian")
+  {
+    var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("OverridePendingTreatment");
+  }
+  else
+  {
+    var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
+  }
+  */
+  
+  var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").FindChild("Name", "Button(\"OverridePendingTreatment\")", 10);
   
   return override_button_path;
-} 
+}
+//------------------------------------------------------------------------
+function overide_accept_button()
+{
+  var override_finish_buttons = override_finish_buttons_path();
+	var override_accept_button_path = override_finish_buttons.Button("OverrideAccept")
+  
+  return override_accept_button_path;  
+}
 //------------------------------------------------------------------------
 function cancel_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("CancelPendingTreatment");
+  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr", "CancelPendingTreatment", 4);
   
   return cancel_button_path;
 }
@@ -675,9 +912,17 @@ function cancel_pending_treat_button()
 function refer_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
   
-  return cancel_button_path;
+  if (language == "Italian")
+  {
+    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("ReferPendingTreatment");
+  }
+  else
+  {
+    var refer_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("ReferPendingTreatment");
+  }
+  
+  return refer_button_path;
 }
 //------------------------------------------------------------------------
 function sugg_war_dose_button()
@@ -1743,6 +1988,14 @@ function pat_managment_tab_status_buttons()
   
   return status_buttons;
 }   
+//------------------------------------------------------------------------
+function registered_practice_field()
+{
+  var care_team_path = patient_management_care_team();
+  var registered_practice = care_team_path.Panel(0).Label("TestingSectionId_DetachedLabel").innerText;
+  
+  return registered_practice;
+}
 //------------------------------------------------------------------------
 function pat_managment_tab_preferences_buttons()
 {
