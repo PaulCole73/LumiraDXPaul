@@ -897,7 +897,7 @@ function Goto_Suggested_Treatment_Audit()
   Goto_Patient_Treatment();
   var pending_treatment_table_path = pending_treatment_table();
   pending_treatment_table_path.Cell(0,10).Link("TreatmentInformationActionLink").Click();
-  WaitSeconds(3, "I hate doing this");
+  WaitSeconds(3, "Wait for audit...");
   
   INRstarV5.Panel(2).Panel(1).Panel(0).Button(1).Click();
 }
