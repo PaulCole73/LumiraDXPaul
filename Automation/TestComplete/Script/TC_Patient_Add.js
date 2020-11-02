@@ -12,6 +12,7 @@ function tc_add_a_new_patient()
     var test_title = 'Patient - Add a new patient';
     login(5, "Shared");
     add_patient('Regression', 'add_a_new_patient', 'M', 'Shared'); 
+    //PDE code appears above add patient, needs to be considered in setup as this will cause differences between UK/IT
     var results = validate_bottom_patient_audit(test_title, get_string_translation("Add Patient"));
   
     results_checker(results, test_title)
