@@ -868,7 +868,7 @@ function tc_treatment_edit_a_treatment_comment()
     add_treatment_comment(new_comment);
   
     //Check the audit for adding the treatment
-    var result_set_1 = validate_more_info_top_treatment_audit('Comments changed from [' + old_comment + '] to [' + new_comment + ']');
+    var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Comments changed from") + " [" + old_comment + "]" + get_string_translation("to") + " [" + new_comment + "].");
     result_set.push(result_set_1);
   
     //Validate the results sets are true
