@@ -3118,7 +3118,7 @@
 							<testItem name="INRstar" key="{86CF69C3-DD6D-478A-935D-CF95FBF448AE}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="Setup" key="{88818AE2-79F2-4CC5-B9FE-1E197019B5CF}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="Setup" key="{88818AE2-79F2-4CC5-B9FE-1E197019B5CF}" group="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsDev1V4" />
 											<param1 name="locale" type="3" localVarName="" varType="8" value="English" />
@@ -3239,7 +3239,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{32960C04-6002-4F64-B7B5-E7834386B05A}" group="False" enabled="False" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{32960C04-6002-4F64-B7B5-E7834386B05A}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -3262,7 +3262,7 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_External_Results_CSP" key="{CE90535D-2C16-4972-84EB-62C3752B15D7}" group="False" enabled="True" testMoniker="{005D3F30-9298-494D-9ACB-9A2CD2F78625}ts_external_results_csp" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_External_Results_CSP" key="{CE90535D-2C16-4972-84EB-62C3752B15D7}" group="False" enabled="False" testMoniker="{005D3F30-9298-494D-9ACB-9A2CD2F78625}ts_external_results_csp" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
 										</testParameters>

@@ -146,6 +146,15 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    process_popup(get_string_translation("PoCT Batch Expired"),get_string_translation("Confirm"));   
    process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
    WaitSeconds(2);
+   
+   //check page transition
+  if(wait_for_object(main_patient_tab(), "idStr", "DosingSchedule", 7).Exists)
+  {
+    // If an adjustment is required to tablet dosage breakdown - carry it out
+    handle_dosing_modification_required();
+  
+    wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
+  }
 }
 //--------------------------------------------------------------------------------
 function add_pending_maintenance_treatment(inr, date, selftest, test_method)
@@ -444,7 +453,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
     //Changes days string to day if review = 1
     days = days.substring(0,4-1)
   }
-  inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
+  test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
 
   test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
