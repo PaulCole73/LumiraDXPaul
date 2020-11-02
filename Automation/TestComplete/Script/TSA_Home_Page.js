@@ -64,7 +64,7 @@ function check_home_page_header_showing_by_name(link_header)
   // Get the home_page_messages_path base  
   var home_page_messages_path = home_page_messages();
   
-  // Check link exists wait for 4 seconds
+  // Check link exists wait for 6 seconds
   var link = home_page_messages_path.WaitChild("Link(\""+ link_header +"\")", 6000).Exists
 
   // Cannot use check_menu_header_exists(link) 
