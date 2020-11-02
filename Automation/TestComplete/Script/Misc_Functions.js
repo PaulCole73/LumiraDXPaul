@@ -1529,8 +1529,3 @@ function setup_generic_patient(do_login, dm)
     }
   //}
 }
-
-function test()
-{
-  override_review("21");
-}
