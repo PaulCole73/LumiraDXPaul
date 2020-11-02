@@ -402,7 +402,7 @@ function tc_home_page_view_the_patients_referred_to_you_for_further_action_messa
     add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");    
-    add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
+    add_pending_maintenance_treatment("2.0",(aqDateTime.Today()));
   
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -450,7 +450,7 @@ function tc_home_page_view_the_patients_with_incomplete_treatment_message()
     add_patient('Regression', 'Incomplete_treatment', 'M', 'Shared');
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "7", "2.5");
-    add_pending_maintenance_treatment(get_string_translation("2.4"), aqConvert.StrToDate(aqDateTime.Today()));
+    add_pending_maintenance_treatment("2.4", aqConvert.StrToDate(aqDateTime.Today()));
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();

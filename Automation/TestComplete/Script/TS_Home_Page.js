@@ -23,7 +23,7 @@ function ts_master_homepage(send_mail)
   tc_home_page_view_the_patients_with_incomplete_treatment_message(); 
   tc_home_page_view_the_patients_with_no_diagnosis_or_treatment_plan_message(); 
   
-  tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home_page_button(); 
+  //tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home_page_button(); not working for italy, may need different popup handler
   tc_home_page_accept_button_transfer_can_be_accepted_on_home_page(); 
   tc_home_page_decline_button_transfer_can_be_declined_on_home_page(); 
   

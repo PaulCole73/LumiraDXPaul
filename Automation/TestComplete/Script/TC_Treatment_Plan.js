@@ -577,7 +577,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%A %d-%B-%Y");
     var clinic_day = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%A");
     var clinic_day_num = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%d");
-    var clinic_month = set_italian_long_month(aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%B"));
+    var clinic_month = set_italian_long_month(aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%B")); //date time functions are relative to the pc locale, should be reworked using a region identifier
     var clinic_year = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%Y");
     
     //Way too much happening here now needs to be in a test step but not got enough time right now
@@ -602,18 +602,18 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     result_set.push(result_set_1);
     
     //Setting back to short month for the audit check                     
-    var clinic_month = (aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%b"));
+    var clinic_month = aqString.ToLower(aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%b"));
 
     if(language == "Italian")
     {
     //Added in space here Italy build is going to fail as spaces missing - string_translation("Booked") + "] "
-    result_set_1 = validate_more_info_top_patient_audit("Appointment " + get_string_translation("record") + " [" + clinic_day_num + "-" + get_string_translation(clinic_month) + "-" + clinic_year +"] " 
+    result_set_1 = validate_more_info_top_patient_audit("Appointment " + get_string_translation("record") + " [" + clinic_day_num + "-" + clinic_month + "-" + clinic_year +"] " 
                                                          + get_string_translation("was updated") + ". "  + get_string_translation("Status") + " " + get_string_translation("changed from") 
                                                          + " [" + get_string_translation("Booked") + "]" + get_string_translation("to") + " [" + get_string_translation("Cancelled") + "]");
     }
     else
     {
-    result_set_1 = validate_more_info_top_patient_audit("Appointment " + get_string_translation("record") + " [" + clinic_day_num + "-" + get_string_translation(clinic_month) + "-" + clinic_year +"] " 
+    result_set_1 = validate_more_info_top_patient_audit("Appointment " + get_string_translation("record") + " [" + clinic_day_num + "-" + clinic_month + "-" + clinic_year +"] " 
                                                          + get_string_translation("was updated") + ". "  + get_string_translation("Status") + " " + get_string_translation("changed from") 
                                                          + " [" + get_string_translation("Booked") + "] " + get_string_translation("to") + " [" + get_string_translation("Cancelled") + "]");
     }

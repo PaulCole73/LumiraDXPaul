@@ -297,7 +297,7 @@ function Goto_Home_Page_Exceeded_Treatment_End_Date_List()
   if (link_present == true)
   {
     //Get the system path of the home page messages section
-    var home_page_messages_path = home_page_messages();
+    //var home_page_messages_path = home_page_messages();
 
     //Get the system path of the link we are looking for
     var link_header = home_page_exceeded_treatment_end_date_link();
@@ -306,7 +306,7 @@ function Goto_Home_Page_Exceeded_Treatment_End_Date_List()
     link_header.Click();
   
     //Wait for table to appear
-    wait_for_object(home_page_messages_path, "idStr", "PatientExceededReportTable", 3);
+    wait_for_object(home_page_messages(), "idStr", "PatientExceededReportTable", 4);
   }
   
   //Return true or false pending if link (and therfore table) is present
@@ -897,6 +897,7 @@ function Goto_Suggested_Treatment_Audit()
   Goto_Patient_Treatment();
   var pending_treatment_table_path = pending_treatment_table();
   pending_treatment_table_path.Cell(0,10).Link("TreatmentInformationActionLink").Click();
+  WaitSeconds(3, "Wait for audit...");
   
   INRstarV5.Panel(2).Panel(1).Panel(0).Button(1).Click();
 }

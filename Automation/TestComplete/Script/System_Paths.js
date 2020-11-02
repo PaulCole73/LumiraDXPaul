@@ -11,7 +11,7 @@ function INRstar_base()
   return INRstar;
 } 
 //------------------------------------------------------------------------
-// Main page at login  area
+// Main page at login area - what is this can it be removed?
 function set_system_login_page_coruscant()
 {
   var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
@@ -838,7 +838,7 @@ function treatment_comment() //this is a duplicate, use treatment_table() as it 
 function treatment_comment_box()
 {
   var INRstarV5 = INRstar_base();
-  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").Textarea("Comments");
+  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").Textarea("SorbSafeComments");
   
   return treatment_comment_path;
 }
@@ -857,14 +857,16 @@ function save_inr_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
   
-  if (language == "Italian")
+  /*if (language == "Italian")
   {
     var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("AcceptPendingTreatment");
   }
   else
   {
     var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment");
-  }
+  }*/
+  
+  var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr", "AcceptPendingTreatment", 4);
   
   return save_inr_button_path;
 }  
@@ -873,6 +875,7 @@ function override_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
   
+  /* This seems bad going forward, should these paths use a find method, otherwise if we change paths in any future projects this could get out of hand?
   if (language == "Italian")
   {
     var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Panel(0).Panel(0).Button("OverridePendingTreatment");
@@ -881,6 +884,10 @@ function override_button()
   {
     var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment");
   }
+  */
+  
+  var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").FindChild("Name", "Button(\"OverridePendingTreatment\")", 10);
+  
   return override_button_path;
 }
 //------------------------------------------------------------------------
@@ -895,7 +902,7 @@ function overide_accept_button()
 function cancel_pending_treat_button()
 {
   var pending_treatment_buttons_path = pending_treatment_buttons();
-  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("CancelPendingTreatment");
+  var cancel_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr", "CancelPendingTreatment", 4);
   
   return cancel_button_path;
 }
