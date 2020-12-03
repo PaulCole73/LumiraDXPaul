@@ -2005,6 +2005,40 @@
 					</testItem>
 				</children>
 			</testItem>
+			<testItem name="MultiTest_Staging" key="{718B7830-C49E-4BB3-97BD-70ED327FFB6E}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+				<testParameters />
+				<children>
+					<testItem name="INRstar" key="{FD7B6CEE-25EF-4FF4-9B47-3A4538167383}" group="True" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<children>
+							<testItem name="Setup" key="{42B3E609-1583-42E7-AED8-1267D9A370AC}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsStaging" />
+									<param1 name="locale" type="3" localVarName="" varType="8" value="English" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="TS_MultiTest" key="{535AFA51-30E0-4626-AA87-C392E8656BE7}" group="False" enabled="True" testMoniker="{E1762DE1-DB4F-4753-9ADE-9FF643A7B4E0}ts_multitest" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+								</testParameters>
+								<children />
+							</testItem>
+							<testItem name="Re-try Failed Tests" key="{00B242D3-E0A4-40B9-B06D-9F1F563BDD25}" group="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children />
+							</testItem>
+							<testItem name="Email" key="{B5AD13DC-7DF7-4D11-B0EF-3CEE24F37F22}" group="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}email_and_archive" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters>
+									<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
+									<param1 name="name" type="3" localVarName="" varType="8" value="staging_regression_output" />
+								</testParameters>
+								<children />
+							</testItem>
+						</children>
+					</testItem>
+				</children>
+			</testItem>
 		</children>
 	</testItems>
 	<variables key="{03CFB189-E5E2-441E-8185-EE6B3C7D530F}" />
