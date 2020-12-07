@@ -30,25 +30,11 @@ function edit_all_patient_demographics(gender)
   //NHS Number
   if(language == "English")
     {
-      if(nhs_num == null || nhs_num == "")
-      {
-        if(nhs_num == " ")
-        {
-        
-        }
-        else
         {
           data_before = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text;
           var w_nhs = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
           data_after = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text;
         }
-      }
-      else 
-      {
-        data_before = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text;
-        var w_nhs = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text = nhs_num;
-        data_after = patient_edit_demographics_form_pat_details_path.Panel(1).Textbox("NHSNumber").Text;
-      }
       
       //Check data is now different
       while (data_before == data_after)
@@ -61,51 +47,12 @@ function edit_all_patient_demographics(gender)
   //Title, Sex, and Gender this one is handled slightly differently due to complexity with defaulting other fields, always edit to be a male
   if (gender == "M" || gender == "m")
   {
-    if(language == "English")
-      {
-        patient_edit_demographics_form_pat_details_path.Panel(2).Select("Title").ClickItem("Mr");
-      }
-    else 
-      {
-        patient_edit_demographics_form_pat_details_path.Panel(2).Select("Title").ClickItem("Sig.");
-      }
+        patient_edit_demographics_form_pat_details_path.Panel(2).Select("Title").ClickItem(get_string_translation("Mr"));
   }
   else
   {
-    if(language == "English")
-      {
-        patient_edit_demographics_form_pat_details_path.Panel(2).Select("Title").ClickItem("Mrs");
-      }
-    else
-      {
-        patient_edit_demographics_form_pat_details_path.Panel(2).Select("Title").ClickItem("Sig.ra");
-      }
-  }function edit_patient_dob_to_be_under_18(months)
-{
-  Goto_Edit_Patient_Demographics();
-  var INRstarV5 = INRstar_base();   
-  var patient_edit_demographics_form_pat_details_path = patient_edit_demographics_form_pat_details();
-  
-  // Set the Treatment Date to be less than the entered age
-  var date_months = aqConvert.StrToDate(aqDateTime.AddMonths(aqDateTime.Today(), (-months)))
-  var date = aqConvert.StrToDate(aqDateTime.AddDays(date_months, (+1)))
-  
-  var w_day = aqString.SubString(date,0,2);
-  var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
-  var w_yr = aqString.SubString(date,6,4);
-      
-  patient_edit_demographics_form_pat_details_path.Panel(5).Image("calendar_png").Click();
-      
-  w_datepicker = INRstarV5.Panel("ui_datepicker_div");
-  w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
-  w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
-  select_day(w_day, w_datepicker);
-  
-  var save_button = patient_edit_demographics_form_buttons();
-  save_button.SubmitButton("UpdatePatientDetails").Click();
-  
-  WaitSeconds(2, "Waiting for banner message...");
-} 
+        patient_edit_demographics_form_pat_details_path.Panel(2).Select("Title").ClickItem(get_string_translation("Mrs"));
+  }
   //Family Name
   data_before = patient_edit_demographics_form_pat_details_path.Panel(3).Textbox("Surname").Text;
   patient_edit_demographics_form_pat_details_path.Panel(3).Textbox("Surname").Text = "Edited " + aqConvert.IntToStr(Math.floor(Math.random()*1000));
@@ -285,7 +232,7 @@ function edit_all_patient_demographics(gender)
   //Check data is now different
   while(data_before == data_after)
   {
-    patient_edit_demographics_form_contact_details_path.Panel(6).Textbox("Phone").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Tel";
+    patient_edit_demographics_form_contact_details_path.Panel(6).Textbox("Phone").Text = aqConvert.IntToStr(Math.floor(Math.random()*10000)) + " Amended Tel";
     data_after = patient_edit_demographics_form_contact_details_path.Panel(6).Textbox("Phone").Text;
   }    
 
@@ -293,6 +240,7 @@ function edit_all_patient_demographics(gender)
   if(language == "English")
       {
         data_before = patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text;
+        //data_before = patient_edit_demographics_form_contact_details_path.Find("idStr","Mobile_DetachedLabel_Label").Text;
         patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text = aqConvert.IntToStr(Math.floor(Math.random()*10000)) + " Amended Mob";
         data_after = patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text;
   
@@ -354,3 +302,29 @@ function edit_all_patient_demographics(gender)
   wait_for_object(obj_root, "idStr", "PatientDetails", 3);
 } 
 //--------------------------------------------------------------------------------
+function edit_patient_dob_to_be_under_18(months)
+{
+  Goto_Edit_Patient_Demographics();
+  var INRstarV5 = INRstar_base();   
+  var patient_edit_demographics_form_pat_details_path = patient_edit_demographics_form_pat_details();
+  
+  // Set the Treatment Date to be less than the entered age
+  var date_months = aqConvert.StrToDate(aqDateTime.AddMonths(aqDateTime.Today(), (-months)))
+  var date = aqConvert.StrToDate(aqDateTime.AddDays(date_months, (+1)))
+  
+  var w_day = aqString.SubString(date,0,2);
+  var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
+  var w_yr = aqString.SubString(date,6,4);
+      
+  patient_edit_demographics_form_pat_details_path.Panel(5).Image("calendar_png").Click();
+      
+  w_datepicker = INRstarV5.Panel("ui_datepicker_div");
+  w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(aqConvert.FloatToStr(w_yr));
+  w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
+  select_day(w_day, w_datepicker);
+  
+  var save_button = patient_edit_demographics_form_buttons();
+  save_button.SubmitButton("UpdatePatientDetails").Click();
+  
+  WaitSeconds(2, "Waiting for banner message...");
+} 
