@@ -2039,11 +2039,19 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="TS_MultiTest_Complete" key="{323589CB-E1C0-4AFD-A412-78778E8962B7}" group="False" enabled="True" testMoniker="{E1762DE1-DB4F-4753-9ADE-9FF643A7B4E0}ts_multitest_complete" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="UK_TS_MultiTest_Complete" key="{323589CB-E1C0-4AFD-A412-78778E8962B7}" group="False" enabled="True" testMoniker="{E1762DE1-DB4F-4753-9ADE-9FF643A7B4E0}ts_multitest_complete" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters>
 					<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
-					<param1 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsTraining" />
+					<param1 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsUKTest1" />
 					<param2 name="locale" type="3" localVarName="" varType="8" value="English" />
+				</testParameters>
+				<children />
+			</testItem>
+			<testItem name="IT_TS_MultiTest_Complete" key="{1A2D52B1-1DA5-43D1-8666-A000F3646A48}" group="False" enabled="True" testMoniker="{E1762DE1-DB4F-4753-9ADE-9FF643A7B4E0}ts_multitest_complete" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+				<testParameters>
+					<param0 name="send_mail" type="3" localVarName="" varType="11" value="True" />
+					<param1 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsItalyDemo" />
+					<param2 name="locale" type="3" localVarName="" varType="8" value="Italian" />
 				</testParameters>
 				<children />
 			</testItem>

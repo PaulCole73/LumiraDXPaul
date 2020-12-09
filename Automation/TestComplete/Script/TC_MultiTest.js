@@ -5,7 +5,7 @@
 function tc_multi_tests()
 {
   var INRstarV5 = INRstar_base();
-  var inrstar_current_version = home_page_version_number().contentText
+  var inrstar_current_version = login_page_version_number().contentText
   Log.Message("Current INRstar " + inrstar_current_version)
   //test Login, user can log into INRstar
   try
@@ -24,7 +24,7 @@ function tc_multi_tests()
   try
   {
     var test_title = 'Patient - Add a new patient';
-    add_patient('Regression', 'Overdue_INR_message', 'M', 'Shared');
+    add_patient('Regression', 'Multi-Test', 'M', 'Shared');
     var results = validate_top_patient_audit(test_title,get_string_translation("Add Patient"));
     var patient_demographics = get_patient_demographics();
     
@@ -218,14 +218,14 @@ function tc_multi_tests()
   }
   
   //test Patient Recently Viewed: Find patient recently viewed
-  var patient_fullname = patient_demographics[2] + ', ' + patient_demographics[3]
+  //var patient_fullname = get_patient_fullname();
   try
   {
     var test_title = 'Patient Recently Viewed - Find patient recently viewed'
     var patients_list = new Array();
     patients_list = patient_recently_viewed_list();
   
-    var results = table_contains_checker(patients_list, patient_fullname, test_title)
+    var results = table_contains_checker(patients_list, message_name, test_title)
     results_checker(results, test_title);
   }
   catch(e)
@@ -238,13 +238,13 @@ function tc_multi_tests()
   try
   {
     var test_title = 'Patient Search - Find a patient'
-    //edited patient name not being found so hve changed to use patient number
+    //edited patient name not being found so have changed to use patient number
     patient_search(patient_demographics[0]);
     
     var pat_name_currently_loaded = get_patient_fullname();
     
     var result_set = new Array();
-    var result_set_1 = compare_values(patient_fullname, pat_name_currently_loaded, test_title);
+    var result_set_1 = compare_values(message_name, pat_name_currently_loaded, test_title);
     result_set.push(result_set_1);
   
     //Validate all the results sets are true
@@ -276,7 +276,14 @@ function tc_multi_tests()
     }
     else
     {
-      treatment_data.push(formatted_inr_date, "2,0", "2,5", "", "0", "7", "", formatted_ntd, "-");
+      //translate the month string to italian
+      var inr_date_month = aqString.SubString(formatted_inr_date, 3, 3);
+      var translated_inr_date_month = get_string_translation(inr_date_month);
+      var italian_formatted_inr_date = aqString.Replace(formatted_inr_date, inr_date_month, translated_inr_date_month);
+      var ntd_month = aqString.SubString(formatted_ntd, 3, 3);
+      var translated_ntd_month = get_string_translation(ntd_month);
+      var italian_formatted_ntd = aqString.Replace(formatted_ntd, inr_date_month, translated_inr_date_month); 
+      treatment_data.push(italian_formatted_inr_date, "2,0", "2,5", "", "0", "7", "", italian_formatted_ntd, "-");
     }
     var treatment_row = get_treatment_row(0);
   
@@ -371,7 +378,7 @@ function tc_multi_tests()
   {
     var test_title = 'Treatment - Refer a treatment'
     
-    add_pending_maintenance_treatment(get_string_translation("2.0"),(aqDateTime.Today()));
+    add_pending_maintenance_treatment('2.0',(aqDateTime.Today()));
   
     //Get all the patient details
     //var pat_nhs = get_patient_nhs();
@@ -538,7 +545,7 @@ function tc_multi_tests()
 		var test_title = 'Treatment - Overriding Dose and Review Period';
 		//setup values to be altered/checked
 		var new_dose = "5.0";
-		var new_review_days = "13";
+		var new_review_days = "7";
 		var result_set = new Array();
 		var expected_values = new Array();
 		var override_values = new Array();
@@ -611,8 +618,18 @@ function tc_multi_tests()
   try
   {
     var test_title = 'Treatment - Delete the last treatment'
-    var result_set = new Array(); 
-    var formatted_inr_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y");
+    var result_set = new Array();
+    if (language=="English")
+    { 
+      var formatted_inr_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y");
+    }
+    else
+    {
+      //translate the inr_date
+      var inr_date_month = aqString.SubString(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), 3, 3);
+      var translated_inr_date_month = get_string_translation(inr_date_month);
+      var formatted_inr_date = aqString.Replace(aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d-%b-%Y"), inr_date_month, translated_inr_date_month);
+    }
     var exp_message = get_string_translation("Please confirm you want to delete the treatment added on the ") + formatted_inr_date + '.';
     
     var message = delete_treatment();

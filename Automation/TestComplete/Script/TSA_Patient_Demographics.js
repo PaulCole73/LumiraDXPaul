@@ -58,24 +58,10 @@ function edit_all_patient_demographics(gender)
   patient_edit_demographics_form_pat_details_path.Panel(3).Textbox("Surname").Text = "Edited " + aqConvert.IntToStr(Math.floor(Math.random()*1000));
   data_after = patient_edit_demographics_form_pat_details_path.Panel(3).Textbox("Surname").Text;
   
-  //Check data is now different
-  while (data_before == data_after)
-  {
-    patient_edit_demographics_form_pat_details_path.Panel(3).Textbox("Surname").Text = "Edited" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
-    data_after = patient_edit_demographics_form_pat_details_path.Panel(3).Textbox("Surname").Text;
-  }
-  
   //Given Name
   data_before = patient_edit_demographics_form_pat_details_path.Panel(4).Textbox("FirstName").Text;
   patient_edit_demographics_form_pat_details_path.Panel(4).Textbox("FirstName").Text = "Edited " + aqConvert.IntToStr(Math.floor(Math.random()*1000));
   data_after = patient_edit_demographics_form_pat_details_path.Panel(4).Textbox("FirstName").Text;
-  
-  //Check data is now different
-  while (data_before == data_after)
-  {
-    patient_edit_demographics_form_pat_details_path.Panel(4).Textbox("FirstName").Text = "Edited" + aqConvert.IntToStr(Math.floor(Math.random()*1000));
-    data_after = patient_edit_demographics_form_pat_details_path.Panel(4).Textbox("FirstName").Text;
-  } 
   
   //Born
   data_before = patient_edit_demographics_form_pat_details_path.Panel(5).Textbox("PatientBorn").text;
@@ -122,11 +108,8 @@ function edit_all_patient_demographics(gender)
           patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").ClickItem((Math.random()*17));
           data_after = patient_edit_demographics_form_pat_details_path.Panel(8).Select("Ethnicity").wText;
         } 
-      }
       
   //First Language
-  if(language == "English")
-      {
         data_before = patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").wText;
         patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").ClickItem((Math.random()*188));
         data_after = patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").wText;
@@ -137,11 +120,8 @@ function edit_all_patient_demographics(gender)
           patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").ClickItem((Math.random()*188));
           data_after = patient_edit_demographics_form_pat_details_path.Panel(9).Select("SpokenLanguage").wText;
         }
-      } 
   
   //Marital Status
-  if(language == "English")
-      {
         data_before = patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").wText;
         patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").ClickItem((Math.random()*8));
         data_after = patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").wText;
@@ -152,68 +132,34 @@ function edit_all_patient_demographics(gender)
           patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").ClickItem((Math.random()*8));
           data_after = patient_edit_demographics_form_pat_details_path.Panel(10).Select("MartialStatus").wText;
         } 
-      }  
+      }
+        
   var patient_edit_demographics_form_contact_details_path = patient_edit_demographics_form_contact_details();
   
   //Line 1
   data_before = patient_edit_demographics_form_contact_details_path.Panel(0).Textbox("FirstLineAddress").Text;
   patient_edit_demographics_form_contact_details_path.Panel(0).Textbox("FirstLineAddress").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Avenue";
-  data_after = patient_edit_demographics_form_contact_details_path.Panel(0).Textbox("FirstLineAddress").Text;
-  
-  //Check data is now different
-  while (data_before == data_after)
-  {
-    patient_edit_demographics_form_contact_details_path.Panel(0).Textbox("FirstLineAddress").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Avenue";
-    data_after = patient_edit_demographics_form_contact_details_path.Panel(0).Textbox("FirstLineAddress").Text;
-  } 
+  data_after = patient_edit_demographics_form_contact_details_path.Panel(0).Textbox("FirstLineAddress").Text; 
   
   //Line 2
   data_before = patient_edit_demographics_form_contact_details_path.Panel(1).Textbox("SecondLineAddress").Text;
   patient_edit_demographics_form_contact_details_path.Panel(1).Textbox("SecondLineAddress").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Line 2";
-  data_after = patient_edit_demographics_form_contact_details_path.Panel(1).Textbox("SecondLineAddress").Text;
-  
-  //Check data is now different
-  while (data_before == data_after)
-  {
-    patient_edit_demographics_form_contact_details_path.Panel(1).Textbox("SecondLineAddress").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Line 2";
-    data_after = patient_edit_demographics_form_contact_details_path.Panel(1).Textbox("SecondLineAddress").Text;
-  } 
+  data_after = patient_edit_demographics_form_contact_details_path.Panel(1).Textbox("SecondLineAddress").Text; 
   
   //Line 3
   data_before = patient_edit_demographics_form_contact_details_path.Panel(2).Textbox("ThirdLineAddress").Text;
   patient_edit_demographics_form_contact_details_path.Panel(2).Textbox("ThirdLineAddress").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Line 2";
-  data_after = patient_edit_demographics_form_contact_details_path.Panel(2).Textbox("ThirdLineAddress").Text;
-   
-  //Check data is now different
-  while (data_before == data_after)
-  {
-    patient_edit_demographics_form_contact_details_path.Panel(2).Textbox("ThirdLineAddress").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Line 3";
-    data_after = patient_edit_demographics_form_contact_details_path.Panel(2).Textbox("ThirdLineAddress").Text;
-  }     
+  data_after = patient_edit_demographics_form_contact_details_path.Panel(2).Textbox("ThirdLineAddress").Text;    
    
   //Town
   data_before = patient_edit_demographics_form_contact_details_path.Panel(3).Textbox("Town").Text;
   patient_edit_demographics_form_contact_details_path.Panel(3).Textbox("Town").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Town";
-  data_after = patient_edit_demographics_form_contact_details_path.Panel(3).Textbox("Town").Text;
-  
-  //Check data is now different
-  while (data_before == data_after)
-  {
-    patient_edit_demographics_form_contact_details_path.Panel(3).Textbox("Town").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Town";
-    data_after = patient_edit_demographics_form_contact_details_path.Panel(3).Textbox("Town").Text;
-  }   
+  data_after = patient_edit_demographics_form_contact_details_path.Panel(3).Textbox("Town").Text;  
   
   //County
   data_before = patient_edit_demographics_form_contact_details_path.Panel(4).Textbox("County").Text;
   patient_edit_demographics_form_contact_details_path.Panel(4).Textbox("County").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended County";
-  data_after = patient_edit_demographics_form_contact_details_path.Panel(4).Textbox("County").Text;
-  
-  //Check data is now different
-  while (data_before == data_after)
-  {
-    patient_edit_demographics_form_contact_details_path.Panel(4).Textbox("County").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended County";
-    data_after = patient_edit_demographics_form_contact_details_path.Panel(4).Textbox("County").Text;
-  }  
+  data_after = patient_edit_demographics_form_contact_details_path.Panel(4).Textbox("County").Text; 
   
   //PostCode - Come back to hard coded for the minute quite complicated
   if(language == "English")
@@ -237,62 +183,30 @@ function edit_all_patient_demographics(gender)
   }    
 
   //Mobile
-  if(language == "English")
-      {
-        data_before = patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text;
-        //data_before = patient_edit_demographics_form_contact_details_path.Find("idStr","Mobile_DetachedLabel_Label").Text;
-        patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text = aqConvert.IntToStr(Math.floor(Math.random()*10000)) + " Amended Mob";
-        data_after = patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text;
+  data_before = patient_edit_demographics_form_contact_details_path.Find("idStr","Mobile",2).Text;
+  patient_edit_demographics_form_contact_details_path.Find("idStr","Mobile",2).Text = aqConvert.IntToStr(Math.floor(Math.random()*10000)) + " Amended Mob";
+  data_after = patient_edit_demographics_form_contact_details_path.Find("idStr","Mobile",2).Text;
   
-        //Check data is now different
-        while (data_before == data_after)
-        {
-          patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Mob";
-          data_after = patient_edit_demographics_form_contact_details_path.Panel(7).Textbox("Mobile").Text;
-        }    
-      }
-  else
-    {
-        data_before = patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Mobile").Text;
-        patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Mobile").Text = aqConvert.IntToStr(Math.floor(Math.random()*10000)) + " Amended Mob";
-        data_after = patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Mobile").Text;
-  
-        //Check data is now different
-        while (data_before == data_after)
-        {
-          patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Mobile").Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Mob";
-          data_after = patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Mobile").Text;
-        }
-    }
+  //Check data is now different
+  while (data_before == data_after)
+  {
+    patient_edit_demographics_form_contact_details_path.Find("idStr","Mobile",2).Text = aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Amended Mob";
+    data_after = patient_edit_demographics_form_contact_details_path.Find("idStr","Mobile",2).Text;
+  }    
+        
   //Email
-  if(language == "English")
-      {
-        var guid = new_guid();
-        data_before = patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Email").Text;
-        patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Email").Text = "test_user_+" + guid + "@gmail.com";
-        data_after = patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Email").Text;
+  var guid = new_guid();
+  data_before = patient_edit_demographics_form_contact_details_path.Find("idStr","Email",2).Text;
+  patient_edit_demographics_form_contact_details_path.Find("idStr","Email",2).Text = "test_user_+" + guid + "@gmail.com";
+  data_after = patient_edit_demographics_form_contact_details_path.Find("idStr","Email",2).Text;
   
-        //Check data is now different
-        while (data_before == data_after)
-        {
-          patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Email").Text = "test_user_+" + guid + "@gmail.com";
-          data_after = patient_edit_demographics_form_contact_details_path.Panel(8).Textbox("Email").Text;
-        }    
-      }
-  else
-    {
-        var guid = new_guid();
-        data_before = patient_edit_demographics_form_contact_details_path.Panel(9).Textbox("Email").Text;
-        patient_edit_demographics_form_contact_details_path.Panel(9).Textbox("Email").Text = "test_user_+" + guid + "@gmail.com";
-        data_after = patient_edit_demographics_form_contact_details_path.Panel(9).Textbox("Email").Text;
-  
-        //Check data is now different
-        while (data_before == data_after)
-        {
-          patient_edit_demographics_form_contact_details_path.Panel(9).Textbox("Email").Text = "test_user_+" + guid + "@gmail.com";
-          data_after = patient_edit_demographics_form_contact_details_path.Panel(9).Textbox("Email").Text;
-        } 
-    }
+  //Check data is now different
+  while (data_before == data_after)
+  {
+    patient_edit_demographics_form_contact_details_path.Find("idStr","Email",2).Text = "test_user_+" + guid + "@gmail.com";
+    data_after = patient_edit_demographics_form_contact_details_path.Find("idStr","Email",2).Text;
+  }    
+
   var save_button = patient_edit_demographics_form_buttons();
   var obj = save_button.SubmitButton("UpdatePatientDetails");
   

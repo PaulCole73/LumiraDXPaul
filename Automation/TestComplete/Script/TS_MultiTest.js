@@ -15,6 +15,7 @@ function ts_multitest(send_mail)
 //--------------------------------------------------------------------------------
 function ts_multitest_complete(send_mail,new_config_file_name,locale)
 {
+  var language = locale;
   reset_folder();
   setup_automation(new_config_file_name,locale);
   tc_multi_tests();

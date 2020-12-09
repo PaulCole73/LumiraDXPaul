@@ -85,13 +85,10 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
       {
         prev_plan_action = "Yes"
       }
+        
+      process_popup(get_string_translation("Is this patient currently taking Warfarin?"), get_string_translation(prev_plan_action));
+      var is_reusing = process_popup(get_string_translation("New Warfarin Treatment Plan"), get_string_translation(prev_plan_action));
       
-      //if(language == "English")
-      //{
-        var is_reusing = process_popup(get_string_translation("New Warfarin Treatment Plan"), get_string_translation(prev_plan_action));
-        process_popup(get_string_translation("Is this patient currently taking Warfarin?"), get_string_translation(prev_plan_action));
-      //}
-
       if (prev_plan_action == "Yes" || prev_plan_action == true)
       {     
           Log.Message("Treatment uses previous details, save and exiting...");
@@ -351,7 +348,14 @@ function edit_all_fields_treatment_plan_with_treatment()
   //Check data is now different
   while (data_before==data_after)
   {
+    if (language =="English")
+  {
     treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*2)+1);
+  }
+  else
+  {
+    treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").ClickItem((Math.random()*1)+1);
+  }
     var item_val = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;
     process_popup(get_string_translation("More information") + " - " + item_val, get_string_translation("Ok"));
     var data_after = treatment_plan_warfarin_details.Panel(0).Select("DosingMethod").wText;

@@ -1,6 +1,7 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
-
+//USEUNIT Misc_Functions
+//USEUNIT TS_MultiTest
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
 //Use functions from here before anywhere else
@@ -73,42 +74,84 @@ function get_patient_demographics()
   
   var patient_data_array = new Array()
   
-  if(language=="English")
-  {
-  //Demograhics Pane
-  var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
-  var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
-  var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
-  var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
-  var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
-  var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
-  var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
-  var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
-  var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
-  var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
-  var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
-  
-  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
-  
-  var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
-  var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
-  var line_3 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(1).Label("ThirdAddressLine_DetachedLabel").contentText;
-  var town = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(2).Label("FourthAddressLine_DetachedLabel").contentText;
-  var county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;
-  var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
-  var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
-  var mobile = patient_demographics_tab_contact_address_path.Panel(2).Label("Mobile_DetachedLabel").contentText;
-  var email = patient_demographics_tab_contact_address_path.Panel(3).Label("Email_DetachedLabel").contentText;
-  
-  patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, ethnicity, language, mar_status, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
-  }
-  
-  else
-  {
-    //Demograhics Pane
+//  if(language=="English")
+//  {
+//  //Demograhics Pane
+//  var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
+//  var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
+//  var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
+//  var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+//  var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
+//  var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
+//  var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
+//  var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
+//  var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
+//  var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
+//  var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
+//  
+//  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
+//  
+//  var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
+//  var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
+//  var line_3 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(1).Label("ThirdAddressLine_DetachedLabel").contentText;
+//  var town = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(2).Label("FourthAddressLine_DetachedLabel").contentText;
+//  var county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;
+//  var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
+//  var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
+//  var mobile = patient_demographics_tab_contact_address_path.Panel(2).Label("Mobile_DetachedLabel").contentText;
+//  var email = patient_demographics_tab_contact_address_path.Panel(3).Label("Email_DetachedLabel").contentText;
+//  
+//  patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, ethnicity, language, mar_status, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
+//  }
+//  
+//  else
+//  {
+//    //Demograhics Pane
+//  var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
+//
+//  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
+//  {
+//    var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
+//  }
+//
+//  var title = patient_demographics_tab_path.Panel(2).Label("Title_DetachedLabel").contentText;
+//  var surname = patient_demographics_tab_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+//  var firstname = patient_demographics_tab_path.Panel(4).Label("FirstName_DetachedLabel").contentText;  
+//  var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
+//  var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
+//  var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
+//  //var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
+//  //var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
+//  //var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
+//  
+//  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
+//  
+//  var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
+//  var line_2 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;
+//  var line_3 = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(1).Label("ThirdAddressLine_DetachedLabel").contentText;
+//  var town = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(2).Label("FourthAddressLine_DetachedLabel").contentText;
+//  var county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;
+//  var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
+//  var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
+//  var mobile = patient_demographics_tab_contact_address_path.Panel(3).Label("Mobile_DetachedLabel").contentText;
+//  var email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;
+//  
+//  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
+//    {
+//      //patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+//      patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+//    }
+//  else
+//    {
+//      //patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+//      patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+//    }
+//  }
+
+//Demograhics Pane
   var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
 
-  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
+  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== get_string_translation("None"))
   {
     var nhs_num = patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
   }
@@ -119,10 +162,19 @@ function get_patient_demographics()
   var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
   var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
   var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
-  //var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
-  //var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
-  //var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
-  
+	if (patient_demographics_tab_path.Find("idStr","Ethnicity_DetachedLabel",2).Exists)  
+    {
+	  var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
+	  }
+  if (patient_demographics_tab_path.Find("idStr","SpokenLanguage_DetachedLabel").Exists)
+	  {
+	  var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
+	  }
+  if (patient_demographics_tab_path.Find("idStr","MartialStatus_DetachedLabel").Exists)
+	  {
+	  var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
+	  }
+	
   var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
   
   var line_1 = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;
@@ -132,20 +184,25 @@ function get_patient_demographics()
   var county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;
   var post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;
   var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
-  var mobile = patient_demographics_tab_contact_address_path.Panel(3).Label("Mobile_DetachedLabel").contentText;
-  var email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;
+  var mobile = patient_demographics_tab_contact_address_path.Find("idStr","Mobile_DetachedLabel",2).contentText;
+  var email = patient_demographics_tab_contact_address_path.Find("idStr","Email_DetachedLabel",2).contentText;
   
-  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== "Nessuno")
+  if (patient_demographics_tab_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText !== get_string_translation("None"))
     {
-      //patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
-      patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+      if (patient_demographics_tab_path.Find("idStr","Ethnicity_DetachedLabel").Exists)
+      {
+        patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, ethnicity, language, mar_status, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+      }
+      else
+      {
+        patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
+      }    
     }
   else
     {
       //patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
       patient_data_array.push(pat_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email);
     }
-  }
 
   for(var i = 0; i < patient_data_array.length; i++)
   {
