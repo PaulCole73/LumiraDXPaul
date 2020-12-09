@@ -115,6 +115,7 @@ function manage_user_permissions(username, p_level)
 function reset_user_permissions_to_readonly(username)
 {
   Goto_Manage_User(username);
+  WaitSeconds(3, "Waiting for user..."); //this is bad but no time to fix better
   
   var content_panel = location_management_main_container();
   var permission_tab = content_panel.Panel("UserContent").Panel("UserAdmin").Link("UserAuthorisationLink").Click();

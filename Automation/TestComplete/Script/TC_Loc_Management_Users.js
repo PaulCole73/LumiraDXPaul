@@ -140,19 +140,12 @@ function tc_users_reset_user_password()
     Log_Off();
     
     login(username, "Shared", new_password);
-    
-    if(language == "English")
-    {
-      var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
-    }
-     else
-     {
-       var expected_text = "ITALIAN END USER PROGRAM LICENCE AGREEMENT";
-     }
+  
+    var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
      
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;
     
-    result_set_1 = compare_values(expected_text, header_text,"Confirm License Page Appears");
+    result_set_1 = compare_values(get_string_translation(expected_text), header_text,"Confirm License Page Appears");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
@@ -252,18 +245,11 @@ function tc_users_enable_user()
     
     login(username, "Shared", new_pass);
     
-    if(language == "English")
-    {
-      var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
-    }
-     else
-     {
-       var expected_text = "ITALIAN END USER PROGRAM LICENCE AGREEMENT";
-     }
+    var expected_text = "END USER PROGRAM LICENCE AGREEMENT";
      
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;
     
-    result_set_1 = compare_values(expected_text, header_text, "Confirm License Page Appears");
+    result_set_1 = compare_values(get_string_translation(expected_text), header_text, "Confirm License Page Appears");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true

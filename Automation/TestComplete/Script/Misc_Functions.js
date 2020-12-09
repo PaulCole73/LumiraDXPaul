@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
 var language = "Italian";
-var environment = "INRstarWindowsStaging";
+var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "staging";
 var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 
@@ -20,7 +20,6 @@ if (language == "English")
 {
   var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
 }
-
 else 
 {
   var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -753,7 +752,7 @@ function set_italian_long_month(month)
     long_month = "dicembre";
     break;    
     default:
-    Log.Message("Couldn't  find the month you were looking for");    
+    Log.Message("Couldn't find the month you were looking for");    
  }                  
   return long_month;
 }
@@ -1526,7 +1525,7 @@ function setup_generic_patient(do_login, dm)
       login(5, "Shared");
     }
     add_patient("generic", "testing", "M", "Shared");
-    add_treatment_plan("W", dm, "", "Shared", "");
+    //add_treatment_plan("W", dm, "", "Shared", "");
     
     if(do_login == true)
     {

@@ -100,7 +100,7 @@ function log_in_new_user(username, current_pass, is_password_reset, new_password
   if(is_password_reset == null || is_password_reset == false)
   {
     var panelMCP = INRstar_base().Panel("MainPage").Panel("main").Panel("MainContentPanel");
-    var eula_agree_button = panelMCP.Panel(0).Button("AcceptLicenseAgreement");
+    var eula_agree_button = panelMCP.FindChild("idStr", "AcceptLicenseAgreement", 2); //Panel(0).Button("AcceptLicenseAgreement"); path is different in italy
     
     click_navigation_wrapper(eula_agree_button, INRstarV5, "idStr", "passwordExpiredPage", 3);
   }

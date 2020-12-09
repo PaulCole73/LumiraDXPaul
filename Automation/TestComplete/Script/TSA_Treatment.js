@@ -146,12 +146,21 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    process_popup(get_string_translation("PoCT Batch Expired"),get_string_translation("Confirm"));   
    process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
    WaitSeconds(2);
+   
+   //check page transition
+  if(wait_for_object(main_patient_tab(), "idStr", "DosingSchedule", 7).Exists)
+  {
+    // If an adjustment is required to tablet dosage breakdown - carry it out
+    handle_dosing_modification_required();
+  
+    wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
+  }
 }
 //--------------------------------------------------------------------------------
 function add_pending_maintenance_treatment(inr, date, selftest, test_method)
 {
   var INRstarV5 = INRstar_base();
-  var inr = get_string_translation(inr);
+  var new_inr = get_string_translation(inr);
   Goto_Patient_New_INR();
   
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
@@ -170,7 +179,7 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   select_day(w_day, w_datepicker);
       
   // Select the passed-in INR value
-  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
+  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(new_inr);
   
   if(test_method != null)
   {
@@ -201,10 +210,15 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   var text = process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"));
- 
-  // If an adjustment is required to tablet dosage breakdown - carry it out
-  handle_dosing_modification_required();  
-  wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
+  
+  //check page transition
+  if(wait_for_object(main_patient_tab(), "idStr", "DosingSchedule", 7).Exists)
+  {
+    // If an adjustment is required to tablet dosage breakdown - carry it out
+    handle_dosing_modification_required();
+  
+    wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
+  }
   
   return text;
 }
@@ -441,6 +455,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
   }
   inr_test_info_path.Panel(2).Select("Review").ClickItem(review + " " + get_string_translation(days));
   test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(get_string_translation(inr));
+
   test_info_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem(tm);
    
   var treatment_button_path = treatment_buttons_pre_schedule();
@@ -617,8 +632,6 @@ function handle_dosing_modification_required()
     // Wait for page to update before proceeding
     dosing_schedule_content_path.WaitChild("Fieldset(0)", 4000); 
   }
-  
-  return 
 }
 //--------------------------------------------------------------------------------
 function override_omits(days)
@@ -637,24 +650,21 @@ function override_omits(days)
 //--------------------------------------------------------------------------------
 function override_review(review)
 {
-//  var INRstarV5 = INRstar_base();
-//  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-//  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-//  var panelPTI = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment").Panel("PendingTreatmentInfo");
-//
-//  panelPTI.Panel(0).Button("OverridePendingTreatment").Click();
-  var INRstarV5 = INRstar_base();
-  var pending_treatment_buttons_path = pending_treatment_buttons()
-  var override_pending_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Find("idStr","OverridePendingTreatment",5);
-  //pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
-  override_pending_button_path.Click();
-        
+  /* this is no longer needed, this path is in system paths
+  var INRstarV5 = INRstar_base(); 
+  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
+  var panelPTI = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment").Panel("PendingTreatmentInfo");
+
+  panelPTI.Panel(0).Button("OverridePendingTreatment").Click();
+  */
+  override_button().Click();      
   //var formEPT = panelPTI.form("EditPendingTreatmentForm");
-  var treatment_override_field_container_path = treatment_override_field_container();             
+               
   // Set Review period
-  var w_vselect = treatment_override_field_container_path.Cell(1, 3).Select("Treatment_Review");
+  var w_vselect = treatment_override_field_container().Cell(1, 3).Select("Treatment_Review");//formEPT.Table("OverrideSuggestedTreatmentTable").Cell(1, 3).Select("Treatment_Review");
   
-  if (review>1)
+  if(review > 1)
   {
   w_vselect.ClickItem(review + get_string_translation(" Days"));
   } 
@@ -665,25 +675,27 @@ function override_review(review)
   
   // Click 'ok'
   //formEPT.panel(0).Button("OverrideAccept").Click();
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Form("EditPendingTreatmentForm").Panel(0).Button("OverrideAccept").Click();
+  overide_accept_button().Click();
   process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
   WaitSeconds(1,"Waiting for Override to complete");
 }
 //--------------------------------------------------------------------------------
 function override_dose(dose)
 {
+  /* this is no longer needed, this path is in system paths
   var INRstarV5 = INRstar_base();
   var pending_treatment_buttons_path = pending_treatment_buttons()
-  var override_pending_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr","OverridePendingTreatment",5);
-  //pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
-  override_pending_button_path.Click();
+  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
+  */
+  override_button().Click();
                
   var treatment_override_field_container_path = treatment_override_field_container();
   treatment_override_field_container_path.Cell(1, 1).Select("Treatment_Dose").ClickItem(get_string_translation(dose));
 
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Form("EditPendingTreatmentForm").Panel(0).Button("OverrideAccept").Click();
+  //pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Form("EditPendingTreatmentForm").Panel(0).Button("OverrideAccept").Click(); this is no longer needed, this path is in system paths
+  overide_accept_button().Click();
   process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
-  WaitSeconds(1,"Waiting for Override to complete");
+  WaitSeconds(1, "Waiting for Override to complete");
 } 
 //--------------------------------------------------------------------------------
 function select_more_schedules(sched_required)
@@ -694,14 +706,14 @@ function select_more_schedules(sched_required)
   var more_schedule_table_path = more_schedule_table();
   var row = more_schedule_table_path.rowcount;
   
-  for(i=1; i<row; i++)
+  for(i = 1; i < row; i++)
   {
     var tablets_used = more_schedule_table_path.Cell(i, 1).contentText;
     if(tablets_used==sched_required)
     {
       while(more_schedule_table_path.Cell(i, 2).Button("Use").VisibleOnScreen==false)
       {
-      more_schedule_table_path.Cell(i, 2).Button("Use").ScrollIntoView(true);
+        more_schedule_table_path.Cell(i, 2).Button("Use").ScrollIntoView(true);
       } 
       Log.Message('Schedule was found in the list');
       more_schedule_table_path.Cell(i, 2).Button("Use").Click();
@@ -716,8 +728,7 @@ function add_treatment_comment(comment)
 {
   Goto_Add_Treatment_Comment();
   var INRstarV5 = INRstar_base();
-  var treatment_comment_box_path = treatment_comment_box();
-  treatment_comment_box_path.innerText = comment;
+  treatment_comment_box().innerText = comment;
   INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).Click();
 }
 //--------------------------------------------------------------------------------

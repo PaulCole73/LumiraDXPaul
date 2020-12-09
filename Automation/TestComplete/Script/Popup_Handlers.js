@@ -133,7 +133,7 @@ function process_clinic_popup(header, button)
 //will need to be revisited if more popups are found in the future that require data entry
 function process_external_lookup_popup()
 {
-  WaitSeconds(1);
+  WaitSeconds(4);
   var INRstarV5 = INRstar_base();
   var wbx = INRstarV5.NativeWebObject.Find("innerText", "Professional Registration Credentials");
   
