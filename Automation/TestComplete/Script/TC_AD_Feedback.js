@@ -11,7 +11,7 @@ function tc_feedback_add_new_feedback()
     var test_title = "Admin Dashboard - Feedback - Add New Feedback";
     login(5, "Shared");
     
-    var location = "Deans Regression Testing Location";
+    var location = "LDxCS-Test-AutoTest1";
     var feedback = "Regression test: " + test_title + ". Feedback testing text.";
     var datetime = add_inrstar_feedback(feedback);
     

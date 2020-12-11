@@ -24,7 +24,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
     var patient_data = new Array();
     var expected_note = "External Patient Lookup was used to view this patient. Reason: Patient present requiring treatment" 
                         + "\r\n" + "Comments: Test";
-    var exp_banner_msg = "The patient's recorded testing location is Deans Regression Testing Location"; //06925922205"; this limits testing to single environment because locations Id's vary
+    var exp_banner_msg = "The patient's recorded testing location is LDxCS-Test-AutoTest1"; //06925922205"; this limits testing to single environment because locations Id's vary
   
     var nhs = get_patient_nhs();
     patient_data = get_external_patient_lookup_data();
@@ -36,7 +36,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
   
     var text = get_top_note_text();
     var banner = patient_banner_yellow_bar().innerText;
-    banner = aqString.SubString(banner, 0, banner.length - 12);
+    banner = aqString.SubString(banner, 0, banner.length - 19);
   
     var result_set_1 = checkArrays(table_data, patient_data, test_title);
     result_set.push(result_set_1);
@@ -142,7 +142,7 @@ function tc_external_patient_lookup_new_inr()
     Goto_Patient_New_INR();
     var obj = wait_for_object(new_inr_test_details(), "idStr", "TestingMethod", 4);
     var item = obj.wSelectedItem;
-    var box_state = new_inr_test_details().Fieldset("Options").Panel(0).Panel(0).Checkbox("UseForEQC").enabled;
+    var box_state = treatment_inr_test_options().Panel(0).Panel(0).Checkbox("UseForEQC").enabled;
     
     add_maintenance_treatment("2.5", aqConvert.StrToDate(aqDateTime.Today()));
   

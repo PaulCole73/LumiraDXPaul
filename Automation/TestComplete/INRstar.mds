@@ -3516,7 +3516,7 @@
 		</data>
 	</variables>
 	<settings key="{5F7B2CD5-3048-4A58-B14C-6E60A48FE68C}">
-		<settingsVersion value="14.70" />
+		<settingsVersion value="14.71" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
@@ -4003,6 +4003,7 @@
 				<row val0="Continue running" val1="0" />
 				<row val0="Stop project" val1="1" />
 				<row val0="Stop current item" val1="2" />
+				<row val0="Stop and rerun current item" val1="4" />
 			</data>
 		</setting>
 		<setting name="Playback_ErrHandling_OnObjectRecognitionError" type="6" rowIndex="0" colIndex="1">
@@ -4049,6 +4050,7 @@
 		<setting name="Playback_StopOnError" type="1" value="False" />
 		<setting name="Playback_StopOnObjectRecognitionError" type="1" value="False" />
 		<setting name="Playback_StopOnWarning" type="1" value="False" />
+		<setting name="Playback_TestItemMaxReRunCount" type="2" value="1" />
 		<setting name="Playback_UnexpectedWndHandling_ClickOnFocusedControl" type="1" value="True" />
 		<setting name="Playback_UnexpectedWndHandling_IgnoreUnexpectedWindow" type="1" value="False" />
 		<setting name="Playback_UnexpectedWndHandling_PressEnter" type="1" value="True" />
