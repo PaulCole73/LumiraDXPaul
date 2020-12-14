@@ -3536,16 +3536,10 @@
 		</children>
 	</testItems>
 	<variables key="{4B9173FC-9A59-474A-BB11-CB532AE3D687}">
-		<data Version="4">
-			<Items>
-				<Variable Name="EnvironmentVal" Type="String" Local="False">
-					<DefValue StrValue="INRstarWindowsAlderaan" />
-				</Variable>
-			</Items>
-		</data>
+		<data Version="3" />
 	</variables>
 	<settings key="{5F7B2CD5-3048-4A58-B14C-6E60A48FE68C}">
-		<settingsVersion value="14.70" />
+		<settingsVersion value="14.30" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
