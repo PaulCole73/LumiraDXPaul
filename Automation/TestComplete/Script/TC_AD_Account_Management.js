@@ -218,7 +218,7 @@ function tc_account_management_add_admin_lead_user()
     var test_title = "Admin Dashboard - Account Management - Add Location Admin User";
     login_admin_dash();
     
-    var parent_client = "Deans Regression Testing Location";
+    var parent_client = "LDxCS-Test-AutoTest1";
     var username = add_a_new_user(parent_client, "location admin");
     
     log_off_admin_dash();
@@ -257,7 +257,7 @@ function tc_account_management_edit_admin_lead_user()
     var test_title = "Admin Dashboard - Account Management - Edit Location Admin Details";
     login_admin_dash();
     
-    var parent_client = "Deans Regression Testing Location";
+    var parent_client = "LDxCS-Test-AutoTest1";
     var username = add_a_new_user(parent_client, "location admin");
     
     var new_fullname = get_unique_number();
@@ -291,7 +291,7 @@ function tc_account_management_reset_location_admin_user_password()
     var test_title = "Admin Dashboard - Account Management - Reset Location Admin Password";
     login_admin_dash();
     
-    var parent_client = "Deans Regression Testing Location";
+    var parent_client = "LDxCS-Test-AutoTest1";
     var username = add_a_new_user(parent_client, "location admin");
     
     log_off_admin_dash();
@@ -343,7 +343,7 @@ function tc_account_management_remove_location_admin()
     var test_title = "Admin Dashboard - Account Management - Remove Location Admin User";
     login_admin_dash();
     
-    var parent_client = "Deans Regression Testing Location";
+    var parent_client = "LDxCS-Test-AutoTest1";
     var username = add_a_new_user(parent_client, "location admin");
     
     update_a_location_admin(parent_client, username, "remove");

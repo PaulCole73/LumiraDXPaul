@@ -749,9 +749,7 @@ function treatment_inr_test_options()
   var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
   var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
   var panelPTNIW = panelPPT.Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm");
-  var inr_options_path = panelPTNIW.Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRTestDetails").Fieldset("Options");
-  //had to take out panel here things may now brake
-//  var inr_options_path = panelPTNIW.Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRTestDetails").Fieldset("Options").Panel(0);
+  var inr_options_path = panelPTNIW.Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRTestDetails").FindChild("idStr", "Options", 3);
   
   return inr_options_path;
 } 
@@ -835,10 +833,10 @@ function treatment_comment() //this is a duplicate, use treatment_table() as it 
   return treatment_comment_path;
 }
 //------------------------------------------------------------------------
-function treatment_comment_box()
+function treatment_row_comment_box()
 {
   var INRstarV5 = INRstar_base();
-  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").Textarea("SorbSafeComments");
+  var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").FindChild("ObjectType", "Textarea", 2);
   
   return treatment_comment_path;
 }
