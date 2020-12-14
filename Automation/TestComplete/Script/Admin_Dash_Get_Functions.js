@@ -90,16 +90,7 @@ function get_audit_entry_admin_dash(audit_item)
 //--------------------------------------------------------------------------------
 function get_parent_client_name()
 {
-  var name;
-  
-  if(environment == "INRstarWindowsStaging")
-  {
-    name = "0433117D";
-  }
-  else
-  {
-    name = "St. O'  455 & QRNR Prison";
-  }
+  var name = "LumiraDx Care Solutions Test & Demo Org";
   
   return name;
 }
