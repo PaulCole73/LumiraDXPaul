@@ -37,10 +37,11 @@ function ts_master_treatment(send_mail)
   tc_treatment_maintenance_save_override_treatment();
   tc_treatment_drag_and_drop_schedule_days();
   tc_treatment_maintenance_INR_more_then_max_review_period();
-  //tc_treatment_manual_mutliple_historic_summary_check(); //this cannot be done in italy as we do not have the summary tab
+  tc_treatment_manual_mutliple_historic_summary_check(); //this cannot be done in italy as we do not have the summary tab
   tc_treatment_maintenance_override_privilege();
   tc_treatment_maintenance_cancel_pending();
   tc_treatment_maintenance_add_pending_treatment_with_pending_transfer();
+  tc_treatment_add_treatment_for_self_tester();
   
   email_and_archive(send_mail, "ts_treatment_master");
 }

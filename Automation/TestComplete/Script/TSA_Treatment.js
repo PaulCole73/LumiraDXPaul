@@ -147,14 +147,8 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
    WaitSeconds(2);
    
-   //check page transition
-  if(wait_for_object(main_patient_tab(), "idStr", "DosingSchedule", 7).Exists)
-  {
-    // If an adjustment is required to tablet dosage breakdown - carry it out
-    handle_dosing_modification_required();
-  
-    wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
-  }
+   // If an adjustment is required to tablet dosage breakdown - carry it out
+   handle_dosing_modification_required();
 }
 //--------------------------------------------------------------------------------
 function add_pending_maintenance_treatment(inr, date, selftest, test_method)
@@ -211,14 +205,8 @@ function add_pending_maintenance_treatment(inr, date, selftest, test_method)
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   var text = process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"));
   
-  //check page transition
-  if(wait_for_object(main_patient_tab(), "idStr", "DosingSchedule", 7).Exists)
-  {
-    // If an adjustment is required to tablet dosage breakdown - carry it out
-    handle_dosing_modification_required();
-  
-    wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
-  }
+  // If an adjustment is required to tablet dosage breakdown - carry it out
+  handle_dosing_modification_required();
   
   return text;
 }
@@ -269,7 +257,7 @@ function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
 }
 //--------------------------------------------------------------------------------
-function add_maintenance_treatment(inr, date)
+function add_maintenance_treatment(inr, date) //this function does not save the INR?
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
@@ -307,6 +295,10 @@ function add_maintenance_treatment(inr, date)
        
   // Click the Confirm button in the confirm window
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
+  
+  //Save the INR
+  wait_for_object(patient_pending_treatment_path(), "idStr", "AcceptPendingTreatment", 3);
+  save_inr_button().Click();
 }
 //--------------------------------------------------------------------------------
 function add_override_treatment(inr,date,p_review)
@@ -630,7 +622,7 @@ function handle_dosing_modification_required()
     process_popup(get_string_translation("Dose Change"), get_string_translation("Confirm"));
     
     // Wait for page to update before proceeding
-    dosing_schedule_content_path.WaitChild("Fieldset(0)", 4000); 
+    wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
   }
 }
 //--------------------------------------------------------------------------------
