@@ -1,5 +1,31 @@
 ﻿//USEUNIT Misc_Functions
 //------------------------------------------------------------------------
+function fiscal_generator_main_page_path()
+{
+  var main = Sys.Browser("iexplore").Page("https://zip-codes.nonsolocap.it/codice-fiscale/");
+  return main;
+}
+//------------------------------------------------------------------------
+function fiscal_form_path()
+{
+  var main = fiscal_generator_main_page_path();
+  var fiscal_form = main.Panel(3).Panel(1).Panel(0).Form(0);
+
+  return fiscal_form;
+}
+//------------------------------------------------------------------------
+//function fiscal_generator_date_picker_path()
+//{
+//  var generator_box = fiscal_generator_main_path();
+//  var date_picker = main.Panel(3).Panel(1).Panel(0).Form(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0);
+//
+//  return date_picker;
+//}
+//------------------------------------------------------------------------
+//day =   .Panel(3).Panel(1).Panel(0).Form(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("gg").ClickItem(10)
+//month = .Panel(3).Panel(1).Panel(0).Form(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("mm").ClickItem(JUL)
+//year =  .Panel(3).Panel(1).Panel(0).Form(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("aa").ClickItem(1982)
+//------------------------------------------------------------------------
 function INRstar_base()
 {
   Sys.WaitProcess("INRstarWindows", 5000);

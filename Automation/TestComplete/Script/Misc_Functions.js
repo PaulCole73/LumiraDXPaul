@@ -1530,3 +1530,31 @@ function setup_generic_patient(do_login, dm)
     }
   //}
 }
+//-----------------------------------------------------------------------------------
+function create_patient_object_for_fiscal()
+{
+    //Ensure data is in the format that it will end up in INRstar, 
+    //the get_fiscal_code will be responsible for transforming the data int othe right format for the fiscal form
+    var patient_details = {
+    last_name: "Fiscal_Last_Name" + aqConvert.IntToStr(Math.floor(Math.random()*10000)),
+    first_name: "Fiscal_First_Name" + aqConvert.IntToStr(Math.floor(Math.random()*10000)),
+    dob: (aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7300)))),
+    title: get_string_translation("Mr"),
+    place_of_birth: "Roma",
+    section_id: "014012D8-EFBE-4902-B094-4816F1C31823",
+    //when writing for the generic we need to ensure this is only Male or Female for Italy
+	  sex: get_string_translation("Male"),
+    patient_number: new_guid(10),
+    Email: "AutomationLumira+" + new_guid(8) + "@gmail.com",
+    Phone: "07111 225588",
+    First_AddressLine: aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Arndale Avenue",
+    Second_AddressLine: "SecondLineAddress",
+    Third_AddressLine: "ThirdLineAddress",
+    Fourth_AddressLine: "Manchester",
+    fifth_AddressLine: "Granadaland",
+    post_code: "12345",
+  };
+  return patient_details;
+}
+//-----------------------------------------------------------------------------------
+

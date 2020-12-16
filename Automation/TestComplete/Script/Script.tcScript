@@ -388,10 +388,19 @@
 			</folder>
 		</folder>
 		<folder name="INRstar API">
-			<folder name="2. Test Suites" />
-			<folder name="1. Test Plans" />
-			<folder name="3. Test Cases" />
+			<folder name="2. Test Suites">
+				<child name="TS_receive_data_from_iguana" key="{D1992CD1-D8F0-4894-A3B0-77484BF2A4D6}" path="TS_receive_data_from_iguana.js" />
+			</folder>
+			<folder name="1. Test Plans">
+				<child name="TP_INRstar_API" key="{ED38635F-EB42-40D6-BEE7-329370D08E22}" path="TP_INRstar_API.js" />
+			</folder>
+			<folder name="3. Test Cases">
+				<child name="TC_receive_data_from_iguana" key="{1D436562-6324-4494-AF78-C01CCF8BD1CE}" path="TC_receive_data_from_iguana.js" />
+			</folder>
 			<folder name="4. Test Step Actions" />
+			<folder name="5. Utlitities">
+				<child name="INRStarAPI_Get_Functions" key="{E9113838-0AED-46CD-A838-82D15FADB9EA}" path="INRStarAPI_Get_Functions.js" />
+			</folder>
 		</folder>
 	</children>
 </Root>

@@ -45,6 +45,7 @@ function get_patient_details_object_from_demographics()
           
   return patient_details;
 }
+
 //-----------------------------------------------------------------------------------
 //Returning firstname of the current patient loaded
 function get_patient_firstname()
@@ -54,6 +55,45 @@ function get_patient_firstname()
   var firstname =  patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
           
   return firstname;
+}
+//-----------------------------------------------------------------------------------
+function get_fiscal_code(patient_data)
+{
+  TestedApps.FiscalCodeGenerator.Run();
+  Sys.WaitBrowser("iexplore", 30000, 1);
+  WaitSeconds(5, "Waiting for application to open...");
+  var main_page = fiscal_generator_main_page_path();
+   
+  //If it's the first tiem on the page you will get a pop up need to find the id str to put in the below
+//  var cookie_popup = main_page.Panel("cookieChoiceInfo").Link("cookieChoiceDismiss"); 
+//  if(cookie_popup.Exists)
+//  {
+//    cookie_popup.Click();
+//  }
+
+  //edit the object to fit the form
+  var fiscal_form_day = aqString.SubString(date,0,2);
+  var fiscal_form_month = aqConvert.StrToInt(aqString.SubString(date,3,2));
+  var fiscal_form_year = aqString.SubString(date,6,4);
+  var sex = (patient_data.sex=="Male") ? "M" : "F";
+  
+  //Add patient data to the form here
+  var fiscal_form = fiscal_form_path();
+  
+  fiscal_form.Panel(0).Panel(1).Panel(0).Panel(0).Textbox("cg").Text=(patient_data.last_name);
+  fiscal_form.Panel(0).Panel(1).Panel(1).Panel(0).Textbox("nm").Text=(patient_data.first_name);
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("aa").ClickItem("1982");
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("mm").ClickItem("JUL");
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("gg").ClickItem("10");
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(1).Panel(0).Panel(0).Select("ss").ClickItem(sex);
+  fiscal_form.Panel(0).Panel(1).Panel(3).Panel(0).Panel(0).Panel(0).Textbox("lg").Text=(patient_data.place_of_birth);
+  
+  fiscal_form_path().Panel(2).Button(0).Click();
+  
+  //Retrieve the fiscal
+  var fiscal = fiscal_form.Panel(0).Panel(1).Panel(0).Panel(0).Textbox("cf").Text
+
+  return fiscal;
 }
 //-----------------------------------------------------------------------------------
 //Returning surname of the current patient loaded

@@ -61,6 +61,15 @@
 			<testData />
 			<data />
 		</child>
+		<child key="{80EF26DD-FBE6-4013-A0AE-3D97E82DE090}">
+			<config nodeName="FiscalCodeGenerator" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
+				<runModeParams activeRunMode="Web">
+					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://zip-codes.nonsolocap.it/codice-fiscale/" browserArguments="" />
+				</runModeParams>
+			</config>
+			<testData />
+			<data />
+		</child>
 		<child key="{67EFBFAD-DE0F-4634-8712-7C15DB1802FC}">
 			<config nodeName="gmail" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
@@ -73,7 +82,7 @@
 		<child key="{C0415C76-BAFA-4537-813C-E09E2638CC3F}">
 			<config nodeName="Engage" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="72.0" pageAddress="https://engage-it-dev1.caresolutions.lumiradx.com/" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="70.0" pageAddress="https://engage-it-dev1.caresolutions.lumiradx.com/" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
