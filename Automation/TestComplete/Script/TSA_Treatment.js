@@ -835,6 +835,7 @@ function json_body_data_instrument(patient_details, location_id, inr_result, blo
   payload.organizationId = location_id; 
   
   //Replace Payload blood test timestamp
+  //Why are we passing this in and not setting here ?
   payload.effectiveDateTime = blood_test_timestamp;
   
   Log.Message("Payload created as: " + JSON.stringify(payload));
