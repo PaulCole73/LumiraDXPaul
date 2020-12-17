@@ -831,6 +831,7 @@ function json_body_data_instrument(patient_details, location_id, inr_result, blo
   payload.resultValue = inr_result
   
   //Replace Payload organizationId with locationID from Locations Details
+  //Why are we passing this in and not setting here ?
   payload.organizationId = location_id; 
   
   //Replace Payload blood test timestamp

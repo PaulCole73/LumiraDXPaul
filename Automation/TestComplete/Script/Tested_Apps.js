@@ -1,9 +1,9 @@
 ﻿function open_application(app_name) //not in use, not functioning
 {
   var app = app_name
-  if (app == "INRstar")
+  if (app == app_name)
   {
-    p = TestedApps.Items(0).Run()
+    p = TestedApps.Items(0).Run();
     if( ! p.Exists)
     {
       WaitSeconds(10)

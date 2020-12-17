@@ -397,7 +397,9 @@
 			<folder name="3. Test Cases">
 				<child name="TC_receive_data_from_iguana" key="{1D436562-6324-4494-AF78-C01CCF8BD1CE}" path="TC_receive_data_from_iguana.js" />
 			</folder>
-			<folder name="4. Test Step Actions" />
+			<folder name="4. Test Step Actions">
+				<child name="TSA_receive_data_from_iguana" key="{023D06E4-B97F-42BB-BE29-18F41FCFE8D9}" path="TSA_receive_data_from_iguana.js" />
+			</folder>
 			<folder name="5. Utlitities">
 				<child name="INRStarAPI_Get_Functions" key="{E9113838-0AED-46CD-A838-82D15FADB9EA}" path="INRStarAPI_Get_Functions.js" />
 			</folder>

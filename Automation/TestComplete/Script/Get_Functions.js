@@ -39,13 +39,47 @@ function get_patient_details_object_from_demographics()
   patient_details.lastname = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
   patient_details.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
+  patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob);
   patient_details.gender = patient_demographics_tab_demographics_path.Panel(7).Label("Gender_DetachedLabel").contentText.substring(0,1); //returns M or F
-  patient_details.fullname = patient_details.lastname + ', ' + patient_details.firstname
-  patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob)
-          
+  patient_details.fullname = patient_details.lastname + ', ' + patient_details.firstname;
+  
+
   return patient_details;
 }
+//-----------------------------------------------------------------------------------
+//Returning details from demographics as an object
+//I had to create this due to data being manipulated in get_patient_details_object_from_demographics 
+//Think we need to move out the transform of data from other object and do that elsewhere
+//Ensure you dont change the order of fields here it will brake in the object compare.
+//If you add new fields in here then you also need to add them to the expected patient object for comparing.
 
+function get_patient_not_altered_details_object_from_demographics()
+{
+  var patient_demographics = new Object();
+  Goto_Patient_Demographics();  
+  
+  var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
+  var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
+  
+  patient_demographics.patient_number = patient_demographics_tab_demographics_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText; 
+  patient_demographics.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText;
+  patient_demographics.title = patient_demographics_tab_demographics_path.Panel(2).Label("Title_DetachedLabel").contentText
+  patient_demographics.last_name = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+  patient_demographics.first_name = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
+  patient_demographics.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
+  patient_demographics.sex = patient_demographics_tab_demographics_path.Panel(6).Label("Sex_DetachedLabel").contentText;
+  patient_demographics.gender = patient_demographics_tab_demographics_path.Panel(7).Label("Gender_DetachedLabel").contentText;
+  patient_demographics.first_addressLine = patient_demographics_tab_contact_address_path.Panel(0).Label("FirstAddressLine_DetachedLabel").contentText;;
+  patient_demographics.second_addressLine = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(0).Label("SecondAddressLine_DetachedLabel").contentText;;
+  patient_demographics.third_addressLine = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(1).Label("ThirdAddressLine_DetachedLabel").contentText;;
+  patient_demographics.town = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(2).Label("FourthAddressLine_DetachedLabel").contentText;;
+  patient_demographics.county = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText;;
+  patient_demographics.post_code = patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText;;
+  patient_demographics.phone = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;;
+  patient_demographics.email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;;
+  
+  return patient_demographics;
+}
 //-----------------------------------------------------------------------------------
 //Returning firstname of the current patient loaded
 function get_patient_firstname()
@@ -57,42 +91,47 @@ function get_patient_firstname()
   return firstname;
 }
 //-----------------------------------------------------------------------------------
+//Will get replaced by Andys function using the back end calls
 function get_fiscal_code(patient_data)
 {
   TestedApps.FiscalCodeGenerator.Run();
-  Sys.WaitBrowser("iexplore", 30000, 1);
+  Sys.WaitBrowser("chrome", 30000, 1);
   WaitSeconds(5, "Waiting for application to open...");
   var main_page = fiscal_generator_main_page_path();
-   
-  //If it's the first tiem on the page you will get a pop up need to find the id str to put in the below
-//  var cookie_popup = main_page.Panel("cookieChoiceInfo").Link("cookieChoiceDismiss"); 
-//  if(cookie_popup.Exists)
-//  {
-//    cookie_popup.Click();
-//  }
 
-  //edit the object to fit the form
-  var fiscal_form_day = aqString.SubString(date,0,2);
-  var fiscal_form_month = aqConvert.StrToInt(aqString.SubString(date,3,2));
-  var fiscal_form_year = aqString.SubString(date,6,4);
-  var sex = (patient_data.sex=="Male") ? "M" : "F";
+  //If it's the first time on the page you will get a pop up
+  var cookie_popup = main_page.FindChild("idStr","cookieChoiceDismiss", 3); 
+  if(cookie_popup.Exists)
+  {
+    cookie_popup.Click();
+  }
+
+  //Edit the object to fit the form
+  var fiscal_form_day = aqString.SubString(patient_data.dob,0,2);
+  var fiscal_form_month = get_english_translation(aqString.SubString(patient_data.dob,3,3)).toUpperCase();
+  var fiscal_form_year = aqString.SubString(patient_data.dob,7,4);
   
-  //Add patient data to the form here
+  var sex = (patient_data.sex==get_string_translation("Male")) ? "M" : "F";
+
+  //Add patient data to the form
   var fiscal_form = fiscal_form_path();
   
   fiscal_form.Panel(0).Panel(1).Panel(0).Panel(0).Textbox("cg").Text=(patient_data.last_name);
   fiscal_form.Panel(0).Panel(1).Panel(1).Panel(0).Textbox("nm").Text=(patient_data.first_name);
-  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("aa").ClickItem("1982");
-  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("mm").ClickItem("JUL");
-  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("gg").ClickItem("10");
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("mm").ClickItem(fiscal_form_month);
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("aa").ClickItem(fiscal_form_year);
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("gg").ClickItem(fiscal_form_day);
   fiscal_form.Panel(0).Panel(1).Panel(2).Panel(1).Panel(0).Panel(0).Select("ss").ClickItem(sex);
-  fiscal_form.Panel(0).Panel(1).Panel(3).Panel(0).Panel(0).Panel(0).Textbox("lg").Text=(patient_data.place_of_birth);
+  fiscal_form.Panel(0).Panel(1).Panel(3).Panel(0).Panel(0).Panel(0).Textbox("lg").Text=("Roma");
   
   fiscal_form_path().Panel(2).Button(0).Click();
   
   //Retrieve the fiscal
+  WaitSeconds(2)
   var fiscal = fiscal_form.Panel(0).Panel(1).Panel(0).Panel(0).Textbox("cf").Text
-
+  
+  TestedApps.FiscalCodeGenerator.Close();
+  
   return fiscal;
 }
 //-----------------------------------------------------------------------------------

@@ -1,40 +1,37 @@
 ﻿//USEUNIT Get_Functions
 //USEUNIT Misc_Functions
+//USEUNIT TSA_receive_data_from_iguana
 //--------------------------------------------------------------------------------
 function tc_all_demographic_fields_populated_full_patient_data_can_be_imported_into_inrstar()
 {
-//  try
-//  {
+  try
+  {
     var test_title = 'INRstar API - All demographic fields populated, full patient data can be imported into INRstar';
-    var patient_data = create_patient_object_for_fiscal();
     
-    //override field if required here i.e max char test
-    get_fiscal_code(patient_data);
+    //Create patient object for what you want to see in inrstar once posted in
+    var expected_patient = create_patient_object_for_fiscal();
+    expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
     
-//    login(5, "Shared");
-//    add_patient('Regression', 'add_adverse_event', 'M', 'Shared');
-//    
-//    //Create the array of results for the final check to ensure steps pass the test
-//    var result_set = new Array()
-//    var result_set_1 = compare_values(get_string_translation("The adverse event was successfully added"), adverse_confirmation_banner, test_title);
-//    result_set.push(result_set_1);
-//  
-//    result_set_1 = validate_top_patient_audit(test_title,get_string_translation("Add Adverse Event"));
-//    result_set.push(result_set_1);
-//  
-//    //Validate all the results sets are true
-//    var results = results_checker_are_true(result_set); 
-//  
-//    //Pass in the final result
-//    results_checker(results, test_title)
-//  
-//    Log_Off();
-//  }
-//  catch(e)
-//  {
-//    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-//    var suite_name = "TC_Adverse_Event";
-//    var test_name = "tc_add_a_new_adverse_event";
-//    handle_failed_tests(suite_name, test_name); 
-//  } 
+    //Post in patient data to the API
+    var body_data = json_body_recievedatafromiguana(expected_patient); 
+    post_ReceiveDataFromIguana(JSON.stringify(body_data)); 
+    
+    //Validate the patient is in INRstar
+    var pat_name = expected_patient.last_name;
+    patient_search(pat_name);
+    var actual_patient = get_patient_not_altered_details_object_from_demographics();
+    
+    var results = compare_objects(expected_patient, actual_patient);;
+    results_checker(results, test_title);
+
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_receive_data_from_iguana";
+    var test_name = "tc_all_demographic_fields_populated_full_patient_data_can_be_imported_into_inrstar";
+    handle_failed_tests(suite_name, test_name); 
+  } 
 } 
+//--------------------------------------------------------------------------------

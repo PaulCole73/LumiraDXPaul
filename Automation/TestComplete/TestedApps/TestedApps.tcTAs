@@ -64,7 +64,7 @@
 		<child key="{80EF26DD-FBE6-4013-A0AE-3D97E82DE090}">
 			<config nodeName="FiscalCodeGenerator" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://zip-codes.nonsolocap.it/codice-fiscale/" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="chrome" browserVersion="" pageAddress="https://zip-codes.nonsolocap.it/codice-fiscale/" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
