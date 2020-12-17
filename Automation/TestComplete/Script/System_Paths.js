@@ -1,5 +1,19 @@
 ﻿//USEUNIT Misc_Functions
 //------------------------------------------------------------------------
+function fiscal_generator_main_page_path()
+{
+  var main = Sys.Browser("chrome").Page("https://zip-codes.nonsolocap.it/codice-fiscale/");
+  return main;
+}
+//------------------------------------------------------------------------
+function fiscal_form_path()
+{
+  var main = fiscal_generator_main_page_path();
+  var fiscal_form = main.Panel(3).Panel(1).Panel(0).Form(0);
+
+  return fiscal_form;
+}
+//------------------------------------------------------------------------
 function INRstar_base()
 {
   Sys.WaitProcess("INRstarWindows", 5000);

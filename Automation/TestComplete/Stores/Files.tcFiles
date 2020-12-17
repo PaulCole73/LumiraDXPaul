@@ -10,5 +10,8 @@
 		<child name="Excel_bat" key="{AF11F980-9955-4152-83FC-2361FEF1317E}">
 			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="14.0" caption="Excel_bat" ID="{AF11F980-9955-4152-83FC-2361FEF1317E}" FileName="Files\Excel.bat" Update="False" />
 		</child>
+		<child name="Locale_xls" key="{D8571B91-5D39-4DE1-9A2F-941984B03678}">
+			<data signature="{FC92F8D9-8A57-4D74-B8B4-479AA50BF647}" version="14.0" caption="Locale_xls" ID="{D8571B91-5D39-4DE1-9A2F-941984B03678}" FileName="Files\Locale.xls" Update="False" />
+		</child>
 	</children>
 </Root>

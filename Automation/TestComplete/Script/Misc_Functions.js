@@ -818,7 +818,8 @@ function get_string_translation(translation_word)
    break;
  }
  
- var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
+// var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
+  var driver = DDT.ExcelDriver("C:\\GIT\\Data\\Locale.xls", "Sheet1")
  
  while (!driver.EOF())
  {
@@ -864,7 +865,8 @@ function get_english_translation(translation_word)
    break;
  }
  
- var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
+ //var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
+ var driver = DDT.ExcelDriver("C:\\GIT\\Data\\Locale.xls", "Sheet1")
  
  while (!driver.EOF())
  {
@@ -1530,3 +1532,66 @@ function setup_generic_patient(do_login, dm)
     }
   //}
 }
+//-----------------------------------------------------------------------------------
+//This is going to get ripped out by andys method for create generic patient,
+//at the moment this is geared up to return Italian data need to tweak if you want english
+
+function create_patient_object_for_fiscal()
+{
+    var patient_details = new Object();
+    var first_name_string = create_random_char_string(15)
+    //Ensure data is in the format that it will end up in INRstar, ensure you dont change the order of fields here it will brake in the object compare.
+    //If you add new fields in here then you also need to add them to the actual patient object for comparing.
+
+    var patient_details = {
+    patient_number: new_guid(10),
+    nhs_number: "", //this has to be generated after you have all the other data needed to generate it
+    title: get_string_translation("Mr"),
+    last_name: create_random_char_string(15).toUpperCase(),
+    first_name: first_name_string.charAt(0).toUpperCase() + first_name_string.slice(1),
+    dob: get_date_with_days_from_today_dd_mmm_yyyy(-7300),
+    sex: get_string_translation("Male"),    //when writing for the generic we need to ensure this is only Male or Female for Italy.
+    gender: get_string_translation("Male"), //hard coded for now not required as yet.
+    first_addressLine: aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Arndale Avenue",
+    second_addressLine: "SecondLineAddress",
+    third_addressLine: "ThirdLineAddress",
+    town: "Manchester",
+    county: "Granadaland",
+    post_code: "12345",
+    phone: "07111 225588",
+    email: "AutomationLumira+" + new_guid(8) + "@gmail.com"
+  };
+
+  return patient_details;
+}
+//-----------------------------------------------------------------------------------
+function create_random_char_string(length) {
+   var char_string           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      char_string += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return char_string;
+}
+//-----------------------------------------------------------------------------------
+function compare_objects(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  //Need to create an array for checking as we dont want it to just return false here really
+  //Also if we order the objects here then we dont need to worry about someone getting the order wrong but might not work with nested objects??
+  for (let key of keys1) {
+    
+    if (object1[key] !== object2[key]) {
+      Log.Message("This key never matched in the object \\ " + key);
+      return false;
+    }
+  }
+  return true;
+}
+//-----------------------------------------------------------------------------------
