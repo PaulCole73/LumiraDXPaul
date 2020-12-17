@@ -1548,7 +1548,7 @@ function create_patient_object_for_fiscal()
     nhs_number: "", //this has to be generated after you have all the other data needed to generate it
     title: get_string_translation("Mr"),
     last_name: create_random_char_string(15).toUpperCase(),
-    first_name: first_name_string.charAt(0).toUpperCase() + first_name_string.slice(1), //This may only be italy
+    first_name: first_name_string.charAt(0).toUpperCase() + first_name_string.slice(1),
     dob: get_date_with_days_from_today_dd_mmm_yyyy(-7300),
     sex: get_string_translation("Male"),    //when writing for the generic we need to ensure this is only Male or Female for Italy.
     gender: get_string_translation("Male"), //hard coded for now not required as yet.
