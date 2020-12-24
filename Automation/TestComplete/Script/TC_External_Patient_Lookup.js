@@ -478,7 +478,7 @@ function tc_external_patient_lookup_edit_treatment_plan()
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_Treatment_Plan();
-    var state = change_treatment_plan_buttons().Panel(1).Button("EditPatientTreatmentPlanLink").enabled;
+    var state = path_treatment_plan_details().Panel(1).Button("EditPatientTreatmentPlanLink").enabled;
   
     var result_set_1 = checkArrays(table_data, patient_data, test_title);
     result_set.push(result_set_1);
@@ -522,7 +522,7 @@ function tc_external_patient_lookup_add_treatment_plan()
     table_data = external_lookup_search_for_patient(nhs);
     
     Goto_Patient_Treatment_Plan();
-    var state = change_treatment_plan_buttons().Panel(0).Button("AddPatientTreatmentPlanLink").enabled;
+    var state = path_treatment_plan_details().Panel(0).Button("AddPatientTreatmentPlanLink").enabled;
   
     var result_set_1 = checkArrays(table_data, patient_data, test_title);
     result_set.push(result_set_1);
