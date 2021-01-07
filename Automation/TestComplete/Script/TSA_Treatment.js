@@ -615,7 +615,7 @@ function handle_dosing_modification_required()
   if (is_table_present == true)
   {
     //Get the schedule path, this path will only exist if the table is present
-    var dosing_schedule_content_path = dosing_schedule_content();  
+    //var dosing_schedule_content_path = dosing_schedule_content();  this is not being used in this file, will be deleted after testing/releases
   
      // Selecting first option listed in table
     more_schedule_table().Cell(1, 2).Button("Use").Click();

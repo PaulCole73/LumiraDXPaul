@@ -110,33 +110,6 @@ function INRstar_base()
   INRstar = p2.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
     
   return INRstar;
-} 
-//------------------------------------------------------------------------
-// Main page at login area - what is this can it be removed?
-function set_system_login_page_coruscant() //this is not in use anywhere, delete?
-{
-  var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
-  var INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/Security/Authentication/*");
-
-  return INRstar;
-} 
-//------------------------------------------------------------------------
-// Main page at login  area
-function set_system_login_page_inrstar_base() //this is not in use anywhere, delete?
-{
-  var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
-  var INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
-  
-  return INRstar;
-} 
-//------------------------------------------------------------------------
-// Main page once logged in
-function set_system_coruscant() //this is not in use anywhere, delete?
-{
-  var p1 = Sys.Process("INRstarWindows").WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
-  INRstar = p1.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("https://inrstar-coruscant.lumiradxcaresolutions.com/");
-    
-  return INRstar;
 }
 //------------------------------------------------------------------------
 // Logon Form
