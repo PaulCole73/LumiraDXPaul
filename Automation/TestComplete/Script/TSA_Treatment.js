@@ -297,7 +297,7 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   
   //Save the INR
-  wait_for_object(patient_pending_treatment_path(), "idStr", "AcceptPendingTreatment", 3);
+  wait_for_object(path_patient_pending_treatment(), "idStr", "AcceptPendingTreatment", 3);
   save_inr_button().Click();
 }
 //--------------------------------------------------------------------------------
@@ -606,8 +606,7 @@ function handle_no_poct(dose_method) //probably also needs changing
 function handle_dosing_modification_required()
 {
   // Get relevant paths  
-  var pending_treatment_path = patient_pending_treatment_path();
-  var dosing_schedule_content_path = dosing_schedule_content();
+  var pending_treatment_path = path_patient_pending_treatment();
   
   // Check dosing modification table exists 
   var is_table_present = pending_treatment_path.Find("idStr", "MoreScheduleGrid", 3).Exists;
@@ -615,6 +614,9 @@ function handle_dosing_modification_required()
   // if the table exists handle it by selecting first suggested dosing modification 
   if (is_table_present == true)
   {
+    //Get the schedule path, this path will only exist if the table is present
+    //var dosing_schedule_content_path = dosing_schedule_content();  this is not being used in this file, will be deleted after testing/releases
+  
      // Selecting first option listed in table
     more_schedule_table().Cell(1, 2).Button("Use").Click();
      
@@ -622,7 +624,7 @@ function handle_dosing_modification_required()
     process_popup(get_string_translation("Dose Change"), get_string_translation("Confirm"));
     
     // Wait for page to update before proceeding
-    wait_for_object(main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
+    wait_for_object(path_main_patient_tab(), "idStr", "PendingTreatmentInfo", 5);
   }
 }
 //--------------------------------------------------------------------------------
@@ -721,7 +723,7 @@ function add_treatment_comment(comment)
 {
   Goto_Add_Treatment_Comment();
   var INRstarV5 = INRstar_base();
-  treatment_comment_box().innerText = comment;
+  treatment_row_comment_box().innerText = comment;
   INRstarV5.Panel(3).Panel(1).Panel(0).Button(1).Click();
 }
 //--------------------------------------------------------------------------------

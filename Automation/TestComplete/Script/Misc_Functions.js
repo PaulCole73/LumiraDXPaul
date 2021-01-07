@@ -11,7 +11,7 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "Italian";
+var language = "English";
 var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "uk-int1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
@@ -258,7 +258,7 @@ function check_patient_exists_in_table_within_column(column,table,pat_name)
       return true;
     }
   } 
-  Log.Warning("Patient not found " + pat_name)
+  Log.Message("Patient not found " + pat_name)
   return false;
 }
 //-----------------------------------------------------------------------------------

@@ -1219,10 +1219,10 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
     
-    var strikethrough = pending_treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
+    var strikethrough = treatment_table().Cell(0, 3).Panel(0).style.textdecoration;
     var result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
-    strikethrough = pending_treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
+    strikethrough = treatment_table().Cell(0, 6).Panel(0).style.textdecoration;
     result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
 		
@@ -1274,9 +1274,8 @@ function tc_treatment_drag_and_drop_schedule_days()
     dosing_schedule = get_pending_suggested_treatment_schedule(0);
     
     //get path to re-order buttons
-    var suggest_schedule_path = pending_treatment_buttons();
-    var re_order_paths = suggest_schedule_path.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent").Fieldset(0);
-    var re_order_button_path = re_order_paths.Panel(0).Button("Re_Order_Schedule").Click();
+    var re_order_paths = dosing_schedule_content().Fieldset(0);
+    re_order_paths.Panel(0).Button("Re_Order_Schedule").Click();
     var table_cell = re_order_paths.Fieldset("ScheduleGrid").TextNode(12);
     
     //function to drag drop item

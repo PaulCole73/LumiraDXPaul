@@ -21,7 +21,7 @@
 function get_patient_nhs()
 {
   var patient_blue_banner_path = patient_banner_blue_bar()
-  var nhs_num = patient_blue_banner_path.Panel(3).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
+  var nhs_num = patient_blue_banner_path.Panel(3).FindChild("idStr", "NHSNumber_DetachedLabel", 3).innerText; //Panel(0).Label("NHSNumber_DetachedLabel").innerText; path has changed for UK
           
   return nhs_num;
 }
@@ -637,7 +637,7 @@ function get_patient_banner_error_message()
 //-----------------------------------------------------------------------------------
 function get_pending_suggested_treatment_schedule(days)
 {
-  wait_for_object(patient_pending_treatment_path(), "idStr", "DosingScheduleContent", 2);
+  wait_for_object(path_patient_pending_treatment(), "idStr", "DosingScheduleContent", 3);
   var schedulegrid = dosing_schedule_content().Fieldset(0).Fieldset("ScheduleGrid");
   
   //return schedule;

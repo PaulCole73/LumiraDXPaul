@@ -248,7 +248,7 @@ function edit_all_patient_demographics(gender)
   
   click_navigation_wrapper(obj, INRstarV5, "idStr", "MainContentPanel", 3);
   
-  obj_root = main_patient_tab();
+  obj_root = path_main_patient_tab();
   wait_for_object(obj_root, "idStr", "PatientDetails", 3);
 } 
 //--------------------------------------------------------------------------------

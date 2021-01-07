@@ -146,13 +146,22 @@ function check_patient_on_exceeded_treatment_end_date_list(pat_name)
 function check_patient_on_refer_list(pat_name)
 {
   // Navigate to the list table and wait for it to appear
-  Goto_Home_Page_Referred_Patient_List(); // from INRstar_Navigation
+  var link_present = Goto_Home_Page_Referred_Patient_List(); // from INRstar_Navigation
   
-  // Get the path of the table
-  var table = home_page_referred_patient_table(); // from System_paths
+  //only look in the table if it exists
+  if(link_present == true)
+  {
+    // Get the path of the table
+    var table = home_page_referred_patient_table(); // from System_paths
   
-  // Now that we have table - Pass it on together with the column 0 to check sort order, return result
-  return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
+    // Now that we have table - Pass it on together with the column 0 to check sort order, return result
+    return check_patient_exists_in_table_within_column(0,table,pat_name); //0 = column to check
+  }
+  else
+  {
+    //if the list does not exist the patient cannot be in it
+    return false; 
+  }
 }
 //--------------------------------------------------------------------------------
 function check_patient_on_overdue_INR_list(pat_name)
