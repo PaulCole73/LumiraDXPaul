@@ -1136,9 +1136,9 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{9E08E031-5CE7-4974-8A65-F915F2080C64}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{9E08E031-5CE7-4974-8A65-F915F2080C64}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
 										</testParameters>
 										<children />
 									</testItem>
@@ -1378,9 +1378,9 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{B2FA7386-B731-4901-AF31-74D9914E339B}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{B2FA7386-B731-4901-AF31-74D9914E339B}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
 										</testParameters>
 										<children />
 									</testItem>
@@ -1620,9 +1620,9 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{F9016310-3E77-40B5-A149-44EC237ACF98}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{F9016310-3E77-40B5-A149-44EC237ACF98}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
 										</testParameters>
 										<children />
 									</testItem>
@@ -1862,9 +1862,9 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{F3EA4DF9-1869-4863-B3FB-7D515223A868}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{F3EA4DF9-1869-4863-B3FB-7D515223A868}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
 										</testParameters>
 										<children />
 									</testItem>
