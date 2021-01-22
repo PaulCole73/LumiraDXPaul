@@ -49,28 +49,28 @@ function set_engage_url()
   switch(environment)
   {
     case base + "UK-test1": 
-    admin_dash_url = "https://engage-uk-test1.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-uk-test1.caresolutions.lumiradx.com/";
     break;
     case base + "UK-test2": 
-    admin_dash_url = "https://engage-uk-test2.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-uk-test2.caresolutions.lumiradx.com/";
     break;
     case base + "UK-int1": 
-    admin_dash_url = "https://engage-uk-int1.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-uk-int1.caresolutions.lumiradx.com/";
     break;
     case base + "UK-preprod1": 
-    admin_dash_url = "https://engage-uk-preprod1.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-uk-preprod1.caresolutions.lumiradx.com/";
     break;
     case base + "ITA-test1": 
-    admin_dash_url = "https://engage-it-test1.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-it-test1.caresolutions.lumiradx.com/";
     break;
     case base + "ITA-test2": 
-    admin_dash_url = "https://engage-it-test2.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-it-test2.caresolutions.lumiradx.com/";
     break;
     case base + "ITA-int1": 
-    admin_dash_url = "https://engage-it-int1.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-it-int1.caresolutions.lumiradx.com/";
     break;
     case base + "ITA-preprod1": 
-    admin_dash_url = "https://engage-it-preprod1.caresolutions.lumiradx.com/";
+    engage_url = "https://engage-it-preprod1.caresolutions.lumiradx.com/";
     break;
   }
 }
