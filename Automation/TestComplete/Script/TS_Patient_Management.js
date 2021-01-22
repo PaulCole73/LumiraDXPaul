@@ -36,10 +36,10 @@ function ts_master_patient_management_italy(send_mail)
   tc_patient_suspend_a_patient();
   tc_patient_unsuspend_a_patient();
   tc_patient_change_the_patients_registered_practice();
+  tc_transfer_a_patient_who_has_a_pending_treatment(); 
   tc_transfer_a_patient_who_is_on_an_induction_protocol();
   tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report();
   tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in_the_future();
-  tc_transfer_a_patient_who_has_a_pending_treatment(); 
   
   //no self testing but leaving it here incase we decide to do it
   //tc_patient_amend_a_patient_to_be_a_manual_self_tester();
