@@ -11,7 +11,7 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "Italian";
+var language = "English";
 var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "uk-int1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
@@ -840,7 +840,6 @@ function testing_translation()
 {
 var test = get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.");   
 
-
 Log.Message(test)
 }
 //-----------------------------------------------------------------------------------
@@ -1195,7 +1194,7 @@ function api_post(address, headers, body_payload)
   {
     aqHttpRequest.SetHeader(property, headers[property])
   }
-
+  
   // Send the request, create the aqHttpResponse object
   var aqHttpResponse = aqHttpRequest.Send(body_payload)
   

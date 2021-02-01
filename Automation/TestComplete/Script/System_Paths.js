@@ -2,7 +2,7 @@
 //------------------------------------------------------------------------
 function fiscal_generator_main_page_path()
 {
-  var main = Sys.Browser("chrome").Page("https://zip-codes.nonsolocap.it/codice-fiscale/");
+  var main = Sys.Browser("iexplore").Page("https://zip-codes.nonsolocap.it/codice-fiscale/");
   return main;
 }
 //------------------------------------------------------------------------
