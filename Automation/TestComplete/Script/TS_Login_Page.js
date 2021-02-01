@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------
 
 //Master Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //master suites are used for organised test groups
 function ts_master_login_page(send_mail)
 {
@@ -17,9 +17,9 @@ function ts_master_login_page(send_mail)
  
   email_and_archive(send_mail, "ts_login_master");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //regression suites are used for specific regression runs
-function ts_staging_regression_login_page()
+function ts_int_regression_login_page(send_mail)
 {
   reset_folder();
 
@@ -27,12 +27,12 @@ function ts_staging_regression_login_page()
   tc_log_on_to_inrstar_no_credentials();
   tc_log_off_inrstar();
  
-  email_and_archive(true, "ts_login_regression");
+  email_and_archive(send_mail, "ts_login_regression");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 
 
 
 //==============================================================================//
 //General Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//

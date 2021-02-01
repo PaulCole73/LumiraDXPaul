@@ -11,8 +11,8 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "Italian";
-var environment = "INRstarWindowsStagingItalyV4";
+var language = "English";
+var environment = "INRstarWindowsUK-test1";
 var environmentname = "uk-int1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -180,7 +180,7 @@ function checkArrays_containing_inr_values(arrA, arrB, mess)
     if(arrA[i] != arrB[i])
     { 
         // And if the language is italian
-        if (language = "Italian")
+        if (language == "Italian")
         {
           // Replace any full stops with a comma so 2.0 becomes 2,0 for both fields
           var new_arrA = arrA[i].replace(".", ",");

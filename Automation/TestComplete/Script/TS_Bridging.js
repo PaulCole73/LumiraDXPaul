@@ -13,7 +13,7 @@
 //--------------------------------------------------------------------------------
 
 //Master Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_master_bridging(send_mail)
 {
   reset_folder();
@@ -28,18 +28,20 @@ function ts_master_bridging(send_mail)
   
   email_and_archive(send_mail, "ts_bridging_master");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 
 
+
+//==============================================================================//
 //General Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_919()
 {
   tc_bridging_tab_visible_only_with_warfarin();
   tc_bridging_button_state_with_historic_warfarin_treatment();
   tc_bridging_button_new_bridging_record_permissions();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_920()
 {
   tc_bridging_button_state_on_ddd_all_permissions();
@@ -51,7 +53,7 @@ function ts_bridging_cacuk_920()
   tc_bridging_button_state_on_warfarin_self_test_stage_two();
   tc_bridging_button_state_on_warfarin_self_test_stage_three();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_934()
 {
   tc_bridging_create_schedule_add_six_days();
@@ -59,7 +61,7 @@ function ts_bridging_cacuk_934()
   tc_bridging_create_schedule_add_days_procedure_tomorrow();
   tc_bridging_create_schedule_add_days_procedure_yesterday();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_935()
 {
   tc_bridging_create_schedule_delete_six_days();
@@ -67,7 +69,7 @@ function ts_bridging_cacuk_935()
   tc_bridging_procedure_schedule_delete_days_procedure_today();
   tc_bridging_procedure_schedule_delete_days_procedure_yesterday();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_1030()
 {
   tc_bridging_lmwh_switch_from_tinzaparin_to_dalteparin_1_day();
@@ -86,7 +88,7 @@ function ts_bridging_cacuk_1030()
   tc_bridging_lmwh_switch_from_enoxaparin_to_tinzaparin_to_dalteparin_to_enoxaparin_default_schedule();
   tc_bridging_lmwh_switch_from_dalteparin_to_enoxaparin_to_tinzaparin_to_dalteparin_default_schedule();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_1032()
 {
   tc_bridging_amend_date_to_same_day_procedure_today();
@@ -104,7 +106,7 @@ function ts_bridging_cacuk_1032()
   tc_bridging_amend_date_to_today_procedure_in_the_future_and_amend_LMWH();
   tc_bridging_procedure_date_today_amend_to_past_and_then_future_then_back_to_original_date();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_1163()
 {
   tc_bridging_inr_checkbox_display_active_schedule();
@@ -117,9 +119,10 @@ function ts_bridging_cacuk_1163()
   tc_bridging_inr_checkbox_selection_add_days();
   tc_bridging_inr_checkbox_selection_delete_days();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_bridging_cacuk_1176()
 {
   tc_bridging_edit_schedule_clerical_permissions();
   tc_bridging_edit_schedule_disabled_permissions();
 }
+//==============================================================================//

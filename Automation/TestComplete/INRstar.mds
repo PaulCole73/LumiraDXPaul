@@ -49,13 +49,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{7A172B2A-8266-4CD3-8AEB-07B32B92308C}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{7A172B2A-8266-4CD3-8AEB-07B32B92308C}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{3BA72339-B190-4BDE-8798-DA06291F3884}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{3BA72339-B190-4BDE-8798-DA06291F3884}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -67,25 +67,25 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{5A85AE22-9A4A-43D2-ACD9-506D4032526C}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{5A85AE22-9A4A-43D2-ACD9-506D4032526C}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{108E8C5A-6355-4109-BE7B-FF0BF9B07D08}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{108E8C5A-6355-4109-BE7B-FF0BF9B07D08}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{768E2D5A-FEEA-41B3-A91C-3F9BAC0AF4BE}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{768E2D5A-FEEA-41B3-A91C-3F9BAC0AF4BE}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_External_Patient_Lookup" key="{5E1ACCED-A7C8-48B8-8927-4FC266F5F333}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_master_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_External_Patient_Lookup" key="{5E1ACCED-A7C8-48B8-8927-4FC266F5F333}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_int_regression_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -97,55 +97,55 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{B734F18E-3E75-4125-8840-0A4F47ED8F99}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{B734F18E-3E75-4125-8840-0A4F47ED8F99}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{CE7656CB-7D66-4A5A-82D2-29295B0D9955}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{CE7656CB-7D66-4A5A-82D2-29295B0D9955}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{4246ECEC-BDDA-4B34-AED9-CFA76295A93B}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{4246ECEC-BDDA-4B34-AED9-CFA76295A93B}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{0A2DAA22-C646-46C1-A546-4FFFC4F024C2}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{0A2DAA22-C646-46C1-A546-4FFFC4F024C2}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{2CDE913D-4624-4C58-8C50-9EB855CE2F53}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{2CDE913D-4624-4C58-8C50-9EB855CE2F53}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{BF63CBA7-51CF-4DF1-ACD2-6E902DB7B940}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{BF63CBA7-51CF-4DF1-ACD2-6E902DB7B940}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{818534D7-59B6-4849-8692-36FCB86DDC95}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Management" key="{C86329FE-83EE-43FE-A2D2-74259CAB5B07}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{818534D7-59B6-4849-8692-36FCB86DDC95}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{061F580E-662F-42DE-94C6-64A1461AD454}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{C86329FE-83EE-43FE-A2D2-74259CAB5B07}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Patient_Tests_Due" key="{061F580E-662F-42DE-94C6-64A1461AD454}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -157,19 +157,19 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{82992E5A-E30F-46D1-90EE-FD123E6E1002}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{82992E5A-E30F-46D1-90EE-FD123E6E1002}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{59119378-3586-4147-880B-DC53BAC169BA}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{59119378-3586-4147-880B-DC53BAC169BA}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{E693DAED-AAFD-4BEF-AE43-E781C72691D2}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_Plan" key="{E693DAED-AAFD-4BEF-AE43-E781C72691D2}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -291,13 +291,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{48AA9AB6-0054-4C22-B754-1456901CED0A}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{48AA9AB6-0054-4C22-B754-1456901CED0A}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{C30ED426-B05F-44E1-AD9E-5D9F55400BC4}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{C30ED426-B05F-44E1-AD9E-5D9F55400BC4}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -309,25 +309,25 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{173B18FF-280E-4099-B048-F676DFABCB3B}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{173B18FF-280E-4099-B048-F676DFABCB3B}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{32855A41-FAA3-45AE-89AD-B496EC9E4DB8}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{32855A41-FAA3-45AE-89AD-B496EC9E4DB8}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{AFEFC23D-09D4-43AE-BE64-9E03B166F800}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{AFEFC23D-09D4-43AE-BE64-9E03B166F800}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_External_Patient_Lookup" key="{61DF850C-2E17-402D-B79F-40F5721A4E74}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_master_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_External_Patient_Lookup" key="{61DF850C-2E17-402D-B79F-40F5721A4E74}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_int_regression_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -339,55 +339,55 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{09F75EDB-0BA4-423F-AE3D-C79482898F86}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{09F75EDB-0BA4-423F-AE3D-C79482898F86}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{136BC77D-9301-46A1-A990-8F5FBB6BC981}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{136BC77D-9301-46A1-A990-8F5FBB6BC981}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{DDC0B0EF-1CDE-4105-8B05-994FC8D07127}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{DDC0B0EF-1CDE-4105-8B05-994FC8D07127}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{ED33F085-B3B4-4536-8A58-B371F9F9CFC0}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{ED33F085-B3B4-4536-8A58-B371F9F9CFC0}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{C17D538E-0F74-4464-8223-72E9A00DAB1F}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{C17D538E-0F74-4464-8223-72E9A00DAB1F}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{355CFCCC-D6F1-4618-BF12-1734F5A4F8B4}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{355CFCCC-D6F1-4618-BF12-1734F5A4F8B4}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{155EBB3A-6B9B-4D2C-BD53-2924AD797E10}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{155EBB3A-6B9B-4D2C-BD53-2924AD797E10}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Management" key="{03AF4795-55C3-4798-9C70-566A5B7C1B89}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{03AF4795-55C3-4798-9C70-566A5B7C1B89}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{DFA2A3E5-0708-48B1-B85C-4B50BF9AD6FD}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{DFA2A3E5-0708-48B1-B85C-4B50BF9AD6FD}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -399,19 +399,19 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{8835FCA4-9093-4C83-8C24-1149D13C8D6E}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{8835FCA4-9093-4C83-8C24-1149D13C8D6E}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{B0766D5F-EE4B-441A-960E-0D1FE230AEE4}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{B0766D5F-EE4B-441A-960E-0D1FE230AEE4}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{7B1C6D00-13C3-4688-BB76-1303486CBDF2}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_Plan" key="{7B1C6D00-13C3-4688-BB76-1303486CBDF2}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -533,13 +533,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{E2DBA164-DA25-4711-8537-9BDDBDEAE4D8}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{E2DBA164-DA25-4711-8537-9BDDBDEAE4D8}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{8ADB5C8A-A6BC-4776-9CD1-DE19FE533CF0}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{8ADB5C8A-A6BC-4776-9CD1-DE19FE533CF0}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -551,25 +551,25 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{6E9F9294-F5E4-4BE6-B5C5-7126516B6021}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{6E9F9294-F5E4-4BE6-B5C5-7126516B6021}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{A9359B30-3470-41AE-899B-44F5818AD6DC}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{A9359B30-3470-41AE-899B-44F5818AD6DC}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{0455A36C-8FBB-4280-BA05-97AA3ABE9E7F}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{0455A36C-8FBB-4280-BA05-97AA3ABE9E7F}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_External_Patient_Lookup" key="{A9308BC4-567A-4757-9D2F-0DB76B86251A}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_master_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_External_Patient_Lookup" key="{A9308BC4-567A-4757-9D2F-0DB76B86251A}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_int_regression_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -581,79 +581,79 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{F0BDB3A6-FAB1-4C67-A7EF-A1EEDD05FF0B}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{F0BDB3A6-FAB1-4C67-A7EF-A1EEDD05FF0B}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{7C50C7D5-6B41-4ED0-98D7-CC3A49D0C8E5}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{7C50C7D5-6B41-4ED0-98D7-CC3A49D0C8E5}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{81D5AA6E-96EA-493B-BF5E-32B8BD980A7A}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{81D5AA6E-96EA-493B-BF5E-32B8BD980A7A}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{756178A9-DFED-4A2D-A7B7-A4E1190F9184}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{756178A9-DFED-4A2D-A7B7-A4E1190F9184}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{6BD92517-66FE-4F4B-BD88-90F65F8EE813}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{6BD92517-66FE-4F4B-BD88-90F65F8EE813}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{B0A549C1-A0A0-4B93-8ECD-B9712F1BFDB2}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{B0A549C1-A0A0-4B93-8ECD-B9712F1BFDB2}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{1CF48520-51A5-4D8E-B3F9-5EC2227E4F22}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{1CF48520-51A5-4D8E-B3F9-5EC2227E4F22}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Management" key="{823A2B2E-7153-4F55-8A12-F77D113D4EB8}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{823A2B2E-7153-4F55-8A12-F77D113D4EB8}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{58A39EB8-8C22-4B4E-8098-C6532C3D8CC4}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{58A39EB8-8C22-4B4E-8098-C6532C3D8CC4}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_PoCT" key="{43B0B238-CC30-42D1-B6D9-C6EA31F399A8}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_master_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_PoCT" key="{43B0B238-CC30-42D1-B6D9-C6EA31F399A8}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_int_regression_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{180E4624-260F-42E7-87EB-0DC4448C5135}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{180E4624-260F-42E7-87EB-0DC4448C5135}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{1AB2E33C-CD0C-46A5-A517-58325CE353AA}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{1AB2E33C-CD0C-46A5-A517-58325CE353AA}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{B3A5E5D6-6F16-4B50-86C8-A36E0AE4D4AC}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_Plan" key="{B3A5E5D6-6F16-4B50-86C8-A36E0AE4D4AC}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -775,13 +775,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{EB9F19C6-F801-4660-A8A2-3DE9FDB7AC70}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{EB9F19C6-F801-4660-A8A2-3DE9FDB7AC70}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{BC29729A-3E3A-47FD-936B-F8F823A215E5}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{BC29729A-3E3A-47FD-936B-F8F823A215E5}" group="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -793,25 +793,25 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{C6E85B70-94C7-4678-9CD7-DCE3DFF9BBD4}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{C6E85B70-94C7-4678-9CD7-DCE3DFF9BBD4}" group="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{D9F3D783-0B98-4C5C-A347-717B9E2DAD6C}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{D9F3D783-0B98-4C5C-A347-717B9E2DAD6C}" group="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{48A01329-39FE-4652-98B3-DEC5D27BFE22}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{48A01329-39FE-4652-98B3-DEC5D27BFE22}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_External_Patient_Lookup" key="{CDDC2C16-23B6-46AB-9BE6-D20F4E85E63F}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_master_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+									<testItem name="TS_External_Patient_Lookup" key="{CDDC2C16-23B6-46AB-9BE6-D20F4E85E63F}" group="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_int_regression_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -823,55 +823,55 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{4BFD4B57-2449-46A3-BFEC-162555F4F7ED}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{4BFD4B57-2449-46A3-BFEC-162555F4F7ED}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{1797FC1C-3077-42A4-ACCA-23775181F1E3}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{1797FC1C-3077-42A4-ACCA-23775181F1E3}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{4760B1F0-1AF3-436D-9F43-FE0E90487A3B}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{4760B1F0-1AF3-436D-9F43-FE0E90487A3B}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{E1885DE0-111F-470C-9503-EBE2DEE854B9}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{E1885DE0-111F-470C-9503-EBE2DEE854B9}" group="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{329038B8-8769-4C77-9420-20B7F683100E}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{329038B8-8769-4C77-9420-20B7F683100E}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{E29C0C50-9103-4F81-BDF7-1035C1ED785F}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{E29C0C50-9103-4F81-BDF7-1035C1ED785F}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{DF59438A-A4FB-4F72-AEA8-C3DFD62EF0FB}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{DF59438A-A4FB-4F72-AEA8-C3DFD62EF0FB}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Management" key="{D604774D-96C4-4AED-87D0-04C3A9ECA868}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{D604774D-96C4-4AED-87D0-04C3A9ECA868}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{7DD1010F-FB3C-4687-9CFF-DFC22460BAB3}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{7DD1010F-FB3C-4687-9CFF-DFC22460BAB3}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -889,13 +889,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{0C6533CB-394D-420B-B5DC-7A2209031505}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment" key="{0C6533CB-394D-420B-B5DC-7A2209031505}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{78709386-2BDB-46DD-82C0-5255767EC394}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_Plan" key="{78709386-2BDB-46DD-82C0-5255767EC394}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1022,13 +1022,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{F6EAACE5-46B7-43C3-A32E-F32861BC3753}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{F6EAACE5-46B7-43C3-A32E-F32861BC3753}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{A11B4A77-05C2-40C6-9FE6-E2FD17857BDF}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{A11B4A77-05C2-40C6-9FE6-E2FD17857BDF}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1040,19 +1040,19 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{F8C2D7FD-2519-4B1A-88AB-152F3C4E2C94}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{F8C2D7FD-2519-4B1A-88AB-152F3C4E2C94}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{CCB99F1B-6D06-4EBD-B5EF-8F1F5AD39E55}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{CCB99F1B-6D06-4EBD-B5EF-8F1F5AD39E55}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{51D66015-5AAC-45FE-AACF-B976D1B7EC9E}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{51D66015-5AAC-45FE-AACF-B976D1B7EC9E}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1070,81 +1070,81 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{CB9DB7C2-FA7C-4AEA-98F0-084F7E0C8941}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{CB9DB7C2-FA7C-4AEA-98F0-084F7E0C8941}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{A264867D-FA8C-43B9-A5EC-0A64432F914A}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{A264867D-FA8C-43B9-A5EC-0A64432F914A}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{90B87AE5-4767-4DC6-B8F9-E11EEDFAF877}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{90B87AE5-4767-4DC6-B8F9-E11EEDFAF877}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{01C66509-2499-40F9-A251-8FB797788052}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{01C66509-2499-40F9-A251-8FB797788052}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{D73CBB0A-06ED-455C-974E-8F751427C959}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{D73CBB0A-06ED-455C-974E-8F751427C959}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{ED2327F9-35CA-4C19-BA21-E3C8F9B4248A}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{ED2327F9-35CA-4C19-BA21-E3C8F9B4248A}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{5BF574A8-1B21-480C-BD42-EF8D382D22A4}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Management" key="{A8376754-C371-4E63-9DB1-16CF2E4EB5D4}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{ED0ACEFD-6315-425F-B0E5-54E02B60CDD6}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{5BF574A8-1B21-480C-BD42-EF8D382D22A4}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_PoCT" key="{64A6C8A3-39D9-4684-8E52-62636DB781E7}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_master_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{A8376754-C371-4E63-9DB1-16CF2E4EB5D4}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{8CC520E4-195A-465E-8E1C-99EEFBF56C5A}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{ED0ACEFD-6315-425F-B0E5-54E02B60CDD6}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{9E08E031-5CE7-4974-8A65-F915F2080C64}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_PoCT" key="{64A6C8A3-39D9-4684-8E52-62636DB781E7}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_int_regression_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{369A70FB-D7CA-4D22-8485-F78C739FE413}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{8CC520E4-195A-465E-8E1C-99EEFBF56C5A}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment" key="{9E08E031-5CE7-4974-8A65-F915F2080C64}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment_Plan" key="{369A70FB-D7CA-4D22-8485-F78C739FE413}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
@@ -1264,13 +1264,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{18B74AFE-6CCF-4815-83CF-28D93BA48168}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{18B74AFE-6CCF-4815-83CF-28D93BA48168}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{B5D298FB-A12A-4858-8A0B-2A4BFE94031E}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{B5D298FB-A12A-4858-8A0B-2A4BFE94031E}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1282,19 +1282,19 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{A7904FCE-C277-4A06-AC62-FA14FA4354F1}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{A7904FCE-C277-4A06-AC62-FA14FA4354F1}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{9C17C669-21CF-46EC-9C43-A29DDA0FB283}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{9C17C669-21CF-46EC-9C43-A29DDA0FB283}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{B4E15497-2A3E-49A4-926C-248F52C4B441}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{B4E15497-2A3E-49A4-926C-248F52C4B441}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1312,81 +1312,81 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{0F88B83B-C893-465C-AA0D-CC7F55A15AB4}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{0F88B83B-C893-465C-AA0D-CC7F55A15AB4}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{1C393FCB-8C94-4784-903C-51BEFCA62FEB}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{1C393FCB-8C94-4784-903C-51BEFCA62FEB}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{A7D43C3A-CC11-47F2-A7F8-18B85EA9688C}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{A7D43C3A-CC11-47F2-A7F8-18B85EA9688C}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{F53A05CB-5259-45B3-936E-A322DB8BBF6D}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{F53A05CB-5259-45B3-936E-A322DB8BBF6D}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{620128C4-8314-4B33-8E9C-4B2A92B19D15}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{620128C4-8314-4B33-8E9C-4B2A92B19D15}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{91BA2175-414F-4BAF-90FE-566F1EDC0A0F}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{91BA2175-414F-4BAF-90FE-566F1EDC0A0F}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{1A8CA4F7-E319-4AC1-BA84-EC71FCF943B0}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Management" key="{D2BBBA5D-F7DB-49F0-B5A8-440EEE5FD117}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{BC18D226-BF7E-4602-891D-C635A0DF3719}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{1A8CA4F7-E319-4AC1-BA84-EC71FCF943B0}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_PoCT" key="{57580B2A-A1DD-4C6B-9679-27081D56444B}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_master_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{D2BBBA5D-F7DB-49F0-B5A8-440EEE5FD117}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{DF000B9A-C205-4D76-A5EA-C3529518BD6B}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{BC18D226-BF7E-4602-891D-C635A0DF3719}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{B2FA7386-B731-4901-AF31-74D9914E339B}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_PoCT" key="{57580B2A-A1DD-4C6B-9679-27081D56444B}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_int_regression_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{0D96B470-1311-47E6-A33D-96231914EAF6}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{DF000B9A-C205-4D76-A5EA-C3529518BD6B}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment" key="{B2FA7386-B731-4901-AF31-74D9914E339B}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment_Plan" key="{0D96B470-1311-47E6-A33D-96231914EAF6}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
@@ -1506,13 +1506,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{4F3343F1-2C45-443A-B86E-6450532D8D48}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{4F3343F1-2C45-443A-B86E-6450532D8D48}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{90CD3C78-0B8B-4255-BF33-6FC8170E63AF}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{90CD3C78-0B8B-4255-BF33-6FC8170E63AF}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1524,19 +1524,19 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{D0A89CBC-7801-487B-885B-13B2649C7F22}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{D0A89CBC-7801-487B-885B-13B2649C7F22}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{DDFE695E-4F0C-4760-B6DD-EFA78A51AC8D}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{DDFE695E-4F0C-4760-B6DD-EFA78A51AC8D}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{DC51A6E0-4A2D-4350-BE21-B6138532312B}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{DC51A6E0-4A2D-4350-BE21-B6138532312B}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1554,81 +1554,81 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{66EE5A3C-E953-422A-BF8D-C550D102422D}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{66EE5A3C-E953-422A-BF8D-C550D102422D}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{BD0B7E11-CE34-4691-B7B9-32CF01619961}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{BD0B7E11-CE34-4691-B7B9-32CF01619961}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{8768F984-D78B-4C6C-B217-2B86BE044620}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{8768F984-D78B-4C6C-B217-2B86BE044620}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{2AFD8360-5A36-4423-B927-5C3123BE5CA1}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{2AFD8360-5A36-4423-B927-5C3123BE5CA1}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{A3CA1452-E427-480D-9442-F9DCAD99887E}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{A3CA1452-E427-480D-9442-F9DCAD99887E}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{26DB5288-1403-43FC-B6D5-CC1F0098162F}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{26DB5288-1403-43FC-B6D5-CC1F0098162F}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{6ABDC159-B2AF-44A9-818C-C006DED29A79}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Management" key="{AD22C262-A251-4313-A853-43B2C632BA2D}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{C3E3330F-9587-4D56-832F-D13141A5B50C}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{6ABDC159-B2AF-44A9-818C-C006DED29A79}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_PoCT" key="{A91B8687-C9C7-4C63-BEF1-4F34C3EA4079}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_master_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{AD22C262-A251-4313-A853-43B2C632BA2D}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{65A90FDB-E836-4A0B-9A8B-8D9DC0399E46}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{C3E3330F-9587-4D56-832F-D13141A5B50C}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{F9016310-3E77-40B5-A149-44EC237ACF98}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_PoCT" key="{A91B8687-C9C7-4C63-BEF1-4F34C3EA4079}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_int_regression_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{EB955A0A-1D29-4535-8B68-285B16E1B9B5}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{65A90FDB-E836-4A0B-9A8B-8D9DC0399E46}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment" key="{F9016310-3E77-40B5-A149-44EC237ACF98}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment_Plan" key="{EB955A0A-1D29-4535-8B68-285B16E1B9B5}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
@@ -1748,13 +1748,13 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{E66F0809-D459-47D1-B9ED-58C09BB8D59B}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_master_adverse_events" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{E66F0809-D459-47D1-B9ED-58C09BB8D59B}" group="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{2F8E8DF6-4D0A-45F4-89CF-88EB20A77DC4}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_master_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{2F8E8DF6-4D0A-45F4-89CF-88EB20A77DC4}" group="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1766,19 +1766,19 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{F206E18F-59CA-4CAD-AC03-0874C34FC3D8}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_master_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{F206E18F-59CA-4CAD-AC03-0874C34FC3D8}" group="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{80D63F67-0544-4A44-B868-4DFB400FBDBA}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_master_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{80D63F67-0544-4A44-B868-4DFB400FBDBA}" group="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{8DF7DB97-73A0-4DD7-BB1D-68190076636A}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_master_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{8DF7DB97-73A0-4DD7-BB1D-68190076636A}" group="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -1796,81 +1796,81 @@
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{5377E08D-1588-44FD-8E7A-39C2956E3486}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_master_homepage" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{5377E08D-1588-44FD-8E7A-39C2956E3486}" group="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{44B5F0B0-B68A-4196-8537-599D9C8043EE}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_master_loc_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{44B5F0B0-B68A-4196-8537-599D9C8043EE}" group="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{6EDC313E-D176-4767-A57A-9E7942C8D42A}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_master_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{6EDC313E-D176-4767-A57A-9E7942C8D42A}" group="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{E2AC4758-D081-4118-99E0-FBBD619F4478}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_master_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{E2AC4758-D081-4118-99E0-FBBD619F4478}" group="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{8A377979-7ABF-4268-B3F0-D65AF84D7ED7}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_master_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{8A377979-7ABF-4268-B3F0-D65AF84D7ED7}" group="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{1EC5C825-2BD6-4FF7-A1BE-9758C1384107}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_master_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{1EC5C825-2BD6-4FF7-A1BE-9758C1384107}" group="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{C73161CF-D84E-40DC-AA44-84222E943328}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_master_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Management" key="{5E5CF305-1C1D-4D35-B1AF-C05D00260369}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_master_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
-										</testParameters>
-										<children />
-									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{A4783CF9-35F4-41F9-820B-462363BF217F}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_master_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{C73161CF-D84E-40DC-AA44-84222E943328}" group="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_PoCT" key="{40E5C1B5-6AC5-4D80-9E64-7A13BCBD54DE}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_master_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{5E5CF305-1C1D-4D35-B1AF-C05D00260369}" group="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{3732F618-2814-49E0-BAEF-90828B644DC9}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_master_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{A4783CF9-35F4-41F9-820B-462363BF217F}" group="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment" key="{F3EA4DF9-1869-4863-B3FB-7D515223A868}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_master_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_PoCT" key="{40E5C1B5-6AC5-4D80-9E64-7A13BCBD54DE}" group="False" enabled="False" testMoniker="{1B16FD50-78F8-4EF9-A766-14E0B13866DD}ts_int_regression_poct" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{E0D94D1D-0468-4089-8629-FC294DE029D1}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_master_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{3732F618-2814-49E0-BAEF-90828B644DC9}" group="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="send_mail" type="3" localVarName="" varType="0" value="" />
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment" key="{F3EA4DF9-1869-4863-B3FB-7D515223A868}" group="False" enabled="True" testMoniker="{DAD3B6B6-22E4-4970-9DA3-CA09D0EBC634}ts_int_regression_treatment_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
+										</testParameters>
+										<children />
+									</testItem>
+									<testItem name="TS_Treatment_Plan" key="{E0D94D1D-0468-4089-8629-FC294DE029D1}" group="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan_italy" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters>
+											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<children />
 									</testItem>
