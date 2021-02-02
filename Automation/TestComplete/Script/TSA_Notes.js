@@ -7,7 +7,7 @@ function add_a_new_note()
   Goto_Patient_Notes();
   var notes_tab_path = notes_tab();
   var obj = notes_tab_path.Panel(0).Button("AddNoteLink");
-  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "PatientNotesForm", 3);
+  click_navigation_wrapper(obj, path_main_patient_tab(), "idStr", "PatientNotesForm", 3);
   
   var notes_form_path = notes_form();
 

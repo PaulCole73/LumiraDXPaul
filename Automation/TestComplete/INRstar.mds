@@ -1981,8 +1981,8 @@
 			</testItem>
 		</children>
 	</testItems>
-	<variables key="{4B9173FC-9A59-474A-BB11-CB532AE3D687}" />
-	<settings key="{5F7B2CD5-3048-4A58-B14C-6E60A48FE68C}">
+	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}" />
+	<settings key="{3E1721F3-9165-4447-AE13-1C0F567DC90E}">
 		<settingsVersion value="14.71" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
@@ -2010,8 +2010,6 @@
 		<setting name="AzureDevOps_TeamProject" type="5" value="" />
 		<setting name="AzureDevOps_TeamProjectCollection" type="5" value="" />
 		<setting name="AzureDevOps_URL" type="5" value="" />
-		<setting name="CBT_Authkey" type="5" value="" />
-		<setting name="CBT_UserName" type="5" value="" />
 		<setting name="CLRBridge_PreferredApartmentModel" type="6" rowIndex="0" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
@@ -2083,7 +2081,7 @@
 		</setting>
 		<setting name="Gherkin_ExamplesAreTestCases" type="1" value="False" />
 		<setting name="HipTest_ProjectID" type="2" value="-1" />
-		<setting name="HipTest_ProjectName" type="5" value="The current project is not bound to HipTest." />
+		<setting name="HipTest_ProjectName" type="5" value="The current project is not bound to CucumberStudio." />
 		<setting name="HipTest_SaveResults" type="1" value="True" />
 		<setting name="HipTest_SynchronizeBeforeRun" type="1" value="True" />
 		<setting name="HipTest_SynchronizeOnOpening" type="1" value="True" />
@@ -2111,7 +2109,7 @@
 			</columns>
 			<data />
 		</setting>
-		<setting name="JavaFXOpenApp_NodeByClassNameFilters" type="6" rowIndex="7" colIndex="2">
+		<setting name="JavaFXOpenApp_NodeByClassNameFilters" type="6" rowIndex="8" colIndex="2">
 			<columns>
 				<column type="1" enabled="True" />
 				<column type="5" enabled="True" />
@@ -2126,6 +2124,7 @@
 				<row val0="False" val1="javafx.scene.image.ImageView" val2="True" />
 				<row val0="False" val1="javafx.scene.media.MediaView" val2="True" />
 				<row val0="True" val1="com.sun.javafx.scene.control.skin.ContextMenuContent$MenuItemContainer" val2="True" />
+				<row val0="True" val1="com.sun.javafx.scene.control.ContextMenuContent$MenuItemContainer" val2="True" />
 			</data>
 		</setting>
 		<setting name="JavaOpenApp_DoNotRecognizeChildSWTAsParent" type="1" value="False" />
@@ -2157,65 +2156,6 @@
 				<row val0="True" val1="%PRODUCT_LOCATION%\Open Apps\Flex\FlashInjector.swf" />
 			</data>
 		</setting>
-		<setting name="OpenApps_HybridMobile_AccessPolicy" type="1" value="False" />
-		<setting name="OpenApps_HybridMobile_DynamicIdentifiers" type="6" rowIndex="32" colIndex="9">
-			<columns>
-				<column type="2" enabled="True" />
-				<column type="2" enabled="True" />
-				<column type="1" enabled="True" />
-				<column type="1" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="5" enabled="True" />
-				<column type="2" enabled="True" />
-			</columns>
-			<data>
-				<row val0="-1" val1="0" val2="True" val3="True" val4="Yahoo! UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="0" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;yui-gen&quot;" val5="Wildcard" val6="yui-gen*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="0" val1="0" val2="False" val3="True" val4="Do not use IDs containing &quot;yui_3_&quot;" val5="Wildcard" val6="*yui_3_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="jQuery UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="3" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;ui-id-&quot;" val5="Wildcard" val6="ui-id-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="Dojo toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="5" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;dijit_&quot;" val5="Wildcard" val6="dijit_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="Other" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="0" val2="False" val3="True" val4="Do not use IDs containing GUID" val5="RegExp" val6="\h+-\h+-\h+-\h+-\h+" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="0" val2="False" val3="True" val4="Remove leading characters from IDs like &quot;c1114509959-searchform&quot;" val5="RegExp" val6="^[A-Za-z](\d\d\d\d\d+){[A-Za-z-]*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="0" val2="False" val3="True" val4="Remove trailing digits from IDs like &quot;unique-123456&quot;" val5="RegExp" val6="^{[A-Za-z-]+}(\d\d\d\d\d+)$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="0" val2="False" val3="True" val4="Remove digits from IDs like &quot;some_unique_123456_text&quot;" val5="RegExp" val6="^{[A-Za-z_]+}_(\d\d\d\d\d+){[A-Za-z_]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="0" val2="False" val3="True" val4="Remove digits from IDs like &quot;some_unique123456_text&quot;" val5="RegExp" val6="^{[A-Za-z_]+}(\d\d\d\d\d+){[A-Za-z_]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="ASP.NET" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="13" val1="0" val2="False" val3="True" val4="Do not use IDs ending with a string like &quot;ctl00&quot;" val5="RegExp" val6="^(.*[-_$])?(ctl[0-9]+)$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="13" val1="0" val2="False" val3="True" val4="Remove GUIDs and ctl00-like prefixes from Sharepoint IDs" val5="RegExp" val6="(.+?_(\h+_\h+_\h+_\h+_\h+))+(.*ctr?l[0-9]+)?[_$]?{.*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="13" val1="0" val2="False" val3="True" val4="For IDs containing a string like &quot;ctl00_&quot;, leave only symbols after this string" val5="RegExp" val6=".*(ctl[0-9]+[-_$]+){.*}" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="Sencha ExtJS" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="17" val1="0" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-gen&quot;" val5="RegExp" val6="^(.*-)?ext-gen" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="17" val1="0" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-comp&quot;" val5="RegExp" val6="^(.*-)?ext-comp" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="17" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;extdd-&quot;" val5="Wildcard" val6="extdd-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="17" val1="0" val2="False" val3="True" val4="Remove digits from IDs like &quot;treepicker-1038&quot; or &quot;treepicker-1038-inputEl&quot;" val5="RegExp" val6="^{[A-Za-z-]+}-{\d\d\d\d+}{.*}$" val7="$1$3" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="Sencha Touch" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="0" val2="False" val3="True" val4="Remove dynamic parts of Sencha Touch IDs" val5="RegExp" val6="^ext-{.*}-\d+$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="JavaServer Faces" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="24" val1="0" val2="False" val3="True" val4="Do not use IDs like &quot;_t14&quot;" val5="RegExp" val6="^{_t}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="24" val1="0" val2="False" val3="True" val4="Do not use IDs like &quot;j_id23&quot; or &quot;j_idt23&quot;" val5="RegExp" val6="^{j_idt?}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="24" val1="0" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;frm:menuLinks:0:link&quot;" val5="RegExp" val6="(.+):{[^0-9]+}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="24" val1="0" val2="False" val3="True" val4="Do not use IDs like &quot;frm:menuLinks:3:link&quot;" val5="RegExp" val6="(.+):(.*)" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="Google Web Toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="29" val1="0" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;gwt-uid-370_runButton&quot;" val5="RegExp" val6="^(gwt-uid-[0-9]+)(_{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="29" val1="0" val2="False" val3="True" val4="Remove dynamic parts of Sencha GXT IDs" val5="RegExp" val6="^(x-((widget)|(auto))-.*[0-9]+)([-_]{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="0" val2="True" val3="True" val4="Custom" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-			</data>
-		</setting>
-		<setting name="OpenApps_HybridMobile_IdentificationAttribute" type="6" rowIndex="0" colIndex="0">
-			<columns>
-				<column type="5" enabled="True" />
-			</columns>
-			<data>
-				<row val0="ID" />
-				<row val0="Name" />
-			</data>
-		</setting>
 		<setting name="OpenApps_MethodInvokeTimeout" type="2" value="3000" />
 		<setting name="OpenApps_MSAA_ListOfAcceptedWindows" type="6" rowIndex="11" colIndex="1">
 			<columns>
@@ -2238,7 +2178,7 @@
 			</data>
 		</setting>
 		<setting name="OpenApps_MSAA_TreeModel" type="1" value="False" />
-		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="14" colIndex="0">
+		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="13" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>
@@ -2249,15 +2189,14 @@
 				<row val0="NativeDelphiObject" />
 				<row val0="NativeTextObject" />
 				<row val0="NativeJavaObject" />
+				<row val0="NativeChromeObject" />
 				<row val0="NativeClrObject" />
 				<row val0="NativeCPPObject" />
-				<row val0="NativeFirefoxObject" />
 				<row val0="NativeJavaFXObject" />
 				<row val0="NativeQtObject" />
+				<row val0="NativeFirefoxObject" />
 				<row val0="NativeUIAObject" />
 				<row val0="NativeMSAA" />
-				<row val0="NativeChromeObject" />
-				<row val0="NativeWebDriverObject" />
 			</data>
 		</setting>
 		<setting name="OpenApps_ProcessFilter_ProcessFilterMode" type="6" rowIndex="0" colIndex="0">
@@ -2301,8 +2240,8 @@
 				<row val0="True" val1="data-testid" />
 			</data>
 		</setting>
-		<setting name="OpenApps_Web_EnableSupportForWebComponents" type="1" value="False" />
-		<setting name="OpenApps_Web_ObjIdentification_DynamicIdentifiers" type="6" rowIndex="30" colIndex="9">
+		<setting name="OpenApps_Web_EnableSupportForWebComponents" type="1" value="True" />
+		<setting name="OpenApps_Web_ObjIdentification_DynamicIdentifiers" type="6" rowIndex="32" colIndex="9">
 			<columns>
 				<column type="2" enabled="True" />
 				<column type="2" enabled="True" />
@@ -2316,37 +2255,39 @@
 				<column type="2" enabled="True" />
 			</columns>
 			<data>
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Yahoo! UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="0" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;yui-gen&quot;" val5="Wildcard" val6="yui-gen*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="0" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;yui_3_&quot;" val5="Wildcard" val6="*yui_3_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="jQuery UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="3" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;ui-id-&quot;" val5="Wildcard" val6="ui-id-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Dojo toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="5" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;dijit_&quot;" val5="Wildcard" val6="dijit_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Other" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="-1" val2="False" val3="True" val4="Do not use IDs containing GUID" val5="RegExp" val6="\h+-\h+-\h+-\h+-\h+" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove leading characters from IDs like &quot;c1114509959-searchform&quot;" val5="RegExp" val6="^[A-Za-z](\d\d\d\d\d+){[A-Za-z-]*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="7" val1="-1" val2="False" val3="True" val4="Remove trailing digits from IDs like &quot;unique-123456&quot;" val5="RegExp" val6="^{[A-Za-z-]+}(\d\d\d\d\d+)$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="ASP.NET" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="11" val1="-1" val2="False" val3="True" val4="Do not use IDs ending with a string like &quot;ctl00&quot;" val5="RegExp" val6="^(.*[-_$])?(ctl[0-9]+)$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="11" val1="-1" val2="False" val3="True" val4="Remove GUIDs and ctl00-like prefixes from Sharepoint IDs" val5="RegExp" val6="(.+?_(\h+_\h+_\h+_\h+_\h+))+(.*ctr?l[0-9]+)?[_$]?{.*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="11" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;ctl00_MainContent_username&quot;" val5="RegExp" val6=".*(ctl[0-9]+)(.*)[-_$]+{[^_0-9]+}{[_0-9]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Sencha ExtJS" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-gen&quot;" val5="RegExp" val6="^(.*-)?ext-gen" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-comp&quot;" val5="RegExp" val6="^(.*-)?ext-comp" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Do not use IDs starting with &quot;extdd-&quot;" val5="Wildcard" val6="extdd-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="15" val1="-1" val2="False" val3="True" val4="Remove digits from IDs like &quot;treepicker-1038&quot; or &quot;treepicker-1038-inputEl&quot;" val5="RegExp" val6="^{[A-Za-z-]+}-{\d\d\d\d+}{.*}$" val7="$1$3" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Sencha Touch" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="20" val1="-1" val2="False" val3="True" val4="Remove dynamic parts of Sencha Touch IDs" val5="RegExp" val6="^ext-{.*}-\d+$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="JavaServer Faces" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;_t14&quot;" val5="RegExp" val6="^{_t}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;j_id23&quot; or &quot;j_idt23&quot;" val5="RegExp" val6="^{j_idt?}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;frm:menuLinks:0:link&quot;" val5="RegExp" val6="(.+):{[^0-9]+}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="22" val1="-1" val2="False" val3="True" val4="Do not use IDs like &quot;frm:menuLinks:3:link&quot;" val5="RegExp" val6="(.+):(.*)" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Google Web Toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="27" val1="-1" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;gwt-uid-370_runButton&quot;" val5="RegExp" val6="^(gwt-uid-[0-9]+)(_{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="27" val1="-1" val2="False" val3="True" val4="Remove dynamic parts of Sencha GXT IDs" val5="RegExp" val6="^(x-((widget)|(auto))-.*[0-9]+)([-_]{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
-				<row val0="-1" val1="-1" val2="True" val3="True" val4="Custom" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="Yahoo! UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="0" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;yui-gen&quot;" val5="Wildcard" val6="yui-gen*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="0" val1="0" val2="False" val3="True" val4="Do not use IDs containing &quot;yui_3_&quot;" val5="Wildcard" val6="*yui_3_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="jQuery UI library" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="3" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;ui-id-&quot;" val5="Wildcard" val6="ui-id-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="Dojo toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="5" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;dijit_&quot;" val5="Wildcard" val6="dijit_*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="Other" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="0" val2="False" val3="True" val4="Do not use IDs containing GUID" val5="RegExp" val6="\h+-\h+-\h+-\h+-\h+" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="0" val2="False" val3="True" val4="Remove leading characters from IDs like &quot;c1114509959-searchform&quot;" val5="RegExp" val6="^[A-Za-z](\d\d\d\d\d+){[A-Za-z-]*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="0" val2="False" val3="True" val4="Remove trailing digits from IDs like &quot;unique-123456&quot;" val5="RegExp" val6="^{[A-Za-z-]+}(\d\d\d\d\d+)$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="0" val2="False" val3="True" val4="Remove digits from IDs like &quot;some_unique_123456_text&quot;" val5="RegExp" val6="^{[A-Za-z_]+}_(\d\d\d\d\d+){[A-Za-z_]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="7" val1="0" val2="False" val3="True" val4="Remove digits from IDs like &quot;some_unique123456_text&quot;" val5="RegExp" val6="^{[A-Za-z_]+}(\d\d\d\d\d+){[A-Za-z_]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="ASP.NET" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="13" val1="0" val2="False" val3="True" val4="Do not use IDs ending with a string like &quot;ctl00&quot;" val5="RegExp" val6="^(.*[-_$])?(ctl[0-9]+)$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="13" val1="0" val2="False" val3="True" val4="Remove GUIDs and ctl00-like prefixes from Sharepoint IDs" val5="RegExp" val6="(.+?_(\h+_\h+_\h+_\h+_\h+))+(.*ctr?l[0-9]+)?[_$]?{.*}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="13" val1="0" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;ctl00_MainContent_username&quot;" val5="RegExp" val6=".*(ctl[0-9]+)(.*)[-_$]+{[^_0-9]+}{[_0-9]*}$" val7="$1$2" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="Sencha ExtJS" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="0" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-gen&quot;" val5="RegExp" val6="^(.*-)?ext-gen" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="0" val2="False" val3="True" val4="Do not use IDs containing &quot;ext-comp&quot;" val5="RegExp" val6="^(.*-)?ext-comp" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="0" val2="False" val3="True" val4="Do not use IDs starting with &quot;extdd-&quot;" val5="Wildcard" val6="extdd-*" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="17" val1="0" val2="False" val3="True" val4="Remove digits from IDs like &quot;treepicker-1038&quot; or &quot;treepicker-1038-inputEl&quot;" val5="RegExp" val6="^{[A-Za-z-]+}-{\d\d\d\d+}{.*}$" val7="$1$3" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="Sencha Touch" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="22" val1="0" val2="False" val3="True" val4="Remove dynamic parts of Sencha Touch IDs" val5="RegExp" val6="^ext-{.*}-\d+$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="JavaServer Faces" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="0" val2="False" val3="True" val4="Do not use IDs like &quot;_t14&quot;" val5="RegExp" val6="^{_t}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="0" val2="False" val3="True" val4="Do not use IDs like &quot;j_id23&quot; or &quot;j_idt23&quot;" val5="RegExp" val6="^{j_idt?}{[0-9]+}$" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="0" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;frm:menuLinks:0:link&quot;" val5="RegExp" val6="(.+):{[^0-9]+}$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="24" val1="0" val2="False" val3="True" val4="Do not use IDs like &quot;frm:menuLinks:3:link&quot;" val5="RegExp" val6="(.+):(.*)" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="Google Web Toolkit" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="29" val1="0" val2="False" val3="True" val4="Remove all but the last part of IDs like &quot;gwt-uid-370_runButton&quot;" val5="RegExp" val6="^(gwt-uid-[0-9]+)(_{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="29" val1="0" val2="False" val3="True" val4="Remove dynamic parts of Sencha GXT IDs" val5="RegExp" val6="^(x-((widget)|(auto))-.*[0-9]+)([-_]{.*})?$" val7="$1" val8="Wildcard&#13;&#10;RegExp" val9="0" />
+				<row val0="-1" val1="0" val2="True" val3="True" val4="Custom" val5="" val6="" val7="" val8="Wildcard&#13;&#10;RegExp" val9="0" />
 			</data>
 		</setting>
 		<setting name="OpenApps_Web_ObjIdentification_IdentificationAttribute" type="6" rowIndex="0" colIndex="0">
@@ -2391,20 +2332,16 @@
 			<data>
 				<row val0="None" />
 				<row val0="Apple iPad" />
-				<row val0="Apple iPhone 4" />
-				<row val0="Apple iPhone 5" />
-				<row val0="Apple iPhone 6" />
-				<row val0="Apple iPhone 6 Plus" />
-				<row val0="Blackberry Z30" />
-				<row val0="Google Nexus 6" />
-				<row val0="Google Nexus 7" />
-				<row val0="Google Nexus 10" />
-				<row val0="Nokia Lumia 520" />
-				<row val0="Samsung Galaxy Note 3" />
-				<row val0="Samsung Galaxy S5" />
+				<row val0="Apple iPhone 5/SE" />
+				<row val0="iPhone 6/7/8" />
+				<row val0="iPhone 6/7/8 Plus" />
+				<row val0="Apple iPhone X" />
+				<row val0="Google Pixel 2" />
+				<row val0="Samsung Galaxy Note 9" />
+				<row val0="Samsung Galaxy S9" />
 			</data>
 		</setting>
-		<setting name="OpenApps_Web_VirtBrowsers_List" type="6" rowIndex="11" colIndex="9">
+		<setting name="OpenApps_Web_VirtBrowsers_List" type="6" rowIndex="7" colIndex="9">
 			<columns>
 				<column type="2" enabled="True" />
 				<column type="2" enabled="True" />
@@ -2418,18 +2355,14 @@
 				<column type="4" enabled="True" />
 			</columns>
 			<data>
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPad" val6="Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="1024" val8="768" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 4" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="320" val8="480" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 5" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="320" val8="568" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 6" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="375" val8="667" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Apple iPhone 6 Plus" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1" val7="414" val8="736" val9="3" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Blackberry Z30" val6="Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.0.9.2372 Mobile Safari/537.10+" val7="360" val8="640" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Google Nexus 6" val6="Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36" val7="412" val8="732" val9="3.5" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Google Nexus 7" val6="Mozilla/5.0 (Linux; Android 4.3; Nexus 7 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36" val7="960" val8="600" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Google Nexus 10" val6="Mozilla/5.0 (Linux; Android 4.3; Nexus 10 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36" val7="1280" val8="800" val9="2" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Nokia Lumia 520" val6="Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 520)" val7="320" val8="533" val9="1.39999997615814" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Samsung Galaxy Note 3" val6="Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30" val7="360" val8="640" val9="3" />
-				<row val0="-1" val1="-1" val2="False" val3="True" val4="False" val5="Samsung Galaxy S5" val6="Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36" val7="360" val8="640" val9="2" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="Apple iPad" val6="Mozilla/5.0 (iPad; CPU OS 11_0 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) Version/11.0 Mobile/15A5341f Safari/604.1" val7="1024" val8="768" val9="2" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="Apple iPhone 5/SE" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1" val7="320" val8="568" val9="2" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="iPhone 6/7/8" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1" val7="375" val8="667" val9="2" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="iPhone 6/7/8 Plus" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1" val7="414" val8="736" val9="3" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="Apple iPhone X" val6="Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1" val7="375" val8="812" val9="3" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="Google Pixel 2" val6="Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%s Mobile Safari/537.36" val7="411" val8="731" val9="2.625" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="Samsung Galaxy Note 9" val6="Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36" val7="414" val8="846" val9="3.5" />
+				<row val0="-1" val1="0" val2="False" val3="True" val4="False" val5="Samsung Galaxy S9" val6="Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/67.0.3396.87 Mobile Safari/537.36" val7="360" val8="740" val9="4" />
 			</data>
 		</setting>
 		<setting name="OpenApps_Web_WebPageLoadingTimeout" type="2" value="60000" />
@@ -2461,7 +2394,7 @@
 			</columns>
 			<data />
 		</setting>
-		<setting name="Playback_ErrHandling_OnError" type="6" rowIndex="0" colIndex="1">
+		<setting name="Playback_ErrHandling_OnError" type="6" rowIndex="2" colIndex="1">
 			<columns>
 				<column type="5" enabled="True" />
 				<column type="2" enabled="True" />
@@ -2495,7 +2428,7 @@
 				<row val0="Stop current item" val1="2" />
 			</data>
 		</setting>
-		<setting name="Playback_ErrHandling_ShowErrorDialog" type="1" value="False" />
+		<setting name="Playback_ErrHandling_ShowErrorDialog" type="1" value="True" />
 		<setting name="Playback_Log_AutosaveInterval" type="2" value="0" />
 		<setting name="Playback_Log_EventCount" type="2" value="0" />
 		<setting name="Playback_Log_PostImageOnError" type="1" value="True" />
@@ -2509,12 +2442,12 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="10000" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />
 		<setting name="Playback_Runtime_UseCaseSensitiveParameters" type="1" value="False" />
-		<setting name="Playback_StopOnError" type="1" value="False" />
+		<setting name="Playback_StopOnError" type="1" value="True" />
 		<setting name="Playback_StopOnObjectRecognitionError" type="1" value="False" />
 		<setting name="Playback_StopOnWarning" type="1" value="False" />
 		<setting name="Playback_TestItemMaxReRunCount" type="2" value="1" />
@@ -2553,7 +2486,7 @@
 				<row val0="Update existing frames only" />
 			</data>
 		</setting>
-		<setting name="Visualizer_BindToSCC" type="1" value="False" />
+		<setting name="Visualizer_BindToSCC" type="1" value="True" />
 		<setting name="Visualizer_CaptureStyle" type="6" rowIndex="0" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
@@ -2565,7 +2498,7 @@
 		</setting>
 		<setting name="Visualizer_DeleteAll" type="1" value="True" />
 		<setting name="Visualizer_PlaybackCaptureProperties" type="1" value="False" />
-		<setting name="Visualizer_PlaybackCollectMode" type="6" rowIndex="0" colIndex="0">
+		<setting name="Visualizer_PlaybackCollectMode" type="6" rowIndex="1" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>
@@ -2575,7 +2508,7 @@
 			</data>
 		</setting>
 		<setting name="Visualizer_RecordingCaptureProperties" type="1" value="False" />
-		<setting name="Visualizer_RecordingCollectMode" type="6" rowIndex="0" colIndex="0">
+		<setting name="Visualizer_RecordingCollectMode" type="6" rowIndex="1" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>
@@ -2609,16 +2542,16 @@
 		<setting name="ZFJ_ZephyrAccessKey" type="5" value="" />
 		<setting name="ZFJ_ZephyrSecretKey" type="5" value="" />
 	</settings>
-	<analysis key="{DC72B6D0-D0FA-43A8-8479-0C44D6DF2ED4}" />
+	<analysis key="{2FA78EA8-53F5-4EE9-AAE4-37D56EB3E2FF}" />
 	<scc key="{00000000-0000-0000-0000-000000000000}" name="">
 		<data />
 	</scc>
-	<issueTracking key="{3760483D-016D-4179-8A61-13774E7EF9DB}">
+	<issueTracking key="{0EAF9126-4AEB-4619-8C23-458067E16E92}">
 		<Templates>
 			<Template Id="{1EB17ADF-E4EB-404D-97DC-AD758A1E8C1D}" ConnectionId="{00000000-0000-0000-0000-000000000000}" Description="This template is used by TestComplete&apos;s Log subsystem to post test results to an issue-tracking system. You can also use it at your desire." Name="CreateWorkItem" IsSystem="True" ItemTypeName="" ProjectName="" IsEditing="False" ItemId="">
 				<Fields>
-					<Field ItemId="{46D020C3-C7FA-40AB-865E-C8017501EEE8}" AliasIsRequired="True" DBFieldNameIsRequired="False" Value="" DBFieldName="" Alias="Subject" />
-					<Field ItemId="{098C359E-4F58-421C-BE59-62A930BF8703}" AliasIsRequired="True" DBFieldNameIsRequired="False" Value="" DBFieldName="" Alias="Description" />
+					<Field ItemId="{C72923EE-39D4-4F5E-9924-D635657CD6FA}" AliasIsRequired="True" DBFieldNameIsRequired="False" Value="" DBFieldName="" Alias="Subject" />
+					<Field ItemId="{E30B654E-7053-439C-91B9-D62CBEDF78FC}" AliasIsRequired="True" DBFieldNameIsRequired="False" Value="" DBFieldName="" Alias="Description" />
 				</Fields>
 			</Template>
 		</Templates>
