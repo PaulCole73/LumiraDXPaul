@@ -21,7 +21,7 @@
 function get_patient_nhs()
 {
   var patient_blue_banner_path = patient_banner_blue_bar()
-  var nhs_num = patient_blue_banner_path.Panel(3).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
+  var nhs_num = patient_blue_banner_path.Panel(3).Panel(1).Label("NHSNumber_DetachedLabel").innerText;
           
   return nhs_num;
 }
