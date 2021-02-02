@@ -12,11 +12,7 @@
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
 var language = "English";
-<<<<<<< HEAD
 var environment = "INRstarWindowsUK-test1";
-=======
-var environment = "INRstarWindowsStagingItalyV4";
->>>>>>> 385503b22a6e5a39846c9a26a50e33e187d8b3c0
 var environmentname = "uk-int1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
