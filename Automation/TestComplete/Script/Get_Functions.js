@@ -21,11 +21,7 @@
 function get_patient_nhs()
 {
   var patient_blue_banner_path = patient_banner_blue_bar()
-<<<<<<< HEAD
-  var nhs_num = patient_blue_banner_path.Panel(3).Panel(1).Label("NHSNumber_DetachedLabel").innerText;
-=======
   var nhs_num = patient_blue_banner_path.Panel(3).FindChild("idStr", "NHSNumber_DetachedLabel", 3).innerText; //Panel(0).Label("NHSNumber_DetachedLabel").innerText; path has changed for UK
->>>>>>> 385503b22a6e5a39846c9a26a50e33e187d8b3c0
           
   return nhs_num;
 }
