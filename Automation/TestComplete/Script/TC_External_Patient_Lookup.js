@@ -10,6 +10,8 @@
 //USEUNIT TSA_Notes
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Misc_Functions
+
 //--------------------------------------------------------------------------------
 function tc_external_patient_lookup_for_maintenance_patient()
 {
