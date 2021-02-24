@@ -77,7 +77,7 @@ function get_patient_not_altered_details_object_from_demographics()
   county: patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText,
   post_code: patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText,
   phone: patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText,
-  email: patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText};
+  email: patient_demographics_tab_contact_address_path.FindChild("idStr", "Email_DetachedLabel", 2).contentText}; //Panel(4).Label("Email_DetachedLabel").contentText};
   
   return patient_demographics;
 }
@@ -296,7 +296,6 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     return false;
 }
 //--------------------------------------------------------------------------------
-
 function get_inr_results_received_by_timestamp(timestamp)
 {
   Goto_Patient_New_INR();

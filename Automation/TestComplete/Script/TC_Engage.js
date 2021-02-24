@@ -341,15 +341,16 @@ function tc_accept_engage_eula_web()
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "14");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
     
     warfarin_self_care('all');
     Log_Off();
     
-    register_engage(email_address);
-    sign_in_engage(email_address);
+    register_engage(email, dob);
+    sign_in_engage(email);
     
     var result_set = new Array();
     var expected_msg = "To use engage, you must confirm you have read, understood, and agree to both the Licence Agreement and the Privacy Policy.";

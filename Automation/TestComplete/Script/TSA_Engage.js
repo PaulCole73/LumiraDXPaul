@@ -14,7 +14,7 @@ function log_off_engage()
   WaitSeconds(2, "Waiting to log off...");
 }
 //--------------------------------------------------------------------------------
-function register_engage(email_address,format_dob)
+function register_engage(email_address, format_dob)
 {
   //TestedApps.engage.Run();
   Sys.Browser("chrome").BrowserWindow(0).Maximize();
@@ -35,7 +35,7 @@ function register_engage(email_address,format_dob)
   //request code from engage
   var code = get_engage_login_code();
   
-  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV",get_string_translation("It's on its way"), "OK");
+  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", /*get_string_translation(*/"It's on its way"/*)*/, "OK");
   WaitSeconds(2);
   //enter received code into ID box 
   engage_code_register().SetText(code);
@@ -49,7 +49,7 @@ function register_engage(email_address,format_dob)
   engage_password_confirm_button().Click();
   WaitSeconds(2);
   
-  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", get_string_translation("Your password has been reset"), "OK");
+  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", /*get_string_translation(*/"Your password has been reset"/*)*/, "OK");
   WaitSeconds(2);
 }
 //--------------------------------------------------------------------------------
