@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------
 
 //Master Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //master suites are used for organised test groups
 function ts_master_options_iqc(send_mail)
 {
@@ -17,9 +17,9 @@ function ts_master_options_iqc(send_mail)
   
   email_and_archive(send_mail, "ts_iqc_master");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //regression suites are used for specific regression runs
-function ts_staging_regression_options_iqc()
+function ts_int_regression_options_iqc(send_mail)
 {
   reset_folder();
   
@@ -27,12 +27,12 @@ function ts_staging_regression_options_iqc()
   tc_edit_iqc_result();
   tc_delete_iqc_result();
   
-  email_and_archive(true, "ts_iqc_regression");
+  email_and_archive(send_mail, "ts_iqc_regression");
 } 
-//--------------------------------------------------------------------------------
+//==============================================================================//
 
 
 
 //==============================================================================//
 //General Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//

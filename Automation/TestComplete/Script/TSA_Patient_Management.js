@@ -292,7 +292,7 @@ function suspend_patient()
   
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
   var obj = pat_managment_tab_status_buttons_path.Button("SuspendPatientButton");
-  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "SuspendPatientForm", 3);
+  click_navigation_wrapper(obj, path_main_patient_tab(), "idStr", "SuspendPatientForm", 3);
   
   var suspend_pat_form_path = suspend_pat_form();
   
@@ -326,7 +326,7 @@ function suspend_patient_days(num_of_days_from_today)
   
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
   var obj = pat_managment_tab_status_buttons_path.Button("SuspendPatientButton");
-  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "SuspendPatientForm", 3);
+  click_navigation_wrapper(obj, path_main_patient_tab(), "idStr", "SuspendPatientForm", 3);
   
   var suspend_pat_form_path = suspend_pat_form();
   
@@ -354,7 +354,7 @@ function unsuspend_patient()
 {
   Goto_Patient_Management();
   
-  var obj_root = main_patient_tab();
+  var obj_root = path_main_patient_tab();
   wait_for_object(obj_root, "idStr", "UnsuspendPatientButton", 4);
   
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
@@ -414,7 +414,7 @@ function change_test_practice(prac_name)
   pat_management_test_practice_search_path.Select("SearchType").ClickItem(get_string_translation("Name"));
   pat_management_test_practice_search_path.Textbox("SearchCriteria").Text = prac_name;
   var obj = pat_management_test_practice_search_path.SubmitButton("Search");
-  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "LocationResults", 5);
+  click_navigation_wrapper(obj, path_main_patient_tab(), "idStr", "LocationResults", 5);
  
   var test_practice_table_path = test_practice_table();
   var row_count = test_practice_table_path.rowcount;

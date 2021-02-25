@@ -544,7 +544,7 @@ function Goto_Patient_Demographics()
 function Goto_Edit_Patient_Demographics()
 {
   Goto_Patient_Demographics();
-  var panelPR = main_patient_tab();
+  var panelPR = path_main_patient_tab();
   var panelPDW = panelPR.Panel("PatientTabContent").Panel("PatientDetailsWrapper").Panel(0);
   panelPDW.Button("EditPatientDetailsLink").Click();
   WaitSeconds(1, "Waiting to go to Edit Patient Demographics...");
@@ -605,7 +605,7 @@ function Goto_Patient_Treatments_Tab()
   var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   var obj_root = panelMCP.Panel("PatientRecord").Panel("PatientTab");
   var obj = wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTab", 1);
-  click_navigation_wrapper(obj, main_patient_tab(), "idStr", "TreatmentPlanListWrapper", 2);
+  click_navigation_wrapper(obj, path_main_patient_tab(), "idStr", "TreatmentPlanListWrapper", 2);
   
   WaitSeconds(0.5);
 }
@@ -614,7 +614,7 @@ function Goto_Patient_Treatments_Tab()
 function Goto_Patient_Treatment_Plan()
 {
   Goto_Patient_Treatments_Tab();
-  var obj = wait_for_object(main_patient_tab(), "idStr", "PatientTreatmentPlanTab", 3);
+  var obj = wait_for_object(path_main_patient_tab(), "idStr", "PatientTreatmentPlanTab", 3);
   if(obj.Exists)
   {
     obj.Click();
@@ -626,14 +626,14 @@ function Goto_Patient_Treatment_Plan()
 function Goto_Patient_Treatment_Plan_Add()
 {
   Goto_Patient_Treatment_Plan();
-  var obj_root = change_treatment_plan_buttons(); 
+  var obj_root = path_treatment_plan_details();
   var obj = wait_for_object(obj_root, "idStr", "AddPatientTreatmentPlanLink", 2);
   if(obj.Exists)
   {
     obj.Click();
   }
   process_popup("Confirmation Required", "Confirm");
-  wait_for_object(main_patient_tab(), "idStr", "AddTreatmentPlanForm", 4);
+  wait_for_object(path_main_patient_tab(), "idStr", "AddTreatmentPlanForm", 4);
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Treatment Plan Add - If a treatment plan exists
@@ -643,11 +643,11 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
   var current_drug = clinical_tp_details().Panel(3).Label("DrugName_DetachedLabel").innerText;
   if(current_drug != get_string_translation("Warfarin"))
   {
-    main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(0).Button("AddPatientTreatmentPlanLink").Click();
+    path_main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(0).Button("AddPatientTreatmentPlanLink").Click();
   }
   else
   {
-    main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(1).Button("AddPatientTreatmentPlanLink").Click();
+    path_main_patient_tab().Panel("PatientTabContent").Panel("PatientTreatmentPlanWrapper").Panel("PatientTreatmentPlanDetails").Panel(1).Button("AddPatientTreatmentPlanLink").Click();
   }
     
   process_popup(get_string_translation("Confirmation Required"), get_string_translation("Confirm"));
@@ -659,7 +659,7 @@ function Goto_Patient_Treatment_Plan_Add_More_1_Treatment_Plan()
 function Goto_Patient_Treatment_Plan_Edit_Existing_Plan_Non_Warfarin()
 {
   Goto_Patient_Treatment_Plan();
-  change_treatment_plan_buttons().Panel(0).Button("EditPatientTreatmentPlanLink").Click();
+  path_treatment_plan_details().Panel(0).Button("EditPatientTreatmentPlanLink").Click();
   WaitSeconds(1, "Waiting to go to Edit Treatment Plan...");
 }
 //-------------------------------------------------------------------------------
@@ -682,7 +682,7 @@ function Goto_Patient_Treatment_Plan_Edit_Existing_Plan_Non_Warfarin()
 function Goto_Patient_Treatment_Plan_Edit_Existing_Plan()
 {
   Goto_Patient_Treatment_Plan();
-  change_treatment_plan_buttons().Panel(1).Button("EditPatientTreatmentPlanLink").Click();
+  path_treatment_plan_details().Panel(1).Button("EditPatientTreatmentPlanLink").Click();
   WaitSeconds(1, "Waiting for Edit Treatment Plan button...");
 }
 /*
@@ -715,8 +715,7 @@ function Goto_Patient_Treatment_Plan_Edit()
 function Goto_Patient_New_INR()
 {
   Goto_Patient_Treatment();
-  var panelPTC = main_patient_tab().Panel("PatientTabContent");
-  var panelPPT = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment");
+  var panelPPT = path_patient_pending_treatment();
   panelPPT.Panel("TreatmentButtonsContainer").Fieldset("TreatmentButtons").Button("NewINR").Click();
   
   process_alternate_popup(get_string_translation("Please acknowledge"), get_string_translation("Confirm"), 1);
@@ -731,7 +730,7 @@ function Goto_Patient_Treatment()
   var panelPT = panelMCP.Panel("PatientRecord").Panel("PatientTab");
   var obj = wait_for_object(panelPT, "idStr", "PatientTreatmentPlanTab", 1);
   
-  var obj_root = main_patient_tab();
+  var obj_root = path_main_patient_tab();
   click_navigation_wrapper(obj, obj_root, "idStr", "TreatmentPlanSubTab", 1);
 
   wait_for_object(obj_root, "idStr", "PatientTreatmentPlanTabSubMenu", 2);
@@ -756,7 +755,7 @@ function Goto_Add_Historical()
 function Goto_Add_Treatment_Comment()
 {
   Goto_Patient_Treatment();
-  var comments_link = treatment_comment();
+  var comments_link = treatment_table();
   comments_link.Cell(0, 9).Link(0).click();
 }
 //===============================================================================
@@ -770,7 +769,7 @@ function Goto_Patient_Treatment_Plan_Review()
 {
   Goto_Patient_Treatments_Tab();
   
-  var panelPR = main_patient_tab();
+  var panelPR = path_main_patient_tab();
   var obj = wait_for_object(panelPR, "idStr", "PatientReviewTab", 3);
   click_navigation_wrapper(obj, panelPR, "idStr", "AnnualReviewWrapper", 2);
   //panelPR.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu").Link("PatientReviewTab").Click();
@@ -780,7 +779,7 @@ function Goto_Patient_Treatment_Plan_Review()
 function Goto_Patient_Treatment_Plan_Review_New()
 {
   Goto_Patient_Treatment_Plan_Review();
-  var panelPTC = main_patient_tab().Panel("PatientTabContent");
+  var panelPTC = path_patient_tab_content();
   var obj = wait_for_object(panelPTC, "idStr", "AddWarfarinReviewLink", 4);
   click_navigation_wrapper(obj, panelPTC, "idStr", "AddReviewForm", 3);
   //panelPTC.Panel("AnnualReviewWrapper").Panel("AnnualReviewActions").Fieldset("Fieldset1").Button("AddWarfarinReviewLink").Click();

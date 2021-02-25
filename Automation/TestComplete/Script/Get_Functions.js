@@ -1,6 +1,7 @@
 ﻿//USEUNIT Misc_Functions
 //USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
+//USEUNIT Tested_Apps
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -21,7 +22,7 @@
 function get_patient_nhs()
 {
   var patient_blue_banner_path = patient_banner_blue_bar()
-  var nhs_num = patient_blue_banner_path.Panel(3).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
+  var nhs_num = patient_blue_banner_path.Panel(3).FindChild("idStr", "NHSNumber_DetachedLabel", 3).innerText; //Panel(0).Label("NHSNumber_DetachedLabel").innerText; path has changed for UK
           
   return nhs_num;
 }
@@ -172,7 +173,7 @@ function get_patient_demographics()
   
   var patient_data_array = new Array()
   
-  if(Misc_Functions.language == "English") //putting the useunit for misc is not working here?
+  if(language == "English") 
   {
     //Demograhics Pane
     var pat_num = patient_demographics_tab_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
@@ -184,7 +185,7 @@ function get_patient_demographics()
     var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
     var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
     var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
-    var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
+    var lang =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
     var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
   
     var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
@@ -199,7 +200,7 @@ function get_patient_demographics()
     var mobile = patient_demographics_tab_contact_address_path.Panel(2).Label("Mobile_DetachedLabel").contentText;
     var email = patient_demographics_tab_contact_address_path.Panel(3).Label("Email_DetachedLabel").contentText;
   
-    patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, ethnicity, language, mar_status, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
+    patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, ethnicity, lang, mar_status, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
   }
   else
   {
@@ -655,7 +656,7 @@ function get_patient_banner_error_message()
 //-----------------------------------------------------------------------------------
 function get_pending_suggested_treatment_schedule(days)
 {
-  wait_for_object(patient_pending_treatment_path(), "idStr", "DosingScheduleContent", 2);
+  wait_for_object(path_patient_pending_treatment(), "idStr", "DosingScheduleContent", 3);
   var schedulegrid = dosing_schedule_content().Fieldset(0).Fieldset("ScheduleGrid");
   
   //return schedule;

@@ -169,7 +169,7 @@ function add_treatment_plan(drug, dm, start_date, TestStepMode, tp_start_mode, t
     WaitSeconds(1);
     if (drug == 'W' || drug == "Warfarin") //this whole function needs condensing and re-structuring //not priority
     { 
-      var obj_root = main_patient_tab();
+      var obj_root = path_main_patient_tab();
       wait_for_object(obj_root, "idStr", "PatientTreatmentHistoryTable", 8);
     }
     return popup_msg;       
@@ -285,6 +285,8 @@ function edit_treatment_plan_diagnosis()
   Log.Message('This is data before amendment = // ' + data_before + ' //' + ' this is data after amendment = ' + '// ' + data_after + ' //')
   
   edit_treatment_plan.Panel(2).Select("DrugId").ClickItem(get_string_translation('Warfarin'));
+  
+  wait_for_object(path_treatment_plan_details(), "idStr", "UpdatePatientTreatmentPlan", 3);
   
   var buttons = edit_treatment_plan_button_path();       
   buttons.Button("UpdatePatientTreatmentPlan").Click();

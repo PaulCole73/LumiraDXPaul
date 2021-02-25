@@ -180,7 +180,7 @@ function checkArrays_containing_inr_values(arrA, arrB, mess)
     if(arrA[i] != arrB[i])
     { 
         // And if the language is italian
-        if (language = "Italian")
+        if (language == "Italian")
         {
           // Replace any full stops with a comma so 2.0 becomes 2,0 for both fields
           var new_arrA = arrA[i].replace(".", ",");
@@ -258,7 +258,7 @@ function check_patient_exists_in_table_within_column(column,table,pat_name)
       return true;
     }
   } 
-  Log.Warning("Patient not found " + pat_name)
+  Log.Message("Patient not found " + pat_name)
   return false;
 }
 //-----------------------------------------------------------------------------------
@@ -1194,7 +1194,7 @@ function api_post(address, headers, body_payload)
   {
     aqHttpRequest.SetHeader(property, headers[property])
   }
-  
+
   // Send the request, create the aqHttpResponse object
   var aqHttpResponse = aqHttpRequest.Send(body_payload)
   

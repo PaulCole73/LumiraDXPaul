@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------
 
 //Master Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //master suites are used for organised test groups
 function ts_master_neqas(send_mail)
 {
@@ -19,9 +19,9 @@ function ts_master_neqas(send_mail)
   
   email_and_archive(send_mail, "ts_neqas_master");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //regression suites are used for specific regression runs
-function ts_staging_regression_neqas()
+function ts_int_regression_neqas(send_mail)
 {
   reset_folder();
   
@@ -31,12 +31,12 @@ function ts_staging_regression_neqas()
   tc_neqas_delete_ecq_entry();
   tc_neqas_add_complete_ecq_entry();
   
-  email_and_archive(true, "ts_neqas_regression");
+  email_and_archive(send_mail, "ts_neqas_regression");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 
 
 
 //==============================================================================//
 //General Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//
