@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
 var language = "English";
-var environment = "INRstarWindowsUK-test1";
+var environment = "INRstarWindowsStagingItalyV4";
 var environmentname = "uk-int1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -839,7 +839,6 @@ function get_string_translation(translation_word)
 function testing_translation()
 {
 var test = get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.");   
-
 
 Log.Message(test)
 }
