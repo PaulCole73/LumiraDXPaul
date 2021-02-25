@@ -84,12 +84,12 @@ function get_patient_not_altered_details_object_from_demographics()
   return patient_demographics;
 }
 //-----------------------------------------------------------------------------------
-function get_patient_search_results(data)
+function get_patient_search_results(search_criteria)
 {
   Goto_Patient_Search();
   var patient_search_screen_path = patient_search_screen();
   
-  patient_search_screen_path.Textbox("searchCriteria").Text = data;
+  patient_search_screen_path.Textbox("searchCriteria").Text = search_criteria;
   patient_search_screen_path.SubmitButton("Search").Click();
   
   WaitSeconds(1, "Wait after patient search...");

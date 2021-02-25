@@ -2,7 +2,7 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function post_ReceiveDataFromIguana(body_payload)
+function post_receivedatafromiguana(body_payload)
 {
   
   //Probably want to put these in a file and get them

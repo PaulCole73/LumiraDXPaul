@@ -51,7 +51,7 @@ function tc_new_patient_sex_field_if_sex_field_is_13_chars_then_it_will_not_crea
     
     //Edit the sex to be > 13 chars
     payload.Sex = "Indeterminated";
-    var response_data = post_ReceiveDataFromIguana(JSON.stringify(payload)); 
+    var response_data = post_receivedatafromiguana(JSON.stringify(payload)); 
     
     var result_set = new Array();
     
@@ -101,7 +101,7 @@ function tc_new_patient_sex_field_if_sex_field_is_not_in_the_correct_casing_then
     
     //Edit the sex to be > 13 chars
     payload.Sex = "male";
-    var response_data = post_ReceiveDataFromIguana(JSON.stringify(payload)); 
+    var response_data = post_receivedatafromiguana(JSON.stringify(payload)); 
     
     var result_set = new Array();
     
@@ -151,7 +151,7 @@ function tc_new_patient_sex_field_if_sex_field_is_not_in_the_list_of_accepted_se
     
     //Edit the sex to be > 13 chars
     payload.Sex = "Unknown";
-    var response_data = post_ReceiveDataFromIguana(JSON.stringify(payload)); 
+    var response_data = post_receivedatafromiguana(JSON.stringify(payload)); 
     
     var result_set = new Array();
     
