@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------
 
 //Master Suites
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //master suites are used for organised test groups
 function ts_master_external_patient_lookup(send_mail)
 {
@@ -28,9 +28,9 @@ function ts_master_external_patient_lookup(send_mail)
   
   email_and_archive(send_mail, "ts_ext_lookup_master");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 //regression suites are used for specific regression runs
-function ts_staging_regression_external_patient_lookup()
+function ts_int_regression_external_patient_lookup(send_mail)
 {
   reset_folder();
   
@@ -50,21 +50,21 @@ function ts_staging_regression_external_patient_lookup()
   tc_external_patient_lookup_treat_overdue_patient();
   tc_external_patient_lookup_refer_patient_treatment();
   
-  email_and_archive(true, "ts_ext_lookup_regression");
+  email_and_archive(send_mail, "ts_ext_lookup_regression");
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 
 
 
 //==============================================================================//
 //General Suites
 //Suites to identify specific areas of testing - allow specific feature automation sets to be tested in isolation
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_external_patient_lookup_find_patient()
 {
    tc_external_patient_lookup_for_maintenance_patient();
 }
-//--------------------------------------------------------------------------------
+//==============================================================================//
 function ts_external_patient_lookup_treat_patient()
 {
    tc_external_patient_lookup_delete_inr();
@@ -82,3 +82,4 @@ function ts_external_patient_lookup_treat_patient()
    tc_external_patient_lookup_treat_overdue_patient();
    tc_external_patient_lookup_refer_patient_treatment();
 }
+//==============================================================================//

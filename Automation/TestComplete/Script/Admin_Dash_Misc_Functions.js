@@ -49,47 +49,29 @@ function set_admin_dash_url()
   
   switch(environment)
   {
-    case base + "Coruscant": 
-    admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
+    case base + "UK-test1": 
+    admin_dash_url = "https://admin-uk-test1.caresolutions.lumiradx.com/";
     break;
-    case base + "Coruscant2": 
-    admin_dash_url = "https://admin-coruscant2.lumiradxcaresolutions.com/";
+    case base + "UK-test2": 
+    admin_dash_url = "https://admin-uk-test2.caresolutions.lumiradx.com/";
     break;
-    case base + "Hoth": 
-    admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
+    case base + "UK-int1": 
+    admin_dash_url = "https://admin-uk-int1.caresolutions.lumiradx.com/";
     break;
-    case base + "Tatooine": 
-    admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
+    case base + "UK-preprod1": 
+    admin_dash_url = "https://admin-uk-preprod1.caresolutions.lumiradx.com/";
     break;
-    case base + "Staging": 
-    admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
+    case base + "ITA-test1": 
+    admin_dash_url = "https://admin-it-test1.caresolutions.lumiradx.com/";
     break;
-    case base + "Alderaan": 
-    admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+    case base + "ITA-test2": 
+    admin_dash_url = "https://admin-it-test2.caresolutions.lumiradx.com/";
     break;
-    case base + "Integration": 
-    admin_dash_url = "https://admin-integration.lumiradxcaresolutions.com/";
+    case base + "ITA-int1": 
+    admin_dash_url = "https://admin-it-int1.caresolutions.lumiradx.com/";
     break;
-    case base + "ItalyDev1": 
-    admin_dash_url = "https://admin-it-dev1.caresolutions.lumiradx.com/";
-    break;
-    case base + "CoruscantV4": 
-    admin_dash_url = "https://admin-coruscant.lumiradxcaresolutions.com/";
-    break;
-    case base + "Coruscant2V4": 
-    admin_dash_url = "https://admin-coruscant2.lumiradxcaresolutions.com/";
-    break;
-    case base + "HothV4": 
-    admin_dash_url = "https://admin-hoth.lumiradxcaresolutions.com/";
-    break;
-    case base + "TatooineV4": 
-    admin_dash_url = "https://admin-tatooine.lumiradxcaresolutions.com/";
-    break;
-    case base + "StagingV4": 
-    admin_dash_url = "https://admin-staging.lumiradxcaresolutions.com/";
-    break;
-    case base + "AlderaanV4": 
-    admin_dash_url = "https://admin-alderaan.lumiradxcaresolutions.com/";
+    case base + "ITA-preprod1": 
+    admin_dash_url = "https://admin-it-preprod1.caresolutions.lumiradx.com/";
     break;
   }
 }

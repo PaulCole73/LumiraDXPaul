@@ -145,7 +145,7 @@ function tc_users_reset_user_password()
      
     var header_text = INRstar_base().Panel("MainPage").Panel("main").TextNode(0).contentText;
     
-    result_set_1 = compare_values(get_string_translation(expected_text), header_text,"Confirm License Page Appears");
+    result_set_1 = compare_values(get_string_translation(expected_text), header_text, "Confirm License Page Appears");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true

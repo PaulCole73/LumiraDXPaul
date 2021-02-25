@@ -48,47 +48,29 @@ function set_engage_url()
   
   switch(environment)
   {
-    case base + "Coruscant": 
-    engage_url = "https://engage-coruscant.lumiradxcaresolutions.com/";
+    case base + "UK-test1": 
+    engage_url = "https://engage-uk-test1.caresolutions.lumiradx.com/";
     break;
-    case base + "Coruscant2": 
-    engage_url = "https://engage-coruscant2.lumiradxcaresolutions.com/";
+    case base + "UK-test2": 
+    engage_url = "https://engage-uk-test2.caresolutions.lumiradx.com/";
     break;
-    case base + "Hoth": 
-    engage_url = "https://engage-hoth.lumiradxcaresolutions.com/";
+    case base + "UK-int1": 
+    engage_url = "https://engage-uk-int1.caresolutions.lumiradx.com/";
     break;
-    case base + "Tatooine": 
-    engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
+    case base + "UK-preprod1": 
+    engage_url = "https://engage-uk-preprod1.caresolutions.lumiradx.com/";
     break;
-    case base + "Staging": 
-    engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
+    case base + "ITA-test1": 
+    engage_url = "https://engage-it-test1.caresolutions.lumiradx.com/";
     break;
-    case base + "Alderaan": 
-    engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+    case base + "ITA-test2": 
+    engage_url = "https://engage-it-test2.caresolutions.lumiradx.com/";
     break;
-    case base + "It-dev1": 
-    engage_url = "https://engage-it-dev1.caresolutions.lumiradx.com/";
+    case base + "ITA-int1": 
+    engage_url = "https://engage-it-int1.caresolutions.lumiradx.com/";
     break;
-    //case base + "Integration": 
-    //engage_url = "https://engage-integration.lumiradxcaresolutions.com/";
-    //break;
-    case base + "CoruscantV4": 
-    admin_dash_url = "https://engage-coruscant.lumiradxcaresolutions.com/";
-    break;
-    case base + "Coruscant2V4": 
-    admin_dash_url = "https://engage-coruscant2.lumiradxcaresolutions.com/";
-    break;
-    case base + "HothV4": 
-    engage_url = "https://engage-hoth.lumiradxcaresolutions.com/";
-    break;
-    case base + "TatooineV4": 
-    engage_url = "https://engage-tatooine.lumiradxcaresolutions.com/";
-    break;
-    case base + "StagingV4": 
-    engage_url = "https://engage-staging.lumiradxcaresolutions.com/";
-    break;
-    case base + "AlderaanV4": 
-    engage_url = "https://engage-alderaan.lumiradxcaresolutions.com/";
+    case base + "ITA-preprod1": 
+    engage_url = "https://engage-it-preprod1.caresolutions.lumiradx.com/";
     break;
   }
 }
