@@ -8,7 +8,9 @@
 			<testItem key="{2D3354F4-BAFF-41EC-B1CB-E7E7F8D07EAB}" enabled="True" timeout="0" stopOnError="True" description="" />
 		</children>
 	</testItems>
-	<variables key="{958D4813-F78F-4DDD-8750-B8EF076D0847}" />
+	<variables key="{958D4813-F78F-4DDD-8750-B8EF076D0847}">
+		<data Version="3" />
+	</variables>
 	<analysis key="{61DD8ECF-65F8-4CD0-932C-63C6810E52B3}" />
 	<scc key="{C900492B-D218-429C-9AA0-264B7D78CA88}" name="Git Plugin">
 		<data />

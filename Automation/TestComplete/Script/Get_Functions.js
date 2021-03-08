@@ -1,6 +1,7 @@
 ﻿//USEUNIT Misc_Functions
 //USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
+//USEUNIT Tested_Apps
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -46,6 +47,7 @@ function get_patient_details_object_from_demographics()
 
   return patient_details;
 }
+
 //-----------------------------------------------------------------------------------
 //Returning details from demographics as an object
 //I had to create this due to data being manipulated in get_patient_details_object_from_demographics 
@@ -82,6 +84,23 @@ function get_patient_not_altered_details_object_from_demographics()
   return patient_demographics;
 }
 //-----------------------------------------------------------------------------------
+function get_patient_search_results(search_criteria)
+{
+  Goto_Patient_Search();
+  var patient_search_screen_path = patient_search_screen();
+  
+  patient_search_screen_path.Textbox("searchCriteria").Text = search_criteria;
+  patient_search_screen_path.SubmitButton("Search").Click();
+  
+  WaitSeconds(1, "Wait after patient search...");
+   
+  var results_table = patient_search_screen_results_table();
+  
+  var search_results = results_table.Cell(1, 0).contentText;
+  
+  return search_results;
+}
+//-----------------------------------------------------------------------------------
 //Returning firstname of the current patient loaded
 function get_patient_firstname()
 {
@@ -96,7 +115,7 @@ function get_patient_firstname()
 function get_fiscal_code(patient_data)
 {
   TestedApps.FiscalCodeGenerator.Run();
-  Sys.WaitBrowser("chrome", 30000, 1);
+  Sys.WaitBrowser("iexplore", 30000, 1);
   WaitSeconds(5, "Waiting for application to open...");
   var main_page = fiscal_generator_main_page_path();
 
@@ -131,7 +150,7 @@ function get_fiscal_code(patient_data)
   WaitSeconds(2)
   var fiscal = fiscal_form.Panel(0).Panel(1).Panel(0).Panel(0).Textbox("cf").Text
   
-  TestedApps.FiscalCodeGenerator.Close();
+  TestedApps.FiscalCodeGenerator.Terminate();
   
   return fiscal;
 }
