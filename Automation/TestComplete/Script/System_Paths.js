@@ -96,7 +96,7 @@ function fiscal_generator_main_page_path()
 function fiscal_form_path()
 {
   var main = fiscal_generator_main_page_path();
-  var fiscal_form = main.Panel(4).Panel(1).Panel(0).Form(0);
+  var fiscal_form = main.Panel(3).Panel(1).Panel(0).Form(0);
 
   return fiscal_form;
 }
