@@ -10,6 +10,8 @@
 //USEUNIT Misc_Functions
 //USEUNIT Popup_Handlers
 //USEUNIT Get_Functions
+//USEUNIT INRstar_Misc_Functions
+
 //--------------------------------------------------------------------------------
 function tc_treatment_add_a_historic_treatment()
 {

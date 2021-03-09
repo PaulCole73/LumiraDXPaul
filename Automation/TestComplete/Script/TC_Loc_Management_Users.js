@@ -3,6 +3,7 @@
 //USEUNIT TSA_Loc_Management_Users
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_users_add_a_new_user()
 {

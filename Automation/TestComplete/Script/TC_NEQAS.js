@@ -5,6 +5,8 @@
 //USEUNIT System_Paths
 //USEUNIT Misc_Functions
 //USEUNIT Popup_Handlers
+//USEUNIT INRstar_Misc_Functions
+
 //--------------------------------------------------------------------------------
 function tc_neqas_add_new_from_eqc()
 {
