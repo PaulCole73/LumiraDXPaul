@@ -63,7 +63,7 @@ function tc_log_off_inrstar()
 //function tc_password_reset_code_email()
 //{
 // login('','','password_reset_section');
- tsv_login_inrstar_reset_email('1', 'Password Reset Request');
+// tsv_login_inrstar_reset_email('1', 'Password Reset Request');
 // login('','','password_reset_email_code');
 // RunHotmail('regression_user@hotmail.com ','');
 // tsv_hotmail_reset_code('');

@@ -8,6 +8,7 @@
 			<child name="Popup_Handlers" key="{5AB1C72D-FAF0-43FB-9A9F-41EEB745D98A}" path="Popup_Handlers.js" />
 			<child name="Get_Functions" key="{53C017A4-89CB-4429-8289-B2F80476AA1C}" path="Get_Functions.js" />
 			<child name="Failed_Test_Handlers" key="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}" path="Failed_Test_Handlers.js" />
+			<child name="API_Functions" key="{08B7890F-9A2C-4025-AED0-2F7EB3273904}" path="API_Functions.js" />
 		</folder>
 		<folder name="Old Scripts">
 			<child name="Add_Appointment" key="{1DBBA1EE-F4DA-44CC-91F3-36A08299FCFC}" path="Add_Appointment.sj" />
@@ -385,6 +386,9 @@
 				<child name="TC_Bridging_934" key="{B4BDC917-8933-49A7-8C69-E99C1CACEAB2}" path="TC_Bridging_934.js" />
 				<child name="TC_Bridging_935" key="{C35944AE-FBB2-4976-BCDF-851A2A6D4ACB}" path="TC_Bridging_935.js" />
 				<child name="TC_Bridging_1176" key="{9EEFDA0B-9A8F-47A3-9EA2-F7FBCAEA9067}" path="TC_Bridging_1176.js" />
+			</folder>
+			<folder name="9. Utilities">
+				<child name="INRstar_Misc_Functions" key="{1FBD6F73-C790-4C1D-A003-93156D1968E5}" path="INRstar_Misc_Functions.js" />
 			</folder>
 		</folder>
 		<folder name="INRstar API">

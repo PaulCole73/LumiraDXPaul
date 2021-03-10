@@ -2,6 +2,7 @@
 //USEUNIT TSA_Login
 //USEUNIT TSA_Patient
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_add_a_new_note()
 {

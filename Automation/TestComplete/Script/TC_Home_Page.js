@@ -7,6 +7,7 @@
 //USEUNIT TSA_Patient_Management
 //USEUNIT Navigation
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page()
 {

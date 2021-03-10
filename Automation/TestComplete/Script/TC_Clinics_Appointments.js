@@ -6,6 +6,8 @@
 //USEUNIT TSA_Treatment_Plan
 //USEUNIT Navigation
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Misc_Functions
+
 //--------------------------------------------------------------------------------
 function tc_clinics_add_a_recurring_clinic()
 {
