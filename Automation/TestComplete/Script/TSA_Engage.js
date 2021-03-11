@@ -168,13 +168,13 @@ function submit_INR_with_answers(INR, match, dose, medication, bleeding, missed)
   var submit_time = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
   engage_submit_INR.Panel(7).Button("button_engage_home_anticoagulation_questionnaire_submit").Click();
   
-  wait_for_object(engage_base(), "className", "PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", 3);
+  wait_for_object(engage_base(), "className", "PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", 3);
   
   //return either date and time submitted if sucessful or pop up message text if not 
   if (match == 1)
   {
  //var return_data = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Mismatching INR", "OK"); 
-   var return_data = process_engage_popup("PopUp__Background--2jNau PopUp__BackgroundLoaded--25wIn", "Mismatching INR", "OK"); 
+   var return_data = process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Mismatching INR", "OK"); 
   }
   else if (match ==0)
   {
