@@ -21,9 +21,9 @@ function get_engage_login_code() //in progress
   Sys.Browser("chrome").BrowserWindow(0).Maximize();
   Sys.Browser("chrome").BrowserWindow(0).SetFocus();
   
-  WaitSeconds(40);
+  WaitSeconds(10);
   Sys.Browser("chrome").Page("https://mail.google.com/mail/u/1/#inbox").Keys("[F5]");
-  WaitSeconds(40);
+  WaitSeconds(10);
   gmail_account_top_email().Click();
   WaitSeconds(10);
   

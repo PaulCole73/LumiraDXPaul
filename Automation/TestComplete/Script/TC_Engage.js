@@ -377,8 +377,6 @@ function tc_accept_engage_eula_web()
     result_set_1 = compare_values(expected_msg, text, test_title);
     result_set.push(result_set_1);
     
-    //result_set_1 = engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Exists;
-    //result_set_1 = process_object_exists("className", "TaskTileContainer__TaskContainer--2YHHl");
     var obj = engage_base().NativeWebObject.Find("className", "TaskTileContainer__TaskContainer--2YHHl");
     result_set_1 = obj.Exists;
     result_set.push(result_set_1);

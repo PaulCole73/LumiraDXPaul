@@ -77,7 +77,6 @@ function tc_bridging_button_state_on_various_dms()
       add_patient("Regression", "Button_State_Check", "M", "Shared");
       add_treatment_plan("W", dose, "", "Shared", "");
       
-      WaitSeconds(3);
       var result_set_1 = get_new_bridging_record_button_state();
       result_set.push(result_set_1);    
       
