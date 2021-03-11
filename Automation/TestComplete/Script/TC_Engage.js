@@ -30,15 +30,15 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
 
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var email = patient_demographics.email;
+    var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
     
     warfarin_self_care('all');
     Log_Off();
     
-    register_engage(email, dob);
+    register_engage(email_address, dob);
 
-    sign_in_engage(email);
+    sign_in_engage(email_address);
     complete_eula_questionnaire();
     
     var result_set = new Array();
