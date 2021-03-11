@@ -2,8 +2,9 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function post_ReceiveDataFromIguana(body_payload)
+function post_receivedatafromiguana(body_payload)
 {
+  
   //Probably want to put these in a file and get them
   var uri = "https://inrstarservice-it-test1.caresolutions.lumiradx.com/IguanaService.svc/api/ReceiveDataFromIguana";
   
@@ -12,7 +13,13 @@ function post_ReceiveDataFromIguana(body_payload)
   headers["Content-Type"] = "application/json";
 
   //Call upon api_post() to send the request
-  api_post(uri, headers, body_payload)
+  var response_data = new Object();
+  response_data = api_post(uri, headers, body_payload);
+  
+  Log.Message("This is the payload after edit that gets sent \\ " + body_payload);
+  Log.Message("This is the response data // " + response_data);
+  
+  return response_data;
 }
 //--------------------------------------------------------------------------------
 function json_body_recievedatafromiguana(patient_data) 

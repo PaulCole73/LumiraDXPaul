@@ -1,7 +1,9 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Misc_Functions
 //USEUNIT Popup_Handlers
+//USEUNIT API_Functions
 //--------------------------------------------------------------------------------
 function add_pending_fast_induction_treatment(inr, TestStepMode)
 {
@@ -894,7 +896,7 @@ function get_bearer_token_for_instrument()
 //--------------------------------------------------------------------------------
 
 function post_external_result_instrument(body_payload)
-{
+{  
   //Get Token
   var token = get_bearer_token_for_instrument();
   

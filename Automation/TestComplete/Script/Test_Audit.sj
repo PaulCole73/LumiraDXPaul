@@ -48,25 +48,6 @@ function test_audit_treatment(INRstarV5)
    INRstarV5.Panel(1).Panel(1).Panel(0).Button(0).Click();
 }
 //---------------------------------------------------------
-function validate_top_treatment_audit(w_data)
-{  
-  var INRstarV5 = INRstar_base();
-  w_au_table = INRstarV5.Panel(2).Panel("DialogContent").Panel("TreatmentAuditTrailWrapper").Table("AuditTrailTable");
-  var wt_row = w_au_table.Cell(1, 1).innerText;
-
-  if (wt_row == w_data)
-  {
-    Log.Message(wt_row + " - " + w_au_table.Cell(1,2).innerText);
-    return true;
-  }
-  else
-  {
-    Log.Message("Treatment audit record not found : " + w_data);
-    return false;
-  }
-  INRstarV5.Panel(2).Panel(1).Panel(0).Button(0).Click();
-}
-//---------------------------------------------------------
 function display_second_treatment_audit(w_data)
 {  
    var INRstar = INRstar_base();

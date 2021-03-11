@@ -7,6 +7,7 @@
 //USEUNIT TSA_Clinics_Appointments
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
+//USEUNIT INRstar_Misc_Functions
 //--------------------------------------------------------------------------------
 function tc_treatment_plan_add_first_manual_treatment_plan()
 {
