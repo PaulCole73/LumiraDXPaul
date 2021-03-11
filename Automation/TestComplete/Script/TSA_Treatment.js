@@ -308,7 +308,7 @@ function add_override_treatment(inr,date,p_review)
   Goto_Patient_New_INR();
   var test_info_pre_schedule_path = new_inr_test_details();
   var treatment_options = test_info_pre_schedule_path.Fieldset("Options");
-  var treatment_buttons = pending_treatment_buttons();
+  var treatment_buttons = path_patient_pending_treatment()();
 
   // Set the Treatment Date
   var w_day = aqString.SubString(date,0,2);
@@ -630,7 +630,7 @@ function handle_dosing_modification_required()
 //--------------------------------------------------------------------------------
 function override_omits(days)
 {
-  var pending_treatment_buttons_path = pending_treatment_buttons()
+  var pending_treatment_buttons_path = path_patient_pending_treatment();
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
                
   var treatment_override_field_container_path = treatment_override_field_container();
@@ -695,7 +695,7 @@ function override_dose(dose)
 //--------------------------------------------------------------------------------
 function select_more_schedules(sched_required)
 {
-  var pending_treatment_buttons_path = pending_treatment_buttons();
+  var pending_treatment_buttons_path = path_patient_pending_treatment();
   pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel("DosingScheduleContent").Fieldset(0).Panel(0).Button("MoreSchedulesLink").Click();
   
   var more_schedule_table_path = more_schedule_table();

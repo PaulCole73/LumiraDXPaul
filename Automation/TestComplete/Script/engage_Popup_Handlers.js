@@ -25,7 +25,7 @@ function process_engage_popup(class_name, header, button)
       }
       else
       {
-        var text = obj.Panel(0).contentText;
+        var text = obj.Panel(0).Panel(0).contentText;
         Log.Message("Clicking '" + header + "' "+ button +" button ");
         Sys.HighlightObject(popup_button, 2);
         popup_button.Click();

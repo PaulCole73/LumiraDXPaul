@@ -27,17 +27,18 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
     "   ½ x 5mg (Pink tablet)" + "\n(2.5mg total for the day)");
     
     var expected_text = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a %d %b %Y") + "\n" + "½ x 5mg (Pink tablet) (2.5mg total for the day)";
+
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    
-    //enroll the patient onto engage self-care
     warfarin_self_care('all');
     Log_Off();
     
-    register_engage(email_address);
-    sign_in_engage(email_address);
+    register_engage(email, dob);
+
+    sign_in_engage(email);
     complete_eula_questionnaire();
     
     var result_set = new Array();
@@ -56,7 +57,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
     log_off_engage();
     login(5, "Shared");
     
-    var temp = get_urgent_patient_message_text(pat_nhs);
+    var temp = get_urgent_patient_message_text(nhs);
     result_set_1 = compare_values(temp, false, test_title);
     result_set.push(results_checker_are_false(result_set_1));
     
@@ -93,15 +94,16 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "7");
     WaitSeconds(2);
    
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
     //enroll the patient onto engage self-care
     warfarin_self_care('all');
     Log_Off();
    
-    register_engage(email_address);
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     complete_schedule(0); //0 is the label index for the "yes" button
@@ -115,7 +117,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     login(5, "Shared");
    
     var result_set = new Array();
-    var urgent_message_text = get_urgent_patient_message_text(pat_nhs);
+    var urgent_message_text = get_urgent_patient_message_text(nhs);
     var expected_urgent_text = "INR is more than 1 below Target"
     var result_set_1 = compare_values(urgent_message_text, expected_urgent_text, test_title);
     result_set.push(result_set_1);
@@ -123,9 +125,9 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     //process the external result from engage
     dose_patient_external_result(1);
    
-    var warning_message_check = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Panel("NewINRMessages").contentText;
+    var warning_message_check = path_patient_pending_treatment().Panel("PatientTreatmentNewINRWrapper").Panel("NewINRMessages").contentText;
     var expected_warning_message = "Early INR test"
-    result_set_1 = data_contains_checker(warning_message_check,expected_warning_message,test_title);
+    result_set_1 = data_contains_checker(warning_message_check, expected_warning_message, test_title);
     result_set.push(result_set_1);
     
     var external_dose_data = new Array();
@@ -198,16 +200,18 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.Today()), "2.0", "2.5", "7");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
     //enroll the patient onto engage self-care
-    warfarin_self_care("all");
+    warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
+    
     complete_eula_questionnaire();
     
     //needs features in here
@@ -219,7 +223,7 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.0", "0", "14", "2.5");
     
     Log_Off();
@@ -261,16 +265,18 @@ function tc_new_historical_treatment_is_most_recent_with_NTD_less_than_than_exis
     add_treatment_plan("W","Manual","","Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "14");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
     //enroll the patient onto engage self-care
     warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
+    
     complete_eula_questionnaire();
     var expected_text = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%a %d %b %Y") + "\n" + "½ x 5mg (Pink tablet) (2.5mg total for the day)";
     
@@ -286,7 +292,7 @@ function tc_new_historical_treatment_is_most_recent_with_NTD_less_than_than_exis
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))), "2.0", "2.0", "0", "7", "2.5");
     
     Log_Off();
@@ -343,34 +349,38 @@ function tc_accept_engage_eula_web()
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var email = patient_demographics.email;
+    var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
-    
+   
+    //enroll the patient onto engage self-care
     warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email, dob);
-    sign_in_engage(email);
+   
+    register_engage(email_address, dob);
+    sign_in_engage(email_address);
     
     var result_set = new Array();
     var expected_msg = "To use engage, you must confirm you have read, understood, and agree to both the Licence Agreement and the Privacy Policy.";
     var text = complete_eula_questionnaire(true, false);
     var result_set_1 = compare_values(expected_msg, text, test_title);
     result_set.push(result_set_1);
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    engage_licence_agreement_checkbox().Click();
     
     expected_msg = "To use engage, you must confirm you have read, understood, and agree to both the Licence Agreement and the Privacy Policy.";
     text = complete_eula_questionnaire(false, true);
     result_set_1 = compare_values(expected_msg, text, test_title);
     result_set.push(result_set_1);
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    engage_privacy_policy_checkbox().Click();
     
     expected_msg = "You have indicated that you have read, understood, and agreed to the Licence Agreement and Privacy Policy";
     text = complete_eula_questionnaire();
     result_set_1 = compare_values(expected_msg, text, test_title);
     result_set.push(result_set_1);
     
-    result_set_1 = engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Exists;
+    //result_set_1 = engage_base().Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Exists;
+    //result_set_1 = process_object_exists("className", "TaskTileContainer__TaskContainer--2YHHl");
+    var obj = engage_base().NativeWebObject.Find("className", "TaskTileContainer__TaskContainer--2YHHl");
+    result_set_1 = obj.Exists;
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
@@ -400,26 +410,28 @@ function tc_reenrol_user_can_log_into_engage()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.0", "0", "7", "2.5");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", "5.0", "2");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     warfarin_self_care("disenrol");
     warfarin_self_care("all");
     
     Log_Off();
-    register_engage(email_address);
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     
     var result_set = new Array();
@@ -457,16 +469,18 @@ function tc_disenrol_user_with_current_treatment_plan()
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "5.0", "7");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
     Log_Off();
-    
-    var result_set = new Array();
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
+    
     complete_eula_questionnaire();
     complete_schedule(0); //0 is the label index for the "yes" button
     var text = Goto_Understand_Schedule_Tab(false);
@@ -478,7 +492,7 @@ function tc_disenrol_user_with_current_treatment_plan()
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     warfarin_self_care("disenrol");
     
     Log_Off();
@@ -518,14 +532,16 @@ function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "5.0", "10");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     
@@ -535,7 +551,7 @@ function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (10));
     tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date);
     
@@ -600,14 +616,16 @@ function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     
@@ -621,7 +639,7 @@ function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (7));
     var msg = tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date, 1);
     
@@ -644,7 +662,7 @@ function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
     
     var external_patient_data = get_hl7_patient_info(1);
     var ext_nhs = external_patient_data[3];
-    result_set_1 = compare_values(pat_nhs, ext_nhs, test_title);
+    result_set_1 = compare_values(nhs, ext_nhs, test_title);
     result_set.push(result_set_1);
     
     var ext_inr = external_patient_data[5];
@@ -699,14 +717,16 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "5.0", "5");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     
@@ -720,7 +740,7 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (5));
     var msg = tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date, 1);
     
@@ -742,7 +762,7 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     
     var external_patient_data = get_hl7_patient_info(1);
     var ext_nhs = external_patient_data[3];
-    result_set_1 = compare_values(pat_nhs, ext_nhs, test_title);
+    result_set_1 = compare_values(nhs, ext_nhs, test_title);
     result_set.push(result_set_1);
     
     var ext_inr = external_patient_data[5];
@@ -775,10 +795,18 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))), "2.5", "5.0", "7");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
+    Log_Off();
+   
+    register_engage(email_address, dob);
+    sign_in_engage(email_address);
+    complete_eula_questionnaire();
     
     Log_Off();
     
@@ -793,10 +821,6 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
     "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
     "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)", 
     "   1 x 5mg (Pink tablet)" + "\n(5mg total for the day)");
-    
-    register_engage(email_address);
-    sign_in_engage(email_address);
-    complete_eula_questionnaire();
     
     var schedule_data = new Array();
     var result_set = new Array();
@@ -815,7 +839,7 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7", "PoCT");
     
     Log_Off();
@@ -848,7 +872,7 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     delete_treatment();
     
     Log_Off();
@@ -892,14 +916,16 @@ function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedu
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", "5.0", "2");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     
@@ -911,7 +937,7 @@ function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedu
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7", "PoCT");
     
     Log_Off();
@@ -936,7 +962,7 @@ function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedu
     log_off_engage();
     login(5, "Shared");
     
-    patient_search(pat_nhs);
+    patient_search(nhs);
     delete_treatment();
     
     Log_Off();
@@ -977,14 +1003,16 @@ function tc_submit_multiple_inrs_same_day_long_dose_schedule()
     var dose = "1.0";
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", dose, "3");
     
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
-    warfarin_self_care("all");
-    
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
+   
+    //enroll the patient onto engage self-care
+    warfarin_self_care('all');
     Log_Off();
-    
-    register_engage(email_address);
+   
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
     
@@ -1112,15 +1140,16 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     add_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))));
     WaitSeconds(2);
    
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
     //enroll the patient onto engage self-care
     warfarin_self_care('all');
     Log_Off();
    
-    register_engage(email_address);
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
    
@@ -1136,7 +1165,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     login(5, "Shared");
    
     var result_set = new Array();
-    var urgent_message_text = get_urgent_patient_message_text(pat_nhs);
+    var urgent_message_text = get_urgent_patient_message_text(nhs);
     var expected_urgent_text = "INR is greater than 5";
     var result_set_1 = compare_values(urgent_message_text, expected_urgent_text, test_title);
     result_set.push(result_set_1);
@@ -1144,7 +1173,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     //process the external result from engage
     dose_patient_external_result(1);
    
-    var warning_message_check = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Panel("NewINRMessages").contentText;
+    var warning_message_check = path_patient_pending_treatment().Panel("PatientTreatmentNewINRWrapper").Panel("NewINRMessages").contentText;
     var expected_warning_message = "Early INR test"
     result_set_1 = data_contains_checker(warning_message_check, expected_warning_message, test_title);
     result_set.push(result_set_1);
@@ -1178,7 +1207,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     //confirm the perform your INR test date - write a function to find the due date
     var testDueDate = engage_things_to_do_soon_panel().Panel(1).Panel(4).textContent.split(": ");
     var actualDueDate = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),+5), "%a %d %b %Y");
-    result_set_1 = compare_values(testDueDate[1],actualDueDate,test_title);
+    result_set_1 = compare_values(testDueDate[1], actualDueDate, test_title);
     result_set.push(result_set_1);
     //confirm the new schedule
     var expected_schedule_array = new Array();
@@ -1218,15 +1247,16 @@ function tc_inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_me
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.5", "0", "14", "2.5");
     WaitSeconds(2);
    
-    var pat_nhs = get_patient_nhs();
-    var patient_demographics = get_patient_demographics();
-    var email_address = patient_demographics[19];
+    var patient_demographics = get_patient_not_altered_details_object_from_demographics();
+    var nhs = patient_demographics.nhs_number;
+    var email_address = patient_demographics.email;
+    var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
     //enroll the patient onto engage self-care
     warfarin_self_care('all');
     Log_Off();
    
-    register_engage(email_address);
+    register_engage(email_address, dob);
     sign_in_engage(email_address);
     complete_eula_questionnaire();
    
@@ -1269,7 +1299,7 @@ function tc_inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_me
     log_off_engage();
     login(5, "Shared");
     
-    var urgent_message_text = get_urgent_patient_message_text(pat_nhs);
+    var urgent_message_text = get_urgent_patient_message_text(nhs);
     var expected_urgent_text = "Patient has stated bleeding has occurred";
     var result_set_1 = compare_values(urgent_message_text, expected_urgent_text, test_title);
     result_set.push(result_set_1);

@@ -1077,8 +1077,8 @@ function get_hl7_patient_info(table_position)
     var surname = aqString.Trim(name_split[0]);
     var firstname = aqString.Trim(name_split[1]);
     var dob = patient_external_results_table().Cell(table_position, 1).Panel(0).Label("Born_DetachedLabel").innerText;
-    var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
-    var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("PatientNumber_DetachedLabel").innerText;
+    var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("ResultsNHSNumber_DetachedLabel").innerText;
+    var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("ResultsPatientNumber_DetachedLabel").innerText;
     var inr = patient_external_results_table().Cell(table_position, 3).innerText;
   
     patient_data.push(surname, firstname, dob, nhs, pat_no, inr);

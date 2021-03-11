@@ -39,7 +39,7 @@ function engage_base()
 function engage_navigation_menu_button()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(0);
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0);
   
   var button = panel.FindChild("idStr", "button_navbar_menubutton", 5);
   return button;
@@ -48,7 +48,7 @@ function engage_navigation_menu_button()
 function engage_navigation_signout_button()
 {
   var base = engage_base();
-  var button = base.Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Link("link_menu_signout").TextNode(0);
+  var button = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Link("link_menu_signout").TextNode(0);
   
   return button;
 }
@@ -219,7 +219,8 @@ function engage_password_confirm_button()
 function engage_things_to_do_today_panel()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodotoday");
+  //var panel = base.Panel(1).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodotoday");  
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodotoday")
   
   return panel;
 }
@@ -227,7 +228,8 @@ function engage_things_to_do_today_panel()
 function engage_things_i_did_yesterday_panel()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingsididyesterday");
+  //var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingsididyesterday");
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingsididyesterday")
   
   return panel;
 }
@@ -235,7 +237,8 @@ function engage_things_i_did_yesterday_panel()
 function engage_new_dosing_schedule_understand_buttons()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel("question_radio_objectobject_");
+//var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel("question_radio_objectobject_");
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel("question_radio_objectobject_");
   
   return panel;
 }
@@ -243,7 +246,8 @@ function engage_new_dosing_schedule_understand_buttons()
 function engage_new_dosing_submit_buttons()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2);
+//var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(2);
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2);
   
   return panel;
 }
@@ -251,7 +255,8 @@ function engage_new_dosing_submit_buttons()
 function engage_submit_my_INR_tile()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
+//var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
   
   return panel;
 }
@@ -259,7 +264,8 @@ function engage_submit_my_INR_tile()
 function engage_things_to_do_soon_panel()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon");
+//var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon");
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel("taskmodule_thingstodosoon");
   
   return panel;
 }
@@ -267,7 +273,8 @@ function engage_things_to_do_soon_panel()
 function engage_dosing_schedule()
 {
   var base = engage_base();
-  var panel = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
+//var panel = base.Panel(1).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
+  var panel = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0);
   var questionaire = panel.Panel("question_preformattedtext_objectobject_").Panel(0).TextNode(0);
   
   return questionaire;
@@ -276,7 +283,32 @@ function engage_dosing_schedule()
 function engage_submit_INR_questionnaire()
 {
   var base = engage_base();
-  var questionnaire = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
+//var questionnaire = base.Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0);
+  var questionnaire = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0);
   
   return questionnaire;
+}
+//------------------------------------------------------------------------
+function engage_licence_agreement_checkbox()
+{
+  var base = engage_base();
+  var checkbox = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1);
+  
+  return checkbox;
+}
+//------------------------------------------------------------------------
+function engage_privacy_policy_checkbox()
+{
+  var base = engage_base();
+  var checkbox = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1);
+  
+  return checkbox;
+}
+//------------------------------------------------------------------------
+function engage_agreements_submit_button()
+{
+  var base = engage_base();
+  var button = base.Panel(1).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_engage_home_questionnaire_submit");
+  
+  return button;
 }
