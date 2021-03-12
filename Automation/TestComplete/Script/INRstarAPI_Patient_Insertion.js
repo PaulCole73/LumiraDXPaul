@@ -35,18 +35,16 @@ function login_under_the_hood(login_user_number)
   login_details = get_login_details();
 
   //Get test URL store it as address
-  var base_url = INRstar_base().URL;
-  var address = base_url + "Security/Authentication/Logon"
-  var host = base_url.replace(/(^\w+:|^)\/\//, '').slice(0, -1)
+  var base_url = INRstar_base().URL; 
   
   //Add Headers
   headers["Connection"] = "keep-alive";
-  headers["Host"] = host; 
+  headers["Host"] = "inrstar-uk-test1.caresolutions.lumiradx.com"; //Need some way of calcing this from base_url 
   headers["User-Agent"] = "TestComplete"; 
   headers["Content-Type"] = "application/x-www-form-urlencoded";
   
   //Get Initial token and session Id
-  var response = api_get_login_tokens_and_session_id(address, headers);
+  var response = api_get_login_tokens_and_session_id(base_url, headers);
       
   //Add the cookies to the request header to include both the decoded request_verification_token and the session_id
   headers["Cookie"] = "__RequestVerificationToken_Lw__=" + response.request_verification_token + ";" + "ASP.NET_SessionId=" + response.session_id + ";" + "LatestVersion=False";   
@@ -58,7 +56,7 @@ function login_under_the_hood(login_user_number)
     "&__RequestVerificationToken=" + encodeURIComponent(response.request_verification_token);
 
   //Login Proper
-  api_post(address, headers, requestBody);
+  api_post(base_url, headers, requestBody);
   
   return headers.Cookie
 }
