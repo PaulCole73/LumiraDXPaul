@@ -110,7 +110,7 @@ function insert_patient(parameters)
 function get_token_for_patient_insert()
 {
   //Obtain URL
-  var address = // "/Patient/New";
+  //var address = something "/Patient/New";
   
   //Create the Headers into an object
   var headers = new Object();
