@@ -12,6 +12,56 @@ function patient_orchestrater()
   reset_folder();
   add_a_patient_under_the_hood();
 }
+
+//-----------------------------------------------------------------------------------
+function test_logging_inHere()
+{
+  login_under_the_hood("5");
+  
+}
+//-----------------------------------------------------------------------------------
+function login_under_the_hood(login_user_number)
+{
+  //Initialise variables
+  var login_parameter = "";
+  var login_details = new Array();
+  var headers = new Object();
+  
+  //Get login parameter
+  if (language == "Italian") {login_parameter = "Accedi";}
+  else {login_parameter = "Log In";}
+  
+  //Get username & password from 
+  login_details = get_login_details();
+
+  //Get test URL store it as address
+  var base_url = INRstar_base().URL;
+  var address = base_url + "Security/Authentication/Logon"
+  var host = base_url.replace(/(^\w+:|^)\/\//, '').slice(0, -1)
+  
+  //Add Headers
+  headers["Connection"] = "keep-alive";
+  headers["Host"] = host; 
+  headers["User-Agent"] = "TestComplete"; 
+  headers["Content-Type"] = "application/x-www-form-urlencoded";
+  
+  //Get Initial token and session Id
+  var response = api_get_login_tokens_and_session_id(address, headers);
+      
+  //Add the cookies to the request header to include both the decoded request_verification_token and the session_id
+  headers["Cookie"] = "__RequestVerificationToken_Lw__=" + response.request_verification_token + ";" + "ASP.NET_SessionId=" + response.session_id + ";" + "LatestVersion=False";   
+  
+  var requestBody = 
+    "username=" + encodeURIComponent('cl3@regression') + 
+    "&password=" + encodeURIComponent(login_details[20]) + 
+    "&Log_In=" + encodeURIComponent(login_parameter) + 
+    "&__RequestVerificationToken=" + encodeURIComponent(response.request_verification_token);
+
+  //Login Proper
+  api_post(address, headers, requestBody);
+  
+  return headers.Cookie
+}
 //-----------------------------------------------------------------------------------
 function add_a_patient_under_the_hood()
 {
@@ -20,14 +70,13 @@ function add_a_patient_under_the_hood()
     var test_title = "add_a_patient_under_the_hood"
     
     //Setup test scenario
-    login(7, "Shared");
-    //var location_id = get_organization_id_from_current_location();    
-    var patient = patient_generator();
-    var patient_insertion_parameters = patient_parameters(patient); 
-    var inserted_patient = insert_patient(patient_insertion_parameters);
-    
-    post_external_result_instrument(payload_parameters); 
-     
+//    login(7, "Shared");
+//    var location_id = get_organization_id_from_current_location();   
+//    Goto_Patient_Search();
+//    var patient = patient_generator();
+//    var patient_insertion_parameters = patient_parameters(patient); 
+//    var inserted_patient = insert_patient(patient_insertion_parameters);
+
     //Log_Off(); 
   }
   catch(e)
@@ -41,64 +90,51 @@ function add_a_patient_under_the_hood()
 //-----------------------------------------------------------------------------------
 function insert_patient(parameters)
 {
-  //Get Token
-  var token = get_token_for_patient_insert();
-  
-  //Obtain URL
-  var address = get_csp_url_from_the_inrstar_url() + "/externalresults/observation";
-  
-  //Create the Headers into an object
-  var headers = new Object();
-  headers["Content-Type"] = "application/json";
-  headers["Accepts"] = "application/json";
-  headers["api-version"] = "2.1";
-  headers["Authorization"] = "Bearer " + token; 
-
-  //Call upon api_post() to send the request
-  api_post(address, headers, body_payload)
+//  //Get Token
+//  var token = get_token_for_patient_insert();
+//  
+//  //Obtain URL
+//  var address = get_csp_url_from_the_inrstar_url() + "/externalresults/observation";
+//  
+//  //Create the Headers into an object
+//  var headers = new Object();
+//  headers["Content-Type"] = "application/json";
+//  headers["Accepts"] = "application/json";
+//  headers["api-version"] = "2.1";
+//  headers["Authorization"] = "Bearer " + token; 
+//
+//  //Call upon api_post() to send the request
+//  //api_post(address, headers, body_payload)
 }
 //-----------------------------------------------------------------------------------
 function get_token_for_patient_insert()
 {
   //Obtain URL
-  var address = get_inrstar_url() + "/Patient/New";
-     
-//  //Define the request body_payload
-//  var body_payload = 
-//  '{'
-//  +' "grant_type": "password", '
-//  +' "scope": "quantum", '
-//  +' "client_id": "quantum", '
-//  +' "username":"Quantum", '
-//  +' "password": "W;b;8E:$Q?a~3bHVX3vyHzG"'
-//  +' }';
+  var address = // "/Patient/New";
   
   //Create the Headers into an object
   var headers = new Object();
   headers["Content-Type"] = "application/x-www-form-urlencoded";
   headers["X-Requested-With"] = "XMLHttpRequest";
   headers["Upgrade-Insecure-Requests"] = "1";
+  headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
+  headers["Origin"] = address;
+  headers["Host"] = "inrstar-uk-test1.caresolutions.lumiradx.com";
+  headers["Dxscript"] = "1_142,1_80,1_135,1_131,1_90,1_84,1_82,8_11,8_18,8_25,8_27,8_10,8_13,8_14,8_19,14_23,14_18,8_22,1_91,1_98,1_92,1_77,1_128,1_126,8_24,8_23,8_17,8_20,1_133,1_119,1_127,8_21,1_104,8_15,1_94,1_100,8_16,1_105,1_103,1_97,8_26,8_12"
 
   //Perform the api request record the response
-  var response = api_post(address, headers)
+  var response = String(api_get(address, headers));
+  Log.Message(response);
   
-  //Convert Response to JSON and extract the Bearer token
-  var bearer_token = JSON.parse(response.text).access_token
+  //Extract the request_verification_token from the response
+  var request_verification_token = response.match(/name=\"__RequestVerificationToken\" type=\"hidden\" value="([^\"]*)"/);    
+  Log.Message(request_verification_token[1]);
+  
+  //Extract the new_patient_token_id from the response
+  var new_patient_token_id = response.match(/name="Id" type="hidden" value="([^\"]*)"/);    
+  Log.Message(new_patient_token_id);
     
-  return bearer_token;
-}
-//-----------------------------------------------------------------------------------
-function get_inrstar_url()
-{
-  //Get the CSP URL from the INRstar URL 
-  var address = Aliases.INRstarWindows.BrowserForm.INRstarBrowser.WebBrowserBaseNativeWindow.ShellDocObjectView.browser.URL;
-  var matches = address.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
-  var domain = matches && matches[1];
-//  var domain = domain.replace("inrstar", "csp");
-  var domain = "https://" + domain;
-  Log.Message("INRstar URL is:" + domain);
-  
-  return domain
+  return 
 }
 //-----------------------------------------------------------------------------------
 function patient_parameters(patient_details, token_id) 
@@ -124,28 +160,24 @@ function patient_parameters(patient_details, token_id)
   payload.PostCode = patient_details.postcode;
   payload.PatientNumber = patient_details.patient_number;
   payload.ScslHealthDbId = "";
-  
-//  payload.id = token_id;
-//  payload.__ASP.NET_SessionId = patient_details.email;
-//  payload.__RequestVerificationToken = patient_details.email;
 
-  Log.Message("Payload created as: " + payload.FirstName);
-  Log.Message("Payload created as: " + payload.Surname);
-  Log.Message("Payload created as: " + payload.Sex);
-  Log.Message("Payload created as: " + payload.Title);
-  Log.Message("Payload created as: " + payload.Gender);
-  Log.Message("Payload created as: " + payload.Mobile);
-  Log.Message("Payload created as: " + payload.Born);
-  Log.Message("Payload created as: " + payload.Phone);
-  Log.Message("Payload created as: " + payload.FirstAddressLine);
-  Log.Message("Payload created as: " + payload.SecondAddressLine);
-  Log.Message("Payload created as: " + payload.ThirdAddressLine);
-  Log.Message("Payload created as: " + payload.FourthAddressLine);
-  Log.Message("Payload created as: " + payload.PhoneOther);
-  Log.Message("Payload created as: " + payload.PostCode);
-  Log.Message("Payload created as: " + payload.PatientNumber);
-  Log.Message("Payload created as: " + payload.ScslHealthDbId);
-    
+//  Log.Message("Payload created as: " + payload.FirstName);
+//  Log.Message("Payload created as: " + payload.Surname);
+//  Log.Message("Payload created as: " + payload.Sex);
+//  Log.Message("Payload created as: " + payload.Title);
+//  Log.Message("Payload created as: " + payload.Gender);
+//  Log.Message("Payload created as: " + payload.Mobile);
+//  Log.Message("Payload created as: " + payload.Born);
+//  Log.Message("Payload created as: " + payload.Phone);
+//  Log.Message("Payload created as: " + payload.FirstAddressLine);
+//  Log.Message("Payload created as: " + payload.SecondAddressLine);
+//  Log.Message("Payload created as: " + payload.ThirdAddressLine);
+//  Log.Message("Payload created as: " + payload.FourthAddressLine);
+//  Log.Message("Payload created as: " + payload.PhoneOther);
+//  Log.Message("Payload created as: " + payload.PostCode);
+//  Log.Message("Payload created as: " + payload.PatientNumber);
+//  Log.Message("Payload created as: " + payload.ScslHealthDbId);
+//    
   //Return the payload so it can be posted elsewhere
   return payload
 }
