@@ -15,6 +15,7 @@ function api_post(address, headers, requestBody)
   for ( var property in headers )
   {
     aqHttpRequest.SetHeader(property, headers[property])
+    Log.Message(headers[property])
   }
   
   // Send the request, create the aqHttpResponse object
@@ -63,8 +64,7 @@ function api_get_login_tokens_and_session_id(address, headers)
     // Read the response data
     var response_data = aqHttpResponse.AllHeaders; // All headers
     response.session_id = response_data.match(/ASP.NET_SessionId=([^;]*)/)[1];
-    response.request_verification_token = response_data.match(/__RequestVerificationToken_Lw__=([^;]*)/)[1]; 
-    response.INRstarN3 = response_data.match(/INRstarN3=([^;]*)/);        
+    response.request_verification_token = response_data.match(/__RequestVerificationToken_Lw__=([^;]*)/)[1];       
   }
   
   return response

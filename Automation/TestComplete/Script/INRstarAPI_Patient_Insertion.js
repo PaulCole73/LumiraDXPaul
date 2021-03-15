@@ -34,31 +34,46 @@ function login_under_the_hood(login_user_number)
   //Get username & password from 
   login_details = get_login_details();
 
-  //Get test URL store it as address
+  //Get test URL store it as base_url - also create host from this
   var base_url = INRstar_base().URL; 
+  var str = base_url.substring(8);
+  var host = str.substring(0,str.length-44);
+  Log.Message(host)
   
   //Add Headers
   headers["Connection"] = "keep-alive";
-  headers["Host"] = "inrstar-uk-test1.caresolutions.lumiradx.com"; //Need some way of calcing this from base_url 
+  headers["Host"] = host
   headers["User-Agent"] = "TestComplete"; 
-  headers["Content-Type"] = "application/x-www-form-urlencoded";
+  headers["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
   
   //Get Initial token and session Id
   var response = api_get_login_tokens_and_session_id(base_url, headers);
-      
-  //Add the cookies to the request header to include both the decoded request_verification_token and the session_id
-  headers["Cookie"] = "__RequestVerificationToken_Lw__=" + response.request_verification_token + ";" + "ASP.NET_SessionId=" + response.session_id + ";" + "LatestVersion=False";   
   
   var requestBody = 
     "username=" + encodeURIComponent('cl3@regression') + 
     "&password=" + encodeURIComponent(login_details[20]) + 
     "&Log_In=" + encodeURIComponent(login_parameter) + 
     "&__RequestVerificationToken=" + encodeURIComponent(response.request_verification_token);
+    
+  var requestBody_content_length = parseInt(requestBody.length);
 
-  //Login Proper
-  api_post(base_url, headers, requestBody);
+  //Add cookies to the request header to include both the decoded request_verification_token and the session_id + Content-Length
+  headers["Cookie"] = "__RequestVerificationToken_Lw__=" + response.request_verification_token + ";" + "ASP.NET_SessionId=" + response.session_id;   
+  headers["Content-Length"] = requestBody_content_length;
   
-  return headers.Cookie
+  //Login Proper
+  var post_response = api_post(base_url, headers, requestBody);
+  
+  if (post_response != null)
+  {
+    // Read the response data
+    var response_data = post_response.AllHeaders; // All headers
+    Log.Message(response_data)
+    response.INRstarN3 = response_data.match(/INRstarN3=([^;]*)/); 
+    Log.Message(response_data.INRstarN3)       
+  }
+  
+  return headers
 }
 //-----------------------------------------------------------------------------------
 function add_a_patient_under_the_hood()
@@ -68,7 +83,9 @@ function add_a_patient_under_the_hood()
     var test_title = "add_a_patient_under_the_hood"
     
     //Setup test scenario
-//    login(7, "Shared");
+    login(7, "Shared");
+    new_login(7, "Shared");
+    
 //    var location_id = get_organization_id_from_current_location();   
 //    Goto_Patient_Search();
 //    var patient = patient_generator();
@@ -88,8 +105,8 @@ function add_a_patient_under_the_hood()
 //-----------------------------------------------------------------------------------
 function insert_patient(parameters)
 {
-//  //Get Token
-//  var token = get_token_for_patient_insert();
+  //Get Token
+  var token = get_token_for_patient_insert(headers);
 //  
 //  //Obtain URL
 //  var address = get_csp_url_from_the_inrstar_url() + "/externalresults/observation";
@@ -105,13 +122,12 @@ function insert_patient(parameters)
 //  //api_post(address, headers, body_payload)
 }
 //-----------------------------------------------------------------------------------
-function get_token_for_patient_insert()
+function get_token_for_patient_insert(headers)
 {
   //Obtain URL
-  //var address = something "/Patient/New";
+  var address = get_inrstar_url() + "/Patient/New";
   
   //Create the Headers into an object
-  var headers = new Object();
   headers["Content-Type"] = "application/x-www-form-urlencoded";
   headers["X-Requested-With"] = "XMLHttpRequest";
   headers["Upgrade-Insecure-Requests"] = "1";
