@@ -14,7 +14,7 @@ function log_off_engage()
   WaitSeconds(2, "Waiting to log off...");
 }
 //--------------------------------------------------------------------------------
-function register_engage(email_address,format_dob)
+function register_engage(email_address, format_dob)
 {
   //TestedApps.engage.Run();
   Sys.Browser("chrome").BrowserWindow(0).Maximize();
@@ -24,8 +24,8 @@ function register_engage(email_address,format_dob)
   engage_signin_register_tab().Click();
     
   //enter email into email box
+  WaitSeconds(10);
   engage_username_register().SetText(email_address);
-  WaitSeconds(2);
   engage_dob_register().SetText(format_dob);
   //close the date picker
   engage_close_dob_entry().Click();
@@ -35,7 +35,7 @@ function register_engage(email_address,format_dob)
   //request code from engage
   var code = get_engage_login_code();
   
-  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV",get_string_translation("It's on its way"), "OK");
+  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", /*get_string_translation(*/"It's on its way"/*)*/, "OK");
   WaitSeconds(2);
   //enter received code into ID box 
   engage_code_register().SetText(code);
@@ -49,7 +49,7 @@ function register_engage(email_address,format_dob)
   engage_password_confirm_button().Click();
   WaitSeconds(2);
   
-  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", get_string_translation("Your password has been reset"), "OK");
+  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", /*get_string_translation(*/"Your password has been reset"/*)*/, "OK");
   WaitSeconds(2);
 }
 //--------------------------------------------------------------------------------
@@ -68,13 +68,13 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
   WaitSeconds(1);
   if((is_box_1_ticked == null && is_box_2_ticked == null) || (is_box_1_ticked == true && is_box_2_ticked == true) )
   {
-    var obj_root = engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1);
+    var obj_root = engage_base().Panel(1).Panel(0).Panel(0).Panel(0).Panel(1);
     wait_for_object(obj_root, "idStr", "button__engage_home_questionnaire_submit", 6);
   
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+    engage_licence_agreement_checkbox().Click();
+    engage_privacy_policy_checkbox().Click();
     
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_engage_home_questionnaire_submit").Click();
+    engage_agreements_submit_button().Click();
     WaitSeconds(2);
     var text = process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Agreements Complete", "OK");
     return text;
@@ -83,13 +83,13 @@ function complete_eula_questionnaire(is_box_1_ticked, is_box_2_ticked)
   {
     if(is_box_1_ticked == true)
     {
-      engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+      engage_licence_agreement_checkbox().Click();
     }
     if(is_box_2_ticked == true)
     {
-      engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(2).Panel(0).Panel("question_checkbox_objectobject_").Panel(1).Click();
+      engage_privacy_policy_checkbox().Click();
     }
-    engage_base().Panel(0).Panel(0).Panel(0).Panel(0).Panel(1).Panel(0).Panel(0).Panel(0).Panel(0).Panel(2).Button("button_engage_home_questionnaire_submit").Click();
+    engage_agreements_submit_button().Click();
     WaitSeconds(2);
     text = process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Incomplete Agreements", "OK");
     return text;
@@ -134,7 +134,8 @@ function get_schedule_data()
     schedule_data.push(string_array[i]);
   }
 
-  engage_new_dosing_submit_buttons().Button("button_home_anticoagulation_questionnaire_cancel").Click();
+  engage_new_dosing_submit_buttons().Button("button_engage_home_anticoagulation_questionnaire_cancel").Click();
+                                    
   return schedule_data;
 }
 //--------------------------------------------------------------------------------
@@ -165,19 +166,19 @@ function submit_INR_with_answers(INR, match, dose, medication, bleeding, missed)
     WaitSeconds(11);
   }
   var submit_time = aqConvert.DateTimeToFormatStr(aqDateTime.Now(), "%A %d-%b-%Y at %H:%M");
-  engage_submit_INR.Panel(7).Button("button_home_anticoagulation_questionnaire_submit").Click();
-  
-  wait_for_object(engage_base(), "className", "PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", 3);
+  engage_submit_INR.Panel(7).Button("button_engage_home_anticoagulation_questionnaire_submit").Click();
+   
+  wait_for_object(engage_base(), "className", "PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", 3);
   
   //return either date and time submitted if sucessful or pop up message text if not 
   if (match == 1)
   {
-   var return_data = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Mismatching INR", "OK"); 
+   var return_data = process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Mismatching INR", "OK"); 
   }
   else if (match ==0)
   {
     return_data = submit_time;
-    process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "INR Test Complete", "OK");
+    process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "INR Test Complete", "OK");
   }
   WaitSeconds(2);
   
@@ -191,7 +192,7 @@ function get_daily_dose()
   var task = obj.FindChild("innerText", "Daily dose of warfarin", 3);
   task.Click();
   
-  var text = process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Daily dose of warfarin", "Cancel");
+  var text = process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Daily dose of warfarin", "Cancel");
   
   return text;
 }
@@ -219,23 +220,26 @@ function complete_schedule(button_number)
 
   WaitSeconds(2);
   engage_new_dosing_schedule_understand_buttons().Panel(1).Panel(0).Label(button_number).TextNode(0).Click();
-  engage_new_dosing_submit_buttons().Button("button_home_anticoagulation_questionnaire_submit").Click();
-  process_engage_popup("PopUp__Container--1SBUF PopUp__ContainerLoaded--30PKc", "Dosing Schedule", "OK");
+  engage_new_dosing_submit_buttons().Button("button_engage_home_anticoagulation_questionnaire_submit").Click();
+  
+  process_engage_popup("PopUp__Container--1cLSL PopUp__ContainerLoaded--11eMV", "Dosing Schedule", "OK");
 }
 //--------------------------------------------------------------------------------
 function cancel_submit_INR(button_function)
 {
   var engage_submit_INR = engage_submit_INR_questionnaire();
   //click cancel button
-  engage_submit_INR.Panel(7).Button("button_home_anticoagulation_questionnaire_cancel").Click();
+  engage_submit_INR.Panel(7).Button("button_engage_home_anticoagulation_questionnaire_cancel").Click();
   //deal with the stay on page popup
   if (button_function == "stay")
   {
-    engage_base().Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_stayonpage").Click();
+  //engage_base().Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_stayonpage").Click();
+    engage_base().Panel(1).Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_stayonpage").Click();
   }
   else if (button_function == "leave")
   {
-    engage_base().Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_leavepage").Click();
+  //engage_base().Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_leavepage").Click();
+    engage_base().Panel(1).Panel(0).Panel("information_doyouwanttoleavethispage_").Panel(0).Panel(1).Button("button_popup_leavepage").Click();
   }
 }
 //--------------------------------------------------------------------------------
@@ -246,5 +250,7 @@ function complete_things_to_do_today_task(task_name)
   var task = obj.Find("innerText", task_name, 3);
   task.Click();
   //click complete button
-  engage_base().Panel(0).Panel("information_performyourinrtest").Panel(0).Panel(1).Button("button_popup_completed").Click();  
+  
+//engage_base().Panel(0).Panel("information_performyourinrtest").Panel(0).Panel(1).Button("button_popup_completed").Click();
+  engage_base().Panel(1).Panel(0).Panel("information_performyourinrtest").Panel(0).Panel(1).Button("button_popup_completed").Click();  
 }
