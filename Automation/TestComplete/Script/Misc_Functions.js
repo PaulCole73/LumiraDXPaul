@@ -17,15 +17,7 @@ var environment = "INRstarWindowsUK-test1";
 var environmentname = "uk-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
-
-if (language == "English")
-{
-  var engage_url = "https://engage-" + environmentname + ".lumiradxcaresolutions.com/";
-}
-else 
-{
-  var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
-}
+var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
 //---------------------------------------------------------------------------------//
 //                            Validation Functions                                 //
 //---------------------------------------------------------------------------------//
