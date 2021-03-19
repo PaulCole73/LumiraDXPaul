@@ -436,27 +436,11 @@ function select_day(p_day, p_datepicker)
   return day_to_click.Name;
 }
 //-----------------------------------------------------------------------------------
-function set_month(p_m)
+function set_month(integer_month)
 {
-  //Note - input month must be in numeric format   
-  var wa_Mth = new Array(13);                   
-  wa_Mth[0] = "";
-  wa_Mth[1] = get_string_translation("Jan");
-  wa_Mth[2] = get_string_translation("Feb");
-  wa_Mth[3] = get_string_translation("Mar");
-  wa_Mth[4] = get_string_translation("Apr");
-  wa_Mth[5] = get_string_translation("May");
-  wa_Mth[6] = get_string_translation("Jun");
-  wa_Mth[7] = get_string_translation("Jul");
-  wa_Mth[8] = get_string_translation("Aug");
-  wa_Mth[9] = get_string_translation("Sep");
-  wa_Mth[10] = get_string_translation("Oct");
-  wa_Mth[11] = get_string_translation("Nov");
-  wa_Mth[12] = get_string_translation("Dec");
-  
-  var w_Month = wa_Mth[p_m];
-  
-  return w_Month;
+  const shortmonth = ['Blank','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var requested_month = shortmonth[parseInt(integer_month)];
+  return get_string_translation(requested_month);
 }
 //-----------------------------------------------------------------------------------
 function set_italian_long_month(month)
