@@ -13,7 +13,4 @@
 	<scc key="{C900492B-D218-429C-9AA0-264B7D78CA88}" name="Git Plugin">
 		<data />
 	</scc>
-	<extender key="{1A3FC97E-9A66-4716-B166-35D10B4146E0}">
-		<CrossBrowserTesting Enable="True" />
-	</extender>
 </Root>
