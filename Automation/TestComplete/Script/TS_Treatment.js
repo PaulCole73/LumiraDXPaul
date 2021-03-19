@@ -16,6 +16,7 @@ function ts_master_treatment(send_mail)
   tc_treatment_manual_dosing_permissions();
   tc_treatment_induction_dosing_permissions();
   tc_treatment_add_a_treatment_comment();
+  tc_treatment_edit_a_treatment_comment()
   tc_treatment_add_a_new_maintenance_in_range_inr();
   tc_treatment_add_a_historical_treatment_to_an_induction_patient();
   tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol();
@@ -56,6 +57,7 @@ function ts_int_regression_treatment(send_mail)
   tc_treatment_manual_dosing_permissions();
   tc_treatment_induction_dosing_permissions();
   tc_treatment_add_a_treatment_comment();
+  tc_treatment_edit_a_treatment_comment();
   tc_treatment_add_a_new_maintenance_in_range_inr();
   tc_treatment_add_a_historical_treatment_to_an_induction_patient();
   tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol();
@@ -95,6 +97,7 @@ function ts_int_regression_treatment_italy(send_mail)
   tc_treatment_manual_dosing_permissions();
   tc_treatment_induction_dosing_permissions();
   tc_treatment_add_a_treatment_comment();
+  tc_treatment_edit_a_treatment_comment()
   tc_treatment_add_a_new_maintenance_in_range_inr();
   tc_treatment_add_a_historical_treatment_to_an_induction_patient();
   tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol();

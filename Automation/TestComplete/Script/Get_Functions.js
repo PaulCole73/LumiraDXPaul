@@ -79,7 +79,7 @@ function get_patient_not_altered_details_object_from_demographics()
   county: patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(3).Label("FifthAddressLine_DetachedLabel").contentText,
   post_code: patient_demographics_tab_contact_address_path.Panel("patientAddress").Panel(4).Label("PostCode_DetachedLabel").contentText,
   phone: patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText,
-  email: patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText};
+  email: patient_demographics_tab_contact_address_path.FindChild("idStr", "Email_DetachedLabel", 2).contentText}; //Panel(4).Label("Email_DetachedLabel").contentText};
   
   return patient_demographics;
 }
@@ -315,7 +315,6 @@ function get_patients_column_data_from_overdue_non_warfarin_review_table(table, 
     return false;
 }
 //--------------------------------------------------------------------------------
-
 function get_inr_results_received_by_timestamp(timestamp)
 {
   Goto_Patient_New_INR();
@@ -1097,8 +1096,8 @@ function get_hl7_patient_info(table_position)
     var surname = aqString.Trim(name_split[0]);
     var firstname = aqString.Trim(name_split[1]);
     var dob = patient_external_results_table().Cell(table_position, 1).Panel(0).Label("Born_DetachedLabel").innerText;
-    var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("NHSNumber_DetachedLabel").innerText;
-    var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("PatientNumber_DetachedLabel").innerText;
+    var nhs = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(0).Label("ResultsNHSNumber_DetachedLabel").innerText;
+    var pat_no = patient_external_results_table().Cell(table_position, 1).Panel(1).Panel(1).Label("ResultsPatientNumber_DetachedLabel").innerText;
     var inr = patient_external_results_table().Cell(table_position, 3).innerText;
   
     patient_data.push(surname, firstname, dob, nhs, pat_no, inr);
