@@ -45,7 +45,7 @@ function api_get(address, headers)
 // returns object containing cookies and sessionid
 function api_get_login_tokens_and_session_id(address, headers) 
 {
-  var response = new Object();
+  var cookie_jar = new Object();
   
   // Create the aqHttpRequest object
   var aqHttpRequest = aqHttp.CreateGetRequest(address);
@@ -59,14 +59,11 @@ function api_get_login_tokens_and_session_id(address, headers)
   // Send the request, create the aqHttpResponse object
   var aqHttpResponse = aqHttpRequest.Send()
   
-  if (aqHttpResponse != null)
-  {
-    // Read the response data
-    var response_data = aqHttpResponse.AllHeaders; // All headers
-    response.session_id = response_data.match(/ASP.NET_SessionId=([^;]*)/)[1];
-    response.request_verification_token = response_data.match(/__RequestVerificationToken_Lw__=([^;]*)/)[1];       
-  }
+  // Read the response data extrcat tokens and cookies from it
+  var response_data = aqHttpResponse.AllHeaders; // All headers
+  cookie_jar.session_id = response_data.match(/ASP.NET_SessionId=([^;]*)/)[1];
+  cookie_jar.request_verification_token = response_data.match(/__RequestVerificationToken_Lw__=([^;]*)/)[1];       
   
-  return response
+  return cookie_jar
 }
 //---------------------------------------------------------------------------------//

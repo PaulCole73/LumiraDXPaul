@@ -3,77 +3,76 @@
 //-----------------------------------------------------------------------------------
 /////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------------------------------------------------------//
-//                           INRstarAPI Misc Functions                             //
+//                      INRstar Patient Insert Under the hood                      //
 //---------------------------------------------------------------------------------//
 /////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------
-function patient_orchestrater()
+function test_logging_in_Here()
 {
-  reset_folder();
-  add_a_patient_under_the_hood();
-}
-
-//-----------------------------------------------------------------------------------
-function test_logging_inHere()
-{
-  login_under_the_hood("5");
-  
+  //A quick temporary way of testing the logging in process
+  var cookie_jar = login_under_the_hood("5");
 }
 //-----------------------------------------------------------------------------------
 function login_under_the_hood(login_user_number)
 {
   //Initialise variables
-  var login_parameter = "";
+  var login_parameter,hostname;
   var login_details = new Array();
   var headers = new Object();
   
   //Get login parameter
   if (language == "Italian") {login_parameter = "Accedi";}
-  else {login_parameter = "Log In";}
+  else {login_parameter = "Log+In";}
   
   //Get username & password from 
   login_details = get_login_details();
 
   //Get test URL store it as base_url - also create host from this
   var base_url = INRstar_base().URL; 
-  var str = base_url.substring(8);
-  var host = str.substring(0,str.length-44);
-  Log.Message(host)
+  if (base_url.indexOf("//") > -1) 
+    {hostname = base_url.split('/')[2];}
+  else 
+    {hostname = base_url.split('/')[0];}
+
+  var url = "https://" + hostname + "/Security/Authentication/Logon";
   
   //Add Headers
   headers["Connection"] = "keep-alive";
-  headers["Host"] = host
+  headers["Host"] = hostname;
   headers["User-Agent"] = "TestComplete"; 
-  headers["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
+  headers["Content-Type"] = "application/x-www-form-urlencoded";
+  headers["Referer"] = url;
   
-  //Get Initial token and session Id
-  var response = api_get_login_tokens_and_session_id(base_url, headers);
+  //Get Initial token and session Id & add it to the cookie/token object jar
+  var cookie_jar = api_get_login_tokens_and_session_id(url, headers);
   
+  //Using response from initial get - create the encoded requestbody 
   var requestBody = 
-    "username=" + encodeURIComponent('cl3@regression') + 
-    "&password=" + encodeURIComponent(login_details[20]) + 
-    "&Log_In=" + encodeURIComponent(login_parameter) + 
-    "&__RequestVerificationToken=" + encodeURIComponent(response.request_verification_token);
-    
-  var requestBody_content_length = parseInt(requestBody.length);
+    "__RequestVerificationToken=" + encodeURIComponent(cookie_jar.request_verification_token) +
+    "&Username=" + encodeURIComponent(login_details[5]) + 
+    "&Password=" + encodeURIComponent(login_details[20]) + 
+    "&Log_In=" + encodeURIComponent(login_parameter);
 
   //Add cookies to the request header to include both the decoded request_verification_token and the session_id + Content-Length
-  headers["Cookie"] = "__RequestVerificationToken_Lw__=" + response.request_verification_token + ";" + "ASP.NET_SessionId=" + response.session_id;   
-  headers["Content-Length"] = requestBody_content_length;
+  headers["Cookie"] = "__RequestVerificationToken_Lw__=" + cookie_jar.request_verification_token + ";" + "ASP.NET_SessionId=" + cookie_jar.session_id;   
+  headers["Content-Length"] = parseInt(requestBody.length);
   
   //Login Proper
-  var post_response = api_post(base_url, headers, requestBody);
+  var post_response = api_post(url, headers, requestBody);
   
-  if (post_response != null)
-  {
-    // Read the response data
-    var response_data = post_response.AllHeaders; // All headers
-    Log.Message(response_data)
-    response.INRstarN3 = response_data.match(/INRstarN3=([^;]*)/); 
-    Log.Message(response_data.INRstarN3)       
-  }
+  //Extract headers from response
+  var response_headers = post_response.AllHeaders; 
+   
+  //Extrat INRstarN3 token from response & add it to the cookie/token object jar
+  cookie_jar.INRstarN3 = response_headers.match(/INRstarN3=([^;]*)/); 
   
-  return headers
+  Log.Message("Cookie                    : " + headers.Cookie);
+  Log.Message("Response Data Headers     : " + response_headers);    
+  Log.Message("Session ID                : " + cookie_jar.session_id) 
+  Log.Message("Request Verification Token: " + cookie_jar.request_verification_token)   
+  Log.Message("INRstarN3 Token           : " + cookie_jar.INRstarN3)  
+    
+  return cookie_jar
 }
 //-----------------------------------------------------------------------------------
 function add_a_patient_under_the_hood()
@@ -83,14 +82,10 @@ function add_a_patient_under_the_hood()
     var test_title = "add_a_patient_under_the_hood"
     
     //Setup test scenario
-    login(7, "Shared");
-    new_login(7, "Shared");
-    
-//    var location_id = get_organization_id_from_current_location();   
-//    Goto_Patient_Search();
+    var cookie_jar = login_under_the_hood("5");
 //    var patient = patient_generator();
 //    var patient_insertion_parameters = patient_parameters(patient); 
-//    var inserted_patient = insert_patient(patient_insertion_parameters);
+//    var inserted_patient = insert_patient(patient_insertion_parameters, cookie_jar);
 
     //Log_Off(); 
   }
@@ -103,39 +98,29 @@ function add_a_patient_under_the_hood()
   } 
 }
 //-----------------------------------------------------------------------------------
-function insert_patient(parameters)
+function insert_patient(patient_insertion_parameters, cookie_jar)
 {
-  //Get Token
-  var token = get_token_for_patient_insert(headers);
-//  
-//  //Obtain URL
-//  var address = get_csp_url_from_the_inrstar_url() + "/externalresults/observation";
-//  
-//  //Create the Headers into an object
-//  var headers = new Object();
-//  headers["Content-Type"] = "application/json";
-//  headers["Accepts"] = "application/json";
-//  headers["api-version"] = "2.1";
-//  headers["Authorization"] = "Bearer " + token; 
-//
-//  //Call upon api_post() to send the request
-//  //api_post(address, headers, body_payload)
+  //Get extra tokens required for adding patient
+  var cookie_jar = get_token_for_patient_insert(patient_insertion_parameters, cookie_jar);
+  
+  //Do stuff here
+
 }
 //-----------------------------------------------------------------------------------
-function get_token_for_patient_insert(headers)
+function get_token_for_patient_insert(patient_insertion_parameters, cookie_jar)
 {
-  //Obtain URL
-  var address = get_inrstar_url() + "/Patient/New";
+  //This function has not been tested/actioned yet since we haven't got this far
   
-  //Create the Headers into an object
-  headers["Content-Type"] = "application/x-www-form-urlencoded";
-  headers["X-Requested-With"] = "XMLHttpRequest";
-  headers["Upgrade-Insecure-Requests"] = "1";
-  headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
-  headers["Origin"] = address;
-  headers["Host"] = "inrstar-uk-test1.caresolutions.lumiradx.com";
-  headers["Dxscript"] = "1_142,1_80,1_135,1_131,1_90,1_84,1_82,8_11,8_18,8_25,8_27,8_10,8_13,8_14,8_19,14_23,14_18,8_22,1_91,1_98,1_92,1_77,1_128,1_126,8_24,8_23,8_17,8_20,1_133,1_119,1_127,8_21,1_104,8_15,1_94,1_100,8_16,1_105,1_103,1_97,8_26,8_12"
-
+  //Obtain URL
+  var base_url = INRstar_base().URL; 
+  var hostname;
+  if (base_url.indexOf("//") > -1) 
+    {hostname = base_url.split('/')[2];}
+  else 
+    {hostname = base_url.split('/')[0];}
+  
+  var address = "https://" + hostname + "/Patient/New";
+  
   //Perform the api request record the response
   var response = String(api_get(address, headers));
   Log.Message(response);
@@ -143,12 +128,13 @@ function get_token_for_patient_insert(headers)
   //Extract the request_verification_token from the response
   var request_verification_token = response.match(/name=\"__RequestVerificationToken\" type=\"hidden\" value="([^\"]*)"/);    
   Log.Message(request_verification_token[1]);
+  cookie_jar.request_verification_token=request_verification_token[1]; //replacing original token - may not be needed
   
   //Extract the new_patient_token_id from the response
-  var new_patient_token_id = response.match(/name="Id" type="hidden" value="([^\"]*)"/);    
+  cookie_jar.new_patient_token_id = response.match(/name="Id" type="hidden" value="([^\"]*)"/); 
   Log.Message(new_patient_token_id);
     
-  return 
+  return cookie_jar // Need to add new tokens into cookie_jar object and return it
 }
 //-----------------------------------------------------------------------------------
 function patient_parameters(patient_details, token_id) 
