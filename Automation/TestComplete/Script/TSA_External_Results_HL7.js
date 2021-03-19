@@ -210,10 +210,11 @@ function dose_external_result(dose, review_days, dm)
     external_result_data.push(changed_medication_checkbox);
  
     //check the comments contain the correct details entered into engage
-    var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+    //var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+    var actual_submission_comments = patient_INR_treatment_questions().Panel(0).Textarea("ExternalResultComments").contentText;
     external_result_data.push(actual_submission_comments);
   
-    var self_check_tickbox = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRTestDetails").Fieldset("Options").Panel(2).Checkbox("SelfTested").checked;
+    var self_check_tickbox = treatment_inr_test_options().Panel(2).Checkbox("SelfTested").checked;
     external_result_data.push(self_check_tickbox); 
   
     //complete and save the treatment
@@ -234,7 +235,7 @@ function dose_external_result(dose, review_days, dm)
     WaitSeconds(2, "Saving the Treatment");
  
     //Save the INR
-    var pending_treatment_buttons_path = pending_treatment_buttons();
+    var pending_treatment_buttons_path = path_patient_pending_treatment();
     pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
   }
   else if(dm == "maintenance")
@@ -259,10 +260,11 @@ function dose_external_result(dose, review_days, dm)
     external_result_data.push(changed_medication_checkbox);
  
     //check the comments contain the correct details entered into engage
-    var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+  //var actual_submission_comments = patient_INR_treatment_questions().Panel("NewINRComments").Textarea("Comments").contentText;
+    var actual_submission_comments = patient_INR_treatment_questions().Panel(0).Textarea("ExternalResultComments").contentText;
     external_result_data.push(actual_submission_comments);
   
-    var self_check_tickbox = pending_treatment_buttons().Panel("PatientTreatmentNewINRWrapper").Form("NewINRForm").Panel("PatientTreatmentNewINRQuestionsWrapper").Panel("PatientTreatmentNewINRTestDetails").Fieldset("Options").Panel(1).Checkbox("SelfTested").checked;
+    var self_check_tickbox = new_inr_test_details().Panel("testDetails").Fieldset("Options").Panel(1).Checkbox("SelfTested").checked;
     external_result_data.push(self_check_tickbox); 
    
     var save_button_pre_schedule = treatment_buttons_pre_schedule();
@@ -275,7 +277,7 @@ function dose_external_result(dose, review_days, dm)
     process_alternate_popup("Please acknowledge", "Confirm");
  
     //Save the INR
-    var pending_treatment_buttons_path = pending_treatment_buttons();
+    var pending_treatment_buttons_path = path_patient_pending_treatment();
     pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("AcceptPendingTreatment").Click();
   }
   

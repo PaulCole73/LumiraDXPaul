@@ -4,6 +4,15 @@
 	<testData />
 	<data />
 	<children>
+		<child key="{57E3172B-305E-472E-B5DF-9E918A6C475B}">
+			<config nodeName="gmail_chrome" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
+				<runModeParams activeRunMode="Web">
+					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="72.0" pageAddress="https://mail.google.com/mail/u/1/?ogbl#inbox" browserArguments="" />
+				</runModeParams>
+			</config>
+			<testData />
+			<data />
+		</child>
 		<child key="{0EAC781C-E4F1-4054-9482-64E424FCA0B3}">
 			<config nodeName="INRstarWindows" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="False">
 				<runModeParams activeRunMode="Simple">
