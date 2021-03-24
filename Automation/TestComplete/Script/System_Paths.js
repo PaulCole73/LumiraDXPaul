@@ -932,15 +932,25 @@ function get_sorb_heading_path()
   return sorb_heading;
 }
 //------------------------------------------------------------------------
-function pre_treatment_induction_buttons_path()
+//function pre_treatment_induction_buttons_path()
+//{
+//   var panelPPT = path_patient_pending_treatment();
+//   var panelPPTIW = panelPPT.Panel("PatientPreTreatmentINRWrapper");
+//   var panelPPTIC = panelPPTIW.Form("PreTreatmentINRForm"); //.Panel("PatientPreTreatmentINRQuestionsWrapper") this line is needed for uk but not italy
+//   //var pre_treatment_buttons = panelPPTIC.Panel(0);
+//
+//   return pre_treatment_buttons;
+//} 
+//------------------------------------------------------------------------
+function pre_treatment_induction_submit_button()
 {
-   var panelPPT = path_patient_pending_treatment();
-   var panelPPTIW = panelPPT.Panel("PatientPreTreatmentINRWrapper");
-   var panelPPTIC = panelPPTIW.Form("PreTreatmentINRForm").Panel("PatientPreTreatmentINRQuestionsWrapper")
-   var pre_treatment_buttons = panelPPTIC.Panel(0);
-
-   return pre_treatment_buttons;
-} 
+  var panelPPT = path_patient_pending_treatment();
+  var panelPPTIW = panelPPT.Panel("PatientPreTreatmentINRWrapper");
+  var panelPPTIC = panelPPTIW.Form("PreTreatmentINRForm");
+  var submit_button = panelPPTIC.FindChild("idStr", "CalculateWarfarinDose", 3);
+  
+  return submit_button;
+}
 //------------------------------------------------------------------------
 function sorb_button_error_message_path()
 {

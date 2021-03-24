@@ -25,8 +25,8 @@ function add_pending_fast_induction_treatment(inr, TestStepMode)
     // PoCT special handling due to all the things this can be set to and a bug
     handle_PoCT(pre_treatment_info);
      
-    var buttons = pre_treatment_induction_buttons_path();
-    buttons.SubmitButton("CalculateWarfarinDose").Click();
+    var buttons = pre_treatment_induction_submit_button();
+    buttons.Click();
     
     process_popup(get_string_translation("PoCT Batch Expired"), get_string_translation("Confirm"));
     
@@ -54,8 +54,8 @@ function add_fast_induction_treatment(inr)
   // PoCT special handling due to all the things this can be set to and a bug
   handle_PoCT(pre_treatment_info);
      
-  var buttons = pre_treatment_induction_buttons_path();
-  buttons.SubmitButton("CalculateWarfarinDose").Click();
+  var buttons = pre_treatment_induction_submit_button();
+  buttons.Click();
   process_popup("PoCT Batch Expired", "Confirm");
   
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
@@ -78,12 +78,13 @@ function add_induction_slow_treatment(inr)
   // PoCT special handling due to all the things this can be set to and a bug
   handle_PoCT(pre_treatment_info);
      
-  var buttons = pre_treatment_induction_buttons_path();
-  buttons.SubmitButton("CalculateWarfarinDose").Click();
+  var buttons = pre_treatment_induction_submit_button();
+  buttons.Click();
   
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
+  
+  WaitSeconds(3);
   save_inr_button().Click();
-
 }
 //--------------------------------------------------------------------------------
 function add_pending_induction_slow_treatment(inr, TestStepMode)
@@ -104,8 +105,8 @@ function add_pending_induction_slow_treatment(inr, TestStepMode)
     // PoCT special handling due to all the things this can be set to and a bug
     handle_PoCT(pre_treatment_info);
      
-    var buttons = pre_treatment_induction_buttons_path();
-    buttons.SubmitButton("CalculateWarfarinDose").Click();
+    var buttons = pre_treatment_induction_submit_button();
+    buttons.Click();
     
     process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   }

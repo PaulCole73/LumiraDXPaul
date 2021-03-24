@@ -2544,11 +2544,11 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for coventry dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions Coventry", "M", "Shared");
+    add_patient("Regression", "Permissions_Coventry", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
-    var pat_nhs = get_patient_nhs();    
+    var patient_fullname = get_patient_fullname();   
     var result_set = new Array();
     
     Log_Off();
@@ -2558,7 +2558,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      patient_search(patient_fullname);
       state = get_new_inr_button_state();
       
       if(i == 3 || i == 4 || i == 5 || i == 7)
@@ -2638,11 +2638,11 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for manual dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions Manual", "M", "Shared");
+    add_patient("Regression", "Permissions_Manual", "M", "Shared");
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
-    var pat_nhs = get_patient_nhs();    
+    var patient_fullname = get_patient_fullname();   
     var result_set = new Array();
     
     Log_Off();
@@ -2652,7 +2652,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      patient_search(patient_fullname);
       state = get_new_inr_button_state();
       
       if(i == 5 || i == 7)
@@ -2684,11 +2684,11 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for tait dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions Tait", "M", "Shared");
+    add_patient("Regression", "Permissions_Tait", "M", "Shared");
     add_treatment_plan('W','Tait','','Shared','');
     add_induction_slow_treatment('1.0')
     
-    var pat_nhs = get_patient_nhs();    
+    var patient_fullname = get_patient_fullname();    
     var result_set = new Array();
     
     Log_Off();
@@ -2698,7 +2698,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      patient_search(patient_fullname);
       state = get_new_inr_button_state();
       
       if(i == 3 || i == 4 || i == 5 || i == 7)
