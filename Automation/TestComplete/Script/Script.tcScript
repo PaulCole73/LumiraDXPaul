@@ -320,6 +320,7 @@
 				<child name="TS_Bespoke_Letters" key="{68F36A03-0E9D-437B-B300-853D2F934D7D}" path="TS_Bespoke_Letters.js" />
 				<child name="TS_Diagnosis" key="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}" path="TS_Diagnosis.js" />
 				<child name="TS_External_Results_HL7" key="{4B592C50-F943-446F-AE9E-14F564CED33B}" path="TS_External_Results_HL7.js" />
+				<child name="TS_Results" key="{4B9FA84D-9539-4137-A6E1-24123FE5E97F}" path="TS_Results.js" />
 			</folder>
 			<folder name="3. Test Cases">
 				<child name="TC_Login" key="{9F7E6A1D-3FE9-49F2-8827-CD5CBB932D00}" path="TC_Login.js" />
