@@ -144,11 +144,11 @@ function ts_permissions_new_inr_button()
   reset_folder();
     
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();
   tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_tait_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();
-  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only();
+  tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only();
 }
 //==============================================================================//
 function ts_inr_test_results_received()

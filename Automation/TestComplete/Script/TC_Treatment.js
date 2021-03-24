@@ -2586,7 +2586,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   }
 }
 //--------------------------------------------------------------------------------
-function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing()
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only()
 {
   try
   {
@@ -2627,7 +2627,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
-    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only";
     handle_failed_tests(suite_name, test_name);
   }
 }
@@ -2724,7 +2724,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   }
 }
 //--------------------------------------------------------------------------------
-function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing()
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only()
 {
   try
   {
@@ -2765,12 +2765,12 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
-    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only";
     handle_failed_tests(suite_name, test_name);
   }
 }
 //--------------------------------------------------------------------------------
-function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing()
+function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only()
 {
   try
   {
@@ -2811,7 +2811,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
-    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing";
+    var test_name = "tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only";
     handle_failed_tests(suite_name, test_name);
   }
 }

@@ -2176,23 +2176,33 @@
 			<testItem name="Clinical Controls" key="{96C0657B-72E2-4844-A42C-EAC387730C68}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
+					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<environments testedURL="" />
+						<children />
+					</testItem>
 					<testItem name="LDx2 Barcode Scanning" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
+							<testItem name="cs_ldx2_barcode_scanning()&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ldx2_barcode_scanning" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<environments testedURL="" />
+								<children />
+							</testItem>
 							<testItem name="ET5/C1-Access to external results functionality is restricted to Clinical Level users and above" key="{8EF3E5E1-7738-4F00-A61C-38008241D0C1}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing()" key="{D21AE6B5-5CAC-4D82-ABBB-91E7861A8672}" group="False" parallel="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();" key="{D21AE6B5-5CAC-4D82-ABBB-91E7861A8672}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing();" key="{610DD5B6-E003-4CA1-BBD5-8F7320C8A63A}" group="False" parallel="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only();" key="{610DD5B6-E003-4CA1-BBD5-8F7320C8A63A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();" key="{7C6A475F-B5DF-4E0B-A94D-519C22E1AE49}" group="False" parallel="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing();" key="{7C6A475F-B5DF-4E0B-A94D-519C22E1AE49}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_manual_dosing" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
@@ -2202,12 +2212,12 @@
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing();" key="{BAA16624-C12F-4A69-8AA8-AF5F707BFF4E}" group="False" parallel="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only();" key="{BAA16624-C12F-4A69-8AA8-AF5F707BFF4E}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing();" key="{7FD88728-1C05-4F86-B9EF-C07C8470420A}" group="False" parallel="False" enabled="False" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only();" key="{7FD88728-1C05-4F86-B9EF-C07C8470420A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
