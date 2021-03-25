@@ -21,7 +21,7 @@ function tc_treatment_add_a_historic_treatment()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Add_historic', 'M', 'Shared'); 
+    add_patient('Regression', 'Add_historic', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -70,7 +70,7 @@ function tc_treatment_add_a_manual_INR()
     
     // Setup test scenario
     login(7, "Shared");
-    add_patient('Regression', 'Manual_treatment', 'M', 'Shared'); 
+    add_patient('Regression', 'Manual_treatment', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))),'2.0','2.5','7');
     
@@ -119,7 +119,7 @@ function tc_treatment_manual_dosing_permissions()
     
     // Setup test scenario
     login(4, "Shared");
-    add_patient('Regression', 'Manual_permissions', 'M', 'Shared'); 
+    add_patient('Regression', 'Manual_permissions', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
     
     // Initialise Test Results array
@@ -175,7 +175,7 @@ function tc_treatment_induction_dosing_permissions()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Induction_permissions', 'M', 'Shared'); 
+    add_patient('Regression', 'Induction_permissions', 'M'); 
     add_treatment_plan("W", "Tait", "", "Shared", "");
     add_pending_induction_slow_treatment('1.2','Shared');
     
@@ -236,7 +236,7 @@ function tc_treatment_add_a_treatment_comment()
     
     // Setup test scenario
     login(4, "Shared");
-    add_patient('Regression', 'Treatment_comment', 'M', 'Shared'); 
+    add_patient('Regression', 'Treatment_comment', 'M'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -277,7 +277,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
     
     // Setup test scenario
     login(4, "Shared");
-    add_patient('Regression', 'treatment_inrange', 'M', 'Shared'); 
+    add_patient('Regression', 'treatment_inrange', 'M'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     add_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.Today()));
@@ -327,7 +327,7 @@ function tc_treatment_add_a_historical_treatment_to_an_induction_patient()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'historic_induction', 'M', 'Shared'); 
+    add_patient('Regression', 'historic_induction', 'M'); 
     add_treatment_plan('W','Oates','','Shared','');
     click_historic_button();
   
@@ -372,7 +372,7 @@ function tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'no_protocol_pat', 'M', 'Shared'); 
+    add_patient('Regression', 'no_protocol_pat', 'M'); 
     add_treatment_plan('W','Oates','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
@@ -418,7 +418,7 @@ function tc_treatment_user_cannot_override_an_induction_result()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'override_induction', 'M', 'Shared'); 
+    add_patient('Regression', 'override_induction', 'M'); 
     add_treatment_plan('W','Oates','','Shared','');
     add_pending_induction_slow_treatment('1.0','Shared')
   
@@ -455,7 +455,7 @@ function tc_treatment_adding_a_result_earlier_than_last_recorded_result()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'treatment_dated_before', 'M', 'Shared'); 
+    add_patient('Regression', 'treatment_dated_before', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))))
@@ -494,7 +494,7 @@ function tc_treatment_user_is_unable_to_add_two_treatments_for_the_same_day_when
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'treatment_same_day', 'M', 'Shared'); 
+    add_patient('Regression', 'treatment_same_day', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))))
@@ -530,7 +530,7 @@ function tc_treatment_add_a_new_maintenance_low_inr()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'mainteance_low', 'M', 'Shared'); 
+    add_patient('Regression', 'mainteance_low', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-1))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -593,7 +593,7 @@ function tc_treatment_add_a_new_maintenance_high_inr()
     
     // Setup test scenario
     login(5, "Shared");    
-    add_patient('Regression', 'mainteance_high', 'M', 'Shared'); 
+    add_patient('Regression', 'mainteance_high', 'M'); 
     //Get all the patient details
     //var pat_nhs = get_patient_nhs();
     var patient_fullname = get_patient_fullname();
@@ -658,7 +658,7 @@ function tc_treatment_out_of_range_maintenance_permissions()
     
     // Setup test scenario
     login(4, "Shared"); 
-    add_patient('Regression', 'out_of_range_permissions', 'M', 'Shared'); 
+    add_patient('Regression', 'out_of_range_permissions', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     add_pending_maintenance_treatment('5.0',(aqDateTime.Today()));
@@ -710,7 +710,7 @@ function tc_treatment_delete_the_last_treatment()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'delete_treatment', 'M', 'Shared'); 
+    add_patient('Regression', 'delete_treatment', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -757,7 +757,7 @@ function tc_treatment_refer_a_treatment()
     
     // Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
+    add_patient('Regression', 'refer_treatment', 'M'); 
     var patient_fullname = get_patient_fullname();
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");    
@@ -797,7 +797,7 @@ function tc_treatment_authorise_a_referral()
  {
     var test_title = 'Treatment - Authorise a referral'
     login(5, "Shared");
-    add_patient('Regression', 'authorise_treatment', 'M', 'Shared'); 
+    add_patient('Regression', 'authorise_treatment', 'M'); 
     var patient_fullname = get_patient_fullname();
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
@@ -857,7 +857,7 @@ function tc_treatment_edit_a_treatment_comment()
   {
     var test_title = 'Treatment - Edit a treatment comment'
     login(5, "Shared");
-    add_patient('Regression', 'edit_comment', 'M', 'Shared'); 
+    add_patient('Regression', 'edit_comment', 'M'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
@@ -897,7 +897,7 @@ function tc_treatment_add_multiple_historic_treatments()
   {
     var test_title = 'Treatment - Maintenance - Historical treatments all dated the same'
     login(5, "Shared");
-    add_patient('Regression', 'multiple_historical', 'M', 'Shared'); 
+    add_patient('Regression', 'multiple_historical', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
   
     var result_set = new Array(); 
@@ -997,7 +997,7 @@ function tc_treatment_create_maintenance_use_alternate_schedules()
 		
     // Setup test scenario
     login(5, "Shared");
-		add_patient('Regression', 'Use_Alternate', 'M', 'Shared');
+		add_patient('Regression', 'Use_Alternate', 'M');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "11", "2.5");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
@@ -1063,7 +1063,7 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
     
     // Setup test scenario
 		login(5, "Shared");
-		add_patient('Regression', 'Unstable_Patient', 'M', 'Shared');
+		add_patient('Regression', 'Unstable_Patient', 'M');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-4))), "2.3", "1.2", "0", "4", "2.5");
     
@@ -1117,7 +1117,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
     
     // Setup test scenario
 		login(5, "Shared");
-		add_patient('Regression', 'Overriding_Twenty', 'M', 'Shared');
+		add_patient('Regression', 'Overriding_Twenty', 'M');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "1.3", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
@@ -1194,7 +1194,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 	{
 		var test_title = 'Treatment - Overriding Dose and Review Period';
 		login(5, "Shared");
-		add_patient('Regression', 'Dose_And_Review_Override', 'M', 'Shared');
+		add_patient('Regression', 'Dose_And_Review_Override', 'M');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))), "2.5", "2.5", "0", "7", "2.5");
 		add_pending_maintenance_treatment('2.5', aqConvert.StrToDate(aqDateTime.Today()));
@@ -1259,7 +1259,7 @@ function tc_treatment_drag_and_drop_schedule_days()
     //setup a treatment
     var test_title = 'Treatment - Drag and Drop Schedule Days';
     login(5, "Shared");
-	  add_patient('Regression', 'Drag_Drop', 'M', 'Shared');
+	  add_patient('Regression', 'Drag_Drop', 'M');
 	  add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.9", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
@@ -1313,7 +1313,7 @@ function tc_treatment_maintenance_save_override_treatment()
 	{
 		var test_title = 'Treatment - Overriding and Save';
 		login(5, "Shared");
-		add_patient('Regression', 'DoseReview_OverrideSave', 'M', 'Shared');
+		add_patient('Regression', 'DoseReview_OverrideSave', 'M');
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.5", "0", "11", "2.4");
 		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
@@ -1388,7 +1388,7 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     var max_review_period_int = aqConvert.StrToInt(max_review_period_str_txt);
     var max_review_increment = max_review_period_int+1;
     
-    add_patient('Regression', 'MoreThan_MaxReview', 'M', 'Shared');
+    add_patient('Regression', 'MoreThan_MaxReview', 'M');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-(max_review_increment)))), 
                                                                                   "2.8", "2.9", "0", "11", "2.4");
@@ -1449,7 +1449,7 @@ function tc_treatment_manual_mutliple_historic_summary_check() //this test will 
   {
     var test_title = 'Treatment - Multiple Historic INRs, Summary Check';
 		login(5, "Shared");
-    add_patient('Regression', 'Mutliple_Historic', 'M', 'Shared');
+    add_patient('Regression', 'Mutliple_Historic', 'M');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-20))), "2.0", "2.0", "0", "11", "2.5");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-12))), "2.2", "2.3", "0", "11", "2.5");
@@ -1509,7 +1509,7 @@ function tc_treatment_maintenance_override_privilege()
   {
     var test_title = 'Treatment - Override Privilege, in-range INR';
 		login(5, "Shared");
-    add_patient('Regression', 'Override_Privilege', 'M', 'Shared');
+    add_patient('Regression', 'Override_Privilege', 'M');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     var patient_fname = get_patient_fullname(); //get_patient_nhs(); //changed for italy, should likely switch to patient number
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), 
@@ -1585,7 +1585,7 @@ function tc_treatment_maintenance_cancel_pending()
   {
     var test_title = 'Treatment - Cancel Pending Treatment';
 		login(5, "Shared");
-    add_patient('Regression', 'Cancel_Pending', 'M', 'Shared');
+    add_patient('Regression', 'Cancel_Pending', 'M');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -1638,7 +1638,7 @@ function tc_treatment_maintenance_add_pending_treatment_with_pending_transfer()
   {
     var test_title = 'Treatment - Add Pending Treatment to Patient with Pending Transfer Acceptance';
 		login(5, "Shared");
-    add_patient('Regression', 'PendingTreatment_PendingTransfer', 'M', 'Shared');
+    add_patient('Regression', 'PendingTreatment_PendingTransfer', 'M');
     
     var patient_fullname = get_patient_fullname();
     
@@ -1697,7 +1697,7 @@ function tc_treatment_add_treatment_for_self_tester()
   {
     var test_title = "Treatment - Add a treatment for a self-tester and check it within the database";
 		login(5, "Shared");
-    add_patient("Regression", "Self_tester", "M", "Shared");
+    add_patient("Regression", "Self_tester", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     add_manual_self_test_group();
@@ -1743,7 +1743,7 @@ function tc_inr_test_results_received_from_instrument_match_to_patient()
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -1795,7 +1795,7 @@ function tc_inr_test_results_received_from_instrument_most_recent_result_appears
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     var inr_test_timestamp2 = get_timestamps_for_now_object_with_changed_hours('-', 2);
@@ -1842,7 +1842,7 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_do_not_
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 96);
     
@@ -1887,7 +1887,7 @@ function tc_inr_test_results_received_from_instrument_matched_to_patient_can_dos
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     
@@ -1946,7 +1946,7 @@ function tc_inr_test_results_received_archive_button_archiving_last_result_remov
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2000,7 +2000,7 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
@@ -2066,7 +2066,7 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
@@ -2132,7 +2132,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_ca
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2182,7 +2182,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_co
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2229,7 +2229,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_remov
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2283,7 +2283,7 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     
@@ -2386,7 +2386,7 @@ function cacuk432_bug_fix_sequence()
         var drug_2 = drug_array[j];
         if(drug_1 != drug_2)
         {
-          add_patient('Regression', 'CACUK-432', 'M', 'Shared');
+          add_patient('Regression', 'CACUK-432', 'M');
           add_treatment_plan(drug_1, "Coventry", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "", "52 Weeks");
           
           if(drug_1 != "Warfarin")
@@ -2447,7 +2447,7 @@ function cacuk432_bug_fix_single()
     var result_set = new Array();
     var result_set_1 = false;
     
-    add_patient('Regression', 'Bug_Fix', 'M', 'Shared');
+    add_patient('Regression', 'Bug_Fix', 'M');
     add_treatment_plan(drug_1, "Coventry", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "", "52 Weeks");
     
     if(drug_1 != "Warfarin")
@@ -2494,7 +2494,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for coventry dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions_Coventry", "M", "Shared");
+    add_patient("Regression", "Permissions_Coventry", "M");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -2542,7 +2542,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for hillingdon dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions Hillingdon", "M", "Shared");
+    add_patient("Regression", "Permissions Hillingdon", "M");
     add_treatment_plan("W", "Hillingdon", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -2588,7 +2588,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for manual dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions_Manual", "M", "Shared");
+    add_patient("Regression", "Permissions_Manual", "M");
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -2634,7 +2634,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for tait dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions_Tait", "M", "Shared");
+    add_patient("Regression", "Permissions_Tait", "M");
     add_treatment_plan('W','Tait','','Shared','');
     add_induction_slow_treatment('1.0')
     
@@ -2680,7 +2680,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for oates dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions Oates", "M", "Shared");
+    add_patient("Regression", "Permissions Oates", "M");
     add_treatment_plan('W','Oates','','Shared','');
     add_induction_slow_treatment('1.0')
     
@@ -2726,7 +2726,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
   {
     var test_title = "Treatment - Permissions - New INR button, make sure correct permission levels are applied for fast dosing";
 		login(5, "Shared");
-    add_patient("Regression", "Permissions Fast", "M", "Shared");
+    add_patient("Regression", "Permissions Fast", "M");
     add_treatment_plan('W','Fast','','Shared','');
     add_fast_induction_treatment('1.0')
     

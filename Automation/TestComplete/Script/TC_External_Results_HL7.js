@@ -8,7 +8,7 @@ function tc_external_results_hl7_message_todays_date_patient_match()
     var test_title = "External Results: HL7 Message Dated Today - Match Patient";
     login(7, "Shared");
     
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     var patient_data_array = new Array();
     patient_data_array = get_patient_demographics();
     var nhs = patient_data_array[1];
@@ -48,7 +48,7 @@ function tc_external_results_hl7_message_4_days_passed_with_dosing()
     var test_title = "External Results: HL7 Message Dated 4 Days Past - Patient Dosing";
     login(7, "Shared");
     
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     var patient_data_array = new Array();
     patient_data_array = get_patient_demographics();
@@ -127,7 +127,7 @@ function tc_external_results_hl7_message_duplicate_entries_different_nhs()
     var test_title = "External Results: HL7 Message Dated Today - Different NHS Numbers, Find Patient";
     login(7, "Shared");
     
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -177,7 +177,7 @@ function tc_external_results_hl7_message_duplicate_entries_different_dob()
     var test_title = "External Results: HL7 Message Dated Today - Different DOB, Find Patient";
     login(7, "Shared");
     
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -227,7 +227,7 @@ function tc_external_results_hl7_message_duplicate_entries_bad_nhs()
     var test_title = "External Results: HL7 Message Dated Today - False NHS numbers, Find Patient";
     login(7, "Shared");
     
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -271,7 +271,7 @@ function tc_external_results_hl7_message_duplicate_entries_bad_dob()
     var test_title = "External Results: HL7 message with incorrect D.O.B is sent in twice";
     login(7, "Shared");
      
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -322,7 +322,7 @@ function tc_external_results_hl7_message_duplicate_entries_different_inrs()
     var test_title = "External Results: HL7 message with different INR's is sent twice";
     login(7, "Shared");
     
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -371,7 +371,7 @@ function tc_external_results_hl7_message_duplicate_entries_different_times()
     var test_title = "External Results: HL7 message with different time is sent twice";
     login(7, "Shared");
      
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -421,7 +421,7 @@ function tc_external_results_hl7_message_duplicate_entries_different_dates_same_
     var test_title = "External Results: HL7 message with same time but different date is sent twice";
     login(7, "Shared");
     
-    add_patient("Regression", "HL7", "M", "Shared");
+    add_patient("Regression", "HL7", "M");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -473,7 +473,7 @@ function tc_external_results_hl7_message_duplicate_entries_no_nhs_same_patientid
     login(7, "Shared");
      
     var pat_no = new_guid(10);
-    add_patient("Regression", "HL7", "M", "Shared", " ", pat_no);
+    add_patient("Regression", "HL7", "M", " ", pat_no);
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -518,7 +518,7 @@ function tc_external_results_hl7_message_single_entry_no_nhs_no()
     login(7, "Shared");
      
     var pat_no = new_guid(10);
-    add_patient("Regression", "HL7", "M", "Shared", " ", pat_no);
+    add_patient("Regression", "HL7", "M", " ", pat_no);
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
@@ -556,7 +556,7 @@ function tc_results_tab_archiving_discard_button_can_archive_results_sent_in_fro
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
+    add_patient('Regression', 'External_Results_Processing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     

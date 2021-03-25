@@ -52,7 +52,7 @@ function tc_clinics_make_appointment_today_for_overdue_patient()
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
-    add_patient('Regression', 'appointment_overdue', 'M', 'Shared');
+    add_patient('Regression', 'appointment_overdue', 'M');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6300))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -97,7 +97,7 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.Today(), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
-    add_patient('Regression', 'complete_appointment', 'M', 'Shared');
+    add_patient('Regression', 'complete_appointment', 'M');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-15))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -158,7 +158,7 @@ function tc_clinics_move_seven_days_beyond_ntd()
     var date_1 = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 2));
     tsa_add_a_clinic(clinic_name_1, aqConvert.DateTimeToFormatStr(date_1, "%d/%m/%Y"), false, false);
     
-    add_patient('Regression', 'beyond_seven', 'M', 'Shared');
+    add_patient('Regression', 'beyond_seven', 'M');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -216,7 +216,7 @@ function tc_clinics_cancel_future_appointment()
     var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), 1));
     tsa_add_a_clinic(clinic_name, aqConvert.DateTimeToFormatStr(date, "%d/%m/%Y"), false, false);
     
-    add_patient('Regression', 'cancel_appointment', 'M', 'Shared');
+    add_patient('Regression', 'cancel_appointment', 'M');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6))), "2.0", "2.0", "0", "7", "2.5");
     
@@ -263,7 +263,7 @@ function tc_clinics_mark_unmark_dna()
     var clinic_name_1 = aqConvert.DateTimeToStr(aqDateTime.Now());
     tsa_add_a_clinic(clinic_name_1, clinic_date, false, false);
     
-    add_patient('Regression', 'markunmark_dna', 'M', 'Shared');
+    add_patient('Regression', 'markunmark_dna', 'M');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6))), "2.0", "2.0", "0", "7", "2.5");
     

@@ -8,7 +8,7 @@ function tc_find_patient_recently_viewed()
   {
     var test_title = 'Patient Recently Viewed - Find patient recently viewed'
     login(5, "Shared");
-    add_patient('Regression', 'add_a_new_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'add_a_new_patient', 'M'); 
   
     var patient_name = get_patient_fullname();
     var patients_list = new Array();

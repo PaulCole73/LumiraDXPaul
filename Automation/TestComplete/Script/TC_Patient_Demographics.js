@@ -13,7 +13,7 @@ function tc_edit_each_field_of_patient_demographics()
   {
     var test_title = 'Patient Demographics - Edit each field of patient demographics'
     login(5, "Shared");
-    add_patient('Regression', 'Edit_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'Edit_patient', 'M'); 
 
     var demographics_before_edit = get_patient_demographics();
   
@@ -43,7 +43,8 @@ function tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a
   {
     var test_title = 'Patient Demographics - Ensure patients age cannot be edited so that they are under 18 for a DOAC'
     login(5, "Shared");
-    add_patient('Regression', 'Edit_patient_age', 'M', 'Shared'); 
+    add_patient('Regression', 'Edit_patient_age', 'M'
+    ); 
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite');                 
     cancel_review();
     edit_patient_dob_to_be_under_18('216');

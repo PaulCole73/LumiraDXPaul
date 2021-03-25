@@ -14,7 +14,7 @@ function tc_patient_deactivate_a_patient()
   {
     var test_title = 'Patient Management - De-activate a patient'
     login(5, "Shared");
-    add_patient('Regression', 'Deactivate_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'Deactivate_patient', 'M'); 
   
     var result_set = new Array();
   
@@ -66,7 +66,7 @@ function tc_patient_reactivate_a_patient()
   {
     var test_title = "Patient Management - Re-activate a patient";
     login(5, "Shared");
-    add_patient("Regression", "Activate_patient", "M", "Shared"); 
+    add_patient("Regression", "Activate_patient", "M"); 
     deactivate_patient();
   
     //Checking the tp page is displayed when clicking on activate
@@ -115,7 +115,7 @@ function tc_patient_amend_a_patient_to_be_a_manual_self_tester()
   {
     var test_title = 'Patient Management - Amend a patient to be a self tester'
     login(5, "Shared");
-    add_patient('Regression', 'self_test_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'self_test_patient', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
@@ -154,7 +154,7 @@ function tc_patient_suspend_a_patient()
   {
     var test_title = 'Patient Management - Suspend a patient'
     login(5, "Shared");
-    add_patient('Regression', 'suspend_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'suspend_patient', 'M'); 
   
     var result_set = new Array();
 
@@ -194,7 +194,7 @@ function tc_suspend_a_patient_user_unable_to_select_a_date_more_than_6_months_in
   {
     var test_title = 'Patient Management - Suspend a patient user unable to select a date more than 6 months in the future'
     login(5, "Shared");
-    add_patient('Regression', 'suspend_limit', 'M', 'Shared'); 
+    add_patient('Regression', 'suspend_limit', 'M'); 
 
     var result_set = new Array(); 
     Goto_Patient_Suspend();
@@ -240,7 +240,7 @@ function tc_patient_unsuspend_a_patient()
   {
     var test_title = "Patient Management - Unsuspend a patient"
     login(5, "Shared");
-    add_patient("Regression", "Unsuspend_patient", "M", "Shared"); 
+    add_patient("Regression", "Unsuspend_patient", "M"); 
     
     suspend_patient();
     var text = unsuspend_patient();
@@ -282,7 +282,7 @@ function tc_patient_change_the_patients_registered_practice()
   {
     var test_title = "Patient Management - Change the patients registered practice";
     login(5, "Shared");
-    add_patient("Regression", "Registered_practice", "M", "Shared"); 
+    add_patient("Regression", "Registered_practice", "M"); 
   
     var reg_prac = "LDxCS-Test-AutoTest2";
     var expected_text = get_string_translation(("The patient(s) registered practice has been successfully changed."));
@@ -324,7 +324,7 @@ function tc_transfer_a_patient_who_has_a_pending_treatment()
   {
     var test_title = 'Patient Management - Transfer a patient who has a pending treatment'
     login(5, "Shared");
-    add_patient('Regression', 'Transfer_pending', 'M', 'Shared'); 
+    add_patient('Regression', 'Transfer_pending', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_pending_manual_treatment('2.5','Lab','2.0','7');
   
@@ -356,14 +356,14 @@ function tc_transfer_a_patient_where_the_patient_will_be_a_duplicate_of_an_exist
   
     //Adding the patient that is the duplicate at test location
     login(5, "Shared");
-    add_patient('Regression', 'Transfer_inactive_patient', 'M', 'Shared');
+    add_patient('Regression', 'Transfer_inactive_patient', 'M');
     var nhs_num_one = get_patient_nhs();         
     deactivate_patient();
     Log_Off();
   
     //Add second duplicate and send to the test location
     login(15, "Shared");
-    add_patient('Regression', 'Trans_inactive_pat', 'M', 'Shared',nhs_num_one); 
+    add_patient('Regression', 'Trans_inactive_pat', 'M', nhs_num_one); 
   
     var messagename = get_patient_fullname();
   
@@ -412,7 +412,7 @@ function tc_transfer_a_patient_who_is_on_an_induction_protocol()
     var test_title = 'Patient Management - Transfer a patient who is on an induction protocol'
   
     login(5, "Shared");
-    add_patient('Regression', 'Transfer_induction_patient', 'M', 'Shared');
+    add_patient('Regression', 'Transfer_induction_patient', 'M');
     var messagename = get_patient_fullname();
     add_treatment_plan('W','Fast','','Shared','');
  
@@ -462,7 +462,7 @@ function tc_reactivate_a_potential_duplicate_patient()
     //Adding patient and making them inactive
     login(5, "Shared");
     var unique_val = get_unique_number();
-    add_patient('Regression', unique_val, 'M', 'Shared');
+    add_patient('Regression', unique_val, 'M');
     var patFirstname_one = get_patient_firstname();
     var nhs_num_one = get_patient_nhs();
     deactivate_patient();
@@ -470,7 +470,7 @@ function tc_reactivate_a_potential_duplicate_patient()
   
     //Add second duplicate and send to the test location
     login(15, "Shared");
-    add_patient('Regression', 'Trans_inactive_pat', 'M', 'Shared', nhs_num_one);
+    add_patient('Regression', 'Trans_inactive_pat', 'M', nhs_num_one);
     var messagename = get_patient_fullname();
     var nhs_num = get_patient_nhs();
     
@@ -512,7 +512,8 @@ function tc_suspending_an_overdue_patient_removes_them_from_the_overdue_report()
   {
     var test_title = "Patient Management - Suspending an overdue patient removes them from the overdue report";
     login(5, "Shared");
-    add_patient("Regression", "overdue_suspend_patient", "M", "Shared"); 
+    add_patient("Regression", "overdue_suspend_patient", "M"
+    ); 
     add_treatment_plan("W", "Manual", aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "Shared", "");
     var patNHS = get_patient_nhs();
     var patient_name = get_patient_fullname();

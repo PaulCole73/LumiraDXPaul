@@ -12,7 +12,7 @@ function tc_check_tests_due_tab()
   {
     var test_title = 'Patient tests due - Check tests due tab'
     login(5, "Shared");
-    add_patient('Regression', 'tests_due', 'M', 'Shared'); 
+    add_patient('Regression', 'tests_due', 'M'); 
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
 
