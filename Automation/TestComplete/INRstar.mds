@@ -2239,7 +2239,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C18-External results can be archived" key="{4C57C85A-F45D-4D66-B9EB-C07CD038F564}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C21-External results can be archived" key="{4C57C85A-F45D-4D66-B9EB-C07CD038F564}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{CDBA598A-9222-41BC-BE2D-81839EE08F06}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
