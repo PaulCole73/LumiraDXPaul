@@ -1,5 +1,4 @@
 ﻿//USEUNIT Tested_Apps
-//USEUNIT TC_Results
 //--------------------------------------------------------------------------------
 //Suite of tests for external results tab
 //--------------------------------------------------------------------------------
@@ -18,7 +17,8 @@ function ts_master_results(send_mail)
 //==============================================================================//
 
 function ts_results()
-{
+{ 
+  tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();
 }
 
 //==============================================================================//

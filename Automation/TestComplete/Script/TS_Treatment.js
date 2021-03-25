@@ -173,6 +173,5 @@ function ts_to_be_categorized()
   tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table();
   tc_inr_test_results_received_from_instrument_matched_to_patient_do_not_appear_if_over_3_days_old();
   tc_inr_test_results_received_from_instrument_matched_to_patient_can_dose_a_manual_patient();
-  tc_inr_test_results_received_from_instrument_archiving_results_from_external_results_tab_is_possible();
 }
 //==============================================================================//
