@@ -284,7 +284,7 @@ function check_summary_tab_image(patient_nhs)
 //--------------------------------------------------------------------------------
 function add_patient(name_first, name_last, sex, nhs_num)
 { 
-  patient_details = create_patient_object_for_fiscal(name_first, name_last, sex);
+  var patient_details = create_patient_object_for_fiscal(name_first, name_last, sex);
     
   var INRstarV5 = INRstar_base();    
   Goto_Add_Patient();
