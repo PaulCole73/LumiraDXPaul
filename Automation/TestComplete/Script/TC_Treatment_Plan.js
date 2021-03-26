@@ -15,7 +15,7 @@ function tc_treatment_plan_add_first_manual_treatment_plan()
   {
     var test_title = 'Treatment Plan - Add first manual treatment plan'
     login(5, "Shared");
-    add_patient('Regression', 'Add_manual_tp', 'M', 'Shared'); 
+    add_patient('Regression', 'Add_manual_tp', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
   
     result_set = new Array();
@@ -52,7 +52,7 @@ function tc_treatment_plan_add_first_maintenance_treatment_plan()
   {
     var test_title = 'Treatment Plan - Add first maintenance treatment plan'
     login(5, "Shared");
-    add_patient('Regression', 'Add_maintenance_tp', 'M', 'Shared'); 
+    add_patient('Regression', 'Add_maintenance_tp', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
   
     //Check the audit for adding the tp
@@ -78,7 +78,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_before_any_treatments_have_b
   {
     var test_title = 'Treatment Plan - Add a new treatment plan before any treatments have been added'
     login(5, "Shared");
-    add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
+    add_patient('Regression', 'Add_new_tp', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     Goto_Patient_Treatment_Plan();
   
@@ -105,7 +105,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_after_treatments_have_been_a
   { 
     var test_title = "Treatment Plan - Add a new treatment plan after treatments have been added - Induction patient";
     login(5, "Shared");
-    add_patient("Regression", "New_tp_induct_pat", "M", "Shared");
+    add_patient("Regression", "New_tp_induct_pat", "M");
     add_treatment_plan("W", "Tait", "", "Shared", "");
     add_induction_slow_treatment('1.0');
   
@@ -147,7 +147,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_an_induction_patient_yel
   {  
     var test_title = 'Treatment Plan - Add a new treatment plan for an induction patient yellow banner is displayed'
     login(5, "Shared");
-    add_patient('Regression', 'New_tp_induct_pat', 'M', 'Shared'); 
+    add_patient('Regression', 'New_tp_induct_pat', 'M'); 
     add_treatment_plan('W','Oates','','Shared','');
   
     result = banner_checker_includes(get_string_translation("The patient's dosing method is currently set to :")  + " " + get_string_translation("Induction"));
@@ -172,7 +172,7 @@ function tc_treatment_plan_ensure_that_all_fields_are_editable_on_the_treatment_
   { 
     var test_title = 'Treatment Plan - Ensure that all fields are editable on the treatment plan if no treatments have been added'
     login(5, "Shared");
-    add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
+    add_patient('Regression', 'Add_new_tp', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
   
     //Testing the editable fields
@@ -231,7 +231,7 @@ function tc_treatment_plan_dont_show_treatments_from_previous_treatment_plan_unl
   {  
     var test_title = 'Treatment Plan - Don\'t show treatments from previous treatment plan unless requested specifically'
     login(5, "Shared");
-    add_patient('Regression', 'tp_dropdown', 'M', 'Shared'); 
+    add_patient('Regression', 'tp_dropdown', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     deactivate_patient();
@@ -272,7 +272,7 @@ function tc_edit_treatment_plan_after_a_review_has_been_added()
   {  
     var test_title = 'Treatment Plan - Edit treatment plan after a review has been added'
     login(5, "Shared");
-    add_patient('Regression', 'Edit_tp', 'M', 'Shared'); 
+    add_patient('Regression', 'Edit_tp', 'M'); 
     add_treatment_plan('W','Manual','','Shared','');
     add_warfarin_review_new_review_button();
   
@@ -315,7 +315,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_for_a_non_warfarin_drug_chec
   {  
     var test_title = 'Treatment Plan - Add a new treatment plan for a non warfarin drug, check all the drugs warn the user'
     login(5, "Shared");
-    add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
+    add_patient('Regression', 'Add_new_tp', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
@@ -387,7 +387,7 @@ function tc_edit_treatment_plan_change_dosing_method_to_another_algorithm()
   {  
     var test_title = 'Edit treatment plan - Change Dosing Method to another algorithm'
     login(5, "Shared");
-    add_patient('Regression', 'Add_new_tp', 'M', 'Shared'); 
+    add_patient('Regression', 'Add_new_tp', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
   
@@ -425,7 +425,7 @@ function tc_edit_treatment_plan_change_target_inr_and_other_edits_of_clinical_de
   {  
     var test_title = 'Edit treatment plan - Change target INR and other edits of clinical detail with existing treatment'
     login(5, "Shared");
-    add_patient('Regression', 'Edit_tp_with_treat', 'M', 'Shared'); 
+    add_patient('Regression', 'Edit_tp_with_treat', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
  
@@ -466,7 +466,7 @@ function tc_edit_treatment_plan_change_diagnosis()
   {  
     var test_title = 'Edit treatment plan - Change diagnosis'
     login(5, "Shared");
-    add_patient('Regression', 'Edit_tp_diagnosis', 'M', 'Shared'); 
+    add_patient('Regression', 'Edit_tp_diagnosis', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
   
     var clinical_details_before_edit = get_treatment_plan_single_field('diagnosis');    
@@ -506,7 +506,7 @@ function tc_treatment_plan_add_a_new_treatment_plan_after_a_treatment_has_been_a
   {
     var test_title = 'Treatment Plan - Add a new treatment plan after a treatment has been added selecting yes to using previous';
 		login(5, "Shared");
-    add_patient('Regression', 'Use_Previous', 'M', 'Shared');
+    add_patient('Regression', 'Use_Previous', 'M');
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "7", "2.5");
     
@@ -563,7 +563,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
-    add_patient('Regression', 'Future_Appointment', 'M', 'Shared');
+    add_patient('Regression', 'Future_Appointment', 'M');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "7", "2.5");
     

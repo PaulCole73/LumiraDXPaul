@@ -9,7 +9,7 @@ function tc_find_a_patient()
   {
     var test_title = 'Patient Search - Find a patient'
     login(5, "Shared");
-    add_patient('Regression', 'find_a_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'find_a_patient', 'M'); 
     var pat_name = get_patient_surname();
     patient_search(pat_name);
     

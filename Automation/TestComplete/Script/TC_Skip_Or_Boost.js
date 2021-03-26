@@ -18,7 +18,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
 {                                                                                                 //combine this test and below test
   //Data setup
   login(5, "Shared");
-  add_patient('SORB_Coventry', 'user_perms_validation', 'M', 'Shared'); 
+  add_patient('SORB_Coventry', 'user_perms_validation', 'M'); 
   add_treatment_plan('W','Coventry','','Shared','');
   
   add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");

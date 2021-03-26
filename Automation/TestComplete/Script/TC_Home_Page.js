@@ -17,7 +17,7 @@ function tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page()
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Overdue_INR_message', 'M', 'Shared');
+    add_patient('Regression', 'Overdue_INR_message', 'M');
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
@@ -59,7 +59,7 @@ function tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Exceed_suspension_period', 'M', 'Shared');
+    add_patient('Regression', 'Exceed_suspension_period', 'M');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -35)),'Shared','','4 Weeks');
   
     //Get the patient details
@@ -102,7 +102,7 @@ function tc_home_page_view_the_exceeded_suspension_period_message()
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Exceed_suspension_period', 'M', 'Shared');
+    add_patient('Regression', 'Exceed_suspension_period', 'M');
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
@@ -137,7 +137,7 @@ function tc_home_page_unsuspend_button_patient_can_be_unsuspended_using_the_home
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Unsuspend_message', 'M', 'Shared');
+    add_patient('Regression', 'Unsuspend_message', 'M');
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
@@ -187,7 +187,7 @@ function tc_home_page_view_the_patient_transfer_requests_to_accept_or_decline()
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Transfer_request', 'M', 'Shared');
+    add_patient('Regression', 'Transfer_request', 'M');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -240,7 +240,7 @@ function tc_home_page_accept_button_transfer_can_be_accepted_on_home_page()
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Accept_transfer_request', 'M', 'Shared');
+    add_patient('Regression', 'Accept_transfer_request', 'M');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -294,7 +294,7 @@ function tc_home_page_decline_button_transfer_can_be_declined_on_home_page()
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Decline_transfer_request', 'M', 'Shared');
+    add_patient('Regression', 'Decline_transfer_request', 'M');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -359,7 +359,7 @@ function tc_home_page_view_the_patient_transfer_requests_not_yet_accepted_messag
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Not_accepted_transfer', 'M', 'Shared');
+    add_patient('Regression', 'Not_accepted_transfer', 'M');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -400,7 +400,7 @@ function tc_home_page_view_the_patients_referred_to_you_for_further_action_messa
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'refer_treatment', 'M', 'Shared'); 
+    add_patient('Regression', 'refer_treatment', 'M'); 
     add_treatment_plan('W','Coventry','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");    
     add_pending_maintenance_treatment("2.0",(aqDateTime.Today()));
@@ -448,7 +448,7 @@ function tc_home_page_view_the_patients_with_incomplete_treatment_message()
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Incomplete_treatment', 'M', 'Shared');
+    add_patient('Regression', 'Incomplete_treatment', 'M');
     add_treatment_plan('W','Hillingdon','','Shared','');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.3", "1.2", "0", "7", "2.5");
     add_pending_maintenance_treatment("2.4", aqConvert.StrToDate(aqDateTime.Today()));
@@ -489,7 +489,7 @@ function tc_home_page_view_the_patients_with_no_diagnosis_or_treatment_plan_mess
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'No_diagnosis', 'M', 'Shared');
+    add_patient('Regression', 'No_diagnosis', 'M');
     
     //Get the patient details
     //var pat_nhs = get_patient_nhs();
@@ -520,7 +520,7 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Overdue_non_warf_review', 'M', 'Shared');
+    add_patient('Regression', 'Overdue_non_warf_review', 'M');
     
     //Note: we are specifying 7 as the days overdue for the treatment plan, this gets used later on 
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -7)),'Shared','','Indefinite');
@@ -569,7 +569,7 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
+    add_patient('Regression', 'Not_overdue_non_warf_review', 'M');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -150)),'Shared','','Indefinite');
     add_non_warfarin_review('','Y',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -1)),'65','100');
     
@@ -609,7 +609,7 @@ function tc_home_page_table_contents_overdue_a_non_wafarin_review_patient_with_a
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Not_overdue_non_warf_review', 'M', 'Shared');
+    add_patient('Regression', 'Not_overdue_non_warf_review', 'M');
     add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','Indefinite');
     
     //Click cancel on the new review and set future date for next review

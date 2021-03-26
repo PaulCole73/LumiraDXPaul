@@ -12,7 +12,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_does_not_unders
   {
     var test_title = "Engage - Ensure urgent notification displayed when patient does not understand their schedule";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W","Manual","","Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "7");
     
@@ -89,7 +89,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
     var targetINR = diagnosis_details().Panel(1).Label("TargetINR_DetachedLabel").innerText;
     WaitSeconds(1);
    
-    add_patient("Regression", "Engage", "M", "Shared");
+    add_patient("Regression", "Engage", "M");
     add_treatment_plan("W","Manual","","Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "7");
     WaitSeconds(2);
@@ -196,7 +196,7 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
   {
     var test_title = "Engage - New historical treatment is not most recent with NTD greater than existing NTD";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.Today()), "2.0", "2.5", "7");
     
@@ -261,7 +261,7 @@ function tc_new_historical_treatment_is_most_recent_with_NTD_less_than_than_exis
   {
     var test_title = "Engage - New historical treatment is most recent with NTD less than existing NTD";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W","Manual","","Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "14");
     
@@ -343,7 +343,7 @@ function tc_accept_engage_eula_web()
   {
     var test_title = "Engage - Can EULA be accepted on Web";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.5", "14");
     
@@ -403,7 +403,7 @@ function tc_reenrol_user_can_log_into_engage()
   {
     var test_title = "Engage - Re-enrol Patient, (no exisiting schedule), the user can log in to Engage with the new password";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.0", "0", "7", "2.5");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", "5.0", "2");
@@ -463,7 +463,7 @@ function tc_disenrol_user_with_current_treatment_plan()
   {
     var test_title = "Engage - Disenroll Patient from Engage (confirm non-completed task >= today are deleted)";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "5.0", "7");
     
@@ -526,7 +526,7 @@ function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (17)), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "5.0", "10");
     
@@ -610,7 +610,7 @@ function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (6)), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7");
     
@@ -711,7 +711,7 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     var clinic_name = aqConvert.DateTimeToStr(aqDateTime.Now());
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (7)), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "5.0", "5");
     
@@ -789,7 +789,7 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
   {
     var test_title = "Engage - Early INR (submitted by clinician) then delete treatment (Previous NTD in the future reinstating NTD, doses and schedule)";
     login(7, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))), "2.5", "5.0", "7");
     
@@ -910,7 +910,7 @@ function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedu
   {
     var test_title = "Engage - Overdue INR (submitted by clinician) then delete treatment (Previous NTD in the past - removes non-completed tasks)";
     login(7, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", "5.0", "2");
     
@@ -996,7 +996,7 @@ function tc_submit_multiple_inrs_same_day_long_dose_schedule()
   {
     var test_title = "Engage - Correct behaviour when submitting multiple INRs on the same day, long dose schedule is displayed in engage";
     login(7, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared"); 
+    add_patient("Regression", "Engage", "M"); 
     add_treatment_plan("W", "Manual", "", "Shared","");
     var dose = "1.0";
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.5", dose, "3");
@@ -1132,7 +1132,7 @@ function tc_ensure_urgent_notification_is_displayed_when_patient_submits_an_INR_
   {
     var test_title = "Engage - Ensure urgent notification is displayed when patient submits an INR greater than 5";
     login(5, "Shared");
-    add_patient("Regression", "Engage", "M", "Shared");
+    add_patient("Regression", "Engage", "M");
     add_treatment_plan("W","Hillingdon","","Shared","");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.5", "0", "7", "2.5");
     add_maintenance_treatment('2.5',aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))));
@@ -1240,7 +1240,7 @@ function tc_inrange_INR_with_bleeding_event_incorrect_previous_dose_change_to_me
     var test_title = "Engage - inrange INR with bleeding event incorrect previous dose change to medication and missed dose using split tablets";
     login(5, "Shared");
     var pat_no = new_guid(8);
-    add_patient("Regression", "Engage", "M", "Shared", "", pat_no);
+    add_patient("Regression", "Engage", "M", "");
     add_treatment_plan("W", "Manual", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.5", "0", "14", "2.5");
     WaitSeconds(2);

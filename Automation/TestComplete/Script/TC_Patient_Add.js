@@ -12,7 +12,7 @@ function tc_add_a_new_patient()
   {
     var test_title = 'Patient - Add a new patient';
     login(5, "Shared");
-    add_patient('Regression', 'add_a_new_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'add_a_new_patient', 'M'); 
     //PDE code appears above add patient, needs to be considered in setup as this will cause differences between UK/IT
     var results = validate_bottom_patient_audit(test_title, get_string_translation("Add Patient"));
   
@@ -35,12 +35,12 @@ function tc_add_a_new_patient_duplicate_nhs()
   {
     var test_title = 'Patient - Add a duplicate patient based on NHS number'
     login(5, "Shared");
-    add_patient('Regression', 'add_a_new_dup_patient', 'M', 'Shared'); 
+    add_patient('Regression', 'add_a_new_dup_patient', 'M'); 
     var nhs_num = get_patient_nhs();
     var first_name = get_patient_firstname();
     var surname = get_patient_surname();
   
-    add_patient('Regression', 'add_a_new_patient_duplicate', 'M', 'Shared',nhs_num); 
+    add_patient('Regression', 'add_a_new_patient_duplicate', 'M', nhs_num); 
   
     var actual_err_mess = get_patient_banner_error_message();
     var expected_err_mess = (get_string_translation("This patient may already exist at this location as ") + surname + ', ' + first_name + ' [' + nhs_num + ']');     

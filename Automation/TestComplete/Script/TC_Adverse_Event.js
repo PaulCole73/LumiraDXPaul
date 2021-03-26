@@ -11,7 +11,7 @@ function tc_add_a_new_adverse_event()
   {
     var test_title = 'Adverse Event - Add a new adverse event'
     login(5, "Shared");
-    add_patient('Regression', 'add_adverse_event', 'M', 'Shared');
+    add_patient('Regression', 'add_adverse_event', 'M');
     add_adverse_event();
     
     var adverse_confirmation_banner = adverse_event_tab_confirm_box().Panel(0).Panel("PatientsAdverseEventsMessages").TextNode(0).contentText;
@@ -47,7 +47,7 @@ function tc_delete_adverse_event()
   {
     var test_title = 'Adverse Event - Delete adverse event'
     login(5, "Shared");
-    add_patient('Regression', 'delete_adverse_event', 'M', 'Shared'); 
+    add_patient('Regression', 'delete_adverse_event', 'M'); 
     add_adverse_event();
     delete_adverse_event();
   

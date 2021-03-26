@@ -19,7 +19,7 @@ function tc_external_patient_lookup_for_maintenance_patient()
   {
     var test_title = "External Patient Lookup - Finding the patient - External patient lookup for a maintenance patient";
     login(5, "Shared");
-    add_patient("Regression", "External_Lookup", "M", "Shared");
+    add_patient("Regression", "External_Lookup", "M");
   
     var result_set = new Array();
     var table_data = new Array();
@@ -72,7 +72,7 @@ function tc_external_patient_lookup_delete_inr()
   {
     var test_title = "External Patient Lookup - Treating the patient - Delete INR";
     login(5, "Shared");
-    add_patient("Regression", "External_Delete", "M", "Shared");
+    add_patient("Regression", "External_Delete", "M");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     add_maintenance_treatment("2.5", aqConvert.StrToDate(aqDateTime.Today()));
@@ -123,7 +123,7 @@ function tc_external_patient_lookup_new_inr()
   {
     var test_title = "External Patient Lookup - Treating the patient - New INR";
     login(5, "Shared");
-    add_patient("Regression", "External_INR", "M", "Shared");
+    add_patient("Regression", "External_INR", "M");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
   
@@ -180,7 +180,7 @@ function tc_external_patient_lookup_same_day_maintenance_treatment()
   {
     var test_title = "External Patient Lookup - Treating the patient - Same day maintenance treatment";
     login(5, "Shared");
-    add_patient("Regression", "Ext_Second_Maint", "M", "Shared");
+    add_patient("Regression", "Ext_Second_Maint", "M");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     add_maintenance_treatment("2.5", aqConvert.StrToDate(aqDateTime.Today()));
@@ -229,7 +229,7 @@ function tc_external_patient_lookup_add_historic_inr()
   {
     var test_title = "External Patient Lookup - Treating the patient - Add a historical treatment to the current treatment plan";
     login(5, "Shared");
-    add_patient("Regression", "External_Historic", "M", "Shared");
+    add_patient("Regression", "External_Historic", "M");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
   
     var result_set = new Array();
@@ -274,7 +274,7 @@ function tc_external_patient_lookup_delete_multiple_inr()
   {
     var test_title = "External Patient Lookup - Treating the patient - Delete the two last external treatments";
     login(5, "Shared");
-    add_patient("Regression", "Ext_Delete_Two", "M", "Shared");
+    add_patient("Regression", "Ext_Delete_Two", "M");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
   
     var result_set = new Array();
@@ -324,7 +324,7 @@ function tc_external_patient_lookup_add_adverse_event()
   {
     var test_title = "External Patient Lookup - Treating the patient - Add an adverse event to the patient";
     login(5, "Shared");
-    add_patient("Regression", "External_Adverse", "M", "Shared");
+    add_patient("Regression", "External_Adverse", "M");
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
   
     var result_set = new Array();
@@ -367,7 +367,7 @@ function tc_external_patient_lookup_add_note()
   {
     var test_title = "External Patient Lookup - Treating the patient - Add a patient note";
     login(5, "Shared");
-    add_patient("Regression", "External_Note", "M", "Shared");
+    add_patient("Regression", "External_Note", "M");
   
     var result_set = new Array();
     var table_data = new Array();
@@ -409,7 +409,7 @@ function tc_external_patient_lookup_archive_note()
   {
     var test_title = "External Patient Lookup - Treating the patient - Archive a patient note";
     login(5, "Shared");
-    add_patient("Regression", "External_Archive", "M", "Shared");
+    add_patient("Regression", "External_Archive", "M");
   
     var result_set = new Array();
     var table_data = new Array();
@@ -463,7 +463,7 @@ function tc_external_patient_lookup_edit_treatment_plan()
   {
     var test_title = "External Patient Lookup - Treating the patient - Edit the treatment plan";
     login(5, "Shared");
-    add_patient("Regression", "Ext_Edit_Treat", "M", "Shared");
+    add_patient("Regression", "Ext_Edit_Treat", "M");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
   
     var result_set = new Array();
@@ -508,7 +508,7 @@ function tc_external_patient_lookup_add_treatment_plan()
   {
     var test_title = "External Patient Lookup - Treating the patient - Add treatment plan from external location";
     login(5, "Shared");
-    add_patient("Regression", "Ext_Add_Treat", "M", "Shared");
+    add_patient("Regression", "Ext_Add_Treat", "M");
   
     var result_set = new Array();
     var table_data = new Array();
@@ -552,7 +552,7 @@ function tc_external_patient_lookup_add_treatment_to_old_plan()
   {
     var test_title = "External Patient Lookup - Treating the patient - Add treatment to a previous treatment plan";
     login(5, "Shared");
-    add_patient("Regression", "Ext_Prev_Treat", "M", "Shared");
+    add_patient("Regression", "Ext_Prev_Treat", "M");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     add_treatment_plan("Apixaban", "Coventry", aqConvert.StrToDate(aqDateTime.Today()), "Shared", "2", "52 Weeks");
@@ -603,7 +603,7 @@ function tc_external_patient_lookup_treat_overdue_patient()
   {
     var test_title = "External Patient Lookup - Treating the patient - Overdue treatment checking";
     login(5, "Shared");
-    add_patient("Regression", "External_Overdue", "M", "Shared");
+    add_patient("Regression", "External_Overdue", "M");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.0", "0", "7", "2.5");
   
@@ -658,7 +658,7 @@ function tc_external_patient_lookup_refer_patient_treatment()
   {
     var test_title = "External Patient Lookup - Treating the patient - Referred treatment checking";
     login(5, "Shared");
-    add_patient("Regression", "External_Referred", "M", "Shared");
+    add_patient("Regression", "External_Referred", "M");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-14))), "2.0", "2.0", "0", "7", "2.5");
   
