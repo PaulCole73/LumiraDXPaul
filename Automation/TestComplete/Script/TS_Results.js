@@ -19,6 +19,7 @@ function ts_master_results(send_mail)
 
 function ts_results()
 {
+  tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sent_twice();
 }
 
 //==============================================================================//

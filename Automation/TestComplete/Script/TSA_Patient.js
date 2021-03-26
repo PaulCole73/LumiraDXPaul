@@ -119,6 +119,83 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
   wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
 }
 //--------------------------------------------------------------------------------
+function add_patient_italy()  
+{
+  var INRstarV5 = INRstar_base();    
+  Goto_Add_Patient();
+  
+  var patient_area = add_patient_demographics_system_path();
+  var patient_data = create_patient_object_for_fiscal();
+  
+  patient_data.nhs_number = get_fiscal_code(patient_data).replace(/ +/g, "");
+
+  var panelEPD = patient_area.Panel("EditPatientDetails");
+    
+      if(patient_data.nhs_number == null || patient_data.nhs_number == "")
+      {
+        if(patient_data.nhs_number == " ")
+        {
+        
+        }
+        else
+        {
+          if(language == "English")
+          {
+            var nhs_number = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
+          } 
+            else
+            {
+              var nhs_number = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_data.nhs_number;
+            }  
+        }
+      }
+
+    panelEPD.Panel(0).Textbox("PatientNumber").Text = patient_data.patient_number;
+    panelEPD.Panel(2).Select("Title").ClickItem(patient_data.title);
+    panelEPD.Panel(3).Textbox("Surname").Text = patient_data.last_name;
+    panelEPD.Panel(4).Textbox("FirstName").Text = patient_data.first_name;
+      
+//    panelEPD.Panel(5).Image("calendar_png").Click();
+//    
+//    var w_datepicker = INRstarV5.Panel("ui_datepicker_div");
+//    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(get_string_translation("Jan"));
+//    w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(dobyr);
+//    w_datepicker.Table(0).Cell(3, 3).Link(0).Click();
+
+    var panelEPCD = patient_area.Panel("EditPatientContactDetails");
+      
+    panelEPCD.Panel(0).Textbox("FirstLineAddress").Text = patient_data.first_addressLine;
+    panelEPCD.Panel(2).Textbox("ThirdLineAddress").Text = patient_data.second_addressLine;
+    panelEPCD.Panel(3).Textbox("Town").Text = patient_data.town;
+    panelEPCD.Panel(4).Textbox("County").Text = patient_data.county;
+    panelEPCD.Panel(6).Textbox("Phone").Text = patient_data.phone;
+    
+    //Need to add this back in at some point but it is now going to be doing different validation for Italy so blanking out for now
+    panelEPCD.Panel(5).Textbox("Postcode").Text = "";
+    
+    var guid = new_guid(15);
+    
+    if(language == "Italian")   
+    {
+      panelEPCD.Panel(8).Textbox("Mobile").Text = patient_data.phone;    
+      panelEPCD.Panel(9).Textbox("Email").Text = patient_data.email;
+    }
+    if(language == "English")  
+    {
+      panelEPCD.Panel(7).Textbox("Mobile").Text = patient_data.phone;
+      panelEPCD.Panel(8).Textbox("Email").Text = patient_data.email;  
+    }
+    
+    var button_area = add_patient_demographics_buttons_system_path()
+    var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
+      
+    save_button.Click();
+    //process_popup(get_string_translation("Unable to synchronize with the LumiraDX instrument"), get_string_translation("Close"));
+  
+  var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
+}
+//--------------------------------------------------------------------------------
 function patient_search(data)
 {
   Goto_Patient_Search();

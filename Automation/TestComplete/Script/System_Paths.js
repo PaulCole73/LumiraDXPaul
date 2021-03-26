@@ -352,11 +352,11 @@ function home_page_exceeded_treatment_end_date_link()
    
   return link;
 }
-//-------------------------------------------------------------------------------
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Demographics  /////////////////////////
 //------------------------------------------------------------------------
-function patient_banner_blue_bar()
+function path_inrstar_patient_banner_blue_bar()
 {
   var panelMCP = path_main_content_panel();
   var blue_header_bar = panelMCP.Panel("PatientRecord").Panel("PatientBannerContainer").Panel("patientZone1");

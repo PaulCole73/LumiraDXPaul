@@ -1084,9 +1084,20 @@ function get_timestamps_for_now_object_with_changed_hours(operator, hours)
     var timestamp = new Object();
     
     //Adjust by imported hours 
-    if      (operator == "+")  {now.setHours( now.getHours() +hours );}
-    else if (operator == "-")  {now.setHours( now.getHours() -hours );}
-    else    {Log.Warning('Invalid time adjustment operator');   return}
+    //Feels like we should have just used the operator without the if/else statement not sur ewhy we have this ?
+    if (operator == "+")  
+    {
+      now.setHours( now.getHours() +hours );
+    }
+      else if (operator == "-")  
+         {
+           now.setHours( now.getHours() -hours );
+         }
+    else    
+    {
+     Log.Warning('Invalid time adjustment operator');   
+     return
+    }
     
     //Break date down into vars
     day = now.getDate();
@@ -1098,9 +1109,18 @@ function get_timestamps_for_now_object_with_changed_hours(operator, hours)
     shortmonth = set_month(month)
     
     //Adjust formating of date variables
-    if (month < 10) {month = "0" + month}
-    if (day < 10) {day = "0" + day}
-    if (hour < 10) {hour = "0" + hour}
+    if(month < 10) 
+    {
+     month = "0" + month
+    }
+    if(day < 10) 
+    {
+     day = "0" + day
+    }
+    if(hour < 10) 
+    {
+     hour = "0" + hour
+    }
     minutes = minutes.substr(-2);
     seconds = seconds.substr(-2);
     

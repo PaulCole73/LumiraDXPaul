@@ -21,7 +21,7 @@
 //Returning an NHS of the current patient loaded
 function get_patient_nhs()
 {
-  var patient_blue_banner_path = patient_banner_blue_bar()
+  var patient_blue_banner_path = path_inrstar_patient_banner_blue_bar()
   var nhs_num = patient_blue_banner_path.Panel(3).FindChild("idStr", "NHSNumber_DetachedLabel", 3).innerText; //Panel(0).Label("NHSNumber_DetachedLabel").innerText; path has changed for UK
           
   return nhs_num;
@@ -34,8 +34,10 @@ function get_patient_details_object_from_demographics()
   var patient_details = new Object();
   Goto_Patient_Demographics();  
   
+  var patient_banner_blue_bar_path = path_inrstar_patient_banner_blue_bar();
   var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
   
+  patient_details.patientid = patient_banner_blue_bar_path.Panel(3).Panel(0).Label("INRstarId_DetachedLabel").contentText;
   patient_details.firstname = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
   patient_details.lastname = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
@@ -47,7 +49,6 @@ function get_patient_details_object_from_demographics()
 
   return patient_details;
 }
-
 //-----------------------------------------------------------------------------------
 //Returning details from demographics as an object
 //I had to create this due to data being manipulated in get_patient_details_object_from_demographics 
