@@ -363,11 +363,19 @@ function create_variable_patient_data(name_first, name_last, sex)
     {
       name_first = first_name_string.charAt(0).toUpperCase() + first_name_string.slice(1);
     }
+    else
+    {
+      name_first = name_first + create_random_char_string(7);
+    }
     
     //if no value is passed in for last name then generate a random character string
     if(name_last == null || name_last == "")
     {
       name_last = create_random_char_string(15).toUpperCase();
+    }
+    else
+    {
+      name_last = name_last + create_random_char_string(7);
     }
     
     //adjust sex code for full word and set appropriate title
