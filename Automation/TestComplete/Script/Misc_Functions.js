@@ -12,9 +12,9 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "Italian";
-var environment = "INRstarWindowsITA-test1";
-var environmentname = "it-test1";
+var language = "English";
+var environment = "INRstarWindowsUK-test1";
+var environmentname = "uk-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -361,9 +361,10 @@ function date_picker(path, date, product)
     base = INRstar_base();
   }
   
-  path.Panel(0).Image("calendar_png").Click();     
+  path.FindChild("ObjectIdentifier", "calendar_png", 2).Click();     
   datepicker = base.Panel("ui_datepicker_div");
   
+  //date must be in format dd/mm/yyyy
   var expiry_date = date; 
     
   var w_yr = aqString.SubString(expiry_date,6,4);

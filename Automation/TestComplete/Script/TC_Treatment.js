@@ -2324,58 +2324,8 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_inr_test_results_received_from_instrument_archiving_results_from_external_results_tab_is_possible()
-{
-  try
-  {
-    var test_title = "External Results - Sent from CSP: archiving results from external results tab is possible"
-    
-    //Setup test scenario
-    login(7, "Shared");
-    var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M', 'Shared');
-    var patient = get_patient_details_object_from_demographics();
-    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
-    
-    //Post in an external result
-    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload); 
-    post_external_result_instrument(JSON.stringify(body_data)); 
-    
-    //Get result_data from table
-    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results)
-            
-    //Prepare result array
-    var result_set = new Array();
-    
-    //Check latest result data reflects posted in result
-    var result_set_1 = compare_values(external_result.inr, body_data.resultValue, "Checking posted result is present in external results");
-    result_set.push(result_set_1);
-       
-    //Select Archive result and discard with message - store message as comments 
-    var comments = archive_test_result(external_result.row, "Message")
-    
-    //Search for patient
-    patient_search(patient.fullname);
-    
-    //Check the top audit information section includes the comments
-    var result_set_1 = validate_more_info_top_patient_audit(comments);
-    result_set.push(result_set_1);
-    
-    //Validate all the results sets are true & Pass in the result
-    var results = results_checker_are_true(result_set);
-    results_checker(results, test_title); 
-    Log_Off(); 
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Treatment";
-    var test_name = "tc_inr_test_results_received_from_instrument_archiving_results_from_external_results_tab_is_possible";
-    handle_failed_tests(suite_name, test_name); 
-  } 
-}
-//--------------------------------------------------------------------------------
 
+//--------------------------------------------------------------------------------
 //*** NOT READY TO USE YET ***
 
 //function tc_treatment_cancel_pending_treatment() 
