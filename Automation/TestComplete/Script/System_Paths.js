@@ -54,6 +54,8 @@ function path_patient_tab_content()
 function path_treatment_plan_details()
 {
   var panelPTC = path_patient_tab_content();
+  WaitSeconds(3);
+  wait_for_object(panelPTC, "Name", "Panel(\"PatientTreatmentPlanWrapper\")", 1);
   var panelPTPW = panelPTC.Panel("PatientTreatmentPlanWrapper");
   var panelPCD = panelPTPW.Panel("PatientTreatmentPlanDetails");
   
@@ -449,6 +451,7 @@ function patient_edit_demographics_form_buttons()
 function patient_clinical_tab()
 {
   var panelMPT = path_main_patient_tab();
+  wait_for_object(panelMPT, "Name", "Panel(\"TreatmentPlanSubTab\")", 1);
   var clinical_tab = panelMPT.Panel("TreatmentPlanSubTab").Panel("PatientTreatmentPlanTabSubMenu");
   
   return clinical_tab;
@@ -527,6 +530,7 @@ function add_treatment_plan_main_section_path()
 function add_treatment_plan_main_section_activate_path()
 {      
   var panelPTC = path_patient_tab_content();
+  wait_for_object(panelPTC, "Name", "Form(\"ActivatePatientForm\")", 1);
   var formATPF = panelPTC.Form("ActivatePatientForm");
   var treatment_plan_main_section = formATPF.FieldSet(0).Panel("EditPatientTreatmentPlanInformation");
       
@@ -544,6 +548,7 @@ function add_treatment_plan_warfarin_details()
 function add_treatment_plan_warfarin_activate_details()
 {
   var panelEPTPI = add_treatment_plan_main_section_activate_path();
+  wait_for_object(panelEPTPI, "Name", "Panel(\"WarfarinDetailsPanel\")", 1);
   var treatment_plan_warfarin_details_activate = panelEPTPI.Panel("WarfarinDetailsPanel").Panel("PatientTreatmentPlanInformation").Panel(0).Panel("EditPatientTreatmentPlanInformation");
   
   return treatment_plan_warfarin_details_activate;
@@ -747,6 +752,7 @@ function historic_treatment_path()
 function treatment_row_comment_box()
 {
   var INRstarV5 = INRstar_base();
+  wait_for_object(INRstarV5, "Name", "Panel(\"modalDialogBox\")", 2);
   var treatment_comment_path = INRstarV5.Panel(3).Panel("modalDialogBox").Fieldset("EditCommentsFieldset").Form("EditCommentsForm").FindChild("ObjectType", "Textarea", 2);
   
   return treatment_comment_path;
@@ -755,6 +761,7 @@ function treatment_row_comment_box()
 function save_inr_button()
 {
   var pending_treatment_buttons_path = path_patient_pending_treatment();
+  wait_for_object(pending_treatment_buttons_path, "Name", "Panel(\"PendingTreatmentInfo\")", 1);
   var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr", "AcceptPendingTreatment", 4);
   
   return save_inr_button_path;
@@ -763,6 +770,7 @@ function save_inr_button()
 function override_button()
 {
   var pending_treatment_buttons_path = path_patient_pending_treatment();
+  wait_for_object(pending_treatment_buttons_path, "Name", "Panel(\"PendingTreatmentInfo\")", 1);
   var override_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").FindChild("Name", "Button(\"OverridePendingTreatment\")", 10);
   
   return override_button_path;
@@ -1115,6 +1123,8 @@ function summary_tab_path()
 function patient_current_summary()
 {
   var panelMTC = path_main_patient_tab();
+  WaitSeconds(2);
+  wait_for_object(panelMTC, "Name", "Panel(\"PatientSummaryWrapper\")", 1);
   var panelCTW = panelMTC.Panel("PatientSummaryWrapper").Panel("PatientSummaryCurrentTreatmentWrapper");
   var panelSCT = panelCTW.Panel("PatientSummaryCurrentTreatment");
   
@@ -1482,6 +1492,7 @@ function options_eqc_form_buttons()
 function options_eqc_edit_form_buttons()
 {
   var admin_content = path_admin_content();
+  wait_for_object(admin_content, "Name", "Form(\"EditEQCResultForm\")", 1);
   var eqc_form_edit_buttons = admin_content.Form("EditEQCResultForm");
   
   return eqc_form_edit_buttons;
@@ -1661,6 +1672,7 @@ function add_review_form()
 function review_tab_data()
 {
   var panelPTC = path_patient_tab_content();
+  wait_for_object(panelPTC, "Name", "Panel(\"AnnualReviewWrapper\")", 1);
   var review_tab = panelPTC.Panel("AnnualReviewWrapper");
   
   return review_tab;
@@ -1758,6 +1770,7 @@ function patient_management_care_team()
 function patient_management_deactivate_form()
 {
   var patient_management = patient_management_base();
+  wait_for_object(patient_management, "Name", "Panel(\"PatientStatus\")", 1);
   var deactivate_form = patient_management.Panel("PatientStatus").Fieldset("DeactivatePatient").Form("DeactivatePatientForm");
   
   return deactivate_form;
@@ -1832,6 +1845,7 @@ function deactivate_error_message()
 function pat_management_status_confirmation_message()
 {
   var patient_management = patient_management_base();
+  wait_for_object(patient_management, "Name", "Panel(\"PatientStatus\")", 1);
   var banner_text = patient_management.Panel("PatientStatus").Panel(0);
 
   return banner_text;
@@ -1840,6 +1854,7 @@ function pat_management_status_confirmation_message()
 function activate_confirmation_message()
 {
   var panelPTC = path_patient_tab_content();
+  wait_for_object(panelPTC, "Name", "Panel(\"Messages\")", 1);
   var activate_confirmation = panelPTC.Panel("Messages");
 
   return activate_confirmation;

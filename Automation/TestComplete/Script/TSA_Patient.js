@@ -309,12 +309,11 @@ function add_patient(name_first, name_last, sex, nhs_num)
         patient_details.nhs_number = get_fiscal_code(patient_details).replace(/ +/g, "");
         var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
       }
-      //currently not passing nhs to this function, this can be re-added at a later time
-      else 
-      {
-        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
-      }
     }
+  }
+  else 
+  {
+    var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
   }
     
   panelEPD.Panel(0).Textbox("PatientNumber").Text = patient_details.patient_number;

@@ -866,11 +866,11 @@ function tc_treatment_edit_a_treatment_comment()
   
     result_set = new Array(); 
   
-    var new_comment = 'regression new comment'
+    var new_comment = 'regression new comment';
     add_treatment_comment(new_comment);
   
     //Check the audit for adding the treatment
-    var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Treatment record was updated. ") + get_string_translation("Comments changed from") + " [" + old_comment + "]" + get_string_translation("to") + " [" + new_comment + "].");
+    var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Treatment record was updated.") + " " + get_string_translation("Comments changed from") + " [" + old_comment + "] " + get_string_translation("to") + " [" + new_comment + "].");
     result_set.push(result_set_1);
   
     //Validate the results sets are true
@@ -1072,7 +1072,7 @@ function tc_treatment_maintenance_starting_algorithm_for_unstable_patient()
 		
     // Navigate to enter a new INR
     Goto_Patient_New_INR();
-    process_popup(get_string_translation("This patient has recently started Warfarin. Please confirm that they are appropriately stable for a maintenance algorithm"), +
+    process_popup(get_string_translation("This patient has recently started warfarin. Please confirm that they are appropriately stable for a maintenance algorithm"), +
       get_string_translation("Confirm"));
 		
     // Get the expected message
@@ -1337,6 +1337,7 @@ function tc_treatment_maintenance_save_override_treatment()
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
     
+    WaitSeconds(2);
     var strikethrough = treatment_table().Cell(1, 3).Panel(0).style.textdecoration;
     var result_set_1 = compare_values(strikethrough, "line-through", test_title);
     result_set.push(result_set_1);
