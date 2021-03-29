@@ -54,7 +54,6 @@ function path_patient_tab_content()
 function path_treatment_plan_details()
 {
   var panelPTC = path_patient_tab_content();
-  WaitSeconds(3);
   wait_for_object(panelPTC, "Name", "Panel(\"PatientTreatmentPlanWrapper\")", 1);
   var panelPTPW = panelPTC.Panel("PatientTreatmentPlanWrapper");
   var panelPCD = panelPTPW.Panel("PatientTreatmentPlanDetails");
@@ -1123,7 +1122,6 @@ function summary_tab_path()
 function patient_current_summary()
 {
   var panelMTC = path_main_patient_tab();
-  WaitSeconds(2);
   wait_for_object(panelMTC, "Name", "Panel(\"PatientSummaryWrapper\")", 1);
   var panelCTW = panelMTC.Panel("PatientSummaryWrapper").Panel("PatientSummaryCurrentTreatmentWrapper");
   var panelSCT = panelCTW.Panel("PatientSummaryCurrentTreatment");
