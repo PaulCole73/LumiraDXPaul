@@ -33,6 +33,11 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
+					<testItem name="Test" key="{7DD2CBBE-1C38-4050-97F0-5E7AE5FC2FA5}" group="False" parallel="False" enabled="True" testMoniker="{3E644774-5830-45ED-B233-AEDA357E7355}path_patient_record_tab" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+						<testParameters />
+						<environments testedURL="" />
+						<children />
+					</testItem>
 				</children>
 			</testItem>
 			<testItem name="UK" key="{097104BB-CCF2-4C92-9CC1-09845CDC6A42}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
