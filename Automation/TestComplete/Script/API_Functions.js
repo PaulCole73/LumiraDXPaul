@@ -6,7 +6,7 @@
 
 function api_post(address, headers, requestBody)
 { 
-  Log.Message(requestBody)
+  //Log.Message(requestBody)
   
   // Create the aqHttpRequest object
   var aqHttpRequest = aqHttp.CreatePostRequest(address);
@@ -15,7 +15,7 @@ function api_post(address, headers, requestBody)
   for ( var property in headers )
   {
     aqHttpRequest.SetHeader(property, headers[property])
-    Log.Message(headers[property])
+    //Log.Message(headers[property])
   }
   
   // Send the request, create the aqHttpResponse object
