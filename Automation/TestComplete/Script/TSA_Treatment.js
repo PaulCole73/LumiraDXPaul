@@ -845,7 +845,6 @@ function json_body_data_instrument(patient_details, location_id, inr_result, blo
   return payload
 }
 //--------------------------------------------------------------------------------
-
 function get_csp_url_from_the_inrstar_url()
 {
   //Get the CSP URL from the INRstar URL 
@@ -854,11 +853,10 @@ function get_csp_url_from_the_inrstar_url()
   var domain = matches && matches[1];
   var domain = domain.replace("inrstar", "csp");
   var domain = "https://" + domain;
-  Log.Message("Csp URL has been created as: " + domain);
+  //Log.Message("Csp URL has been created as: " + domain);
   
   return domain
 }
-
 //--------------------------------------------------------------------------------
 
 function get_bearer_token_for_instrument()

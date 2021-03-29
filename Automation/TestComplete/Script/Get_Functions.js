@@ -21,7 +21,7 @@
 //Returning an NHS of the current patient loaded
 function get_patient_nhs()
 {
-  var patient_blue_banner_path = patient_banner_blue_bar()
+  var patient_blue_banner_path = path_inrstar_patient_banner_blue_bar()
   var nhs_num = patient_blue_banner_path.Panel(3).FindChild("idStr", "NHSNumber_DetachedLabel", 3).innerText; //Panel(0).Label("NHSNumber_DetachedLabel").innerText; path has changed for UK
           
   return nhs_num;
@@ -34,20 +34,20 @@ function get_patient_details_object_from_demographics()
   var patient_details = new Object();
   Goto_Patient_Demographics();  
   
+  var patient_banner_blue_bar_path = path_inrstar_patient_banner_blue_bar();
   var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
   
+  patient_details.patientid = patient_banner_blue_bar_path.Panel(3).Panel(0).Label("INRstarId_DetachedLabel").contentText;
   patient_details.firstname = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
   patient_details.lastname = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
   patient_details.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
   patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob);
   patient_details.gender = patient_demographics_tab_demographics_path.Panel(7).Label("Gender_DetachedLabel").contentText.substring(0,1); //returns M or F
-  patient_details.fullname = patient_details.lastname + ', ' + patient_details.firstname;
-  
+  patient_details.fullname = patient_details.lastname + ', ' + patient_details.firstname;  
 
   return patient_details;
 }
-
 //-----------------------------------------------------------------------------------
 //Returning details from demographics as an object
 //I had to create this due to data being manipulated in get_patient_details_object_from_demographics 
@@ -127,9 +127,16 @@ function get_fiscal_code(patient_data)
   }
 
   //Edit the object to fit the form
-  var fiscal_form_day = aqString.SubString(patient_data.dob,0,2);
-  var fiscal_form_month = get_english_translation(aqString.SubString(patient_data.dob,3,3)).toUpperCase();
-  var fiscal_form_year = aqString.SubString(patient_data.dob,7,4);
+  
+  //Need to change the dob so that the 0 is removed from days less than 10 so 03 becomes 3 
+  //Setting to lowercase for the translation file, as datetime defaults to Apr not apr
+  var patient_new_dob = aqString.ToLower(aqConvert.DateTimeToFormatStr(patient_data.dob, "%#d-%b-%Y"));
+  Log.Message(patient_new_dob)
+  
+  
+  var fiscal_form_day = aqString.SubString(patient_new_dob,0,1);
+  var fiscal_form_month = get_english_translation(aqString.SubString(patient_new_dob,2,3)).toUpperCase();
+  var fiscal_form_year = aqString.SubString(patient_new_dob,6,4);
   
   var sex = (patient_data.sex==get_string_translation("Male")) ? "M" : "F";
 
@@ -1110,6 +1117,32 @@ function get_hl7_patient_info(table_position)
   }
   
   return patient_data;
+}
+//-----------------------------------------------------------------------------------
+function get_external_result_status(timestamp_external_result)
+{
+  WaitSeconds(2, "Waiting for table to update...");
+  Goto_External_Results();
+  
+  var results_table = wait_for_object(path_patient_content_panel(), "idStr", "WarfarinResultsTable", 4);
+
+    if(results_table.Exists)
+    {
+      var rowcount = results_table.rowcount
+
+      for(var i=0; i < results_table.rowcount; i++)
+      {
+        if(results_table.Cell(i, 2).contentText == timestamp_external_result)
+        {
+        external_result_status = results_table.Cell(i, 4).Panel(0).Panel("Div1").contentText;
+        return external_result_status;
+        }
+      }
+    } 
+      else
+      {
+        Log.Message("External result table doesn't exist");
+      }
 }
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
