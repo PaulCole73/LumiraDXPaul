@@ -141,13 +141,12 @@ function check_deactivate_warning()
 //--------------------------------------------------------------------------------
 function reactivate_patient(drug, dm, start_date)
 {
-  var INRstarV5 = INRstar_base();    
-  WaitSeconds(1);
+  var INRstarV5 = INRstar_base();   
   Goto_Patient_Management();
-  WaitSeconds(1);
   
   var pat_managment_tab_status_buttons_path = pat_managment_tab_status_buttons();
-  pat_managment_tab_status_buttons_path.Button("ActivatePatientButton").Click(); 
+  pat_managment_tab_status_buttons_path.Button("ActivatePatientButton").Click();
+  
   var treatment_plan_area = add_treatment_plan_main_section_activate_path();
   
   treatment_plan_area.Panel(0).Image("calendar_png").Click();

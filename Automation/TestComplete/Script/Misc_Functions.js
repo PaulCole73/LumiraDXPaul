@@ -12,9 +12,8 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
+
 var language = "Italian";
-var environment = "INRstarWindowsUK-test1";
-var environmentname = "it-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -556,10 +555,8 @@ function get_string_translation(translation_word)
    Log.Message("You didn't pass in a language I recognise you passed in " + language);
    break;
  }
- 
-   var driver = DDT.ExcelDriver("C:\\GIT\\Data\\Locale.xls", "Sheet1");  
-   
-//Think it needs to be this   
+
+var driver = DDT.ExcelDriver("C:\\GIT\\Data\\Locale.xls", "Sheet1");     //Think it needs to be this   
 // var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
  
  while (!driver.EOF())
@@ -573,12 +570,14 @@ function get_string_translation(translation_word)
    }     
    driver.Next();
  }
+
  Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?");
 }
 //-----------------------------------------------------------------------------------
 //Just to quickly test things in the translation file
 function testing_translation()
 {
+
 var test = get_string_translation("Duplicate");   
 
 Log.Message(test)
@@ -1087,6 +1086,7 @@ function get_timestamps_for_now_object_with_changed_hours(operator, hours)
     var timestamp = new Object();
     
     //Adjust by imported hours 
+
     //Feels like we should have just used the operator without the if/else statement not sur ewhy we have this ?
     if (operator == "+")  
     {
@@ -1112,6 +1112,7 @@ function get_timestamps_for_now_object_with_changed_hours(operator, hours)
     shortmonth = set_month(month)
     
     //Adjust formating of date variables
+
     if(month < 10) 
     {
      month = "0" + month

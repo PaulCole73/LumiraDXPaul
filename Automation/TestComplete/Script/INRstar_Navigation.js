@@ -522,8 +522,8 @@ function Goto_Tests_Due()
   var INRstarV5 = INRstar_base();
   var panel = INRstarV5.Panel("MainPage");
   panel.Panel("header").Link("MainPatientLink").Click();
-  var panelMCP = panel.Panel("main").Panel("MainContentPanel")
-  panelMCP.Panel("ManagePatients").Panel("PatientTab").Link("TestDueTabLink").Click();
+  //WaitSeconds(3);
+  path_main_content_panel().Panel("ManagePatients").Panel("PatientTab").Link("TestDueTabLink").Click();
 }
 //-------------------------------------------------------------------------------
 // Navigate to Patient Demographics
