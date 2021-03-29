@@ -128,9 +128,16 @@ function get_fiscal_code(patient_data)
   }
 
   //Edit the object to fit the form
-  var fiscal_form_day = aqString.SubString(patient_data.dob,1,1);
-  var fiscal_form_month = get_english_translation(aqString.SubString(patient_data.dob,3,3)).toUpperCase();
-  var fiscal_form_year = aqString.SubString(patient_data.dob,7,4);
+  
+  //Need to change the dob so that the 0 is removed from days less than 10 so 03 becomes 3 
+  //Setting to lowercase for the translation file, as datetime defaults to Apr not apr
+  var patient_new_dob = aqString.ToLower(aqConvert.DateTimeToFormatStr(patient_data.dob, "%#d-%b-%Y"));
+  Log.Message(patient_new_dob)
+  
+  
+  var fiscal_form_day = aqString.SubString(patient_new_dob,0,1);
+  var fiscal_form_month = get_english_translation(aqString.SubString(patient_new_dob,2,3)).toUpperCase();
+  var fiscal_form_year = aqString.SubString(patient_new_dob,6,4);
   
   var sex = (patient_data.sex==get_string_translation("Male")) ? "M" : "F";
 
@@ -1139,16 +1146,6 @@ function get_external_result_status(timestamp_external_result)
       }
 }
 //-----------------------------------------------------------------------------------
-function date_test()
-{
-//  var dt = "2021-03-26T15:07:54";
-  dt = aqConvert.StrToDateTime("2021-03-26 15:07:54")
-
-  var converteddate = aqConvert.DateTimeToFormatStr(dt, "%m/%d/%Y %H:%M:%S");
-  Log.Message(dt)
-  Log.Message(converteddate)
-  
-}
 //---------------------------------------------------------------------------------//
 //                              Location Management                                //
 //---------------------------------------------------------------------------------//
