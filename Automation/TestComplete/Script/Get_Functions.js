@@ -1125,7 +1125,7 @@ function get_external_result_status(timestamp_external_result)
   WaitSeconds(2, "Waiting for table to update...");
   Goto_External_Results();
   
-  var results_table = patient_external_results_table();
+  var results_table = wait_for_object(path_patient_content_panel(), "idStr", "WarfarinResultsTable", 4);
 
     if(results_table.Exists)
     {

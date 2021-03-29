@@ -22,7 +22,7 @@ function tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sen
     var actual_external_result_status = get_external_result_status(inr_test_timestamp.external_results);
     
     var results = compare_values(get_string_translation("Duplicate"), actual_external_result_status, test_title);
-    results_checker(results, test_title)
+    results_checker(results, test_title);
     
     Log_Off(); 
   }
