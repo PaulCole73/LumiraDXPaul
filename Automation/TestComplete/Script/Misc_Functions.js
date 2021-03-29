@@ -12,9 +12,9 @@
 //Put generic non-feature specific functions
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
-var language = "English";
+var language = "Italian";
 var environment = "INRstarWindowsUK-test1";
-var environmentname = "uk-test1";
+var environmentname = "it-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -558,7 +558,7 @@ function get_string_translation(translation_word)
  }
  
 // var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
-  var driver = DDT.ExcelDriver("C:\\GIT\\Data\\Locale.xls", "Sheet1")
+ var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
  
  while (!driver.EOF())
  {
@@ -571,13 +571,13 @@ function get_string_translation(translation_word)
    }     
    driver.Next();
  }
- Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
+ Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?");
 }
 //-----------------------------------------------------------------------------------
 //Just to quickly test things in the translation file
 function testing_translation()
 {
-var test = get_string_translation("For warfarin patients please ensure that any recent INR results and warfarin doses are entered as historical treatments.");   
+var test = get_string_translation("Duplicate");   
 
 Log.Message(test)
 }

@@ -128,7 +128,7 @@ function get_fiscal_code(patient_data)
   }
 
   //Edit the object to fit the form
-  var fiscal_form_day = aqString.SubString(patient_data.dob,0,2);
+  var fiscal_form_day = aqString.SubString(patient_data.dob,1,1);
   var fiscal_form_month = get_english_translation(aqString.SubString(patient_data.dob,3,3)).toUpperCase();
   var fiscal_form_year = aqString.SubString(patient_data.dob,7,4);
   
@@ -1113,6 +1113,42 @@ function get_hl7_patient_info(table_position)
   return patient_data;
 }
 //-----------------------------------------------------------------------------------
+function get_external_result_status(timestamp_external_result)
+{
+  WaitSeconds(2, "Waiting for table to update...");
+  Goto_External_Results();
+  
+  var results_table = patient_external_results_table();
+
+    if(results_table.Exists)
+    {
+      var rowcount = results_table.rowcount
+
+      for(var i=0; i < results_table.rowcount; i++)
+      {
+        if(results_table.Cell(i, 2).contentText == timestamp_external_result)
+        {
+        external_result_status = results_table.Cell(i, 4).Panel(0).Panel("Div1").contentText;
+        return external_result_status;
+        }
+      }
+    } 
+      else
+      {
+        Log.Message("External result table doesn't exist");
+      }
+}
+//-----------------------------------------------------------------------------------
+function date_test()
+{
+//  var dt = "2021-03-26T15:07:54";
+  dt = aqConvert.StrToDateTime("2021-03-26 15:07:54")
+
+  var converteddate = aqConvert.DateTimeToFormatStr(dt, "%m/%d/%Y %H:%M:%S");
+  Log.Message(dt)
+  Log.Message(converteddate)
+  
+}
 //---------------------------------------------------------------------------------//
 //                              Location Management                                //
 //---------------------------------------------------------------------------------//

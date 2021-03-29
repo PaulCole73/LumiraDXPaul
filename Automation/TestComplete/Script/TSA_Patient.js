@@ -2,10 +2,10 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function add_patient(p_surname, p_firstname, gender, TestStepMode, nhs_num, pat_no)  
-{
-  add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_num, "1975", pat_no);
-}
+//function add_patient(p_surname, p_firstname, gender, TestStepMode, nhs_num, pat_no)  
+//{
+//  add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_num, "1975", pat_no);
+//}
 
 function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_num, dobyr, pat_no)  
 {
@@ -114,83 +114,6 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
     save_button.Click();
     //process_popup(get_string_translation("Unable to synchronize with the LumiraDX instrument"), get_string_translation("Close"));
   }
-  
-  var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
-}
-//--------------------------------------------------------------------------------
-function add_patient_italy()  
-{
-  var INRstarV5 = INRstar_base();    
-  Goto_Add_Patient();
-  
-  var patient_area = add_patient_demographics_system_path();
-  var patient_data = create_patient_object_for_fiscal();
-  
-  patient_data.nhs_number = get_fiscal_code(patient_data).replace(/ +/g, "");
-
-  var panelEPD = patient_area.Panel("EditPatientDetails");
-    
-      if(patient_data.nhs_number == null || patient_data.nhs_number == "")
-      {
-        if(patient_data.nhs_number == " ")
-        {
-        
-        }
-        else
-        {
-          if(language == "English")
-          {
-            var nhs_number = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
-          } 
-            else
-            {
-              var nhs_number = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_data.nhs_number;
-            }  
-        }
-      }
-
-    panelEPD.Panel(0).Textbox("PatientNumber").Text = patient_data.patient_number;
-    panelEPD.Panel(2).Select("Title").ClickItem(patient_data.title);
-    panelEPD.Panel(3).Textbox("Surname").Text = patient_data.last_name;
-    panelEPD.Panel(4).Textbox("FirstName").Text = patient_data.first_name;
-      
-//    panelEPD.Panel(5).Image("calendar_png").Click();
-//    
-//    var w_datepicker = INRstarV5.Panel("ui_datepicker_div");
-//    w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(get_string_translation("Jan"));
-//    w_datepicker.Panel(0).Panel(0).Select(1).ClickItem(dobyr);
-//    w_datepicker.Table(0).Cell(3, 3).Link(0).Click();
-
-    var panelEPCD = patient_area.Panel("EditPatientContactDetails");
-      
-    panelEPCD.Panel(0).Textbox("FirstLineAddress").Text = patient_data.first_addressLine;
-    panelEPCD.Panel(2).Textbox("ThirdLineAddress").Text = patient_data.second_addressLine;
-    panelEPCD.Panel(3).Textbox("Town").Text = patient_data.town;
-    panelEPCD.Panel(4).Textbox("County").Text = patient_data.county;
-    panelEPCD.Panel(6).Textbox("Phone").Text = patient_data.phone;
-    
-    //Need to add this back in at some point but it is now going to be doing different validation for Italy so blanking out for now
-    panelEPCD.Panel(5).Textbox("Postcode").Text = "";
-    
-    var guid = new_guid(15);
-    
-    if(language == "Italian")   
-    {
-      panelEPCD.Panel(8).Textbox("Mobile").Text = patient_data.phone;    
-      panelEPCD.Panel(9).Textbox("Email").Text = patient_data.email;
-    }
-    if(language == "English")  
-    {
-      panelEPCD.Panel(7).Textbox("Mobile").Text = patient_data.phone;
-      panelEPCD.Panel(8).Textbox("Email").Text = patient_data.email;  
-    }
-    
-    var button_area = add_patient_demographics_buttons_system_path()
-    var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
-      
-    save_button.Click();
-    //process_popup(get_string_translation("Unable to synchronize with the LumiraDX instrument"), get_string_translation("Close"));
   
   var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
   wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
@@ -359,13 +282,80 @@ function check_summary_tab_image(patient_nhs)
   return is_image_there;
 }
 //--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
+function add_patient(name_first, name_last, sex, nhs_num)
+{ 
+  var patient_details = create_patient_object_for_fiscal(name_first, name_last, sex);
+    
+  var INRstarV5 = INRstar_base();    
+  Goto_Add_Patient();
+  var patient_area = add_patient_demographics_system_path();
 
+  var panelEPD = patient_area.Panel("EditPatientDetails");
+    
+  if(nhs_num == null || nhs_num == "")
+  {
+    if(nhs_num == " ")
+    {
+      //specific rule/test exists for NHS with an empty string
+    }
+    else
+    {
+      if(language == "English")
+      {
+        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
+      }
+      else if(language == "Italian")
+      {
+        patient_details.nhs_number = get_fiscal_code(patient_details).replace(/ +/g, "");
+        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
+      }
+    }
+  }
+  else 
+  {
+    var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
+  }
+    
+  panelEPD.Panel(0).Textbox("PatientNumber").Text = patient_details.patient_number;
+       
+  //Italy has removed the option for Ms and Miss 
+  //If we want to add in the other titles to click then add new function when required     
+  panelEPD.Panel(2).Select("Title").ClickItem(patient_details.title);
+  panelEPD.Panel(3).Textbox("Surname").Text = patient_details.last_name;
+  panelEPD.Panel(4).Textbox("FirstName").Text = patient_details.first_name;
 
+  var path = add_patient_demographics_system_path().Panel("EditPatientDetails");
+  var date =  aqConvert.DateTimeToFormatStr(patient_details.dob, "%d/%m/%Y");
+  date_picker(path, date);
 
+  var panelEPCD = patient_area.Panel("EditPatientContactDetails");
+  panelEPCD.Panel(0).Textbox("FirstLineAddress").Text = patient_details.first_addressLine;
+  panelEPCD.Panel(1).Textbox("SecondLineAddress").Text = patient_details.second_addressLine;
+  panelEPCD.Panel(2).Textbox("ThirdLineAddress").Text = patient_details.third_addressLine;
+  panelEPCD.Panel(3).Textbox("Town").Text = patient_details.town;
+  panelEPCD.Panel(4).Textbox("County").Text = patient_details.county;
+  panelEPCD.Panel(6).Textbox("Phone").Text = patient_details.phone;
+  panelEPCD.Panel(5).Textbox("Postcode").Text = patient_details.post_code;
+  panelEPCD.FindChild("idStr", "Mobile", 3).Text = patient_details.phone;
+  panelEPCD.FindChild("idStr", "Email", 3).Text = patient_details.email;
+    
+  var button_area = add_patient_demographics_buttons_system_path()
+  var save_button = button_area.Panel(0).SubmitButton("AddPatientDetails");
+      
+  save_button.Click();
+  //process_popup(get_string_translation("Unable to synchronize with the LumiraDX instrument"), get_string_translation("Close"));
+  
+  var patient_root = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
+  wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
+}
+//--------------------------------------------------------------------------------
+//this function sets up the variable elements of a patients data
+//non identifier elements e.g. address, phone number etc are hard coded in the patient object
+function create_variable_patient_data(name_first, name_last, sex)
+{
+    var title;
+    var first_name_string = create_random_char_string(15);
+    var patient_details = new Object();  
 
     //if no value is passed in for first name then generate a random character string
     if(name_first == null || name_first == "")
@@ -428,11 +418,6 @@ function check_summary_tab_image(patient_nhs)
     return patient_details;
 }
 //--------------------------------------------------------------------------------
-
-
-
-
-
 
 
 
