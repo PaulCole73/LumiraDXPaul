@@ -25,6 +25,14 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
+					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters>
+							<param0 name="location_id" type="3" localVarName="" varType="8" value="7267e611-da9b-41d7-83e9-e8d342987d5a" />
+							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="2" />
+						</testParameters>
+						<environments testedURL="" />
+						<children />
+					</testItem>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" parallel="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
 							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />

@@ -1947,7 +1947,7 @@ function tc_inr_test_results_received_archive_button_archiving_last_result_remov
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', '', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2001,7 +2001,7 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', '', 'M');
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
@@ -2067,7 +2067,7 @@ function tc_inr_test_results_received_archive_button_archiving_two_results_in_se
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', '', 'M');
     var patient = get_patient_details_object_from_demographics();
     
     //Post in older external results
@@ -2133,7 +2133,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_ca
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', '', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2183,7 +2183,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_be_co
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', '', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2230,7 +2230,7 @@ function tc_inr_test_results_received_archive_button_archiving_process_can_remov
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', '', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     
@@ -2284,7 +2284,7 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', '', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 1);
     
@@ -2305,10 +2305,10 @@ function tc_inr_test_results_received_archive_button_archived_results_can_be_obt
     var result_set = new Array();
     
     //Navigate to External Results & get latest archived
-    var archived_results = get_external_results_received_by_timestamp(inr_test_timestamp.external_results, "Archived")
+    var archived_results = get_external_results_received_by_timestamp(inr_test_timestamp.external_results, "Archived");
     
     //Check archived results being shown is true - inr
-    var result_set_1 = compare_values(archived_results.inr, body_data.resultValue, "Checking that archived INR result is obtainable");
+    var result_set_1 = compare_values(archived_results.inr, get_string_translation(body_data.resultValue), "Checking that archived INR result is obtainable");
     result_set.push(result_set_1);
     
     //Validate all the results sets are true & Pass in the result

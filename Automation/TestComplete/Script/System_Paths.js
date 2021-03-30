@@ -2173,7 +2173,7 @@ function patient_external_results_table()
 function patient_external_results_archived_table()
 {
   var base_path = external_results_base_form_path();
-  var table = base_path.Panel("WarfarinResultsContainer").Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable")
+  var table = base_path.Panel("WarfarinResultsContainer").Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
   
   return table;
 }
