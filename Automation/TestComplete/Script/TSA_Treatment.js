@@ -918,17 +918,17 @@ function archive_treatment(row, action)
     var button = table.Cell(row, 4).Panel(0).Panel("UserAction2").Button("Archive").Click()
         
     //Wait for popup before proceeding avoids timeouts down the line
-    wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);
+    wait_for_object(INRstar_base(), "contentText", get_string_translation("Discard"), 5,"",2);
         
     //Pending the specified action (Discard/Cancel/Message) - handle the popup
     if (action == "Discard" || action == "Cancel")
     {
-        process_popup("Archive Reason", action);
+        process_popup(get_string_translation("Archive Reason"), get_string_translation(action));
     }
     else if (action == "Message")
     {
         var message = provide_archive_reason_after_archiving_result();
-        process_popup("Archive Reason", "Discard");  
+        process_popup(get_string_translation("Archive Reason"), get_string_translation("Discard"));  
         return message
     }
     else 
@@ -952,17 +952,17 @@ function archive_test_result(row, action)
       var button = table.Cell(row, 4).Panel(0).Panel("Div2").Button("ArchiveResult").Click()
         
       //Wait for popup before proceeding avoids timeouts down the line
-      wait_for_object(INRstar_base(), "contentText", "Discard", 5,"",2);
+      wait_for_object(INRstar_base(), "contentText", get_string_translation("Discard"), 5, "", 5);
         
       //Pending the specified action (Discard/Cancel/Message) - handle the popup
       if (action == "Discard" || action == "Cancel")
       {
-          process_popup("Archive Reason", action);
+          process_popup(get_string_translation("Archive Reason"), get_string_translation(action));
       }
       else if (action == "Message")
       {
           var message = provide_archive_reason_after_archiving_result();
-          process_popup("Archive Reason", "Discard");  
+          process_popup(get_string_translation("Archive Reason"), get_string_translation("Discard"));  
           return message 
       }
       else 

@@ -14,7 +14,7 @@
 //Setup environment variable either from cmd line or default
 
 var language = "Italian";
-var environment = "INRstarWindowsUK-int1";
+var environment = "INRstarWindowsITA-int1";
 var environmentname = "it-int1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -1229,7 +1229,7 @@ function setup_generic_patient(do_login, dm)
     {
       login(5, "Shared");
     }
-    add_patient("generic", "testing", "M", "Shared");
+    add_patient("generic", "testing", "M");
     //add_treatment_plan("W", dm, "", "Shared", "");
     
     if(do_login == true)
@@ -1237,6 +1237,20 @@ function setup_generic_patient(do_login, dm)
       Log_Off();
     }
   //}
+}
+//--------------------------------------------------------------------------------
+function post_multiple_external_results(location_id, number_of_results) //this belongs in tsa results
+{
+  //this posts a series of external results getting 1 hour older with each result
+  var patient = get_patient_details_object_from_demographics();
+  
+  for(var i = 1; i <= number_of_results; i++)
+  {  
+    //Post in older external results
+    var expected_older_blood_taken_time = get_timestamps_for_now_object_with_changed_hours('-', i);
+    var body_data_older = json_body_data_instrument(patient, location_id, "2.2", expected_older_blood_taken_time.csp_payload); 
+    post_external_result_instrument(JSON.stringify(body_data_older));
+  } 
 }
 
 //-----------------------------------------------------------------------------------
