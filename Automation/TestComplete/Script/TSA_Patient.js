@@ -364,7 +364,7 @@ function create_variable_patient_data(name_first, name_last, sex)
     }
     else
     {
-      name_first = name_first + create_random_char_string(7);
+      name_first = create_random_char_string(7) + name_first;
     }
     
     //if no value is passed in for last name then generate a random character string
@@ -374,7 +374,7 @@ function create_variable_patient_data(name_first, name_last, sex)
     }
     else
     {
-      name_last = name_last + create_random_char_string(7);
+      name_last = create_random_char_string(7) + name_last;
     }
     
     //adjust sex code for full word and set appropriate title

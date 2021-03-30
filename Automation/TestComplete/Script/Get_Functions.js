@@ -2,6 +2,7 @@
 //USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
 //USEUNIT Tested_Apps
+//USEUNIT TSA_Results
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -357,6 +358,66 @@ function get_inr_results_received_by_timestamp(timestamp)
   return results;
 }
 //--------------------------------------------------------------------------------
+function get_external_result_popup_header_text(timestamp_external_result)
+{
+  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  
+  var INRstarV5 = INRstar_base();
+  var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
+
+    if(warning_dialogue.Exists)
+    {
+      var header_text = INRstarV5.Panel(3).Panel(0).TextNode("ui_dialog_title_modalDialogBox").contentText;      
+      var pop_up_button_path = warning_pop_up();
+      pop_up_button_path.Button(0).Click();
+      return header_text;
+    }
+      else
+      {
+        Log.Message("Warning pop up doesn't exist");
+      }
+}
+//--------------------------------------------------------------------------------
+function get_external_result_popup_historic_button_text(timestamp_external_result)
+{
+  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  
+  var INRstarV5 = INRstar_base();
+  var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
+
+    if(warning_dialogue.Exists)
+    {
+      var pop_up_button_path = warning_pop_up();
+      var button_text = pop_up_button_path.Button(2).contentText
+      pop_up_button_path.Button(0).Click();
+      return button_text;
+    }
+      else
+      {
+        Log.Message("Warning pop up doesn't exist");
+      }
+}
+//--------------------------------------------------------------------------------
+function get_external_result_popup_new_inr_button_text(timestamp_external_result)
+{
+  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  
+  var INRstarV5 = INRstar_base();
+  var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
+
+    if(warning_dialogue.Exists)
+    {
+      var pop_up_button_path = warning_pop_up();
+      var button_text = pop_up_button_path.Button(1).contentText
+      pop_up_button_path.Button(0).Click();
+      return button_text;
+    }
+      else
+      {
+        Log.Message("Warning pop up doesn't exist");
+      }
+}
+//--------------------------------------------------------------------------------
 function get_external_results_received_by_timestamp(timestamp, archived)
 {
   Goto_External_Results();
@@ -372,7 +433,7 @@ function get_external_results_received_by_timestamp(timestamp, archived)
       show_archived_results_checkbox().ClickChecked(true);
   
       //Press the filter button
-      external_results_filter_button().Click()
+      external_results_filter_button().Click();
       
       //Get the path of the patient external results archived table
       var table = patient_external_results_archived_table(); 
@@ -1124,10 +1185,12 @@ function get_external_result_status(timestamp_external_result)
   WaitSeconds(2, "Waiting for table to update...");
   Goto_External_Results();
   
-  var results_table = wait_for_object(path_patient_content_panel(), "idStr", "WarfarinResultsTable", 4);
+  var results_table_object = wait_for_object(path_patient_content_panel(), "idStr", "WarfarinResultsTable", 4);
+  
 
-    if(results_table.Exists)
+    if(results_table_object.Exists)
     {
+      var results_table = patient_external_results_table();
       var rowcount = results_table.rowcount
 
       for(var i=0; i < results_table.rowcount; i++)
