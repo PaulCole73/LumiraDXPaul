@@ -353,11 +353,11 @@ function home_page_exceeded_treatment_end_date_link()
    
   return link;
 }
-//-------------------------------------------------------------------------------
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 ///////////////////////  Patient / Demographics  /////////////////////////
 //------------------------------------------------------------------------
-function patient_banner_blue_bar()
+function path_inrstar_patient_banner_blue_bar()
 {
   var panelMCP = path_main_content_panel();
   var blue_header_bar = panelMCP.Panel("PatientRecord").Panel("PatientBannerContainer").Panel("patientZone1");
@@ -2173,7 +2173,7 @@ function patient_external_results_table()
 function patient_external_results_archived_table()
 {
   var base_path = external_results_base_form_path();
-  var table = base_path.Panel("WarfarinResultsContainer").Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable")
+  var table = base_path.Panel("WarfarinResultsContainer").Panel("WarfarinResultsSearchResultsContainer").Table("WarfarinResultsTable");
   
   return table;
 }

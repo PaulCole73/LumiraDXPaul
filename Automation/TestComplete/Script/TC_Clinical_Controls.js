@@ -1,7 +1,7 @@
 ﻿//USEUNIT TC_Treatment
+//USEUNIT TC_Results
 
 //==============================================================================//
-
 //ET5 External Treatment Management Functionality
 function cc_ET5_C1_access_to_external_results_functionality_is_restricted_to_clinical_level_users_and_above() 
 {
@@ -18,8 +18,7 @@ function cc_ET5_C2_duplicated_messages_identified_and_highlighted_in_the_work_li
 {
   //Only done Italy for Instrument
   //Add in HL7 when doing the UK for completeness of the control
-  
-  
+  tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sent_twice();
 }
 //==============================================================================//
 function cc_ET5_C18_external_results_can_be_archived()

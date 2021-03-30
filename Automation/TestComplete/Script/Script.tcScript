@@ -347,6 +347,7 @@
 				<child name="TC_Bespoke_Letters" key="{4B9BF730-2EB0-4E61-9C8A-321A2429984F}" path="TC_Bespoke_Letters.js" />
 				<child name="TC_Diagnosis" key="{7D2BD5A0-A2B9-4565-AF4A-6136928C5EED}" path="TC_Diagnosis.js" />
 				<child name="TC_External_Results_HL7" key="{E0F9F4CA-F5C4-45DC-A4D8-23B901B97C7B}" path="TC_External_Results_HL7.js" />
+				<child name="TC_Results" key="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}" path="TC_Results.js" />
 			</folder>
 			<folder name="4. Test Step Actions ">
 				<child name="TSA_Login" key="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}" path="TSA_Login.js" />

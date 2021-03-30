@@ -25,16 +25,19 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
+					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters>
+							<param0 name="location_id" type="3" localVarName="" varType="8" value="7267e611-da9b-41d7-83e9-e8d342987d5a" />
+							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="2" />
+						</testParameters>
+						<environments testedURL="" />
+						<children />
+					</testItem>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" parallel="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
 							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
 							<param1 name="locale" type="3" localVarName="" varType="0" value="" />
 						</testParameters>
-						<environments testedURL="" />
-						<children />
-					</testItem>
-					<testItem name="Test" key="{7DD2CBBE-1C38-4050-97F0-5E7AE5FC2FA5}" group="False" parallel="False" enabled="True" testMoniker="{3E644774-5830-45ED-B233-AEDA357E7355}path_patient_record_tab" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-						<testParameters />
 						<environments testedURL="" />
 						<children />
 					</testItem>
@@ -2181,7 +2184,7 @@
 			<testItem name="Clinical Controls" key="{96C0657B-72E2-4844-A42C-EAC387730C68}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
-					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
+					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<environments testedURL="" />
 						<children />
@@ -2189,7 +2192,7 @@
 					<testItem name="ET5 External Treatment Management Functionality" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
+							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<environments testedURL="" />
 								<children />
@@ -2202,7 +2205,7 @@
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only();" key="{610DD5B6-E003-4CA1-BBD5-8F7320C8A63A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only();" key="{610DD5B6-E003-4CA1-BBD5-8F7320C8A63A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_hillingdon_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
@@ -2217,42 +2220,12 @@
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only();" key="{BAA16624-C12F-4A69-8AA8-AF5F707BFF4E}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only();" key="{BAA16624-C12F-4A69-8AA8-AF5F707BFF4E}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_oates_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only();" key="{7FD88728-1C05-4F86-B9EF-C07C8470420A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
-										<testParameters />
-										<environments testedURL="" />
-										<children />
-									</testItem>
-								</children>
-							</testItem>
-							<testItem name="ET5/C18-External results can be archived" key="{EB2E1708-A429-460E-BA0A-563B665DDF73}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-								<testParameters />
-								<children>
-									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{A0F685C8-F1E1-4566-AC8F-819811DDB24A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
-										<testParameters />
-										<environments testedURL="" />
-										<children />
-									</testItem>
-									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{038D9B0C-EDF4-49BA-A176-172E6D0011C8}" group="False" parallel="False" enabled="True" testMoniker="{E0F9F4CA-F5C4-45DC-A4D8-23B901B97C7B}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
-										<testParameters />
-										<environments testedURL="" />
-										<children />
-									</testItem>
-								</children>
-							</testItem>
-							<testItem name="ET5/C21-External results can be archived" key="{4C57C85A-F45D-4D66-B9EB-C07CD038F564}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-								<testParameters />
-								<children>
-									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{CDBA598A-9222-41BC-BE2D-81839EE08F06}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
-										<testParameters />
-										<environments testedURL="" />
-										<children />
-									</testItem>
-									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{6DF538DC-513E-4B27-AC6F-C6A67EEA1EA9}" group="False" parallel="False" enabled="True" testMoniker="{E0F9F4CA-F5C4-45DC-A4D8-23B901B97C7B}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
+									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only();" key="{7FD88728-1C05-4F86-B9EF-C07C8470420A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
