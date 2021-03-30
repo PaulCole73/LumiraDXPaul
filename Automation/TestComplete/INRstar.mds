@@ -2232,6 +2232,36 @@
 									</testItem>
 								</children>
 							</testItem>
+							<testItem name="ET5/C18-External results can be archived" key="{4447E1DF-5F20-4894-8DFA-AC65E65FA36F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{B132FE96-0970-456E-AF34-C2F09B0B8C14}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{782FF8AD-1436-4E0D-B377-34106248EBBE}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C21-External results can be archived" key="{B298765C-C8C0-438A-ABC8-D311D69FABE5}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{5C4CDC74-C823-4F32-A7B1-CA6D31FABE40}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{0FC4337C-A59D-40E3-B4C1-13960750F34D}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
 						</children>
 					</testItem>
 				</children>
