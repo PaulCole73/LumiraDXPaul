@@ -6,7 +6,6 @@
 //Master Suites
 //==============================================================================//
 //master suites are used for organised test groups
-
 function ts_master_results(send_mail)
 {
   reset_folder();

@@ -25,10 +25,10 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
-					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{B6D6B5C7-5DF2-40DE-8864-6D76B44F816E}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
-							<param0 name="location_id" type="3" localVarName="" varType="8" value="7267e611-da9b-41d7-83e9-e8d342987d5a" />
-							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="2" />
+							<param0 name="location_id" type="3" localVarName="" varType="0" value="" />
+							<param1 name="number_of_results" type="3" localVarName="" varType="0" value="" />
 						</testParameters>
 						<environments testedURL="" />
 						<children />
@@ -2226,6 +2226,36 @@
 										<children />
 									</testItem>
 									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only();" key="{7FD88728-1C05-4F86-B9EF-C07C8470420A}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_fast_dosing_uk_only" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C18-External results can be archived" key="{4447E1DF-5F20-4894-8DFA-AC65E65FA36F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{B132FE96-0970-456E-AF34-C2F09B0B8C14}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{782FF8AD-1436-4E0D-B377-34106248EBBE}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C21-External results can be archived" key="{B298765C-C8C0-438A-ABC8-D311D69FABE5}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{5C4CDC74-C823-4F32-A7B1-CA6D31FABE40}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{0FC4337C-A59D-40E3-B4C1-13960750F34D}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
