@@ -30,8 +30,8 @@ function tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sen
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Treatment";
-    var test_name = "tc_inr_test_results_received_from_instrument_matched_to_patient_can_dose_a_manual_patient";
+    var suite_name = "TC_Results";
+    var test_name = "tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sent_twice";
     handle_failed_tests(suite_name, test_name); 
   } 
 }
@@ -124,7 +124,6 @@ function tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_t
     
     //Validate the results sets are true
     var results = results_checker_are_true(result_set);
-    Log.Message(results);
     
     //Pass in the result
 		results_checker(results, test_title); 
@@ -134,8 +133,8 @@ function tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_t
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Treatment";
-    var test_name = "tc_inr_test_results_received_from_instrument_matched_to_patient_can_dose_a_manual_patient";
+    var suite_name = "TC_Results";
+    var test_name = "tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent";
     handle_failed_tests(suite_name, test_name); 
   } 
 }

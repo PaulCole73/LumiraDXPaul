@@ -132,8 +132,6 @@ function get_fiscal_code(patient_data)
   //Need to change the dob so that the 0 is removed from days less than 10 so 03 becomes 3 
   //Setting to lowercase for the translation file, as datetime defaults to Apr not apr
   var patient_new_dob = aqString.ToLower(aqConvert.DateTimeToFormatStr(patient_data.dob, "%#d-%b-%Y"));
-  Log.Message(patient_new_dob)
-  
   
   var fiscal_form_day = aqString.SubString(patient_new_dob,0,1);
   var fiscal_form_month = get_english_translation(aqString.SubString(patient_new_dob,2,3)).toUpperCase();
@@ -364,18 +362,19 @@ function get_external_result_popup_header_text(timestamp_external_result)
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
+  var header_text;
 
     if(warning_dialogue.Exists)
     {
-      var header_text = INRstarV5.Panel(3).Panel(0).TextNode("ui_dialog_title_modalDialogBox").contentText;      
+      header_text = INRstarV5.Panel(3).Panel(0).TextNode("ui_dialog_title_modalDialogBox").contentText;      
       var pop_up_button_path = warning_pop_up();
       pop_up_button_path.Button(0).Click();
-      return header_text;
     }
-      else
-      {
-        Log.Message("Warning pop up doesn't exist");
-      }
+    else
+    {
+      Log.Message("Warning pop up doesn't exist");
+    }
+    return header_text;
 }
 //--------------------------------------------------------------------------------
 function get_external_result_popup_historic_button_text(timestamp_external_result)
@@ -384,18 +383,19 @@ function get_external_result_popup_historic_button_text(timestamp_external_resul
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
+  var header_text;
 
     if(warning_dialogue.Exists)
     {
       var pop_up_button_path = warning_pop_up();
-      var button_text = pop_up_button_path.Button(2).contentText
-      pop_up_button_path.Button(0).Click();
-      return button_text;
+      button_text = pop_up_button_path.Button(2).contentText
+      pop_up_button_path.Button(0).Click();     
     }
-      else
-      {
-        Log.Message("Warning pop up doesn't exist");
-      }
+    else
+    {
+      Log.Message("Warning pop up doesn't exist");
+    }
+  return button_text;
 }
 //--------------------------------------------------------------------------------
 function get_external_result_popup_new_inr_button_text(timestamp_external_result)
@@ -404,18 +404,19 @@ function get_external_result_popup_new_inr_button_text(timestamp_external_result
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
+  var button_text
 
     if(warning_dialogue.Exists)
     {
       var pop_up_button_path = warning_pop_up();
-      var button_text = pop_up_button_path.Button(1).contentText
-      pop_up_button_path.Button(0).Click();
-      return button_text;
+      button_text = pop_up_button_path.Button(1).contentText
+      pop_up_button_path.Button(0).Click();      
     }
-      else
-      {
-        Log.Message("Warning pop up doesn't exist");
-      }
+    else
+    {
+      Log.Message("Warning pop up doesn't exist");
+    }
+   return button_text;
 }
 //--------------------------------------------------------------------------------
 function get_external_results_received_by_timestamp(timestamp, archived)
@@ -1186,7 +1187,7 @@ function get_external_result_status(timestamp_external_result)
   Goto_External_Results();
   
   var results_table_object = wait_for_object(path_patient_content_panel(), "idStr", "WarfarinResultsTable", 4);
-  
+  var external_result_status;
 
     if(results_table_object.Exists)
     {
@@ -1197,15 +1198,16 @@ function get_external_result_status(timestamp_external_result)
       {
         if(results_table.Cell(i, 2).contentText == timestamp_external_result)
         {
-        external_result_status = results_table.Cell(i, 4).Panel(0).Panel("Div1").contentText;
-        return external_result_status;
+        external_result_status = results_table.Cell(i, 4).Panel(0).Panel("Div1").contentText; 
+        break;     
         }
       }
     } 
-      else
-      {
-        Log.Message("External result table doesn't exist");
-      }
+    else
+    {
+      Log.Message("External result table doesn't exist");
+    }
+  return external_result_status;
 }
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
