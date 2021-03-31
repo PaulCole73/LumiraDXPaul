@@ -558,7 +558,6 @@ function get_string_translation(translation_word)
    break;
  }
  
-
  var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
  
  while (!driver.EOF())
@@ -605,7 +604,7 @@ function get_english_translation(translation_word)
    Log.Message("You didn't pass in a language I recognise you passed in " + language);
    break;
  }
-
+ 
  var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
  
  while (!driver.EOF())
@@ -1237,6 +1236,7 @@ function setup_generic_patient(do_login, dm)
     }
   //}
 }
+
 //-----------------------------------------------------------------------------------
 function create_random_char_string(length) {
    var char_string           = '';
