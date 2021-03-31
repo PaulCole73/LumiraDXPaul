@@ -558,8 +558,7 @@ function get_string_translation(translation_word)
    break;
  }
 
-var driver = DDT.ExcelDriver("C:\\GIT\\Data\\Locale.xls", "Sheet1");     //Think it needs to be this   
-// var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
+var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
  
  while (!driver.EOF())
  {
@@ -606,8 +605,7 @@ function get_english_translation(translation_word)
    break;
  }
  
- //var driver = DDT.ExcelDriver("C:\\Automation\\Locale.xls", "Sheet1")
- var driver = DDT.ExcelDriver("C:\\GIT\\Data\\Locale.xls", "Sheet1")
+ var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
  
  while (!driver.EOF())
  {

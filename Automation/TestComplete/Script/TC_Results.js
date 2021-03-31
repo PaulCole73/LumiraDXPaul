@@ -102,24 +102,23 @@ function tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_t
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);         
     post_external_result_instrument(JSON.stringify(body_data)); 
     
-    var expected_popup_header = get_string_translation("");
+    var expected_popup_header = get_string_translation("This INR test was not performed today");
     var actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-    Log.Message(actual_pop_up_header)  
 
     var result_set = new Array();  
    
     result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, "test_title");
     result_set.push(result_set_1);
     
-    var expected_historic_button_text = get_string_translation("");
+    var expected_historic_button_text = get_string_translation("Enter as historical treatment");
     var actual_historic_button_text = get_external_result_popup_historic_button_text(inr_test_timestamp.external_results);
-    Log.Message(actual_historic_button_text) 
+    
     result_set_1 = compare_values(expected_historic_button_text, actual_historic_button_text, "test_title");
     result_set.push(result_set_1);
     
-    var expected_historic_button_text = get_string_translation("");
-    var actual_historic_button_text = get_external_result_popup_new_inr_button_text(inr_test_timestamp.external_results);
-    Log.Message(actual_historic_button_text) 
+    var expected_new_inr_button_text = get_string_translation("Enter as valid INR result");
+    var actual_new_inr_button_text = get_external_result_popup_new_inr_button_text(inr_test_timestamp.external_results);
+
     result_set_1 = compare_values(expected_new_inr_button_text, actual_new_inr_button_text, "test_title");
     result_set.push(result_set_1);
     
@@ -130,7 +129,7 @@ function tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_t
     //Pass in the result
 		results_checker(results, test_title); 
 
-//    Log_Off(); 
+    Log_Off(); 
   }
   catch(e)
   {
