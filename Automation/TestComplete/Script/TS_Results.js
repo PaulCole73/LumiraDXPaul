@@ -1,4 +1,5 @@
 ﻿//USEUNIT Tested_Apps
+//USEUNIT TC_Results
 //--------------------------------------------------------------------------------
 //Suite of tests for external results tab
 //--------------------------------------------------------------------------------
@@ -18,8 +19,19 @@ function ts_master_results(send_mail)
 
 function ts_results()
 { 
-  tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();
-  tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sent_twice();
+  //Discard button
+  tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument();
+  
+  //Result status column
+  tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice(); 
+  
+  //Patient matching - Instrument 
+  //Not the full list here yet just enough for clinical risk 
+  tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched();
+  
+  //Patient matching - HL7
+  
+  //Patient matching -Engage
+  
 }
-
 //==============================================================================//

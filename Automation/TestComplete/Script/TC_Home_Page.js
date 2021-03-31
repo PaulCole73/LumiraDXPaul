@@ -17,7 +17,7 @@ function tc_home_page_view_the_overdue_an_inr_test_message_on_the_home_page()
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Overdue_INR_message', 'M');
+    add_patient('Regression', 'OverdueINRmessage', 'M');
     add_treatment_plan('W','Manual','','Shared','');
   
     //Get the patient details
@@ -59,7 +59,7 @@ function tc_home_page_view_the_patient_exceeded_their_treatment_end_date_message
     
     //Setup test scenario
     login(5, "Shared");
-    add_patient('Regression', 'Exceed_suspension_period', 'M');
+    add_patient('Regression', 'ExceedEndDate', 'M');
     add_treatment_plan('Apixaban','', aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), -35)),'Shared','','4 Weeks');
   
     //Get the patient details

@@ -1,7 +1,6 @@
 ﻿//USEUNIT System_Paths
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
-
 //--------------------------------------------------------------------------------
 function click_dose_patient_external_result_by_timestamp(timestamp_external_result)
 {

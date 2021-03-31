@@ -3,7 +3,7 @@
 //USEUNIT INRstar_Misc_Functions
 
 //--------------------------------------------------------------------------------//
-function tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sent_twice()
+function tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice()
 {
   try
   {
@@ -31,16 +31,16 @@ function tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sen
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Results";
-    var test_name = "tc_duplicate_status_set_to_duplicate_when_the_exact_same_message_is_sent_twice";
+    var test_name = "tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice";
     handle_failed_tests(suite_name, test_name); 
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument()
+function tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument()
 {
   try
   {
-    var test_title = "Results Tab: Archiving: Discard Button: Can archive results sent in from Instrument"
+    var test_title = "Results Tab: Discard Button - Can archive results sent in from Instrument"
     
     //Setup test scenario
     login(7, "Shared");
@@ -82,7 +82,7 @@ function tc_results_tab_archiving_discard_button_can_archive_results_sent_in_fro
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Results";
-    var test_name = "tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument";
+    var test_name = "tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument";
     handle_failed_tests(suite_name, test_name); 
   } 
 }
@@ -138,3 +138,36 @@ function tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_t
     handle_failed_tests(suite_name, test_name); 
   } 
 }
+//--------------------------------------------------------------------------------
+function tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched()
+{
+  try
+  {
+    var test_title = "Instrument: Patient Matching - Based on Patient Id, if surname doesn't match then result should be unmatched ET5/C13"
+    login(7, "Shared");
+    var location_id = get_organization_id_from_current_location();
+    add_patient('clinical' , 'surnameMatch', ''); 
+    add_treatment_plan('W','Manual','','Shared','');  
+    
+    var patient = get_patient_details_object_from_demographics();
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);  
+    body_data.lastName = "FakeSurname"       
+    post_external_result_instrument(JSON.stringify(body_data)); 
+
+    var actual_external_result_status = get_external_result_status(inr_test_timestamp.external_results);
+    
+    var results = validate_hl7_buttons("FindPatient");
+    results_checker(results, test_title)
+//
+//    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//--------------------------------------------------------------------------------
