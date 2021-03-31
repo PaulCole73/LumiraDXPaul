@@ -278,3 +278,4 @@ function process_blue_popup()
     obj.Panel("changeMessageDialog4Text").Panel(0).Panel(1).Button(0).Click();
   }
 }
+//-------------------------------------------------------------------------------

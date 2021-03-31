@@ -374,6 +374,7 @@
 				<child name="TSA_Bespoke_Letters" key="{FE9DD345-34FE-4416-8FD6-2A4C4D1349D7}" path="TSA_Bespoke_Letters.js" />
 				<child name="TSA_Diagnosis" key="{05EB5657-8347-4C4C-871C-472AF4EEB29D}" path="TSA_Diagnosis.js" />
 				<child name="TSA_External_Results_HL7" key="{3B715FD9-90AD-4F3E-95F4-9809F85E35DF}" path="TSA_External_Results_HL7.js" />
+				<child name="TSA_Results" key="{B6D6B5C7-5DF2-40DE-8864-6D76B44F816E}" path="TSA_Results.js" />
 			</folder>
 			<folder name="4.1 Test Step Verification">
 				<child name="TSV_Login" key="{EA9DBBF6-53ED-43D4-B305-F40457FB2E30}" path="TSV_Login.js" />
