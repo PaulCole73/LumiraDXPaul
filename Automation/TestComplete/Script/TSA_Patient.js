@@ -296,20 +296,17 @@ function add_patient(name_first, name_last, sex, nhs_num)
   {
     if(language == "English")
     {
-      if(nhs_num == " ")
-      {
-        //specific rule/test exists for NHS with an empty string
-      }
-      else
-      {
-        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
-      }
+      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
     }
     else if(language == "Italian")
     {
       patient_details.nhs_number = get_fiscal_code(patient_details).replace(/ +/g, "");
       var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
     }
+  }
+  else if(nhs_num == " ")
+  {
+    //do nothing, leave empty
   }
   else 
   {
