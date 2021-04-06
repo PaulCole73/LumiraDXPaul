@@ -146,28 +146,59 @@ function tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_un
     var test_title = "Instrument: Patient Matching - Based on Patient Id, if surname doesn't match then result should be unmatched ET5/C13"
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('clinical' , 'surnameMatch', ''); 
+    add_patient('clinical' , 'surnameMatch', '', ' '); 
     add_treatment_plan('W','Manual','','Shared','');  
-    
+
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);  
-    body_data.lastName = "FakeSurname"       
+    body_data.patient.lastName = "FakeSurname";      
     post_external_result_instrument(JSON.stringify(body_data)); 
 
-    var actual_external_result_status = get_external_result_status(inr_test_timestamp.external_results);
+    var actual_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
     
-    var results = validate_hl7_buttons("FindPatient");
-    results_checker(results, test_title)
-//
-//    Log_Off(); 
+    var results = compare_values(get_string_translation("Dose Patient"), actual_external_result.status_column_value1, test_title);
+    results_checker(results, test_title);
+
+    Log_Off(); 
   }
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Results";
-    var test_name = "tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent";
+    var test_name = "tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched";
     handle_failed_tests(suite_name, test_name); 
   } 
 }
 //--------------------------------------------------------------------------------
+function tc_based_on_nhs_or_fiscal_if_surname_doesnt_match_then_result_should_be_unmatched()
+{
+  try
+  {
+    var test_title = "Instrument: Patient Matching - Based on Patient Id, if surname doesn't match then result should be unmatched ET5/C13"
+    login(7, "Shared");
+    var location_id = get_organization_id_from_current_location();
+    add_patient('clinical' , 'surnameMatch', ''); 
+    add_treatment_plan('W','Manual','','Shared','');  
+
+    var patient = get_patient_details_object_from_demographics();
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);  
+    body_data.patient.lastName = "FakeSurname";      
+    post_external_result_instrument(JSON.stringify(body_data)); 
+
+    var actual_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+    
+    var results = compare_values(get_string_translation("Find Patient"), actual_external_result.status_column_value1, test_title);
+    results_checker(results, test_title);
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}

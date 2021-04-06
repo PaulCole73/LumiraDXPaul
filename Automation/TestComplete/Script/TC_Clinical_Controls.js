@@ -33,7 +33,7 @@ function cc_ET5_C13_identifiers_used_to_locate_patient_in_inrstar_and_validate_r
 {
   //Only done Italy for Instrument this is not the full set just matches what we would do in a manual world to be satisfied
   //Add in HL7/Engage when doing the UK for completeness of the control
-  tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent();
+  tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched();
 }
 //==============================================================================//
 function cc_ET5_C14_the_latest_result_will_always_show_in_the_work_list_in_chronological_order()
