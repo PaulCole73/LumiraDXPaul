@@ -294,22 +294,19 @@ function add_patient(name_first, name_last, sex, nhs_num)
     
   if(nhs_num == null || nhs_num == "")
   {
-    if(nhs_num == " ")
+    if(language == "English")
     {
-      //specific rule/test exists for NHS with an empty string
+      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
     }
-    else
+    else if(language == "Italian")
     {
-      if(language == "English")
-      {
-        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
-      }
-      else if(language == "Italian")
-      {
-        patient_details.nhs_number = get_fiscal_code(patient_details).replace(/ +/g, "");
-        var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
-      }
+      patient_details.nhs_number = get_fiscal_code(patient_details).replace(/ +/g, "");
+      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
     }
+  }
+  else if(nhs_num == " ")
+  {
+    //do nothing, leave empty - use a single whitespace character to indicate no/null nhs field
   }
   else 
   {
