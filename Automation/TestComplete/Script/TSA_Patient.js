@@ -306,7 +306,7 @@ function add_patient(name_first, name_last, sex, nhs_num)
   }
   else if(nhs_num == " ")
   {
-    //do nothing, leave empty
+    //do nothing, leave empty - use a single whitespace character to indicate no/null nhs field
   }
   else 
   {
