@@ -2232,6 +2232,81 @@
 									</testItem>
 								</children>
 							</testItem>
+							<testItem name="ET5/C2- Duplicated messages identified and highlighted in the work list" key="{84A85BB7-9A0D-4FFE-A4AB-37EC8D1016A5}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice();" key="{9A5F2E99-62F4-4217-B9A8-393C868FEFF2}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C8-Clinician is warned if the date of the inr test is not the same as the date inr is sent" key="{3E945159-1A6E-4E17-BDF9-ABE683D02A07}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent();" key="{000EF762-1CCC-4AFE-A083-BF832034BC32}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C13-Identifiers used to locate patient in inrstar and validate record" key="{4A1AC254-3F24-4652-95D4-84624728D83F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched();" key="{F4C339DA-065D-43E0-B97E-794DEAA3BBF5}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_based_on_patient_id_if_patientid_doesnt_match_then_result_should_be_unmatched();" key="{07DC0030-9B90-48CD-A9AF-9244F1F33B1F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_patientid_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_based_on_patient_id_if_dob_doesnt_match_then_result_should_be_unmatched();" key="{43AC1F78-BE11-457D-AC1C-3BD1A47FD883}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_dob_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_based_on_nhs_or_fiscal_if_surname_doesnt_match_then_result_should_be_matched();" key="{A6CFF0FC-1726-4305-9EC1-5BB0DA6BF746}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_nhs_or_fiscal_if_surname_doesnt_match_then_result_should_be_matched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_based_on_nhs_or_fiscal_if_dob_doesnt_match_then_result_should_be_unmatched();" key="{0CFA0662-60CF-4506-8B55-DC36AD486453}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_nhs_or_fiscal_if_dob_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should_be_unmatched();" key="{8475FB6B-0C1B-4873-93A7-00EC9C0F59ED}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C14-The latest result will always show in the work list in chronological order_1" key="{D842938A-43C6-48F8-B836-A0D1664EE71E}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table();" key="{04D4FEE9-BC18-49DD-8782-938E45B02C17}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C15-Clinician is warned if the date of the inr test is not the same as the date inr is sent" key="{2F2BAF37-D6A0-4F7C-BB3F-01786118CC6A}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent();" key="{7A833834-2B4A-45B9-99B3-DB51F3171E8E}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
 							<testItem name="ET5/C18-External results can be archived" key="{4447E1DF-5F20-4894-8DFA-AC65E65FA36F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
@@ -2730,7 +2805,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />

@@ -126,9 +126,6 @@ function ts_int_regression_treatment_italy(send_mail)
   email_and_archive(send_mail, "ts_treatment_regression_ita");
 }
 //==============================================================================//
-
-
-
 //==============================================================================//
 //General Suites
 //==============================================================================//
@@ -168,7 +165,6 @@ function ts_to_be_categorized()
 {
   reset_folder();
 
-  //These do not have corresponding tests in testrail yet, they were created to create a happy path
   tc_inr_test_results_received_from_instrument_match_to_patient(); 
   tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table();
   tc_inr_test_results_received_from_instrument_matched_to_patient_do_not_appear_if_over_3_days_old();

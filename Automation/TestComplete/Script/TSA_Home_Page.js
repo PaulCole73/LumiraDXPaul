@@ -40,7 +40,7 @@ function check_date_sort_order_of_suspension_home_page_list()
   var table = home_page_suspension_table(); // from System_paths
   
   // Now that we have table - Pass it on together with the column number, to check sort order, return result
-  return check_date_sort_order_of_table(table, 4); // from Misc_Functions
+  return check_date_sort_order_of_table(table, 4, "asc"); // from Misc_Functions
 }
 //--------------------------------------------------------------------------------
 function check_date_sort_order_of_exceeded_treatment_end_date_list() 
@@ -52,7 +52,7 @@ function check_date_sort_order_of_exceeded_treatment_end_date_list()
   var table = home_page_exceeded_treatment_end_date_table(); // from System_paths
   
   // Now that we have table - Pass it on together with the column number, to check sort order, return result
-  return check_date_sort_order_of_table(table, 5); // from Misc_Functions
+  return check_date_sort_order_of_table(table, 5, "asc"); // from Misc_Functions
 }
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------

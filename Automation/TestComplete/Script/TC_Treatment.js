@@ -1791,12 +1791,12 @@ function tc_inr_test_results_received_from_instrument_most_recent_result_appears
 {
   try
   {
-    var test_title = "External Results - Sent from CSP most recent appears at bottom of table"
+    var test_title = "INR test results received: Table - Ordering, table is ordered by with most recent result at the bottom"
     
     //Setup test scenario
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
-    add_patient('Regression', 'External_Results_Processing', 'M');
+    add_patient('Regression', 'ExternalResultsProcessing', 'M');
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 3);
     var inr_test_timestamp2 = get_timestamps_for_now_object_with_changed_hours('-', 2);
