@@ -1187,7 +1187,7 @@ function check_sort_order_of_table(table, sort_order_cell)  //check_table_in_des
   return true;
 }
 //-------------------------------------------------------------------------------- 
-function check_date_sort_order_of_table(table, sort_order_cell, sort_order)
+function check_date_sort_order_of_table(table, sort_order_cell, expected_sort_order)
 {
   var rowcount = table.rowcount;
   
@@ -1203,14 +1203,14 @@ function check_date_sort_order_of_table(table, sort_order_cell, sort_order)
         
       if (i > 1) //skip for first row since nothing to compare against also because I want the first value to be stored
       {
-        if (date_unix < previous_date_unix && sort_order == "asc") //Check if UNIX date number higher than previous entry - if so fail
+        if (date_unix < previous_date_unix && expected_sort_order == "asc") //Check if UNIX date number higher than previous entry - if so fail
         {
            Log.Message("Fail - Sort order of due list is NOT oldest at top");
            Log.Message("Cell reference " + i + "," + sort_order_cell + "  has a value of " + date_string)
            Log.Message("Where as entry above this, has a value of " + previous_date);
            return false;
         }
-        if (date_unix > previous_date_unix && sort_order == "desc") //Check if UNIX date number lower than previous entry - if so fail
+        if (date_unix > previous_date_unix && expected_sort_order == "desc") //Check if UNIX date number lower than previous entry - if so fail
         {
            Log.Message("Fail - Sort order of due list is oldest at top");
            Log.Message("Cell reference " + i + "," + sort_order_cell + "  has a value of " + date_string)
