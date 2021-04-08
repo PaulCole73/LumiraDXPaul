@@ -839,7 +839,7 @@ function json_body_data_instrument(patient_details, location_id, inr_result, blo
   //Why are we passing this in and not setting here ?
   payload.effectiveDateTime = blood_test_timestamp;
   
-  Log.Message("Payload created as: " + JSON.stringify(payload));
+  //Log.Message("Payload created as: " + JSON.stringify(payload));
     
   //Return the payload so it can be posted elsewhere
   return payload
@@ -906,6 +906,7 @@ function post_external_result_instrument(body_payload)
   headers["Authorization"] = "Bearer " + token; 
 
   //Call upon api_post() to send the request
+  Log.Message("Payload sent as:  " + body_payload );
   api_post(address, headers, body_payload)
 }
 //--------------------------------------------------------------------------------

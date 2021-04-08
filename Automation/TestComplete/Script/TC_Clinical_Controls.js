@@ -33,7 +33,14 @@ function cc_ET5_C13_identifiers_used_to_locate_patient_in_inrstar_and_validate_r
 {
   //Only done Italy for Instrument this is not the full set just matches what we would do in a manual world to be satisfied
   //Add in HL7/Engage when doing the UK for completeness of the control
+  //If the message contains the patientid as the alias
   tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched();
+  tc_based_on_patient_id_if_patientid_doesnt_match_then_result_should_be_unmatched();
+  tc_based_on_patient_id_if_dob_doesnt_match_then_result_should_be_unmatched();
+  //If the message contains the nhs as the alias slightly different rules
+  tc_based_on_nhs_or_fiscal_if_surname_doesnt_match_then_result_should_be_matched();
+  tc_based_on_nhs_or_fiscal_if_dob_doesnt_match_then_result_should_be_unmatched();
+  tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should_be_unmatched();
 }
 //==============================================================================//
 function cc_ET5_C14_the_latest_result_will_always_show_in_the_work_list_in_chronological_order()
@@ -41,6 +48,14 @@ function cc_ET5_C14_the_latest_result_will_always_show_in_the_work_list_in_chron
   //Only done Italy for Instrument
   //Add in HL7/Engage when doing the UK for completeness of the control
   tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table();
+}
+//==============================================================================//
+function cc_ET5_C15_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent()
+{
+  //Only done Instrument
+  //Add in HL7 when doing the UK for completeness of the control
+  //Engage is maybe possible but not investigated yet cant be db update
+  tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent();
 }
 //==============================================================================//
 function cc_ET5_C18_external_results_can_be_archived()
