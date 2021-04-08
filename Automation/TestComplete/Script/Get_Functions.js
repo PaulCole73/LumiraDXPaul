@@ -420,14 +420,13 @@ function get_external_result_popup_new_inr_button_text(timestamp_external_result
 function get_external_results_received_by_timestamp(timestamp, archived)
 {
   Goto_External_Results();
-  var INRstarV5 = INRstar_base();
   
   //Check table exists before proceeding
   var table_exists = Check_if_external_results_table_exists();
    
   if (table_exists == true) 
   {
-    if (archived == "Archived" || archived == "Archived")
+    if (archived == "Archived")
     {
       //Toggle the show archived checkbox
       show_archived_results_checkbox().ClickChecked(true);
@@ -443,8 +442,6 @@ function get_external_results_received_by_timestamp(timestamp, archived)
       //Get the path of the patient external results table
       var table = patient_external_results_table();
     }
-      
-  var table = patient_external_results_table();
 
     //Loop through each row of table
     for (row=0; row<table.RowCount; row++)
@@ -467,7 +464,6 @@ function get_external_results_received_by_timestamp(timestamp, archived)
         }
         if(button_path_3.Exists)
         {
-//          var text = table.Cell(row, 4).Panel(0).Panel("Div1").Panel("StatusContainer").Label("Status_DetachedLabel").ObjectLabel;
           var text = button_path_3.ObjectLabel;
         }
       
@@ -476,7 +472,7 @@ function get_external_results_received_by_timestamp(timestamp, archived)
         "inr"                    : table.Cell(row, 3).contentText,
         "row"                    : row,      
         "status_column_value1"   : text,
-        "status_column_value2"   : table.Cell(row, 4).Panel(0).Panel("Div2").Button("ArchiveResult").ObjectLabel
+        "status_column_value2"   : table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "ArchiveResult", 2).ObjectLabel
         }
          return results;
       }

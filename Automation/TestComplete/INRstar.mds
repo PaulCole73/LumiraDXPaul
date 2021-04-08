@@ -2192,7 +2192,7 @@
 					<testItem name="ET5 External Treatment Management Functionality" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="False" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<environments testedURL="" />
 								<children />
@@ -2287,7 +2287,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C14-The latest result will always show in the work list in chronological order_1" key="{D842938A-43C6-48F8-B836-A0D1664EE71E}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C14-The latest result will always show in the work list in chronological order" key="{D842938A-43C6-48F8-B836-A0D1664EE71E}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table();" key="{04D4FEE9-BC18-49DD-8782-938E45B02C17}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2315,7 +2315,7 @@
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{782FF8AD-1436-4E0D-B377-34106248EBBE}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument();" key="{782FF8AD-1436-4E0D-B377-34106248EBBE}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
@@ -2330,7 +2330,7 @@
 										<environments testedURL="" />
 										<children />
 									</testItem>
-									<testItem name="tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument();" key="{0FC4337C-A59D-40E3-B4C1-13960750F34D}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_archiving_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument();" key="{0FC4337C-A59D-40E3-B4C1-13960750F34D}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
