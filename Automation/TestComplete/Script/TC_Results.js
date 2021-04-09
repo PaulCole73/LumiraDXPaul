@@ -369,7 +369,7 @@ function tc_patient_column_contains_the_patient_details_provided_by_instrument()
     var results = results_checker_are_true(result_set);
     results_checker(results, test_title); 
 
-//    Log_Off(); 
+    Log_Off(); 
   }
   catch(e)
   {
@@ -379,10 +379,3 @@ function tc_patient_column_contains_the_patient_details_provided_by_instrument()
     handle_failed_tests(suite_name, test_name); 
   } 
 }
-//
-//function test()
-//{
-////  var inr_test_timestamp = "07/04/2021 10:59:13"
-//  var inr_test_timestamp = "06/04/2021 11:48:51"
-//  var actual_external_result = get_external_results_received_by_timestamp(inr_test_timestamp);
-//}
