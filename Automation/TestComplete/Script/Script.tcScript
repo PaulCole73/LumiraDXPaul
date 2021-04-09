@@ -395,7 +395,8 @@
 			</folder>
 			<folder name="2.1 Clinical Suites">
 				<child name="TS_Clinical_Controls" key="{25598DCC-2504-497A-A15D-1EF0302ACCA4}" path="TS_Clinical_Controls.js" />
-				<child name="TC_Clinical_Controls" key="{6B5B0B17-90BC-45E9-8B92-21DA275E2114}" path="TC_Clinical_Controls.js" />
+				<child name="TC_ET5_Clinical_Controls" key="{6B5B0B17-90BC-45E9-8B92-21DA275E2114}" path="TC_ET5_Clinical_Controls.js" />
+				<child name="TC_LDx2_Clinical_Controls" key="{5CC85150-E38F-48FD-A843-AFD656B61EE1}" path="TC_LDx2_Clinical_Controls.js" />
 			</folder>
 		</folder>
 		<folder name="INRstar API">
