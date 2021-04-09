@@ -31,5 +31,6 @@ function cs_LDx2_barcode_scanning_error_in_scanning_the_patient_barcode_id()
  //Control descriptions here these will hold a set of tests for the control
  cc_LDx2_C5_patient_identity_is_displayed_on_banner_visible_on_all_patient_specific_screens(); 
  cc_LDx2_C6_patient_identifiers_displayed_in_inrstar_external_results_list();
+ cc_LDx2_C18_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment();
 }
 //==============================================================================//
