@@ -13,7 +13,8 @@ function cc_LDx2_C5_patient_identity_is_displayed_on_banner_visible_on_all_patie
 //==============================================================================//
 function cc_LDx2_C6_patient_identifiers_displayed_in_inrstar_external_results_list()
 {
-  //tests to cover control go here
+  //Not sure if this control exists for other functionality i.e engae/hl7/rovigo api - If it does then need to add in other patient identifiers
+  tc_patient_column_contains_the_patient_details_provided_by_instrument();
 }
 //==============================================================================//
 function cc_LDx2_C18_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment()

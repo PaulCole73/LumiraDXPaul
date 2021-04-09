@@ -468,6 +468,10 @@ function get_external_results_received_by_timestamp(timestamp, archived)
         }
       
         var results = {
+        "patient_name"           : table.Cell(row, 1).Panel(0).Link("PatientLink").contentText,
+        "patient_dob"            : table.Cell(row, 1).Panel(0).Label("Born_DetachedLabel").contentText,
+        "patient_nhs_fiscal"     : table.Cell(row, 1).Panel(1).Panel(0).Label("ResultsNHSNumber_DetachedLabel").contentText,
+        //Can have patient number for rovigo might be able to for others too not put in for the instrument yet as we dont get this data   
         "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
         "inr"                    : table.Cell(row, 3).contentText,
         "row"                    : row,      

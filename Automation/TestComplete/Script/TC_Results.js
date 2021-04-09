@@ -332,3 +332,57 @@ function tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should
     handle_failed_tests(suite_name, test_name); 
   } 
 }
+//--------------------------------------------------------------------------------
+function tc_patient_column_contains_the_patient_details_provided_by_instrument()
+{
+  try
+  {
+    var test_title = "Results Tab: Patient Column - Patient column contains the patients details provided by the instrument"
+    login(7, "Shared");
+    var location_id = get_organization_id_from_current_location();
+    add_patient('clinical' , '', 'M');  
+    
+    var expected_patient_fullname = get_patient_fullname();
+    var expected_patient_dob = get_patient_dob();
+    var expected_patient_nhs_fiscal = get_patient_nhs();
+    var patient = get_patient_details_object_from_demographics();
+    
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);       
+    post_external_result_instrument(JSON.stringify(body_data)); 
+
+    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+    
+    //Prepare result array
+    var result_set = new Array();
+    
+    var result_set_1 = compare_values(external_result.patient_name, expected_patient_fullname, "Checking patient name is in external result row");
+    result_set.push(result_set_1);
+    
+    var result_set_1 = compare_values(external_result.patient_dob, expected_patient_dob, "Checking patient dob is in external result row");
+    result_set.push(result_set_1);
+    
+    var result_set_1 = compare_values(external_result.patient_nhs_fiscal, expected_patient_nhs_fiscal, "Checking patient name is in external result row");
+    result_set.push(result_set_1);
+
+    //Validate all the results sets are true & Pass in the result
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title); 
+
+//    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should_be_unmatched";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//
+//function test()
+//{
+////  var inr_test_timestamp = "07/04/2021 10:59:13"
+//  var inr_test_timestamp = "06/04/2021 11:48:51"
+//  var actual_external_result = get_external_results_received_by_timestamp(inr_test_timestamp);
+//}
