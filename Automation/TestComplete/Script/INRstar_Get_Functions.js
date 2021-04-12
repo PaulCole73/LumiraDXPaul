@@ -19,11 +19,3 @@ function inrstar_get_patient_details_object_from_bluebar()
   return patient_details_blue_bar;
 }
 //-----------------------------------------------------------------------------------
-
-//  firstname : patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText,
-//  lastname : patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText,
-//  nhs_number : patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""), // Remove Whitespaces
-//  dob : patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText,
-//  dob_as_dd_mm_yyyy : convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob),
-//  gender : patient_demographics_tab_demographics_path.Panel(7).Label("Gender_DetachedLabel").contentText.substring(0,1), //returns M or F
-  //fullname_and_title : patient_details.lastname + ", " + patient_details.firstname + " " + "(" + get_string_translation() + 

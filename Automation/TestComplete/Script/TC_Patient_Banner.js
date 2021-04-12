@@ -1,13 +1,13 @@
 ﻿//USEUNIT INRstar_Misc_Functions
 //USEUNIT INRstar_Get_Functions
 //--------------------------------------------------------------------------------
-function tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment() 
+function tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient() 
 {
  try
   {
     var test_title = 'Patient - Add a new patient';
     login(5, "Shared");
-    add_patient('Concurrency', 'Clinical', 'M');  
+    add_patient('Banner', 'Patient', 'M');  
     var pat_name = get_patient_surname();
     expected_patient_details = inrstar_get_patient_details_object_from_bluebar();
     
@@ -19,7 +19,27 @@ function tc_concurrency_error_displayed_when_demographics_amended_before_saving_
     
     var result_set_1 = compare_objects(expected_patient_details,actual_banner_patient);
     result_set.push(result_set_1);
-
+    
+    Goto_Patient_Management();
+    actual_banner_patient = inrstar_get_patient_details_object_from_bluebar();
+    var result_set_1 = compare_objects(expected_patient_details,actual_banner_patient);
+    result_set.push(result_set_1);
+    
+    Goto_Patient_Management();
+    actual_banner_patient = inrstar_get_patient_details_object_from_bluebar();
+    var result_set_1 = compare_objects(expected_patient_details,actual_banner_patient);
+    result_set.push(result_set_1);
+    
+    Goto_Patient_Notes();
+    actual_banner_patient = inrstar_get_patient_details_object_from_bluebar();
+    var result_set_1 = compare_objects(expected_patient_details,actual_banner_patient);
+    result_set.push(result_set_1);
+    
+    Goto_Patient_Adverse_Events();
+    actual_banner_patient = inrstar_get_patient_details_object_from_bluebar();
+    var result_set_1 = compare_objects(expected_patient_details,actual_banner_patient);
+    result_set.push(result_set_1);
+    
     if(language=="English")
     {
      Goto_Patient_Letters();
