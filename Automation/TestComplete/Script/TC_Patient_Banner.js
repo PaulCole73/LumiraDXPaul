@@ -9,19 +9,12 @@ function tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each
     login(5, "Shared");
     add_patient('Banner', 'Patient', 'M');  
     var pat_name = get_patient_surname();
-    expected_patient_details = inrstar_get_patient_details_object_from_bluebar();
+    var expected_patient_details = inrstar_get_patient_details_object_from_bluebar();
+    var result_set = new Array();
     
     //Go through each tab and check blue bar matches
     Goto_Patient_Demographics();
-    actual_banner_patient = inrstar_get_patient_details_object_from_bluebar();
-    
-    var result_set = new Array();
-    
-    var result_set_1 = compare_objects(expected_patient_details,actual_banner_patient);
-    result_set.push(result_set_1);
-    
-    Goto_Patient_Management();
-    actual_banner_patient = inrstar_get_patient_details_object_from_bluebar();
+    var actual_banner_patient = inrstar_get_patient_details_object_from_bluebar();    
     var result_set_1 = compare_objects(expected_patient_details,actual_banner_patient);
     result_set.push(result_set_1);
     
@@ -71,7 +64,7 @@ function tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment";
+    var suite_name = "TC_Patient_Banner";
     var test_name = "tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient";
     handle_failed_tests(suite_name, test_name);
   } 

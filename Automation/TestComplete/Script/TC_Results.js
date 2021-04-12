@@ -380,7 +380,7 @@ function tc_patient_column_contains_the_patient_details_provided_by_instrument()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Results";
-    var test_name = "tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should_be_unmatched";
+    var test_name = "tc_patient_column_contains_the_patient_details_provided_by_instrument";
     handle_failed_tests(suite_name, test_name); 
   } 
 }
