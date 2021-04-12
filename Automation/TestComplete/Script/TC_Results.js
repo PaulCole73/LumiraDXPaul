@@ -333,11 +333,11 @@ function tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should
   } 
 }
 //--------------------------------------------------------------------------------
-function tc_patient_column_contains_the_patient_details_provided_by_instrument()
+function tc_patient_column_contains_the_patient_details_for_an_instrument_result()
 {
   try
   {
-    var test_title = "Results Tab: Patient Column - Patient column contains the patients details provided by the instrument"
+    var test_title = "Results Tab: Patient Column - Patient column contains the patients details for an instrument result"
     login(7, "Shared");
     var location_id = get_organization_id_from_current_location();
     add_patient('clinical' , '', 'M');  
@@ -380,7 +380,7 @@ function tc_patient_column_contains_the_patient_details_provided_by_instrument()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Results";
-    var test_name = "tc_patient_column_contains_the_patient_details_provided_by_instrument";
+    var test_name = "tc_patient_column_contains_the_patient_details_for_an_instrument_result";
     handle_failed_tests(suite_name, test_name); 
   } 
 }
