@@ -3,6 +3,7 @@
 
 //==============================================================================//
 //ET5 External Treatment Management Functionality
+//==============================================================================//
 function cc_ET5_C1_access_to_external_results_functionality_is_restricted_to_clinical_level_users_and_above() 
 {
   //add all tests written to cover the above clinical control

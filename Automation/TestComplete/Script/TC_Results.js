@@ -333,6 +333,59 @@ function tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should
   } 
 }
 //--------------------------------------------------------------------------------
+function tc_patient_column_contains_the_patient_details_for_an_instrument_result()
+{
+  try
+  {
+    var test_title = "Results Tab: Patient Column - Patient column contains the patients details for an instrument result"
+    login(7, "Shared");
+    var location_id = get_organization_id_from_current_location();
+    add_patient('clinical' , '', 'M');  
+    
+    var patient = get_patient_details_object_from_demographics();
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);       
+    post_external_result_instrument(JSON.stringify(body_data)); 
+    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+    
+    //Prepare result array
+    var result_set = new Array();
+    
+    var result_set_1 = compare_values(external_result.patient_name, patient.fullname, "Checking patient name is in external result row");
+    result_set.push(result_set_1);
+    
+    var result_set_1 = compare_values(external_result.patient_dob, patient.dob, "Checking patient dob is in external result row");
+    result_set.push(result_set_1);
+    
+    var result_set_1 = compare_values(external_result.patient_nhs_fiscal, patient.nhs_number, "Checking patient name is in external result row");
+    result_set.push(result_set_1);
+    
+    //Post another message that will not match the patient in order to see Nessuno, if the software matches a patient then it will add the fiscal so it must be unmacthed
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    var body_data = json_body_data_instrument(patient, location_id, "2.4", inr_test_timestamp.csp_payload);
+    body_data.patient.identifiers[0].alias = "";        
+    post_external_result_instrument(JSON.stringify(body_data)); 
+    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+    
+    var result_set_1 = compare_values(external_result.patient_nhs_fiscal, get_string_translation("None"), "Checking nhs/fiscal set to None/Nessuno");
+    result_set.push(result_set_1);
+
+    //Validate all the results sets are true & Pass in the result
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_patient_column_contains_the_patient_details_for_an_instrument_result";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+
+//--------------------------------------------------------------------------------
 function tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan()
 {
   try

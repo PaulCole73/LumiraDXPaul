@@ -2339,6 +2339,21 @@
 							</testItem>
 						</children>
 					</testItem>
+					<testItem name="LDx2 Barcode Scanning" key="{5B3E0141-9B64-4C0E-AE5E-742CB238ED77}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<children>
+							<testItem name="LDx2/C5 Patient identity is displayed on banner - visible on all patient-specific screens&#13;&#10;" key="{0AF48D57-CEDA-404C-8AB8-81ACFAF0A8D9}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice();_1" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+						</children>
+					</testItem>
 				</children>
 			</testItem>
 		</children>

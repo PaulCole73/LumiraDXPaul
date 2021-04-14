@@ -466,8 +466,26 @@ function get_external_results_received_by_timestamp(timestamp, archived)
         {
           var text = button_path_3.ObjectLabel;
         }
+        
+        //Can have a link or a different path depending on if the patient matches or not
+        var patient_name_link =  table.Cell(row, 1).Panel(0).FindChild("ObjectIdentifier", "PatientLink", 2);
+        var patient_name_label = table.Cell(row, 1).Panel(0).FindChild("ObjectIdentifier", "Name_DetachedLabel", 2);
+        
+        if(patient_name_link.Exists)
+        {
+         var patient_name_text = patient_name_link.ObjectLabel;     
+        }
+        if(patient_name_label.Exists)
+        {
+          var patient_name_text = patient_name_label.ObjectLabel;
+        }
+       
       
         var results = {
+        "patient_name"           : patient_name_text,
+        "patient_dob"            : table.Cell(row, 1).Panel(0).Label("Born_DetachedLabel").contentText,
+        "patient_nhs_fiscal"     : table.Cell(row, 1).Panel(1).Panel(0).Label("ResultsNHSNumber_DetachedLabel").contentText,
+        //Can have patient number for rovigo might be able to for others too not put in for the instrument yet as we dont get this data   
         "blood_taken_timestamp"  : table.Cell(row, 2).contentText,
         "inr"                    : table.Cell(row, 3).contentText,
         "row"                    : row,      

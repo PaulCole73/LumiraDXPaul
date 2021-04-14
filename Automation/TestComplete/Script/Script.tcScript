@@ -323,6 +323,12 @@
 				<child name="TS_Results" key="{4B9FA84D-9539-4137-A6E1-24123FE5E97F}" path="TS_Results.js" />
 			</folder>
 			<folder name="3. Test Cases">
+				<folder name="Treatment">
+					<folder name="New INR">
+						<child name="TC_Treatment" key="{21867276-A980-478B-AD7F-AC23FBF04FDF}" path="TC_Treatment.js" />
+						<child name="TC_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment" key="{318D9639-31E5-44D1-BDA2-142A4292C503}" path="TC_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment.js" />
+					</folder>
+				</folder>
 				<child name="TC_Login" key="{9F7E6A1D-3FE9-49F2-8827-CD5CBB932D00}" path="TC_Login.js" />
 				<child name="TC_Skip_Or_Boost" key="{974B3CE8-24E9-4F50-9A75-5F9CBDA4B1BC}" path="TC_Skip_Or_Boost.js" />
 				<child name="TC_Adverse_Event" key="{C67148B8-454C-405E-96DB-52F69C8C5DDF}" path="TC_Adverse_Event.js" />
@@ -336,7 +342,6 @@
 				<child name="TC_PoCT" key="{16E509CB-FBF0-46F9-B3CA-CB1003EB3CC7}" path="TC_PoCT.js" />
 				<child name="TC_Patient_Management" key="{06A7DE51-64CD-4401-B3D4-E46FFA6DC99E}" path="TC_Patient_Management.js" />
 				<child name="TC_Treatment_Plan" key="{6D48BD34-7831-40AA-BD59-B823A6076529}" path="TC_Treatment_Plan.js" />
-				<child name="TC_Treatment" key="{21867276-A980-478B-AD7F-AC23FBF04FDF}" path="TC_Treatment.js" />
 				<child name="TC_Patient_Tests_Due" key="{FA1CC1B2-05A5-4BC6-833A-2DBC751D028E}" path="TC_Patient_Tests_Due.js" />
 				<child name="TC_Loc_Management_Users" key="{45094750-9994-4D70-BEC9-B0B3B2900063}" path="TC_Loc_Management_Users.js" />
 				<child name="TC_Home_Page" key="{3338B598-1CB6-40F3-8D14-F6D3C269FD7B}" path="TC_Home_Page.js" />
@@ -348,6 +353,7 @@
 				<child name="TC_Diagnosis" key="{7D2BD5A0-A2B9-4565-AF4A-6136928C5EED}" path="TC_Diagnosis.js" />
 				<child name="TC_External_Results_HL7" key="{E0F9F4CA-F5C4-45DC-A4D8-23B901B97C7B}" path="TC_External_Results_HL7.js" />
 				<child name="TC_Results" key="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}" path="TC_Results.js" />
+				<child name="TC_Patient_Banner" key="{C94EB2E2-3F54-4ED4-BF9F-521F91FE0D59}" path="TC_Patient_Banner.js" />
 			</folder>
 			<folder name="4. Test Step Actions ">
 				<child name="TSA_Login" key="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}" path="TSA_Login.js" />
@@ -392,10 +398,12 @@
 			</folder>
 			<folder name="9. Utilities">
 				<child name="INRstar_Misc_Functions" key="{1FBD6F73-C790-4C1D-A003-93156D1968E5}" path="INRstar_Misc_Functions.js" />
+				<child name="INRstar_Get_Functions" key="{54CD62D1-CE92-4CF9-BF0B-E74B7A56D606}" path="INRstar_Get_Functions.js" />
 			</folder>
 			<folder name="2.1 Clinical Suites">
 				<child name="TS_Clinical_Controls" key="{25598DCC-2504-497A-A15D-1EF0302ACCA4}" path="TS_Clinical_Controls.js" />
-				<child name="TC_Clinical_Controls" key="{6B5B0B17-90BC-45E9-8B92-21DA275E2114}" path="TC_Clinical_Controls.js" />
+				<child name="TC_ET5_Clinical_Controls" key="{6B5B0B17-90BC-45E9-8B92-21DA275E2114}" path="TC_ET5_Clinical_Controls.js" />
+				<child name="TC_LDx2_Clinical_Controls" key="{5CC85150-E38F-48FD-A843-AFD656B61EE1}" path="TC_LDx2_Clinical_Controls.js" />
 			</folder>
 		</folder>
 		<folder name="INRstar API">
