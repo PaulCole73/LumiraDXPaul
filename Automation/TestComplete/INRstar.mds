@@ -43,7 +43,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="UK" key="{097104BB-CCF2-4C92-9CC1-09845CDC6A42}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="UK" key="{097104BB-CCF2-4C92-9CC1-09845CDC6A42}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Test 1" key="{5626BC87-6428-4BC8-A0AC-9ACDCD971D7C}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -1168,7 +1168,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Italy" key="{F5E0CC06-0C45-4314-ACAF-E3FCD75FDE66}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Italy" key="{F5E0CC06-0C45-4314-ACAF-E3FCD75FDE66}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Test 1" key="{E5AF7FBB-364E-468D-80CB-261FE047317F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -1326,7 +1326,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="Admin Dashboard" key="{CBA815F4-4AA7-4C2E-A565-D987A2634DF6}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="Admin Dashboard" key="{CBA815F4-4AA7-4C2E-A565-D987A2634DF6}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="Setup" key="{46A6BE78-7223-4167-8A28-14FB5BB8AD24}" group="False" parallel="False" enabled="True" testMoniker="{A94478F8-47B5-4911-A6B5-854A062280AF}setup_automation_admin_dash" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">

@@ -239,8 +239,8 @@ function edit_treatment_plan_all(drug, dm) //need to update function name
   {
     var treatment_plan_details = edit_treatment_plan_path();
     treatment_plan_details.Panel(2).Select("DrugId").ClickItem(drug);
-    process_popup("Drug Confirmation Change", "OK");
-    treatment_plan_details.Panel(3).Select("TreatmentDuration").ClickItem("52 Weeks");
+    process_popup(get_string_translation("Drug Confirmation Change"), "OK");
+    treatment_plan_details.Panel(3).Select("TreatmentDuration").ClickItem(get_string_translation("52 Weeks"));
   
     var buttons = edit_treatment_plan_button_path();       
     buttons.Button("UpdatePatientTreatmentPlan").Click();

@@ -24,6 +24,28 @@ function click_dose_patient_external_result_by_timestamp(timestamp_external_resu
   }
 }
 //--------------------------------------------------------------------------------
+function click_patient_name_from_external_result_by_timestamp(timestamp_external_result)
+{
+  var results_table_object = wait_for_object(path_patient_content_panel(), "idStr", "WarfarinResultsTable", 4);
+  var results_table = patient_external_results_table();
+  
+  if(results_table_object.Exists)
+  {
+    for(var i=0; i < results_table.rowcount; i++)
+    {
+      if(results_table.Cell(i, 2).contentText == timestamp_external_result)
+      {
+        results_table.Cell(i, 1).Panel(0).Link("PatientLink").Click();
+        return
+      }
+    }
+  } 
+  else
+  {
+    Log.Message("External result table doesn't exist");
+  }
+}
+//--------------------------------------------------------------------------------
 function post_multiple_external_results(location_id, number_of_results) //this belongs in tsa results
 {
   //this posts a series of external results getting 1 hour older with each result

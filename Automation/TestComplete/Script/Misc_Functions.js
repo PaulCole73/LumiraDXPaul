@@ -14,8 +14,8 @@
 //Setup environment variable either from cmd line or default
 
 var language = "Italian";
-var environment = "INRstarWindowsITA-int1";
-var environmentname = "it-int1";
+var environment = "INRstarWindowsITA-test1";
+var environmentname = "it-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";

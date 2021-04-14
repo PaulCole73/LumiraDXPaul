@@ -332,3 +332,96 @@ function tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should
     handle_failed_tests(suite_name, test_name); 
   } 
 }
+//--------------------------------------------------------------------------------
+function tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan()
+{
+  try
+  {
+    var test_title = "Results Tab: Dose Patient: Error Popup shown and dosing prevented for patient with an active non VKA treatment plan"
+    login(7, "Shared");
+    var result_set = new Array();  
+    var location_id = get_organization_id_from_current_location();
+    add_patient('clinical' , 'nonVKAtreatment', ''); 
+    add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','52 Weeks')
+    var patient = get_patient_details_object_from_demographics();
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);         
+    post_external_result_instrument(JSON.stringify(body_data)); 
+    
+    var expected_popup_header = get_string_translation("Error: Currently unable to dose patient");
+    
+    //Perform test for Apixaban
+    var actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    result_set.push(result_set_1);
+    
+    Goto_External_Results();
+    
+    //Perform test for Dabigatran
+    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
+    edit_treatment_plan_all(get_string_translation("Dabigatran"));
+    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    result_set.push(result_set_1);
+    
+    //Perform test for Dalteparin (LMWH)
+    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
+    edit_treatment_plan_all(get_string_translation("Dalteparin (LMWH)"));
+    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    result_set.push(result_set_1);
+    
+    //Perform test for Edoxaban
+    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
+    edit_treatment_plan_all(get_string_translation("Edoxaban"));
+    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    result_set.push(result_set_1);
+    
+    //Perform test for Enoxaparin (LMWH)
+    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
+    edit_treatment_plan_all(get_string_translation("Enoxaparin (LMWH)"));
+    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    result_set.push(result_set_1);
+    
+    //Perform test for Rivaroxaban
+    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
+    edit_treatment_plan_all(get_string_translation("Rivaroxaban"));
+    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    result_set.push(result_set_1);
+
+    if (language != 'Italian')
+    {
+    //Only perform test for acenocoumarol if not in italy
+    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
+    edit_treatment_plan_all('Acenocoumarol');
+    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    }
+    
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set);
+    
+    //Pass in the result
+		results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//--------------------------------------------------------------------------------
