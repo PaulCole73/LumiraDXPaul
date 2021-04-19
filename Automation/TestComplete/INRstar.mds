@@ -1168,7 +1168,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Italy" key="{F5E0CC06-0C45-4314-ACAF-E3FCD75FDE66}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Italy" key="{F5E0CC06-0C45-4314-ACAF-E3FCD75FDE66}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Test 1" key="{E5AF7FBB-364E-468D-80CB-261FE047317F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2184,7 +2184,7 @@
 			<testItem name="Clinical Controls" key="{96C0657B-72E2-4844-A42C-EAC387730C68}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
-					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="False" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<environments testedURL="" />
 						<children />
@@ -2197,7 +2197,7 @@
 								<environments testedURL="" />
 								<children />
 							</testItem>
-							<testItem name="ET5/C1-Access to external results functionality is restricted to Clinical Level users and above" key="{8EF3E5E1-7738-4F00-A61C-38008241D0C1}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C1-Access to external results functionality is restricted to Clinical Level users and above" key="{8EF3E5E1-7738-4F00-A61C-38008241D0C1}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing();" key="{D21AE6B5-5CAC-4D82-ABBB-91E7861A8672}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_applied_for_coventry_dosing" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="True">
@@ -2232,7 +2232,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C2- Duplicated messages identified and highlighted in the work list" key="{84A85BB7-9A0D-4FFE-A4AB-37EC8D1016A5}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C2- Duplicated messages identified and highlighted in the work list" key="{84A85BB7-9A0D-4FFE-A4AB-37EC8D1016A5}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice();" key="{9A5F2E99-62F4-4217-B9A8-393C868FEFF2}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2242,7 +2242,37 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C8-Clinician is warned if the date of the inr test is not the same as the date inr is sent" key="{3E945159-1A6E-4E17-BDF9-ABE683D02A07}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C4-Patient identity is displayed on banner - visible on all patient-specific screens&#13;&#10;" key="{21B6326C-4EAA-4F07-AA8C-1FF46A1427FB}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient();" key="{7C7EEC4F-9234-491E-A17B-7B65FA45265F}" group="False" parallel="False" enabled="True" testMoniker="{C94EB2E2-3F54-4ED4-BF9F-521F91FE0D59}tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C6-Patient identification data displayed in work list" key="{606087E8-9692-418A-BE14-F66A40100358}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_patient_column_contains_the_patient_details_for_an_instrument_result();" key="{163912D7-6431-4058-8A6C-B1CE0BE5F4BC}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_patient_column_contains_the_patient_details_for_an_instrument_result" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C7-Mismatched patients can be processed manually" key="{8D108506-8E42-4FB2-B6C8-3256309FF9CC}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_unmatched_patient_can_be_manually_matched();" key="{D51A72D1-F78C-4805-A567-34B514AC969B}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_unmatched_patient_can_be_manually_matched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C8-Clinician is warned if the date of the inr test is not the same as the date inr is sent" key="{3E945159-1A6E-4E17-BDF9-ABE683D02A07}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent();" key="{000EF762-1CCC-4AFE-A083-BF832034BC32}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2252,7 +2282,27 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C13-Identifiers used to locate patient in inrstar and validate record" key="{4A1AC254-3F24-4652-95D4-84624728D83F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C11a-External results importation disabled for patients with active non VKA treatment plans" key="{833A4D62-E450-4E7F-885C-791F893136C8}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan();" key="{66E503CD-8DB3-4A0B-A6C1-20E922792BC1}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C12-Unmatched patients shown in external results and clinician given options to find or archive" key="{70C80714-C5C9-46C3-84EF-1054548EF73B}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_unmatched_patient_can_be_manually_matched();" key="{4703694B-D935-4594-BC34-934F91260B49}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_unmatched_patient_can_be_manually_matched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C13-Identifiers used to locate patient in inrstar and validate record" key="{4A1AC254-3F24-4652-95D4-84624728D83F}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched();" key="{F4C339DA-065D-43E0-B97E-794DEAA3BBF5}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2287,7 +2337,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C14-The latest result will always show in the work list in chronological order" key="{D842938A-43C6-48F8-B836-A0D1664EE71E}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C14-The latest result will always show in the work list in chronological order" key="{D842938A-43C6-48F8-B836-A0D1664EE71E}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table();" key="{04D4FEE9-BC18-49DD-8782-938E45B02C17}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_from_instrument_most_recent_result_appears_at_bottom_of_table" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2297,7 +2347,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C15-Clinician is warned if the date of the inr test is not the same as the date inr is sent" key="{2F2BAF37-D6A0-4F7C-BB3F-01786118CC6A}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C15-Clinician is warned if the date of the inr test is not the same as the date inr is sent" key="{2F2BAF37-D6A0-4F7C-BB3F-01786118CC6A}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent();" key="{7A833834-2B4A-45B9-99B3-DB51F3171E8E}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_same_as_the_date_inr_is_sent" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2307,7 +2357,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C18-External results can be archived" key="{4447E1DF-5F20-4894-8DFA-AC65E65FA36F}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C18-External results can be archived" key="{4447E1DF-5F20-4894-8DFA-AC65E65FA36F}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{B132FE96-0970-456E-AF34-C2F09B0B8C14}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2322,7 +2372,17 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C21-External results can be archived" key="{B298765C-C8C0-438A-ABC8-D311D69FABE5}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C19-INR results can be added manually in line with existing functionality" key="{5A5747E3-191D-4A43-9AA2-F3335A6592E1}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_treatment_add_a_manual_INR()" key="{A8B6A5CC-7750-4D0D-94EB-1F58D07FC823}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_treatment_add_a_manual_INR" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="ET5/C21-External results can be archived" key="{B298765C-C8C0-438A-ABC8-D311D69FABE5}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{5C4CDC74-C823-4F32-A7B1-CA6D31FABE40}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2337,15 +2397,30 @@
 									</testItem>
 								</children>
 							</testItem>
+							<testItem name="ET5/C22-External results can be archived" key="{79D3A0E0-19D2-40F2-B09D-630A9A432DE1}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument();" key="{0643A38C-736D-41E9-8F33-0AABDFC059B5}" group="False" parallel="False" enabled="True" testMoniker="{21867276-A980-478B-AD7F-AC23FBF04FDF}tc_inr_test_results_received_archive_button_archiving_process_can_remove_results_received_by_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument();" key="{EB56458D-AE0D-4E35-84CC-A59B56C48D52}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
 						</children>
 					</testItem>
-					<testItem name="LDx2 Barcode Scanning" key="{5B3E0141-9B64-4C0E-AE5E-742CB238ED77}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="LDx2 Barcode Scanning" key="{5B3E0141-9B64-4C0E-AE5E-742CB238ED77}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="LDx2/C5 Patient identity is displayed on banner - visible on all patient-specific screens&#13;&#10;" key="{0AF48D57-CEDA-404C-8AB8-81ACFAF0A8D9}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice();_1" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient();" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{C94EB2E2-3F54-4ED4-BF9F-521F91FE0D59}tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
@@ -2820,7 +2895,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />

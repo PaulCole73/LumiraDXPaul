@@ -537,6 +537,16 @@ function setup_automation(new_config_file_name,locale)
   change_environments(new_config_file_name);
 }
 //-----------------------------------------------------------------------------------
+function get_decimal_translation(decimal_value)
+{
+  if (language == 'Italian')
+  {
+    decimal_value = decimal_value.replace(".", ","); 
+  }
+  
+  return decimal_value
+}
+//-----------------------------------------------------------------------------------
 function get_string_translation(translation_word)
 {
  var lookup_column;

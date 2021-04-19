@@ -135,6 +135,26 @@ function patient_search(data)
   WaitSeconds(1, "Wait after patient search...");
 } 
 //--------------------------------------------------------------------------------
+function patient_search_for_unmatched_result(patient_search_criteria)
+{
+  //This searches for patient - after selecting find patient button on unmatched result via external result form
+  //It will select the first result in the list on the assumption of uniqueness 
+  
+  path_main_content_panel().FindChild("idStr", "searchCriteria", 3)
+    
+  inrstar_path_external_patient_search_form_search_criteria().Text = patient_search_criteria;
+  inrstar_path_external_patient_search_form_search_button().Click();
+    
+  WaitSeconds(1, "Wait after patient search...");
+   
+  var results_table = patient_search_screen_results_table();
+  results_table.Cell(1, 0).RadioButton("patientId").Click();
+
+  inrstar_path_external_test_patient_search_form_use_selected_patient_button().Click()
+  
+  WaitSeconds(1, "Wait after patient search...");
+} 
+//--------------------------------------------------------------------------------
 function inactive_patient_search(data)
 {
   Goto_Patient_Search();

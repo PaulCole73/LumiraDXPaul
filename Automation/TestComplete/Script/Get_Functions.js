@@ -329,7 +329,7 @@ function get_inr_results_received_by_timestamp(timestamp)
   if (table_exists == true) 
   {    
     //Get the path of the patient external results table
-    var table = inr_results_received_table(); 
+    var table = inr_results_received_table();
       
       //Loop through each row of table
       for (i=0; i<table.RowCount; i++)
