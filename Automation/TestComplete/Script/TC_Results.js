@@ -401,7 +401,7 @@ function tc_unmatched_patient_can_be_manually_matched()
     //Create a mismatched patient to be used for sending in a mismatched result
     //everything matches created patient with the exception of Surname and DOB
     var mismatched_patient = patient;  
-    mismatched_patient.lastname = "Unmatched Surname";
+    mismatched_patient.last_name = "Unmatched Surname";
     mismatched_patient.dob_as_dd_mm_yyyy = "15-04-1988";
   
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
@@ -479,7 +479,7 @@ function tc_error_popup_shown_and_dosing_prevented_for_instrument_result_for_pat
     for (const element of drugs_to_check) 
     {
       click_external_result_by_timestamp(inr_test_timestamp.external_results, "Patient_link");
-      edit_treatment_plan_all(get_string_translation(element));
+      edit_treatment_plan_drug(get_string_translation(element));
       actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
       result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
       result_set.push(result_set_1);
@@ -489,7 +489,7 @@ function tc_error_popup_shown_and_dosing_prevented_for_instrument_result_for_pat
     {
       //Only perform test for acenocoumarol if not in italy
       click_external_result_by_timestamp(inr_test_timestamp.external_results, "Patient_link");
-      edit_treatment_plan_all('Acenocoumarol');
+      edit_treatment_plan_drug('Acenocoumarol');
       actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
       result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
       result_set.push(result_set_1);
@@ -520,19 +520,11 @@ function tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient
     login(7, "Shared");
     var result_set = new Array();  
     var location_id = get_organization_id_from_current_location();
-    add_patient('clinical' , '', 'M');  
-    add_treatment_plan('W','Manual','','Shared',''); 
-    var patient = get_patient_details_object_from_demographics();
+    var patient = create_patient_object_for_fiscal();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
-    
-    //Create a mismatched patient to be used for sending in a mismatched result
-    //everything matches created patient with the exception of Surname and DOB
-    var mismatched_patient = patient;  
-    mismatched_patient.lastname = "Unmatched surname";
-    mismatched_patient.dob_as_dd_mm_yyyy = "15-04-1988";
   
     //Post and Locate posted result
-    var body_data = json_body_data_instrument(mismatched_patient, location_id, "2.6", inr_test_timestamp.csp_payload);         
+    var body_data = json_body_data_instrument(patient, location_id, "2.6", inr_test_timestamp.csp_payload);         
     post_external_result_instrument(JSON.stringify(body_data)); 
     var mismatched_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       

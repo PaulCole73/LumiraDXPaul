@@ -2262,7 +2262,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C7-Mismatched patients can be processed manually" key="{8D108506-8E42-4FB2-B6C8-3256309FF9CC}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C7-Mismatched patients can be processed manually" key="{8D108506-8E42-4FB2-B6C8-3256309FF9CC}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_unmatched_patient_can_be_manually_matched();" key="{D51A72D1-F78C-4805-A567-34B514AC969B}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_unmatched_patient_can_be_manually_matched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2282,7 +2282,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C11a-External results importation disabled for patients with active non VKA treatment plans" key="{833A4D62-E450-4E7F-885C-791F893136C8}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C11a-External results importation disabled for patients with active non VKA treatment plans" key="{833A4D62-E450-4E7F-885C-791F893136C8}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan();" key="{66E503CD-8DB3-4A0B-A6C1-20E922792BC1}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_error_popup_shown_and_dosing_prevented_for_instrument_result_for_patient_with_an_active_non_VKA_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">

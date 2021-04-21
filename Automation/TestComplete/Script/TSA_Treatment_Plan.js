@@ -221,7 +221,7 @@ function edit_treatment_plan(dm)
   return more_info;  
 }
 //--------------------------------------------------------------------------------
-function edit_treatment_plan_all(drug, dm) //need to update function name
+function edit_treatment_plan_drug(drug, dm) //need to update function name
 {
   Goto_Patient_Treatment_Plan();
   var current_drug = clinical_tp_details().Panel(3).Label("DrugName_DetachedLabel").innerText;
