@@ -1,6 +1,7 @@
 ﻿//USEUNIT Get_Functions
 //USEUNIT TSA_Results
 //USEUNIT INRstar_Misc_Functions
+//USEUNIT TC_Patient_Banner
 
 //--------------------------------------------------------------------------------//
 function tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice()
@@ -384,99 +385,6 @@ function tc_patient_column_contains_the_patient_details_for_an_instrument_result
     handle_failed_tests(suite_name, test_name); 
   } 
 }
-
-//--------------------------------------------------------------------------------
-function tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan()
-{
-  try
-  {
-    var test_title = "Results Tab: Dose Patient: Error Popup shown and dosing prevented for patient with an active non VKA treatment plan"
-    login(7, "Shared");
-    var result_set = new Array();  
-    var location_id = get_organization_id_from_current_location();
-    add_patient('clinical' , 'nonVKAtreatment', ''); 
-    add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','52 Weeks')
-    var patient = get_patient_details_object_from_demographics();
-    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
-    
-    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);         
-    post_external_result_instrument(JSON.stringify(body_data)); 
-    
-    var expected_popup_header = get_string_translation("Error: Currently unable to dose patient");
-    
-    //Perform test for Apixaban
-    var actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-
-    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
-    result_set.push(result_set_1);
-    
-    Goto_External_Results();
-    
-    //Perform test for Dabigatran
-    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
-    edit_treatment_plan_all(get_string_translation("Dabigatran"));
-    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-
-    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
-    result_set.push(result_set_1);
-    
-    //Perform test for Dalteparin (LMWH)
-    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
-    edit_treatment_plan_all(get_string_translation("Dalteparin (LMWH)"));
-    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-
-    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
-    result_set.push(result_set_1);
-    
-    //Perform test for Edoxaban
-    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
-    edit_treatment_plan_all(get_string_translation("Edoxaban"));
-    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-
-    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
-    result_set.push(result_set_1);
-    
-    //Perform test for Enoxaparin (LMWH)
-    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
-    edit_treatment_plan_all(get_string_translation("Enoxaparin (LMWH)"));
-    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-
-    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
-    result_set.push(result_set_1);
-    
-    //Perform test for Rivaroxaban
-    click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
-    edit_treatment_plan_all(get_string_translation("Rivaroxaban"));
-    actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-
-    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
-    result_set.push(result_set_1);
-
-    if (language != 'Italian')
-    {
-      //Only perform test for acenocoumarol if not in italy
-      click_patient_name_from_external_result_by_timestamp(inr_test_timestamp.external_results);
-      edit_treatment_plan_all('Acenocoumarol');
-      actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
-      result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
-    }
-    
-    //Validate the results sets are true
-    var results = results_checker_are_true(result_set);
-    
-    //Pass in the result
-		results_checker(results, test_title); 
-
-    Log_Off(); 
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Results";
-    var test_name = "tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan";
-    handle_failed_tests(suite_name, test_name); 
-  } 
-}
 //--------------------------------------------------------------------------------
 function tc_unmatched_patient_can_be_manually_matched()
 {
@@ -502,11 +410,7 @@ function tc_unmatched_patient_can_be_manually_matched()
     var body_data = json_body_data_instrument(mismatched_patient, location_id, "2.6", inr_test_timestamp.csp_payload);         
     post_external_result_instrument(JSON.stringify(body_data)); 
     var mismatched_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
-    
-    //Check the displayed INR matches that which was posted - Datetime allready checked by means of identification
-    var result_set_1 = compare_values(get_decimal_translation("2.6"), mismatched_external_result.inr, test_title);
-    result_set.push(result_set_1);
-    
+      
     //Check the Find patient button is displayed for the result - this also proves patient is unmatched
     var result_set_1 = compare_values(get_string_translation("Find Patient"), mismatched_external_result.status_column_value1, test_title);
     result_set.push(result_set_1);
@@ -516,22 +420,20 @@ function tc_unmatched_patient_can_be_manually_matched()
     result_set.push(result_set_1);
     
     //Select find patient against the result
-    click_find_patient_external_result_by_timestamp(inr_test_timestamp.external_results);
+    click_external_result_by_timestamp(inr_test_timestamp.external_results, "Find");
     
     //Search for the patient
     patient_search_for_unmatched_result(patient.fullname);
     
     //Select dose patient button
-    click_dose_patient_external_result_by_timestamp(inr_test_timestamp.external_results);
+    click_external_result_by_timestamp(inr_test_timestamp.external_results, "Dose");
     
-    //Get INR result on new inr form
-    var result_on_new_inr_form = get_inr_results_received_by_timestamp(inr_test_timestamp.inr_patient_results);
-    
-    //Check result on new inr form matches unbmatched posted result
-    var result_set_1 = compare_values(result_on_new_inr_form.inr, get_decimal_translation("2.6"), test_title);
+    //Check the patient name in the banner matches the intended/matched patient
+    var patient_shown_in_banner = inrstar_get_patient_details_object_from_bluebar();
+    var result_set_1 = compare_values(patient_shown_in_banner.patientid, patient.patientid, test_title);
     result_set.push(result_set_1);
     
-     //Validate the results sets are true
+    //Validate the results sets are true
     var results = results_checker_are_true(result_set);
     
     //Pass in the result
@@ -544,6 +446,127 @@ function tc_unmatched_patient_can_be_manually_matched()
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Results";
     var test_name = "tc_unmatched_patient_can_be_manually_matched";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//--------------------------------------------------------------------------------
+function tc_error_popup_shown_and_dosing_prevented_for_instrument_result_for_patient_with_an_active_non_VKA_treatment_plan()
+{
+  try
+  {
+    var test_title = "Results Tab: Dose Patient: Instrument - Error Popup shown and dosing prevented for patient with an active non VKA treatment plan"
+    login(7, "Shared");
+    var result_set = new Array();  
+    var location_id = get_organization_id_from_current_location();
+    add_patient('clinical' , 'nonVKAtreatment', ''); 
+    add_treatment_plan('Apixaban','',aqConvert.StrToDate(aqDateTime.Today()),'Shared','','52 Weeks')
+    var patient = get_patient_details_object_from_demographics();
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    
+    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);         
+    post_external_result_instrument(JSON.stringify(body_data)); 
+    
+    var expected_popup_header = get_string_translation("Error: Currently unable to dose patient");
+    
+    //Perform test for Apixaban
+    var actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+    result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+    result_set.push(result_set_1);
+    
+    //Perform test for five other drugs
+    const drugs_to_check = ["Dabigatran","Dalteparin (LMWH)","Edoxaban","Enoxaparin (LMWH)","Rivaroxaban"];
+    
+    for (const element of drugs_to_check) 
+    {
+      click_external_result_by_timestamp(inr_test_timestamp.external_results, "Patient_link");
+      edit_treatment_plan_all(get_string_translation(element));
+      actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+      result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+      result_set.push(result_set_1);
+    }
+
+    if (language != 'Italian')
+    {
+      //Only perform test for acenocoumarol if not in italy
+      click_external_result_by_timestamp(inr_test_timestamp.external_results, "Patient_link");
+      edit_treatment_plan_all('Acenocoumarol');
+      actual_pop_up_header = get_external_result_popup_header_text(inr_test_timestamp.external_results);   
+      result_set_1 = compare_values(expected_popup_header, actual_pop_up_header, test_title);
+      result_set.push(result_set_1);
+    }
+    
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set);
+    
+    //Pass in the result
+		results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_error_popup_shown_and_dosing_prevented_for_instrument_result_for_patient_with_an_active_non_VKA_treatment_plan";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//--------------------------------------------------------------------------------
+function tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient_details_after_search()
+{
+  try
+  {
+    var test_title = "Results Tab: Find Patient: No patient found message shown if unable to locate unmatched patient details after search"
+    login(7, "Shared");
+    var result_set = new Array();  
+    var location_id = get_organization_id_from_current_location();
+    add_patient('clinical' , '', 'M');  
+    add_treatment_plan('W','Manual','','Shared',''); 
+    var patient = get_patient_details_object_from_demographics();
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+    
+    //Create a mismatched patient to be used for sending in a mismatched result
+    //everything matches created patient with the exception of Surname and DOB
+    var mismatched_patient = patient;  
+    mismatched_patient.lastname = "Unmatched surname";
+    mismatched_patient.dob_as_dd_mm_yyyy = "15-04-1988";
+  
+    //Post and Locate posted result
+    var body_data = json_body_data_instrument(mismatched_patient, location_id, "2.6", inr_test_timestamp.csp_payload);         
+    post_external_result_instrument(JSON.stringify(body_data)); 
+    var mismatched_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+    //Check the Find patient button is displayed for the result - this also proves patient is unmatched
+    var result_set_1 = compare_values(get_string_translation("Find Patient"), mismatched_external_result.status_column_value1, test_title);
+    result_set.push(result_set_1);
+    
+    //Check the Archive button is displayed for the result - part of the clinical control
+    var result_set_1 = compare_values(get_string_translation("Archive"), mismatched_external_result.status_column_value2, test_title);
+    result_set.push(result_set_1);
+    
+    //Select find patient against the result
+    click_external_result_by_timestamp(inr_test_timestamp.external_results, "Find");
+    
+    //Search for a random patient should return no patient found 
+    var patient_search_result = patient_search_for_unmatched_result("A random persons name that will not be found");
+    
+    //Check to ensure displayed text is 'no patient found'
+    var result_set_1 = compare_values(patient_search_result, get_string_translation("No patient found"), test_title);
+    result_set.push(result_set_1);
+    
+    //Validate the results sets are true
+    var results = results_checker_are_true(result_set);
+    
+    //Pass in the result
+		results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient_details_after_search";
     handle_failed_tests(suite_name, test_name); 
   } 
 }

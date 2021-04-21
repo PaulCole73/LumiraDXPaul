@@ -51,13 +51,13 @@ function cc_ET5_C8_clinician_is_warned_if_the_date_of_the_inr_test_is_not_the_sa
 function cc_ET5_C11a_external_results_importation_disabled_for_patients_with_active_non_VKA_treatment_plans()
 {
   //Only done Instrument - Not tested in UK yet but should work
-  tc_error_popup_shown_and_dosing_prevented_for_patient_with_an_active_non_VKA_treatment_plan();
+  tc_error_popup_shown_and_dosing_prevented_for_instrument_result_for_patient_with_an_active_non_VKA_treatment_plan();
 }
 //==============================================================================//
 function cc_ET5_C12_unmatched_patients_shown_in_external_results_and_clinician_given_options_to_find_archive()
 {
-  //Instrument only
-  tc_unmatched_patient_can_be_manually_matched();
+  //Instrument only - Not tested in UK yet but should work
+  tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient_details_after_search();
 }
 //==============================================================================//
 function cc_ET5_C13_identifiers_used_to_locate_patient_in_inrstar_and_validate_record()

@@ -356,7 +356,7 @@ function get_inr_results_received_by_timestamp(timestamp)
 //--------------------------------------------------------------------------------
 function get_external_result_popup_header_text(timestamp_external_result)
 {
-  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  click_external_result_by_timestamp(timestamp_external_result, "Dose");
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
@@ -377,7 +377,7 @@ function get_external_result_popup_header_text(timestamp_external_result)
 //--------------------------------------------------------------------------------
 function get_external_result_popup_historic_button_text(timestamp_external_result)
 {
-  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  click_external_result_by_timestamp(timestamp_external_result, "Dose");
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
@@ -398,7 +398,7 @@ function get_external_result_popup_historic_button_text(timestamp_external_resul
 //--------------------------------------------------------------------------------
 function get_external_result_popup_new_inr_button_text(timestamp_external_result)
 {
-  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  click_external_result_by_timestamp(timestamp_external_result, "Dose");
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
