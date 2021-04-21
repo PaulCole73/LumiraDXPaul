@@ -1,16 +1,6 @@
 ﻿//USEUNIT INRstar_Misc_Functions
 //USEUNIT INRstar_Get_Functions
 //USEUNIT TSA_receive_data_from_iguana
-
-function test()
-{
-  
-    var expected_text = get_string_translation("The last request was not performed because this patient's record was changed by another user after it was opened") + 
-                                               ".\n" + get_string_translation("Click 'Exit Patient' - to continue, you will need to reload the patient record") + "."
-
-    var results = popup_warning_checker(expected_text);
-    results_checker(results, "title")
-}
 //--------------------------------------------------------------------------------
 function tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment() 
 {
