@@ -388,6 +388,39 @@ function patient_search_screen_results_table()
   return patient_search_results_table;
 } 
 //------------------------------------------------------------------------
+function inrstar_path_external_patient_search_form()
+{
+  var patient_content_panel = path_patient_content_panel();
+  var form = patient_content_panel.Form("ExternalPatientSearchForm")
+  
+  return form;
+} 
+//------------------------------------------------------------------------
+function inrstar_path_external_patient_search_form_search_button()
+{
+  var search_form = inrstar_path_external_patient_search_form();
+  var button = search_form.SubmitButton("Search");
+  
+  return button;
+} 
+//------------------------------------------------------------------------
+function inrstar_path_external_patient_search_form_search_criteria()
+{
+  var search_form = inrstar_path_external_patient_search_form();
+  var search_field = search_form.Textbox("searchCriteria")
+  
+  return search_field;
+} 
+//------------------------------------------------------------------------
+function inrstar_path_external_test_patient_search_form_use_selected_patient_button()
+{
+  var patient_content_panel = path_patient_content_panel();
+  var form = patient_content_panel.Panel("SearchResults").Form("ExternalTestPatientSearchForm")
+  var button = form.Panel(0).SubmitButton("SelectedPatientButton");
+  
+  return button;
+} 
+//------------------------------------------------------------------------
 function add_patient_demographics_system_path()
 {
   var panelPC = path_patient_content_panel();

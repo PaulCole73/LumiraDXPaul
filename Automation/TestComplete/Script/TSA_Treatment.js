@@ -825,9 +825,9 @@ function json_body_data_instrument(patient_details, location_id, inr_result, blo
 
   //Replace payload content with imported variables
   payload.patient.identifiers[0].alias = patient_details.nhs_number;
-  payload.patient.lastName = patient_details.lastname;
-  payload.patient.firstName = patient_details.firstname;
-  payload.patient.dob = patient_details.dob_as_dd_mm_yyyy;
+  payload.patient.lastName = patient_details.last_name;
+  payload.patient.firstName = patient_details.first_name;
+  payload.patient.dob = aqConvert.DateTimeToFormatStr(patient_details.dob, "%d-%m-%Y");
   payload.patient.gender = patient_details.gender;
   payload.resultValue = inr_result
   
@@ -838,8 +838,6 @@ function json_body_data_instrument(patient_details, location_id, inr_result, blo
   //Replace Payload blood test timestamp
   //Why are we passing this in and not setting here ?
   payload.effectiveDateTime = blood_test_timestamp;
-  
-  //Log.Message("Payload created as: " + JSON.stringify(payload));
     
   //Return the payload so it can be posted elsewhere
   return payload

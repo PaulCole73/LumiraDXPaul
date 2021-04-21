@@ -2,7 +2,7 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
-function click_dose_patient_external_result_by_timestamp(timestamp_external_result)
+function click_external_result_by_timestamp(timestamp_external_result, target)
 {
   Goto_External_Results();
   var results_table_object = wait_for_object(path_patient_content_panel(), "idStr", "WarfarinResultsTable", 4);
@@ -14,7 +14,23 @@ function click_dose_patient_external_result_by_timestamp(timestamp_external_resu
     {
       if(results_table.Cell(i, 2).contentText == timestamp_external_result)
       {
-        results_table.Cell(i, 4).Panel(0).Panel("Div1").Button("DosePatient").Click();
+        switch(target)
+        {
+          case "Dose": 
+            results_table.Cell(i, 4).Panel(0).Panel("Div1").Button("DosePatient").Click();
+            WaitSeconds(1, "Wait after selecting Dose Patient...");  
+            break;
+          case "Find": 
+            results_table.Cell(i, 4).Panel(0).Panel("Div1").Button("FindPatient").Click();
+            break;
+          case "Patient_link": 
+            results_table.Cell(i, 1).Panel(0).Link("PatientLink").Click();
+            break;
+          default:
+            Log.Message("Incorrect target passed into click_external_result");
+            break;
+        }
+        break;
       }
     }
   } 
