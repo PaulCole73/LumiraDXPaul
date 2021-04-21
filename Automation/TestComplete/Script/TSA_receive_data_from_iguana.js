@@ -54,7 +54,7 @@ function json_body_recievedatafromiguana(patient_data)
   payload.Firstname = patient_data.first_name;
   payload.Surname = patient_data.last_name;
   payload.NHSNumber = patient_data.nhs_number
-  payload.DOB =  patient_data.dob;
+  payload.DOB = aqConvert.DateTimeToFormatStr(patient_data.dob, "%d/%m/%Y");
   payload.SectionId = location_id;
   payload.Sex = (patient_data.sex == get_string_translation("Male"))? "Male" : "Female";
   payload.PatientNumber = patient_data.patient_number;
