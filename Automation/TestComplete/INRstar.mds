@@ -2184,12 +2184,12 @@
 			<testItem name="Clinical Controls" key="{96C0657B-72E2-4844-A42C-EAC387730C68}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
-					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="False" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<environments testedURL="" />
 						<children />
 					</testItem>
-					<testItem name="ET5 External Treatment Management Functionality" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="ET5 External Treatment Management Functionality" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="False" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2345,7 +2345,7 @@
 							<testItem name="LDx2/C5 Patient identity is displayed on banner - visible on all patient-specific screens&#13;&#10;" key="{0AF48D57-CEDA-404C-8AB8-81ACFAF0A8D9}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice();_1" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{C94EB2E2-3F54-4ED4-BF9F-521F91FE0D59}tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
