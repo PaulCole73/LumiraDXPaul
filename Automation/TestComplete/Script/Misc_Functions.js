@@ -4,6 +4,7 @@
 //USEUNIT Get_Functions
 //USEUNIT Failed_Test_Handlers
 //USEUNIT INRstar_Misc_Functions
+//USEUNIT INRstar_Translations
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -445,54 +446,6 @@ function set_month(integer_month)
   return get_string_translation(requested_month);
 }
 //-----------------------------------------------------------------------------------
-function set_italian_long_month(month)
-{
- var long_month;  
-
- switch(month)
- {
-    case "January":
-    long_month = "gennaio";
-    break;
-    case "February":
-    long_month = "febbraio";
-    break;  
-    case "March":
-    long_month = "marzo";
-    break;  
-    case "April":
-    long_month = "aprile";
-    break;  
-    case "May":
-    long_month = "maggio";
-    break;  
-    case "June":
-    long_month = "giugno";
-    break;  
-    case "July":
-    long_month = "luglio";
-    break;  
-    case "August":
-    long_month = "agosto";
-    break;  
-    case "September":
-    long_month = "settembre";
-    break;  
-    case "October":
-    long_month = "ottobre";
-    break;  
-    case "November":
-    long_month = "novembre";
-    break;
-    case "December":
-    long_month = "dicembre";
-    break;    
-    default:
-    Log.Message("Couldn't find the month you were looking for");    
- }                  
-  return long_month;
-}
-//-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
 {
   var INRstarV5 = INRstar_base();
@@ -535,100 +488,6 @@ function setup_automation(new_config_file_name,locale)
   Log.LockEvents(0);
   reset_tests_array();
   change_environments(new_config_file_name);
-}
-//-----------------------------------------------------------------------------------
-function get_decimal_translation(decimal_value)
-{
-  if (language == 'Italian')
-  {
-    decimal_value = decimal_value.replace(".", ","); 
-  }
-  
-  return decimal_value
-}
-//-----------------------------------------------------------------------------------
-function get_string_translation(translation_word)
-{
- var lookup_column;
- var row_value;
- 
- switch(language)
- {
-   case "English":
-   lookup_column = 0;
-   break;
-   case "Italian":
-   lookup_column = 1;
-   break;
-   case "Spanish":
-   lookup_column = 2;
-   break;
-   default:
-   Log.Message("You didn't pass in a language I recognise you passed in " + language);
-   break;
- }
-
- var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
- 
- while (!driver.EOF())
- {
-   if (driver.Value(0) == translation_word)
-   {
-     row_value = driver.Value(lookup_column);
-
-     DDT.CloseDriver(DDT.CurrentDriver.Name);
-     return row_value;     
-   }     
-   driver.Next();
- }
-
- Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?");
-}
-//-----------------------------------------------------------------------------------
-//Just to quickly test things in the translation file
-function testing_translation()
-{
-
-var test = get_string_translation("Duplicate");   
-
-Log.Message(test)
-}
-//-----------------------------------------------------------------------------------
-function get_english_translation(translation_word)
-{
- var origin_language;
- var row_value;
- 
- switch(language)
- {
-   case "English":
-   origin_language = 0;
-   break;
-   case "Italian":
-   origin_language = 1;
-   break;
-   case "Spanish":
-   origin_language = 2;
-   break;
-   default:
-   Log.Message("You didn't pass in a language I recognise you passed in " + language);
-   break;
- }
- 
- var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
- 
- while (!driver.EOF())
- {
-   if (driver.Value(origin_language) == translation_word)
-   {
-     row_value = driver.Value(0);
-
-     DDT.CloseDriver(DDT.CurrentDriver.Name);
-     return row_value;     
-   }     
-   driver.Next();
- }
- Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//

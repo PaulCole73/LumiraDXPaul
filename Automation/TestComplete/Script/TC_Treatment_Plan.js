@@ -578,7 +578,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%A %d-%B-%Y");
     var clinic_day = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%A");
     var clinic_day_num = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%d");
-    var clinic_month = set_italian_long_month(aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%B")); //date time functions are relative to the pc locale, should be reworked using a region identifier
+    var clinic_month = get_string_translation(aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%B")); //date time functions are relative to the pc locale, should be reworked using a region identifier
     var clinic_year = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%Y");
     
     //Way too much happening here now needs to be in a test step but not got enough time right now
