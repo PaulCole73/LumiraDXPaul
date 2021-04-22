@@ -17,7 +17,7 @@
 			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
-					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="add_patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
 							<param0 name="do_login" type="3" localVarName="" varType="11" value="False" />
 							<param1 name="dm" type="3" localVarName="" varType="8" value="Coventry" />
@@ -37,6 +37,13 @@
 						<testParameters>
 							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
 							<param1 name="locale" type="3" localVarName="" varType="0" value="" />
+						</testParameters>
+						<environments testedURL="" />
+						<children />
+					</testItem>
+					<testItem name="calculate_check_digit" key="{A49E3ABC-F750-4E5B-8BD4-AECB07163885}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}calculate_check_digit" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+						<testParameters>
+							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="mllsnt82p65z404" />
 						</testParameters>
 						<environments testedURL="" />
 						<children />
@@ -2345,7 +2352,7 @@
 							<testItem name="LDx2/C5 Patient identity is displayed on banner - visible on all patient-specific screens&#13;&#10;" key="{0AF48D57-CEDA-404C-8AB8-81ACFAF0A8D9}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice();_1" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice();" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_duplicate_status_instrument_result_set_to_duplicate_when_the_exact_same_message_is_sent_twice" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />
@@ -2360,7 +2367,7 @@
 	</testItems>
 	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}" />
 	<settings key="{3E1721F3-9165-4447-AE13-1C0F567DC90E}">
-		<settingsVersion value="14.74" />
+		<settingsVersion value="14.80" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
@@ -2387,6 +2394,24 @@
 		<setting name="AzureDevOps_TeamProject" type="5" value="" />
 		<setting name="AzureDevOps_TeamProjectCollection" type="5" value="" />
 		<setting name="AzureDevOps_URL" type="5" value="" />
+		<setting name="CBT_AppsAvailability" type="6" rowIndex="0" colIndex="0">
+			<columns>
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="Everywhere" />
+				<row val0="In a local network" />
+				<row val0="On a local computer" />
+				<row val0="Via proxy" />
+			</data>
+		</setting>
+		<setting name="CBT_Authkey" type="5" value="" />
+		<setting name="CBT_LocalHtmlDir" type="5" value="" />
+		<setting name="CBT_ProxyAddress" type="5" value="" />
+		<setting name="CBT_ProxyLogin" type="5" value="" />
+		<setting name="CBT_ProxyPassword" type="5" value="" />
+		<setting name="CBT_ProxyPort" type="2" value="0" />
+		<setting name="CBT_UserName" type="5" value="" />
 		<setting name="CLRBridge_PreferredApartmentModel" type="6" rowIndex="0" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
@@ -2457,6 +2482,7 @@
 			</data>
 		</setting>
 		<setting name="Gherkin_ExamplesAreTestCases" type="1" value="False" />
+		<setting name="Gherkin_StopScenarioOutlineIfExampleFails" type="1" value="False" />
 		<setting name="HipTest_ProjectID" type="2" value="-1" />
 		<setting name="HipTest_ProjectName" type="5" value="The current project is not bound to CucumberStudio." />
 		<setting name="HipTest_SaveResults" type="1" value="True" />
@@ -2555,7 +2581,7 @@
 			</data>
 		</setting>
 		<setting name="OpenApps_MSAA_TreeModel" type="1" value="False" />
-		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="14" colIndex="0">
+		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="15" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>
@@ -2575,6 +2601,7 @@
 				<row val0="NativeUIAObject" />
 				<row val0="NativeMSAA" />
 				<row val0="NativeSAPObject" />
+				<row val0="NativeWebDriverObject" />
 			</data>
 		</setting>
 		<setting name="OpenApps_ProcessFilter_ProcessFilterMode" type="6" rowIndex="0" colIndex="0">
@@ -2820,7 +2847,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />
