@@ -439,6 +439,8 @@
 						<child name="tc_account_management_reset_organisation_level_users_password" key="{2293F757-8C03-43AA-8457-FDF8831015B7}" path="tc_account_management_reset_organisation_level_users_password.js" />
 						<child name="tc_account_management_remove_an_organisation_level_user" key="{87DF966E-B091-45C6-9AD0-E1BCAC5829CF}" path="tc_account_management_remove_an_organisation_level_user.js" />
 						<child name="tc_account_management_edit_location_admin_level_user_details" key="{D6B3CBAA-4592-4B19-BFAF-AC1145921A3A}" path="tc_account_management_edit_location_admin_level_user_details.js" />
+						<child name="tc_account_management_reset_location_admin_level_users_password" key="{CD5EB0D8-4E57-4640-98DD-4452C26506B7}" path="tc_account_management_reset_location_admin_level_users_password.js" />
+						<child name="tc_account_management_remove_a_location_admin_level_user" key="{9BD766BF-4BFC-4724-ACF3-1E3AF129C533}" path="tc_account_management_remove_a_location_admin_level_user.js" />
 					</folder>
 					<folder name="Locations">
 						<folder name="Licence">
