@@ -39,13 +39,13 @@ function get_patient_details_object_from_demographics()
   var patient_demographics_tab_demographics_path = patient_demographics_tab_demographics();
   
   patient_details.patientid = patient_banner_blue_bar_path.Panel(3).Panel(0).Label("INRstarId_DetachedLabel").contentText;
-  patient_details.firstname = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
-  patient_details.lastname = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+  patient_details.first_name = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
+  patient_details.last_name = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
   patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
   patient_details.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
   patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob);
   patient_details.gender = patient_demographics_tab_demographics_path.Panel(7).Label("Gender_DetachedLabel").contentText.substring(0,1); //returns M or F
-  patient_details.fullname = patient_details.lastname + ', ' + patient_details.firstname;  
+  patient_details.fullname = patient_details.last_name + ', ' + patient_details.first_name;  
 
   return patient_details;
 }
@@ -329,7 +329,7 @@ function get_inr_results_received_by_timestamp(timestamp)
   if (table_exists == true) 
   {    
     //Get the path of the patient external results table
-    var table = inr_results_received_table(); 
+    var table = inr_results_received_table();
       
       //Loop through each row of table
       for (i=0; i<table.RowCount; i++)
@@ -356,7 +356,7 @@ function get_inr_results_received_by_timestamp(timestamp)
 //--------------------------------------------------------------------------------
 function get_external_result_popup_header_text(timestamp_external_result)
 {
-  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  click_external_result_by_timestamp(timestamp_external_result, "Dose");
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
@@ -377,7 +377,7 @@ function get_external_result_popup_header_text(timestamp_external_result)
 //--------------------------------------------------------------------------------
 function get_external_result_popup_historic_button_text(timestamp_external_result)
 {
-  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  click_external_result_by_timestamp(timestamp_external_result, "Dose");
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
@@ -398,7 +398,7 @@ function get_external_result_popup_historic_button_text(timestamp_external_resul
 //--------------------------------------------------------------------------------
 function get_external_result_popup_new_inr_button_text(timestamp_external_result)
 {
-  click_dose_patient_external_result_by_timestamp(timestamp_external_result);
+  click_external_result_by_timestamp(timestamp_external_result, "Dose");
   
   var INRstarV5 = INRstar_base();
   var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");

@@ -72,3 +72,29 @@ function json_body_recievedatafromiguana(patient_data)
   return payload
 }
 //--------------------------------------------------------------------------------
+
+function post_patient_via_rovigo_api(fiscal_code, firstname, lastname, sex, dob)
+{
+  var new_patient = create_patient_object_for_fiscal(firstname, lastname, sex);
+
+  if(fiscal_code != "null")
+  {
+    new_patient.nhs_number = fiscal_code;
+  }
+  else
+  {
+    new_patient.nhs_number = null;
+  }
+  
+  if(dob != null)
+  {
+    new_patient.dob = aqConvert.DateTimeToFormatStr(dob, "%d-%m-%Y");
+  }
+  else
+  {
+    new_patient.dob = aqConvert.DateTimeToFormatStr(new_patient_dob, "%d-%m-%Y");
+  }
+  
+  var body_data = json_body_recievedatafromiguana(new_patient); 
+  post_receivedatafromiguana(JSON.stringify(body_data));
+}

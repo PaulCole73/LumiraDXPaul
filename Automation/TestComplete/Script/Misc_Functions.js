@@ -14,9 +14,7 @@
 //Setup environment variable either from cmd line or default
 
 var language = "Italian";
-var environment = "INRstarWindowsITA-int1";
-var environmentname = "uk-int1";
-//var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
+var environmentname = "it-int1";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
 //---------------------------------------------------------------------------------//
@@ -314,6 +312,13 @@ function get_unique_number()
   temp = aqString.Concat(temp, split_3[0]);
   temp = aqString.Concat(temp, split_3[1]);
   temp = aqString.Concat(temp, split_3[2]);
+  
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var char = alphabet[Math.floor(Math.random() * alphabet.length)];
+  var position = get_random_num_inrange(0, 15);
+  
+  var temp = aqString.Insert(temp, char, position);
+  
   return temp;
 }
 //-----------------------------------------------------------------------------------
@@ -361,8 +366,6 @@ function date_picker(path, date, product)
   {
     base = INRstar_base();
   }
-  
-  WaitSeconds(2);
   var calendar = path.FindChild("ObjectIdentifier", "calendar_png", 2);
   calendar.Click();     
   datepicker = base.Panel("ui_datepicker_div");
@@ -537,6 +540,16 @@ function setup_automation(new_config_file_name,locale)
   Log.LockEvents(0);
   reset_tests_array();
   change_environments(new_config_file_name);
+}
+//-----------------------------------------------------------------------------------
+function get_decimal_translation(decimal_value)
+{
+  if (language == 'Italian')
+  {
+    decimal_value = decimal_value.replace(".", ","); 
+  }
+  
+  return decimal_value
 }
 //-----------------------------------------------------------------------------------
 function get_string_translation(translation_word)
@@ -1341,8 +1354,6 @@ function calculate_check_digit(fifteen_digit_fiscal)
   Log.Message(check_digit);
   return check_digit;
 }
-
-
 
 
 

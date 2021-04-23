@@ -221,7 +221,7 @@ function edit_treatment_plan(dm)
   return more_info;  
 }
 //--------------------------------------------------------------------------------
-function edit_treatment_plan_all(drug, dm) //need to update function name
+function edit_treatment_plan_drug(drug, dm) //need to update function name
 {
   Goto_Patient_Treatment_Plan();
   var current_drug = clinical_tp_details().Panel(3).Label("DrugName_DetachedLabel").innerText;
@@ -239,8 +239,8 @@ function edit_treatment_plan_all(drug, dm) //need to update function name
   {
     var treatment_plan_details = edit_treatment_plan_path();
     treatment_plan_details.Panel(2).Select("DrugId").ClickItem(drug);
-    process_popup("Drug Confirmation Change", "OK");
-    treatment_plan_details.Panel(3).Select("TreatmentDuration").ClickItem("52 Weeks");
+    process_popup(get_string_translation("Drug Confirmation Change"), "OK");
+    treatment_plan_details.Panel(3).Select("TreatmentDuration").ClickItem(get_string_translation("52 Weeks"));
   
     var buttons = edit_treatment_plan_button_path();       
     buttons.Button("UpdatePatientTreatmentPlan").Click();
