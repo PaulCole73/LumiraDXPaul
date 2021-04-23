@@ -434,12 +434,24 @@
 					<child name="tc_banner_message_add_a_new_banner_message" key="{594EB89A-40D1-40E0-9C5D-7C275CE273CC}" path="tc_banner_message_add_a_new_banner_message.js" />
 				</folder>
 				<folder name="Account Management">
+					<folder name="Users">
+						<child name="tc_account_management_add_org_clinical_lead_user" key="{7AEA6E2A-1C56-4015-ADF4-2C78A5D35768}" path="tc_account_management_add_org_clinical_lead_user.js" />
+						<child name="tc_account_management_reset_org_clinical_lead_user_password" key="{2293F757-8C03-43AA-8457-FDF8831015B7}" path="tc_account_management_reset_org_clinical_lead_user_password.js" />
+					</folder>
+					<folder name="Locations">
+						<folder name="Licence">
+							<child name="tc_account_management_amend_a_clinical_system" key="{6540B1B3-E652-4240-9873-E05555B6D331}" path="tc_account_management_amend_a_clinical_system.js" />
+						</folder>
+						<folder name="Details">
+							<child name="tc_account_management_edit_location_details" key="{0881195B-C5CF-42C7-AA3B-6EF7B045FFA9}" path="tc_account_management_edit_location_details.js" />
+							<child name="tc_account_management_edit_locations_licence_details" key="{D86E6336-DF90-4930-AF3B-A6198770C53C}" path="tc_account_management_edit_locations_licence_details.js" />
+							<child name="tc_account_management_edit_clients_details" key="{D6DC040A-25F7-40A7-85D8-37CF5F182437}" path="tc_account_management_edit_clients_details.js" />
+						</folder>
+						<folder name="Users">
+							<child name="tc_account_management_add_location_admin_user" key="{B0FF4859-A3E8-4630-ABEA-F4DB25216B45}" path="tc_account_management_add_location_admin_user.js" />
+						</folder>
+					</folder>
 					<child name="tc_account_management_add_a_new_client" key="{A8237E61-3118-4DDC-8506-436A5FDC3529}" path="tc_account_management_add_a_new_client.js" />
-					<child name="tc_account_management_add_location_admin_user" key="{B0FF4859-A3E8-4630-ABEA-F4DB25216B45}" path="tc_account_management_add_location_admin_user.js" />
-					<child name="tc_account_management_amend_a_clinical_system" key="{6540B1B3-E652-4240-9873-E05555B6D331}" path="tc_account_management_amend_a_clinical_system.js" />
-					<child name="tc_account_management_edit_clients_details" key="{D6DC040A-25F7-40A7-85D8-37CF5F182437}" path="tc_account_management_edit_clients_details.js" />
-					<child name="tc_account_management_edit_location_details" key="{0881195B-C5CF-42C7-AA3B-6EF7B045FFA9}" path="tc_account_management_edit_location_details.js" />
-					<child name="tc_account_management_edit_locations_licence_details" key="{D86E6336-DF90-4930-AF3B-A6198770C53C}" path="tc_account_management_edit_locations_licence_details.js" />
 				</folder>
 				<folder name="Feedback">
 					<child name="tc_feedback_add_new_feedback" key="{E2B617CD-E406-4D1A-8FB0-17B2B3A637BB}" path="tc_feedback_add_new_feedback.js" />
