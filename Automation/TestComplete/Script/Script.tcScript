@@ -425,20 +425,27 @@
 			</folder>
 		</folder>
 		<folder name="1. Admin Dashboard">
-			<folder name="Account Management">
-				<child name="tc_account_management_add_a_new_client" key="{A8237E61-3118-4DDC-8506-436A5FDC3529}" path="tc_account_management_add_a_new_client.js" />
-				<child name="tc_account_management_add_location_admin_user" key="{B0FF4859-A3E8-4630-ABEA-F4DB25216B45}" path="tc_account_management_add_location_admin_user.js" />
-				<child name="tc_account_management_amend_a_clinical_system" key="{6540B1B3-E652-4240-9873-E05555B6D331}" path="tc_account_management_amend_a_clinical_system.js" />
-				<child name="tc_account_management_edit_clients_details" key="{D6DC040A-25F7-40A7-85D8-37CF5F182437}" path="tc_account_management_edit_clients_details.js" />
-				<child name="tc_account_management_edit_location_details" key="{0881195B-C5CF-42C7-AA3B-6EF7B045FFA9}" path="tc_account_management_edit_location_details.js" />
-				<child name="tc_account_management_edit_locations_licence_details" key="{D86E6336-DF90-4930-AF3B-A6198770C53C}" path="tc_account_management_edit_locations_licence_details.js" />
-			</folder>
 			<folder name="Login">
 				<child name="tc_login_page_log_into_inrstar_dashboard" key="{497F01A8-4A44-4589-BE83-73F5F274D272}" path="tc_login_page_log_into_inrstar_dashboard.js" />
 				<child name="tc_login_page_log_off_dashboard" key="{E80691E9-AAA9-4E9A-ADE0-4D7D9043F5DF}" path="tc_login_page_log_off_dashboard.js" />
 			</folder>
-			<folder name="Banner Message">
-				<child name="tc_banner_message_add_a_new_banner_message" key="{594EB89A-40D1-40E0-9C5D-7C275CE273CC}" path="tc_banner_message_add_a_new_banner_message.js" />
+			<folder name="Main Page">
+				<folder name="Banner Message">
+					<child name="tc_banner_message_add_a_new_banner_message" key="{594EB89A-40D1-40E0-9C5D-7C275CE273CC}" path="tc_banner_message_add_a_new_banner_message.js" />
+				</folder>
+				<folder name="Account Management">
+					<child name="tc_account_management_add_a_new_client" key="{A8237E61-3118-4DDC-8506-436A5FDC3529}" path="tc_account_management_add_a_new_client.js" />
+					<child name="tc_account_management_add_location_admin_user" key="{B0FF4859-A3E8-4630-ABEA-F4DB25216B45}" path="tc_account_management_add_location_admin_user.js" />
+					<child name="tc_account_management_amend_a_clinical_system" key="{6540B1B3-E652-4240-9873-E05555B6D331}" path="tc_account_management_amend_a_clinical_system.js" />
+					<child name="tc_account_management_edit_clients_details" key="{D6DC040A-25F7-40A7-85D8-37CF5F182437}" path="tc_account_management_edit_clients_details.js" />
+					<child name="tc_account_management_edit_location_details" key="{0881195B-C5CF-42C7-AA3B-6EF7B045FFA9}" path="tc_account_management_edit_location_details.js" />
+					<child name="tc_account_management_edit_locations_licence_details" key="{D86E6336-DF90-4930-AF3B-A6198770C53C}" path="tc_account_management_edit_locations_licence_details.js" />
+				</folder>
+				<folder name="Feedback">
+					<child name="tc_feedback_add_new_feedback" key="{E2B617CD-E406-4D1A-8FB0-17B2B3A637BB}" path="tc_feedback_add_new_feedback.js" />
+				</folder>
+				<child name="tc_main_page_header_contains_the_correct_date" key="{720CEC25-ADC9-48A4-B557-6ABB395B1B83}" path="tc_main_page_header_contains_the_correct_date.js" />
+				<child name="tc_main_page_search_facility" key="{5BA608E5-A360-4D32-8DFB-89A8E3C88702}" path="tc_main_page_search_facility.js" />
 			</folder>
 		</folder>
 	</children>
