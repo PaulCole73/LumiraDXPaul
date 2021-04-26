@@ -1066,7 +1066,6 @@ function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/ma
   return unix_number
 }
 //-----------------------------------------------------------------------------------
- 
 function get_date_as_dd_mm_yyyy_from_unix(date) 
 {
   var d = new Date(date);
