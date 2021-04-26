@@ -16,7 +16,7 @@ function tc_new_patient_all_demographic_fields_populated_full_patient_data_can_b
     
     //Post in patient data to the API
     var body_data = json_body_recievedatafromiguana(expected_patient); 
-    post_ReceiveDataFromIguana(JSON.stringify(body_data)); 
+    post_receivedatafromiguana(JSON.stringify(body_data)); 
     
     //Validate the patient is in INRstar
     var pat_name = expected_patient.last_name;

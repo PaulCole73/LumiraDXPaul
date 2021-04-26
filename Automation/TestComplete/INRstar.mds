@@ -14,7 +14,7 @@
 	<config language="{90F89436-9452-4F95-9882-6B5210079F13}" />
 	<testItems key="{A5BC5C71-F805-4316-B6F5-D494E8E419AC}" version="14">
 		<children>
-			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2292,7 +2292,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C12-Unmatched patients shown in external results and clinician given options to find or archive" key="{70C80714-C5C9-46C3-84EF-1054548EF73B}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C12-Unmatched patients shown in external results and clinician given options to find or archive" key="{70C80714-C5C9-46C3-84EF-1054548EF73B}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient_details_after_search" key="{4703694B-D935-4594-BC34-934F91260B49}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient_details_after_search" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2421,6 +2421,16 @@
 								<testParameters />
 								<children>
 									<testItem name="tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient();" key="{09BBC04D-78D3-4C43-87CB-C7D3D613DA9F}" group="False" parallel="False" enabled="True" testMoniker="{C94EB2E2-3F54-4ED4-BF9F-521F91FE0D59}tc_ensure_the_blue_bar_contains_all_patient_data_fields_throughout_each_sub_tab_of_the_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="LDx2/C18 Concurrency error displayed when demographics amended before saving the treatment" key="{7CBEDA38-49E2-4EB6-BFFC-36A68EA511D7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment();" key="{B406F938-5B23-4239-B9D4-097E7394A839}" group="False" parallel="False" enabled="True" testMoniker="{318D9639-31E5-44D1-BDA2-142A4292C503}tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />

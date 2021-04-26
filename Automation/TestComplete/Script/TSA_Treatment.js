@@ -827,9 +827,9 @@ function json_body_data_instrument(patient_details, location_id, inr_result, blo
   payload.patient.identifiers[0].alias = patient_details.nhs_number;
   payload.patient.lastName = patient_details.last_name;
   payload.patient.firstName = patient_details.first_name;
-  payload.patient.dob = aqConvert.DateTimeToFormatStr(patient_details.dob, "%d-%m-%Y");
+  payload.patient.dob = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob);
   payload.patient.gender = patient_details.gender;
-  payload.resultValue = inr_result
+  payload.resultValue = inr_result;
   
   //Replace Payload organizationId with locationID from Locations Details
   //Why are we passing this in and not setting here ?
