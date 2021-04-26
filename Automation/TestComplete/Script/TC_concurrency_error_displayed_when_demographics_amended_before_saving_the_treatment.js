@@ -29,11 +29,12 @@ function tc_concurrency_error_displayed_when_demographics_amended_before_saving_
    
     //Had to split the text due to the spacing in the message having a "\n" in the message text  
     var expected_text = get_string_translation("The last request was not performed because this patient's record was changed by another user after it was opened") + 
-                                               ".\n" + get_string_translation("Click 'Exit Patient' - to continue, you will need to reload the patient record") + "."
+                                                 ".\n" + get_string_translation("Click 'Exit Patient' - to continue, you will need to reload the patient record") + "."
+                                                 
+    var actual_text = process_popup(get_string_translation("Patient Record Updated"),get_string_translation("Exit Patient"));
 
-    var results = popup_warning_checker(expected_text);
-    results_checker(results, test_title)
-    
+    var results = compare_values(expected_text, actual_text, test_title);
+    results_checker(results, test_title);
     
     Log_Off();
   }
