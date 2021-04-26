@@ -2427,6 +2427,16 @@
 									</testItem>
 								</children>
 							</testItem>
+							<testItem name="LDx2/C18 Concurrency error displayed when demographics amended before saving the treatment" key="{7CBEDA38-49E2-4EB6-BFFC-36A68EA511D7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment();" key="{B406F938-5B23-4239-B9D4-097E7394A839}" group="False" parallel="False" enabled="True" testMoniker="{318D9639-31E5-44D1-BDA2-142A4292C503}tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
 						</children>
 					</testItem>
 				</children>
