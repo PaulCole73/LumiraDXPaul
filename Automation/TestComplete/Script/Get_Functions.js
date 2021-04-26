@@ -195,10 +195,13 @@ function get_check_digit(fifteen_digit_fiscal)
   
   var potential_values = new Array();                   //all possible values that can be accepted/calculated on in this field
   potential_values.push("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+  
   var odd_character_code_values = new Array();          //converted values for characters in ODD positions in original
   odd_character_code_values.push(1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 2, 4, 18, 20, 11, 3, 6, 8, 12, 14, 16, 10, 22, 25, 24, 23);
+  
   var even_character_code_values = new Array();         //converted values for characters in EVEN positions in original
   even_character_code_values.push(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25);
+  
   var check_digit_values = new Array();                 //values used for the check digit
   check_digit_values.push("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
   

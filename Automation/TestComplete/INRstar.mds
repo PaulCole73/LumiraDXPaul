@@ -41,6 +41,13 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
+					<testItem name="get_check_digit" key="{0379DD97-E8D2-4BEE-A9E5-AD33BA4BB944}" group="False" parallel="False" enabled="True" testMoniker="{53C017A4-89CB-4429-8289-B2F80476AA1C}get_check_digit" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+						<testParameters>
+							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="123abc456def789" />
+						</testParameters>
+						<environments testedURL="" />
+						<children />
+					</testItem>
 				</children>
 			</testItem>
 			<testItem name="UK" key="{097104BB-CCF2-4C92-9CC1-09845CDC6A42}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2445,7 +2452,7 @@
 	</testItems>
 	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}" />
 	<settings key="{3E1721F3-9165-4447-AE13-1C0F567DC90E}">
-		<settingsVersion value="14.74" />
+		<settingsVersion value="14.80" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
@@ -2472,6 +2479,24 @@
 		<setting name="AzureDevOps_TeamProject" type="5" value="" />
 		<setting name="AzureDevOps_TeamProjectCollection" type="5" value="" />
 		<setting name="AzureDevOps_URL" type="5" value="" />
+		<setting name="CBT_AppsAvailability" type="6" rowIndex="0" colIndex="0">
+			<columns>
+				<column type="5" enabled="True" />
+			</columns>
+			<data>
+				<row val0="Everywhere" />
+				<row val0="In a local network" />
+				<row val0="On a local computer" />
+				<row val0="Via proxy" />
+			</data>
+		</setting>
+		<setting name="CBT_Authkey" type="5" value="" />
+		<setting name="CBT_LocalHtmlDir" type="5" value="" />
+		<setting name="CBT_ProxyAddress" type="5" value="" />
+		<setting name="CBT_ProxyLogin" type="5" value="" />
+		<setting name="CBT_ProxyPassword" type="5" value="" />
+		<setting name="CBT_ProxyPort" type="2" value="0" />
+		<setting name="CBT_UserName" type="5" value="" />
 		<setting name="CLRBridge_PreferredApartmentModel" type="6" rowIndex="0" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
@@ -2542,6 +2567,7 @@
 			</data>
 		</setting>
 		<setting name="Gherkin_ExamplesAreTestCases" type="1" value="False" />
+		<setting name="Gherkin_StopScenarioOutlineIfExampleFails" type="1" value="False" />
 		<setting name="HipTest_ProjectID" type="2" value="-1" />
 		<setting name="HipTest_ProjectName" type="5" value="The current project is not bound to CucumberStudio." />
 		<setting name="HipTest_SaveResults" type="1" value="True" />
@@ -2640,7 +2666,7 @@
 			</data>
 		</setting>
 		<setting name="OpenApps_MSAA_TreeModel" type="1" value="False" />
-		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="14" colIndex="0">
+		<setting name="OpenApps_PriorityOfObjects" type="6" rowIndex="15" colIndex="0">
 			<columns>
 				<column type="5" enabled="True" />
 			</columns>
@@ -2660,6 +2686,7 @@
 				<row val0="NativeUIAObject" />
 				<row val0="NativeMSAA" />
 				<row val0="NativeSAPObject" />
+				<row val0="NativeWebDriverObject" />
 			</data>
 		</setting>
 		<setting name="OpenApps_ProcessFilter_ProcessFilterMode" type="6" rowIndex="0" colIndex="0">
