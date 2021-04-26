@@ -187,7 +187,7 @@ function get_check_digit(fifteen_digit_fiscal)
   
   if(aqString.GetLength(fifteen_digit_fiscal) < 15 || aqString.GetLength(fifteen_digit_fiscal) > 15)
   {
-    Log.Message(error_message)
+    Log.Message(error_message);
     return error_message;
   }
   

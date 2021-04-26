@@ -12,7 +12,8 @@ function tc_new_patient_all_demographic_fields_populated_full_patient_data_can_b
     
     //Create patient object for what you want to see in inrstar once posted in
     var expected_patient = create_patient_object_for_fiscal();
-    expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    //expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    expected_patient.nhs_number = get_fiscal_code();
     
     //Post in patient data to the API
     var body_data = json_body_recievedatafromiguana(expected_patient); 
@@ -45,7 +46,8 @@ function tc_new_patient_sex_field_if_sex_field_is_13_chars_then_it_will_not_crea
     
     //Create patient object for what you want to see in inrstar once posted in
     var expected_patient = create_patient_object_for_fiscal();
-    expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    //expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    expected_patient.nhs_number = get_fiscal_code();
     
     //Post in patient data to the API
     var payload = json_body_recievedatafromiguana(expected_patient); 
@@ -95,7 +97,8 @@ function tc_new_patient_sex_field_if_sex_field_is_not_in_the_correct_casing_then
     
     //Create patient object for what you want to see in inrstar once posted in
     var expected_patient = create_patient_object_for_fiscal();
-    expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    //expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    expected_patient.nhs_number = get_fiscal_code();
     
     //Post in patient data to the API
     var payload = json_body_recievedatafromiguana(expected_patient); 
@@ -145,7 +148,8 @@ function tc_new_patient_sex_field_if_sex_field_is_not_in_the_list_of_accepted_se
     
     //Create patient object for what you want to see in inrstar once posted in
     var expected_patient = create_patient_object_for_fiscal();
-    expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    //expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
+    expected_patient.nhs_number = get_fiscal_code();
     
     //Post in patient data to the API
     var payload = json_body_recievedatafromiguana(expected_patient); 
