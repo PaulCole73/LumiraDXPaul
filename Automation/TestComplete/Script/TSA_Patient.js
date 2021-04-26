@@ -204,9 +204,6 @@ function popup_warning_checker(exp_err_mess)
     if (warning_dialogue.Exists && exp_err_mess==actual_err_mess)
     {
       Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
-      //Not sure this will always be button, zero needed to oad it in here 
-      //If other tests fail then need to add a click into tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment() 
-      ok_error_pop_up_buttons().Button(0).Click();
       return true; 
     } 
     else 
