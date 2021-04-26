@@ -48,13 +48,13 @@ function json_body_recievedatafromiguana(patient_data)
   //Section id has to be set here and no tin the patient object due to the objects needing to match on validation
   login(7, "Shared");
   var location_id = get_organization_id_from_current_location();
-    
+   
   //Replace payload content with imported variables
   payload.Title = (patient_data.title==get_string_translation("Mr"))? "Mr" : "Mrs";
   payload.Firstname = patient_data.first_name;
   payload.Surname = patient_data.last_name;
   payload.NHSNumber = patient_data.nhs_number
-  payload.DOB =  patient_data.dob;
+  payload.DOB = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_data.dob);
   payload.SectionId = location_id;
   payload.Sex = (patient_data.sex == get_string_translation("Male"))? "Male" : "Female";
   payload.PatientNumber = patient_data.patient_number;
