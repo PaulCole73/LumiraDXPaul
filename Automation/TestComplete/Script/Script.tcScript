@@ -9,6 +9,7 @@
 			<child name="Get_Functions" key="{53C017A4-89CB-4429-8289-B2F80476AA1C}" path="Get_Functions.js" />
 			<child name="Failed_Test_Handlers" key="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}" path="Failed_Test_Handlers.js" />
 			<child name="API_Functions" key="{08B7890F-9A2C-4025-AED0-2F7EB3273904}" path="API_Functions.js" />
+			<child name="Translations" key="{598B999F-3F2A-46D9-835B-CDD88684C716}" path="Translations.js" />
 		</folder>
 		<folder name="Old Scripts">
 			<child name="Add_Appointment" key="{1DBBA1EE-F4DA-44CC-91F3-36A08299FCFC}" path="Add_Appointment.sj" />
@@ -399,7 +400,6 @@
 			<folder name="9. Utilities">
 				<child name="INRstar_Misc_Functions" key="{1FBD6F73-C790-4C1D-A003-93156D1968E5}" path="INRstar_Misc_Functions.js" />
 				<child name="INRstar_Get_Functions" key="{54CD62D1-CE92-4CF9-BF0B-E74B7A56D606}" path="INRstar_Get_Functions.js" />
-				<child name="INRstar_Translations" key="{598B999F-3F2A-46D9-835B-CDD88684C716}" path="INRstar_Translations.js" />
 			</folder>
 			<folder name="2.1 Clinical Suites">
 				<child name="TS_Clinical_Controls" key="{25598DCC-2504-497A-A15D-1EF0302ACCA4}" path="TS_Clinical_Controls.js" />

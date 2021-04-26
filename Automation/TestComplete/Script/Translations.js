@@ -7,33 +7,86 @@
 /////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-function get_english_translation(string)
+function get_english_shortmonth_translation(string)
 {
-  var translation_dictionary = {
-    "gen":"Jan",
-    "feb":"Feb",
-    "mar":"Mar",
-    "apr":"Apr",
-    "mag":"May",
-    "giu":"Jun",
-    "lug":"Jul",
-    "ago":"Aug",
-    "set":"Sep",
-    "ott":"Oct",
-    "nov":"Nov",
-    "dic":"Dec"};
+  if (language == 'Italian')
+  {
+    var translation_dictionary = {
+      "gen":"Jan",
+      "feb":"Feb",
+      "mar":"Mar",
+      "apr":"Apr",
+      "mag":"May",
+      "giu":"Jun",
+      "lug":"Jul",
+      "ago":"Aug",
+      "set":"Sep",
+      "ott":"Oct",
+      "nov":"Nov",
+      "dic":"Dec"};
       
-  if (translation_dictionary[string] == null)
-  {
-    Log.Message("Unable to find english translation of: " + string);
-    string = "Untranslated_" + string;
+    if (translation_dictionary[string] == null)
+    {
+      Log.Message("Unable to find english translation of: " + string);
+      string = "Untranslated_" + string;
+    }
+    else
+    {
+      string = translation_dictionary[string];
+    }
   }
-  else
-  {
-    string = translation_dictionary[string];
-  }
+  
 return string;
 }
+//-----------------------------------------------------------------------------------
+function set_italian_long_month(month)
+{
+  var long_month;
+
+  switch(month)
+  {
+  case "January":
+  long_month = "gennaio";
+  break;
+  case "February":
+  long_month = "febbraio";
+  break;
+  case "March":
+  long_month = "marzo";
+  break;
+  case "April":
+  long_month = "aprile";
+  break;
+  case "May":
+  long_month = "maggio";
+  break;
+  case "June":
+  long_month = "giugno";
+  break;
+  case "July":
+  long_month = "luglio";
+  break;
+  case "August":
+  long_month = "agosto";
+  break;
+  case "September":
+  long_month = "settembre";
+  break;
+  case "October":
+  long_month = "ottobre";
+  break;
+  case "November":
+  long_month = "novembre";
+  break;
+  case "December":
+  long_month = "dicembre";
+  break;
+  default:
+  Log.Message("Couldn't find the month you were looking for");
+  }
+return long_month;
+}
+//-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
 function get_decimal_translation(decimal_value)
 {
@@ -86,7 +139,7 @@ function get_string_translation(string)
       
 "May"	
     :{
-      Italian:	"mag"	
+      Italian:	"mag",
     },
       
 "Jun"	
@@ -169,7 +222,7 @@ function get_string_translation(string)
       Italian:	"0,9"	
     },
       
-1	
+1.0	
     :{
       Italian:	"1,0"	
     },
@@ -219,7 +272,7 @@ function get_string_translation(string)
       Italian:	"1,9"	
     },
       
-2	
+2.0	
     :{
       Italian:	"2,0"	
     },
@@ -269,7 +322,7 @@ function get_string_translation(string)
       Italian:	"2,9"	
     },
       
-3	
+3.0	
     :{
       Italian:	"3,0"	
     },
@@ -319,7 +372,7 @@ function get_string_translation(string)
       Italian:	"3,9"	
     },
       
-4	
+4.0	
     :{
       Italian:	"4,0"	
     },
@@ -369,7 +422,7 @@ function get_string_translation(string)
       Italian:	"4,9"	
     },
       
-5	
+5.0	
     :{
       Italian:	"5,0"	
     },
@@ -419,7 +472,7 @@ function get_string_translation(string)
       Italian:	"5,9"	
     },
       
-6	
+6.0	
     :{
       Italian:	"6,0"	
     },
@@ -469,7 +522,7 @@ function get_string_translation(string)
       Italian:	"6,9"	
     },
       
-7	
+7.0	
     :{
       Italian:	"7,0"	
     },
@@ -519,7 +572,7 @@ function get_string_translation(string)
       Italian:	"7,9"	
     },
       
-8	
+8.0	
     :{
       Italian:	"8,0"	
     },
@@ -569,7 +622,7 @@ function get_string_translation(string)
       Italian:	"8,9"	
     },
       
-9	
+9.0	
     :{
       Italian:	"9,0"	
     },
@@ -619,7 +672,7 @@ function get_string_translation(string)
       Italian:	"9,9"	
     },
       
-10	
+10.0	
     :{
       Italian:	"10,0"	
     },
@@ -977,66 +1030,6 @@ function get_string_translation(string)
 "Sunday"	
     :{
       Italian:	"domenica"	
-    },
-      
-"January"	
-    :{
-      Italian:	"gennaio"	
-    },
-      
-"February"	
-    :{
-      Italian:	"febbraio"	
-    },
-      
-"March"	
-    :{
-      Italian:	"marzo"	
-    },
-      
-"April"	
-    :{
-      Italian:	"aprile"	
-    },
-      
-"May"	
-    :{
-      Italian:	"maggio"	
-    },
-      
-"June"	
-    :{
-      Italian:	"giugno"	
-    },
-      
-"July"	
-    :{
-      Italian:	"luglio"	
-    },
-      
-"August"	
-    :{
-      Italian:	"agosto"	
-    },
-      
-"September"	
-    :{
-      Italian:	"settembre"	
-    },
-      
-"October"	
-    :{
-      Italian:	"ottobre"	
-    },
-      
-"November"	
-    :{
-      Italian:	"novembre"	
-    },
-      
-"December"	
-    :{
-      Italian:	"dicembre"	
     },
       
 "The patient(s) have been successfully unsuspended."	
@@ -1559,11 +1552,6 @@ function get_string_translation(string)
       Italian:	"La modifica della dose da 1,3mg/giorno a 3,0mg/giorno è maggiore del 20%. Confermare che la nuova dose è adeguata."	
     },
       
-"Deans Regression Testing Location 2"	
-    :{
-      Italian:	"LDxCS-Test-AutoTest1"	
-    },
-      
 "The patients may have been treated elsewhere during the suspension period. For Vitamin K Antagonist patients please ensure that any recent INR results and Vitamin K Antagonist doses are entered as historical treatments. For non-Vitamin K Antagonist patients you should ensure review information is up to date."	
     :{
       Italian:	"È possibile che i pazienti siano stati trattati altrove durante il periodo di sospensione. Per pazienti trattati con Antagonisti della Vitamina K (AVK) assicurarsi che i risultati di INR recenti e le dosi degli Antagonisti della Vitamina K (AVK) vengano inseriti come trattamenti precedenti. Per i pazienti trattati con Anticoagulanti Non Antagonisti della Vitamina K è necessario assicurarsi che le informazioni del riesame siano aggiornate."	
@@ -1687,11 +1675,8 @@ function get_string_translation(string)
 "No patient found"	
     :{
       Italian:	"Nessun paziente trovato"	
-    },
-
-"Trukey Baster"	
-    :{	
-    }         
+    }
+             
 // ^^^ Insert translations above this line ^^^    
   }
   

@@ -1,10 +1,10 @@
-﻿//USEUNIT System_Paths
-//USEUNIT Admin_Dash_System_Paths
-//USEUNIT INRstar_Navigation
-//USEUNIT Get_Functions
+﻿//USEUNIT Admin_Dash_System_Paths
 //USEUNIT Failed_Test_Handlers
+//USEUNIT Get_Functions
 //USEUNIT INRstar_Misc_Functions
-//USEUNIT INRstar_Translations
+//USEUNIT INRstar_Navigation
+//USEUNIT System_Paths
+//USEUNIT Translations
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -918,9 +918,10 @@ function get_todays_date_in_dd_mmm_yyyy() // will return either 12-mag-2020 or 1
 //-----------------------------------------------------------------------------------
 function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/may/2020
 {
-  var english_month = get_english_translation(date.slice(3,6)) // need to get english month of foreign
-  var new_english_date = date.slice(0,2) + '/' + english_month + '/' + date.slice(7,11)
-  var unix_number = Date.parse(new_english_date)
+  //In order to get a Unix number we need to ensure the month is handled in English 
+  var english_month = get_english_shortmonth_translation(date.slice(3,6)); 
+  var new_english_date = date.slice(0,2) + '/' + english_month + '/' + date.slice(7,11);
+  var unix_number = Date.parse(new_english_date);
   
   return unix_number
 }
