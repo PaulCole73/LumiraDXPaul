@@ -112,6 +112,55 @@ function get_patient_firstname()
   return firstname;
 }
 //-----------------------------------------------------------------------------------
+//old version, gets a fully validated fiscal code
+/*
+function get_fiscal_code(patient_data)
+{
+  TestedApps.FiscalCodeGenerator.Run();
+  Sys.WaitBrowser("iexplore", 30000, 1);
+  WaitSeconds(5, "Waiting for application to open...");
+  var main_page = fiscal_generator_main_page_path();
+
+  //If it's the first time on the page you will get a pop up
+  var cookie_popup = main_page.FindChild("idStr","cookieChoiceDismiss", 3); 
+  if(cookie_popup.Exists)
+  {
+    cookie_popup.Click();
+  }
+
+  //Edit the object to fit the form
+  
+  //Need to change the dob so that the 0 is removed from days less than 10 so 03 becomes 3 
+  //Setting to lowercase for the translation file, as datetime defaults to Apr not apr then moving to uppercase for fiscal code tool
+  var fiscal_form_day = aqConvert.DateTimeToFormatStr(patient_data.dob, "%#d");
+  var fiscal_form_month = get_english_translation(aqString.ToLower(aqConvert.DateTimeToFormatStr(patient_data.dob, "%b"))).toUpperCase();
+  var fiscal_form_year = aqConvert.DateTimeToFormatStr(patient_data.dob, "%Y");
+  
+  var sex = (patient_data.sex==get_string_translation("Male")) ? "M" : "F";
+
+  //Add patient data to the form
+  var fiscal_form = fiscal_form_path();
+  
+  fiscal_form.Panel(0).Panel(1).Panel(0).Panel(0).Textbox("cg").Text=(patient_data.last_name);
+  fiscal_form.Panel(0).Panel(1).Panel(1).Panel(0).Textbox("nm").Text=(patient_data.first_name);
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("mm").ClickItem(fiscal_form_month);
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("aa").ClickItem(fiscal_form_year);
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(0).Panel(0).Panel(0).Panel(0).Select("gg").ClickItem(fiscal_form_day);
+  fiscal_form.Panel(0).Panel(1).Panel(2).Panel(1).Panel(0).Panel(0).Select("ss").ClickItem(sex);
+  fiscal_form.Panel(0).Panel(1).Panel(3).Panel(0).Panel(0).Panel(0).Textbox("lg").Text=("Roma");
+  
+  fiscal_form_path().Panel(2).Button(0).Click();
+  
+  //Retrieve the fiscal
+  WaitSeconds(2)
+  var fiscal = fiscal_form.Panel(0).Panel(1).Panel(0).Panel(0).Textbox("cf").Text
+  
+  TestedApps.FiscalCodeGenerator.Terminate();
+  
+  return fiscal;
+}
+*/
+//-----------------------------------------------------------------------------------
 function get_fiscal_code()
 {
   var fourteen_digit_value = get_unique_number();                                               //get a unique code (14 digit epoc value)                 
