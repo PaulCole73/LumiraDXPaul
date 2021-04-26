@@ -132,9 +132,12 @@ function get_fiscal_code(patient_data)
   
   //Need to change the dob so that the 0 is removed from days less than 10 so 03 becomes 3 
   //Setting to lowercase for the translation file, as datetime defaults to Apr not apr then moving to uppercase for fiscal code tool
-  var fiscal_form_day = aqConvert.DateTimeToFormatStr(patient_data.dob, "%#d");
-  var fiscal_form_month = get_english_translation(aqString.ToLower(aqConvert.DateTimeToFormatStr(patient_data.dob, "%b"))).toUpperCase();
-  var fiscal_form_year = aqConvert.DateTimeToFormatStr(patient_data.dob, "%Y");
+  var dob = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_data.dob);
+  
+  var fiscal_form_day = aqConvert.DateTimeToFormatStr(dob, "%#d");
+  //var fiscal_form_month = get_english_shortmonth_translation(aqString.ToLower(aqConvert.DateTimeToFormatStr(patient_data.dob, "%b"))).toUpperCase();
+  var fiscal_form_month = aqConvert.DateTimeToFormatStr(dob, "%b").toUpperCase();
+  var fiscal_form_year = aqConvert.DateTimeToFormatStr(dob, "%Y");
   
   var sex = (patient_data.sex==get_string_translation("Male")) ? "M" : "F";
 

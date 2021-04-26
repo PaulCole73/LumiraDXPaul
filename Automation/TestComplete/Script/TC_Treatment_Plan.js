@@ -563,7 +563,7 @@ function tc_treatment_plan_add_treatment_patient_with_future_appointment()
     var clinic_date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(), (+10)), "%d/%m/%Y");
     tsa_add_a_clinic(clinic_name, clinic_date, false, false);
     
-    add_patient('Regression', 'Future_Appointment', 'M');
+    add_patient('Regression', 'FutureAppointment', 'M');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "7", "2.5");
     
