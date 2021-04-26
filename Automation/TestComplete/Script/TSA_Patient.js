@@ -332,7 +332,7 @@ function add_patient(name_first, name_last, sex, nhs_num)
     }
     else if(language == "Italian")
     {
-      patient_details.nhs_number = get_fiscal_code(patient_details).replace(/ +/g, "");
+      patient_details.nhs_number = get_fiscal_code();
       var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
     }
   }

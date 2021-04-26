@@ -10,7 +10,8 @@ function tc_concurrency_error_displayed_when_demographics_amended_before_saving_
     
     //Create patient object for what you want to see in inrstar once posted in
     var patient = create_patient_object_for_fiscal();
-    patient.nhs_number = get_fiscal_code(patient).replace(/ +/g, "");
+    //patient.nhs_number = get_fiscal_code(patient).replace(/ +/g, "");
+    patient.nhs_number = get_fiscal_code();
     
     //Post in patient data to the API
     var body_data = json_body_recievedatafromiguana(patient); 
