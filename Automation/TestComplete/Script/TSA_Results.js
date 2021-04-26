@@ -18,13 +18,15 @@ function click_external_result_by_timestamp(timestamp_external_result, target)
         {
           case "Dose": 
             results_table.Cell(i, 4).Panel(0).Panel("Div1").Button("DosePatient").Click();
-            WaitSeconds(1, "Wait after selecting Dose Patient...");  
+            WaitSeconds(1, "Wait after selecting Dose patient...");  
             break;
           case "Find": 
             results_table.Cell(i, 4).Panel(0).Panel("Div1").Button("FindPatient").Click();
+            WaitSeconds(1, "Wait after selecting find patient..."); 
             break;
           case "Patient_link": 
             results_table.Cell(i, 1).Panel(0).Link("PatientLink").Click();
+            WaitSeconds(1, "Wait after selecting Patient..."); 
             break;
           default:
             Log.Message("Incorrect target passed into click_external_result");
