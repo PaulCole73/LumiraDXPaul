@@ -219,7 +219,7 @@ function tc_based_on_patient_id_if_dob_doesnt_match_then_result_should_be_unmatc
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);  
     body_data.patient.identifiers[0].alias = patient.patientid;
-    body_data.patient.dob = get_date_with_days_from_today_dd_mmm_yyyy(-7400);   //This has to be set differently to the one in create_patient_object_for_fiscal 
+    body_data.patient.dob = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7400), "%d-%b-%Y", "numeric");   //This has to be set differently to the one in create_patient_object_for_fiscal 
     post_external_result_instrument(JSON.stringify(body_data)); 
 
     var actual_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
@@ -283,7 +283,7 @@ function tc_based_on_nhs_or_fiscal_if_dob_doesnt_match_then_result_should_be_unm
     var patient = get_patient_details_object_from_demographics();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
     var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);  
-    body_data.patient.dob = get_date_with_days_from_today_dd_mmm_yyyy(-7400);   //This has to be set differently to the one in create_patient_object_for_fiscal       
+    body_data.patient.dob = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7400), "%d-%b-%Y", "numeric");   //This has to be set differently to the one in create_patient_object_for_fiscal       
     post_external_result_instrument(JSON.stringify(body_data)); 
 
     var actual_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);

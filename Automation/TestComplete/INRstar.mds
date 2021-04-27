@@ -48,6 +48,16 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
+					<testItem name="add_patient" key="{2C570DDB-8842-4C5C-AECF-10DD1BDC8B2D}" group="False" parallel="False" enabled="True" testMoniker="{93A61BC9-5297-4CC3-896E-807B82C045E1}add_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+						<testParameters>
+							<param0 name="name_first" type="3" localVarName="" varType="8" value="fkgjhkfgh" />
+							<param1 name="name_last" type="3" localVarName="" varType="8" value="gfkfgdjhk" />
+							<param2 name="sex" type="3" localVarName="" varType="8" value="M" />
+							<param3 name="nhs_num" type="3" localVarName="" varType="8" value="" />
+						</testParameters>
+						<environments testedURL="" />
+						<children />
+					</testItem>
 				</children>
 			</testItem>
 			<testItem name="UK" key="{097104BB-CCF2-4C92-9CC1-09845CDC6A42}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">

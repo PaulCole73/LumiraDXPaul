@@ -30,7 +30,7 @@ function tc_treatment_add_a_historic_treatment()
     var treatment_data = new Array();
     
     //Setup and record expected data
-    var formatted_inr_date = get_date_with_days_from_today_dd_mmm_yyyy("-7");
+    var formatted_inr_date = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy("-7"), "%d-%b-%Y", "numeric");
     var formatted_ntd = get_todays_date_in_dd_mmm_yyyy();
     treatment_data.push(formatted_inr_date, "2.0", "2.0", "", "0", "7", "", formatted_ntd, "-");
     
@@ -79,8 +79,8 @@ function tc_treatment_add_a_manual_INR()
     var treatment_data = new Array();
     
     //Setup and record expected data
-    var formatted_inr_date = get_date_with_days_from_today_dd_mmm_yyyy(-3);
-    var formatted_ntd = get_date_with_days_from_today_dd_mmm_yyyy(+4);
+    var formatted_inr_date = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-3), "%d-%b-%Y", "numeric");
+    var formatted_ntd = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-4), "%d-%b-%Y", "numeric");
     treatment_data.push(formatted_inr_date, "2.0", "2.5", "", "0", "7", "", formatted_ntd, "-");
 
     //Get the actual data
@@ -284,7 +284,7 @@ function tc_treatment_add_a_new_maintenance_in_range_inr()
     
     // Setup and record expected data
     var formatted_inr_date = get_todays_date_in_dd_mmm_yyyy();
-    var formatted_ntd = get_date_with_days_from_today_dd_mmm_yyyy(+14);
+    var formatted_ntd = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(+14), "%d-%b-%Y", "numeric");
     var treatment_data = new Array();
     treatment_data.push(formatted_inr_date, "2.5", "2.0", "2.0", "0", "14", "14", formatted_ntd, "-");
       
@@ -718,7 +718,7 @@ function tc_treatment_delete_the_last_treatment()
     var result_set = new Array();
     
     // Calculate expected results
-    var formatted_inr_date = get_date_with_days_from_today_dd_mmm_yyyy(-7);
+    var formatted_inr_date = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7), "%d-%b-%Y", "numeric");
     var expected_message = get_string_translation("Please confirm you want to delete the treatment added on the") + ' ' + formatted_inr_date + '.';
     
     // Extract actual results
@@ -905,7 +905,7 @@ function tc_treatment_add_multiple_historic_treatments()
     var treatment_row = new Array();
     var date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7)));
     
-    var format_date = get_date_with_days_from_today_dd_mmm_yyyy(-7);
+    var format_date = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7), "%d-%b-%Y", "numeric");
     var format_date_1 = get_todays_date_in_dd_mmm_yyyy();
     
     //var date = String(format_date);
