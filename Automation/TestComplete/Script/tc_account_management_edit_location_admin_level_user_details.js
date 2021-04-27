@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_edit_admin_lead_user()
+function tc_account_management_edit_location_admin_level_user_details()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Edit Location Admin Details";
+    var test_title = "Admin Dashboard - Account management - Edit location admin level user details";
     login_admin_dash();
     
     var parent_client = "LDxCS-Test-AutoTest1";
@@ -33,7 +33,7 @@ function tc_account_management_edit_admin_lead_user()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_account_management_edit_location_admin_level_user_details";
-    var test_name = "tc_account_management_edit_admin_lead_user";
+    var test_name = "tc_account_management_edit_location_admin_level_user_details";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_edit_client_details()
+function tc_account_management_edit_clients_details()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Edit Client's Details";
+    var test_title = "Admin Dashboard - Account Management - Edit client's details";
     login_admin_dash();
   
     var name_suffix = get_unique_number();
@@ -46,7 +46,7 @@ function tc_account_management_edit_client_details()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_account_management_edit_clients_details";
-    var test_name = "tc_account_management_edit_client_details";
+    var test_name = "tc_account_management_edit_clients_details";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

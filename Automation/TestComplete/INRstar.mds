@@ -2482,6 +2482,65 @@
 										<environments testedURL="" />
 										<children />
 									</testItem>
+									<testItem name="Account Managment" key="{990C8354-8E69-47CF-A217-C2C2174460D8}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<children>
+											<testItem name="Clients" key="{163E62CF-7C62-42A6-B39F-E796C2A451A8}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+												<testParameters />
+												<children>
+													<testItem name="Account Management - Add a new client" key="{07684A03-B2DD-4C72-81F3-7E04FD83F414}" group="False" parallel="False" enabled="True" testMoniker="{A8237E61-3118-4DDC-8506-436A5FDC3529}tc_account_management_add_a_new_client" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+													<testItem name="Account Management - Edit client&apos;s details" key="{DB48D6A7-C30C-41F8-A759-29BD82A83CB9}" group="False" parallel="False" enabled="True" testMoniker="{D6DC040A-25F7-40A7-85D8-37CF5F182437}tc_account_management_edit_clients_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+												</children>
+											</testItem>
+											<testItem name="Locations" key="{A574A6C5-6926-450A-AA57-8106940754AF}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+												<testParameters />
+												<children />
+											</testItem>
+											<testItem name="Users" key="{D64017B8-A4E8-4CF8-BD14-8E16F0E51634}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+												<testParameters />
+												<children>
+													<testItem name="Account management - Add a new organisation level user" key="{8324D145-3053-47A9-9780-DFA888E10308}" group="False" parallel="False" enabled="True" testMoniker="{7AEA6E2A-1C56-4015-ADF4-2C78A5D35768}tc_account_management_add_a_new_organisation_level_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+													<testItem name="Account management - Edit location admin level user details" key="{19BD5F8F-4B44-4AF7-A853-6226A98F3755}" group="False" parallel="False" enabled="True" testMoniker="{D6B3CBAA-4592-4B19-BFAF-AC1145921A3A}tc_account_management_edit_location_admin_level_user_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+												</children>
+											</testItem>
+										</children>
+									</testItem>
+									<testItem name="Banner Message" key="{1ED298FA-A71E-4CC4-BA81-43713E3722EB}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<children>
+											<testItem name="Banner Message - Add a new banner message" key="{74BC79EF-2C8B-4D31-924D-358BF121C78D}" group="False" parallel="False" enabled="True" testMoniker="{594EB89A-40D1-40E0-9C5D-7C275CE273CC}tc_banner_message_add_a_new_banner_message" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+												<testParameters />
+												<environments testedURL="" />
+												<children />
+											</testItem>
+										</children>
+									</testItem>
+									<testItem name="Feedback" key="{8ABBD3A8-4870-4D2F-BB62-528EFAC5576A}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<children>
+											<testItem name="Feedback - Add new feedback" key="{C3B398CA-1CB0-40DA-A7AF-6E31755676B1}" group="False" parallel="False" enabled="True" testMoniker="{E2B617CD-E406-4D1A-8FB0-17B2B3A637BB}tc_feedback_add_new_feedback" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+												<testParameters />
+												<environments testedURL="" />
+												<children />
+											</testItem>
+										</children>
+									</testItem>
 								</children>
 							</testItem>
 						</children>

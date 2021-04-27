@@ -5,11 +5,11 @@
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 
-function tc_banner_message_add_a_banner_message()
+function tc_banner_message_add_a_new_banner_message()
 {
   try
   {
-    var test_title = "Admin Dashboard - Banner Message - Add a Banner Message";
+    var test_title = "Admin Dashboard - Banner Message - Add a new banner message";
     login_admin_dash();
     
     var content = "Regression automation test message.";
@@ -44,7 +44,7 @@ function tc_banner_message_add_a_banner_message()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_banner_message_add_a_new_banner_message";
-    var test_name = "tc_banner_message_add_a_banner_message";
+    var test_name = "tc_banner_message_add_a_new_banner_message";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

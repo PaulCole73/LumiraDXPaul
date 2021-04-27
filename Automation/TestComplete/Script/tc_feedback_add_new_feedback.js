@@ -8,7 +8,7 @@ function tc_feedback_add_new_feedback()
 {
   try
   {
-    var test_title = "Admin Dashboard - Feedback - Add New Feedback";
+    var test_title = "Admin Dashboard - Feedback - Add new feedback";
     login(5, "Shared");
     
     var location = "LDxCS-Test-AutoTest1";

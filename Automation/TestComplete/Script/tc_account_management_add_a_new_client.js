@@ -9,7 +9,7 @@ function tc_account_management_add_a_new_client()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Add a New Client";
+    var test_title = "Admin Dashboard - Account Management - Add a new client";
     login_admin_dash();
   
     var name_suffix = get_unique_number();

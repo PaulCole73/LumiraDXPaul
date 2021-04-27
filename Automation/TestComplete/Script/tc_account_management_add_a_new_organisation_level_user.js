@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_add_org_clinical_lead_user()
+function tc_account_management_add_a_new_organisation_level_user()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Add Org Clinical Lead User";
+    var test_title = "Admin Dashboard - Account management - Add a new organisation level user";
     login_admin_dash();
     
     var parent_client = get_parent_client_name();
@@ -37,8 +37,8 @@ function tc_account_management_add_org_clinical_lead_user()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "tc_account_management_add_org_clinical_lead_user";
-    var test_name = "tc_account_management_add_org_clinical_lead_user";
+    var suite_name = "tc_account_management_add_a_new_organisation_level_user";
+    var test_name = "tc_account_management_add_a_new_organisation_level_user";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }
