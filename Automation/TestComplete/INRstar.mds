@@ -2471,7 +2471,18 @@
 							</testItem>
 							<testItem name="Main Page" key="{C6883A1E-E371-4A95-BA90-792AE330AF27}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
-								<children />
+								<children>
+									<testItem name="Main page - Search Facility" key="{5772A09C-8982-46C0-80F2-A45512F61AC9}" group="False" parallel="False" enabled="True" testMoniker="{5BA608E5-A360-4D32-8DFB-89A8E3C88702}tc_main_page_search_facility" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="Main page - Header contains correct date" key="{A5863E46-E679-40C6-A9CE-2CE1A99C2C1A}" group="False" parallel="False" enabled="True" testMoniker="{720CEC25-ADC9-48A4-B557-6ABB395B1B83}tc_main_page_header_contains_the_correct_date" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
 							</testItem>
 						</children>
 					</testItem>

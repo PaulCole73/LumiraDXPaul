@@ -5,11 +5,11 @@
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 
-function tc_account_management_search_facility()
+function tc_main_page_search_facility()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Search Facility";
+    var test_title = "Admin Dashboard - Main page - Search Facility";
     login_admin_dash();
   
     var name = "Regression" + get_unique_number();
@@ -43,7 +43,7 @@ function tc_account_management_search_facility()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_main_page_search_facility";
-    var test_name = "tc_account_management_search_facility";
+    var test_name = "tc_main_page_search_facility";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

@@ -5,11 +5,11 @@
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 
-function tc_main_page_todays_date_displayed()
+function tc_main_page_header_contains_the_correct_date()
 {
   try
   {
-    var test_title = "Admin Dashboard - Main Page - Header Contains Correct Date";
+    var test_title = "Admin Dashboard - Main page - Header contains correct date";
     login_admin_dash();
     
     var path = admin_dash_base().Panel("MainPage").Panel("header").Panel("logindisplay").Panel("LoginStatus");
@@ -33,7 +33,7 @@ function tc_main_page_todays_date_displayed()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_main_page_header_contains_the_correct_date";
-    var test_name = "tc_main_page_todays_date_displayed";
+    var test_name = "tc_main_page_header_contains_the_correct_date";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }
