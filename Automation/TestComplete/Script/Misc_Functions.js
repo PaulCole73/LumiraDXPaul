@@ -1,9 +1,10 @@
-﻿//USEUNIT System_Paths
-//USEUNIT Admin_Dash_System_Paths
-//USEUNIT INRstar_Navigation
-//USEUNIT Get_Functions
+﻿//USEUNIT Admin_Dash_System_Paths
 //USEUNIT Failed_Test_Handlers
+//USEUNIT Get_Functions
 //USEUNIT INRstar_Misc_Functions
+//USEUNIT INRstar_Navigation
+//USEUNIT System_Paths
+//USEUNIT Translations
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -450,54 +451,6 @@ function set_month(integer_month)
   return get_string_translation(requested_month);
 }
 //-----------------------------------------------------------------------------------
-function set_italian_long_month(month)
-{
- var long_month;  
-
- switch(month)
- {
-    case "January":
-    long_month = "gennaio";
-    break;
-    case "February":
-    long_month = "febbraio";
-    break;  
-    case "March":
-    long_month = "marzo";
-    break;  
-    case "April":
-    long_month = "aprile";
-    break;  
-    case "May":
-    long_month = "maggio";
-    break;  
-    case "June":
-    long_month = "giugno";
-    break;  
-    case "July":
-    long_month = "luglio";
-    break;  
-    case "August":
-    long_month = "agosto";
-    break;  
-    case "September":
-    long_month = "settembre";
-    break;  
-    case "October":
-    long_month = "ottobre";
-    break;  
-    case "November":
-    long_month = "novembre";
-    break;
-    case "December":
-    long_month = "dicembre";
-    break;    
-    default:
-    Log.Message("Couldn't find the month you were looking for");    
- }                  
-  return long_month;
-}
-//-----------------------------------------------------------------------------------
 function process_button_exists(button_id)
 {
   var INRstarV5 = INRstar_base();
@@ -540,100 +493,6 @@ function setup_automation(new_config_file_name,locale)
   Log.LockEvents(0);
   reset_tests_array();
   change_environments(new_config_file_name);
-}
-//-----------------------------------------------------------------------------------
-function get_decimal_translation(decimal_value)
-{
-  if (language == 'Italian')
-  {
-    decimal_value = decimal_value.replace(".", ","); 
-  }
-  
-  return decimal_value
-}
-//-----------------------------------------------------------------------------------
-function get_string_translation(translation_word)
-{
- var lookup_column;
- var row_value;
- 
- switch(language)
- {
-   case "English":
-   lookup_column = 0;
-   break;
-   case "Italian":
-   lookup_column = 1;
-   break;
-   case "Spanish":
-   lookup_column = 2;
-   break;
-   default:
-   Log.Message("You didn't pass in a language I recognise you passed in " + language);
-   break;
- }
-
- var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
- 
- while (!driver.EOF())
- {
-   if (driver.Value(0) == translation_word)
-   {
-     row_value = driver.Value(lookup_column);
-
-     DDT.CloseDriver(DDT.CurrentDriver.Name);
-     return row_value;     
-   }     
-   driver.Next();
- }
-
- Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?");
-}
-//-----------------------------------------------------------------------------------
-//Just to quickly test things in the translation file
-function testing_translation()
-{
-
-var test = get_string_translation("Duplicate");   
-
-Log.Message(test)
-}
-//-----------------------------------------------------------------------------------
-function get_english_translation(translation_word)
-{
- var origin_language;
- var row_value;
- 
- switch(language)
- {
-   case "English":
-   origin_language = 0;
-   break;
-   case "Italian":
-   origin_language = 1;
-   break;
-   case "Spanish":
-   origin_language = 2;
-   break;
-   default:
-   Log.Message("You didn't pass in a language I recognise you passed in " + language);
-   break;
- }
- 
- var driver = DDT.ExcelDriver("C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\Locale.xls", "Sheet1");
- 
- while (!driver.EOF())
- {
-   if (driver.Value(origin_language) == translation_word)
-   {
-     row_value = driver.Value(0);
-
-     DDT.CloseDriver(DDT.CurrentDriver.Name);
-     return row_value;     
-   }     
-   driver.Next();
- }
- Log.Message("I was looking for this word // " + translation_word + "// I never found it in the spreadsheet ?")
 }
 //-----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
@@ -1064,14 +923,14 @@ function get_todays_date_in_dd_mmm_yyyy() // will return either 12-mag-2020 or 1
 //-----------------------------------------------------------------------------------
 function get_unix_date_number_from_dd_mmm_yyyy(date) // eg: 12/mag/2020 or 12/may/2020
 {
-  var english_month = get_english_translation(date.slice(3,6)) // need to get english month of foreign
-  var new_english_date = date.slice(0,2) + '/' + english_month + '/' + date.slice(7,11)
-  var unix_number = Date.parse(new_english_date)
+  //In order to get a Unix number we need to ensure the month is handled in English 
+  var english_month = get_english_shortmonth_translation(date.slice(3,6)); 
+  var new_english_date = date.slice(0,2) + '/' + english_month + '/' + date.slice(7,11);
+  var unix_number = Date.parse(new_english_date);
   
   return unix_number
 }
 //-----------------------------------------------------------------------------------
- 
 function get_date_as_dd_mm_yyyy_from_unix(date) 
 {
   var d = new Date(date);

@@ -4,11 +4,11 @@
 //USEUNIT Misc_Functions
 //--------------------------------------------------------------------------------
 
-function tc_login_log_into_admin_dashboard()
+function tc_login_page_log_into_admin_dashboard()
 {
   try
   {
-    var test_title = "Admin Dashboard - Login - Log into Admin Dash";
+    var test_title = "Admin Dashboard - Login page - Log into Admin Dash";
     login_admin_dash();
     
     var username = validate_login();
@@ -26,7 +26,7 @@ function tc_login_log_into_admin_dashboard()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_login_page_log_into_inrstar_dashboard";
-    var test_name = "tc_login_log_into_admin_dashboard";
+    var test_name = "tc_login_page_log_into_admin_dashboard";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

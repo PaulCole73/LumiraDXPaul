@@ -522,7 +522,7 @@ function tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient
     var location_id = get_organization_id_from_current_location();
     var patient = create_patient_object_for_fiscal();
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
-  
+
     //Post and Locate posted result
     var body_data = json_body_data_instrument(patient, location_id, "2.6", inr_test_timestamp.csp_payload);         
     post_external_result_instrument(JSON.stringify(body_data)); 

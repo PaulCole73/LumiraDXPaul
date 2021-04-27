@@ -199,17 +199,18 @@ function popup_warning_checker(exp_err_mess)
   var INRstarV5 = INRstar_base(); 
   var pop_up_warning_message_path = pop_up_warning_message();
   var actual_err_mess = pop_up_warning_message_path.contentText; 
-   
-     if (exp_err_mess==actual_err_mess)
-       {
-        Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
-        return true; 
-       } 
-        else 
-        {
-        Log.Warning('Message was displayed but the text did not match the expected result it was this //' + actual_err_mess + "// but this is what was expected //" + exp_err_mess + "//")
-        return false;
-        }
+  var warning_dialogue = INRstarV5.NativeWebObject.Find("idStr", "modalDialogBox");
+  
+    if (warning_dialogue.Exists && exp_err_mess==actual_err_mess)
+    {
+      Log.Message('The error text exists' + ' / This is the expected / ' + exp_err_mess + ' / This is the actual / ' + actual_err_mess );
+      return true; 
+    } 
+    else 
+    {
+      Log.Message('Message was either not displayed or the text did not match the expected result it was this //' + actual_err_mess + "// but this is what was expected //" + exp_err_mess + "//")
+      return false;
+    }
 } 
 //--------------------------------------------------------------------------------
 function popup_error_checker(exp_err_mess)
@@ -327,15 +328,12 @@ function add_patient(name_first, name_last, sex, nhs_num)
   {
     if(language == "English")
     {
-      panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
+      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = get_new_number_v5();
     }
     else if(language == "Italian")
     {
-      var nhs_fiscal_to_set = get_unique_number(); //generate 15 digit unique (ish) value
-      var check_character = calculate_check_digit(nhs_fiscal_to_set); //get a valid check character
-      nhs_fiscal_to_set = nhs_fiscal_to_set + check_character;
-      patient_details.nhs_number = nhs_fiscal_to_set;
-      panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
+      patient_details.nhs_number = get_fiscal_code();
+      var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = patient_details.nhs_number;
     }
   }
   else if(nhs_num == " ")
@@ -344,7 +342,7 @@ function add_patient(name_first, name_last, sex, nhs_num)
   }
   else 
   {
-    panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
+    var w_nhs = panelEPD.Panel(1).Textbox("NHSNumber").Text = nhs_num;
   }
     
   panelEPD.Panel(0).Textbox("PatientNumber").Text = patient_details.patient_number;

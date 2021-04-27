@@ -14,7 +14,7 @@
 	<config language="{90F89436-9452-4F95-9882-6B5210079F13}" />
 	<testItems key="{A5BC5C71-F805-4316-B6F5-D494E8E419AC}" version="14">
 		<children>
-			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -41,20 +41,9 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
-					<testItem name="calculate_check_digit" key="{A49E3ABC-F750-4E5B-8BD4-AECB07163885}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}calculate_check_digit" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+					<testItem name="get_check_digit" key="{0379DD97-E8D2-4BEE-A9E5-AD33BA4BB944}" group="False" parallel="False" enabled="True" testMoniker="{53C017A4-89CB-4429-8289-B2F80476AA1C}get_check_digit" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 						<testParameters>
-							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="QWERTYUIOPAMMMM" />
-						</testParameters>
-						<environments testedURL="" />
-						<children />
-					</testItem>
-					<testItem name="post_patient_rovigo_api" key="{65B4FD9B-97FA-4139-9118-888C0301BE1D}" group="False" parallel="False" enabled="True" testMoniker="{023D06E4-B97F-42BB-BE29-18F41FCFE8D9}post_patient_via_rovigo_api" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-						<testParameters>
-							<param0 name="fiscal_code" type="3" localVarName="" varType="8" value="987ZYXABC123MMM" />
-							<param1 name="firstname" type="3" localVarName="" varType="8" value="Wobbly" />
-							<param2 name="lastname" type="3" localVarName="" varType="8" value="Bobbly" />
-							<param3 name="sex" type="3" localVarName="" varType="8" value="F" />
-							<param4 name="dob" type="3" localVarName="" varType="8" value="12-06-2000" />
+							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="123abc456def789" />
 						</testParameters>
 						<environments testedURL="" />
 						<children />
@@ -2310,7 +2299,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="ET5/C12-Unmatched patients shown in external results and clinician given options to find or archive" key="{70C80714-C5C9-46C3-84EF-1054548EF73B}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5/C12-Unmatched patients shown in external results and clinician given options to find or archive" key="{70C80714-C5C9-46C3-84EF-1054548EF73B}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient_details_after_search" key="{4703694B-D935-4594-BC34-934F91260B49}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_no_patient_found_message_shown_if_unable_to_locate_unmatched_patient_details_after_search" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2444,6 +2433,45 @@
 										<children />
 									</testItem>
 								</children>
+							</testItem>
+							<testItem name="LDx2/C18 Concurrency error displayed when demographics amended before saving the treatment" key="{7CBEDA38-49E2-4EB6-BFFC-36A68EA511D7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment();" key="{B406F938-5B23-4239-B9D4-097E7394A839}" group="False" parallel="False" enabled="True" testMoniker="{318D9639-31E5-44D1-BDA2-142A4292C503}tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+						</children>
+					</testItem>
+				</children>
+			</testItem>
+			<testItem name="Master Repo" key="{262E4746-327E-4633-8C39-0254F5609FCF}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+				<testParameters />
+				<children>
+					<testItem name="Admin Dashboard" key="{39A65CB4-B642-4F62-B2AE-06120B306736}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<children>
+							<testItem name="Login" key="{33314169-A425-4722-9C1C-350DBAFEB8A3}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="Login page - Log into Admin Dash" key="{B3093826-FDC2-4ABE-8D8B-8C127F4A56EB}" group="False" parallel="False" enabled="True" testMoniker="{497F01A8-4A44-4589-BE83-73F5F274D272}tc_login_page_log_into_admin_dashboard" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="False">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="Login page - Log off Admin Dash" key="{86AEAA5E-F42D-4E65-A338-34BCC7728926}" group="False" parallel="False" enabled="True" testMoniker="{E80691E9-AAA9-4E9A-ADE0-4D7D9043F5DF}tc_login_page_log_off_admin_dashboard" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+							<testItem name="Main Page" key="{C6883A1E-E371-4A95-BA90-792AE330AF27}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children />
 							</testItem>
 						</children>
 					</testItem>
@@ -2933,7 +2961,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />
