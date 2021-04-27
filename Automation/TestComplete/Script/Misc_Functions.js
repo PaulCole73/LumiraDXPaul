@@ -888,17 +888,17 @@ function setup_automation_from_parameter()
   change_environments(environment);
 }
 //-------------------------------------------------------------------------------
-function get_date_with_days_from_today_dd_mmm_yyyy(days) // will return either 12-mag-2020 or 12-May-2020 pending language
+function get_date_with_days_from_today_dd_mm_yyyy(days) // will return either 12-mag-2020 or 12-May-2020 pending language
 {
   //Calculate the date using the supplled offset (days) then return the English date in format eg: 12-May-2020
-  date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(days)), "%d-%b-%Y");
+  date = aqConvert.DateTimeToFormatStr(aqDateTime.AddDays(aqDateTime.Today(),(days)), "%d-%m-%Y");
   
   //If the language is italian go off and convert the short month text to italian
-  if (language == "Italian")
-  {
-    italian_short_month = get_string_translation(date.slice(3,6));
-    date = date.slice(0,2) + '-' + italian_short_month + '-' + date.slice(7,11)
-  }
+//  if (language == "Italian")
+//  {
+//    italian_short_month = get_string_translation(date.slice(3,6));
+//    date = date.slice(0,2) + '-' + italian_short_month + '-' + date.slice(7,11)
+//  }
 
   return date;
 }
@@ -1178,22 +1178,42 @@ function convert_date_format(date, format, input_type)
       case "%d/%m/%Y":        //e.g 01/11/2001
       format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d/%m/%Y");
       break;
+      case "%d-%m-%Y":        //e.g 01-11-2001
+      format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d-%m-%Y");
+      break;
       case "%#d/%b/%Y":       //e.g 1/nov/2001
       month = get_string_translation(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%b"));
       format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%#d") + "/" + month + "/" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
+      break;
+      case "%#d-%b-%Y":       //e.g 1-nov-2001
+      month = get_string_translation(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%b"));
+      format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%#d") + "-" + month + "-" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
       break;
       case "%d/%b/%Y":        //e.g 01/nov/2001
       month = get_string_translation(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%b"));
       format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d") + "/" + month + "/" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
       break;
+      case "%d-%b-%Y":        //e.g 01-nov-2001
+      month = get_string_translation(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%b"));
+      format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d") + "-" + month + "-" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
+      break;
       case "%d/%B/%Y":        //e.g 01/november/2001
       month = set_italian_long_month(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%B"));
       format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d") + "/" + month + "/" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
+      break;
+      case "%d-%B-%Y":        //e.g 01-november-2001
+      month = set_italian_long_month(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%B"));
+      format_date = aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d") + "-" + month + "-" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
       break;
       case "%A %d/%B/%Y":     //e.g Monday 01/november/2001
       day = get_string_translation(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%A"));
       month = set_italian_long_month(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%B"));
       format_date = day + " " + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d") + "/" + month + "/" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
+      break;
+      case "%A %d-%B-%Y":     //e.g Monday 01-november-2001
+      day = get_string_translation(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%A"));
+      month = set_italian_long_month(aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%B"));
+      format_date = day + " " + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%d") + "-" + month + "-" + aqConvert.DateTimeToFormatStr(date_as_dd_mm_yyyy, "%Y");
       break;
     }
   }
