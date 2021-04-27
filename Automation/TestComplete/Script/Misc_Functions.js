@@ -1225,4 +1225,3 @@ function convert_date_format(date, format, input_type)
   return format_date;
 }
 
-
