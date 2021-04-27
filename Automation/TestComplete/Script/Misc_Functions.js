@@ -1225,17 +1225,4 @@ function convert_date_format(date, format, input_type)
   return format_date;
 }
 
-function test_convert_date_format()
-{
-  Log.Message(convert_date_format("1-12-2001", "%A %d/%B/%Y", "Numeric"));
-  Log.Message(convert_date_format("24-12-2001", "%A %d/%B/%Y", "numeric"));
-  Log.Message(convert_date_format("24-Dec-2001", "%A %d/%B/%Y", "English"));
-  Log.Message(convert_date_format("24-December-2001", "%A %d/%B/%Y", "english"));
-  Log.Message(convert_date_format("24-dic-2001", "%d/%m/%Y", "Italian"));
-  Log.Message(convert_date_format("24-dic-2001", "%#d/%b/%Y", "italian"));
-  Log.Message(convert_date_format("24-dic-2001", "%d/%b/%Y"));
-  Log.Message(convert_date_format("24-dic-2001", "%d/%B/%Y"));
-  Log.Message(convert_date_format("24-dic-2001", "%A %d/%B/%Y"));
-}
-
 
