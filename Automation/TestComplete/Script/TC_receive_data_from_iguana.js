@@ -14,7 +14,6 @@ function tc_new_patient_all_demographic_fields_populated_full_patient_data_can_b
     var expected_patient = create_patient_object_for_fiscal();
     //expected_patient.nhs_number = get_fiscal_code(expected_patient).replace(/ +/g, "");
     expected_patient.nhs_number = get_fiscal_code();
-    expected_patient.dob = convert_date_format(expected_patient.dob, "%d-%b-%Y", "numeric");
     
     //Post in patient data to the API
     var body_data = json_body_recievedatafromiguana(expected_patient); 

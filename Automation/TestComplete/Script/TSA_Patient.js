@@ -354,7 +354,16 @@ function add_patient(name_first, name_last, sex, nhs_num)
   panelEPD.Panel(4).Textbox("FirstName").Text = patient_details.first_name;
 
   var path = add_patient_demographics_system_path().Panel("EditPatientDetails");
-  var date =  convert_date_format(patient_details.dob, "%d/%m/%Y", "numeric"); //aqConvert.DateTimeToFormatStr(patient_details.dob, "%d/%m/%Y");
+  
+  if(language == "Italian")
+  {
+    var date = convert_date_format(patient_details.dob, "%d/%m/%Y", "Italian");
+  }
+  else
+  {
+    var date = convert_date_format(patient_details.dob, "%d/%m/%Y", "english");
+  }
+  
   date_picker(path, date);
 
   var panelEPCD = patient_area.Panel("EditPatientContactDetails");

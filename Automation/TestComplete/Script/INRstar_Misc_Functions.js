@@ -34,9 +34,9 @@ function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
     last_name: patient_formatted_data.last_name,
     first_name: patient_formatted_data.first_name,
     //dob: get_timestamps_for_now_object_with_changed_hours(),
-    dob: get_date_with_days_from_today_dd_mm_yyyy(-7300),             //format is dd-mmm-yyyy
-    sex: sex_gen,                                                      //when writing for the generic we need to ensure this is only Male or Female for Italy.
-    gender: sex_gen,                                                   //hard coded for now not required as yet.
+    dob: convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7300), "%d-%b-%Y", "numeric"),  //format is dd-mmm-yyyy 01-mag-2001
+    sex: sex_gen,                                                                                      //when writing for the generic we need to ensure this is only Male or Female for Italy.
+    gender: sex_gen,                                                                                   //hard coded for now not required as yet.
     first_addressLine: aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Arndale Avenue",
     second_addressLine: "SecondLineAddress",
     third_addressLine: "ThirdLineAddress",
