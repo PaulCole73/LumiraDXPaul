@@ -256,7 +256,7 @@ function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
 }
 //--------------------------------------------------------------------------------
-function add_maintenance_treatment(inr, date) //this function does not save the INR?
+function add_maintenance_treatment(inr, date)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
@@ -278,11 +278,6 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
   select_day(w_day, w_datepicker);
       
-  // Select the passed-in INR value
-  //var ws_INR = aqConvert.FloatToStr(inr); 
-  //  ws_INR = get_string_translation(ws_INR);
-  //  Log.Message("INR is " + ws_INR);
-  //  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
   test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(new_inr);
   
   // Select the Testing Method as Lab
@@ -298,7 +293,8 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   
   //Save the INR
-  //Need to add in a bit here for if the tablet selection is not available??
+  // If an adjustment is required to tablet dosage breakdown - carry it out
+  handle_dosing_modification_required();
   wait_for_object(path_patient_pending_treatment(), "idStr", "AcceptPendingTreatment", 3);
   save_inr_button().Click();
 }
@@ -614,7 +610,8 @@ function handle_dosing_modification_required()
   var is_table_present = pending_treatment_path.Find("idStr", "MoreScheduleGrid", 3).Exists;
 
   // if the table exists handle it by selecting first suggested dosing modification 
-  if (is_table_present == true)
+//  if (is_table_present == true)
+  if (is_table_present.Exists)
   {
     //Get the schedule path, this path will only exist if the table is present
     //var dosing_schedule_content_path = dosing_schedule_content();  this is not being used in this file, will be deleted after testing/releases
