@@ -80,7 +80,7 @@ function tc_treatment_add_a_manual_INR()
     
     //Setup and record expected data
     var formatted_inr_date = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-3), "%d-%b-%Y", "numeric");
-    var formatted_ntd = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-4), "%d-%b-%Y", "numeric");
+    var formatted_ntd = convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(+4), "%d-%b-%Y", "numeric");
     treatment_data.push(formatted_inr_date, "2.0", "2.5", "", "0", "7", "", formatted_ntd, "-");
 
     //Get the actual data
@@ -870,7 +870,8 @@ function tc_treatment_edit_a_treatment_comment()
     add_treatment_comment(new_comment);
   
     //Check the audit for adding the treatment
-    var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Treatment record was updated.") + " " + get_string_translation("Comments changed from") + " [" + old_comment + "] " + get_string_translation("to") + " [" + new_comment + "].");
+    var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Treatment record was updated.") + " " + get_string_translation("Comments changed from") +
+                                                              " [" + old_comment +"]" + get_string_translation("to") + " [" + new_comment + "].");
     result_set.push(result_set_1);
   
     //Validate the results sets are true

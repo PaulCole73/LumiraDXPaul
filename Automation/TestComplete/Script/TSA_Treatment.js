@@ -114,7 +114,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
   Goto_Patient_New_INR();
   var inr_test_info_path = treatment_inr_test_info_path();
   var new_inr_test_info_path = new_inr_test_details();
-  var inr = get_string_translation(inr);
+  var inr = get_decimal_translation(inr);
 
    // Select the passed-in INR value
    inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
@@ -127,7 +127,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    handle_PoCT(new_inr_test_details_path);
       
    // Dose
-   inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
+   inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_decimal_translation(dose));
        
    // Review
    if (review != "1")
@@ -153,7 +153,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
 function add_pending_maintenance_treatment(inr, date, selftest, test_method)
 {
   var INRstarV5 = INRstar_base();
-  var new_inr = get_string_translation(inr);
+  var new_inr = get_decimal_translation(inr);
   Goto_Patient_New_INR();
   
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
@@ -262,6 +262,7 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   Goto_Patient_New_INR();
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
   var treatment_inr_test_options_path = treatment_inr_test_options();
+  var new_inr = get_decimal_translation(inr);
   
   // Set the Treatment Date
   var w_day = aqString.SubString(date,0,2);
@@ -278,10 +279,11 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   select_day(w_day, w_datepicker);
       
   // Select the passed-in INR value
-  var ws_INR = aqConvert.FloatToStr(inr); 
-  ws_INR = get_string_translation(ws_INR);
-  Log.Message("INR is " + ws_INR);
-  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
+  //var ws_INR = aqConvert.FloatToStr(inr); 
+  //  ws_INR = get_string_translation(ws_INR);
+  //  Log.Message("INR is " + ws_INR);
+  //  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
+  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(new_inr);
   
   // Select the Testing Method as Lab
   test_info_pre_schedule_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem("Lab");
@@ -296,6 +298,7 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   
   //Save the INR
+  //Need to add in a bit here for if the tablet selection is not available??
   wait_for_object(path_patient_pending_treatment(), "idStr", "AcceptPendingTreatment", 3);
   save_inr_button().Click();
 }
@@ -385,8 +388,8 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
     select_day(w_day, w_datepicker);
 
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 1).Select("INR").ClickItem(get_string_translation(inr));
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 2).Select("Dose").ClickItem(get_string_translation(dose));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 1).Select("INR").ClickItem(get_decimal_translation(inr));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 2).Select("Dose").ClickItem(get_decimal_translation(dose));
     historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 3).Select("Omits").ClickItem(omits + " " + get_string_translation("Days"));
     if (review != "1")
     {
@@ -397,7 +400,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
       historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
     }   
     
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(get_string_translation(target));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(get_decimal_translation(target));
     //Once full run done on UK and Italy then remove
     //historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(aqConvert.FloatToStr(get_string_translation(target)));
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
@@ -415,7 +418,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
 function add_manual_treatment(date, inr, dose, review, tm)
 {
   var INRstarV5 = INRstar_base();
-  var inr = get_string_translation(inr);
+  var inr = get_decimal_translation(inr);
   Goto_Patient_New_INR();
   var test_info_path = treatment_inr_test_info_path()
   
@@ -436,7 +439,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
   w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
   select_day(w_day, w_datepicker);
 
-  test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
+  test_info_path.Panel(0).Select("Dose").ClickItem(get_decimal_translation(dose));
   
   var days = "Days";
   if (review == "1") 
