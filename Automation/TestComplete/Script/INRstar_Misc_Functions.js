@@ -13,7 +13,6 @@
 /////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-
 //This is going to get ripped out by andys method for create generic patient,
 //at the moment this is geared up to return Italian data need to tweak if you want english
 function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
@@ -34,7 +33,7 @@ function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
     last_name: patient_formatted_data.last_name,
     first_name: patient_formatted_data.first_name,
     //dob: get_timestamps_for_now_object_with_changed_hours(),
-    dob: convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7300), "%d-%b-%Y", "numeric"),  //format is dd-mmm-yyyy 01-mag-2001
+    dob: convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7300), "numeric", "%d-%b-%Y"),  //format is dd-mmm-yyyy 01-mag-2001
     sex: sex_gen,                                                                                      //when writing for the generic we need to ensure this is only Male or Female for Italy.
     gender: sex_gen,                                                                                   //hard coded for now not required as yet.
     first_addressLine: aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Arndale Avenue",
@@ -47,7 +46,6 @@ function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
     email: "AutomationLumira+" + new_guid(8) + "@gmail.com"
   };
   
-
   return patient_details;
 }
 //-----------------------------------------------------------------------------------

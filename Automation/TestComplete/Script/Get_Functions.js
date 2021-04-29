@@ -699,6 +699,7 @@ function get_new_inr_button_state()
 }
 //-----------------------------------------------------------------------------------
 //gets all data from specified table
+//Need to fix this at some point to pick up the NTD field as if you have clinics on/off it is held in a different property currently this will only work in Autotest1
 function get_treatment_row(row_num, table_type)
 {
   if(table_type == "current" || table_type == null)
@@ -722,7 +723,6 @@ function get_treatment_row(row_num, table_type)
     var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
     treatment_row_array.push(treatment_value);
   }
-  
   return treatment_row_array;  
 }
 //-----------------------------------------------------------------------------------
@@ -745,14 +745,14 @@ function get_treatment_row_key_values(row_num, table_type)
   }
   var treatment_row_array = new Array()
   
-  for(var i = 0; i < 11; i++)
+ for(var i = 0; i < 11; i++)
   {
     if(i == 0 || i == 1 || i == 2 || i == 5 || i == 7)
     {
       var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
       treatment_row_array.push(treatment_value);
     }
-  }
+  } 
   
   return treatment_row_array;  
 }

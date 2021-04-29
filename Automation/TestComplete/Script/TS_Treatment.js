@@ -98,8 +98,7 @@ function ts_int_regression_treatment_italy(send_mail)
 //  tc_treatment_induction_dosing_permissions();
 //  tc_treatment_add_a_treatment_comment();
 //  tc_treatment_edit_a_treatment_comment()
-  
-  tc_treatment_add_a_new_maintenance_in_range_inr();
+//  tc_treatment_add_a_new_maintenance_in_range_inr();
 //  tc_treatment_add_a_historical_treatment_to_an_induction_patient();
 //  tc_treatment_no_treatment_can_be_added_to_a_patient_on_no_protocol();
 //  tc_treatment_user_cannot_override_an_induction_result();
@@ -115,8 +114,9 @@ function ts_int_regression_treatment_italy(send_mail)
 //  tc_treatment_add_multiple_historic_treatments();
 //  tc_treatment_create_maintenance_use_alternate_schedules(); 
 //  tc_treatment_maintenance_starting_algorithm_for_unstable_patient(); 
-//  tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent(); 
+//  tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent();
 //  tc_treatment_maintenance_overriding_dose_and_review_period();
+  
 //  tc_treatment_maintenance_save_override_treatment();
 //  tc_treatment_drag_and_drop_schedule_days();
 //  tc_treatment_maintenance_INR_more_then_max_review_period();
