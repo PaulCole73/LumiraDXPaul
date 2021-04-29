@@ -78,7 +78,7 @@ function process_alternate_popup(header, button, button_index)
   }
   else
   { 
-    Log.Message("'" + header + "' box displayed");
+    //Log.Message("'" + header + "' box displayed");
     var wb_Ok = INRstarV5.NativeWebObject.Find("innerText", button, "BUTTON");
     if (wb_Ok.Exists == false || wb_Ok.Visible == false)
     {

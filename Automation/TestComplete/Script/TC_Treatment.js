@@ -1215,20 +1215,16 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
 		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))), "2.5", "2.5", "0", "7", "2.5");
 		add_pending_maintenance_treatment('2.5', inr_date);
-		
-		var result_set = new Array();
-		
-		//update the dose and review period
 		override_dose("5.0");
 		override_review("21");
     
-    //get pending treatment row before saving
     var treatment_row_before_save = get_treatment_row_object(inr_date, "pending");
     
     var save_inr_path = save_inr_button();
     save_inr_path.Click();
     
-    //get treatment row after saving
+    var result_set = new Array();
+    
     var treatment_row_after_save = get_treatment_row_object(inr_date, "current");
     
     var result_set_1 = data_contains_checker(treatment_table().Cell(1, 3).Panel(0).outerHTML, "line-through\">" + get_decimal_translation("2.5") + "</DIV>", test_title);
