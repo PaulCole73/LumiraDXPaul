@@ -1,4 +1,5 @@
 ﻿//USEUNIT Misc_Functions
+//USEUNIT INRstar_Get_Cookies_via_Powershell
 
 //-----------------------------------------------------------------------------------
 /////////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +44,7 @@ function login_under_the_hood(login_user_number)
   headers["Content-Type"] = "application/x-www-form-urlencoded";
   headers["Referer"] = url;
   
+  
   //Get Initial token and session Id & add it to the cookie/token object jar
   var cookie_jar = api_get_login_tokens_and_session_id(url, headers);
   
@@ -82,10 +84,10 @@ function add_a_patient_under_the_hood()
     var test_title = "add_a_patient_under_the_hood"
     
     //Setup test scenario
-    var cookie_jar = login_under_the_hood("5");
-//    var patient = patient_generator();
-//    var patient_insertion_parameters = patient_parameters(patient); 
-//    var inserted_patient = insert_patient(patient_insertion_parameters, cookie_jar);
+    //var cookie_jar = get_cookies_for_under_the_hood();
+    var cookie_jar = get_cookies_for_under_the_hood()
+    var patient = patient_generator(); 
+    var inserted_patient = insert_patient(patient, cookie_jar);
 
     //Log_Off(); 
   }
@@ -98,86 +100,124 @@ function add_a_patient_under_the_hood()
   } 
 }
 //-----------------------------------------------------------------------------------
-function insert_patient(patient_insertion_parameters, cookie_jar)
+function get_hostname()
 {
-  //Get extra tokens required for adding patient
-  var cookie_jar = get_token_for_patient_insert(patient_insertion_parameters, cookie_jar);
-  
-  //Do stuff here
-
-}
-//-----------------------------------------------------------------------------------
-function get_token_for_patient_insert(patient_insertion_parameters, cookie_jar)
-{
-  //This function has not been tested/actioned yet since we haven't got this far
-  
-  //Obtain URL
   var base_url = INRstar_base().URL; 
   var hostname;
   if (base_url.indexOf("//") > -1) 
     {hostname = base_url.split('/')[2];}
   else 
     {hostname = base_url.split('/')[0];}
-  
-  var address = "https://" + hostname + "/Patient/New";
-  
-  //Perform the api request record the response
-  var response = String(api_get(address, headers));
-  Log.Message(response);
-  
-  //Extract the request_verification_token from the response
-  var request_verification_token = response.match(/name=\"__RequestVerificationToken\" type=\"hidden\" value="([^\"]*)"/);    
-  Log.Message(request_verification_token[1]);
-  cookie_jar.request_verification_token=request_verification_token[1]; //replacing original token - may not be needed
-  
-  //Extract the new_patient_token_id from the response
-  cookie_jar.new_patient_token_id = response.match(/name="Id" type="hidden" value="([^\"]*)"/); 
-  Log.Message(new_patient_token_id);
     
-  return cookie_jar // Need to add new tokens into cookie_jar object and return it
+  return hostname
 }
 //-----------------------------------------------------------------------------------
-function patient_parameters(patient_details, token_id) 
+function insert_patient(patient, cookie_jar)
+{
+  var hostname = get_hostname();
+  var address = "https://" + hostname + "/Patient/Insert";
+  var other_cookie_jar = get_token_for_patient_insert(hostname, cookie_jar);
+  var patient_insertion_parameters = patient_parameters(patient, other_cookie_jar);
+  
+  //Convert object to requestBody
+
+  var requestBody = "Id="+ encodeURIComponent(other_cookie_jar.new_patient_token_ID) +"&externalResultId=&Email=Overphilortysophized.Yodh%40fakemail.com&FirstName=Overphilortysophized&Sex=Male&Title=Mr&Gender=Male&Mobile=01888288322&NHSNumber=&Born=16-apr-1928&Phone=01884840504&FirstAddressLine=Dysacousma+House&SecondAddressLine=Brainlessly+Street&FourthAddressLine=JmeterLand&ThirdAddressLine=JmeterLand&FifthAddressLine=Cecity+City&PhoneOther=01883382999&PostCode=TR11+4HL&PatientNumber=1619765420250&ScslHealthDbId=&Surname=Yodh&__ASP.NET_SessionId=Not+Found&__RequestVerificationToken="+encodeURIComponent(other_cookie_jar.__RequestVerificationToken)
+  var headers = new Object();
+  
+  //Add Headers
+  headers["Connection"] = "keep-alive";
+  headers["Host"] = hostname;
+  headers["User-Agent"] = "TestComplete"; 
+  headers["Content-Type"] = "application/x-www-form-urlencoded";
+  headers["Accept"] = "*/*";
+  headers["Cookie"] = cookie_jar;
+  headers["Content-Length"] = parseInt(requestBody.length);
+  
+  var response = String(api_post(address, headers, requestBody));
+  
+  Log.Message(response)
+  return 
+}
+//-----------------------------------------------------------------------------------
+function dothisF()
+{
+  var cookie_jar = "ASP.NET_SessionId=idt0ek4pwbcw3o4nz2m4eqjs;__RequestVerificationToken_Lw__=IyjSvAR2jF3uAHtYLFCh5NOmM4erq30guM6Qum8WfBtHsnhD0uaNqFA28Q3h+8VrD9/JzjhWvlF3mvkMCT90xPNz2hQBWeLa6/a+fBtMhIZzxfFsLxWT+pRFsGkQjlUX2L8+6BBpl+o5PDFuirBPh6m4Qxo=;LatestVersion=False;INRstarN3=A39BA8CA5EAAE1CCBF511E8B2A91CC8DEB00401A9AAB17692A4214320D3146C6A685875C36B46D783C0B16B8D0EB93E31C6DC9F76C9996F2D136187165E737B560113E2B8FC139917E6451D91A48D1F50CA3F3E2741977551D025C091AE39519DCB8862E2E054857265F00A29C02920F11783155179F1A7F6ABEACAAD27202F71695230FC98BF4240027351B1614A50656787F73BB19F8E10BA259C8326CEE9D207BF676C448BA1BEA33BCC34079FCD1B107FC906378EE1E452AD4C74B069899BEA3B77FA1A1E36DCD5E30C47E2389D968BB84F16F7633B35CDFBA42583ACF9B22E0EEA418B86E33CE214AABA4DCEF2BD52B59E9831732462D09C51B6F1B08507A46DE2FD697F347E1A456CE4CF6E2F664EE55430ABF661EFE91AE5342B65437E9D020B5750AD047A4675A05C2310C1BBD4676DA9DD73F48A798A7963ECC79B79B5FC24FC6E4316E08381253DAA32DA6E4405CE37C8EA3F4D89E41260EE42DB9F75169E547DFB6B7658B9CCDFBE67ECEB6F7BF3DA69274CE750C525661E9C08C86C7F2E2A023B2A0A07F9A7DA7EEB4F139E2ED6995578FBF52424F7D3725D5199E4ABBA5B3008A69961AA950CCD96D7FA26A2D66A2B59CE5D8299817E9EAC93F82D050DE"
+  insert_patient('', cookie_jar)
+}
+//-----------------------------------------------------------------------------------
+function get_token_for_patient_insert(hostname, cookie_jar)
+{
+  var address = "https://" + hostname + "/Patient/New";
+  var headers = new Object();
+  var other_cookie_jar = new Object();
+    
+  //Add Headers
+  headers["Connection"] = "keep-alive";
+  headers["Host"] = hostname;
+  headers["User-Agent"] = "TestComplete"; 
+  headers["Content-Type"] = "application/x-www-form-urlencoded";
+  headers["Accept"] = "*/*";
+  headers["Cookie"] = cookie_jar;
+  
+  var response = String(api_get(address, headers));
+  
+  var new_patient_token_ID = response.match(/name="Id" type="hidden" value="([^"]*)"/)[1];
+  var __RequestVerificationToken = response.match(/name="__RequestVerificationToken" type="hidden" value="([^"]*)"/)[1];
+
+  other_cookie_jar["new_patient_token_ID"]=new_patient_token_ID;
+  other_cookie_jar["__RequestVerificationToken"]=__RequestVerificationToken;
+
+  return other_cookie_jar
+}
+
+//-----------------------------------------------------------------------------------
+function patient_parameters(patient_details, other_cookie_jar) 
 { 
   //Initialise a blank payload
   var payload = new Object();
 
   //Populate payload parameters
-  payload.Email = patient_details.email;
-  payload.FirstName = patient_details.firstname;
-  payload.Surname = patient_details.surname;
-  payload.Sex = patient_details.sex;
-  payload.Title = patient_details.title;
-  payload.Gender = patient_details.gender;
-  payload.Mobile = "01884840504";
-  payload.Born = patient_details.born;
-  payload.Phone = "01884840504";
-  payload.FirstAddressLine = patient_details.firstaddressline;
-  payload.SecondAddressLine = patient_details.secondaddressline;
-  payload.ThirdAddressLine = patient_details.thirdaddressline;
-  payload.FourthAddressLine = patient_details.fourthaddressline;
-  payload.PhoneOther = "01884840504";
-  payload.PostCode = patient_details.postcode;
-  payload.PatientNumber = patient_details.patient_number;
-  payload.ScslHealthDbId = "";
+  payload.externalResultId = encodeURIComponent("");
+  payload.Email = encodeURIComponent(patient_details.email);
+  payload.FirstName = encodeURIComponent(patient_details.firstname);
+  payload.Surname = encodeURIComponent(patient_details.surname);
+  payload.Sex = encodeURIComponent(patient_details.sex);
+  payload.Title = encodeURIComponent(patient_details.title);
+  payload.Gender = encodeURIComponent(patient_details.gender);
+  payload.Mobile = encodeURIComponent("01884840504");
+  payload.Born = encodeURIComponent(patient_details.born);
+  payload.Phone = encodeURIComponent("01884840504");
+  payload.FirstAddressLine = encodeURIComponent(patient_details.firstaddressline);
+  payload.SecondAddressLine = encodeURIComponent(patient_details.secondaddressline);
+  payload.ThirdAddressLine = encodeURIComponent(patient_details.thirdaddressline);
+  payload.FourthAddressLine = encodeURIComponent(patient_details.fourthaddressline);
+  payload.PhoneOther = encodeURIComponent("01884840504");
+  payload.PostCode = encodeURIComponent(patient_details.postcode);
+  payload.PatientNumber = encodeURIComponent(patient_details.patient_number);
+  payload.ScslHealthDbId = encodeURIComponent("");
+  payload.Id = encodeURIComponent(other_cookie_jar.new_patient_token_ID);
+  payload.__RequestVerificationToken = encodeURIComponent(other_cookie_jar.__RequestVerificationToken);
+  
+  Log.Message("externalResultId created as: " + payload.externalResultId);
+  Log.Message("FirstName created as: " + payload.FirstName);
+  Log.Message("Surname created as: " + payload.Surname);
+  Log.Message("Sex created as: " + payload.Sex);
+  Log.Message("Title created as: " + payload.Title);
+  Log.Message("Gender created as: " + payload.Gender);
+  Log.Message("Mobile created as: " + payload.Mobile);
+  Log.Message("Born created as: " + payload.Born);
+  Log.Message("Phone created as: " + payload.Phone);
+  Log.Message("FirstAddressLine created as: " + payload.FirstAddressLine);
+  Log.Message("SecondAddressLine created as: " + payload.SecondAddressLine);
+  Log.Message("ThirdAddressLine created as: " + payload.ThirdAddressLine);
+  Log.Message("FourthAddressLine created as: " + payload.FourthAddressLine);
+  Log.Message("PhoneOther created as: " + payload.PhoneOther);
+  Log.Message("PostCode created as: " + payload.PostCode);
+  Log.Message("PatientNumber created as: " + payload.PatientNumber);
+  Log.Message("ScslHealthDbId created as: " + payload.ScslHealthDbId);
+  Log.Message("other_cookie_jar.Id created as: " + payload.Id);
+  Log.Message("other_cookie_jar.__RequestVerificationToken created as: " + payload.__RequestVerificationToken);
 
-//  Log.Message("Payload created as: " + payload.FirstName);
-//  Log.Message("Payload created as: " + payload.Surname);
-//  Log.Message("Payload created as: " + payload.Sex);
-//  Log.Message("Payload created as: " + payload.Title);
-//  Log.Message("Payload created as: " + payload.Gender);
-//  Log.Message("Payload created as: " + payload.Mobile);
-//  Log.Message("Payload created as: " + payload.Born);
-//  Log.Message("Payload created as: " + payload.Phone);
-//  Log.Message("Payload created as: " + payload.FirstAddressLine);
-//  Log.Message("Payload created as: " + payload.SecondAddressLine);
-//  Log.Message("Payload created as: " + payload.ThirdAddressLine);
-//  Log.Message("Payload created as: " + payload.FourthAddressLine);
-//  Log.Message("Payload created as: " + payload.PhoneOther);
-//  Log.Message("Payload created as: " + payload.PostCode);
-//  Log.Message("Payload created as: " + payload.PatientNumber);
-//  Log.Message("Payload created as: " + payload.ScslHealthDbId);
-//    
   //Return the payload so it can be posted elsewhere
   return payload
 }
