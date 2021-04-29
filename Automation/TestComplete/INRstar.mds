@@ -2502,7 +2502,30 @@
 											</testItem>
 											<testItem name="Locations" key="{A574A6C5-6926-450A-AA57-8106940754AF}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 												<testParameters />
-												<children />
+												<children>
+													<testItem name="Details" key="{8236A3BE-6257-463E-8383-CA29C061D3F3}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+														<testParameters />
+														<children />
+													</testItem>
+													<testItem name="Licence" key="{F4EE9C9C-8F74-4E3F-9584-31C7C7644598}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+														<testParameters />
+														<children />
+													</testItem>
+													<testItem name="Users" key="{1B8FF472-DCDA-4AE6-92A4-265F5C8380EB}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+														<testParameters />
+														<children />
+													</testItem>
+													<testItem name="Account management - Create a new treatment location" key="{9730F9CE-A36D-40AE-97F9-78DF2A07CC39}" group="False" parallel="False" enabled="True" testMoniker="{D302BB6C-A268-46AC-8535-5171F653A83A}tc_account_management_create_a_new_treatment_location" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+													<testItem name="Account management - Create a new view only location" key="{878A6804-9CBA-47DF-8021-058BBCB30EF5}" group="False" parallel="False" enabled="True" testMoniker="{F1A7334E-301A-4534-B062-E1E3CC11763D}tc_account_management_create_a_new_view_only_location" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+												</children>
 											</testItem>
 											<testItem name="Users" key="{D64017B8-A4E8-4CF8-BD14-8E16F0E51634}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 												<testParameters />
@@ -2513,6 +2536,11 @@
 														<children />
 													</testItem>
 													<testItem name="Account management - Edit location admin level user details" key="{19BD5F8F-4B44-4AF7-A853-6226A98F3755}" group="False" parallel="False" enabled="True" testMoniker="{D6B3CBAA-4592-4B19-BFAF-AC1145921A3A}tc_account_management_edit_location_admin_level_user_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+													<testItem name="Account management - Remove a location admin level user" key="{C0644976-4752-45B6-88FF-11B468E4CD6B}" group="False" parallel="False" enabled="True" testMoniker="{9BD766BF-4BFC-4724-ACF3-1E3AF129C533}tc_account_management_remove_a_location_admin_level_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 														<testParameters />
 														<environments testedURL="" />
 														<children />

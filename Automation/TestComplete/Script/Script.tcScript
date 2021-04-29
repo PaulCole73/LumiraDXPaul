@@ -454,6 +454,8 @@
 						<folder name="Users">
 							<child name="tc_account_management_add_location_admin_user" key="{B0FF4859-A3E8-4630-ABEA-F4DB25216B45}" path="tc_account_management_add_location_admin_user.js" />
 						</folder>
+						<child name="tc_account_management_create_a_new_treatment_location" key="{D302BB6C-A268-46AC-8535-5171F653A83A}" path="tc_account_management_create_a_new_treatment_location.js" />
+						<child name="tc_account_management_create_a_new_view_only_location" key="{F1A7334E-301A-4534-B062-E1E3CC11763D}" path="tc_account_management_create_a_new_view_only_location.js" />
 					</folder>
 					<folder name="Clients">
 						<child name="tc_account_management_add_a_new_client" key="{A8237E61-3118-4DDC-8506-436A5FDC3529}" path="tc_account_management_add_a_new_client.js" />

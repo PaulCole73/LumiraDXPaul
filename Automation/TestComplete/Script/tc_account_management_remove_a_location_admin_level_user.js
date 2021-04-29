@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_remove_location_admin()
+function tc_account_management_remove_a_location_admin_level_user()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Remove Location Admin User";
+    var test_title = "Admin Dashboard - Account Management - Remove a location admin level user";
     login_admin_dash();
     
     var parent_client = "LDxCS-Test-AutoTest1";
@@ -30,8 +30,8 @@ function tc_account_management_remove_location_admin()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_AD_Account_Management";
-    var test_name = "tc_account_management_remove_location_admin";
+    var suite_name = "tc_account_management_remove_a_location_admin_level_user";
+    var test_name = "tc_account_management_remove_a_location_admin_level_user";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }
