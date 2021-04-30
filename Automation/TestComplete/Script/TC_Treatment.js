@@ -1203,7 +1203,7 @@ function tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent()
 }
 //--------------------------------------------------------------------------------
 //checks that dose and review periods can be overwritten
-function tc_treatment_maintenance_overriding_dose_and_review_period()
+function tc_treatment_maintenance_save_override_treatment()
 {
 	try
 	{
@@ -1245,7 +1245,7 @@ function tc_treatment_maintenance_overriding_dose_and_review_period()
 	{
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Treatment";
-    var test_name = "tc_treatment_maintenance_overriding_dose_and_review_period";
+    var test_name = "tc_treatment_maintenance_save_override_treatment";
     handle_failed_tests(suite_name, test_name);
 	}
 }
@@ -1303,73 +1303,6 @@ function tc_treatment_drag_and_drop_schedule_days()
     handle_failed_tests(suite_name, test_name);
   }
 }
-
-//--------------------------------------------------------------------------------
-//checks a pending treatment can be overwritten, saved, overwrite maintained, strikethrough values display
-function tc_treatment_maintenance_save_override_treatment()
-{
-	try
-	{
-		var test_title = 'Treatment - Overriding and Save';
-		login(5, "Shared");
-		add_patient('Regression', 'DoseReview_OverrideSave', 'M');
-		add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.8", "2.5", "0", "11", "2.4");
-		add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
-		
-		//setup values to be altered/checked
-		var new_dose = "5.0";
-		var new_review_days = "14";
-		var result_set = new Array();
-		var expected_values = new Array();
-		var override_values = new Array();
-		
-		//add all expected values to array
-		expected_values = get_treatment_row_key_values(0, "pending");
-		
-		//update the dose, get the new value
-		override_dose(new_dose);
-		
-		//update the review days, get new value, get new next test date
-		override_review(new_review_days);
-    
-    var save_inr_path = save_inr_button();
-    save_inr_path.Click();
-    
-    WaitSeconds(2);
-    var strikethrough = treatment_table().Cell(1, 3).Panel(0).style.textdecoration;
-    var result_set_1 = compare_values(strikethrough, "line-through", test_title);
-    result_set.push(result_set_1);
-    strikethrough = treatment_table().Cell(1, 6).Panel(0).style.textdecoration;
-    result_set_1 = compare_values(strikethrough, "line-through", test_title);
-    result_set.push(result_set_1);
-    
-    //add all to array of changed values
-		override_values = get_treatment_row_key_values(1);
-		
-		//check arrays are same length but values do not match
-		result_set_1 = checkArrays_containing_inr_values(expected_values, override_values, test_title);
-    result_set_1 = results_checker_are_false(result_set_1);
-		result_set.push(result_set_1);
-		
-		//Validate the results sets are false
-		results = results_checker_are_true(result_set);
-		Log.Message(results);
-		
-		//Pass in the result
-		results_checker(results, test_title);
-    
-		Log_Off();
-	}
-	catch(e)
-	{
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Treatment";
-    var test_name = "tc_treatment_maintenance_save_override_treatment";
-    handle_failed_tests(suite_name, test_name);
-	}
-}
-
 //--------------------------------------------------------------------------------
 //testing for warning message when patient's last INR test exceeds max review period
 function tc_treatment_maintenance_INR_more_then_max_review_period()
@@ -1390,8 +1323,7 @@ function tc_treatment_maintenance_INR_more_then_max_review_period()
     
     add_patient('Regression', 'MoreThan_MaxReview', 'M');
     add_treatment_plan('W', 'Coventry', '', 'Shared', '');
-		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-(max_review_increment)))), 
-                                                                                  "2.8", "2.9", "0", "11", "2.4");
+		add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-(max_review_increment)))), "2.8", "2.9", "0", "11", "2.4");
                                                                                   
     Goto_Patient_New_INR();
     
@@ -1596,7 +1528,7 @@ function tc_treatment_maintenance_cancel_pending()
     treatment_values = get_treatment_row(0);
     var child_count = treatment_table().ChildCount;
                                                               
-    add_pending_maintenance_treatment('2.4', aqConvert.StrToDate(aqDateTime.Today()));
+    add_pending_maintenance_treatment('3.5', aqConvert.StrToDate(aqDateTime.Today()));
     
     var cancel_btn = cancel_pending_treat_button()
     cancel_btn.Click();
