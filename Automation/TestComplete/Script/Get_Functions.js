@@ -241,7 +241,7 @@ function get_check_digit(fifteen_digit_fiscal)
   var remainder = sum_of_values % 26; //divide by number of letters in alphabet
   var check_digit = check_digit_values[remainder]; //remainder should be a number between 0 - 25 select the relevant value from the check_digit array
   
-  //Log.Message(check_digit);
+  Log.Message(check_digit);
   return check_digit;
 }
 //-----------------------------------------------------------------------------------
