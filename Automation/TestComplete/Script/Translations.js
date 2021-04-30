@@ -107,7 +107,10 @@ function get_string_translation(string)
     :{
       Italian:	"L'evento indesiderato è stato aggiunto correttamente"	
     },
-      
+"This patient's current anticoagulant is not licensed for patients under the age of 18 years.":
+    {
+     Italian: "L'attuale anticoagulante di questo paziente non è autorizzato per i pazienti di età inferiore a 18 anni."
+    },      
 "Mr"	
     :{
       Italian:	"Sig."	
