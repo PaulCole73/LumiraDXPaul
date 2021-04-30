@@ -18,7 +18,20 @@
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-
+//-----------------------------------------------------------------------------------
+//Returning hostname of current INRstar eg: inrstar-uk-test1.caresolutions.lumiradx.com
+function get_hostname()
+{
+  var base_url = INRstar_base().URL; 
+  var hostname;
+  if (base_url.indexOf("//") > -1) 
+    {hostname = base_url.split('/')[2];}
+  else 
+    {hostname = base_url.split('/')[0];}
+    
+  return hostname
+}
+//-----------------------------------------------------------------------------------
 //Returning an NHS of the current patient loaded
 function get_patient_nhs()
 {

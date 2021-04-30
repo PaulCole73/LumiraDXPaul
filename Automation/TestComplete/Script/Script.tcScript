@@ -400,6 +400,7 @@
 			<folder name="9. Utilities">
 				<child name="INRstar_Misc_Functions" key="{1FBD6F73-C790-4C1D-A003-93156D1968E5}" path="INRstar_Misc_Functions.js" />
 				<child name="INRstar_Get_Functions" key="{54CD62D1-CE92-4CF9-BF0B-E74B7A56D606}" path="INRstar_Get_Functions.js" />
+				<child name="INRstar_Get_Cookies_via_Powershell" key="{593DABA4-F26F-4885-B29C-4D34481579D0}" path="INRstar_Get_Cookies_via_Powershell.js" />
 			</folder>
 			<folder name="2.1 Clinical Suites">
 				<child name="TS_Clinical_Controls" key="{25598DCC-2504-497A-A15D-1EF0302ACCA4}" path="TS_Clinical_Controls.js" />
