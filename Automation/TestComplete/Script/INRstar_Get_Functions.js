@@ -19,15 +19,6 @@ function inrstar_get_patient_details_object_from_bluebar()
   return patient_details_blue_bar;
 }
 //-----------------------------------------------------------------------------------
-function get_treatment_row_object_testing()
-{
-//  var inr_date = aqConvert.StrToDate(aqDateTime.Today());
-  var inr_date = aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(),(-1)))
-  Log.Message(inr_date);
-  var treatment = get_treatment_row_object(inr_date,"current");
-  Log.Message(treatment);
-}
-//---------------------
 //At the moment this will only handle 1 treatment with the same date if we need this for 2 treatments on the same day then you will need to add in another identifier i.e inr/dose/ntd
 function get_treatment_row_object(treatment_date, table_type)
 {
@@ -50,6 +41,8 @@ function get_treatment_row_object(treatment_date, table_type)
   }
   
   var row_count = treatment_table_path.rowcount;
+  
+  //Need to fix this at some point the NTD field can be held in a different property if you have clinics on/off, currently this will only work in Autotest1
   
   for(i=0; i<row_count; i++)
   {

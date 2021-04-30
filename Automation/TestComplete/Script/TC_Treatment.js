@@ -1490,9 +1490,6 @@ function tc_treatment_maintenance_override_privilege()
     result_set_1 = button_checker(button, "enabled", "Testing clead level user can click save inr on pending treatment for manual dosing");
     result_set.push(result_set_1);
     
-    var save_inr_button_path = save_inr_button();
-    save_inr_button_path.Click();
-    
     Log_Off(); 
     
     //Validate all the results sets are true

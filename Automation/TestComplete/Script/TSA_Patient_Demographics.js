@@ -13,11 +13,6 @@ function edit_all_patient_demographics(gender)
   var obj_root = patient_edit_demographics_form_pat_details();
   wait_for_object(obj_root, "Name", "TextNode(0)", 1);
   
-//  var patient_area = add_patient_demographics_system_path();
-//  var panelEPD = patient_area.Panel("EditPatientDetails");
-//  var patient_edit_demographics_form_contact_details_path = patient_edit_demographics_form_contact_details();
-//  var panelEPCD = patient_area.Panel("EditPatientContactDetails");
-  
   //Pat number
   new_pat_num = new_guid(20);
   var data_before = patient_edit_demographics_form_pat_details_path.Panel(0).Textbox("PatientNumber").Text;

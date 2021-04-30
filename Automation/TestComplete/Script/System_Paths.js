@@ -792,7 +792,7 @@ function treatment_row_comment_box()
 function save_inr_button()
 {
   var pending_treatment_buttons_path = path_patient_pending_treatment();
-  wait_for_object(pending_treatment_buttons_path, "Name", "Panel(\"PendingTreatmentInfo\")", 5);
+  wait_for_object(pending_treatment_buttons_path, "Name", "Panel(\"PendingTreatmentInfo\")", 1);
   var save_inr_button_path = pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).FindChild("idStr", "AcceptPendingTreatment", 4);
   
   return save_inr_button_path;
