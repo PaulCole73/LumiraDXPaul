@@ -24,6 +24,24 @@ function login_under_the_hood(login_user_number)
   login_details = get_login_details();
 }
 //-----------------------------------------------------------------------------------
+function add_a_patient_under_the_hood2()
+{
+  try
+  {
+    var test_title = 'Treatment Plan - Add first maintenance treatment plan'
+    login(5, "Shared");
+    add_patient('Regression', 'Add_maintenance_tp', 'M'); 
+    //Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "add_a_patient_under_the_hood";
+    var test_name = "add_a_patient_under_the_hood";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//-----------------------------------------------------------------------------------
 function add_a_patient_under_the_hood()
 {
   try
@@ -33,6 +51,13 @@ function add_a_patient_under_the_hood()
     //Setup test scenario
     var cookie_jar = get_cookies_for_under_the_hood()
     var patient = insert_patient(cookie_jar); 
+    login(5, "Shared");
+//    process_popup("INRstar is out of date","OK");
+//    var INRstarV5 = INRstar_base();
+//    INRstarV5.Panel("MainPage").Panel("header").Link("MainPatientLink").Click()
+//    click_navigation_wrapper(obj, obj_root, "idStr", "searchCriteria", 5);
+    patient_search(patient.fullname);
+    
 
     //Log_Off(); 
   }
@@ -102,39 +127,6 @@ function get_token_for_patient_insert(hostname, cookie_jar)
 
   return other_cookie_jar
 }
-
-//-----------------------------------------------------------------------------------
-function patient_parameters(patient_details, other_cookie_jar) 
-{ 
-  //Initialise a blank payload
-  var payload = new Object();
-
-  //Populate payload parameters
-  payload.externalResultId = "";
-  payload.email = patient_details.email;
-  payload.firstName = patient_details.firstname;
-  payload.surname = patient_details.surname;
-  payload.sex = patient_details.sex;
-  payload.title = patient_details.title;
-  payload.gender = patient_details.gender;
-  payload.mobile = "01884840504";
-  payload.born = patient_details.born;
-  payload.Phone = "01884840504";
-  payload.firstAddressLine = patient_details.firstaddressline;
-  payload.secondAddressLine = patient_details.secondaddressline;
-  payload.thirdAddressLine = patient_details.thirdaddressline;
-  payload.fourthAddressLine = patient_details.fourthaddressline;
-  payload.fifthAddressLine = patient_details.fifthaddressline;
-  payload.phoneOther = "01884840504";
-  payload.postCode = patient_details.postcode;
-  payload.patientNumber = patient_details.patient_number;
-  payload.ScslHealthDbId = "";
-  payload.id = other_cookie_jar.new_patient_token_ID;
-  payload.__RequestVerificationToken = other_cookie_jar.__RequestVerificationToken;
-
-  //Return the payload so it can be posted elsewhere
-  return payload
-}
 //-----------------------------------------------------------------------------------
 
 function patient_generator(other_cookie_jar)
@@ -151,7 +143,8 @@ function patient_generator(other_cookie_jar)
     patient_data.fourthaddressline = random_word_generator() + " Town";
     patient_data.fifthaddressline = random_word_generator() + " City";
     patient_data.postcode = "TR11 4HL";                                    
-    patient_data.email = "automation" + patient_data.surname + "@fakemail.com"
+    patient_data.email = "automation" + patient_data.surname + "@fakemail.com";
+    patient_data.fullname = patient_data.firstname + " " + patient_data.surname;
     
     //Title generator
     var array_of_titles = ["Mr","Mrs","Ms","Miss","Dr","Prof"]
