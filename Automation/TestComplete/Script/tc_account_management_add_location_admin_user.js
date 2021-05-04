@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_add_admin_lead_user()
+function tc_account_management_add_location_admin_user()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Add Location Admin User";
+    var test_title = "Admin Dashboard - Account Management - Add location admin user";
     login_admin_dash();
     
     var parent_client = "LDxCS-Test-AutoTest1";
@@ -38,7 +38,7 @@ function tc_account_management_add_admin_lead_user()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_account_management_add_location_admin_user";
-    var test_name = "tc_account_management_add_admin_lead_user";
+    var test_name = "tc_account_management_add_location_admin_user";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

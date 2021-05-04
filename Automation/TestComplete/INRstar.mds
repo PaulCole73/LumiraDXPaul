@@ -2530,11 +2530,23 @@
 													</testItem>
 													<testItem name="Licence" key="{F4EE9C9C-8F74-4E3F-9584-31C7C7644598}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 														<testParameters />
-														<children />
+														<children>
+															<testItem name="Account management - Amend a clinical system" key="{27E3A0D5-477F-46CB-94AD-002AC907A6BA}" group="False" parallel="False" enabled="True" testMoniker="{6540B1B3-E652-4240-9873-E05555B6D331}tc_account_management_amend_a_clinical_system" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+																<testParameters />
+																<environments testedURL="" />
+																<children />
+															</testItem>
+														</children>
 													</testItem>
 													<testItem name="Users" key="{1B8FF472-DCDA-4AE6-92A4-265F5C8380EB}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 														<testParameters />
-														<children />
+														<children>
+															<testItem name="Account management - Add location admin user" key="{48EA4B17-4B92-4CDE-9165-4F52183A22A7}" group="False" parallel="False" enabled="True" testMoniker="{B0FF4859-A3E8-4630-ABEA-F4DB25216B45}tc_account_management_add_location_admin_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+																<testParameters />
+																<environments testedURL="" />
+																<children />
+															</testItem>
+														</children>
 													</testItem>
 													<testItem name="Account management - Create a new treatment location" key="{9730F9CE-A36D-40AE-97F9-78DF2A07CC39}" group="False" parallel="False" enabled="True" testMoniker="{D302BB6C-A268-46AC-8535-5171F653A83A}tc_account_management_create_a_new_treatment_location" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 														<testParameters />

@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_change_clinical_system()
+function tc_account_management_amend_a_clinical_system()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Change Clinical System";
+    var test_title = "Admin Dashboard - Account Management - Amend a clinical system";
     login_admin_dash();
   
     var name = "Regression" + get_unique_number();
@@ -43,7 +43,7 @@ function tc_account_management_change_clinical_system()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_account_management_amend_a_clinical_system";
-    var test_name = "tc_account_management_change_clinical_system";
+    var test_name = "tc_account_management_amend_a_clinical_system";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }
