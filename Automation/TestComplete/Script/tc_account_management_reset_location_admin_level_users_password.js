@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_reset_location_admin_user_password()
+function tc_account_management_reset_location_admin_level_users_password()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Reset Location Admin Password";
+    var test_title = "Admin Dashboard - Account Management - Reset location admin level users password";
     login_admin_dash();
     
     var parent_client = "LDxCS-Test-AutoTest1";
@@ -51,7 +51,7 @@ function tc_account_management_reset_location_admin_user_password()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_account_management_reset_location_admin_level_users_password";
-    var test_name = "tc_account_management_reset_location_admin_user_password";
+    var test_name = "tc_account_management_reset_location_admin_level_users_password";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

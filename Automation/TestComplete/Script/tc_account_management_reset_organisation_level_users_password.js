@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_reset_org_clinical_lead_user_password()
+function tc_account_management_reset_organisation_level_users_password()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Reset Org Clinical Lead Password";
+    var test_title = "Admin Dashboard - Account Management - Reset organisation level users password";
     login_admin_dash();
     
     var parent_client = get_parent_client_name();
@@ -49,8 +49,8 @@ function tc_account_management_reset_org_clinical_lead_user_password()
   catch(e)
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "tc_account_management_reset_org_clinical_lead_user_password";
-    var test_name = "tc_account_management_reset_org_clinical_lead_user_password";
+    var suite_name = "tc_account_management_reset_organisation_level_users_password";
+    var test_name = "tc_account_management_reset_organisation_level_users_password";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

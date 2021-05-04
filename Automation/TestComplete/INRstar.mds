@@ -25,7 +25,7 @@
 						<environments testedURL="" />
 						<children />
 					</testItem>
-					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{B6D6B5C7-5DF2-40DE-8864-6D76B44F816E}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{B6D6B5C7-5DF2-40DE-8864-6D76B44F816E}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="Posts to @regression location" tmsData="" testCase="True">
 						<testParameters>
 							<param0 name="location_id" type="3" localVarName="" varType="8" value="7267e611-da9b-41d7-83e9-e8d342987d5a" />
 							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="2" />
@@ -43,7 +43,17 @@
 					</testItem>
 					<testItem name="get_check_digit" key="{0379DD97-E8D2-4BEE-A9E5-AD33BA4BB944}" group="False" parallel="False" enabled="True" testMoniker="{53C017A4-89CB-4429-8289-B2F80476AA1C}get_check_digit" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 						<testParameters>
-							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="123abc456def789" />
+							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="RMHDZZZ1D28H501" />
+						</testParameters>
+						<environments testedURL="" />
+						<children />
+					</testItem>
+					<testItem name="add_patient" key="{2C570DDB-8842-4C5C-AECF-10DD1BDC8B2D}" group="False" parallel="False" enabled="True" testMoniker="{93A61BC9-5297-4CC3-896E-807B82C045E1}add_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+						<testParameters>
+							<param0 name="name_first" type="3" localVarName="" varType="8" value="fkgjhkfgh" />
+							<param1 name="name_last" type="3" localVarName="" varType="8" value="gfkfgdjhk" />
+							<param2 name="sex" type="3" localVarName="" varType="8" value="M" />
+							<param3 name="nhs_num" type="3" localVarName="" varType="8" value="" />
 						</testParameters>
 						<environments testedURL="" />
 						<children />
@@ -2541,6 +2551,21 @@
 														<children />
 													</testItem>
 													<testItem name="Account management - Remove a location admin level user" key="{C0644976-4752-45B6-88FF-11B468E4CD6B}" group="False" parallel="False" enabled="True" testMoniker="{9BD766BF-4BFC-4724-ACF3-1E3AF129C533}tc_account_management_remove_a_location_admin_level_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+													<testItem name="Account management - Remove an organisation level user" key="{FC8A2321-60E3-4D9E-9DA7-1D62462CBEE1}" group="False" parallel="False" enabled="True" testMoniker="{87DF966E-B091-45C6-9AD0-E1BCAC5829CF}tc_account_management_remove_an_organisation_level_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+													<testItem name="Account management - Reset location admin level users password" key="{3E3C3536-C9BB-42EA-9DAE-5821C5CA5269}" group="False" parallel="False" enabled="True" testMoniker="{CD5EB0D8-4E57-4640-98DD-4452C26506B7}tc_account_management_reset_location_admin_level_users_password" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+														<testParameters />
+														<environments testedURL="" />
+														<children />
+													</testItem>
+													<testItem name="Account management - Reset organisation level users password" key="{FE857EA9-C8AF-4705-BC34-8BB03EF1CBD5}" group="False" parallel="False" enabled="True" testMoniker="{2293F757-8C03-43AA-8457-FDF8831015B7}tc_account_management_reset_organisation_level_users_password" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 														<testParameters />
 														<environments testedURL="" />
 														<children />
