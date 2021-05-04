@@ -262,7 +262,6 @@
 				<child name="TSA_AD_Login" key="{4561D0BC-A857-40D8-9E8B-057A6A0A881F}" path="TSA_AD_Login.js" />
 				<child name="TSA_AD_Feedback" key="{16B55C8C-E00F-4B57-A462-100C5B091EC9}" path="TSA_AD_Feedback.js" />
 				<child name="TSA_AD_Banner_Message" key="{FA573A03-D464-4873-BE01-11125707D610}" path="TSA_AD_Banner_Message.js" />
-				<child name="TSA_AD_Main_Page" key="{64F64156-2FA9-4EC3-A6E0-326422AC69DB}" path="TSA_AD_Main_Page.js" />
 			</folder>
 			<folder name="4. Utilities">
 				<child name="Admin_Dash_Get_Functions" key="{C528866F-35FA-4E7B-8841-EFCC40562D3F}" path="Admin_Dash_Get_Functions.js" />
@@ -472,14 +471,14 @@
 			</folder>
 			<folder name="2. Test Step Actions">
 				<folder name="Account Management">
-					<child name="add_a_new_user" key="{71E2F08E-59D4-44AB-9B11-CAB41182E7F0}" path="add_a_new_user.js" />
+					<child name="update_a_user" key="{5ECE9B4C-32C2-4526-85A6-7908F87EA9BE}" path="update_a_user.js" />
+					<child name="update_a_location_admin" key="{318C191B-2A32-4F8B-BA8C-AE7C045CD103}" path="update_a_location_admin.js" />
+					<child name="edit_client_location_licenses" key="{A0E9F4D6-36D8-415F-89DA-F4CE621C229D}" path="edit_client_location_licenses.js" />
+					<child name="edit_client_location" key="{243C443B-BEF9-49F9-9FCB-257512111B2D}" path="edit_client_location.js" />
+					<child name="edit_client_details" key="{A188F9FD-BA96-4DDE-AC8C-26A941ACEDAE}" path="edit_client_details.js" />
 					<child name="add_new_client" key="{59F7E759-DA88-4552-96CE-4655F58BFA35}" path="add_new_client.js" />
 					<child name="add_treatment_location" key="{0E930937-324F-491A-89AD-800A8869A426}" path="add_treatment_location.js" />
-					<child name="edit_client_details" key="{A188F9FD-BA96-4DDE-AC8C-26A941ACEDAE}" path="edit_client_details.js" />
-					<child name="edit_client_location" key="{243C443B-BEF9-49F9-9FCB-257512111B2D}" path="edit_client_location.js" />
-					<child name="edit_client_location_licences" key="{A0E9F4D6-36D8-415F-89DA-F4CE621C229D}" path="edit_client_location_licences.js" />
-					<child name="update_a_location_admin" key="{318C191B-2A32-4F8B-BA8C-AE7C045CD103}" path="update_a_location_admin.js" />
-					<child name="update_a_user" key="{5ECE9B4C-32C2-4526-85A6-7908F87EA9BE}" path="update_a_user.js" />
+					<child name="add_a_new_user" key="{71E2F08E-59D4-44AB-9B11-CAB41182E7F0}" path="add_a_new_user.js" />
 				</folder>
 				<folder name="Banner Message">
 					<child name="add_a_banner_message" key="{86147ED8-1ABA-491B-9FAB-7FD0F6DC3A99}" path="add_a_banner_message.js" />
@@ -493,7 +492,20 @@
 					<child name="validate_login" key="{B5C474B8-A6FB-4292-92F4-FBCBE50F3EB0}" path="validate_login.js" />
 				</folder>
 			</folder>
-			<folder name="3. Utilities" />
+			<folder name="3. Utilities">
+				<folder name="Get">
+					<child name="get_client_details" key="{F303D23B-4E23-4F3C-946D-A5914DEF1FAB}" path="get_client_details.js" />
+					<child name="get_location_details" key="{D1825E47-03EA-4816-8CB5-562A06FDB43B}" path="get_location_details.js" />
+					<child name="get_location_license_details" key="{F674F5DB-6AC4-451B-A572-C4B07EEE411F}" path="get_location_license_details.js" />
+					<child name="get_audit_entry_admin_dash" key="{2DB87400-86BE-4EDC-AC2B-75DBD5B0D9CB}" path="get_audit_entry_admin_dash.js" />
+					<child name="get_parent_client_name" key="{5393A3FB-F549-4DA0-B86E-B4EC01784965}" path="get_parent_client_name.js" />
+					<child name="get_feedback" key="{F850E942-B39A-49DB-91E3-715D4613A768}" path="get_feedback.js" />
+					<child name="get_banner_message" key="{538F5E81-5686-4EFD-B486-92F4C563DB38}" path="get_banner_message.js" />
+				</folder>
+				<folder name="Goto" />
+				<folder name="Popup Handling" />
+				<folder name="Misc" />
+			</folder>
 		</folder>
 	</children>
 </Root>
