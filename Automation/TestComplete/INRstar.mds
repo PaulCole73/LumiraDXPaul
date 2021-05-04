@@ -2515,7 +2515,18 @@
 												<children>
 													<testItem name="Details" key="{8236A3BE-6257-463E-8383-CA29C061D3F3}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 														<testParameters />
-														<children />
+														<children>
+															<testItem name="Account management - Edit location details" key="{6E0EF15E-7577-478F-B3B8-66C4C05C6C43}" group="False" parallel="False" enabled="True" testMoniker="{0881195B-C5CF-42C7-AA3B-6EF7B045FFA9}tc_account_management_edit_location_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+																<testParameters />
+																<environments testedURL="" />
+																<children />
+															</testItem>
+															<testItem name="Account management - Edit location&apos;s licence details" key="{2F12E768-04C0-41E7-8351-4EEEA493C639}" group="False" parallel="False" enabled="True" testMoniker="{D86E6336-DF90-4930-AF3B-A6198770C53C}tc_account_management_edit_locations_licence_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+																<testParameters />
+																<environments testedURL="" />
+																<children />
+															</testItem>
+														</children>
 													</testItem>
 													<testItem name="Licence" key="{F4EE9C9C-8F74-4E3F-9584-31C7C7644598}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 														<testParameters />

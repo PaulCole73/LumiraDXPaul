@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_edit_treatment_location_license()
+function tc_account_management_edit_locations_licence_details()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Edit a Treatment Location License";
+    var test_title = "Admin Dashboard - Account Management - Edit location's licence details";
     login_admin_dash();
   
     var name = "Regression" + get_unique_number();
@@ -49,7 +49,7 @@ function tc_account_management_edit_treatment_location_license()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_account_management_edit_locations_licence_details";
-    var test_name = "tc_account_management_edit_treatment_location_license";
+    var test_name = "tc_account_management_edit_locations_licence_details";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }

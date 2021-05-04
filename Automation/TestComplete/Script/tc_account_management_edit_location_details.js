@@ -5,11 +5,11 @@
 //USEUNIT TSA_AD_Login
 //--------------------------------------------------------------------------------
 
-function tc_account_management_edit_treatment_location_details()
+function tc_account_management_edit_location_details()
 {
   try
   {
-    var test_title = "Admin Dashboard - Account Management - Edit a Treatment Location";
+    var test_title = "Admin Dashboard - Account Management - Edit location details";
     login_admin_dash();
   
     var name = "Regression" + get_unique_number();
@@ -45,7 +45,7 @@ function tc_account_management_edit_treatment_location_details()
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "tc_account_management_edit_location_details";
-    var test_name = "tc_account_management_edit_treatment_location_details";
+    var test_name = "tc_account_management_edit_location_details";
     handle_failed_tests(suite_name, test_name);
     restart_admin_dash();
   }
