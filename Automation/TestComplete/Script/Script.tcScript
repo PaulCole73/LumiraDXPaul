@@ -481,6 +481,17 @@
 					<child name="update_a_location_admin" key="{318C191B-2A32-4F8B-BA8C-AE7C045CD103}" path="update_a_location_admin.js" />
 					<child name="update_a_user" key="{5ECE9B4C-32C2-4526-85A6-7908F87EA9BE}" path="update_a_user.js" />
 				</folder>
+				<folder name="Banner Message">
+					<child name="add_a_banner_message" key="{86147ED8-1ABA-491B-9FAB-7FD0F6DC3A99}" path="add_a_banner_message.js" />
+				</folder>
+				<folder name="Feedback">
+					<child name="add_inrstar_feedback" key="{F2F8FA21-CDCD-41C3-8894-FE0106B62680}" path="add_inrstar_feedback.js" />
+				</folder>
+				<folder name="Login">
+					<child name="login_admin_dash" key="{D8CCFA34-4F88-479C-9274-E9CCEBA40F0B}" path="login_admin_dash.js" />
+					<child name="log_off_admin_dash" key="{89AAD456-27A6-4337-AD70-CAB72D2826CC}" path="log_off_admin_dash.js" />
+					<child name="validate_login" key="{B5C474B8-A6FB-4292-92F4-FBCBE50F3EB0}" path="validate_login.js" />
+				</folder>
 			</folder>
 			<folder name="3. Utilities" />
 		</folder>
