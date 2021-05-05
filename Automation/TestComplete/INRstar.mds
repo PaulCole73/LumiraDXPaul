@@ -2209,7 +2209,7 @@
 					<testItem name="ET5 External Treatment Management Functionality" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="False" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<environments testedURL="" />
 								<children />
@@ -2473,7 +2473,7 @@
 		</data>
 	</variables>
 	<settings key="{3E1721F3-9165-4447-AE13-1C0F567DC90E}">
-		<settingsVersion value="14.74" />
+		<settingsVersion value="14.80" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
