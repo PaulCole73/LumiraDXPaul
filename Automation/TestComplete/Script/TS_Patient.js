@@ -46,9 +46,11 @@ function ts_int_regression_patient_italy(send_mail)
   email_and_archive(send_mail, "ts_patient_regression_ita");
 }
 //==============================================================================//
-
-
-
 //==============================================================================//
 //General Suites
 //==============================================================================//
+
+function ts_inrstar_patient_search()
+{
+  tc_user_can_retrieve_a_patient_with_partial_or_full_fiscal_code();
+}

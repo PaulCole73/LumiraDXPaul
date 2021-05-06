@@ -119,21 +119,39 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
   wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
 }
 //--------------------------------------------------------------------------------
-function patient_search(data)
+function patient_search(search_criteria, expected_pat_name)
 {
   Goto_Patient_Search();
-  var patient_search_screen_path = patient_search_screen();
   
-  patient_search_screen_path.Textbox("searchCriteria").Text = data;
+  var patient_search_screen_path = patient_search_screen();
+  patient_search_screen_path.Textbox("searchCriteria").Text = search_criteria;
   patient_search_screen_path.SubmitButton("Search").Click();
   
-  WaitSeconds(1, "Wait after patient search...");
-   
+  //After Search - table will always appear - even if no results
   var results_table = patient_search_screen_results_table();
-  results_table.Cell(1, 0).Link("PatientLink").Click();
+  var row_count = results_table.rowcount;
   
-  WaitSeconds(1, "Wait after patient search...");
-} 
+  if(results_table.Cell(1, 0).contentText == get_string_translation("No patient found"))
+  {
+    var cell_content = results_table.Cell(1, 0).contentText;
+    Log.Message("I never found the patient in the search table results this is who I was looking for " + expected_pat_name + " I used this in the search field " + search_criteria);
+    return false;
+  }
+  else
+  {
+   for(var i=0; i < row_count; i++)
+    {
+      if(results_table.Cell(i, 0).contentText == expected_pat_name)
+      {
+        results_table.Cell(i, 0).Link("PatientLink").Click();
+        WaitSeconds(1, "Wait after patient search...");
+        return true;
+      }
+    }  
+   Log.Message("I never found the patient in the search table results this is who I was looking for " + expected_pat_name + " I used this in the search field " + search_criteria);
+   return false;
+  }
+}
 //--------------------------------------------------------------------------------
 function patient_search_for_unmatched_result(patient_search_criteria)
 {

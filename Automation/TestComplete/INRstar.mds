@@ -2462,7 +2462,7 @@
 	</testItems>
 	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}" />
 	<settings key="{3E1721F3-9165-4447-AE13-1C0F567DC90E}">
-		<settingsVersion value="14.80" />
+		<settingsVersion value="14.74" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
