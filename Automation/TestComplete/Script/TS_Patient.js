@@ -5,7 +5,6 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for patient integration regression
 //--------------------------------------------------------------------------------
-
 //Master Suites
 //==============================================================================//
 //master suites are used for organised test groups
@@ -46,11 +45,13 @@ function ts_int_regression_patient_italy(send_mail)
   email_and_archive(send_mail, "ts_patient_regression_ita");
 }
 //==============================================================================//
-//==============================================================================//
 //General Suites
 //==============================================================================//
-
 function ts_inrstar_patient_search()
 {
-  tc_user_can_retrieve_a_patient_with_partial_or_full_fiscal_code();
+  tc_user_can_search_for_a_patient_with_partial_or_full_nhs_number();
+  tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_nhs_number();
+  tc_user_can_search_for_a_patient_with_partial_or_full_fiscal_code();
+  tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_fiscal();
 }
+//==============================================================================//

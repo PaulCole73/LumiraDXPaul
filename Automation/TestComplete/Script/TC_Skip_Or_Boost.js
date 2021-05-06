@@ -42,6 +42,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
   var cl3_current_tab = button_checker(button,'enabled','Testing cl3 level user on the current tab');
   result_set.push(cl3_current_tab);
   
+  var pat_name = patient_demographics.last_name;
   var pat_nhs = get_patient_nhs();
   
   Log_Off();
@@ -49,7 +50,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
   //Check the lower level user has the button disabled
   login(4, "Shared");
   
-  patient_search(pat_nhs);
+  inrstar_patient_search(pat_nhs, pat_name);
   
   var sorb_button = sorb_button_low_level_path();
   var button = check_button(sorb_button);
@@ -69,7 +70,7 @@ function tc_Ensure_SorB_button_is_displayed_but_disabled_for_any_user_lower_than
   //Check the lower level user has the button disabled
   login(3, "Shared");
 
-  patient_search(pat_nhs);
+  inrstar_patient_search(pat_nhs, pat_name);
   
   var sorb_button = sorb_button_low_level_path();
   var button = check_button(sorb_button);
@@ -166,12 +167,13 @@ function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_sugges
   } 
   
   cancel_pending_sorb_treatment();
+  var pat_name = patient_demographics.last_name;
   var pat_nhs = get_patient_nhs()
   Log_Off()
 
   //Check the next level up user
   login(7, "Shared");
-  patient_search(pat_nhs);
+  inrstar_patient_search(pat_nhs, pat_name);
 
   var sorb_button = sorb_button_suggested_path();
   var button = check_button(sorb_button);

@@ -21,7 +21,7 @@ function tc_new_patient_all_demographic_fields_populated_full_patient_data_can_b
     
     //Validate the patient is in INRstar
     var pat_name = expected_patient.last_name;
-    patient_search(pat_name);
+    inrstar_patient_search(pat_name, pat_name);
     var actual_patient = get_patient_not_altered_details_object_from_demographics();
     
     var results = compare_objects(expected_patient, actual_patient);;

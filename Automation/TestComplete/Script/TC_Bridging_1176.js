@@ -24,6 +24,7 @@ function tc_bridging_edit_schedule_clerical_permissions()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
+    var pat_name = get_patient_surname();
     var nhs = get_patient_nhs();
   
     var date = aqDateTime.AddDays(aqDateTime.Today(), 21);
@@ -37,7 +38,7 @@ function tc_bridging_edit_schedule_clerical_permissions()
     {
       login(i, "Shared");
     
-      patient_search(nhs);
+      inrstar_patient_search(nhs, pat_name);
       view_bridging_schedule(1);
   
       var obj = process_object_exists("idStr", "Edit");
@@ -78,6 +79,7 @@ function tc_bridging_edit_schedule_disabled_permissions()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
+    var pat_name = get_patient_surname();
     var nhs = get_patient_nhs();
   
     var date = aqDateTime.AddDays(aqDateTime.Today(), 21);
@@ -93,7 +95,7 @@ function tc_bridging_edit_schedule_disabled_permissions()
       {
         login(i, "Shared");
     
-        patient_search(nhs);
+        inrstar_patient_search(nhs, pat_name);
         view_bridging_schedule(1);
   
         var obj = process_object_exists("idStr", "Edit");

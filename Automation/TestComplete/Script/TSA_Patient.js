@@ -119,7 +119,7 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
   wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
 }
 //--------------------------------------------------------------------------------
-function patient_search(search_criteria, expected_pat_name)
+function inrstar_patient_search(search_criteria, expected_pat_name)
 {
   Goto_Patient_Search();
   
@@ -287,12 +287,12 @@ function banner_checker_includes(exp_err_mess)
 } 
 //--------------------------------------------------------------------------------
 //this return an array of key labels from the patient summary tab
-function get_patient_summary_labels(patient_nhs) 
+function get_patient_summary_labels(patient_nhs, pat_name) 
 {
   var func_title = "Get Key Summary Labels";
   var smry_labels = new Array();
     
-  patient_search(patient_nhs);
+  inrstar_patient_search(patient_nhs, pat_name);
    
   var summary_button = summary_tab_path();
   summary_button.Click();

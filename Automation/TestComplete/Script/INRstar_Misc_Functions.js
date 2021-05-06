@@ -196,7 +196,7 @@ function validate_top_system_audit(test_case_title, audit_action)
 function validate_top_patient_audit_with_patient_search(test_title, pat_name, expected_search_text)
 {
     //Search for patient
-    patient_search(pat_name);
+    inrstar_patient_search(pat_name, pat_name);
     
     //Acknowledge pop-up if it is shown
     process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
@@ -209,7 +209,7 @@ function validate_top_patient_audit_with_patient_search(test_title, pat_name, ex
 function validate_top_suggested_treatment_audit_with_patient_search(pat_name, expected_search_text)
 {
     //Search for patient
-    patient_search(pat_name);
+    inrstar_patient_search(pat_name, pat_name);
     
     //Goto the audit for the patient
     Goto_Suggested_Treatment_Audit();

@@ -105,6 +105,7 @@ function tc_bridging_delete_schedule_clerical_permissions()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
+    var pat_name = get_patient_surname();
     var nhs = get_patient_nhs();
   
     var date = aqDateTime.Today();
@@ -118,7 +119,7 @@ function tc_bridging_delete_schedule_clerical_permissions()
     {
       login(i, "Shared");
     
-      patient_search(nhs);
+      inrstar_patient_search(nhs, pat_name);
       view_bridging_schedule(1);
     
       //add check for the post-view page
@@ -152,6 +153,7 @@ function tc_bridging_delete_schedule_disabled_permissions()
     add_patient("Bridging", "Schedule", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
+    var pat_name = get_patient_surname();
     var nhs = get_patient_nhs();
   
     var date = aqDateTime.Today();
@@ -167,7 +169,7 @@ function tc_bridging_delete_schedule_disabled_permissions()
       {
         login(i, "Shared");
     
-        patient_search(nhs);
+        inrstar_patient_search(nhs, pat_name);
         view_bridging_schedule(1);
   
         var state = bridging_schedule_buttons().Button("edit").Enabled;

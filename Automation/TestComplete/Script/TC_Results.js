@@ -68,7 +68,7 @@ function tc_results_tab_discard_button_can_archive_results_sent_in_from_instrume
     var comments = archive_test_result(external_result.row, "Message");
     
     //Search for patient
-    patient_search(patient.fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
     
     //Check the top audit information section includes the comments
     var result_set_1 = validate_more_info_top_patient_audit(comments);

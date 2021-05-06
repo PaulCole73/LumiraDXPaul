@@ -24,6 +24,7 @@ function tc_bridging_button_state_on_ddd_all_permissions()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     self_care_DDD("1");
     
+    var pat_name = get_patient_surname();
     var pat_nhs = get_patient_nhs();
     var result_set = new Array();
     Log_Off();
@@ -33,7 +34,7 @@ function tc_bridging_button_state_on_ddd_all_permissions()
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
       state = get_new_bridging_record_button_state();
       
       result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
@@ -64,6 +65,7 @@ function tc_bridging_banner_msg_on_ddd_all_permissions()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     self_care_DDD("1");
     
+    var pat_name = get_patient_surname();
     var pat_nhs = get_patient_nhs();
     var result_set = new Array();
     var expected_msg = "The patient is currently enrolled in the Digital Dosing Diary programme. You cannot create a bridging record for a patient who is on a care programme."
@@ -75,7 +77,8 @@ function tc_bridging_banner_msg_on_ddd_all_permissions()
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
+
       
       if(validate_bridging_tab_exists() == true)
       {
@@ -142,6 +145,7 @@ function tc_bridging_button_state_on_warfarin_self_test_all_permissions()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     warfarin_self_care("1");
     
+    var pat_name = get_patient_surname();
     var pat_nhs = get_patient_nhs();
     var result_set = new Array();
     Log_Off();
@@ -151,7 +155,7 @@ function tc_bridging_button_state_on_warfarin_self_test_all_permissions()
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
       state = get_new_bridging_record_button_state();
       
       result_set_1 = button_checker(state, "disabled", "Check " + i + " Permissions");
@@ -182,6 +186,7 @@ function tc_bridging_banner_msg_on_warfarin_self_test_all_permissions()
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-7))), "2.0", "2.0", "0", "7", "2.5");
     warfarin_self_care("1");
     
+    var pat_name = get_patient_surname();
     var pat_nhs = get_patient_nhs();
     var expected_msg = "The patient is currently enrolled in the Warfarin self-testing programme. You cannot create a bridging record for a patient who is on a care programme."
     var result_set = new Array();
@@ -192,7 +197,7 @@ function tc_bridging_banner_msg_on_warfarin_self_test_all_permissions()
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
       
       if(validate_bridging_tab_exists() == true)
       { 

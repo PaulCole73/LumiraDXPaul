@@ -101,6 +101,7 @@ function tc_bridging_button_new_bridging_record_permissions()
     add_patient("Regression", "Button_State_Check", "M", "Shared");
     add_treatment_plan("W", "Coventry", "", "Shared", "");
     
+    var pat_name = get_patient_surname();
     var pat_nhs = get_patient_nhs();
     var result_set = new Array();
     Log_Off();
@@ -110,7 +111,7 @@ function tc_bridging_button_new_bridging_record_permissions()
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
       state = get_new_bridging_record_button_state();
       
       if(i == 7 || i == 5)

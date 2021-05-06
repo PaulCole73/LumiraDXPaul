@@ -137,13 +137,13 @@ function tc_treatment_manual_dosing_permissions()
     // Login as high level user and add pending manual treatment
     Log_Off();
     login(5, "Shared");
-    patient_search(patient_fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
     add_pending_manual_treatment('2.5','Lab','2.0','7');
     
     // login as cl2 level user
     Log_Off();
     login(4, "Shared");
-    patient_search(patient_fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
   
     // Check to ensure button is disabled for cl2 level user
     var button = save_inr_button().enabled;
@@ -194,7 +194,7 @@ function tc_treatment_induction_dosing_permissions()
     // Login as cl2 level user
     Log_Off();
     login(4, "Shared");
-    patient_search(patient_fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
   
     // Check to ensure button is disabled for cl2 level user
     var button2 = save_inr_button().enabled;
@@ -204,7 +204,7 @@ function tc_treatment_induction_dosing_permissions()
     // Login as cl1 level user
     Log_Off();
     login(3, "Shared");
-    patient_search(patient_fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
   
     // Check to ensure button is disabled for cl1 level user
     var button3 = save_inr_button().enabled;
@@ -678,7 +678,7 @@ function tc_treatment_out_of_range_maintenance_permissions()
     // Log on as a Cl1 level user and search for the user
     Log_Off(); 
     login(3, "Shared");
-    patient_search(patient_fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
     
     // Check button is disabled for Cl1 user  
     var button2 = save_inr_button().enabled;
@@ -811,7 +811,7 @@ function tc_treatment_authorise_a_referral()
        
     // Wait and Search for the patient
     WaitSeconds(1);
-    patient_search(patient_fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
      
     //Authorise the referral 
     save_inr_button().Click();
@@ -822,7 +822,7 @@ function tc_treatment_authorise_a_referral()
     
     // Wait and Search for the patient
     WaitSeconds(1);
-    patient_search(patient_fullname);
+    inrstar_patient_search(patient_fullname, patient_fullname);
   
     //Check the icon is green on the suggested treatment row
     var expected_state = 'Image("GreenIcon_1_PNG")'
@@ -1456,6 +1456,7 @@ function tc_treatment_manual_mutliple_historic_summary_check() //this test will 
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-12))), "2.2", "2.3", "0", "11", "2.5");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
+    var pat_name = patient_demographics.last_name;
     var patient_nhs = get_patient_nhs();
     add_pending_manual_treatment('2.6', 'PoCT', '2.9', '7');
     
@@ -1472,7 +1473,7 @@ function tc_treatment_manual_mutliple_historic_summary_check() //this test will 
     treatment_values[3] = treatment_values[3] + " " + get_string_translation("Days");
     treatment_values[4] = aqConvert.DateTimeToStr(treatment_values[4]);
     
-    summary_values = get_patient_summary_labels(patient_nhs);
+    summary_values = get_patient_summary_labels(patient_nhs, pat_name);
     
     smry_dosing_schedule = get_treatment_summary_table_schedule();
     
@@ -1525,7 +1526,7 @@ function tc_treatment_maintenance_override_privilege()
     Log_Off();
     
     login(8, "Shared");
-    patient_search(patient_fname);
+    inrstar_patient_search(patient_fname, patient_fname);
   
     button = override_button().enabled;
     result_set_1 = button_checker(button, "disabled", "Testing read-only level user cannot click " + 
@@ -1535,7 +1536,7 @@ function tc_treatment_maintenance_override_privilege()
     Log_Off();
     
     login(3, "Shared");
-    patient_search(patient_fname);
+    inrstar_patient_search(patient_fname, patient_fname);
   
     button = override_button().enabled;
     result_set_1 = button_checker(button, "disabled", "Testing cl1 level user cannot click save inr on pending treatment for manual dosing");
@@ -1544,7 +1545,7 @@ function tc_treatment_maintenance_override_privilege()
     Log_Off();
 
     login(4, "Shared");
-    patient_search(patient_fname);
+    inrstar_patient_search(patient_fname, patient_fname);
     
     button = override_button().enabled;
     result_set_1 = button_checker(button, "disabled", "Testing cl2 level user cannot click save inr on pending treatment for manual dosing");
@@ -1553,7 +1554,7 @@ function tc_treatment_maintenance_override_privilege()
     Log_Off();
     
     login(7, "Shared");
-    patient_search(patient_fname);
+    inrstar_patient_search(patient_fname, patient_fname);
   
     button = override_button().enabled;
     result_set_1 = button_checker(button, "enabled", "Testing clead level user can click save inr on pending treatment for manual dosing");
@@ -2389,7 +2390,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(patient_fullname);
+      inrstar_patient_search(patient_fullname, patient_fullname);
       state = get_new_inr_button_state();
       
       if(i == 3 || i == 4 || i == 5 || i == 7)
@@ -2427,6 +2428,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
     add_treatment_plan("W", "Hillingdon", "", "Shared", "");
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-5))), "2.4", "2.6", "0", "11", "2.5");
     
+    var pat_name = patient_demographics.last_name;
     var pat_nhs = get_patient_nhs();    
     var result_set = new Array();
     
@@ -2437,7 +2439,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
       state = get_new_inr_button_state();
       
       if(i == 3 || i == 4 || i == 5 || i == 7)
@@ -2483,7 +2485,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(patient_fullname);
+      inrstar_patient_search(patient_fullname, patient_fullname);
       state = get_new_inr_button_state();
       
       if(i == 5 || i == 7)
@@ -2529,7 +2531,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(patient_fullname);
+      inrstar_patient_search(patient_fullname, patient_fullname);
       state = get_new_inr_button_state();
       
       if(i == 3 || i == 4 || i == 5 || i == 7)
@@ -2565,6 +2567,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
     add_treatment_plan('W','Oates','','Shared','');
     add_induction_slow_treatment('1.0')
     
+    var pat_name = patient_demographics.last_name;
     var pat_nhs = get_patient_nhs();    
     var result_set = new Array();
     
@@ -2575,7 +2578,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
       state = get_new_inr_button_state();
       
       if(i == 3 || i == 4 || i == 5 || i == 7)
@@ -2611,6 +2614,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
     add_treatment_plan('W','Fast','','Shared','');
     add_fast_induction_treatment('1.0')
     
+    var pat_name = patient_demographics.last_name;
     var pat_nhs = get_patient_nhs();    
     var result_set = new Array();
     
@@ -2621,7 +2625,7 @@ function tc_permissions_new_inr_button_make_sure_correct_permission_levels_are_a
       var state = "";
     
       login(i, "Shared");
-      patient_search(pat_nhs);
+      inrstar_patient_search(pat_nhs, pat_name);
       state = get_new_inr_button_state();
       
       if(i == 3 || i == 4 || i == 5 || i == 7)

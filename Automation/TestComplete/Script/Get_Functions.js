@@ -334,7 +334,7 @@ function get_patient_demographics()
 function get_patient_details_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days)
 {
   //Search for patient
-  patient_search(pat_name);
+  inrstar_patient_search(pat_name, pat_name);
   
   //Acknowledge pop-up if it is shown
   process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
