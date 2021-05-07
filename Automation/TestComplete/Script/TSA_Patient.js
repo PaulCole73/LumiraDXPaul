@@ -375,11 +375,11 @@ function add_patient(name_first, name_last, sex, nhs_num)
   
   if(language == "Italian")
   {
-    var date = convert_date_format(patient_details.dob, "%d/%m/%Y", "Italian");
+    var date = convert_date_format(patient_details.dob, "Italian", "%d/%m/%Y");
   }
   else
   {
-    var date = convert_date_format(patient_details.dob, "%d/%m/%Y", "english");
+    var date = convert_date_format(patient_details.dob, "english", "%d/%m/%Y");
   }
   
   date_picker(path, date);

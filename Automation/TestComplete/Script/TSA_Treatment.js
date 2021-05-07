@@ -87,7 +87,7 @@ function add_induction_slow_treatment(inr)
 function add_pending_induction_slow_treatment(inr, TestStepMode)
 {
   var INRstarV5 = INRstar_base();    
-  var inr = get_string_translation(inr);
+  var inr = get_decimal_translation(inr);
  
   if(TestStepMode == 'Shared')
   {
@@ -114,7 +114,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
   Goto_Patient_New_INR();
   var inr_test_info_path = treatment_inr_test_info_path();
   var new_inr_test_info_path = new_inr_test_details();
-  var inr = get_string_translation(inr);
+  var inr = get_decimal_translation(inr);
 
    // Select the passed-in INR value
    inr_test_info_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(inr);
@@ -127,7 +127,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
    handle_PoCT(new_inr_test_details_path);
       
    // Dose
-   inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
+   inr_test_info_path.Panel(0).Select("Dose").ClickItem(get_decimal_translation(dose));
        
    // Review
    if (review != "1")
@@ -153,7 +153,7 @@ function add_pending_manual_treatment(inr, tm, dose, review)
 function add_pending_maintenance_treatment(inr, date, selftest, test_method)
 {
   var INRstarV5 = INRstar_base();
-  var new_inr = get_string_translation(inr);
+  var new_inr = get_decimal_translation(inr);
   Goto_Patient_New_INR();
   
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
@@ -256,14 +256,15 @@ function add_pending_maintenance_treatment_pop_up_checker(inr, date, selftest)
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
 }
 //--------------------------------------------------------------------------------
-function add_maintenance_treatment(inr, date) //this function does not save the INR?
+function add_maintenance_treatment(inr, date)
 {
   var INRstarV5 = INRstar_base();
   Goto_Patient_New_INR();
   var test_info_pre_schedule_path = treatment_inr_test_info_path();
   var treatment_inr_test_options_path = treatment_inr_test_options();
+  var new_inr = get_decimal_translation(inr);
   
-  // Set the Treatment Date
+  //Set the Treatment Date
   var w_day = aqString.SubString(date,0,2);
   var w_mth = aqConvert.StrToInt(aqString.SubString(date,3,2));
   var w_yr = aqString.SubString(date,6,4);
@@ -277,11 +278,7 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
   select_day(w_day, w_datepicker);
       
-  // Select the passed-in INR value
-  var ws_INR = aqConvert.FloatToStr(inr); 
-  ws_INR = get_string_translation(ws_INR);
-  Log.Message("INR is " + ws_INR);
-  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(ws_INR);
+  test_info_pre_schedule_path.Panel("poctDetails").Panel(1).Select("INR").ClickItem(new_inr);
   
   // Select the Testing Method as Lab
   test_info_pre_schedule_path.Panel("poctDetails").Panel(2).Select("TestingMethod").ClickItem("Lab");
@@ -296,7 +293,9 @@ function add_maintenance_treatment(inr, date) //this function does not save the 
   process_popup(get_string_translation("Please confirm that the following is correct"), get_string_translation("Confirm"));
   
   //Save the INR
-  wait_for_object(path_patient_pending_treatment(), "idStr", "AcceptPendingTreatment", 3);
+  // If an adjustment is required to tablet dosage breakdown - carry it out
+  handle_dosing_modification_required();
+  wait_for_object(path_patient_pending_treatment(), "idStr", "AcceptPendingTreatment", 4);
   save_inr_button().Click();
 }
 //--------------------------------------------------------------------------------
@@ -385,8 +384,8 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
     w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
     select_day(w_day, w_datepicker);
 
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 1).Select("INR").ClickItem(get_string_translation(inr));
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 2).Select("Dose").ClickItem(get_string_translation(dose));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 1).Select("INR").ClickItem(get_decimal_translation(inr));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 2).Select("Dose").ClickItem(get_decimal_translation(dose));
     historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 3).Select("Omits").ClickItem(omits + " " + get_string_translation("Days"));
     if (review != "1")
     {
@@ -397,7 +396,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
       historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 4).Select("Review").ClickItem(review + " " + get_string_translation("Day"));
     }   
     
-    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(get_string_translation(target));
+    historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(get_decimal_translation(target));
     //Once full run done on UK and Italy then remove
     //historic_treatment_form.Table("AddHistoricalTreatmentTable").Cell(1, 5).Select("TargetINR").ClickItem(aqConvert.FloatToStr(get_string_translation(target)));
     //historic_treatment_form.Panel("HistoricalExtras").Panel("HistoricalComments").Textarea("Comments").innerText = p_comment;
@@ -415,7 +414,7 @@ function add_historic_treatment(date,inr,dose,omits,review,target)
 function add_manual_treatment(date, inr, dose, review, tm)
 {
   var INRstarV5 = INRstar_base();
-  var inr = get_string_translation(inr);
+  var inr = get_decimal_translation(inr);
   Goto_Patient_New_INR();
   var test_info_path = treatment_inr_test_info_path()
   
@@ -436,7 +435,7 @@ function add_manual_treatment(date, inr, dose, review, tm)
   w_datepicker.Panel(0).Panel(0).Select(0).ClickItem(set_month(w_mth));
   select_day(w_day, w_datepicker);
 
-  test_info_path.Panel(0).Select("Dose").ClickItem(get_string_translation(dose));
+  test_info_path.Panel(0).Select("Dose").ClickItem(get_decimal_translation(dose));
   
   var days = "Days";
   if (review == "1") 
@@ -604,14 +603,14 @@ function handle_no_poct(dose_method) //probably also needs changing
 //--------------------------------------------------------------------------------
 function handle_dosing_modification_required()
 {
-  // Get relevant paths  
+  // Get relevant paths 
   var pending_treatment_path = path_patient_pending_treatment();
   
   // Check dosing modification table exists 
-  var is_table_present = pending_treatment_path.Find("idStr", "MoreScheduleGrid", 3).Exists;
+  var is_table_present = pending_treatment_path.Find("idStr", "MoreScheduleGrid", 3);  
 
   // if the table exists handle it by selecting first suggested dosing modification 
-  if (is_table_present == true)
+  if (is_table_present.Exists)
   {
     //Get the schedule path, this path will only exist if the table is present
     //var dosing_schedule_content_path = dosing_schedule_content();  this is not being used in this file, will be deleted after testing/releases
@@ -643,19 +642,10 @@ function override_omits(days)
 //--------------------------------------------------------------------------------
 function override_review(review)
 {
-  /* this is no longer needed, this path is in system paths
-  var INRstarV5 = INRstar_base(); 
-  var panelMCP = INRstarV5.Panel("MainPage").Panel("main").Panel("MainContentPanel");
-  var panelPTC = panelMCP.Panel("PatientRecord").Panel("PatientMainTabContent").Panel("PatientTabContent");
-  var panelPTI = panelPTC.Panel("TreatmentPlanWrapper").Panel("PatientTreatmentWrapper").Panel("PatientPendingTreatment").Panel("PendingTreatmentInfo");
-
-  panelPTI.Panel(0).Button("OverridePendingTreatment").Click();
-  */
   override_button().Click();      
-  //var formEPT = panelPTI.form("EditPendingTreatmentForm");
                
   // Set Review period
-  var w_vselect = treatment_override_field_container().Cell(1, 3).Select("Treatment_Review");//formEPT.Table("OverrideSuggestedTreatmentTable").Cell(1, 3).Select("Treatment_Review");
+  var w_vselect = treatment_override_field_container().Cell(1, 3).Select("Treatment_Review");
   
   if(review > 1)
   {
@@ -665,28 +655,18 @@ function override_review(review)
   {
      w_vselect.ClickItem(review + " " + get_string_translation("Day"));
   }
-  
-  // Click 'ok'
-  //formEPT.panel(0).Button("OverrideAccept").Click(); this is no longer needed, this path is in system paths
+
   overide_accept_button().Click();
-  
-  // -- End of Override section
+
   WaitSeconds(1,"Waiting for Override to complete");
 }
 //--------------------------------------------------------------------------------
 function override_dose(dose)
 {
-  /* this is no longer needed, this path is in system paths
-  var INRstarV5 = INRstar_base();
-  var pending_treatment_buttons_path = pending_treatment_buttons()
-  pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Panel(0).Button("OverridePendingTreatment").Click();
-  */
   override_button().Click();
                
   var treatment_override_field_container_path = treatment_override_field_container();
-  treatment_override_field_container_path.Cell(1, 1).Select("Treatment_Dose").ClickItem(get_string_translation(dose));
-
-  //pending_treatment_buttons_path.Panel("PendingTreatmentInfo").Form("EditPendingTreatmentForm").Panel(0).Button("OverrideAccept").Click(); this is no longer needed, this path is in system paths
+  treatment_override_field_container_path.Cell(1, 1).Select("Treatment_Dose").ClickItem(get_decimal_translation(dose));
   overide_accept_button().Click();
   process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
   WaitSeconds(1, "Waiting for Override to complete");

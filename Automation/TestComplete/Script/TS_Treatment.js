@@ -3,7 +3,6 @@
 //--------------------------------------------------------------------------------
 //Suite of tests for treatments
 //--------------------------------------------------------------------------------
-
 //Master Suites
 //==============================================================================//
 //master suites are used for organised test groups
@@ -34,7 +33,6 @@ function ts_master_treatment(send_mail)
   tc_treatment_create_maintenance_use_alternate_schedules(); 
   tc_treatment_maintenance_starting_algorithm_for_unstable_patient(); 
   tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent(); 
-  tc_treatment_maintenance_overriding_dose_and_review_period();
   tc_treatment_maintenance_save_override_treatment();
   tc_treatment_drag_and_drop_schedule_days();
   tc_treatment_maintenance_INR_more_then_max_review_period();
@@ -75,7 +73,6 @@ function ts_int_regression_treatment(send_mail)
   tc_treatment_create_maintenance_use_alternate_schedules(); 
   tc_treatment_maintenance_starting_algorithm_for_unstable_patient(); 
   tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent(); 
-  tc_treatment_maintenance_overriding_dose_and_review_period();
   tc_treatment_maintenance_save_override_treatment();
   tc_treatment_drag_and_drop_schedule_days();
   tc_treatment_maintenance_INR_more_then_max_review_period();
@@ -114,8 +111,7 @@ function ts_int_regression_treatment_italy(send_mail)
   tc_treatment_add_multiple_historic_treatments();
   tc_treatment_create_maintenance_use_alternate_schedules(); 
   tc_treatment_maintenance_starting_algorithm_for_unstable_patient(); 
-  tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent(); 
-  tc_treatment_maintenance_overriding_dose_and_review_period();
+  tc_treatment_maintenance_overriding_dose_greater_than_twenty_percent();
   tc_treatment_maintenance_save_override_treatment();
   tc_treatment_drag_and_drop_schedule_days();
   tc_treatment_maintenance_INR_more_then_max_review_period();
