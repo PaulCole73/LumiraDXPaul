@@ -18,7 +18,21 @@
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-
+//-----------------------------------------------------------------------------------
+//This is used by under the hood stuff
+function get_hostname()
+{
+  var base_url = INRstar_base().URL; 
+  var hostname;
+  if (base_url.indexOf("//") > -1) 
+    {hostname = base_url.split('/')[2];}
+  else 
+    {hostname = base_url.split('/')[0];}
+    
+  // This below line stores the variable as a persistent variable called anywhere by specifying Project.Variables.hostname
+  Project.Variables.hostname = hostname
+}
+//-----------------------------------------------------------------------------------
 //Returning an NHS of the current patient loaded
 function get_patient_nhs()
 {

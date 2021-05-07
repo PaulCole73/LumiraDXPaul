@@ -400,6 +400,9 @@
 			<folder name="9. Utilities">
 				<child name="INRstar_Misc_Functions" key="{1FBD6F73-C790-4C1D-A003-93156D1968E5}" path="INRstar_Misc_Functions.js" />
 				<child name="INRstar_Get_Functions" key="{54CD62D1-CE92-4CF9-BF0B-E74B7A56D606}" path="INRstar_Get_Functions.js" />
+				<child name="INRstar_Get_Cookies_via_Powershell" key="{593DABA4-F26F-4885-B29C-4D34481579D0}" path="INRstar_Get_Cookies_via_Powershell.js" />
+				<child name="INRstar_Patient_Insertion" key="{655085DB-8EFE-4184-ADE6-14617F8B6EAF}" path="INRstar_Patient_Insertion.js" />
+				<child name="INRstar_Treatment_Plan_Insertion" key="{44AB307F-5509-4BD5-9BC1-AEEF75203CB8}" path="INRstar_Treatment_Plan_Insertion.js" />
 			</folder>
 			<folder name="2.1 Clinical Suites">
 				<child name="TS_Clinical_Controls" key="{25598DCC-2504-497A-A15D-1EF0302ACCA4}" path="TS_Clinical_Controls.js" />
@@ -422,7 +425,6 @@
 			</folder>
 			<folder name="5. Utlitities">
 				<child name="INRStarAPI_Get_Functions" key="{E9113838-0AED-46CD-A838-82D15FADB9EA}" path="INRStarAPI_Get_Functions.js" />
-				<child name="INRstarAPI_Patient_Insertion" key="{655085DB-8EFE-4184-ADE6-14617F8B6EAF}" path="INRstarAPI_Patient_Insertion.js" />
 			</folder>
 		</folder>
 	</children>
