@@ -37,7 +37,7 @@ function insert_treatment_plan(patient)
 
   if (response.StatusCode != 200)
   {
-    Log.Warning("Error: Treatment Plan has not been created");
+    Log.Message("Error: Treatment Plan has not been created");
   }
   
   return treatment_plan;

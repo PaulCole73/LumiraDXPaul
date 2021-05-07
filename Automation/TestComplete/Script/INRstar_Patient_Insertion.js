@@ -69,7 +69,7 @@ function insert_patient()
   }
   else
   {
-    Log.Warning("Error: Patient has not been created");
+    Log.Message("Error: Patient has not been created");
   }
   
   return patient;

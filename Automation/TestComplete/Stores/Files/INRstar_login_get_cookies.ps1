@@ -1,4 +1,4 @@
-﻿#will need to set below variables manually if not running from testcomplete - typical value is inrstar-uk-test1.caresolutions.lumiradx.com 
+﻿#will need to set below variables manually if not running from testcomplete
 $host_url = $args[0]
 $username = $args[1]
 $password = $args[2]
