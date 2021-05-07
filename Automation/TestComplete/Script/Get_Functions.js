@@ -19,7 +19,7 @@
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-//Returning hostname of current INRstar eg: inrstar-uk-test1.caresolutions.lumiradx.com
+//This is used by under the hood stuff
 function get_hostname()
 {
   var base_url = INRstar_base().URL; 
@@ -29,7 +29,8 @@ function get_hostname()
   else 
     {hostname = base_url.split('/')[0];}
     
-  return hostname
+  // This below line stores the variable as a persistent variable called anywhere by specifying Project.Variables.hostname
+  Project.Variables.hostname = hostname
 }
 //-----------------------------------------------------------------------------------
 //Returning an NHS of the current patient loaded

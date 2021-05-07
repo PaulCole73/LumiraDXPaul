@@ -105,7 +105,7 @@ function INRstar_base()
 {
   Sys.WaitProcess("INRstarWindows", 5000);
   var p1 = Sys.Process("INRstarWindows");
-  p1.WaitWinFormsObject("BrowserForm", "INRstar", 15000);
+//  p1.WaitWinFormsObject("BrowserForm", "INRstar", 500);
   var p2 = p1.WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
   INRstar = p2.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
     

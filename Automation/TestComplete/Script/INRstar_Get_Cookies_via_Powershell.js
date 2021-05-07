@@ -6,21 +6,21 @@
 //---------------------------------------------------------------------------------//
 /////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------
-function get_cookies_for_under_the_hood()
+function get_tokens_via_powershell()
 {
+    
+    get_hostname(); 
     var login_details = get_login_details();
-    var hostname = get_hostname();
     var username = login_details[7];    
     var password = login_details[20];
     
     var oShell = getActiveXObject("WScript.Shell"); // Or oShell = WshShell
-    var oExec = oShell.Exec("powershell -windowstyle hidden -file C:\\Automation\\INRstar_login_get_cookies.ps1 "+hostname+" "+username+" "+password+" | Out-Null");
+    var oExec = oShell.Exec("powershell -windowstyle hidden -file C:\\GIT\\Automation\\TestComplete\\Stores\\Files\\INRstar_login_get_cookies.ps1 "+Project.Variables.hostname+" "+username+" "+password+" | Out-Null");
 
     oExec.StdIn.Close(); // Close standard input before reading output
 
     // Get PowerShell output
     var strOutput = oExec.StdOut.ReadAll();
-     Log.Message(strOutput)
   
     // Trim leading and trailing empty lines
     strOutput = aqString.Trim(strOutput, aqString.stAll);
@@ -28,6 +28,6 @@ function get_cookies_for_under_the_hood()
     //Get rid of whitespace and replace carriage returns for ;
     var modified_cookies = aqString.GetListItem(strOutput, 0).replace(/[\n\r]/g, ';').replace(/ /g,'');
 
-    return modified_cookies
-    Log.Message(modified_cookies)
+    Project.Variables.cookie_jar = modified_cookies;
 }
+//-----------------------------------------------------------------------------------

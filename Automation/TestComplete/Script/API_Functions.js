@@ -12,12 +12,12 @@ function api_post(address, headers, requestBody)
   // Assign the headers from the incoming headers object 
   for ( var property in headers )
   {
-    aqHttpRequest.SetHeader(property, headers[property])
+    aqHttpRequest.SetHeader(property, headers[property]);
     //Log.Message(headers[property])
   }
   
   // Send the request, create the aqHttpResponse object
-  var aqHttpResponse = aqHttpRequest.Send(requestBody)
+  var aqHttpResponse = aqHttpRequest.Send(requestBody);
   
   return aqHttpResponse;
 }
@@ -31,12 +31,12 @@ function api_get(address, headers)
   // Assign the headers from the incoming headers object 
   for ( var property in headers )
   {
-    aqHttpRequest.SetHeader(property, headers[property])
+    aqHttpRequest.SetHeader(property, headers[property]);
   }
 
   // Send the request, create the aqHttpResponse object
-  var aqHttpResponse = aqHttpRequest.Send()
+  var aqHttpResponse = aqHttpRequest.Send();
    
-  return aqHttpResponse
+  return aqHttpResponse;
 }
 //---------------------------------------------------------------------------------//

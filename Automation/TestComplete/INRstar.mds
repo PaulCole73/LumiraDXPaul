@@ -2460,9 +2460,20 @@
 			</testItem>
 		</children>
 	</testItems>
-	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}" />
+	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}">
+		<data Version="4">
+			<Items>
+				<Variable Name="hostname" Type="String" Local="True">
+					<DefValue StrValue="default" />
+				</Variable>
+				<Variable Name="cookie_jar" Type="String" Local="True">
+					<DefValue StrValue="default" />
+				</Variable>
+			</Items>
+		</data>
+	</variables>
 	<settings key="{3E1721F3-9165-4447-AE13-1C0F567DC90E}">
-		<settingsVersion value="14.80" />
+		<settingsVersion value="14.74" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />
 		<setting name="ApplicationHangingProcessFilterMode" type="6" rowIndex="4" colIndex="0">
 			<columns>
@@ -2942,7 +2953,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />
