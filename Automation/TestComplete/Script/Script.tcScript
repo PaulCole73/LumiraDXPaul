@@ -356,6 +356,22 @@
 				<child name="TC_Patient_Banner" key="{C94EB2E2-3F54-4ED4-BF9F-521F91FE0D59}" path="TC_Patient_Banner.js" />
 			</folder>
 			<folder name="4. Test Step Actions ">
+				<folder name="Patient">
+					<child name="search_for_a_patient" key="{F4CCCC54-9CE1-40BF-9BC3-821C0F253E39}" path="search_for_a_patient.js" />
+					<child name="check_patient_found_in_patient_search" key="{30362CED-D481-4D16-A462-915288A18B2D}" path="check_patient_found_in_patient_search.js" />
+					<child name="create_variable_patient_data" key="{3F1213CD-8F87-478B-8DE3-E113C71A6F72}" path="create_variable_patient_data.js" />
+					<child name="add_patient" key="{EFE483DA-9842-40FC-B6FC-063369B9B896}" path="add_patient.js" />
+					<child name="check_summary_tab_image" key="{D91ABFE8-77A7-4153-9FCD-9C1BA879A27E}" path="check_summary_tab_image.js" />
+					<child name="get_patient_summary_label" key="{5FEE47BB-489E-4811-95E4-C410DB4EC5B4}" path="get_patient_summary_label.js" />
+					<child name="banner_check_includes" key="{AB00E77C-6F02-4853-80E2-897706F8ABD1}" path="banner_check_includes.js" />
+					<child name="banner_checker" key="{9FB50F7C-AF0A-4852-AAE6-1D32635DB612}" path="banner_checker.js" />
+					<child name="popup_error_checker" key="{458C4283-6948-4CD3-AE97-D39457BEE107}" path="popup_error_checker.js" />
+					<child name="popup_warning_checker" key="{7BA8EDF1-24A7-4FB0-B5D3-44ED87000785}" path="popup_warning_checker.js" />
+					<child name="patient_recently_viewed_list" key="{FC51BC98-002E-48B7-AE97-2BF7F9463F86}" path="patient_recently_viewed_list.js" />
+					<child name="inactive_patient_search" key="{25B15892-C521-48E6-8BD0-D9A531663A86}" path="inactive_patient_search.js" />
+					<child name="patient_search_for_unmatched_result" key="{1EEA1A5F-A7D2-43CD-8D91-10FEFCB8D926}" path="patient_search_for_unmatched_result.js" />
+					<child name="TSA_Patient2" key="{69A9544C-BAFD-4C8D-A5C2-025E8D717319}" path="TSA_Patient2.js" />
+				</folder>
 				<child name="TSA_Login" key="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}" path="TSA_Login.js" />
 				<child name="TSA_Logoff" key="{0F6C2E3B-E760-4B13-BCC1-0268A09596DA}" path="TSA_Logoff.js" />
 				<child name="TSA_Patient" key="{93A61BC9-5297-4CC3-896E-807B82C045E1}" path="TSA_Patient.js" />

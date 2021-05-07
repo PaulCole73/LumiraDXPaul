@@ -1225,3 +1225,66 @@ function convert_date_format(date, format, input_type)
   return format_date;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------
+function search_for_a_patient(search_criteria)
+{
+  Goto_Patient_Search();
+  var patient_search_screen_path = patient_search_screen();
+  
+  patient_search_screen_path.Textbox("searchCriteria").Text = search_criteria;
+  patient_search_screen_path.SubmitButton("Search").Click();
+} 
+//-----------------------------------------------------------------------------------
+function Goto_Patient(patient_fullname)
+{
+  search_for_a_patient(patient_fullname);
+  var results_table = patient_search_screen_results_table();
+  
+  for(var i = 0; i < results_table.rowCount; i++)
+  {
+    if(results_table.Cell(i, 0).contentText == patient_fullname)
+    {
+		  results_table.Cell(i, 0).Link("PatientLink").Click();
+	  }
+  }
+}
+//-----------------------------------------------------------------------------------
+function check_patient_found_in_patient_search_table(search_criteria, expected_patient_fullname)
+{
+  search_for_a_patient(search_criteria);
+  var results_table = patient_search_screen_results_table();
+  
+  if(results_table.Cell(1, 0).contentText != get_string_translation("No patient found"))
+  {
+	  for(var i = 0; i < results_table.rowCount; i++)
+	  {
+		  if(results_table.Cell(i, 0).contentText == expected_patient_fullname)
+		  {
+		    return true;
+		  }
+	  }
+  }
+  else
+  {
+	  return false;
+  }
+  
+  return false;
+}
+//-----------------------------------------------------------------------------------
+
+
+
