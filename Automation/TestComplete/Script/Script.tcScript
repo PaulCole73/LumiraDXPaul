@@ -2,6 +2,93 @@
 <Root signature="{9252F941-DB23-4FCA-AA50-858B33BB4A19}" version="11.40">
 	<children>
 		<folder name="Utlilities">
+			<folder name="Get Functions">
+				<folder name="Location Management">
+					<child name="get_organization_from_current_location" key="{930D528A-FC46-4E0E-92A7-F1F18B40AE7E}" path="get_organization_from_current_location.js" />
+				</folder>
+				<folder name="HL7">
+					<child name="get_hl7_file_folder" key="{E1CAD18B-2221-4743-8DE3-4070B345D922}" path="get_hl7_file_folder.js" />
+					<child name="get_hl7_patient_info" key="{697013BD-8B3A-407F-9494-1555B69E2008}" path="get_hl7_patient_info.js" />
+					<child name="get_external_result_status" key="{AFBDE820-B741-4C9D-B8E8-8372FEC6AD61}" path="get_external_result_status.js" />
+				</folder>
+				<folder name="Diagnosis">
+					<child name="get_diagnosis_count" key="{CAD59417-DFF8-4F07-A3A1-1592CFCB5890}" path="get_diagnosis_count.js" />
+					<child name="get_diagnosis_details" key="{80C61647-3C7C-452F-9846-36B7CAEC4AB4}" path="get_diagnosis_details.js" />
+				</folder>
+				<folder name="Dosing Settings">
+					<child name="get_dosing_settings_data" key="{B898C0D2-63A6-4BC4-B6DD-9C64A65B1301}" path="get_dosing_settings_data.js" />
+				</folder>
+				<folder name="Bespoke Letters">
+					<child name="get_bespoke_letter_content" key="{51D3DC25-4BED-4C3F-85F5-DBEA3A3D32F1}" path="get_bespoke_letter_content.js" />
+					<child name="get_bespoke_letter_permissions" key="{267E9835-D6DD-4CC8-9EEE-D5AE0F2DC462}" path="get_bespoke_letter_permissions.js" />
+				</folder>
+				<folder name="Login">
+					<child name="get_login_details" key="{BB9228F0-B72F-441E-8717-E0338E025960}" path="get_login_details.js" />
+				</folder>
+				<folder name="Patient Management">
+					<child name="get_patient_management_banner_message" key="{EF975893-30BA-47B5-9B7C-EF820CE2EA85}" path="get_patient_management_banner_message.js" />
+				</folder>
+				<folder name="Treatment">
+					<child name="get_dosing_method" key="{A9D95D72-E5CE-4D08-BA4E-331566FF47B8}" path="get_dosing_method.js" />
+					<child name="get_pending_suggested_treatment_schedule" key="{1CEC8F1B-B9AA-424F-839F-DD2D5211E757}" path="get_pending_suggested_treatment_schedule.js" />
+					<child name="get_treatment_summary_table_schedule" key="{59EC15E6-0A53-4A45-A7DC-3345B7E1E608}" path="get_treatment_summary_table_schedule.js" />
+					<child name="get_treatment_row_key_values" key="{554444D3-605C-4097-A53D-9F2F6097DDAF}" path="get_treatment_row_key_values.js" />
+					<child name="get_treatment_row" key="{7F5BE638-88DB-44FB-A4BF-9E005163983E}" path="get_treatment_row.js" />
+					<child name="get_new_inr_button_state" key="{DC069BEA-E607-48C3-A7C0-85E3EA2151D9}" path="get_new_inr_button_state.js" />
+					<child name="get_treatment_by_timestamp" key="{127837B7-5B32-42CD-96FE-1197C63F53B7}" path="get_treatment_by_timestamp.js" />
+				</folder>
+				<folder name="Notes">
+					<child name="get_top_note_text" key="{DB73357A-7AF7-4C40-8F49-E52A7B7E5085}" path="get_top_note_text.js" />
+				</folder>
+				<folder name="External Patient Lookup">
+					<child name="get_external_patient_lookup_data" key="{EB26BED0-7151-4736-925C-877FD1BB7F99}" path="get_external_patient_lookup_data.js" />
+				</folder>
+				<folder name="Bridging">
+					<child name="get_bridging_schedule_table_row" key="{F00BFCE8-E10B-4E44-B7A2-CF4147832E1A}" path="get_bridging_schedule_table_row.js" />
+				</folder>
+				<folder name="Patient">
+					<child name="get_patient_banner_error_message" key="{57E0A848-6DF1-4E7B-95DE-14F026F62E21}" path="get_patient_banner_error_message.js" />
+					<child name="get_patient_test_prac" key="{C348DD15-F2E9-4ED6-BEDA-B37E04105254}" path="get_patient_test_prac.js" />
+					<child name="get_check_digit" key="{FA9E4356-EBE4-4F27-98F8-1503E3277BF8}" path="get_check_digit.js" />
+					<child name="get_fiscal_code" key="{7DDF0BFA-3DCD-4DB8-A48D-1030393135B9}" path="get_fiscal_code.js" />
+					<child name="get_patient_search_results" key="{267D89F7-2242-4336-B575-971C49B37EC3}" path="get_patient_search_results.js" />
+				</folder>
+				<folder name="IQC">
+					<child name="get_iqc_data" key="{26F006C5-C85C-4CE3-8C0E-D57F821B882E}" path="get_iqc_data.js" />
+				</folder>
+				<folder name="PoCT">
+					<child name="get_poct_batch_numbers" key="{6B87D68C-EB49-4D20-AC18-DAA06A348E7B}" path="get_poct_batch_numbers.js" />
+				</folder>
+				<folder name="EQC">
+					<child name="get_eqc_table_row" key="{E75AF930-0709-4A6E-B85E-BB137B8530E6}" path="get_eqc_table_row.js" />
+				</folder>
+				<folder name="Demographics">
+					<child name="get_patient_postcode" key="{F63AA85B-DFAE-40FC-AE66-C14508103F47}" path="get_patient_postcode.js" />
+					<child name="get_patient_address_line_one" key="{7464CFEE-E992-46FC-8CB9-D986E78C2791}" path="get_patient_address_line_one.js" />
+					<child name="get_patient_dob" key="{504CB3F4-7284-46BC-86A6-942EB9F498DE}" path="get_patient_dob.js" />
+					<child name="get_patient_fullname" key="{AC756D5F-65A3-4BDC-84ED-F31704F0F806}" path="get_patient_fullname.js" />
+					<child name="get_patient_demographics" key="{53051A3E-ABFA-4978-BC0C-19E8F61C1260}" path="get_patient_demographics.js" />
+					<child name="get_patient_surname" key="{B7269445-A4AA-439A-B743-4B5EB385D7AA}" path="get_patient_surname.js" />
+					<child name="get_patient_firstname" key="{C918EAE7-344F-4EDE-80AC-FF0A21EC9C22}" path="get_patient_firstname.js" />
+					<child name="get_patient_not_altered_details_object_from_demographics" key="{DD81F9EE-F6EB-4880-B0F6-7EBF000694B4}" path="get_patient_not_altered_details_object_from_demographics.js" />
+					<child name="get_patient_details_object_from_demographics" key="{A3EC2844-9EC6-42BC-AF52-AC7E298D6442}" path="get_patient_details_object_from_demographics.js" />
+					<child name="get_patient_nhs" key="{39331D0F-51E9-4BAC-BDD8-16BA63A6680D}" path="get_patient_nhs.js" />
+				</folder>
+				<folder name="External Results">
+					<child name="get_external_results_received_by_timestamp" key="{A9F40117-BA9B-491F-871E-FE83020F7765}" path="get_external_results_received_by_timestamp.js" />
+					<child name="get_external_result_popup_new_inr_button_text" key="{6120FAC4-750A-4239-B46C-1B483CA3B2A4}" path="get_external_result_popup_new_inr_button_text.js" />
+					<child name="get_external_result_popup_historic_button_text" key="{B28C9EB1-B5A5-44F8-9971-A68C2ABEAF61}" path="get_external_result_popup_historic_button_text.js" />
+					<child name="get_external_result_popup_header_text" key="{86817F84-8E1B-494E-8731-DDF91CD7DBED}" path="get_external_result_popup_header_text.js" />
+					<child name="get_inr_results_received_by_timestamp" key="{D403F9B7-DE81-4EA2-89F4-AEA5A3EBE2B0}" path="get_inr_results_received_by_timestamp.js" />
+				</folder>
+				<folder name="Review" />
+				<folder name="Home Page">
+					<child name="get_patient_column_data_from_overdue_non_warfarin_review_table" key="{60A64D52-9060-49B4-87F2-1A5B7D22D1B3}" path="get_patient_column_data_from_overdue_non_warfarin_review_table.js" />
+				</folder>
+				<folder name="Unknown">
+					<child name="get_patient_details_for_overdue_non_warfarin_review_table_comparison" key="{CE7EBBB7-C677-4ED3-B5AA-5F1D019FB753}" path="get_patient_details_for_overdue_non_warfarin_review_table_comparison.js" />
+				</folder>
+			</folder>
 			<child name="System_Paths" key="{3E644774-5830-45ED-B233-AEDA357E7355}" path="System_Paths.js" />
 			<child name="INRstar_Navigation" key="{C4ECD5A2-3F26-4559-86EB-D693C4C411DD}" path="INRstar_Navigation.js" />
 			<child name="Misc_Functions" key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" path="Misc_Functions.js" />
