@@ -202,7 +202,6 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -224,7 +223,7 @@ function tc_new_historical_treatment_is_not_most_recent_with_NTD_greater_than_ex
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-3))), "2.0", "2.0", "0", "14", "2.5");
     
     Log_Off();
@@ -268,7 +267,6 @@ function tc_new_historical_treatment_is_most_recent_with_NTD_less_than_than_exis
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -294,7 +292,7 @@ function tc_new_historical_treatment_is_most_recent_with_NTD_less_than_than_exis
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-2))), "2.0", "2.0", "0", "7", "2.5");
     
     Log_Off();
@@ -412,7 +410,6 @@ function tc_reenrol_user_can_log_into_engage()
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -427,7 +424,7 @@ function tc_reenrol_user_can_log_into_engage()
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     warfarin_self_care("disenrol");
     warfarin_self_care("all");
     
@@ -445,7 +442,6 @@ function tc_reenrol_user_can_log_into_engage()
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
-    Log.Message(results);
     results_checker(results, test_title);
     
     log_off_engage();
@@ -472,7 +468,6 @@ function tc_disenrol_user_with_current_treatment_plan()
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -494,7 +489,7 @@ function tc_disenrol_user_with_current_treatment_plan()
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     warfarin_self_care("disenrol");
     
     Log_Off();
@@ -504,7 +499,6 @@ function tc_disenrol_user_with_current_treatment_plan()
     result_set.push(result_set_1);
   
     var results = results_checker_are_true(result_set);
-    Log.Message(results);
     results_checker(results, test_title);
     
     log_off_engage();
@@ -536,7 +530,6 @@ function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -554,7 +547,7 @@ function tc_move_ntd_back_from_ten_to_seven_days_schedules_unchanged()
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (10));
     tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date);
     
@@ -621,7 +614,6 @@ function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -643,7 +635,7 @@ function tc_move_ntd_back_from_seven_to_six_days_schedules_changed()
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (7));
     var msg = tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date, 1);
     
@@ -723,7 +715,6 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -745,7 +736,7 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     var current_test_date = aqDateTime.AddDays(aqDateTime.Today(), (5));
     var msg = tsa_clinic_make_appointment(clinic_name, clinic_date, current_test_date, 1);
     
@@ -777,7 +768,6 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     Log_Off();
   
     var results = results_checker_are_true(result_set);
-    Log.Message(results);
     results_checker(results, test_title);
   } 
   catch(e)
@@ -802,7 +792,6 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -845,7 +834,7 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7", "PoCT");
     
     Log_Off();
@@ -878,7 +867,7 @@ function tc_add_inr_update_inr_delete_inr_confirm_original_schedule()
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     delete_treatment();
     
     Log_Off();
@@ -924,7 +913,6 @@ function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedu
     
     var patient_demographics = get_patient_not_altered_details_object_from_demographics();
     var nhs = patient_demographics.nhs_number;
-    var pat_name = patient_demographics.last_name;
     var email_address = patient_demographics.email;
     var dob = aqConvert.DateTimeToFormatStr(patient_demographics.dob, "%d/%m/%Y");
    
@@ -944,7 +932,7 @@ function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedu
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     add_manual_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (0))), "2.5", "2.5", "7", "PoCT");
     
     Log_Off();
@@ -969,7 +957,7 @@ function tc_overdue_inr_switch_to_valid_inr_delete_latest_saved_completed_schedu
     log_off_engage();
     login(5, "Shared");
     
-    inrstar_patient_search(nhs, pat_name);
+    patient_search(nhs);
     delete_treatment();
     
     Log_Off();

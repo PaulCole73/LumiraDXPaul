@@ -112,7 +112,7 @@ function tc_clinics_add_inr_for_patient_with_appointment_today()
     
     tsa_clinic_check_patient_status(clinic_name, f_name, s_name);
     
-    inrstar_patient_search(p_nhs, s_name);
+    patient_search(p_nhs);
     
     var result_set = new Array();
     
@@ -162,14 +162,13 @@ function tc_clinics_move_seven_days_beyond_ntd()
     add_treatment_plan('W', 'Manual', '', 'Shared', '');
     add_historic_treatment(aqConvert.StrToDate(aqDateTime.AddDays(aqDateTime.Today(), (-6))), "2.0", "2.0", "0", "7", "2.5");
     
-    var pat_name = get_patient_surname();
     var p_nhs = get_patient_nhs();
     WaitSeconds(2);
     
     Log_Off();
     login(3, "Shared");
     
-    inrstar_patient_search(p_nhs, pat_name);
+    patient_search(p_nhs);
     
     var msg = tsa_clinic_make_appointment(clinic_name, aqConvert.DateTimeToFormatStr(date, "%d/%m/%Y"));
     WaitSeconds(1);

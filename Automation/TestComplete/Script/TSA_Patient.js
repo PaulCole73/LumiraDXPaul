@@ -119,39 +119,22 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
   wait_for_object(patient_root, "idStr", "PatientBannerContainer", 2, 1, 20);
 }
 //--------------------------------------------------------------------------------
-function inrstar_patient_search(search_criteria, expected_pat_name)
+function patient_search(data)
 {
+  //This expects you to only have 1 result returned so needs to be a unique name being passed in
   Goto_Patient_Search();
-  
   var patient_search_screen_path = patient_search_screen();
-  patient_search_screen_path.Textbox("searchCriteria").Text = search_criteria;
+
+  patient_search_screen_path.Textbox("searchCriteria").Text = data;
   patient_search_screen_path.SubmitButton("Search").Click();
-  
-  //After Search - table will always appear - even if no results
+
+  WaitSeconds(1, "Wait after patient search...");
+
   var results_table = patient_search_screen_results_table();
-  var row_count = results_table.rowcount;
-  
-  if(results_table.Cell(1, 0).contentText == get_string_translation("No patient found"))
-  {
-    var cell_content = results_table.Cell(1, 0).contentText;
-    Log.Message("I never found the patient in the search table results this is who I was looking for " + expected_pat_name + " I used this in the search field " + search_criteria);
-    return false;
-  }
-  else
-  {
-   for(var i=0; i < row_count; i++)
-    {
-      if(results_table.Cell(i, 0).contentText == expected_pat_name)
-      {
-        results_table.Cell(i, 0).Link("PatientLink").Click();
-        WaitSeconds(1, "Wait after patient search...");
-        return true;
-      }
-    }  
-   Log.Message("I never found the patient in the search table results this is who I was looking for " + expected_pat_name + " I used this in the search field " + search_criteria);
-   return false;
-  }
-}
+  results_table.Cell(1, 0).Link("PatientLink").Click();
+
+  WaitSeconds(1, "Wait after patient search...");
+} 
 //--------------------------------------------------------------------------------
 function patient_search_for_unmatched_result(patient_search_criteria)
 {
@@ -287,12 +270,12 @@ function banner_checker_includes(exp_err_mess)
 } 
 //--------------------------------------------------------------------------------
 //this return an array of key labels from the patient summary tab
-function get_patient_summary_labels(patient_nhs, pat_name) 
+function get_patient_summary_labels(patient_nhs) 
 {
   var func_title = "Get Key Summary Labels";
   var smry_labels = new Array();
     
-  inrstar_patient_search(patient_nhs, pat_name);
+  patient_search(patient_nhs);
    
   var summary_button = summary_tab_path();
   summary_button.Click();

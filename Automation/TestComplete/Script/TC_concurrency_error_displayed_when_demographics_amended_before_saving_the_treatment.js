@@ -19,7 +19,7 @@ function tc_concurrency_error_displayed_when_demographics_amended_before_saving_
     
     //Load the new patient added through API and get ready for the concurrency pop up
     var pat_name = patient.last_name;
-    inrstar_patient_search(pat_name, pat_name);
+    patient_search(pat_name);
     add_treatment_plan('W','Manual','','Shared','');
     Goto_Patient_New_INR();
     

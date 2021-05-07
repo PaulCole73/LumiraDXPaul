@@ -11,7 +11,7 @@ function tc_find_a_patient()
     login(5, "Shared");
     add_patient('Regression', 'find_a_patient', 'M'); 
     var pat_name = get_patient_surname();
-    inrstar_patient_search(pat_name, pat_name);
+    patient_search(pat_name);
     
     var pat_name_currently_loaded = get_patient_surname();
     
@@ -45,31 +45,30 @@ function tc_user_can_search_for_a_patient_with_partial_or_full_fiscal_code()
     login(5, "Shared");
     add_patient('fiscal', 'search', 'M'); 
     
-    var pat_name = get_patient_fullname();
-    var full_fiscal = get_patient_nhs();
-    var start_char_fiscal = aqString.GetChar(full_fiscal, 0); 
+    var patient = get_patient_details_object_from_demographics();   
+    var full_fiscal = patient.nhs_number;
+    var start_char_fiscal = aqString.GetChar(patient.nhs_number, 0); 
     var half_fiscal= aqString.SubString(full_fiscal, 0, 5);
-    
     var result_set = new Array();
     
     //Full fiscal code search
-    var patient_found = inrstar_patient_search(full_fiscal, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(full_fiscal, patient.fullname);
+    var results_table = patient_search_screen_results_table();  
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //First char fiscal code search - Need this to be stronger so need to pass in fiscal/name
-    var patient_found = inrstar_patient_search(start_char_fiscal, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(start_char_fiscal, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
         
     //First half of the fiscal search
-    var patient_found = inrstar_patient_search(half_fiscal, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(half_fiscal, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
-    Log.Message(results);
     
     //Pass in the result
     results_checker(results,test_title); 
@@ -93,8 +92,8 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
     login(5, "Shared");
     add_patient('fiscalWhiteSpace', 'search', 'M'); 
     
-    var pat_name = get_patient_fullname();
-    var full_fiscal = get_patient_nhs();
+    var patient = get_patient_details_object_from_demographics();
+    var full_fiscal = patient.nhs_number;
     var first_half_fiscal = aqString.SubString(full_fiscal, 0, 5);
     var second_half_fiscal = aqString.SubString(full_fiscal, 5, 15);
     
@@ -106,28 +105,28 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
     var result_set = new Array();
     
     //Fiscal whitespace beginning fiscal code search
-    var patient_found = inrstar_patient_search(fiscal_whitespace_begin, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(fiscal_whitespace_begin, patient.fullname);
+    var results_table = patient_search_screen_results_table();  
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Fiscal whitespace middle fiscal code search
-    var patient_found = inrstar_patient_search(fiscal_whitespace_middle, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(fiscal_whitespace_middle, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
         
     //Fiscal whitespace end fiscal code search
-    var patient_found = inrstar_patient_search(fiscal_whitespace_end, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(fiscal_whitespace_end, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Fiscal whitespace all fiscal code search
-    var patient_found = inrstar_patient_search(fiscal_whitespace_all, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(fiscal_whitespace_all, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
-    Log.Message(results);
     
     //Pass in the result
     results_checker(results,test_title); 
@@ -151,31 +150,31 @@ function tc_user_can_search_for_a_patient_with_partial_or_full_nhs_number()
     login(5, "Shared");
     add_patient('nhsNum', 'search', 'M'); 
     
-    var pat_name = get_patient_fullname();
-    var full_nhs = get_patient_nhs();
+    var patient = get_patient_details_object_from_demographics();
+    var full_nhs = patient.nhs_number;
     var start_nhs = aqString.GetChar(full_nhs, 0); 
     var half_nhs= aqString.SubString(full_nhs, 0, 5);
     
     var result_set = new Array();
     
     //Full fiscal code search
-    var patient_found = inrstar_patient_search(full_nhs, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(full_nhs, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //First char fiscal code search - Need this to be stronger so need to pass in fiscal/name
-    var patient_found = inrstar_patient_search(start_nhs, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(start_nhs, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
         
     //First half of the fiscal search
-    var patient_found = inrstar_patient_search(half_nhs, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(half_nhs, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
-    Log.Message(results);
     
     //Pass in the result
     results_checker(results,test_title); 
@@ -199,8 +198,8 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
     login(5, "Shared");
     add_patient('fiscalWhiteSpace', 'search', 'M'); 
     
-    var pat_name = get_patient_fullname();
-    var full_nhs = get_patient_nhs();
+    var patient = get_patient_details_object_from_demographics();
+    var full_nhs = patient.nhs_number;
     var first_half_nhs = aqString.SubString(full_nhs, 0, 5);
     var second_half_nhs = aqString.SubString(full_nhs, 5, 12);
     
@@ -212,28 +211,28 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
     var result_set = new Array();
     
     //Fiscal whitespace beginning fiscal code search
-    var patient_found = inrstar_patient_search(nhs_whitespace_begin, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(nhs_whitespace_begin, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Fiscal whitespace middle fiscal code search
-    var patient_found = inrstar_patient_search(nhs_whitespace_middle, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(nhs_whitespace_middle, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
         
     //Fiscal whitespace end fiscal code search
-    var patient_found = inrstar_patient_search(nhs_whitespace_end, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(nhs_whitespace_end, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Fiscal whitespace all fiscal code search
-    var patient_found = inrstar_patient_search(nhs_whitespace_all, pat_name);
-    var result_set_1 = (patient_found == true) ? true : false;
+    get_patient_search_results(nhs_whitespace_all, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
     //Validate all the results sets are true
     var results = results_checker_are_true(result_set); 
-    Log.Message(results);
     
     //Pass in the result
     results_checker(results,test_title); 

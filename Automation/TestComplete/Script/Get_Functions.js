@@ -99,7 +99,7 @@ function get_patient_not_altered_details_object_from_demographics()
   return patient_demographics;
 }
 //-----------------------------------------------------------------------------------
-function get_patient_search_results(search_criteria)
+function get_patient_search_results(search_criteria, expected_pat_name)
 {
   Goto_Patient_Search();
   var patient_search_screen_path = patient_search_screen();
@@ -110,10 +110,26 @@ function get_patient_search_results(search_criteria)
   WaitSeconds(1, "Wait after patient search...");
    
   var results_table = patient_search_screen_results_table();
+  var row_count = results_table.rowcount;
   
-  var search_results = results_table.Cell(1, 0).contentText;
-  
-  return search_results;
+  if(results_table.Cell(1, 0).contentText == get_string_translation("No patient found"))
+  {
+    var search_results = results_table.Cell(1, 0).contentText;
+    Log.Message("I never found the patient in the search table results this is who I was looking for " + expected_pat_name + " I used this in the search field " + search_criteria);
+    return search_results;
+  }
+  else
+  {
+   for(var i=0; i < row_count; i++)
+    {
+      if(results_table.Cell(i, 0).contentText == expected_pat_name)
+      {
+        var search_results = results_table.Cell(i, 0).contentText;
+        WaitSeconds(1, "Wait after patient search...");
+        return search_results;
+      }
+    }  
+  }
 }
 //-----------------------------------------------------------------------------------
 //Returning firstname of the current patient loaded
@@ -345,7 +361,7 @@ function get_patient_demographics()
 function get_patient_details_for_overdue_non_warfarin_review_table_comparison(pat_name, expected_overdue_days)
 {
   //Search for patient
-  inrstar_patient_search(pat_name, pat_name);
+  patient_search(pat_name);
   
   //Acknowledge pop-up if it is shown
   process_popup(get_string_translation("Please Confirm"), get_string_translation("Confirm"));
