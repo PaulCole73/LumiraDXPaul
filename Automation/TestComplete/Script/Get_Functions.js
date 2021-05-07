@@ -190,7 +190,7 @@ function get_fiscal_code()
   var check_character = get_check_digit(fifteen_digit_fiscal);                                  //get a valid check character
   var fiscal = fifteen_digit_fiscal + check_character;                                          //fiscal needs 15 alphanumeric + validated check character
   
-  Log.Message(fiscal);
+  //Log.Message(fiscal);
   return fiscal;
 }
 //-----------------------------------------------------------------------------------
@@ -317,9 +317,6 @@ function get_patient_demographics()
     var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
     var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
     var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
-    //var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
-    //var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
-    //var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
   
     var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
   
@@ -332,8 +329,8 @@ function get_patient_demographics()
     var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
     var mobile = patient_demographics_tab_contact_address_path.Panel(3).Label("Mobile_DetachedLabel").contentText;
     var email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;
-  
-    patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
+
+    patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
   }
 
   for(var i = 0; i < patient_data_array.length; i++)
@@ -713,6 +710,7 @@ function get_new_inr_button_state()
 }
 //-----------------------------------------------------------------------------------
 //gets all data from specified table
+//Need to fix this at some point to pick up the NTD field as if you have clinics on/off it is held in a different property currently this will only work in Autotest1
 function get_treatment_row(row_num, table_type)
 {
   if(table_type == "current" || table_type == null)
@@ -736,7 +734,6 @@ function get_treatment_row(row_num, table_type)
     var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
     treatment_row_array.push(treatment_value);
   }
-  
   return treatment_row_array;  
 }
 //-----------------------------------------------------------------------------------
@@ -759,14 +756,14 @@ function get_treatment_row_key_values(row_num, table_type)
   }
   var treatment_row_array = new Array()
   
-  for(var i = 0; i < 11; i++)
+ for(var i = 0; i < 11; i++)
   {
     if(i == 0 || i == 1 || i == 2 || i == 5 || i == 7)
     {
       var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
       treatment_row_array.push(treatment_value);
     }
-  }
+  } 
   
   return treatment_row_array;  
 }
