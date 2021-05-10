@@ -89,6 +89,9 @@
 					<child name="get_patient_details_for_overdue_non_warfarin_review_table_comparison" key="{CE7EBBB7-C677-4ED3-B5AA-5F1D019FB753}" path="get_patient_details_for_overdue_non_warfarin_review_table_comparison.js" />
 				</folder>
 			</folder>
+			<folder name="Misc Functions">
+				<folder name="Check Functions" />
+			</folder>
 			<child name="System_Paths" key="{3E644774-5830-45ED-B233-AEDA357E7355}" path="System_Paths.js" />
 			<child name="INRstar_Navigation" key="{C4ECD5A2-3F26-4559-86EB-D693C4C411DD}" path="INRstar_Navigation.js" />
 			<child name="Misc_Functions" key="{9D58725E-CD10-4CA7-B716-113CB64F3847}" path="Misc_Functions.js" />
