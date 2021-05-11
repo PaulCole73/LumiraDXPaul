@@ -14,9 +14,9 @@
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
 
-var language = "English";
-var environment = "INRstarWindowsUK-test1";
-var environmentname = "uk-test1";
+var language = "Italian";
+var environment = "INRstarWindowsITA-test1";
+var environmentname = "it-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -486,6 +486,28 @@ function setup_automation(new_config_file_name,locale)
   change_environments(new_config_file_name);
 }
 //-----------------------------------------------------------------------------------
+function count_duplicates(array_data) 
+{
+  //puts the array into an object and gives a count of how many times you have a duplicate  
+  let counts = {},
+  duplicate = 0;
+  
+  array_data.forEach(
+  function(x) 
+  {
+  counts[x] = (counts[x] || 0) + 1;
+  });
+  
+//  Log.Message(counts);
+
+  for (var key in counts) {
+    if (counts.hasOwnProperty(key)) {
+      counts[key] > 1 ? duplicate++ : duplicate;
+    }
+  }
+  return duplicate;
+}
+//--------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//

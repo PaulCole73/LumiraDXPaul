@@ -442,7 +442,6 @@ function tc_reenrol_user_can_log_into_engage()
     result_set.push(result_set_1);
     
     var results = results_checker_are_true(result_set);
-    Log.Message(results);
     results_checker(results, test_title);
     
     log_off_engage();
@@ -500,7 +499,6 @@ function tc_disenrol_user_with_current_treatment_plan()
     result_set.push(result_set_1);
   
     var results = results_checker_are_true(result_set);
-    Log.Message(results);
     results_checker(results, test_title);
     
     log_off_engage();
@@ -770,7 +768,6 @@ function tc_move_ntd_forward_from_five_to_seven_days_schedules_changed()
     Log_Off();
   
     var results = results_checker_are_true(result_set);
-    Log.Message(results);
     results_checker(results, test_title);
   } 
   catch(e)
