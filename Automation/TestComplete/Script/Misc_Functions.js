@@ -486,13 +486,13 @@ function setup_automation(new_config_file_name,locale)
   change_environments(new_config_file_name);
 }
 //-----------------------------------------------------------------------------------
-function count_duplicates(original) 
+function count_duplicates(array_data) 
 {
   //puts the array into an object and gives a count of how many times you have a duplicate  
   let counts = {},
   duplicate = 0;
   
-  original.forEach(
+  array_data.forEach(
   function(x) 
   {
   counts[x] = (counts[x] || 0) + 1;

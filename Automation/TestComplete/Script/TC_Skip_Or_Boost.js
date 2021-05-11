@@ -166,7 +166,6 @@ function tc_Ensure_SorB_button_is_enabled_for_any_user_higher_than_CL2_on_sugges
   } 
   
   cancel_pending_sorb_treatment();
-  var pat_name = patient_demographics.last_name;
   var pat_nhs = get_patient_nhs()
   Log_Off()
 
