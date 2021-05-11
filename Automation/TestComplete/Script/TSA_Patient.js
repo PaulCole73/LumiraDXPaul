@@ -457,7 +457,39 @@ function create_variable_patient_data(name_first, name_last, sex)
     return patient_details;
 }
 //--------------------------------------------------------------------------------
-
-
-
-
+function inrstar_check_patient_search_criteria_start_char_unique(patient_object)
+{
+ //Needed to make the first char of the following fields unique so that when you search for a patient you know which one it is using for the search
+ //The patient search will only search for a field if it begins with the correct char so it doesn't do a partial mid way search
+ var patient_details_array = new Array();
+ 
+ //Get the array to check for uniqueness
+ var pat_num = aqString.GetChar(patient_object.pat_number, 0);
+ var nhs_or_fiscal = aqString.GetChar(patient_object.nhs_number, 0);
+ var surname = aqString.GetChar(patient_object.last_name, 0);
+ var firstname = aqString.GetChar(patient_object.first_name, 0);
+ 
+ patient_details_array.push(pat_num,nhs_or_fiscal,surname,firstname);
+ Log.Message(patient_details_array);
+ 
+ //check if the array has any duplicated start chars
+ var dup_count = count_duplicates(patient_details_array);
+ 
+ return dup_count;
+}
+//--------------------------------------------------------------------------------
+function inrstar_make_patient_search_criteria_start_char_unique(patient_object)
+{
+ //Needed to make the first char of the following fields unique so that when you search for a patient you know which one it is using for the search
+ //The patient search will only search for a field if it begins with the correct char so it doesn't do a partial mid way search
+ var patient_details_array = new Array();
+ var dup_count = inrstar_check_patient_search_criteria_start_char_unique(patient_object);
+ 
+ while(dup_count != 0)
+ {
+  add_patient();
+  patient = get_patient_details_object_from_demographics();
+  dup_count = inrstar_check_patient_search_criteria_start_char_unique(patient);
+ }
+}
+//--------------------------------------------------------------------------------

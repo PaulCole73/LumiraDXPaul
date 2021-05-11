@@ -43,7 +43,7 @@
 					</testItem>
 					<testItem name="get_check_digit" key="{0379DD97-E8D2-4BEE-A9E5-AD33BA4BB944}" group="False" parallel="False" enabled="True" testMoniker="{53C017A4-89CB-4429-8289-B2F80476AA1C}get_check_digit" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 						<testParameters>
-							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="RMHDZZZ1D28H501" />
+							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="RMHDZZZ1D44H501" />
 						</testParameters>
 						<environments testedURL="" />
 						<children />
@@ -2953,7 +2953,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />

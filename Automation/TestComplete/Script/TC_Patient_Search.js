@@ -37,171 +37,28 @@ function tc_find_a_patient()
   }
 }
 //--------------------------------------------------------------------------------
-function tc_user_can_search_for_a_patient_with_partial_or_full_fiscal_code()
+function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_nhs_fiscal()
 {
   try
   {
-    var test_title = 'Patient Search: Fiscal Code - User can search for a patient with partial or full fiscal code'
+    var test_title = 'Patient Search: Fiscal/NHS - User can search for a patient when putting whitespace anywhere in the search box with nhs or fiscal'
     login(5, "Shared");
-    add_patient('fiscal', 'search', 'M'); 
-    
-    var patient = get_patient_details_object_from_demographics();   
-    var full_fiscal = patient.nhs_number;
-    var start_char_fiscal = aqString.GetChar(patient.nhs_number, 0); 
-    var half_fiscal= aqString.SubString(full_fiscal, 0, 5);
-    var result_set = new Array();
-    
-    //Full fiscal code search
-    get_patient_search_results(full_fiscal, patient.fullname);
-    var results_table = patient_search_screen_results_table();  
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-    
-    //First char fiscal code search - Need this to be stronger so need to pass in fiscal/name
-    get_patient_search_results(start_char_fiscal, patient.fullname);
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-        
-    //First half of the fiscal search
-    get_patient_search_results(half_fiscal, patient.fullname);
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-    
-    //Validate all the results sets are true
-    var results = results_checker_are_true(result_set); 
-    
-    //Pass in the result
-    results_checker(results,test_title); 
-  
-    Log_Off();
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Patient_Search";
-    var test_name = "tc_user_can_search_for_a_patient_with_partial_or_full_fiscal_code";
-    handle_failed_tests(suite_name, test_name);
-  }
-}
-//--------------------------------------------------------------------------------
-function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_fiscal()
-{
-  try
-  {
-    var test_title = 'Patient Search: Fiscal Code - User can search for a patient when putting whitespace anywhere in the search box with fiscal'
-    login(5, "Shared");
-    add_patient('fiscalWhiteSpace', 'search', 'M'); 
-    
+    add_patient('WhiteSpace', 'search', 'M'); 
     var patient = get_patient_details_object_from_demographics();
-    var full_fiscal = patient.nhs_number;
-    var first_half_fiscal = aqString.SubString(full_fiscal, 0, 5);
-    var second_half_fiscal = aqString.SubString(full_fiscal, 5, 15);
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
     
-    var fiscal_whitespace_begin = "    " + full_fiscal; 
-    var fiscal_whitespace_middle = first_half_fiscal + "    " + second_half_fiscal; 
-    var fiscal_whitespace_end = full_fiscal + "    "; 
-    var fiscal_whitespace_all = "     " + first_half_fiscal + "    " + second_half_fiscal + "     "; 
-    
-    var result_set = new Array();
-    
-    //Fiscal whitespace beginning fiscal code search
-    get_patient_search_results(fiscal_whitespace_begin, patient.fullname);
-    var results_table = patient_search_screen_results_table();  
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-    
-    //Fiscal whitespace middle fiscal code search
-    get_patient_search_results(fiscal_whitespace_middle, patient.fullname);
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-        
-    //Fiscal whitespace end fiscal code search
-    get_patient_search_results(fiscal_whitespace_end, patient.fullname);
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-    
-    //Fiscal whitespace all fiscal code search
-    get_patient_search_results(fiscal_whitespace_all, patient.fullname);
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-    
-    //Validate all the results sets are true
-    var results = results_checker_are_true(result_set); 
-    
-    //Pass in the result
-    results_checker(results,test_title); 
-  
-    Log_Off();
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Patient_Search";
-    var test_name = "tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_fiscal";
-    handle_failed_tests(suite_name, test_name);
-  }
-}
-//--------------------------------------------------------------------------------
-function tc_user_can_search_for_a_patient_with_partial_or_full_nhs_number()
-{
-  try
-  {
-    var test_title = 'Patient Search: NHS Number - User can search for a patient with partial or full nhs number'
-    login(5, "Shared");
-    add_patient('nhsNum', 'search', 'M'); 
-    
-    var patient = get_patient_details_object_from_demographics();
     var full_nhs = patient.nhs_number;
-    var start_nhs = aqString.GetChar(full_nhs, 0); 
-    var half_nhs= aqString.SubString(full_nhs, 0, 5);
     
-    var result_set = new Array();
-    
-    //Full fiscal code search
-    get_patient_search_results(full_nhs, patient.fullname);
-    var results_table = patient_search_screen_results_table();
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-    
-    //First char fiscal code search - Need this to be stronger so need to pass in fiscal/name
-    get_patient_search_results(start_nhs, patient.fullname);
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-        
-    //First half of the fiscal search
-    get_patient_search_results(half_nhs, patient.fullname);
-    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
-    result_set.push(result_set_1);
-    
-    //Validate all the results sets are true
-    var results = results_checker_are_true(result_set); 
-    
-    //Pass in the result
-    results_checker(results,test_title); 
-  
-    Log_Off();
-  }
-  catch(e)
-  {
-    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
-    var suite_name = "TC_Patient_Search";
-    var test_name = "tc_user_can_search_for_a_patient_with_partial_or_full_nhs_number";
-    handle_failed_tests(suite_name, test_name);
-  }
-}
-//--------------------------------------------------------------------------------
-function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_nhs_number()
-{
-  try
-  {
-    var test_title = 'Patient Search: Fiscal Code - User can search for a patient when putting whitespace anywhere in the search box with fiscal'
-    login(5, "Shared");
-    add_patient('fiscalWhiteSpace', 'search', 'M'); 
-    
-    var patient = get_patient_details_object_from_demographics();
-    var full_nhs = patient.nhs_number;
-    var first_half_nhs = aqString.SubString(full_nhs, 0, 5);
-    var second_half_nhs = aqString.SubString(full_nhs, 5, 12);
+    if(language == "English")
+    {
+     var first_half_nhs = aqString.SubString(full_nhs, 0, 5);
+     var second_half_nhs = aqString.SubString(full_nhs, 5, 12);
+    }
+    else if(language == "Italian")
+    {
+     var first_half_nhs = aqString.SubString(full_nhs, 0, 5);
+     var second_half_nhs = aqString.SubString(full_nhs, 5, 15);
+    }
     
     var nhs_whitespace_begin = "    " + full_nhs; 
     var nhs_whitespace_middle = first_half_nhs + "    " + second_half_nhs; 
@@ -210,23 +67,23 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
     
     var result_set = new Array();
     
-    //Fiscal whitespace beginning fiscal code search
+    //Whitespace beginning code search
     get_patient_search_results(nhs_whitespace_begin, patient.fullname);
     var results_table = patient_search_screen_results_table();
     var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
-    //Fiscal whitespace middle fiscal code search
+    //Whitespace middle code search
     get_patient_search_results(nhs_whitespace_middle, patient.fullname);
     var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
         
-    //Fiscal whitespace end fiscal code search
+    //Whitespace end code search
     get_patient_search_results(nhs_whitespace_end, patient.fullname);
     var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
     
-    //Fiscal whitespace all fiscal code search
+    //Whitespace all code search
     get_patient_search_results(nhs_whitespace_all, patient.fullname);
     var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
     result_set.push(result_set_1);
@@ -243,7 +100,203 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
   {
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Patient_Search";
-    var test_name = "tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_fiscal";
+    var test_name = "tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_nhs_fiscal";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_user_can_search_for_a_patient_with_partial_or_full_nhs_fiscal()
+{
+  try
+  {
+    var test_title = 'Patient Search: Fiscal/NHS - User can search for a patient with partial or full nhs/fiscal'
+    login(5, "Shared");
+    add_patient('partial', 'search', 'M');   
+    var patient = get_patient_details_object_from_demographics();
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
+    
+    var full_nhs = patient.nhs_number;
+    var start_nhs = aqString.GetChar(full_nhs, 0); 
+    var half_nhs= aqString.SubString(full_nhs, 0, 5);
+    
+    var result_set = new Array();
+    
+    //Full code search
+    get_patient_search_results(full_nhs, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //First char code search
+    get_patient_search_results(start_nhs, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+        
+    //First half of the code search
+    get_patient_search_results(half_nhs, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_user_can_search_for_a_patient_with_partial_or_full_nhs_fiscal";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_user_can_search_for_a_patient_with_partial_or_full_patient_number()
+{
+  try
+  {
+    var test_title = 'Patient Search: Patient Number - User can search for a patient with partial or full patient number'
+    login(5, "Shared");
+    add_patient('patnum', 'search', 'M'); 
+    var patient = get_patient_details_object_from_demographics();
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
+    
+    var full_pat_num = patient.pat_number;
+    var start_pat_num = aqString.GetChar(full_pat_num, 0); 
+    var half_pat_num = aqString.SubString(full_pat_num, 0, 5);
+    
+    var result_set = new Array();
+    
+    //Patient Number full code search
+    get_patient_search_results(full_pat_num, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Patient Number first char code search
+    get_patient_search_results(start_pat_num, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+        
+    //Patient Number partial code search
+    get_patient_search_results(half_pat_num, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_user_can_search_for_a_patient_with_partial_or_full_patient_number";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_user_can_search_for_a_patient_with_partial_or_full_surname()
+{
+  try
+  {
+    var test_title = 'Patient Search: Surname - User can search for a patient with partial or full surname'
+    login(5, "Shared");
+    add_patient('surname', 'search', 'M'); 
+    var patient = get_patient_details_object_from_demographics();
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
+    
+    var full_surname = patient.last_name;
+    var start_pat_surname = aqString.GetChar(full_surname, 0); 
+    var half_pat_surname = aqString.SubString(full_surname, 0, 5);
+    
+    var result_set = new Array();
+    
+    //Full search
+    get_patient_search_results(full_surname, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //First char search
+    get_patient_search_results(start_pat_surname, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+        
+    //Partial search
+    get_patient_search_results(half_pat_surname, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_user_can_search_for_a_patient_with_partial_or_full_surname";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_user_can_search_for_a_patient_with_partial_or_full_firstname()
+{
+  try
+  {
+    var test_title = 'Patient Search: Firstname - User can search for a patient with partial or full firstname'
+    login(5, "Shared");
+    add_patient('firstname', 'search', 'M'); 
+    var patient = get_patient_details_object_from_demographics();
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
+    
+    var full_firstname = patient.first_name;
+    var start_pat_firstname = aqString.GetChar(full_firstname, 0); 
+    var half_pat_firstname = aqString.SubString(full_firstname, 0, 5);
+    
+    var result_set = new Array();
+    
+    //Full search
+    get_patient_search_results(full_firstname, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //First char search
+    get_patient_search_results(start_pat_firstname, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+        
+    //Partial search
+    get_patient_search_results(half_pat_firstname, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_user_can_search_for_a_patient_with_partial_or_full_firstname";
     handle_failed_tests(suite_name, test_name);
   }
 }

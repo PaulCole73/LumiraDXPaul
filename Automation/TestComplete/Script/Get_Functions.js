@@ -41,7 +41,6 @@ function get_patient_nhs()
           
   return nhs_num;
 }
-
 //-----------------------------------------------------------------------------------
 //Returning details from demographics as an object
 function get_patient_details_object_from_demographics()
@@ -55,6 +54,7 @@ function get_patient_details_object_from_demographics()
   patient_details.patientid = patient_banner_blue_bar_path.Panel(3).Panel(0).Label("INRstarId_DetachedLabel").contentText;
   patient_details.first_name = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
   patient_details.last_name = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+  patient_details.pat_number = patient_demographics_tab_demographics_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
   patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
   patient_details.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
   patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob);
@@ -197,10 +197,8 @@ function get_fiscal_code(patient_data)
 function get_fiscal_code()
 {
   var fourteen_digit_value = get_unique_number();                                               //get a unique code (14 digit epoc value)                 
-  
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var position = get_random_num_inrange(0, 15);                                                 //select random insert location
-  var fifteenth_digit = alphabet[Math.floor(Math.random() * alphabet.length)];                  //get a random letter
+  var fifteenth_digit = get_random_letter() ;                                                   //get a random letter
+  var position = get_random_num_inrange(0, 15);                                                 //select random insert location                 
   
   var fifteen_digit_fiscal = aqString.Insert(fourteen_digit_value, fifteenth_digit, position);  //insert random letter into unique 14 digit code
   var check_character = get_check_digit(fifteen_digit_fiscal);                                  //get a valid check character
@@ -208,6 +206,13 @@ function get_fiscal_code()
   
   //Log.Message(fiscal);
   return fiscal;
+}
+//-----------------------------------------------------------------------------------
+function get_random_letter() 
+{
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  
+  return alphabet[Math.floor(Math.random() * alphabet.length)]
 }
 //-----------------------------------------------------------------------------------
 function get_check_digit(fifteen_digit_fiscal)

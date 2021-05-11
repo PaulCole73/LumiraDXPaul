@@ -49,13 +49,11 @@ function ts_int_regression_patient_italy(send_mail)
 //==============================================================================//
 function ts_inrstar_patient_search()
 {
-  //UK Only
-  tc_user_can_search_for_a_patient_with_partial_or_full_nhs_number();
-  tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_nhs_number();
-  
-  //Italy Only
-  tc_user_can_search_for_a_patient_with_partial_or_full_fiscal_code();
-  tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_fiscal();
+  tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_nhs_fiscal();
+  tc_user_can_search_for_a_patient_with_partial_or_full_nhs_fiscal();
+  tc_user_can_search_for_a_patient_with_partial_or_full_patient_number();
+  tc_user_can_search_for_a_patient_with_partial_or_full_surname();
+  tc_user_can_search_for_a_patient_with_partial_or_full_firstname();
 }
 //==============================================================================//
 
