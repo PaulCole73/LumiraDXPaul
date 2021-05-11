@@ -43,7 +43,7 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
   {
     var test_title = 'Patient Search: Fiscal/NHS - User can search for a patient when putting whitespace anywhere in the search box with nhs or fiscal'
     login(5, "Shared");
-    add_patient('WhiteSpace', 'search', 'M'); 
+    add_patient('whiteSpace', 'nhsSearch', 'M'); 
     var patient = get_patient_details_object_from_demographics();
     inrstar_make_patient_search_criteria_start_char_unique(patient);
     
@@ -101,6 +101,138 @@ function tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_th
     Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
     var suite_name = "TC_Patient_Search";
     var test_name = "tc_user_can_search_for_a_patient_when_putting_whitespace_anywhere_in_the_search_box_with_nhs_fiscal";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_user_can_search_for_a_patient_when_putting_whitespace_at_the_beginning_or_end_within_the_search_box_with_patient_number()
+{
+  try
+  {
+    var test_title = 'Patient Search: Patient Number - User can search for a patient when putting whitespace anywhere in the search box with patient number'
+    login(5, "Shared");
+    add_patient('whiteSpace', 'patNumSearch', 'M'); 
+    var patient = get_patient_details_object_from_demographics();
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
+    
+    var full_pat_num = patient.pat_number;
+    var pat_num_whitespace_begin = "    " + full_pat_num; 
+    var pat_num_whitespace_end = full_pat_num + "    "; 
+    
+    var result_set = new Array();
+    
+    //Whitespace beginning search
+    get_patient_search_results(pat_num_whitespace_begin, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+        
+    //Whitespace end search
+    get_patient_search_results(pat_num_whitespace_end, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_user_can_search_for_a_patient_when_putting_whitespace_at_the_beginning_or_end_within_the_search_box_with_patient_number";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_user_can_search_for_a_patient_when_putting_whitespace_at_the_beginning_or_end_within_the_search_box_with_surname()
+{
+  try
+  {
+    var test_title = 'Patient Search: Surname - User can search for a patient when putting whitespace at the beginning or end in the search box with surname'
+    login(5, "Shared");
+    add_patient('whiteSpace', 'surname', 'M'); 
+    var patient = get_patient_details_object_from_demographics();
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
+    
+    var full_surname = patient.last_name;
+    var surname_whitespace_begin = "    " + full_surname; 
+    var surname_whitespace_end = full_surname + "    "; 
+    
+    var result_set = new Array();
+    
+    //Whitespace beginning search
+    get_patient_search_results(surname_whitespace_begin, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+        
+    //Whitespace end search
+    get_patient_search_results(surname_whitespace_end, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_user_can_search_for_a_patient_when_putting_whitespace_at_the_beginning_or_end_within_the_search_box_with_surname";
+    handle_failed_tests(suite_name, test_name);
+  }
+}
+//--------------------------------------------------------------------------------
+function tc_user_can_search_for_a_patient_when_putting_whitespace_at_the_beginning_or_end_within_the_search_box_with_firstname()
+{
+  try
+  {
+    var test_title = 'Patient Search: Firstname - User can search for a patient when putting whitespace at the beginning or end in the search box with firstname'
+    login(5, "Shared");
+    add_patient('whiteSpace', 'surname', 'M'); 
+    var patient = get_patient_details_object_from_demographics();
+    inrstar_make_patient_search_criteria_start_char_unique(patient);
+    
+    var full_firstname = patient.first_name;
+    var firstname_whitespace_begin = "    " + full_firstname; 
+    var firstname_whitespace_end = full_firstname + "    "; 
+    
+    var result_set = new Array();
+    
+    //Whitespace beginning search
+    get_patient_search_results(firstname_whitespace_begin, patient.fullname);
+    var results_table = patient_search_screen_results_table();
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+        
+    //Whitespace end search
+    get_patient_search_results(firstname_whitespace_end, patient.fullname);
+    var result_set_1 = check_patient_exists_in_table_within_column(0, results_table, patient.fullname);
+    result_set.push(result_set_1);
+    
+    //Validate all the results sets are true
+    var results = results_checker_are_true(result_set); 
+    
+    //Pass in the result
+    results_checker(results,test_title); 
+  
+    Log_Off();
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Patient_Search";
+    var test_name = "tc_user_can_search_for_a_patient_when_putting_whitespace_at_the_beginning_or_end_within_the_search_box_with_firstname";
     handle_failed_tests(suite_name, test_name);
   }
 }
