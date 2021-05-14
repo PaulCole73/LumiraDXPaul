@@ -1330,7 +1330,7 @@ function get_inrstarid_using_uuid(id)
   headers["Cookie"] = Project.Variables.cookie_jar;
   
   var response = String(api_get(address, headers));
-  var inrstarid = response.match(/Unique INRstar ID">([^"<]*)/)[1];
+  var inrstarid = response.match(/INRSTARID[^"<]*/)[0];
 
   return inrstarid
 }

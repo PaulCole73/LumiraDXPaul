@@ -569,45 +569,41 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
   try
   {
     var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects a different but valid INRstar testing section"
+    
+    //Login to OTHER location in order to extract UUID of location
+    get_tokens_via_powershell("17");
+    var other_location_id = get_locationid();
     var patient = insert_patient(); 
     var result_set = new Array();  
     
-    //Login to OTHER location in order to extract UUID of location
-    get_tokens_via_powershell("17")
-    var other_location_id = get_locationid()
-    
-    login(17, "Shared");
-    var other_location_id = get_organization_id_from_current_location();
-    Log_Off();
     login(7, "Shared");
        
-    //Get timestamp
-    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
 
-    //Post and Locate posted result
-    var body_data = json_body_data_instrument(patient, other_location_id, "2.6", inr_test_timestamp.csp_payload);     
-    body_data.patient.identifiers[0].alias = patient.INRstarID;    
-    post_external_result_instrument(JSON.stringify(body_data)); 
-    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, other_location_id, "2.6", inr_test_timestamp.csp_payload);     
+      body_data.patient.identifiers[0].alias = patient.INRstarID;    
+      post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-    //Check the result is present and shows the INRstarID that was sent in
-    var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
-    result_set.push(result_set_1);
+      //Check the result is present and shows the INRstarID that was sent in
+      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
     
     Log_Off();
     
     login(17, "Shared");
-    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
     
-    //Check the result is NOT present in the OTHER location
-    var result_set_1 = compare_values(external_result.row, false, test_title);
-    result_set.push(result_set_1);
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
     
-    //Validate the results sets are true
-    var results = results_checker_are_true(result_set);
+      //Check the result is NOT present in the OTHER location
+      var result_set_1 = compare_values(external_result.row, false, test_title);
+      result_set.push(result_set_1);
     
-    //Pass in the result
-		results_checker(results, test_title); 
+      //Validate the results sets are true - Pass in the result
+      var results = results_checker_are_true(result_set);
+  		results_checker(results, test_title); 
 
     Log_Off(); 
   }
