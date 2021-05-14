@@ -66,6 +66,8 @@ function insert_patient()
   if (response.StatusCode == 200)
   {
     Log.Message("Attempt to create patient: " + patient.fullname + " = " + response.Text);
+    patient.INRstarID = get_inrstarid_using_uuid(patient.id); //This fetches and stores INRstarID
+    patient.LocationID = get_locationid(); //This fetches and stores INRstarID
   }
   else
   {
@@ -116,6 +118,7 @@ function patient_generator(patient_insert_tokens)
     patient_data.postcode = "TR11 4HL";                                    
     patient_data.email = "automation" + patient_data.surname + "@fakemail.com";
     patient_data.fullname = patient_data.surname.toUpperCase() + ", " + patient_data.firstname;
+    patient_data.phone = "01884 840504"; 
     
     //Title generator
     var array_of_titles = ["Mr","Mrs","Ms","Miss","Dr","Prof"];
@@ -129,13 +132,16 @@ function patient_generator(patient_insert_tokens)
       patient_data.title = array_of_titles[Math.floor(Math.random()*array_of_titles.length)];
       patient_data.NHSNumber = get_fiscal_code();
     }
+    else
+    {
+      patient_data.NHSNumber = generate_nhs_number();
+    }
     
     //DOB generator between 1940 and 2004
-    patient_data.day_of_birth = Math.floor(Math.random() * (28 - 1 + 1) + 1);
+    patient_data.day_of_birth = Math.floor(Math.random() * (28 - 11 + 1) + 11);
     patient_data.month_of_birth = ("0" + Math.floor(Math.random() * (12 - 01 + 1) + 01)).slice(-2);
     patient_data.year_of_birth =  Math.floor(Math.random() * (2004 - 1940 + 1) + 1940); 
     patient_data.shortmonth = set_month(patient_data.month_of_birth);
-    patient_data.dob = patient_data.year_of_birth + "/" + patient_data.month_of_birth + "/" + patient_data.day_of_birth;
     patient_data.born = patient_data.day_of_birth + "-" + patient_data.shortmonth + "-" + patient_data.year_of_birth;
     
     //Sex & Gender generator 
@@ -150,6 +156,12 @@ function patient_generator(patient_insert_tokens)
     patient_data.externalResultId = "";
     patient_data.id = patient_insert_tokens.new_patient_token_ID;
     patient_data.__RequestVerificationToken = patient_insert_tokens.__RequestVerificationToken;
+    
+    //These are temporary until we rid of create_patient_object_for_fiscal
+    patient_data.nhs_number = patient_data.NHSNumber;
+    patient_data.last_name = patient_data.surname;
+    patient_data.first_name = patient_data.firstname;
+    patient_data.dob = patient_data.born;
 
     return patient_data;
 }

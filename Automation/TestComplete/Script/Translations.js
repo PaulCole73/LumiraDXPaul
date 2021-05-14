@@ -1678,6 +1678,11 @@ function get_string_translation(string)
 "No patient found"	
     :{
       Italian:	"Nessun paziente trovato"	
+    },
+    
+"There are no new results"	
+    :{
+      Italian:	"Nessun nuovo risultato"	
     }
              
 // ^^^ Insert translations above this line ^^^    

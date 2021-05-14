@@ -44,7 +44,7 @@ function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
     post_code: patient_formatted_data.post_code,
     phone: "07111 225588",
     email: "AutomationLumira+" + new_guid(8) + "@gmail.com"
-  };
+    };
   
   return patient_details;
 }
