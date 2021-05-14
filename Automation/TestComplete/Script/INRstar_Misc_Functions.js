@@ -103,7 +103,7 @@ function check_patient_does_not_exist_in_table_within_column(column,table,pat_na
     Log.Message("Patient " + pat_name + " was successfully NOT found in table ")
     return true;
 }
-//----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 //This is to test that a patient exists in a specified column of a table
 function check_patient_exists_in_table_within_column(column,table,pat_name)
 {

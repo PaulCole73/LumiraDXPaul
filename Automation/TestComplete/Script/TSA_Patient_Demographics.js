@@ -292,3 +292,4 @@ function edit_patient_dob_to_be_under_18(months)
   
   WaitSeconds(2, "Waiting for banner message...");
 } 
+//--------------------------------------------------------------------------------

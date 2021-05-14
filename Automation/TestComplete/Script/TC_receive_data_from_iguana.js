@@ -20,8 +20,7 @@ function tc_new_patient_all_demographic_fields_populated_full_patient_data_can_b
     post_receivedatafromiguana(JSON.stringify(body_data)); 
     
     //Validate the patient is in INRstar
-    var pat_name = expected_patient.last_name;
-    patient_search(pat_name);
+    var search_results = patient_search(expected_patient.last_name);
     var actual_patient = get_patient_not_altered_details_object_from_demographics();
     
     var results = compare_objects(expected_patient, actual_patient);;
@@ -67,8 +66,7 @@ function tc_new_patient_sex_field_if_sex_field_is_13_chars_then_it_will_not_crea
     result_set.push(result_set_1);
     
      //Validate the patient is not in INRstar
-    var pat_name = expected_patient.last_name;
-    var search_results = get_patient_search_results(pat_name);
+    var search_results = patient_search(expected_patient.last_name);
     var result_set_1 = (search_results==get_string_translation("No patients found")) ? true : false;
     result_set.push(result_set_1);
     
@@ -118,8 +116,7 @@ function tc_new_patient_sex_field_if_sex_field_is_not_in_the_correct_casing_then
     result_set.push(result_set_1);
     
      //Validate the patient is not in INRstar
-    var pat_name = expected_patient.last_name;
-    var search_results = get_patient_search_results(pat_name);
+    var search_results = patient_search(expected_patient.last_name);
     var result_set_1 = (search_results==get_string_translation("No patients found")) ? true : false;
     result_set.push(result_set_1);
     
@@ -168,9 +165,8 @@ function tc_new_patient_sex_field_if_sex_field_is_not_in_the_list_of_accepted_se
     var result_set_1 = (response_data.Text == "\"Error: 400 - Validation(Sex invalid)\"") ? true : false;
     result_set.push(result_set_1);
     
-     //Validate the patient is not in INRstar
-    var pat_name = expected_patient.last_name;
-    var search_results = get_patient_search_results(pat_name);
+    //Validate the patient is not in INRstar
+    var search_results = patient_search(expected_patient.last_name);
     var result_set_1 = (search_results==get_string_translation("No patients found")) ? true : false;
     result_set.push(result_set_1);
     
