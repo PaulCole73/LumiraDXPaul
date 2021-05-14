@@ -14,8 +14,8 @@
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
 
-var language = "English";
-var environment = "INRstarWindowsUK-test1";
+var language = "Italian";
+var environment = "INRstarWindowsITA-test1";
 var environmentname = "uk-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -1282,3 +1282,63 @@ function random_word_generator()
 
 return randomwordCapitalized;
 }
+
+
+
+
+function get_sequence_unique_characters(number_of_unique_characters)
+{
+  var seq = new Array();
+  var isUnique;
+  
+  while(seq.length < number_of_unique_characters)
+  {
+    isUnique = true;
+    var char = new_guid(1);
+    
+    if(seq.length != 0)
+    {
+      for(var i = 0; i < seq.length; i++)
+      {
+        if(seq[i] == char)
+        {
+          isUnique = false;
+          break;
+        }
+      }
+    }
+    
+    if(isUnique == true)
+    {
+      seq.push(char);
+    }
+  }
+}
+
+//USEUNIT Patient_Class
+
+function test()
+{
+  var obj = new patient_class();
+  
+  var patient_overides = {};
+  patient_overides.patient_number = "786278568";
+  patient_overides.nhs_number = get_fiscal_code();
+  patient_overides.title = get_string_translation("Mrs");
+  patient_overides.first_name = "Barry";
+  patient_overides.last_name = "Dagger";
+  patient_overides.dob = "12-ott-1963";
+  patient_overides.sex = get_string_translation("Female");
+  patient_overides.gender = get_string_translation("Female");
+  patient_overides.first_addressline = "edited 1";
+  patient_overides.second_addressline = "edited 2";
+  patient_overides.third_addressline = "edited 3";
+  patient_overides.town = "edited town";
+  patient_overides.county = "edit county";
+  patient_overides.post_code = "98765";
+  patient_overides.phone = "123";
+  patient_overides.email = "edit@edit.com";
+  
+  obj.add_patient_to_inrstar();
+}
+

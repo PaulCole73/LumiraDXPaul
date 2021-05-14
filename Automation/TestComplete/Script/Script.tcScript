@@ -357,6 +357,9 @@
 				<child name="TC_Patient_Banner" key="{C94EB2E2-3F54-4ED4-BF9F-521F91FE0D59}" path="TC_Patient_Banner.js" />
 			</folder>
 			<folder name="4. Test Step Actions ">
+				<folder name="Patient">
+					<child name="Patient_Class" key="{E874C381-E722-4937-89BA-6E040366A835}" path="Patient_Class.js" />
+				</folder>
 				<child name="TSA_Login" key="{02ABEFC4-D1FB-4A18-91B0-D225CB7FE402}" path="TSA_Login.js" />
 				<child name="TSA_Logoff" key="{0F6C2E3B-E760-4B13-BCC1-0268A09596DA}" path="TSA_Logoff.js" />
 				<child name="TSA_Patient" key="{93A61BC9-5297-4CC3-896E-807B82C045E1}" path="TSA_Patient.js" />

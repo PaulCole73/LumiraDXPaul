@@ -17,7 +17,7 @@
 			<testItem name="Misc" key="{43FD4A8D-D73D-4FAC-87FC-2FBE451A6FAA}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="2" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
-					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" parallel="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="Setup_Generic_Patient" key="{14AB39C6-BE43-4014-8BDD-7F0543BC3D60}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_generic_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
 							<param0 name="do_login" type="3" localVarName="" varType="11" value="False" />
 							<param1 name="dm" type="3" localVarName="" varType="8" value="Coventry" />
@@ -27,8 +27,8 @@
 					</testItem>
 					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{B6D6B5C7-5DF2-40DE-8864-6D76B44F816E}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
-							<param0 name="location_id" type="3" localVarName="" varType="8" value="7267e611-da9b-41d7-83e9-e8d342987d5a" />
-							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="2" />
+							<param0 name="location_id" type="3" localVarName="" varType="8" value="BBC8CFA1-B8A3-458A-A8A4-DD7B0DD27382" />
+							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="1" />
 						</testParameters>
 						<environments testedURL="" />
 						<children />

@@ -328,4 +328,15 @@ function validate_bottom_patient_audit(test_case_title, w_data)
     return false;
   }
 }
-//-----------------------------------------------------------------------------------
+//----------------------------------------------------------------------
+
+function test()
+{
+  var obj;
+  
+  obj = new patient_class();
+  
+  obj.create_generic_patient();
+  
+  Log.Message(obj.first_name);
+}
