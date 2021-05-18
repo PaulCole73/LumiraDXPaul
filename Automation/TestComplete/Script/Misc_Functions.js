@@ -1334,7 +1334,7 @@ function get_inrstarid_using_uuid(id)
 
   return inrstarid
 }
-//-----------------------------------------------------------------------------------Location/Edit/
+//-----------------------------------------------------------------------------------
 function get_locationid()
 {
   //Only works if get_tokens_via_powershell() has been run 
