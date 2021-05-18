@@ -1350,17 +1350,3 @@ function get_locationid()
 
   return locationid
 }
-//-----------------------------------------------------------------------------------
-function testies()
-{
-Log.Message("Starting Gun")
-Log.Message(get_new_number_v5()) 
-Log.Message("Finishing Line")
-
-Log.Message("--------------------")
-
-Log.Message("Starting Gun")
-Log.Message(generate_nhs_number())
-Log.Message("Finishing Line")
-
-}
