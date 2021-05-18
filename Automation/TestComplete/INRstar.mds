@@ -2431,7 +2431,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="LDx2 Barcode Scanning" key="{5B3E0141-9B64-4C0E-AE5E-742CB238ED77}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="LDx2 Barcode Scanning" key="{5B3E0141-9B64-4C0E-AE5E-742CB238ED77}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="LDx2/C5 Patient identity is displayed on banner - visible on all patient-specific screens&#13;&#10;" key="{0AF48D57-CEDA-404C-8AB8-81ACFAF0A8D9}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2448,6 +2448,36 @@
 								<testParameters />
 								<children>
 									<testItem name="tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment();" key="{B406F938-5B23-4239-B9D4-097E7394A839}" group="False" parallel="False" enabled="True" testMoniker="{318D9639-31E5-44D1-BDA2-142A4292C503}tc_concurrency_error_displayed_when_demographics_amended_before_saving_the_treatment" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+								</children>
+							</testItem>
+						</children>
+					</testItem>
+					<testItem name="LDx1 Instrument results" key="{35961617-763F-4AD5-B35A-99619B0DE8A7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+						<testParameters />
+						<children>
+							<testItem name="LDx1/C56 Inrstar mandatory fields will reflect that of the instrument() " key="{E1668B26-BE30-48D3-831A-E79EE2601837}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+								<testParameters />
+								<children>
+									<testItem name="tc_patient_column_contains_the_patient_details_for_an_instrument_result();" key="{EC02BA82-B8D7-4B63-B8EE-E18A63890EAC}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_patient_column_contains_the_patient_details_for_an_instrument_result" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_patient_result_contains_the_correct_information_for_an_instrument_result();" key="{F376A532-F0DD-4A82-B1EB-49B8D0830CD4}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_patient_result_contains_the_correct_information_for_an_instrument_result" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_unmatched_patient_can_be_manually_matched();" key="{741706EF-6057-448E-9818-F67966BF9FF4}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_unmatched_patient_can_be_manually_matched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments testedURL="" />
+										<children />
+									</testItem>
+									<testItem name="tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument();" key="{6953DFC9-9BAE-4AE8-AD42-F3DB639216E8}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments testedURL="" />
 										<children />

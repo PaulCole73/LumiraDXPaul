@@ -340,31 +340,28 @@ function tc_patient_column_contains_the_patient_details_for_an_instrument_result
   try
   {
     var test_title = "Results Tab: Patient Column - Patient column contains the patients details for an instrument result"
-    login(7, "Shared");
-    var location_id = get_organization_id_from_current_location();
-    add_patient('clinical' , '', 'M');  
     
-    var patient = get_patient_details_object_from_demographics();
+    var result_set = new Array();  
+    
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    
+    login(7, "Shared");
+
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
-    var body_data = json_body_data_instrument(patient, location_id, "2.2", inr_test_timestamp.csp_payload);       
+    var body_data = json_body_data_instrument(patient, patient.LocationID, "2.2", inr_test_timestamp.csp_payload);       
     post_external_result_instrument(JSON.stringify(body_data)); 
     var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
-    
-    //Prepare result array
-    var result_set = new Array();
-    
+
     var result_set_1 = compare_values(external_result.patient_name, patient.fullname, "Checking patient name is in external result row");
     result_set.push(result_set_1);
     
-    var result_set_1 = compare_values(external_result.patient_dob, patient.dob, "Checking patient dob is in external result row");
-    result_set.push(result_set_1);
-    
-    var result_set_1 = compare_values(external_result.patient_nhs_fiscal, patient.nhs_number, "Checking patient name is in external result row");
+    var result_set_1 = compare_values(external_result.patient_dob, patient.born, "Checking patient dob is in external result row");
     result_set.push(result_set_1);
     
     //Post another message that will not match the patient in order to see Nessuno, if the software matches a patient then it will add the fiscal so it must be unmacthed
-    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
-    var body_data = json_body_data_instrument(patient, location_id, "2.4", inr_test_timestamp.csp_payload);
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 24);
+    var body_data = json_body_data_instrument(patient, patient.LocationID, "2.4", inr_test_timestamp.csp_payload);
     body_data.patient.identifiers[0].alias = "";        
     post_external_result_instrument(JSON.stringify(body_data)); 
     var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
@@ -387,29 +384,65 @@ function tc_patient_column_contains_the_patient_details_for_an_instrument_result
   } 
 }
 //--------------------------------------------------------------------------------
+function tc_patient_result_contains_the_correct_information_for_an_instrument_result()
+{
+  try
+  {
+    var test_title = "Results Tab: Patient Column - Patient result entry contains the correct details for an instrument result"
+    
+    var result_set = new Array();  
+    
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    
+    login(7, "Shared");
+
+    var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 25);
+    var body_data = json_body_data_instrument(patient, patient.LocationID, "2.2", inr_test_timestamp.csp_payload);       
+    post_external_result_instrument(JSON.stringify(body_data)); 
+    var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+    
+    var result_set_1 = compare_values(external_result.inr, "2.2", "Checking patient INR is correct");
+    result_set.push(result_set_1);
+    
+    var result_set_1 = compare_values(external_result.blood_taken_timestamp, inr_test_timestamp.external_results, "Checking patient blood taken timestamp is correct");
+    result_set.push(result_set_1);
+
+    //Validate all the results sets are true & Pass in the result
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_patient_column_contains_the_patient_details_for_an_instrument_result";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//--------------------------------------------------------------------------------
 function tc_unmatched_patient_can_be_manually_matched()
 {
   try
   {
     var test_title = "Results Tab: Unmatched patient can be manually matched"
-    login(7, "Shared");
     var result_set = new Array();  
-    var location_id = get_organization_id_from_current_location();
-    add_patient('clinical' , '', 'M');  
-    add_treatment_plan('W','Manual','','Shared',''); 
-    var patient = get_patient_details_object_from_demographics();
     
-    //Create a mismatched patient to be used for sending in a mismatched result
-    //everything matches created patient with the exception of Surname and DOB
-    var mismatched_patient = patient;  
-    mismatched_patient.last_name = "Unmatched Surname";
-    mismatched_patient.dob_as_dd_mm_yyyy = "15-04-1988";
-  
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    
+    login(7, "Shared");    
+ 
     var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
 
     //Post and Locate posted result
-    var body_data = json_body_data_instrument(mismatched_patient, location_id, "2.6", inr_test_timestamp.csp_payload);         
+    var body_data = json_body_data_instrument(patient, patient.LocationID, "2.6", inr_test_timestamp.csp_payload);   
+    body_data.patient.lastName = "Unmatched Surname";
+    body_data.patient.dob = "15-04-1988";
     post_external_result_instrument(JSON.stringify(body_data)); 
+    
     var mismatched_external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
     //Check the Find patient button is displayed for the result - this also proves patient is unmatched
@@ -427,11 +460,11 @@ function tc_unmatched_patient_can_be_manually_matched()
     patient_search_for_unmatched_result(patient.fullname);
     
     //Select dose patient button
-    click_external_result_by_timestamp(inr_test_timestamp.external_results, "Dose");
+    click_external_result_by_timestamp(inr_test_timestamp.external_results, "Patient_link");
     
     //Check the patient name in the banner matches the intended/matched patient
     var patient_shown_in_banner = inrstar_get_patient_details_object_from_bluebar();
-    var result_set_1 = compare_values(patient_shown_in_banner.patientid, patient.patientid, test_title);
+    var result_set_1 = compare_values(patient_shown_in_banner.patientid, patient.INRstarID, test_title);
     result_set.push(result_set_1);
     
     //Validate the results sets are true
@@ -573,6 +606,9 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
     //Login to OTHER location in order to extract UUID of location
     get_tokens_via_powershell("17");
     var other_location_id = get_locationid();
+    
+    //Login to intended location
+    get_tokens_via_powershell();
     var patient = insert_patient(); 
     var result_set = new Array();  
     
@@ -587,7 +623,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       post_external_result_instrument(JSON.stringify(body_data)); 
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-      //Check the result is present and shows the INRstarID that was sent in
+      //Check the result is present and shows the NHS/Fiscal number that was sent in
       var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
       result_set.push(result_set_1);
     
@@ -614,4 +650,523 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
     var test_name = "tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_a_different_but_valid_inrstar_testing_section";
     handle_failed_tests(suite_name, test_name); 
   } 
+}
+//-----------------------------------------------------------------------------------------------------
+function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_when_a_duplicate_patient_exists_elsewhere()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects patients testing section - when a duplicate patient exists elsewhere";
+    var generated_patient = patient_generator(); 
+    
+    //Login to a seperate Location and add the generated_patient there
+    get_tokens_via_powershell("17");
+    var patient_for_other_location = insert_patient(generated_patient)
+  
+    //Login to usual location and add same DUPLICATE generated_patient there
+    get_tokens_via_powershell();
+    var patient_for_default_location = insert_patient(generated_patient); 
+
+    var result_set = new Array();
+
+    //Get timestamp post and Locate posted result
+    var inr_test_timestamp_for_other_location = get_timestamps_for_now_object_with_changed_hours('-', 2);
+    var body_data_for_other_location = json_body_data_instrument(patient_for_other_location, patient_for_other_location.LocationID, "2.0", inr_test_timestamp_for_other_location.csp_payload);   
+    body_data_for_other_location.patient.identifiers[0].alias = patient_for_other_location.INRstarID;      
+    post_external_result_instrument(JSON.stringify(body_data_for_other_location)); 
+    
+    //Get timestamp post and Locate posted result
+    var inr_test_timestamp_for_default_location = get_timestamps_for_now_object_with_changed_hours('-', 3);
+    var body_data_for_default_location = json_body_data_instrument(patient_for_default_location, patient_for_default_location.LocationID, "2.2", inr_test_timestamp_for_default_location.csp_payload);     
+    body_data_for_default_location.patient.identifiers[0].alias = patient_for_default_location.INRstarID;  
+    post_external_result_instrument(JSON.stringify(body_data_for_default_location)); 
+      
+   login(7, "Shared");
+      
+      var expected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_default_location.external_results);
+      var unexpected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_other_location.external_results); 
+      
+      //Check the expected result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(patient_for_default_location.nhs_number, expected_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      //Check the expected result is automatched
+      var result_set_1 = compare_values(expected_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
+      result_set.push(result_set_1);
+      
+      //Check the unexpected result is NOT present       
+      var result_set_1 = compare_values(unexpected_result.row, false, test_title);
+      result_set.push(result_set_1);
+      
+   Log_Off(); 
+   
+   login(17, "Shared");
+      
+      var expected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_other_location.external_results); 
+      var unexpected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_default_location.external_results);
+      
+      //Check the expected result is present and shows the NHS/Fiscal number that was sent in for patient_for_other_location
+      var result_set_1 = compare_values(patient_for_other_location.nhs_number, expected_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      //Check the expected result is automatched
+      var result_set_1 = compare_values(expected_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
+      result_set.push(result_set_1);
+      
+      //Check the unexpected result is NOT present     
+      var result_set_1 = compare_values(unexpected_result.row, false, test_title);
+      result_set.push(result_set_1);     
+
+    Log_Off(); 
+    
+    //Validate all the results sets are true & Pass in the result
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title); 
+    
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_when_a_duplicate_patient_exists_elsewhere";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//--------------------------------------------------------------------------------
+function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_is_unknown_to_inrstar()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID is unknown to INRstar"
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();  
+    var unknown_location_id = "40c2bc74-0719-4286-9cd4-41cfc178c96c";
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, unknown_location_id, "2.6", inr_test_timestamp.csp_payload);     
+      body_data.patient.identifiers[0].alias = patient.INRstarID;    
+      post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+    
+    Log_Off();
+    
+    login(17, "Shared");
+    
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+    
+      //Check the result is NOT present in the OTHER location
+      var result_set_1 = compare_values(external_result.row, false, test_title);
+      result_set.push(result_set_1);
+    
+      //Validate the results sets are true - Pass in the result
+      var results = results_checker_are_true(result_set);
+  		results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_is_unknown_to_inrstar";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//--------------------------------------------------------------------------------
+function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects patients testing section"
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, patient.LocationID, "2.6", inr_test_timestamp.csp_payload);     
+      body_data.patient.identifiers[0].alias = patient.INRstarID;    
+      post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      //Validate all the results sets are true & Pass in the result
+      var results = results_checker_are_true(result_set);
+      results_checker(results, test_title);       
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//------------------------------------------------------------------------
+function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_where_id_does_not_exist_in_patient_database()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects patients testing section - where ID does not exist in patient database"
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();
+    var bogus_id = "INRSTARID99999999999";
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, patient.LocationID, "2.6", inr_test_timestamp.csp_payload);     
+      body_data.patient.identifiers[0].alias = bogus_id;   
+      post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(bogus_id, external_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      var result_set_1 = compare_values(external_result.status_column_value1, get_string_translation("Find Patient"), test_title);
+      result_set.push(result_set_1);
+      
+      //Validate all the results sets are true & Pass in the result
+      var results = results_checker_are_true(result_set);
+      results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_where_id_does_not_exist_in_patient_database";
+    handle_failed_tests(suite_name, test_name); 
+  }
+}
+//-----------------------------------------------------------------------------------------------------
+function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_where_id_does_not_exist_in_patient_database_and_contains_non_numeric_chars()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects patients testing section - where ID does not exist in patient database & contains non-numeric chars"
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();
+    var bogus_id = "INRSTARIDABCDEF";
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, patient.LocationID, "2.6", inr_test_timestamp.csp_payload);     
+      body_data.patient.identifiers[0].alias = bogus_id;   
+      post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(bogus_id, external_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      var result_set_1 = compare_values(external_result.status_column_value1, get_string_translation("Find Patient"), test_title);
+      result_set.push(result_set_1);
+      
+      //Validate all the results sets are true & Pass in the result
+      var results = results_checker_are_true(result_set);
+      results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_where_id_does_not_exist_in_patient_database";
+    handle_failed_tests(suite_name, test_name); 
+  }
+}
+//-----------------------------------------------------------------------------------------------------
+function tc_inrstarid_used_as_patient_identifier_results_are_rejected_from_inrstar_if_organizationid_is_unknown_to_inrstar_where_id_does_not_match_a_patient_in_the_database()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are rejected from INRstar if organizationID is unknown to INRstar - where ID does not match a patient in the database"
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();
+    var bogus_id = "INRSTARID9999999999999";
+    var unknown_location_id = "40c2bc74-0719-4286-9cd4-41cfc178c96c";
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, unknown_location_id, "2.6", inr_test_timestamp.csp_payload);     
+      body_data.patient.identifiers[0].alias = bogus_id;   
+      var result_post_response = post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the response of the attempted post - Response Ideally should reject with a 400 or 404
+      var result_set_1 = compare_values(result_post_response.StatusCode, "500", test_title); 
+      result_set.push(result_set_1);
+      
+      //Check the result is NOT present     
+      var result_set_1 = compare_values(external_result.row, false, test_title);
+      result_set.push(result_set_1);
+      
+      //Validate all the results sets are true & Pass in the result
+      var results = results_checker_are_true(result_set);
+      results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_inrstarid_used_as_patient_identifier_results_are_rejected_from_inrstar_if_organizationid_is_unknown_to_inrstar_where_id_does_not_match_a_patient_in_the_database";
+    handle_failed_tests(suite_name, test_name); 
+  }
+}
+//-----------------------------------------------------------------------------------------------------
+function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: NHS/Fiscal used as patient identifier, results are routed to intended location if organizationID reflects patients testing section"
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, patient.LocationID, "2.6", inr_test_timestamp.csp_payload);     
+      post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      //Check the result is automatched
+      var result_set_1 = compare_values(external_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
+      result_set.push(result_set_1);
+      
+      //Validate all the results sets are true & Pass in the result
+      var results = results_checker_are_true(result_set);
+      results_checker(results, test_title);       
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//-----------------------------------------------------------------------------------------------------
+function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_when_a_duplicate_patient_exists_elsewhere()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: NHS/Fiscal used as patient identifier, results are routed to intended location if organizationID reflects patients testing section - When a duplicate patient exists elsewhere";
+    var generated_patient = patient_generator(); 
+    
+    //Login to a seperate Location and add the generated_patient there
+    get_tokens_via_powershell("17");
+    var patient_for_other_location = insert_patient(generated_patient)
+  
+    //Login to usual location and add same DUPLICATE generated_patient there
+    get_tokens_via_powershell();
+    var patient_for_default_location = insert_patient(generated_patient); 
+
+    var result_set = new Array();
+
+    //Get timestamp post and Locate posted result
+    var inr_test_timestamp_for_other_location = get_timestamps_for_now_object_with_changed_hours('-', 2);
+    var body_data_for_other_location = json_body_data_instrument(patient_for_other_location, patient_for_other_location.LocationID, "2.0", inr_test_timestamp_for_other_location.csp_payload);     
+    post_external_result_instrument(JSON.stringify(body_data_for_other_location)); 
+    
+    //Get timestamp post and Locate posted result
+    var inr_test_timestamp_for_default_location = get_timestamps_for_now_object_with_changed_hours('-', 3);
+    var body_data_for_default_location = json_body_data_instrument(patient_for_default_location, patient_for_default_location.LocationID, "2.2", inr_test_timestamp_for_default_location.csp_payload);     
+    post_external_result_instrument(JSON.stringify(body_data_for_default_location)); 
+      
+   login(7, "Shared");
+      
+      var expected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_default_location.external_results);
+      var unexpected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_other_location.external_results); 
+      
+      //Check the expected result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(patient_for_default_location.nhs_number, expected_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      //Check the expected result is automatched
+      var result_set_1 = compare_values(expected_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
+      result_set.push(result_set_1);
+      
+      //Check the unexpected result is NOT present       
+      var result_set_1 = compare_values(unexpected_result.row, false, test_title);
+      result_set.push(result_set_1);
+      
+   Log_Off(); 
+   
+   login(17, "Shared");
+      
+      var expected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_other_location.external_results); 
+      var unexpected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_default_location.external_results);
+      
+      //Check the expected result is present and shows the NHS/Fiscal number that was sent in for patient_for_other_location
+      var result_set_1 = compare_values(patient_for_other_location.nhs_number, expected_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+      
+      //Check the expected result is automatched
+      var result_set_1 = compare_values(expected_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
+      result_set.push(result_set_1);
+      
+      //Check the unexpected result is NOT present     
+      var result_set_1 = compare_values(unexpected_result.row, false, test_title);
+      result_set.push(result_set_1);     
+
+    Log_Off(); 
+    
+    //Validate all the results sets are true & Pass in the result
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title); 
+    
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_intended_location_if_organizationid_reflects_patients_testing_section_when_a_duplicate_patient_exists_elsewhere";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//-----------------------------------------------------------------------------------------------------
+function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_unintended_location_if_organizationid_reflects_a_different_but_valid_inr_testing_Location()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: NHS/Fiscal used as patient identifier, results are routed to unintended location if organizationID reflects a different but valid INRstar testing Location"
+    
+    //Login to OTHER location in order to extract UUID of location
+    get_tokens_via_powershell("17");
+    var other_location_id = get_locationid();
+    
+    //Login to intended location
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();  
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, other_location_id, "2.6", inr_test_timestamp.csp_payload);        
+      post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the result is NOT present in the OTHER location
+      var result_set_1 = compare_values(external_result.row, false, test_title);
+      result_set.push(result_set_1);
+    
+    Log_Off();
+    
+    login(17, "Shared");
+    
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+    
+      //Check the result is present and shows the NHS/Fiscal number that was sent in
+      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
+      result_set.push(result_set_1);
+    
+      //Validate the results sets are true - Pass in the result
+      var results = results_checker_are_true(result_set);
+  		results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_unintended_location_if_organizationid_reflects_a_different_but_valid_inr_testing_Location";
+    handle_failed_tests(suite_name, test_name); 
+  } 
+}
+//-----------------------------------------------------------------------------------------------------
+function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_rejected_from_inrstar_if_organizationid_is_unknown_to_inrstar()
+{
+  try
+  {
+    var test_title = "Instrument: Location Matching: NHS/Fiscal used as patient identifier, results are rejected from INRstar if organizationID is unknown to INRstar"
+    get_tokens_via_powershell();
+    var patient = insert_patient(); 
+    var result_set = new Array();
+    var unknown_location_id = "40c2bc74-0719-4286-9cd4-41cfc178c96c";
+    
+    login(7, "Shared");
+       
+      //Get timestamp
+      var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
+
+      //Post and Locate posted result
+      var body_data = json_body_data_instrument(patient, unknown_location_id, "2.6", inr_test_timestamp.csp_payload);     
+      var result_post_response = post_external_result_instrument(JSON.stringify(body_data)); 
+      var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
+      
+      //Check the response of the attempted post - Response Ideally should reject with a 400 or 404
+      var result_set_1 = compare_values(result_post_response.StatusCode, "500", test_title); 
+      result_set.push(result_set_1);
+      
+      //Check the result is NOT present     
+      var result_set_1 = compare_values(external_result.row, false, test_title);
+      result_set.push(result_set_1);
+      
+      //Validate all the results sets are true & Pass in the result
+      var results = results_checker_are_true(result_set);
+      results_checker(results, test_title); 
+
+    Log_Off(); 
+  }
+  catch(e)
+  {
+    Log.Warning("Test \"" + test_title + "\" FAILED Exception Occured = " + e);
+    var suite_name = "TC_Results";
+    var test_name = "tc_nhs_or_fiscal_used_as_patient_identifier_results_are_rejected_from_inrstar_if_organizationid_is_unknown_to_inrstar";
+    handle_failed_tests(suite_name, test_name); 
+  }
 }

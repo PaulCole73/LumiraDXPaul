@@ -885,7 +885,9 @@ function post_external_result_instrument(body_payload)
 
   //Call upon api_post() to send the request
   Log.Message("Payload sent as:  " + body_payload );
-  api_post(address, headers, body_payload)
+  var response = api_post(address, headers, body_payload)
+  
+  return response
 }
 //--------------------------------------------------------------------------------
 function archive_treatment(row, action)

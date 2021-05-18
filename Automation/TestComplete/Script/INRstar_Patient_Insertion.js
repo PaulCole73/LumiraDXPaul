@@ -16,6 +16,7 @@ function add_a_patient_with_treatment_plan_under_the_hood()
     var test_title = "add_a_patient_with_treatment_plan_under_the_hood"
   
     //Add patient with Treatment Plan
+    get_tokens_via_powershell();
     var patient = insert_patient(); 
     var treatment_plan = insert_treatment_plan(patient);
 
@@ -30,16 +31,19 @@ function add_a_patient_with_treatment_plan_under_the_hood()
 }
 
 //-----------------------------------------------------------------------------------
-function insert_patient()
-{
-  //Get tokens and establish URL
-  get_tokens_via_powershell();
+function insert_patient(patient)
+{    
+  //Generate Patient unless a patient has been passed in
+  if (typeof patient == "undefined")
+  {
+    var patient = patient_generator(); 
+  }
   
   //Make under the hood call in order to Grab patient insertion id and token
   var patient_insert_tokens = get_token_for_patient_insert();
   
-  //Generate Patient including patient_insert_tokens
-  var patient = patient_generator(patient_insert_tokens); 
+  //Amend the patient so that it includes the token and ID required by the endpoint
+  patient = attach_patient_insert_tokens_to_patient(patient, patient_insert_tokens)
   
   //Convert & encode patient object into requestBody format
   var requestBody = "";
@@ -74,7 +78,7 @@ function insert_patient()
     Log.Message("Error: Patient has not been created");
   }
   
-  return patient;
+  return JSON.parse(JSON.stringify(patient));
 }
 //-----------------------------------------------------------------------------------
 function get_token_for_patient_insert()
@@ -99,10 +103,10 @@ function get_token_for_patient_insert()
   patient_insert_tokens["new_patient_token_ID"]=new_patient_token_ID;
   patient_insert_tokens["__RequestVerificationToken"]=__RequestVerificationToken;
 
-  return patient_insert_tokens;
+  return JSON.parse(JSON.stringify(patient_insert_tokens));
 }
 //-----------------------------------------------------------------------------------
-function patient_generator(patient_insert_tokens)
+function patient_generator()
 {
     //Create an object to store all patient data
     var patient_data = new Object();
@@ -154,8 +158,6 @@ function patient_generator(patient_insert_tokens)
     
     //Patient Insert Parameters
     patient_data.externalResultId = "";
-    patient_data.id = patient_insert_tokens.new_patient_token_ID;
-    patient_data.__RequestVerificationToken = patient_insert_tokens.__RequestVerificationToken;
     
     //These are temporary until we rid of create_patient_object_for_fiscal
     patient_data.nhs_number = patient_data.NHSNumber;
@@ -163,5 +165,13 @@ function patient_generator(patient_insert_tokens)
     patient_data.first_name = patient_data.firstname;
     patient_data.dob = patient_data.born;
 
-    return patient_data;
+    return JSON.parse(JSON.stringify(patient_data));
+}
+//-----------------------------------------------------------------------------------
+function attach_patient_insert_tokens_to_patient(patient, patient_insert_tokens)
+{
+  patient.id = patient_insert_tokens.new_patient_token_ID;
+  patient.__RequestVerificationToken = patient_insert_tokens.__RequestVerificationToken;
+  
+  return JSON.parse(JSON.stringify(patient));
 }
