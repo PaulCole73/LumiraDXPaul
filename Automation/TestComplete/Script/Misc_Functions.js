@@ -1321,7 +1321,7 @@ function generate_nhs_number()
 //-----------------------------------------------------------------------------------
 function get_inrstarid_using_uuid(id)
 {
-  //Only works if get_tokens_via_powershell() has been run 
+  //Only works if login_under_the_hood() has been run 
   //this is ran as part of insert_patient() so tread carefully if adjusting
   
   var address = "https://" + Project.Variables.hostname + "/Patient/ViewRecord?patientId=" + id;
@@ -1337,7 +1337,7 @@ function get_inrstarid_using_uuid(id)
 //-----------------------------------------------------------------------------------
 function get_locationid()
 {
-  //Only works if get_tokens_via_powershell() has been run 
+  //Only works if login_under_the_hood() has been run 
   //this is ran as part of insert_patient() so tread carefully if adjusting
   
   var address = "https://" + Project.Variables.hostname + "/Location";

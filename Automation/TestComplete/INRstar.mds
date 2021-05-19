@@ -2456,7 +2456,7 @@
 							</testItem>
 						</children>
 					</testItem>
-					<testItem name="LDx1 Instrument results" key="{35961617-763F-4AD5-B35A-99619B0DE8A7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="LDx1 Error when importing an INR result into INRstar" key="{35961617-763F-4AD5-B35A-99619B0DE8A7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="LDx1/C56 Inrstar mandatory fields will reflect that of the instrument() " key="{E1668B26-BE30-48D3-831A-E79EE2601837}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">

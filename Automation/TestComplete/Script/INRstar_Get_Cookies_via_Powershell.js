@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------------//
 /////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------
-function get_tokens_via_powershell(login_user)
+function login_under_the_hood(login_user)
 {
     
     get_hostname(); 
@@ -14,7 +14,7 @@ function get_tokens_via_powershell(login_user)
     
     if (login_user != null)
     {
-      var username = login_details[login_user];
+      var username = login_details[17];
     }
     else
     {

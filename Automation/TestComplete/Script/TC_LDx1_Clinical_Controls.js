@@ -4,7 +4,7 @@
 //LDx1
  
 //==============================================================================//
-function cc_LDx1_C56_inrstar_mandatory_fields_will_reflect_that_of_the_instrument() 
+function cc_LDx1_C56_error_when_importing_an_inr_result_into_inrstar() 
 {
 //  LDx1/C56-INRstar mandatory fields will reflect that of the instrument, so results 
 //  sent will always be received with a min result, time and date stamp shown. 
