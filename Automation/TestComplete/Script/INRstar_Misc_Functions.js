@@ -329,3 +329,34 @@ function validate_bottom_patient_audit(test_case_title, w_data)
   }
 }
 //-----------------------------------------------------------------------------------
+function get_inrstarid_using_uuid(id)
+{
+  //Only works if login_under_the_hood() has been run 
+  //this is ran as part of insert_patient() so tread carefully if adjusting
+  
+  var address = "https://" + Project.Variables.hostname + "/Patient/ViewRecord?patientId=" + id;
+  
+  var headers = new Object();
+  headers["Cookie"] = Project.Variables.cookie_jar;
+  
+  var response = String(api_get(address, headers));
+  var inrstarid = response.match(/INRSTARID[^"<]*/)[0];
+
+  return inrstarid
+}
+//-----------------------------------------------------------------------------------
+function get_locationid()
+{
+  //Only works if login_under_the_hood() has been run 
+  //this is ran as part of insert_patient() so tread carefully if adjusting
+  
+  var address = "https://" + Project.Variables.hostname + "/Location";
+  
+  var headers = new Object();
+  headers["Cookie"] = Project.Variables.cookie_jar;
+  
+  var response = String(api_get(address, headers));
+  var locationid = response.match(/\/Location\/Edit\/([^&]*)/)[1];
+
+  return locationid
+}

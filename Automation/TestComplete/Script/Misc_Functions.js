@@ -16,8 +16,8 @@
 //Setup environment variable either from cmd line or default
 
 var language = "English";
-var environment = "INRstarWindowsUK-test1";
-var environmentname = "uk-test1";
+var environment = "INRstarWindowsUK-int1";
+var environmentname = "uk-int1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -1317,36 +1317,4 @@ function generate_nhs_number()
   Log.Message(nhs_number)
   
   return nhs_number
-}
-//-----------------------------------------------------------------------------------
-function get_inrstarid_using_uuid(id)
-{
-  //Only works if login_under_the_hood() has been run 
-  //this is ran as part of insert_patient() so tread carefully if adjusting
-  
-  var address = "https://" + Project.Variables.hostname + "/Patient/ViewRecord?patientId=" + id;
-  
-  var headers = new Object();
-  headers["Cookie"] = Project.Variables.cookie_jar;
-  
-  var response = String(api_get(address, headers));
-  var inrstarid = response.match(/INRSTARID[^"<]*/)[0];
-
-  return inrstarid
-}
-//-----------------------------------------------------------------------------------
-function get_locationid()
-{
-  //Only works if login_under_the_hood() has been run 
-  //this is ran as part of insert_patient() so tread carefully if adjusting
-  
-  var address = "https://" + Project.Variables.hostname + "/Location";
-  
-  var headers = new Object();
-  headers["Cookie"] = Project.Variables.cookie_jar;
-  
-  var response = String(api_get(address, headers));
-  var locationid = response.match(/\/Location\/Edit\/([^&]*)/)[1];
-
-  return locationid
 }

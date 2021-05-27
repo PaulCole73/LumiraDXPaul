@@ -717,7 +717,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       //Post and Locate posted result
       var body_data = json_body_data_instrument(patient, '40c2bc74-0719-4286-9cd4-41cfc178c96c', '2.6', inr_test_timestamp.csp_payload);     
       body_data.patient.identifiers[0].alias = patient.INRstarID;    
-      post_external_result_instrument(JSON.stringify(body_data)); 
+      post_external_result_instrument(JSON.stringify(body_data));
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
       //Check the result is present and shows the NHS/Fiscal number that was sent in
@@ -725,6 +725,11 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       result_set.push(result_set_1);
     
     Log_Off(); 
+    
+    //Validate all the results sets are true & Pass in the result
+    var results = results_checker_are_true(result_set);
+    results_checker(results, test_title);  
+    
   }
   catch(e)
   {
@@ -875,7 +880,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_rejected_from_inrst
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
       //Check the response of the attempted post - Response Ideally should reject with a 400 or 404
-      var result_set_1 = compare_values(result_post_response.StatusCode, "500", test_title); 
+      var result_set_1 = compare_values(result_post_response.StatusCode, "404", test_title); 
       result_set.push(result_set_1);
       
       //Check the result is NOT present     
@@ -1056,7 +1061,6 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_rejected_from_i
     var test_title = "Instrument: Location Matching: NHS/Fiscal used as patient identifier, results are rejected from INRstar if organizationID is unknown to INRstar"
     var patient = insert_patient(); 
     var result_set = new Array();
-    var unknown_location_id = "40c2bc74-0719-4286-9cd4-41cfc178c96c";
     
     login(7, "Shared");
        
@@ -1064,12 +1068,12 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_rejected_from_i
       var inr_test_timestamp = get_timestamps_for_now_object_with_changed_hours('-', 2);
 
       //Post and Locate posted result
-      var body_data = json_body_data_instrument(patient, unknown_location_id, "2.6", inr_test_timestamp.csp_payload);     
+      var body_data = json_body_data_instrument(patient, "40c2bc74-0719-4286-9cd4-41cfc178c96c", "2.6", inr_test_timestamp.csp_payload);     
       var result_post_response = post_external_result_instrument(JSON.stringify(body_data)); 
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
       //Check the response of the attempted post - Response Ideally should reject with a 400 or 404
-      var result_set_1 = compare_values(result_post_response.StatusCode, "500", test_title); 
+      var result_set_1 = compare_values(result_post_response.StatusCode, "404", test_title); 
       result_set.push(result_set_1);
       
       //Check the result is NOT present     
