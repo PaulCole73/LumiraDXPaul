@@ -331,7 +331,7 @@ function validate_bottom_patient_audit(test_case_title, w_data)
 //-----------------------------------------------------------------------------------
 function get_inrstarid_using_uuid(id)
 {
-  //Only works if login_under_the_hood() has been run 
+  //Only works if inrstar_login_under_the_hood() has been run 
   //this is ran as part of insert_patient() so tread carefully if adjusting
   
   var address = "https://" + Project.Variables.hostname + "/Patient/ViewRecord?patientId=" + id;
@@ -347,7 +347,7 @@ function get_inrstarid_using_uuid(id)
 //-----------------------------------------------------------------------------------
 function get_locationid()
 {
-  //Only works if login_under_the_hood() has been run 
+  //Only works if inrstar_login_under_the_hood() has been run 
   //this is ran as part of insert_patient() so tread carefully if adjusting
   
   var address = "https://" + Project.Variables.hostname + "/Location";

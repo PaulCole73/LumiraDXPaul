@@ -2459,7 +2459,7 @@
 					<testItem name="LDx1 Error when importing an INR result into INRstar" key="{35961617-763F-4AD5-B35A-99619B0DE8A7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="LDx1/C56 Inrstar mandatory fields will reflect that of the instrument" key="{E1668B26-BE30-48D3-831A-E79EE2601837}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="LDx1/C56 Inrstar mandatory fields will reflect that of the instrument" key="{E1668B26-BE30-48D3-831A-E79EE2601837}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_patient_column_contains_the_patient_details_for_an_instrument_result();" key="{EC02BA82-B8D7-4B63-B8EE-E18A63890EAC}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_patient_column_contains_the_patient_details_for_an_instrument_result" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2484,7 +2484,7 @@
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="LDx1/C63 Minimum identifiers will be used to reconcile INR results received and error alert when failed&#13;&#10;" key="{42807169-D7E3-43BD-A032-359CCE65D109}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="LDx1/C63 Minimum identifiers will be used to reconcile INR results received and error alert when failed&#13;&#10;" key="{42807169-D7E3-43BD-A032-359CCE65D109}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
 									<testItem name="tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched();" key="{73E01436-C26D-4431-9F1B-B2116E72EBC6}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">

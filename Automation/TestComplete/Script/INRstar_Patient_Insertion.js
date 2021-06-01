@@ -16,7 +16,7 @@ function add_a_patient_with_treatment_plan_under_the_hood()
     var test_title = "add_a_patient_with_treatment_plan_under_the_hood"
   
     //Add patient with Treatment Plan
-    login_under_the_hood();
+    inrstar_login_under_the_hood(7);
     var patient = insert_patient(); 
     var treatment_plan = insert_treatment_plan(patient);
 
@@ -31,33 +31,12 @@ function add_a_patient_with_treatment_plan_under_the_hood()
 }
 
 //-----------------------------------------------------------------------------------
-function insert_patient(patient_overides, patient)
+function insert_patient(patient)
 {    
   //Generate Patient unless a patient has been passed in
   if (typeof patient == "undefined")
   {
     var patient = patient_generator(); 
-  }
-  
-  //This will check if any patient_overides have been passed in
-  if (typeof patient_overides != "undefined")
-  {
-    //This will handle if the user wishes to add patient into other location
-    if (typeof patient_overides.location != "undefined")
-    {
-      //Login to other location if the user passes in the location overide
-      login_under_the_hood("other location");
-    }
-    else
-    {
-      //Otherwise login into the usual location
-      login_under_the_hood();
-    }
-  }
-  else
-  {
-    //Otherwise login into the usual location
-    login_under_the_hood();
   }
   
   //Make under the hood call in order to Grab patient insertion id and token
