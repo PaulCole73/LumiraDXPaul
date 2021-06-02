@@ -616,7 +616,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
       //Check the result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
+      var result_set_1 = (external_result.row != false);
       result_set.push(result_set_1);
     
     Log_Off();
@@ -626,7 +626,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
     
       //Check the result is NOT present in the OTHER location
-      var result_set_1 = results_checker_is_false(external_result.row)
+      var result_set_1 = results_checker_is_false(external_result.row);
       result_set.push(result_set_1);
     
       //Validate the results sets are true - Pass in the result
@@ -658,7 +658,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
     
     //Add the generated_patient in the usual location
     inrstar_login_under_the_hood(7);
-      var patient_for_default_location = insert_patient(generated_patient)
+      var patient_for_default_location = insert_patient(generated_patient);
 
     //Get timestamp post and Locate posted result
     var inr_test_timestamp_for_default_location = get_timestamps_for_now_object_with_changed_hours('-', 2);
@@ -671,11 +671,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       var expected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_default_location.external_results);
       
       //Check the expected result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values(patient_for_default_location.nhs_number, expected_result.patient_nhs_fiscal, test_title);
-      result_set.push(result_set_1);
-      
-      //Check the expected result is automatched
-      var result_set_1 = compare_values(expected_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
+      var result_set_1 = (expected_result.row != false);
       result_set.push(result_set_1);
       
    Log_Off(); 
@@ -708,7 +704,6 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
   try
   {
     var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID is unknown to INRstar"
-    var result_set = new Array();
     
     inrstar_login_under_the_hood(7);
       var patient = insert_patient();   
@@ -724,15 +719,13 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       post_external_result_instrument(JSON.stringify(body_data));
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-      //Check the result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
-      result_set.push(result_set_1);
+      //Check the result is present 
+      var result = (external_result.row != false);
+      
+      //Validate all the results sets are true & Pass in the result
+      results_checker(result, test_title); 
     
     Log_Off(); 
-    
-    //Validate all the results sets are true & Pass in the result
-    var results = results_checker_are_true(result_set);
-    results_checker(results, test_title);  
     
   }
   catch(e)
@@ -749,7 +742,6 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
   try
   {
     var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects patients testing section"
-    var result_set = new Array();
     
     inrstar_login_under_the_hood(7);
       var patient = insert_patient(); 
@@ -765,13 +757,11 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       post_external_result_instrument(JSON.stringify(body_data)); 
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-      //Check the result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
-      result_set.push(result_set_1);
+      //Check the result is present 
+      var result = (external_result.row != false);
       
       //Validate all the results sets are true & Pass in the result
-      var results = results_checker_are_true(result_set);
-      results_checker(results, test_title);       
+      results_checker(result, test_title); 
 
     Log_Off(); 
   }
@@ -789,7 +779,6 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
   try
   {
     var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects patients testing section - where ID does not exist in patient database"
-    var result_set = new Array();
     
     inrstar_login_under_the_hood(7);
       var patient = insert_patient(); 
@@ -805,16 +794,11 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       post_external_result_instrument(JSON.stringify(body_data)); 
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-      //Check the result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values('INRSTARID99999999999', external_result.patient_nhs_fiscal, test_title);
-      result_set.push(result_set_1);
-      
-      var result_set_1 = compare_values(external_result.status_column_value1, get_string_translation("Find Patient"), test_title);
-      result_set.push(result_set_1);
+      //Check the result is present 
+      var result = (external_result.row != false);
       
       //Validate all the results sets are true & Pass in the result
-      var results = results_checker_are_true(result_set);
-      results_checker(results, test_title); 
+      results_checker(result, test_title); 
 
     Log_Off(); 
   }
@@ -832,7 +816,6 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
   try
   {
     var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are routed to intended location if organizationID reflects patients testing section - where ID does not exist in patient database & contains non-numeric chars"
-    var result_set = new Array();
     
     inrstar_login_under_the_hood(7);
       var patient = insert_patient(); 
@@ -848,16 +831,11 @@ function tc_inrstarid_used_as_patient_identifier_results_are_routed_to_intended_
       post_external_result_instrument(JSON.stringify(body_data)); 
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-      //Check the result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values('INRSTARIDABCDEF', external_result.patient_nhs_fiscal, test_title);
-      result_set.push(result_set_1);
-      
-      var result_set_1 = compare_values(external_result.status_column_value1, get_string_translation("Find Patient"), test_title);
-      result_set.push(result_set_1);
+      //Check the result is present 
+      var result = (external_result.row != false);
       
       //Validate all the results sets are true & Pass in the result
-      var results = results_checker_are_true(result_set);
-      results_checker(results, test_title); 
+      results_checker(result, test_title); 
 
     Log_Off(); 
   }
@@ -877,6 +855,7 @@ function tc_inrstarid_used_as_patient_identifier_results_are_rejected_from_inrst
     var test_title = "Instrument: Location Matching: INRstarID used as patient identifier, results are rejected from INRstar if organizationID is unknown to INRstar - where ID does not match a patient in the database"
     var result_set = new Array();
     var expected_result_code = "500";
+    if (language == "Italian") {expected_result_code = "404"}
     
     inrstar_login_under_the_hood(7);
       var patient = insert_patient(); 
@@ -893,7 +872,6 @@ function tc_inrstarid_used_as_patient_identifier_results_are_rejected_from_inrst
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
       //Check the response of the attempted post - Response Ideally should reject with a 404 italy does but UK responds with 500
-      if (language == "Italian") {expected_result_code = "404"}
       var result_set_1 = compare_values(result_post_response.StatusCode, expected_result_code, test_title); 
       result_set.push(result_set_1);
       
@@ -936,17 +914,11 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_inten
       post_external_result_instrument(JSON.stringify(body_data)); 
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-      //Check the result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
-      result_set.push(result_set_1);
-      
-      //Check the result is automatched
-      var result_set_1 = compare_values(external_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
-      result_set.push(result_set_1);
+      //Check the result is present 
+      var result = (external_result.row != false);
       
       //Validate all the results sets are true & Pass in the result
-      var results = results_checker_are_true(result_set);
-      results_checker(results, test_title);       
+      results_checker(result, test_title);        
 
     Log_Off(); 
   }
@@ -984,12 +956,8 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_inten
       
       var expected_result = get_external_results_received_by_timestamp(inr_test_timestamp_for_default_location.external_results);
       
-      //Check the expected result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values(patient_for_default_location.nhs_number, expected_result.patient_nhs_fiscal, test_title);
-      result_set.push(result_set_1);
-      
-      //Check the expected result is automatched
-      var result_set_1 = compare_values(expected_result.status_column_value1, get_string_translation("Dose Patient"), test_title);
+      //Check the expected result is present
+      var result_set_1 = (expected_result.row != false);
       result_set.push(result_set_1);
       
    Log_Off(); 
@@ -1040,11 +1008,10 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_unint
 
       //Post and Locate posted result
       var body_data = json_body_data_instrument(patient, other_location_id, "2.6", inr_test_timestamp.csp_payload);  
-            
       post_external_result_instrument(JSON.stringify(body_data)); 
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
-      //Check the result is NOT present in the OTHER location
+      //Check the result is NOT present in this location
       var result_set_1 = results_checker_is_false(external_result.row)
       result_set.push(result_set_1);
     
@@ -1055,7 +1022,7 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_routed_to_unint
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
     
       //Check the result is present and shows the NHS/Fiscal number that was sent in
-      var result_set_1 = compare_values(patient.nhs_number, external_result.patient_nhs_fiscal, test_title);
+      var result_set_1 = (external_result.row != false);
       result_set.push(result_set_1);
     
       //Validate the results sets are true - Pass in the result
@@ -1079,7 +1046,8 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_rejected_from_i
   {
     var test_title = "Instrument: Location Matching: NHS/Fiscal used as patient identifier, results are rejected from INRstar if organizationID is unknown to INRstar"
     var result_set = new Array();
-    var expected_result_code = "500"
+    var expected_result_code = "500";
+    if (language == "Italian") {expected_result_code = "404"}
     
     inrstar_login_under_the_hood(7);
       var patient = insert_patient(); 
@@ -1095,12 +1063,11 @@ function tc_nhs_or_fiscal_used_as_patient_identifier_results_are_rejected_from_i
       var external_result = get_external_results_received_by_timestamp(inr_test_timestamp.external_results);
       
       //Check the response of the attempted post - Response Ideally should reject with a 404 italy does but UK responds with 500
-      if (language == "Italian") {expected_result_code = "404"}
       var result_set_1 = compare_values(result_post_response.StatusCode, expected_result_code, test_title); 
       result_set.push(result_set_1);
       
       //Check the result is NOT present     
-      var result_set_1 = results_checker_is_false(external_result.row)
+      var result_set_1 = results_checker_is_false(external_result.row);
       result_set.push(result_set_1);
       
       //Validate all the results sets are true & Pass in the result

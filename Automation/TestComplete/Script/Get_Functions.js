@@ -539,10 +539,12 @@ function get_external_results_received_by_timestamp(timestamp, archived)
 {
   Goto_External_Results();
   
+  var results = {"row" : false};
+  
   //Check table exists before proceeding
   var table_exists = Check_if_external_results_table_exists();
   
-  if (table_exists == false) {var results = {"row" : false}; return results;}
+  if (table_exists == false) {return results;}
    
   if (archived == "Archived")
   {
@@ -562,7 +564,7 @@ function get_external_results_received_by_timestamp(timestamp, archived)
   }
 
   //Check table is not empty befor attempting to cylce through it
-  if (table.Cell(1,0).contentText == get_string_translation("There are no new results")) {Log.Message("Table row containing timestamp does not exist"); var results = {"row" : false}; return results;}
+  if (table.Cell(1,0).contentText == get_string_translation("There are no new results")) {Log.Message("Table row containing timestamp does not exist"); return results;}
 
   //Loop through each row of table
   for (row=0; row<table.RowCount; row++)
@@ -600,7 +602,6 @@ function get_external_results_received_by_timestamp(timestamp, archived)
       return results;
     }
   }
-  var results = {"row" : false};
   return results;
 }
 //--------------------------------------------------------------------------------
