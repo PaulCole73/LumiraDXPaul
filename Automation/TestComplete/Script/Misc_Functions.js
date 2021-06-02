@@ -5,6 +5,7 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT System_Paths
 //USEUNIT Translations
+//USEUNIT INRstar_Get_Cookies_via_Powershell
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -14,9 +15,9 @@
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
 
-var language = "Italian";
-var environment = "INRstarWindowsITA-test1";
-var environmentname = "it-test1";
+var language = "English";
+var environment = "INRstarWindowsUK-test1";
+var environmentname = "uk-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -1303,4 +1304,17 @@ function random_word_generator()
   var randomwordCapitalized = randomword.charAt(0).toUpperCase() + randomword.slice(1);
 
 return randomwordCapitalized;
+}
+//-----------------------------------------------------------------------------------
+function generate_nhs_number()
+{
+  var address = "http://danielbayley.co.uk/nhs-number/api/NhsNumbers/GetNhsNumbers";
+  var headers = new Object();
+  headers["Content-Type"] = "application/x-www-form-urlencoded";
+  
+  var response = String(api_get(address, headers));
+  var nhs_number = response.match(/"([^"]*)"/)[1]; //"
+  Log.Message(nhs_number)
+  
+  return nhs_number
 }

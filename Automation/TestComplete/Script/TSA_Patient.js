@@ -146,14 +146,14 @@ function patient_search_for_unmatched_result(patient_search_criteria)
   inrstar_path_external_patient_search_form_search_criteria().Text = patient_search_criteria;
   inrstar_path_external_patient_search_form_search_button().Click();
     
-  WaitSeconds(1, "Wait after patient search...");
+  WaitSeconds(2, "Wait after patient search...");
    
   //After Search - table will always appear - even if no results
   var results_table = patient_search_screen_results_table();
   var cell_content = results_table.Cell(1, 0).contentText;
   
   //This will check if the search was unsuccessful and return the displayed text if that is so
-  if (cell_content == get_string_translation("No patient found"))
+  if (cell_content == get_string_translation("No patients found"))
   {
     return cell_content;
   }
