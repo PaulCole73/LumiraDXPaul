@@ -883,10 +883,7 @@ function tc_treatment_edit_a_treatment_comment()
     var new_comment = 'regression new comment';
     add_treatment_comment(new_comment);
   
-    //Check the audit for adding the treatment
-    var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Treatment record was updated.") + " " + get_string_translation("Comments changed from") +
-                                                              " [" + old_comment +"] " + get_string_translation("to") + " [" + new_comment + "].");
-                                                              
+    //Check the audit for adding the treatment                                                              
     var result_set_1 = validate_more_info_top_treatment_audit(get_string_translation("Treatment record was updated. Comments changed from [old comment] to [regression new comment]."));
                                                               
     result_set.push(result_set_1);
