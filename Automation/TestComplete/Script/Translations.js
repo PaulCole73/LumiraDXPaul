@@ -1678,6 +1678,16 @@ function get_string_translation(string)
 "No patient found"	
     :{
       Italian:	"Nessun paziente trovato"	
+    },
+    
+"There are no new results"	
+    :{
+      Italian:	"Nessun nuovo risultato"	
+    },
+    
+"Treatment record was updated. Comments changed from [old comment] to [regression new comment]."
+    :{
+      Italian: "Treatment cartella clinica è stata aggiornato. Commenti modificato da [old comment]a [regression new comment]."
     }
              
 // ^^^ Insert translations above this line ^^^    

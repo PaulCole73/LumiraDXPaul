@@ -5,6 +5,7 @@
 //USEUNIT INRstar_Navigation
 //USEUNIT System_Paths
 //USEUNIT Translations
+//USEUNIT INRstar_Get_Cookies_via_Powershell
 
 //-----------------------------------------------------------------------------------
 //New file to maintain new/consistent style and minimise duplication
@@ -15,8 +16,8 @@
 //Setup environment variable either from cmd line or default
 
 var language = "Italian";
-var environment = "INRstarWindowsITA-int1";
-var environmentname = "uk-test1";
+var environment = "INRstarWindowsITA-test1";
+var environmentname = "it-test1";
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -486,6 +487,28 @@ function setup_automation(new_config_file_name,locale)
   change_environments(new_config_file_name);
 }
 //-----------------------------------------------------------------------------------
+function count_duplicates(array_data) 
+{
+  //puts the array into an object and gives a count of how many times you have a duplicate  
+  let counts = {},
+  duplicate = 0;
+  
+  array_data.forEach(
+  function(x) 
+  {
+  counts[x] = (counts[x] || 0) + 1;
+  });
+  
+//  Log.Message(counts);
+
+  for (var key in counts) {
+    if (counts.hasOwnProperty(key)) {
+      counts[key] > 1 ? duplicate++ : duplicate;
+    }
+  }
+  return duplicate;
+}
+//--------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------//
 //                                External Apps                                    //
 //---------------------------------------------------------------------------------//
@@ -1282,9 +1305,19 @@ function random_word_generator()
 
 return randomwordCapitalized;
 }
-
-
-
+//-----------------------------------------------------------------------------------
+function generate_nhs_number()
+{
+  var address = "http://danielbayley.co.uk/nhs-number/api/NhsNumbers/GetNhsNumbers";
+  var headers = new Object();
+  headers["Content-Type"] = "application/x-www-form-urlencoded";
+  
+  var response = String(api_get(address, headers));
+  var nhs_number = response.match(/"([^"]*)"/)[1]; //"
+  Log.Message(nhs_number)
+  
+  return nhs_number
+}
 
 function get_sequence_unique_characters(number_of_unique_characters)
 {
@@ -1314,31 +1347,3 @@ function get_sequence_unique_characters(number_of_unique_characters)
     }
   }
 }
-
-//USEUNIT Patient_Class
-
-function test()
-{
-  var obj = new patient_class();
-  
-  var patient_overides = {};
-  patient_overides.patient_number = "786278568";
-  patient_overides.nhs_number = get_fiscal_code();
-  patient_overides.title = get_string_translation("Mrs");
-  patient_overides.first_name = "Barry";
-  patient_overides.last_name = "Dagger";
-  patient_overides.dob = "12-ott-1963";
-  patient_overides.sex = get_string_translation("Female");
-  patient_overides.gender = get_string_translation("Female");
-  patient_overides.first_addressline = "edited 1";
-  patient_overides.second_addressline = "edited 2";
-  patient_overides.third_addressline = "edited 3";
-  patient_overides.town = "edited town";
-  patient_overides.county = "edit county";
-  patient_overides.post_code = "98765";
-  patient_overides.phone = "123";
-  patient_overides.email = "edit@edit.com";
-  
-  obj.add_patient_to_inrstar();
-}
-

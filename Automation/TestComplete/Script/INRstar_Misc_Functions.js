@@ -44,7 +44,7 @@ function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
     post_code: patient_formatted_data.post_code,
     phone: "07111 225588",
     email: "AutomationLumira+" + new_guid(8) + "@gmail.com"
-  };
+    };
   
   return patient_details;
 }
@@ -328,15 +328,35 @@ function validate_bottom_patient_audit(test_case_title, w_data)
     return false;
   }
 }
-//----------------------------------------------------------------------
-
-function test()
+//-----------------------------------------------------------------------------------
+function get_inrstarid_using_uuid(id)
 {
-  var obj;
+  //Only works if inrstar_login_under_the_hood() has been run 
+  //this is ran as part of insert_patient() so tread carefully if adjusting
   
-  obj = new patient_class();
+  var address = "https://" + Project.Variables.hostname + "/Patient/ViewRecord?patientId=" + id;
   
-  obj.create_generic_patient();
+  var headers = new Object();
+  headers["Cookie"] = Project.Variables.cookie_jar;
   
-  Log.Message(obj.first_name);
+  var response = String(api_get(address, headers));
+  var inrstarid = response.match(/INRSTARID[^<]*/)[0];
+
+  return inrstarid
+}
+//-----------------------------------------------------------------------------------
+function get_locationid()
+{
+  //Only works if inrstar_login_under_the_hood() has been run 
+  //this is ran as part of insert_patient() so tread carefully if adjusting
+  
+  var address = "https://" + Project.Variables.hostname + "/Location";
+  
+  var headers = new Object();
+  headers["Cookie"] = Project.Variables.cookie_jar;
+  
+  var response = String(api_get(address, headers));
+  var locationid = response.match(/\/Location\/Edit\/([^&]*)/)[1];
+
+  return locationid
 }
