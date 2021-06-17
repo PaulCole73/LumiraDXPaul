@@ -13,7 +13,6 @@
 /////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-
 //This is going to get ripped out by andys method for create generic patient,
 //at the moment this is geared up to return Italian data need to tweak if you want english
 function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
@@ -34,7 +33,7 @@ function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
     last_name: patient_formatted_data.last_name,
     first_name: patient_formatted_data.first_name,
     //dob: get_timestamps_for_now_object_with_changed_hours(),
-    dob: convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7300), "%d-%b-%Y", "numeric"),  //format is dd-mmm-yyyy 01-mag-2001
+    dob: convert_date_format(get_date_with_days_from_today_dd_mm_yyyy(-7300), "numeric", "%d-%b-%Y"),  //format is dd-mmm-yyyy 01-mag-2001
     sex: sex_gen,                                                                                      //when writing for the generic we need to ensure this is only Male or Female for Italy.
     gender: sex_gen,                                                                                   //hard coded for now not required as yet.
     first_addressLine: aqConvert.IntToStr(Math.floor(Math.random()*100)) + " Arndale Avenue",
@@ -45,9 +44,8 @@ function create_patient_object_for_fiscal(name_first, name_last, sex_gender)
     post_code: patient_formatted_data.post_code,
     phone: "07111 225588",
     email: "AutomationLumira+" + new_guid(8) + "@gmail.com"
-  };
+    };
   
-
   return patient_details;
 }
 //-----------------------------------------------------------------------------------
@@ -105,7 +103,7 @@ function check_patient_does_not_exist_in_table_within_column(column,table,pat_na
     Log.Message("Patient " + pat_name + " was successfully NOT found in table ")
     return true;
 }
-//----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 //This is to test that a patient exists in a specified column of a table
 function check_patient_exists_in_table_within_column(column,table,pat_name)
 {
@@ -331,3 +329,34 @@ function validate_bottom_patient_audit(test_case_title, w_data)
   }
 }
 //-----------------------------------------------------------------------------------
+function get_inrstarid_using_uuid(id)
+{
+  //Only works if inrstar_login_under_the_hood() has been run 
+  //this is ran as part of insert_patient() so tread carefully if adjusting
+  
+  var address = "https://" + Project.Variables.hostname + "/Patient/ViewRecord?patientId=" + id;
+  
+  var headers = new Object();
+  headers["Cookie"] = Project.Variables.cookie_jar;
+  
+  var response = String(api_get(address, headers));
+  var inrstarid = response.match(/INRSTARID[^<]*/)[0];
+
+  return inrstarid
+}
+//-----------------------------------------------------------------------------------
+function get_locationid()
+{
+  //Only works if inrstar_login_under_the_hood() has been run 
+  //this is ran as part of insert_patient() so tread carefully if adjusting
+  
+  var address = "https://" + Project.Variables.hostname + "/Location";
+  
+  var headers = new Object();
+  headers["Cookie"] = Project.Variables.cookie_jar;
+  
+  var response = String(api_get(address, headers));
+  var locationid = response.match(/\/Location\/Edit\/([^&]*)/)[1];
+
+  return locationid
+}

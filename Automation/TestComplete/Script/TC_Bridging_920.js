@@ -76,6 +76,7 @@ function tc_bridging_banner_msg_on_ddd_all_permissions()
     
       login(i, "Shared");
       patient_search(pat_nhs);
+
       
       if(validate_bridging_tab_exists() == true)
       {

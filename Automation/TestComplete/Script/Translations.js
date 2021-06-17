@@ -107,7 +107,10 @@ function get_string_translation(string)
     :{
       Italian:	"L'evento indesiderato è stato aggiunto correttamente"	
     },
-      
+"This patient's current anticoagulant is not licensed for patients under the age of 18 years.":
+    {
+     Italian: "L'attuale anticoagulante di questo paziente non è autorizzato per i pazienti di età inferiore a 18 anni."
+    },      
 "Mr"	
     :{
       Italian:	"Sig."	
@@ -1542,14 +1545,14 @@ function get_string_translation(string)
       Italian:	"Per utilizzare questo algoritmo in modo sicuro i pazienti devono essere sottoposti a Warfarin (Coumadin) e l'intervallo tra gli ultimi 2 test per INR deve essere di almeno 7 giorni. Al momento questo paziente non soddisfa questo criterio."	
     },
       
-"This patient has recently started Warfarin. Please confirm that they are appropriately stable for a maintenance algorithm"	
+"This patient has recently started warfarin. Please confirm that they are appropriately stable for a maintenance algorithm"	
     :{
       Italian:	"Questo paziente ha recentemente iniziato ad assumere Warfarin (Coumadin). Confermare che sia adeguatamente stabile per un algoritmo di mantenimento"	
     },
       
-"Dose change from 1.3mg/day to 3.0mg/day is greater than 20%. Please confirm that the new dose is appropriate."	
+"Dose change from 2.5mg/day to 10.0mg/day is greater than 20%. Please confirm that the new dose is appropriate."	
     :{
-      Italian:	"La modifica della dose da 1,3mg/giorno a 3,0mg/giorno è maggiore del 20%. Confermare che la nuova dose è adeguata."	
+      Italian:	"La modifica della dose da 2,5mg/giorno a 10,0mg/giorno è maggiore del 20%. Confermare che la nuova dose è adeguata."	
     },
       
 "The patients may have been treated elsewhere during the suspension period. For Vitamin K Antagonist patients please ensure that any recent INR results and Vitamin K Antagonist doses are entered as historical treatments. For non-Vitamin K Antagonist patients you should ensure review information is up to date."	
@@ -1675,6 +1678,16 @@ function get_string_translation(string)
 "No patient found"	
     :{
       Italian:	"Nessun paziente trovato"	
+    },
+    
+"There are no new results"	
+    :{
+      Italian:	"Nessun nuovo risultato"	
+    },
+    
+"Treatment record was updated. Comments changed from [old comment] to [regression new comment]."
+    :{
+      Italian: "Treatment cartella clinica è stata aggiornato. Commenti modificato da [old comment]a [regression new comment]."
     }
              
 // ^^^ Insert translations above this line ^^^    

@@ -105,7 +105,7 @@ function INRstar_base()
 {
   Sys.WaitProcess("INRstarWindows", 5000);
   var p1 = Sys.Process("INRstarWindows");
-  p1.WaitWinFormsObject("BrowserForm", "INRstar", 15000);
+//  p1.WaitWinFormsObject("BrowserForm", "INRstar", 500);
   var p2 = p1.WinFormsObject("BrowserForm").WinFormsObject("INRstarBrowser").WinFormsObject("Shell Embedding", "")
   INRstar = p2.Window("Shell DocObject View", "", 1).Window("Internet Explorer_Server", "", 1).Page("*");
     
@@ -383,6 +383,7 @@ function patient_search_screen()
 function patient_search_screen_results_table()
 {
   var panelPC = path_patient_content_panel();
+  wait_for_object(path_patient_content_panel(), "idStr", "ExternalTestPatientSearchForm", 4);
   var patient_search_results_table = panelPC.Panel("SearchResults").Form("ExternalTestPatientSearchForm").Panel("PatientSearchResults").Table("PatientResults");
   
   return patient_search_results_table;

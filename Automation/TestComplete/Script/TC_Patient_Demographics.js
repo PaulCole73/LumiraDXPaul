@@ -53,7 +53,7 @@ function tc_ensure_patients_age_cannot_be_edited_so_that_they_are_under_18_for_a
     var results;
     if(err_box.Exists == true)
     {
-      results = compare_values("This patient's current anticoagulant is not licensed for patients under the age of 18 years.", err_box.contentText);
+      results = compare_values(get_string_translation("This patient's current anticoagulant is not licensed for patients under the age of 18 years."), err_box.contentText);
     }
     else
     {

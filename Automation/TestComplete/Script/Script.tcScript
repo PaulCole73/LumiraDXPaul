@@ -505,11 +505,15 @@
 			<folder name="9. Utilities">
 				<child name="INRstar_Misc_Functions" key="{1FBD6F73-C790-4C1D-A003-93156D1968E5}" path="INRstar_Misc_Functions.js" />
 				<child name="INRstar_Get_Functions" key="{54CD62D1-CE92-4CF9-BF0B-E74B7A56D606}" path="INRstar_Get_Functions.js" />
+				<child name="INRstar_Get_Cookies_via_Powershell" key="{593DABA4-F26F-4885-B29C-4D34481579D0}" path="INRstar_Get_Cookies_via_Powershell.js" />
+				<child name="INRstar_Patient_Insertion" key="{655085DB-8EFE-4184-ADE6-14617F8B6EAF}" path="INRstar_Patient_Insertion.js" />
+				<child name="INRstar_Treatment_Plan_Insertion" key="{44AB307F-5509-4BD5-9BC1-AEEF75203CB8}" path="INRstar_Treatment_Plan_Insertion.js" />
 			</folder>
 			<folder name="2.1 Clinical Suites">
 				<child name="TS_Clinical_Controls" key="{25598DCC-2504-497A-A15D-1EF0302ACCA4}" path="TS_Clinical_Controls.js" />
 				<child name="TC_ET5_Clinical_Controls" key="{6B5B0B17-90BC-45E9-8B92-21DA275E2114}" path="TC_ET5_Clinical_Controls.js" />
 				<child name="TC_LDx2_Clinical_Controls" key="{5CC85150-E38F-48FD-A843-AFD656B61EE1}" path="TC_LDx2_Clinical_Controls.js" />
+				<child name="TC_LDx1_Clinical_Controls" key="{6B4CF116-8950-4077-8CCF-8FAFD67E2DEF}" path="TC_LDx1_Clinical_Controls.js" />
 			</folder>
 		</folder>
 		<folder name="INRstar API">
@@ -527,7 +531,6 @@
 			</folder>
 			<folder name="5. Utlitities">
 				<child name="INRStarAPI_Get_Functions" key="{E9113838-0AED-46CD-A838-82D15FADB9EA}" path="INRStarAPI_Get_Functions.js" />
-				<child name="INRstarAPI_Patient_Insertion" key="{655085DB-8EFE-4184-ADE6-14617F8B6EAF}" path="INRstarAPI_Patient_Insertion.js" />
 			</folder>
 		</folder>
 		<folder name="1. Admin Dashboard">
@@ -607,8 +610,19 @@
 					<child name="get_parent_client_name" key="{5393A3FB-F549-4DA0-B86E-B4EC01784965}" path="get_parent_client_name.js" />
 					<child name="get_feedback" key="{F850E942-B39A-49DB-91E3-715D4613A768}" path="get_feedback.js" />
 					<child name="get_banner_message" key="{538F5E81-5686-4EFD-B486-92F4C563DB38}" path="get_banner_message.js" />
+					<child name="get_useunits" key="{0919FC67-4019-4232-BFEC-0FDC7D7CD21F}" path="get_useunits.js" />
 				</folder>
-				<folder name="Goto" />
+				<folder name="Goto">
+					<child name="goto_client" key="{41F3A55C-9CC6-4EBD-8598-82304510C446}" path="goto_client.js" />
+					<child name="goto_client_location" key="{CA2F58CA-B1AC-4D3A-9E5F-EECC1E860F26}" path="goto_client_location.js" />
+					<child name="goto_client_users" key="{8EB968BE-023D-49CC-A52A-667498295BBD}" path="goto_client_users.js" />
+					<child name="goto_client_location_users" key="{7687B1DE-B708-43C7-9EA7-748188777605}" path="goto_client_location_users.js" />
+					<child name="goto_client_locations" key="{FECC2F1E-07FB-47E3-B390-5FDFF411B642}" path="goto_client_locations.js" />
+					<child name="goto_feedback" key="{D32BFDFD-B1E9-4AE1-8710-E1E8EB436270}" path="goto_feedback.js" />
+					<child name="goto_important_information" key="{F157B48B-049E-4DE5-9930-6317FB498493}" path="goto_important_information.js" />
+					<child name="goto_banner_message" key="{0B2A90E5-8251-4037-982C-1E5C8AAC29A2}" path="goto_banner_message.js" />
+					<child name="goto_useunits" key="{A8389421-DF43-422D-8C51-3421EBED9B2E}" path="goto_useunits.js" />
+				</folder>
 				<folder name="Popup Handling" />
 				<folder name="Misc" />
 			</folder>

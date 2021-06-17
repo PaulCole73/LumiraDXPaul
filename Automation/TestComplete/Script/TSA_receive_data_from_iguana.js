@@ -6,7 +6,9 @@ function post_receivedatafromiguana(body_payload)
 {
   
   //Probably want to put these in a file and get them
-  var uri = "https://inrstarservice-it-test1.caresolutions.lumiradx.com/IguanaService.svc/api/ReceiveDataFromIguana";
+  get_hostname();
+  var host_name = Project.Variables.hostname.replace("inrstar","inrstarService");
+  var uri = "https://" + host_name + "/IguanaService.svc/api/ReceiveDataFromIguana";
   
   //Create the Headers into an object
   var headers = new Object();

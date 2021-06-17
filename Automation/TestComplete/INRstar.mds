@@ -25,10 +25,10 @@
 						<environments activeCloud="CBT" />
 						<children />
 					</testItem>
-					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{B6D6B5C7-5DF2-40DE-8864-6D76B44F816E}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="Posts to @regression location" tmsData="" testCase="True">
+					<testItem name="post_multiple_external_results" key="{08F65EBB-8C46-4013-96A8-D2CB6FCA881E}" group="False" parallel="False" enabled="True" testMoniker="{B6D6B5C7-5DF2-40DE-8864-6D76B44F816E}post_multiple_external_results" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
-							<param0 name="location_id" type="3" localVarName="" varType="8" value="bbc8cfa1-b8a3-458a-a8a4-dd7b0dd27382" />
-							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="2" />
+							<param0 name="location_id" type="3" localVarName="" varType="8" value="BBC8CFA1-B8A3-458A-A8A4-DD7B0DD27382" />
+							<param1 name="number_of_results" type="3" localVarName="" varType="3" value="1" />
 						</testParameters>
 						<environments activeCloud="CBT" />
 						<children />
@@ -43,7 +43,7 @@
 					</testItem>
 					<testItem name="get_check_digit" key="{0379DD97-E8D2-4BEE-A9E5-AD33BA4BB944}" group="False" parallel="False" enabled="True" testMoniker="{53C017A4-89CB-4429-8289-B2F80476AA1C}get_check_digit" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
 						<testParameters>
-							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="RMHDZZZ1D28H501" />
+							<param0 name="fifteen_digit_fiscal" type="3" localVarName="" varType="8" value="RMHDZZZ1D44H501" />
 						</testParameters>
 						<environments activeCloud="CBT" />
 						<children />
@@ -63,7 +63,7 @@
 			<testItem name="UK" key="{097104BB-CCF2-4C92-9CC1-09845CDC6A42}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
-					<testItem name="Test 1" key="{5626BC87-6428-4BC8-A0AC-9ACDCD971D7C}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="Test 1" key="{5626BC87-6428-4BC8-A0AC-9ACDCD971D7C}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
 							<testItem name="INRstar" key="{97FEC046-F5A5-4BA9-B4CD-7497E646EC37}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -637,14 +637,14 @@
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Adverse_Events" key="{E2DBA164-DA25-4711-8537-9BDDBDEAE4D8}" group="False" parallel="False" enabled="True" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Adverse_Events" key="{E2DBA164-DA25-4711-8537-9BDDBDEAE4D8}" group="False" parallel="False" enabled="False" testMoniker="{3D8C580B-4392-44B3-80FC-B42B08422E0A}ts_int_regression_adverse_event" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Bespoke_Letters" key="{8ADB5C8A-A6BC-4776-9CD1-DE19FE533CF0}" group="False" parallel="False" enabled="True" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Bespoke_Letters" key="{8ADB5C8A-A6BC-4776-9CD1-DE19FE533CF0}" group="False" parallel="False" enabled="False" testMoniker="{68F36A03-0E9D-437B-B300-853D2F934D7D}ts_int_regression_bespoke_letters" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -658,28 +658,28 @@
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Clinics_Appointments" key="{6E9F9294-F5E4-4BE6-B5C5-7126516B6021}" group="False" parallel="False" enabled="True" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Clinics_Appointments" key="{6E9F9294-F5E4-4BE6-B5C5-7126516B6021}" group="False" parallel="False" enabled="False" testMoniker="{CC6885F6-FEFC-4134-89CD-00DC34CB4BF2}ts_int_regression_clinics_appointments" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{A9359B30-3470-41AE-899B-44F5818AD6DC}" group="False" parallel="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{A9359B30-3470-41AE-899B-44F5818AD6DC}" group="False" parallel="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Diagnosis" key="{0455A36C-8FBB-4280-BA05-97AA3ABE9E7F}" group="False" parallel="False" enabled="True" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Diagnosis" key="{0455A36C-8FBB-4280-BA05-97AA3ABE9E7F}" group="False" parallel="False" enabled="False" testMoniker="{0FC38A3D-6A89-4104-83E0-908EE1430B1E}ts_int_regression_diagnosis" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_External_Patient_Lookup" key="{A9308BC4-567A-4757-9D2F-0DB76B86251A}" group="False" parallel="False" enabled="True" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_int_regression_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_External_Patient_Lookup" key="{A9308BC4-567A-4757-9D2F-0DB76B86251A}" group="False" parallel="False" enabled="False" testMoniker="{1D8DF877-014E-4705-9B55-3E2D6025B3E2}ts_int_regression_external_patient_lookup" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -693,63 +693,63 @@
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Home_Page" key="{F0BDB3A6-FAB1-4C67-A7EF-A1EEDD05FF0B}" group="False" parallel="False" enabled="True" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Home_Page" key="{F0BDB3A6-FAB1-4C67-A7EF-A1EEDD05FF0B}" group="False" parallel="False" enabled="False" testMoniker="{E92E9BA8-6D12-4EE2-B4B7-70AB6FB0DEF7}ts_int_regression_home_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Loc_Management_Users" key="{7C50C7D5-6B41-4ED0-98D7-CC3A49D0C8E5}" group="False" parallel="False" enabled="True" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Loc_Management_Users" key="{7C50C7D5-6B41-4ED0-98D7-CC3A49D0C8E5}" group="False" parallel="False" enabled="False" testMoniker="{2D1B418F-2A03-4CB7-9602-FC28A91BBB5B}ts_int_regression_location_management_users" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Login_Page" key="{81D5AA6E-96EA-493B-BF5E-32B8BD980A7A}" group="False" parallel="False" enabled="True" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Login_Page" key="{81D5AA6E-96EA-493B-BF5E-32B8BD980A7A}" group="False" parallel="False" enabled="False" testMoniker="{E5DC9253-AC31-4300-9C41-48D46C53CFA5}ts_int_regression_login_page" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_NEQAS" key="{756178A9-DFED-4A2D-A7B7-A4E1190F9184}" group="False" parallel="False" enabled="True" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_NEQAS" key="{756178A9-DFED-4A2D-A7B7-A4E1190F9184}" group="False" parallel="False" enabled="False" testMoniker="{2B9248E3-2DCD-4275-9AE2-208AC0331962}ts_int_regression_neqas" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Notes" key="{6BD92517-66FE-4F4B-BD88-90F65F8EE813}" group="False" parallel="False" enabled="True" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Notes" key="{6BD92517-66FE-4F4B-BD88-90F65F8EE813}" group="False" parallel="False" enabled="False" testMoniker="{84E1DD5D-D999-4086-90F5-4F8D7A51E827}ts_int_regression_notes" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Options_IQC" key="{B0A549C1-A0A0-4B93-8ECD-B9712F1BFDB2}" group="False" parallel="False" enabled="True" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Options_IQC" key="{B0A549C1-A0A0-4B93-8ECD-B9712F1BFDB2}" group="False" parallel="False" enabled="False" testMoniker="{8CE88BCA-5131-4D69-BB7E-6A3D8C313E2C}ts_int_regression_options_iqc" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Patient" key="{1CF48520-51A5-4D8E-B3F9-5EC2227E4F22}" group="False" parallel="False" enabled="True" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient" key="{1CF48520-51A5-4D8E-B3F9-5EC2227E4F22}" group="False" parallel="False" enabled="False" testMoniker="{AB7950DC-C34F-46C1-BFFF-9D8716D14DC1}ts_int_regression_patient" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Management" key="{823A2B2E-7153-4F55-8A12-F77D113D4EB8}" group="False" parallel="False" enabled="True" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management" count="1" timeout="0" stopOnError="0" stopOnException="0" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Management" key="{823A2B2E-7153-4F55-8A12-F77D113D4EB8}" group="False" parallel="False" enabled="False" testMoniker="{39A75F49-EB65-44EB-BD09-639FEE45DC2F}ts_int_regression_patient_management" count="1" timeout="0" stopOnError="0" stopOnException="0" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Patient_Tests_Due" key="{58A39EB8-8C22-4B4E-8098-C6532C3D8CC4}" group="False" parallel="False" enabled="True" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Patient_Tests_Due" key="{58A39EB8-8C22-4B4E-8098-C6532C3D8CC4}" group="False" parallel="False" enabled="False" testMoniker="{020F09BC-01AA-460C-B9C6-FAB3C5FEECDA}ts_int_regression_patient_tests_due" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -763,7 +763,7 @@
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Reviews" key="{180E4624-260F-42E7-87EB-0DC4448C5135}" group="False" parallel="False" enabled="True" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Reviews" key="{180E4624-260F-42E7-87EB-0DC4448C5135}" group="False" parallel="False" enabled="False" testMoniker="{67F1C85C-656B-4E11-B820-7A72A86BFDFF}ts_int_regression_reviews" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -777,14 +777,14 @@
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Treatment_Plan" key="{B3A5E5D6-6F16-4B50-86C8-A36E0AE4D4AC}" group="False" parallel="False" enabled="True" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Treatment_Plan" key="{B3A5E5D6-6F16-4B50-86C8-A36E0AE4D4AC}" group="False" parallel="False" enabled="False" testMoniker="{D4735979-F562-4EC1-84DF-9FCA3FD9A37E}ts_int_regression_treatment_plan" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="Re-try Failed Tests" key="{82C833D4-2BA6-4831-928F-5BE88D8D4DA5}" group="False" parallel="False" enabled="True" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="Re-try Failed Tests" key="{82C833D4-2BA6-4831-928F-5BE88D8D4DA5}" group="False" parallel="False" enabled="False" testMoniker="{12A6BA6F-8F6C-4C39-8DC5-A2390A4C1E0B}retest_failed_automation_tests" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments activeCloud="CBT" />
 										<children />
@@ -1216,7 +1216,7 @@
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="TS_Demographics" key="{CCB99F1B-6D06-4EBD-B5EF-8F1F5AD39E55}" group="False" parallel="False" enabled="False" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="TS_Demographics" key="{CCB99F1B-6D06-4EBD-B5EF-8F1F5AD39E55}" group="False" parallel="False" enabled="True" testMoniker="{77757E11-4AD4-43C4-81C7-A0AD9445C18D}ts_int_regression_demographics" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
 											<param0 name="send_mail" type="3" localVarName="" varType="11" value="False" />
 										</testParameters>
@@ -2198,7 +2198,7 @@
 					</testItem>
 				</children>
 			</testItem>
-			<testItem name="Clinical Controls" key="{96C0657B-72E2-4844-A42C-EAC387730C68}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+			<testItem name="Clinical Controls" key="{96C0657B-72E2-4844-A42C-EAC387730C68}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 				<testParameters />
 				<children>
 					<testItem name="ts_clinical_control_master()&#32;&#32;- this runs all clinical tests" key="{12BAA754-3F5E-4D82-A191-0DFB3FB837DF}" group="False" parallel="False" enabled="False" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}ts_clinical_control_master" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
@@ -2206,10 +2206,10 @@
 						<environments activeCloud="CBT" />
 						<children />
 					</testItem>
-					<testItem name="ET5 External Treatment Management Functionality" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="ET5 External Treatment Management Functionality" key="{47955C2A-B10A-4CA5-A892-9ED2908A6255}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="False" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="ET5_external_treatment_management_functionality&#32;&#32;- this runs all clinical tests for this risk" key="{62B2110C-1C6E-4F66-8541-9051EA87DB3A}" group="False" parallel="False" enabled="True" testMoniker="{25598DCC-2504-497A-A15D-1EF0302ACCA4}cs_ET5_external_treatment_management_functionality" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<environments activeCloud="CBT" />
 								<children />
@@ -2456,166 +2456,66 @@
 							</testItem>
 						</children>
 					</testItem>
-				</children>
-			</testItem>
-			<testItem name="Master Repo" key="{262E4746-327E-4633-8C39-0254F5609FCF}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-				<testParameters />
-				<children>
-					<testItem name="Admin Dashboard" key="{39A65CB4-B642-4F62-B2AE-06120B306736}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+					<testItem name="LDx1 Error when importing an INR result into INRstar" key="{35961617-763F-4AD5-B35A-99619B0DE8A7}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters />
 						<children>
-							<testItem name="Login" key="{33314169-A425-4722-9C1C-350DBAFEB8A3}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="LDx1/C56 Inrstar mandatory fields will reflect that of the instrument" key="{E1668B26-BE30-48D3-831A-E79EE2601837}" group="True" parallel="False" enabled="False" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="Login page - Log into Admin Dash" key="{B3093826-FDC2-4ABE-8D8B-8C127F4A56EB}" group="False" parallel="False" enabled="True" testMoniker="{497F01A8-4A44-4589-BE83-73F5F274D272}tc_login_page_log_into_admin_dashboard" count="1" timeout="0" stopOnError="3" stopOnException="0" description="" tmsData="" testCase="False">
+									<testItem name="tc_patient_column_contains_the_patient_details_for_an_instrument_result();" key="{EC02BA82-B8D7-4B63-B8EE-E18A63890EAC}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_patient_column_contains_the_patient_details_for_an_instrument_result" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="Login page - Log off Admin Dash" key="{86AEAA5E-F42D-4E65-A338-34BCC7728926}" group="False" parallel="False" enabled="True" testMoniker="{E80691E9-AAA9-4E9A-ADE0-4D7D9043F5DF}tc_login_page_log_off_admin_dashboard" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+									<testItem name="tc_patient_result_contains_the_correct_information_for_an_instrument_result();" key="{F376A532-F0DD-4A82-B1EB-49B8D0830CD4}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_patient_result_contains_the_correct_information_for_an_instrument_result" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments activeCloud="CBT" />
+										<children />
+									</testItem>
+									<testItem name="tc_unmatched_patient_can_be_manually_matched();" key="{741706EF-6057-448E-9818-F67966BF9FF4}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_unmatched_patient_can_be_manually_matched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments activeCloud="CBT" />
+										<children />
+									</testItem>
+									<testItem name="tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument();" key="{6953DFC9-9BAE-4AE8-AD42-F3DB639216E8}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_results_tab_discard_button_can_archive_results_sent_in_from_instrument" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
 								</children>
 							</testItem>
-							<testItem name="Main Page" key="{C6883A1E-E371-4A95-BA90-792AE330AF27}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+							<testItem name="LDx1/C63 Minimum identifiers will be used to reconcile INR results received and error alert when failed&#13;&#10;" key="{42807169-D7E3-43BD-A032-359CCE65D109}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 								<testParameters />
 								<children>
-									<testItem name="Main page - Search Facility" key="{5772A09C-8982-46C0-80F2-A45512F61AC9}" group="False" parallel="False" enabled="True" testMoniker="{5BA608E5-A360-4D32-8DFB-89A8E3C88702}tc_main_page_search_facility" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+									<testItem name="tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched();" key="{73E01436-C26D-4431-9F1B-B2116E72EBC6}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_surname_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="Main page - Header contains correct date" key="{A5863E46-E679-40C6-A9CE-2CE1A99C2C1A}" group="False" parallel="False" enabled="True" testMoniker="{720CEC25-ADC9-48A4-B557-6ABB395B1B83}tc_main_page_header_contains_the_correct_date" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
+									<testItem name="tc_based_on_patient_id_if_patientid_doesnt_match_then_result_should_be_unmatched();" key="{C1830118-CCEE-4C9D-991C-0614DE9E809F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_patientid_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
 										<environments activeCloud="CBT" />
 										<children />
 									</testItem>
-									<testItem name="Account Managment" key="{990C8354-8E69-47CF-A217-C2C2174460D8}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_based_on_patient_id_if_dob_doesnt_match_then_result_should_be_unmatched();" key="{23601AB0-41EB-46DD-AB42-C34F2F2689D8}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_patient_id_if_dob_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
-										<children>
-											<testItem name="Clients" key="{163E62CF-7C62-42A6-B39F-E796C2A451A8}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-												<testParameters />
-												<children>
-													<testItem name="Account Management - Add a new client" key="{07684A03-B2DD-4C72-81F3-7E04FD83F414}" group="False" parallel="False" enabled="True" testMoniker="{A8237E61-3118-4DDC-8506-436A5FDC3529}tc_account_management_add_a_new_client" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-													<testItem name="Account Management - Edit client&apos;s details" key="{DB48D6A7-C30C-41F8-A759-29BD82A83CB9}" group="False" parallel="False" enabled="True" testMoniker="{D6DC040A-25F7-40A7-85D8-37CF5F182437}tc_account_management_edit_clients_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-												</children>
-											</testItem>
-											<testItem name="Locations" key="{A574A6C5-6926-450A-AA57-8106940754AF}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-												<testParameters />
-												<children>
-													<testItem name="Details" key="{8236A3BE-6257-463E-8383-CA29C061D3F3}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-														<testParameters />
-														<children>
-															<testItem name="Account management - Edit location details" key="{6E0EF15E-7577-478F-B3B8-66C4C05C6C43}" group="False" parallel="False" enabled="True" testMoniker="{0881195B-C5CF-42C7-AA3B-6EF7B045FFA9}tc_account_management_edit_location_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-																<testParameters />
-																<environments activeCloud="CBT" />
-																<children />
-															</testItem>
-															<testItem name="Account management - Edit location&apos;s licence details" key="{2F12E768-04C0-41E7-8351-4EEEA493C639}" group="False" parallel="False" enabled="True" testMoniker="{D86E6336-DF90-4930-AF3B-A6198770C53C}tc_account_management_edit_locations_licence_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-																<testParameters />
-																<environments activeCloud="CBT" />
-																<children />
-															</testItem>
-														</children>
-													</testItem>
-													<testItem name="Licence" key="{F4EE9C9C-8F74-4E3F-9584-31C7C7644598}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-														<testParameters />
-														<children>
-															<testItem name="Account management - Amend a clinical system" key="{27E3A0D5-477F-46CB-94AD-002AC907A6BA}" group="False" parallel="False" enabled="True" testMoniker="{6540B1B3-E652-4240-9873-E05555B6D331}tc_account_management_amend_a_clinical_system" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-																<testParameters />
-																<environments activeCloud="CBT" />
-																<children />
-															</testItem>
-														</children>
-													</testItem>
-													<testItem name="Users" key="{1B8FF472-DCDA-4AE6-92A4-265F5C8380EB}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-														<testParameters />
-														<children>
-															<testItem name="Account management - Add location admin user" key="{48EA4B17-4B92-4CDE-9165-4F52183A22A7}" group="False" parallel="False" enabled="True" testMoniker="{B0FF4859-A3E8-4630-ABEA-F4DB25216B45}tc_account_management_add_location_admin_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-																<testParameters />
-																<environments activeCloud="CBT" />
-																<children />
-															</testItem>
-														</children>
-													</testItem>
-													<testItem name="Account management - Create a new treatment location" key="{9730F9CE-A36D-40AE-97F9-78DF2A07CC39}" group="False" parallel="False" enabled="True" testMoniker="{D302BB6C-A268-46AC-8535-5171F653A83A}tc_account_management_create_a_new_treatment_location" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-													<testItem name="Account management - Create a new view only location" key="{878A6804-9CBA-47DF-8021-058BBCB30EF5}" group="False" parallel="False" enabled="True" testMoniker="{F1A7334E-301A-4534-B062-E1E3CC11763D}tc_account_management_create_a_new_view_only_location" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-												</children>
-											</testItem>
-											<testItem name="Users" key="{D64017B8-A4E8-4CF8-BD14-8E16F0E51634}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
-												<testParameters />
-												<children>
-													<testItem name="Account management - Add a new organisation level user" key="{8324D145-3053-47A9-9780-DFA888E10308}" group="False" parallel="False" enabled="True" testMoniker="{7AEA6E2A-1C56-4015-ADF4-2C78A5D35768}tc_account_management_add_a_new_organisation_level_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-													<testItem name="Account management - Edit location admin level user details" key="{19BD5F8F-4B44-4AF7-A853-6226A98F3755}" group="False" parallel="False" enabled="True" testMoniker="{D6B3CBAA-4592-4B19-BFAF-AC1145921A3A}tc_account_management_edit_location_admin_level_user_details" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-													<testItem name="Account management - Remove a location admin level user" key="{C0644976-4752-45B6-88FF-11B468E4CD6B}" group="False" parallel="False" enabled="True" testMoniker="{9BD766BF-4BFC-4724-ACF3-1E3AF129C533}tc_account_management_remove_a_location_admin_level_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-													<testItem name="Account management - Remove an organisation level user" key="{FC8A2321-60E3-4D9E-9DA7-1D62462CBEE1}" group="False" parallel="False" enabled="True" testMoniker="{87DF966E-B091-45C6-9AD0-E1BCAC5829CF}tc_account_management_remove_an_organisation_level_user" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-													<testItem name="Account management - Reset location admin level users password" key="{3E3C3536-C9BB-42EA-9DAE-5821C5CA5269}" group="False" parallel="False" enabled="True" testMoniker="{CD5EB0D8-4E57-4640-98DD-4452C26506B7}tc_account_management_reset_location_admin_level_users_password" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-													<testItem name="Account management - Reset organisation level users password" key="{FE857EA9-C8AF-4705-BC34-8BB03EF1CBD5}" group="False" parallel="False" enabled="True" testMoniker="{2293F757-8C03-43AA-8457-FDF8831015B7}tc_account_management_reset_organisation_level_users_password" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-														<testParameters />
-														<environments activeCloud="CBT" />
-														<children />
-													</testItem>
-												</children>
-											</testItem>
-										</children>
+										<environments activeCloud="CBT" />
+										<children />
 									</testItem>
-									<testItem name="Banner Message" key="{1ED298FA-A71E-4CC4-BA81-43713E3722EB}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_based_on_nhs_or_fiscal_if_surname_doesnt_match_then_result_should_be_matched();" key="{BD3F78CB-A93F-4973-BA56-2A507197DD32}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_nhs_or_fiscal_if_surname_doesnt_match_then_result_should_be_matched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
-										<children>
-											<testItem name="Banner Message - Add a new banner message" key="{74BC79EF-2C8B-4D31-924D-358BF121C78D}" group="False" parallel="False" enabled="True" testMoniker="{594EB89A-40D1-40E0-9C5D-7C275CE273CC}tc_banner_message_add_a_new_banner_message" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-												<testParameters />
-												<environments activeCloud="CBT" />
-												<children />
-											</testItem>
-										</children>
+										<environments activeCloud="CBT" />
+										<children />
 									</testItem>
-									<testItem name="Feedback" key="{8ABBD3A8-4870-4D2F-BB62-528EFAC5576A}" group="True" parallel="False" enabled="True" testMoniker="" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+									<testItem name="tc_based_on_nhs_or_fiscal_if_dob_doesnt_match_then_result_should_be_unmatched();" key="{B471F9E6-CB1F-47DF-9B80-BD45815A2C3F}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_nhs_or_fiscal_if_dob_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters />
-										<children>
-											<testItem name="Feedback - Add new feedback" key="{C3B398CA-1CB0-40DA-A7AF-6E31755676B1}" group="False" parallel="False" enabled="True" testMoniker="{E2B617CD-E406-4D1A-8FB0-17B2B3A637BB}tc_feedback_add_new_feedback" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="False">
-												<testParameters />
-												<environments activeCloud="CBT" />
-												<children />
-											</testItem>
-										</children>
+										<environments activeCloud="CBT" />
+										<children />
+									</testItem>
+									<testItem name="tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should_be_unmatched();" key="{3CC50F82-50A4-49AC-90FD-FA61FC0D64AB}" group="False" parallel="False" enabled="True" testMoniker="{00FF0F48-2A74-4A4E-A1F9-9B58375037AD}tc_based_on_nhs_or_fiscal_if_nhs_fiscal_doesnt_match_then_result_should_be_unmatched" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
+										<testParameters />
+										<environments activeCloud="CBT" />
+										<children />
 									</testItem>
 								</children>
 							</testItem>
@@ -2625,7 +2525,18 @@
 			</testItem>
 		</children>
 	</testItems>
-	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}" />
+	<variables key="{A6034B03-EBD1-4B00-B39B-7A0D918EA2F3}">
+		<data Version="4">
+			<Items>
+				<Variable Name="hostname" Type="String" Local="True">
+					<DefValue StrValue="default" />
+				</Variable>
+				<Variable Name="cookie_jar" Type="String" Local="True">
+					<DefValue StrValue="default" />
+				</Variable>
+			</Items>
+		</data>
+	</variables>
 	<settings key="{3E1721F3-9165-4447-AE13-1C0F567DC90E}">
 		<settingsVersion value="14.90" />
 		<setting name="AgOpenApp_ExtendedSilverlightObjectTree" type="1" value="False" />

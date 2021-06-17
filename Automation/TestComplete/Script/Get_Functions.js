@@ -18,7 +18,21 @@
 //---------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-
+//-----------------------------------------------------------------------------------
+//This is used by under the hood stuff
+function get_hostname()
+{
+  var base_url = INRstar_base().URL; 
+  var hostname;
+  if (base_url.indexOf("//") > -1) 
+    {hostname = base_url.split('/')[2];}
+  else 
+    {hostname = base_url.split('/')[0];}
+    
+  // This below line stores the variable as a persistent variable called anywhere by specifying Project.Variables.hostname
+  Project.Variables.hostname = hostname
+}
+//-----------------------------------------------------------------------------------
 //Returning an NHS of the current patient loaded
 function get_patient_nhs()
 {
@@ -27,7 +41,6 @@ function get_patient_nhs()
           
   return nhs_num;
 }
-
 //-----------------------------------------------------------------------------------
 //Returning details from demographics as an object
 function get_patient_details_object_from_demographics()
@@ -41,6 +54,7 @@ function get_patient_details_object_from_demographics()
   patient_details.patientid = patient_banner_blue_bar_path.Panel(3).Panel(0).Label("INRstarId_DetachedLabel").contentText;
   patient_details.first_name = patient_demographics_tab_demographics_path.Panel(4).Label("FirstName_DetachedLabel").contentText;
   patient_details.last_name = patient_demographics_tab_demographics_path.Panel(3).Label("Surname_DetachedLabel").contentText;
+  patient_details.pat_number = patient_demographics_tab_demographics_path.Panel(0).Label("PatientNumber_DetachedLabel").contentText;
   patient_details.nhs_number = patient_demographics_tab_demographics_path.Panel(1).Label("NHSNumber_DetachedLabel").contentText.replace(/\s/g, ""); // Remove Whitespaces
   patient_details.dob = patient_demographics_tab_demographics_path.Panel(5).Label("Born_DetachedLabel").contentText;
   patient_details.dob_as_dd_mm_yyyy = convert_date_from_dd_mmm_yyyy_to_get_date_as_dd_mm_yyyy(patient_details.dob);
@@ -85,7 +99,7 @@ function get_patient_not_altered_details_object_from_demographics()
   return patient_demographics;
 }
 //-----------------------------------------------------------------------------------
-function get_patient_search_results(search_criteria)
+function get_patient_search_results(search_criteria, expected_pat_name)
 {
   Goto_Patient_Search();
   var patient_search_screen_path = patient_search_screen();
@@ -96,10 +110,26 @@ function get_patient_search_results(search_criteria)
   WaitSeconds(1, "Wait after patient search...");
    
   var results_table = patient_search_screen_results_table();
+  var row_count = results_table.rowcount;
   
-  var search_results = results_table.Cell(1, 0).contentText;
-  
-  return search_results;
+  if(results_table.Cell(1, 0).contentText == get_string_translation("No patient found"))
+  {
+    var search_results = results_table.Cell(1, 0).contentText;
+    Log.Message("I never found the patient in the search table results this is who I was looking for " + expected_pat_name + " I used this in the search field " + search_criteria);
+    return search_results;
+  }
+  else
+  {
+   for(var i=0; i < row_count; i++)
+    {
+      if(results_table.Cell(i, 0).contentText == expected_pat_name)
+      {
+        var search_results = results_table.Cell(i, 0).contentText;
+        WaitSeconds(1, "Wait after patient search...");
+        return search_results;
+      }
+    }  
+  }
 }
 //-----------------------------------------------------------------------------------
 //Returning firstname of the current patient loaded
@@ -167,17 +197,22 @@ function get_fiscal_code(patient_data)
 function get_fiscal_code()
 {
   var fourteen_digit_value = get_unique_number();                                               //get a unique code (14 digit epoc value)                 
-  
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var position = get_random_num_inrange(0, 15);                                                 //select random insert location
-  var fifteenth_digit = alphabet[Math.floor(Math.random() * alphabet.length)];                  //get a random letter
+  var fifteenth_digit = get_random_letter() ;                                                   //get a random letter
+  var position = get_random_num_inrange(0, 15);                                                 //select random insert location                 
   
   var fifteen_digit_fiscal = aqString.Insert(fourteen_digit_value, fifteenth_digit, position);  //insert random letter into unique 14 digit code
   var check_character = get_check_digit(fifteen_digit_fiscal);                                  //get a valid check character
   var fiscal = fifteen_digit_fiscal + check_character;                                          //fiscal needs 15 alphanumeric + validated check character
   
-  Log.Message(fiscal);
+  //Log.Message(fiscal);
   return fiscal;
+}
+//-----------------------------------------------------------------------------------
+function get_random_letter() 
+{
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  
+  return alphabet[Math.floor(Math.random() * alphabet.length)]
 }
 //-----------------------------------------------------------------------------------
 function get_check_digit(fifteen_digit_fiscal)
@@ -303,9 +338,6 @@ function get_patient_demographics()
     var born =  patient_demographics_tab_path.Panel(5).Label("Born_DetachedLabel").contentText;
     var sex =  patient_demographics_tab_path.Panel(6).Label("Sex_DetachedLabel").contentText;
     var gender =  patient_demographics_tab_path.Panel(7).Label("Gender_DetachedLabel").contentText;
-    //var ethnicity =  patient_demographics_tab_path.Panel(8).Label("Ethnicity_DetachedLabel").contentText;
-    //var language =  patient_demographics_tab_path.Panel(9).Label("SpokenLanguage_DetachedLabel").contentText;
-    //var mar_status =  patient_demographics_tab_path.Panel(10).Label("MartialStatus_DetachedLabel").contentText;
   
     var patient_demographics_tab_contact_address_path = patient_demographics_tab_contact_address();
   
@@ -318,8 +350,8 @@ function get_patient_demographics()
     var tel = patient_demographics_tab_contact_address_path.Panel(1).Label("Phone_DetachedLabel").contentText;
     var mobile = patient_demographics_tab_contact_address_path.Panel(3).Label("Mobile_DetachedLabel").contentText;
     var email = patient_demographics_tab_contact_address_path.Panel(4).Label("Email_DetachedLabel").contentText;
-  
-    patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, "ethnicity", "language", "mar_status", line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
+
+    patient_data_array.push(pat_num, nhs_num, title, surname, firstname, born, sex, gender, line_1, line_2, line_3, town, county , post_code, tel, mobile, email); 
   }
 
   for(var i = 0; i < patient_data_array.length; i++)
@@ -507,67 +539,56 @@ function get_external_results_received_by_timestamp(timestamp, archived)
 {
   Goto_External_Results();
   
+  var results = {"row" : false};
+  
   //Check table exists before proceeding
   var table_exists = Check_if_external_results_table_exists();
-   
-  if (table_exists == true) 
-  {
-    if (archived == "Archived")
-    {
-      //Toggle the show archived checkbox
-      show_archived_results_checkbox().ClickChecked(true);
   
-      //Press the filter button
-      external_results_filter_button().Click();
+  if (table_exists == false) {return results;}
+   
+  if (archived == "Archived")
+  {
+    //Toggle the show archived checkbox
+    show_archived_results_checkbox().ClickChecked(true);
+  
+    //Press the filter button
+    external_results_filter_button().Click();
       
-      //Get the path of the patient external results archived table
-      var table = patient_external_results_archived_table(); 
-    }
-    else
-    {    
-      //Get the path of the patient external results table
-      var table = patient_external_results_table();
-    }
+    //Get the path of the patient external results archived table
+    var table = patient_external_results_archived_table(); 
+  }
+  else
+  {    
+    //Get the path of the patient external results table
+    var table = patient_external_results_table();
+  }
 
-    //Loop through each row of table
-    for (row=0; row<table.RowCount; row++)
-    {
-      //Check whether timestamp exists
-      if (table.Cell(row, 2).contentText == timestamp)
-      {    
-        //The status column can be a button or a label depending on the data so there are 2 seperate paths, but it will can be things like dose patient or duplicate etc  
-        var button_path_1 = table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "DosePatient", 2); 
-        var button_path_2 = table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "FindPatient", 2); 
-        var button_path_3 = table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "Status_DetachedLabel", 2);
+  //Check table is not empty befor attempting to cylce through it
+  if (table.Cell(1,0).contentText == get_string_translation("There are no new results")) {Log.Message("Table row containing timestamp does not exist"); return results;}
+
+  //Loop through each row of table
+  for (row=0; row<table.RowCount; row++)
+  {
+    //Check whether timestamp exists
+    if (table.Cell(row, 2).contentText == timestamp)
+    {    
+      //The status column can be a button or a label depending on the data so there are 2 seperate paths, but it will can be things like dose patient or duplicate etc  
+      var button_path_1 = table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "DosePatient", 2); 
+      var button_path_2 = table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "FindPatient", 2); 
+      var button_path_3 = table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "Status_DetachedLabel", 2);
         
-        if(button_path_1.Exists)
-        {
-         var text = button_path_1.ObjectLabel;     
-        }
-        if(button_path_2.Exists)
-        {
-          var text = button_path_2.ObjectLabel;
-        }
-        if(button_path_3.Exists)
-        {
-          var text = button_path_3.ObjectLabel;
-        }
+      if(button_path_1.Exists) {var text = button_path_1.ObjectLabel;}
+      if(button_path_2.Exists) {var text = button_path_2.ObjectLabel;}
+      if(button_path_3.Exists) {var text = button_path_3.ObjectLabel;}
         
-        //Can have a link or a different path depending on if the patient matches or not
-        var patient_name_link =  table.Cell(row, 1).Panel(0).FindChild("ObjectIdentifier", "PatientLink", 2);
-        var patient_name_label = table.Cell(row, 1).Panel(0).FindChild("ObjectIdentifier", "Name_DetachedLabel", 2);
+      //Can have a link or a different path depending on if the patient matches or not
+      var patient_name_link =  table.Cell(row, 1).Panel(0).FindChild("ObjectIdentifier", "PatientLink", 2);
+      var patient_name_label = table.Cell(row, 1).Panel(0).FindChild("ObjectIdentifier", "Name_DetachedLabel", 2);
         
-        if(patient_name_link.Exists)
-        {
-         var patient_name_text = patient_name_link.ObjectLabel;     
-        }
-        if(patient_name_label.Exists)
-        {
-          var patient_name_text = patient_name_label.ObjectLabel;
-        }
-       
+      if(patient_name_link.Exists)  {var patient_name_text = patient_name_link.ObjectLabel;}
+      if(patient_name_label.Exists) {var patient_name_text = patient_name_label.ObjectLabel;}
       
-        var results = {
+      var results = {
         "patient_name"           : patient_name_text,
         "patient_dob"            : table.Cell(row, 1).Panel(0).Label("Born_DetachedLabel").contentText,
         "patient_nhs_fiscal"     : table.Cell(row, 1).Panel(1).Panel(0).Label("ResultsNHSNumber_DetachedLabel").contentText,
@@ -577,14 +598,10 @@ function get_external_results_received_by_timestamp(timestamp, archived)
         "row"                    : row,      
         "status_column_value1"   : text,
         "status_column_value2"   : table.Cell(row, 4).Panel(0).FindChild("ObjectIdentifier", "ArchiveResult", 2).ObjectLabel
-        }
-         return results;
       }
+      return results;
     }
-    Log.Message("Table row containing timestamp does not exist");
   }
-//  If data is unobtainable we can prevent further checks - checking row is not false 
-  var results = {"row" : false}
   return results;
 }
 //--------------------------------------------------------------------------------
@@ -699,6 +716,7 @@ function get_new_inr_button_state()
 }
 //-----------------------------------------------------------------------------------
 //gets all data from specified table
+//Need to fix this at some point to pick up the NTD field as if you have clinics on/off it is held in a different property currently this will only work in Autotest1
 function get_treatment_row(row_num, table_type)
 {
   if(table_type == "current" || table_type == null)
@@ -722,7 +740,6 @@ function get_treatment_row(row_num, table_type)
     var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
     treatment_row_array.push(treatment_value);
   }
-  
   return treatment_row_array;  
 }
 //-----------------------------------------------------------------------------------
@@ -745,14 +762,14 @@ function get_treatment_row_key_values(row_num, table_type)
   }
   var treatment_row_array = new Array()
   
-  for(var i = 0; i < 11; i++)
+ for(var i = 0; i < 11; i++)
   {
     if(i == 0 || i == 1 || i == 2 || i == 5 || i == 7)
     {
       var treatment_value = treatment_table_path.Cell(row_num, i).contentText;
       treatment_row_array.push(treatment_value);
     }
-  }
+  } 
   
   return treatment_row_array;  
 }

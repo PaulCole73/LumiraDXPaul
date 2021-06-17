@@ -121,17 +121,18 @@ function add_patient_extended(p_surname, p_firstname, gender, TestStepMode, nhs_
 //--------------------------------------------------------------------------------
 function patient_search(data)
 {
+  //This expects you to only have 1 result returned so needs to be a unique name being passed in
   Goto_Patient_Search();
   var patient_search_screen_path = patient_search_screen();
-  
+
   patient_search_screen_path.Textbox("searchCriteria").Text = data;
   patient_search_screen_path.SubmitButton("Search").Click();
-  
+
   WaitSeconds(1, "Wait after patient search...");
-   
+
   var results_table = patient_search_screen_results_table();
   results_table.Cell(1, 0).Link("PatientLink").Click();
-  
+
   WaitSeconds(1, "Wait after patient search...");
 } 
 //--------------------------------------------------------------------------------
@@ -145,14 +146,14 @@ function patient_search_for_unmatched_result(patient_search_criteria)
   inrstar_path_external_patient_search_form_search_criteria().Text = patient_search_criteria;
   inrstar_path_external_patient_search_form_search_button().Click();
     
-  WaitSeconds(1, "Wait after patient search...");
+  WaitSeconds(2, "Wait after patient search...");
    
   //After Search - table will always appear - even if no results
   var results_table = patient_search_screen_results_table();
   var cell_content = results_table.Cell(1, 0).contentText;
   
   //This will check if the search was unsuccessful and return the displayed text if that is so
-  if (cell_content == get_string_translation("No patient found"))
+  if (cell_content == get_string_translation("No patients found"))
   {
     return cell_content;
   }
@@ -357,11 +358,11 @@ function add_patient(name_first, name_last, sex, nhs_num)
   
   if(language == "Italian")
   {
-    var date = convert_date_format(patient_details.dob, "%d/%m/%Y", "Italian");
+    var date = convert_date_format(patient_details.dob, "Italian", "%d/%m/%Y");
   }
   else
   {
-    var date = convert_date_format(patient_details.dob, "%d/%m/%Y", "english");
+    var date = convert_date_format(patient_details.dob, "english", "%d/%m/%Y");
   }
   
   date_picker(path, date);
@@ -456,38 +457,36 @@ function create_variable_patient_data(name_first, name_last, sex)
     return patient_details;
 }
 //--------------------------------------------------------------------------------
-function check_patient_found_in_patient_search_table(search_criteria, expected_patient_fullname)
+function inrstar_check_patient_search_criteria_start_char_unique(patient_object)
 {
-  search_for_a_patient(search_criteria);
-  var results_table = patient_search_screen_results_table();
-  
-  if(results_table.Cell(1, 0).contentText != get_string_translation("No patient found"))
-  {
-	  for(var i = 0; i < results_table.rowCount; i++)
-	  {
-		  if(results_table.Cell(i, 0).contentText == expected_patient_fullname)
-		  {
-		    return true;
-		  }
-	  }
-  }
-  else
-  {
-	  return false;
-  }
-  
-  return false;
+ var patient_details_array = new Array();
+ 
+ //Get the array to check for uniqueness
+ var pat_num = aqString.GetChar(patient_object.pat_number, 0);
+ var nhs_or_fiscal = aqString.GetChar(patient_object.nhs_number, 0);
+ var surname = aqString.GetChar(patient_object.last_name, 0);
+ var firstname = aqString.GetChar(patient_object.first_name, 0);
+ 
+ patient_details_array.push(pat_num,nhs_or_fiscal,surname,firstname);
+ //Log.Message(patient_details_array);
+ 
+ //check if the array has any duplicated start chars
+ var dup_count = count_duplicates(patient_details_array);
+ 
+ return dup_count;
 }
-//-----------------------------------------------------------------------------------
-function search_for_a_patient(search_criteria)
+//--------------------------------------------------------------------------------
+function inrstar_make_patient_search_criteria_start_char_unique(patient_object)
 {
-  Goto_Patient_Search();
-  var patient_search_screen_path = patient_search_screen();
-  
-  patient_search_screen_path.Textbox("searchCriteria").Text = search_criteria;
-  patient_search_screen_path.SubmitButton("Search").Click();
-} 
-//-----------------------------------------------------------------------------------
-
-
-
+ //Needed to make the first char of the following fields unique so that when you search for a patient you know which one it is using for the search
+ //The patient search will only search for a field if it begins with the correct char so it doesn't do a partial mid way search
+ var dup_count = inrstar_check_patient_search_criteria_start_char_unique(patient_object);
+ 
+ while(dup_count != 0)
+ {
+  add_patient();
+  patient = get_patient_details_object_from_demographics();
+  dup_count = inrstar_check_patient_search_criteria_start_char_unique(patient);
+ }
+}
+//--------------------------------------------------------------------------------
