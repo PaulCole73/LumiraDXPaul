@@ -610,7 +610,7 @@
 					<child name="get_parent_client_name" key="{5393A3FB-F549-4DA0-B86E-B4EC01784965}" path="get_parent_client_name.js" />
 					<child name="get_feedback" key="{F850E942-B39A-49DB-91E3-715D4613A768}" path="get_feedback.js" />
 					<child name="get_banner_message" key="{538F5E81-5686-4EFD-B486-92F4C563DB38}" path="get_banner_message.js" />
-					<child name="get_useunits" key="{0919FC67-4019-4232-BFEC-0FDC7D7CD21F}" path="get_useunits.js" />
+					<child name="admin_dash_get_useunits" key="{0919FC67-4019-4232-BFEC-0FDC7D7CD21F}" path="admin_dash_get_useunits.js" />
 				</folder>
 				<folder name="Goto">
 					<child name="goto_client" key="{41F3A55C-9CC6-4EBD-8598-82304510C446}" path="goto_client.js" />
@@ -621,9 +621,12 @@
 					<child name="goto_feedback" key="{D32BFDFD-B1E9-4AE1-8710-E1E8EB436270}" path="goto_feedback.js" />
 					<child name="goto_important_information" key="{F157B48B-049E-4DE5-9930-6317FB498493}" path="goto_important_information.js" />
 					<child name="goto_banner_message" key="{0B2A90E5-8251-4037-982C-1E5C8AAC29A2}" path="goto_banner_message.js" />
-					<child name="goto_useunits" key="{A8389421-DF43-422D-8C51-3421EBED9B2E}" path="goto_useunits.js" />
+					<child name="admin_dash_goto_useunits" key="{A8389421-DF43-422D-8C51-3421EBED9B2E}" path="admin_dash_goto_useunits.js" />
 				</folder>
-				<folder name="Popup Handling" />
+				<folder name="Popup Handling">
+					<child name="process_admin_dash_popup" key="{01C5BF72-2AF5-412D-B540-16DFCF1069CE}" path="process_admin_dash_popup.js" />
+					<child name="admin_dash_popup_useunit" key="{F05A0ADE-4170-4106-A30E-E32BAECA8CBC}" path="admin_dash_popup_useunit.js" />
+				</folder>
 				<folder name="Misc" />
 			</folder>
 		</folder>
