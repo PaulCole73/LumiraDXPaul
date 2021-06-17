@@ -355,7 +355,6 @@
 			</folder>
 			<folder name="4. Utilities">
 				<child name="Admin_Dash_Get_Functions" key="{C528866F-35FA-4E7B-8841-EFCC40562D3F}" path="Admin_Dash_Get_Functions.js" />
-				<child name="Admin_Dash_System_Paths" key="{B3BA6F44-ADBD-4334-A780-ED9AB89B7087}" path="Admin_Dash_System_Paths.js" />
 				<child name="Admin_Dash_Navigation" key="{88617AA4-25B3-431B-BF23-6A299A17FE80}" path="Admin_Dash_Navigation.js" />
 				<child name="Admin_Dash_Popup_Handlers" key="{54E7AC23-4048-4407-8D5F-C81905010CCD}" path="Admin_Dash_Popup_Handlers.js" />
 				<child name="Admin_Dash_Misc_Functions" key="{A94478F8-47B5-4911-A6B5-854A062280AF}" path="Admin_Dash_Misc_Functions.js" />
@@ -600,6 +599,7 @@
 					<child name="log_off_admin_dash" key="{89AAD456-27A6-4337-AD70-CAB72D2826CC}" path="log_off_admin_dash.js" />
 					<child name="validate_login" key="{B5C474B8-A6FB-4292-92F4-FBCBE50F3EB0}" path="validate_login.js" />
 				</folder>
+				<child name="admin_dash_tsa_useunits" key="{0F162751-0F67-4F26-AA88-03BC65EC7CAD}" path="admin_dash_tsa_useunits.js" />
 			</folder>
 			<folder name="3. Utilities">
 				<folder name="Get">
@@ -625,7 +625,7 @@
 				</folder>
 				<folder name="Popup Handling">
 					<child name="process_admin_dash_popup" key="{01C5BF72-2AF5-412D-B540-16DFCF1069CE}" path="process_admin_dash_popup.js" />
-					<child name="admin_dash_popup_useunit" key="{F05A0ADE-4170-4106-A30E-E32BAECA8CBC}" path="admin_dash_popup_useunit.js" />
+					<child name="admin_dash_popup_useunits" key="{F05A0ADE-4170-4106-A30E-E32BAECA8CBC}" path="admin_dash_popup_useunits.js" />
 				</folder>
 				<folder name="Misc">
 					<child name="open_admin_dash" key="{95E24942-FCA0-4F6A-865B-C8F225A68823}" path="open_admin_dash.js" />
@@ -635,6 +635,7 @@
 					<child name="set_admin_dash_url" key="{5FDF0379-8ECE-4678-819D-001E4E89ACFC}" path="set_admin_dash_url.js" />
 					<child name="admin_dash_misc_useunits" key="{E0C7E23C-64E0-4ABF-B2AC-ADA3F6F66D08}" path="admin_dash_misc_useunits.js" />
 				</folder>
+				<child name="Admin_Dash_System_Paths" key="{B3BA6F44-ADBD-4334-A780-ED9AB89B7087}" path="Admin_Dash_System_Paths.js" />
 			</folder>
 		</folder>
 	</children>

@@ -7,7 +7,7 @@
 		<child key="{57E3172B-305E-472E-B5DF-9E918A6C475B}">
 			<config nodeName="gmail_chrome" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="72.0" pageAddress="https://mail.google.com/mail/u/1/?ogbl#inbox" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="89.0" pageAddress="https://mail.google.com/mail/u/1/?ogbl#inbox" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
@@ -64,7 +64,7 @@
 		<child key="{BA57EBC4-8303-4C76-BBED-E9D44AD58AD1}">
 			<config nodeName="Admin_Dashboard" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://admin-uk-int1.caresolutions.lumiradx.com/" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="Internet Explorer" browserVersion="11.0 (32-bit)" pageAddress="https://admin-uk-test1.caresolutions.lumiradx.com/" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
@@ -91,7 +91,7 @@
 		<child key="{C0415C76-BAFA-4537-813C-E09E2638CC3F}">
 			<config nodeName="Engage" autorunOnRecording="False" enabled="True" count="1" useFeaturedRuntimeObject="True" userChangeName="True">
 				<runModeParams activeRunMode="Web">
-					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="72.0" pageAddress="https://engage-uk-test1.caresolutions.lumiradx.com/" browserArguments="" />
+					<param name="Web" parameters="" workFolder="" browserType="Mozilla Firefox" browserVersion="89.0" pageAddress="https://engage-uk-test1.caresolutions.lumiradx.com/" browserArguments="" />
 				</runModeParams>
 			</config>
 			<testData />
