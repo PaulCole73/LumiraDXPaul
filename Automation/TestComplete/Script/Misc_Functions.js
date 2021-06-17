@@ -15,9 +15,9 @@
 //-----------------------------------------------------------------------------------
 //Setup environment variable either from cmd line or default
 
-var language = "Italian";
-var environment = "INRstarWindowsITA-test1";
-var environmentname = "it-test1";
+var language = Project.Variables.language;
+var environment = Project.Variables.environment;
+var environmentname = Project.Variables.environmentname;
 //var admin_dash_url = "https://admin-" + environmentname + ".lumiradxcaresolutions.com/";
 var admin_dash_url = "https://admin-" + environmentname + ".caresolutions.lumiradx.com/";
 var engage_url = "https://engage-" + environmentname + ".caresolutions.lumiradx.com/";
@@ -479,12 +479,16 @@ function exception_occured(a, b) //randomly required 2 parameters
   Options.Run.Timeout = 0; //rush through test at erroro.");
 }
 //-----------------------------------------------------------------------------------
-function setup_automation(new_config_file_name,locale)
+function setup_automation(lang, environment_full, environment_short)
 {
-  language = locale;
+  //function for shifting global variables without manual updating
+  //shifts INRstar into the correct environment 
+  Project.Variables.language = lang;
+  Project.Variables.environment = environment_full;
+  Project.Variables.environmentname = environment_short;
   Log.LockEvents(0);
   reset_tests_array();
-  change_environments(new_config_file_name);
+  change_environments(environment_full);
 }
 //-----------------------------------------------------------------------------------
 function count_duplicates(array_data) 

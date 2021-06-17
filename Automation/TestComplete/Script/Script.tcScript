@@ -627,7 +627,14 @@
 					<child name="process_admin_dash_popup" key="{01C5BF72-2AF5-412D-B540-16DFCF1069CE}" path="process_admin_dash_popup.js" />
 					<child name="admin_dash_popup_useunit" key="{F05A0ADE-4170-4106-A30E-E32BAECA8CBC}" path="admin_dash_popup_useunit.js" />
 				</folder>
-				<folder name="Misc" />
+				<folder name="Misc">
+					<child name="open_admin_dash" key="{95E24942-FCA0-4F6A-865B-C8F225A68823}" path="open_admin_dash.js" />
+					<child name="close_admin_dash" key="{0AEDBA00-B869-497B-AEF4-83AC97D02BF1}" path="close_admin_dash.js" />
+					<child name="restart_admin_dash" key="{11273B5D-F536-4907-85E2-D3FB0B375843}" path="restart_admin_dash.js" />
+					<child name="setup_automation_admin_dash" key="{D5C1303A-C292-4467-8936-EB05D80F217E}" path="setup_automation_admin_dash.js" />
+					<child name="set_admin_dash_url" key="{5FDF0379-8ECE-4678-819D-001E4E89ACFC}" path="set_admin_dash_url.js" />
+					<child name="admin_dash_misc_useunits" key="{E0C7E23C-64E0-4ABF-B2AC-ADA3F6F66D08}" path="admin_dash_misc_useunits.js" />
+				</folder>
 			</folder>
 		</folder>
 	</children>

@@ -4,4 +4,4 @@
 //USEUNIT get_feedback
 //USEUNIT get_location_details
 //USEUNIT get_location_license_details
-//USEUNIT get_parnet_client_name
+//USEUNIT get_parent_client_name

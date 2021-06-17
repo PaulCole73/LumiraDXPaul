@@ -35,8 +35,9 @@
 					</testItem>
 					<testItem name="Setup" key="{5E6BCF23-A17C-41E7-82A3-219D673DC07B}" group="False" parallel="False" enabled="False" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 						<testParameters>
-							<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsAlderaan" />
-							<param1 name="locale" type="3" localVarName="" varType="0" value="" />
+							<param0 name="lang" type="3" localVarName="" varType="0" value="" />
+							<param1 name="environment_full" type="3" localVarName="" varType="0" value="" />
+							<param2 name="environment_short" type="3" localVarName="" varType="0" value="" />
 						</testParameters>
 						<environments activeCloud="CBT" />
 						<children />
@@ -71,8 +72,9 @@
 								<children>
 									<testItem name="Setup" key="{332EEA39-7085-4394-B511-1EC09711BC5E}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsUK-test1" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="English" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="English" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsUK-test1" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="uk-test1" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -351,8 +353,9 @@
 								<children>
 									<testItem name="Setup" key="{E98FB1DD-AE1D-42CC-BAB1-AF48D8785180}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsUK-test2" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="English" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="English" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsUK-test2" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="uk-test2" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -631,8 +634,9 @@
 								<children>
 									<testItem name="Setup" key="{ED104F00-2D03-4E0C-895B-00438B1E336C}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsUK-int1" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="English" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="English" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsUK-int1" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="uk-int1" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -911,8 +915,9 @@
 								<children>
 									<testItem name="Setup" key="{04B67A63-FFD8-459D-9048-6CDB37E51814}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsUK-preprod1" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="English" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="English" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsUK-preprod1" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="uk-preprod1" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -1196,8 +1201,9 @@
 								<children>
 									<testItem name="Setup" key="{B6A679B4-AFF7-4FAB-B91D-A7785E27A8DA}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsITA-test1" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="Italian" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="Italian" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsITA-test1" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="it-test1" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -1448,8 +1454,9 @@
 								<children>
 									<testItem name="Setup" key="{9BDB1F55-EA15-4C10-86BF-3AB7CFE53910}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsITA-test2" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="Italian" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="Italian" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsITA-test2" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="it-test2" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -1700,8 +1707,9 @@
 								<children>
 									<testItem name="Setup" key="{15B23F47-0CF1-4823-9172-B73E03ED81AE}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsITA-int1" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="Italian" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="Italian" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsITA-int1" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="it-int1" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -1952,8 +1960,9 @@
 								<children>
 									<testItem name="Setup" key="{DFAB0920-7188-471B-BF6E-5C52C442697F}" group="False" parallel="False" enabled="True" testMoniker="{9D58725E-CD10-4CA7-B716-113CB64F3847}setup_automation" count="1" timeout="0" stopOnError="3" stopOnException="2" description="" tmsData="" testCase="True">
 										<testParameters>
-											<param0 name="new_config_file_name" type="3" localVarName="" varType="8" value="INRstarWindowsITA-preprod1" />
-											<param1 name="locale" type="3" localVarName="" varType="8" value="Italian" />
+											<param0 name="lang" type="3" localVarName="" varType="8" value="Italian" />
+											<param1 name="environment_full" type="3" localVarName="" varType="8" value="INRstarWindowsITA-preprod1" />
+											<param2 name="environment_short" type="3" localVarName="" varType="8" value="it-preprod1" />
 										</testParameters>
 										<environments activeCloud="CBT" />
 										<children />
@@ -2534,6 +2543,15 @@
 				<Variable Name="cookie_jar" Type="String" Local="True">
 					<DefValue StrValue="default" />
 				</Variable>
+				<Variable Name="language" Type="String" Local="True">
+					<DefValue StrValue="English" />
+				</Variable>
+				<Variable Name="environment" Type="String" Local="True">
+					<DefValue StrValue="INRstarWindowsUK-test1" />
+				</Variable>
+				<Variable Name="environmentname" Type="String" Local="True">
+					<DefValue StrValue="uk-test1" />
+				</Variable>
 			</Items>
 		</data>
 	</variables>
@@ -3019,7 +3037,7 @@
 			</data>
 		</setting>
 		<setting name="Playback_OverlappingWindow_IgnoreOverlappingWindow" type="1" value="False" />
-		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="0" />
+		<setting name="Playback_Runtime_AutoWaitTimeout" type="2" value="25000" />
 		<setting name="Playback_Runtime_DelayBetweenEvents" type="2" value="50" />
 		<setting name="Playback_Runtime_DisableMouse" type="1" value="False" />
 		<setting name="Playback_Runtime_MinimizeBeforePlayback" type="1" value="False" />
